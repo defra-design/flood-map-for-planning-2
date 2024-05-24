@@ -1,0 +1,141 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Get flood risk information for planning in England
+      </h1>
+      
+      <p>
+        For general flood information, including local flood warnings you can
+        <a
+          class="govuk-link"
+          href="https://www.gov.uk/check-flood-risk">check for flooding</a>.
+      </p>
+
+      <div class="govuk-inset-text blue-inset">
+        You can now use this service to request flood risk assessment data for planning (also known as a product 4).
+      </div>
+
+      <p>
+        Use this service for locations in England to:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          find out if you need a flood risk assessment as part of a planning application (sometimes known as planning
+          permission)
+        </li>
+        <li>
+          download a printable flood map for planning (PDF) showing your flood zone (also known as a product 1)
+        </li>
+        <li>
+          request flood risk assessment data (also known as a product 4)
+        </li>
+      </ul>
+
+      <p>
+        <a class="govuk-link" href="england-only">Get flood risk
+          information for Wales, Scotland or Northern Ireland</a>.
+      </p>
+
+      <p>
+        <a
+          href="location"
+          role="button"
+          draggable="false"
+          class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--start"
+          data-module="govuk-button">
+          Start now
+          <svg
+            class="govuk-button__start-icon"
+            xmlns="http://www.w3.org/2000/svg"
+            width="17.5"
+            height="19"
+            viewBox="0 0 33 40"
+            role="presentation"
+            focusable="false">
+            <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+          </svg>
+        </a>
+      </p>
+
+      <h2 class="govuk-heading-m">
+        Before you start
+      </h2>
+
+      <p>
+        For the location you want to know about you will need one of the following:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          postcode
+        </li>
+        <li>
+          place
+        </li>
+        <li>
+          national grid reference (NGR)
+        </li>
+        <li>
+          easting and northing coordinates
+        </li>
+      </ul>
+
+      <p>
+        <a
+          href="https://www.gov.uk/guidance/flood-risk-assessment-for-planning-applications#when-you-need-an-assessment"
+          data-journey-click="Home-Page:External-Link:Find-Out-More-About-FRA-for-Planning">
+          Find out more about flood risk assessments for planning permission</a>.
+      </p>
+
+      <p>
+        You’ll usually need a flood risk consultant to carry out a flood risk assessment. If it’s for a
+        simple, low risk development like a house extension you may be able to do it yourself.
+      </p>
+
+      <p>
+        If you’re unsure
+        <a
+          data-journey-click="Home-Page:External-Link:FRA-for-Planning-Contact"
+          href="https://www.gov.uk/guidance/flood-risk-assessment-for-planning-applications#contact">contact the Environment Agency</a>.</p>
+      
+      <h2 class="govuk-heading-m">
+        Other ways to get this information
+      </h2>
+
+      <p>
+        For help getting flood risk information, contact the Environment Agency.
+      </p>
+
+      <p>
+        Environment Agency
+        <br>
+        Telephone: 03708 506 506
+        <br>
+        Monday to Friday, 8am to 6pm
+        <br>
+        <a href="https://www.gov.uk/call-charges">Find out about call charges</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

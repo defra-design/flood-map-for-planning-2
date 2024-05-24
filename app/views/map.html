@@ -1,0 +1,66 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+    <script>
+      /* Only needed if buttonFirst or hyrbid */
+      if (location.search.indexOf('view=map') >= 0) {
+        if (window.matchMedia('(max-width: 640px)').matches) { // Condition need for Hybrid
+          document.body.classList.add('fm-js-hidden')
+        }
+      }
+    </script>
+      <h1 class="govuk-heading-l">A basic map</h1>
+      <div id="map" data-zoom="10" data-centre="[-1.318249,50.673456]"></div>
+
+{% endblock %}
+
+{% block pageScripts %}
+
+    <script>
+      const fm = new floodMap.Map('map', {
+        type: 'hybrid',
+        place: 'Carlisle',
+        zoom: 10,
+        minZoom: 6,
+        maxZoom: 18,
+        centre: [-1.311179,50.668434],
+        // bbox: [-2.989707, 54.864555, -2.878635, 54.937635],
+        // hasReset: true,
+        height: '600px',
+        provider: {
+            osApiKey: '{{ osApiKey }}',
+            styleUrl: '{{ styleUrl }}',
+            aerialUrl: '{{ aerialUrl }}',
+            imagesPath: '/plugin-assets/flood-map-plugin/images',
+            symbolPath: '/plugin-assets/flood-map-plugin/images/symbols',
+            symbolName: ['severe', 'warning', 'alert', 'removed']
+        },
+        search: {
+            label: 'Search for a place',
+            isAutocomplete: true,
+            hasGeoLocation: true,
+            provider: {
+                key: '{{osApiKey}}'
+            }
+        },
+        basemaps: ['default', 'dark', 'aerial', 'deuteranopia', 'tritanopia'],
+        hasSizes: true,
+        queryFeature: ['point', 'polygon']
+      })
+    </script>
+
+{% endblock %}
