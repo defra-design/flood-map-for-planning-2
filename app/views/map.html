@@ -1,16 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {{ govukHeader() }}
-{% endblock %}
-
-{% block beforeContent %}
-  
+  Map – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block content %}
@@ -23,8 +14,10 @@
         }
       }
     </script>
-      <h1 class="govuk-heading-l">A basic map</h1>
-      <div id="map" data-zoom="10" data-centre="[-1.318249,50.673456]"></div>
+
+    <h1 class="govuk-heading-l">A basic map</h1>
+    
+    <div id="map" data-zoom="10" data-centre="[-1.318249,50.673456]"></div>
 
 {% endblock %}
 
@@ -38,13 +31,11 @@
         minZoom: 6,
         maxZoom: 18,
         centre: [-1.311179,50.668434],
-        // bbox: [-2.989707, 54.864555, -2.878635, 54.937635],
-        // hasReset: true,
         height: '600px',
         provider: {
-            osApiKey: '{{ osApiKey }}',
-            styleUrl: '{{ styleUrl }}',
-            aerialUrl: '{{ aerialUrl }}',
+            osApiKey: '{{ env.OS_API_KEY }}',
+            styleUrl: '{{ env.STYLE_URL }}',
+            aerialUrl: '{{ env.AERIAL_URL }}',
             imagesPath: '/plugin-assets/flood-map-plugin/images',
             symbolPath: '/plugin-assets/flood-map-plugin/images/symbols',
             symbolName: ['severe', 'warning', 'alert', 'removed']
@@ -54,7 +45,7 @@
             isAutocomplete: true,
             hasGeoLocation: true,
             provider: {
-                key: '{{osApiKey}}'
+                key: '{{ env.OS_API_KEY }}'
             }
         },
         basemaps: ['default', 'dark', 'aerial', 'deuteranopia', 'tritanopia'],
