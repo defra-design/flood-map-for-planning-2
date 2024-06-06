@@ -55,7 +55,181 @@
           provider: 'os-open-names',
           key: '{{ env.OS_OPEN_NAMES_KEY }}'
         },
-        
+        legend: {
+        // width: '360px',
+        // display: 'inset',
+        // isVisible: true,
+        title: 'Menu',
+        keyDisplay: 'none',
+        isPersistInUrl: true,
+        symbolPath: '/public/images',
+        segments: [
+            {
+                id: 'd',
+                heading: 'Source of flooding',
+                // display: 'segmented',
+                // parentIds: ['a', 'b'],
+                items: [
+                    {
+                        id: 'd1',
+                        label: '<span>River and sea</span>'
+                    },
+                    {
+                        id: 'd2',
+                        label: '<span>Surface water</span>'
+                    }
+                ]
+            },
+            {
+                id: 'x',
+                heading: 'Undefended',
+                // display: 'segmented',
+                parentIds: ['d1', 'd2'],
+                items: [
+                    {
+                        id: 'x1',
+                        label: 'Undefended'
+                    },
+                    {
+                        id: 'x2',
+                        label: 'Defended'
+                    }
+                ]
+            },
+            {
+                heading: 'Time frame',
+                // display: 'segmented',
+                items: [
+                    {
+                        id: 'a',
+                        label: '<span>Present day</span>'
+                    },
+                    {
+                        id: 'b',
+                        label: '<span>Climate change</span>'
+                    }
+                ]
+            },
+            {
+                id: 'c',
+                heading: 'Annual likelihood of flooding',
+                // display: 'segmented',
+                parentIds: ['d1'],
+                items: [
+                    {
+                        id: 'c1',
+                        label: '<span>> 3.3%</span>'
+                    },
+                    {
+                        id: 'c2',
+                        label: '<span>> 1%</span>',
+                        isSelected: true
+                    },
+                    {
+                        id: 'c3',
+                        label: '<span>> 0.1%</span>'
+                    }
+                ]
+            },
+            {
+                id: 'c',
+                heading: 'Annual likelihood of flooding',
+                // display: 'segmented',
+                parentIds: ['d2'],
+                items: [
+                    {
+                        id: 'z1',
+                        label: '<span>> 3.3%</span>'
+                    },
+                    {
+                        id: 'z2',
+                        label: '<span>> 1%</span>'
+                    },
+                    {
+                        id: 'z3',
+                        label: '<span>> 0.5%</span>'
+                    },
+                    {
+                        id: 'z4',
+                        label: '<span>> 0.1%</span>'
+                    }
+                ]
+            }
+        ],
+        key: [
+            {
+                id: 'fd',
+                type: 'ramp',
+                // layout: 'column',
+                heading: 'Maximum flood depth',
+                parentIds: ['a', 'b'],
+                items: [
+                    {
+                        label: 'up to 0.15 metres',
+                        fill: '#5694CA'
+                    },
+                    {
+                        label: '0.3',
+                        fill: '#4B87BF'
+                    },
+                    {
+                        label: '0.6',
+                        fill: '#407BB5'
+                    },
+                    {
+                        label: 'up to 0.9 metres',
+                        fill: '#356EAB'
+                    },
+                    {
+                        label: '1.2',
+                        fill: '#2B62A1'
+                    },
+                    {
+                        label: '2.3',
+                        fill: '#205596'
+                    },
+                    {
+                        label: 'above 2.3 metres',
+                        fill: '#15498C'
+                    }
+                ]
+            },
+            {
+                id: 'mf',
+                type: 'symbol',
+                heading: 'Map features',
+                parentIds: ['a', 'b'],
+                items: [
+                    {
+                        id: 'fz3',
+                        label: 'Flood zone 3',
+                        fill: '#003078'
+                    },
+                    {
+                        id: 'fz2',
+                        label: 'Flood zone 2',
+                        fill: '#00A4CD'
+                    },
+                    {
+                        id: 'wsa',
+                        label: 'Water storage area',
+                        icon: 'water-storage'
+                    },
+                    {
+                        id: 'fd',
+                        label: 'Flood defence',
+                        icon: 'flood-defence'
+                    },
+                    {
+                        id: 'mr',
+                        label: 'Main river',
+                        icon: 'main-river'
+                    }
+                ]
+            }
+        ]
+    }
+      })
     </script>
 
 {% endblock %}
