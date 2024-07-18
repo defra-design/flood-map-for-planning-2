@@ -17,219 +17,335 @@
 
     <h1 class="govuk-heading-l">A basic map</h1>
     
-    <div id="map" data-zoom="10" data-centre="[-1.318249,50.673456]"></div>
+    <div id="map"></div>
 
 {% endblock %}
 
 {% block pageScripts %}
 
+    <!-- Load Map Components from CDN-->
+    <!-- <script src="https://js.arcgis.com/4.30/"></script>
+    <script type="module" src="https://js.arcgis.com/map-components/4.30/arcgis-map-components.esm.js"></script> -->
+
+    <script src="/public/javascripts/tokens.js"></script>
+
     <script>
-      const fm = new defraMap.FloodMap('map', {
-        type: 'hybrid',
-        display: '',
-        place: 'Carlisle',
-        zoom: 10,
-        minZoom: 6,
-        maxZoom: 18,
-        centre: [-1.311179,50.668434],
-        height: '600px',
-        provider: {
-          // osApiKey: '{{ env.OS_API_KEY }}',
-          // styleUrl: '{{ env.STYLE_URL }}',
-          // aerialUrl: '{{ env.AERIAL_URL }}',
-          imagesPath: '/plugin-assets/flood-map-plugin/images',
-          symbolPath: '/public/images',
-          defaultUrl: '{{ env.DEFAULT_URL }}',
-          darkUrl: '{{ env.DARK_URL }}',
-          aerialUrl: '{{ env.AERIAL_URL }}',
-          deuteranopiaUrl: '{{ env.DEUTERANOPIA_URL }}',
-          tritanopiaUrl: '{{ env.TRITANOPIA_URL }}',
-          reverseGeocodeProvider: 'os-open-names',
-          reverseGeocodeKey: '{{ env.OS_OPEN_NAMES_KEY }}',
-          symbolName: ['flood-defence', 'main-river', 'water-storage']
-        },
-        search: {
-          label: 'Search for a place',
-          isAutocomplete: true,
-          hasGeoLocation: true,
-          provider: 'os-open-names',
-          key: '{{ env.OS_OPEN_NAMES_KEY }}'
-        },
-        legend: {
-        // width: '360px',
-        // display: 'inset',
-        // isVisible: true,
-        title: 'Menu',
-        keyDisplay: 'none',
-        isPersistInUrl: true,
-        symbolPath: '/public/images',
-        segments: [
-            {
-                id: 'd',
-                heading: 'Source of flooding',
-                // display: 'segmented',
-                // parentIds: ['a', 'b'],
-                items: [
-                    {
-                        id: 'd1',
-                        label: '<span>River and sea</span>'
+      
+        const tokens = {}
+
+        const isDarkBasemap = false
+
+        let map, isDark
+
+        const addLayers = (VectorTileLayer) => {
+            map.add(new VectorTileLayer({
+                id: 'surface-water-high',
+                style: {
+                    'version': 8,
+                    'sources': {
+                        'esri': {
+                            'type': 'vector',
+                            'bounds': [-6.98694, 49.8816, 2.07537, 55.8333],
+                            'minzoom': 4,
+                            'maxzoom': 16,
+                            'scheme': 'xyz',
+                            'url': 'https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/Surface_water_spatial_planning_1in30_depth_VTP/VectorTileServer'
+                        }
                     },
-                    {
-                        id: 'd2',
-                        label: '<span>Surface water</span>'
-                    }
-                ]
-            },
-            {
-                id: 'x',
-                heading: 'Undefended',
-                // display: 'segmented',
-                parentIds: ['d1', 'd2'],
-                items: [
-                    {
-                        id: 'x1',
-                        label: 'Undefended'
-                    },
-                    {
-                        id: 'x2',
-                        label: 'Defended'
-                    }
-                ]
-            },
-            {
-                heading: 'Time frame',
-                // display: 'segmented',
-                items: [
-                    {
-                        id: 'a',
-                        label: '<span>Present day</span>'
-                    },
-                    {
-                        id: 'b',
-                        label: '<span>Climate change</span>'
-                    }
-                ]
-            },
-            {
-                id: 'c',
-                heading: 'Annual likelihood of flooding',
-                // display: 'segmented',
-                parentIds: ['d1'],
-                items: [
-                    {
-                        id: 'c1',
-                        label: '<span>> 3.3%</span>'
-                    },
-                    {
-                        id: 'c2',
-                        label: '<span>> 1%</span>',
-                        isSelected: true
-                    },
-                    {
-                        id: 'c3',
-                        label: '<span>> 0.1%</span>'
-                    }
-                ]
-            },
-            {
-                id: 'c',
-                heading: 'Annual likelihood of flooding',
-                // display: 'segmented',
-                parentIds: ['d2'],
-                items: [
-                    {
-                        id: 'z1',
-                        label: '<span>> 3.3%</span>'
-                    },
-                    {
-                        id: 'z2',
-                        label: '<span>> 1%</span>'
-                    },
-                    {
-                        id: 'z3',
-                        label: '<span>> 0.5%</span>'
-                    },
-                    {
-                        id: 'z4',
-                        label: '<span>> 0.1%</span>'
-                    }
-                ]
+                    'layers': [
+                        {
+                            'id': 'surface-water-high',
+                            'type': 'fill',
+                            'source': 'esri',
+                            'source-layer': 'Surface_water_spatial_planning_1in30_depth_N',
+                            'minzoom': 4.7597
+                        }
+                    ]
+                },
+                visibile: false
+            }))
+        }
+
+        const toggleVisibility = (segments) => {
+            // Conditionally add/remove layers - could be better for performance
+            map.layers.forEach(layer => {
+                if (layer.id === 'surface-water-high') {
+                    layer.visible = ['sw', 'pd', 'hr'].every(v => segments.includes(v))
+                }
+            })
+        }
+
+        const setStyle = (layerId) => {
+            const layer = map.findLayerById(layerId)
+            if (!layer) return
+            if (layerId === 'surface-water-high') {
+                const style = layer.getStyleLayer('surface-water-high')
+                style.paint = {
+                    'fill-color': ['match',
+                        ['get', '_symbol'],
+                        0, isDark ? '#99004D' : '#B26C28',
+                        1, isDark ? '#E6772E' : '#CD7A29',
+                        2, isDark ? '#FFBFC9' : '#E48824',
+                        3, isDark ? '#FFBFC9' : '#F8971C',
+                        4, isDark ? '#FFBFC9' : '#FBAA34',
+                        5, isDark ? '#FFBFC9' : '#FDBF66',
+                        isDark ? '#FFD37F' : '#FFD599'
+                    ],
+                    'fill-opacity': 0.75
+                }
+                layer.setStyleLayer(style)
             }
-        ],
-        key: [
-            {
-                id: 'fd',
-                type: 'ramp',
-                // layout: 'column',
-                heading: 'Maximum flood depth',
-                parentIds: ['a', 'b'],
-                items: [
-                    {
-                        label: 'up to 0.15 metres',
-                        fill: '#5694CA'
-                    },
-                    {
-                        label: '0.3',
-                        fill: '#4B87BF'
-                    },
-                    {
-                        label: '0.6',
-                        fill: '#407BB5'
-                    },
-                    {
-                        label: 'up to 0.9 metres',
-                        fill: '#356EAB'
-                    },
-                    {
-                        label: '1.2',
-                        fill: '#2B62A1'
-                    },
-                    {
-                        label: '2.3',
-                        fill: '#205596'
-                    },
-                    {
-                        label: 'above 2.3 metres',
-                        fill: '#15498C'
-                    }
-                ]
-            },
-            {
-                id: 'mf',
-                type: 'symbol',
-                heading: 'Map features',
-                parentIds: ['a', 'b'],
-                items: [
-                    {
-                        id: 'fz3',
-                        label: 'Flood zone 3',
-                        fill: '#003078'
-                    },
-                    {
-                        id: 'fz2',
-                        label: 'Flood zone 2',
-                        fill: '#00A4CD'
-                    },
-                    {
-                        id: 'wsa',
-                        label: 'Water storage area',
-                        icon: 'water-storage'
-                    },
-                    {
-                        id: 'fd',
-                        label: 'Flood defence',
-                        icon: 'flood-defence'
-                    },
-                    {
-                        id: 'mr',
-                        label: 'Main river',
-                        icon: 'main-river'
-                    }
-                ]
-            }
-        ]
-    }
-      })
+        }
+
+        Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
+            const fm = new defraMap.FloodMap('map', {
+                type: 'hybrid',
+                place: 'Newport, Isle of White',
+                zoom: 14,
+                minZoom: 6,
+                maxZoom: 16,
+                // centre: [-2.938769, 54.893806],
+                centre: [337297, 503995],
+                // bbox: [-2.989707, 54.864555, -2.878635, 54.937635],
+                // hasReset: true,
+                height: '700px',
+                provider: {
+                    name: 'esri',
+                    tokens: tokens,
+                    defaultUrl: '{{ env.ESRI_DEFAULT_URL }}',
+                    darkUrl: '{{ env.ESRI_DARK_URL }}',
+                    // aerialUrl: '{{ env.ESRI_AERIAL_URL }}',
+                    // reverseGeocodeProvider: 'esri-world-geocoder',
+                    // reverseGeocodeToken: tokens.esri,
+                    reverseGeocodeProvider: 'os-open-names',
+                    reverseGeocodeToken: '{{ env.OS_API_KEY }}',
+                    imagesPath: '/plugin-assets/%40defra%2Fflood-map/plugin/images',
+                    symbolPath: '/public/images/symbols',
+                    symbolName: ['flood-defence', 'main-river', 'water-storage']
+                },
+                search: {
+                    label: 'Search for a place',
+                    isAutocomplete: true,
+                    hasGeoLocation: true,
+                    provider: 'os-open-names',
+                    token: '{{ env.OS_API_KEY }}'
+                    // provider: 'esri-world-geocoder',
+                    // token: tokens.esri
+                },
+                legend: {
+                    // width: '360px',
+                    // display: 'inset',
+                    // isVisible: true,
+                    title: 'Menu',
+                    keyDisplay: 'none',
+                    isPersistInUrl: true,
+                    symbolPath: '/assets/images/symbols',
+                    segments: [
+                        {
+                            heading: 'Datasets',
+                            // collapse: 'collapse',
+                            items: [
+                                {
+                                    id: 'fz',
+                                    label: 'Flood zones 2 and 3'
+                                },
+                                {
+                                    id: 'rsd',
+                                    label: 'River and sea with defences'
+                                },
+                                {
+                                    id: 'rsu',
+                                    label: 'River and sea without defences'
+                                },
+                                {
+                                    id: 'sw',
+                                    label: 'Surface water'
+                                }
+
+                            ]
+                        },
+                        {
+                            id: 'tf',
+                            heading: 'Time frame',
+                            collapse: 'collapse',
+                            parentIds: ['rsd', 'rsu', 'sw'],
+                            items: [
+                                {
+                                    id: 'pd',
+                                    label: 'Present day'
+                                },
+                                {
+                                    id: 'cl',
+                                    label: '2040\'s to 2060\'s'
+                                }
+                            ]
+                        },
+                        {
+                            id: 'af1',
+                            heading: 'Annual likelihood of flooding',
+                            collapse: 'collapse',
+                            parentIds: ['rsd', 'sw'],
+                            items: [
+                                {
+                                    id: 'hr',
+                                    label: 'Above 3.3%'
+                                },
+                                {
+                                    id: 'mr',
+                                    label: '0.1% to 0.5%'
+                                },
+                                {
+                                    id: 'lr',
+                                    label: 'Below 0.1%'
+                                }
+                            ]
+                        },
+                        {
+                            id: 'af2',
+                            heading: 'Annual likelihood of flooding',
+                            collapse: 'collapse',
+                            parentIds: ['rsu'],
+                            items: [
+                                {
+                                    id: 'mr',
+                                    label: '0.1% to 0.5%'
+                                },
+                                {
+                                    id: 'lr',
+                                    label: 'below 0.1%'
+                                }
+                            ]
+                        }
+                    ],
+                    key: [
+                        {
+                            id: 'fed',
+                            type: 'ramp',
+                            parentIds: ['pd', 'cl'],
+                            heading: 'Flood extent and depth',
+                            collapse: 'collapse',
+                            expandRampHeading: 'Maximum depth in metres', // Optional
+                            collapseFillLabel: 'Extent only',
+                            fill: '#F8971C', // Optional - sets ramp to initial collapse 
+                            items: [
+                                {
+                                    label: '0.15',
+                                    fill: '#FFD599'
+                                },
+                                {
+                                    label: '0.3',
+                                    fill: '#FDBF66'
+                                },
+                                {
+                                    label: '0.6',
+                                    fill: '#FBAA34'
+                                },
+                                {
+                                    label: '0.9',
+                                    fill: '#F8971C'
+                                },
+                                {
+                                    label: '1.2',
+                                    fill: '#E48824'
+                                },
+                                {
+                                    label: '2.3',
+                                    fill: '#CD7A29'
+                                },
+                                {
+                                    label: 'above 2.3',
+                                    fill: '#B26C28'
+                                }
+                            ]
+                        },
+                        {
+                            type: 'symbol',
+                            heading: 'Map features',
+                            parentIds: ['fz'],
+                            isSelected: true,
+                            items: [
+                                {
+                                    id: 'fz2',
+                                    label: 'Flood zone 2',
+                                    fill: '#00A4CD',
+                                    isSelected: true
+                                },
+                                {
+                                    id: 'fz3',
+                                    label: 'Flood zone 3',
+                                    fill: '#003078',
+                                    isSelected: true
+                                }
+                            ]
+                        },
+                        {
+                            type: 'symbol',
+                            heading: 'Map features',
+                            parentIds: ['pd', 'cl'],
+                            collapse: 'collapse',
+                            isSelected: true,
+                            items: [
+                                {
+                                    id: 'wsa',
+                                    label: 'Water storage area',
+                                    icon: 'water-storage'
+                                },
+                                {
+                                    id: 'fd',
+                                    label: 'Flood defence',
+                                    icon: 'flood-defence'
+                                },
+                                {
+                                    id: 'mr',
+                                    label: 'Main river',
+                                    icon: 'main-river'
+                                }
+                            ]
+                        }
+                    ]
+                },
+                draw: {
+                    heading: 'Get information for a boundary',
+                    startLabel: 'Draw boundary',
+                    finishLabel: 'Finish and get report',
+                    helpLabel: 'How to draw a shape',
+                    html: '<p class="govuk-body-s">Instructions</p>',
+                    defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
+                    darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
+                    minZoom: 12,
+                    maxZoom: 16
+                },
+                queryPixel: ['surface-water-1-30']
+            })
+
+            // Component is ready and we have access to map
+            // We can listen for map events now, such as 'loaded'
+            fm.addEventListener('ready', async e => {
+                map = fm.map
+                const { view, VectorTileLayer, basemap, segments, layers } = e.detail
+                isDark = basemap === 'dark'
+                addLayers(VectorTileLayer)
+                toggleVisibility(segments, layers)
+                view.on('layerview-create', e => { setStyle(e.layer.id) })
+            })
+
+            // Listen for segments, layers or style changes
+            fm.addEventListener('change', e => {
+                const { basemap, segments, layers } = e.detail
+                isDark = basemap === 'dark'
+                toggleVisibility(segments, layers)
+                map.layers.forEach(layer => setStyle(layer.id))
+            })
+
+            // Listen to map queries
+            fm.addEventListener('query', e => {
+                fm.info = {
+                    width: '360px',
+                    label: 'Hello world',
+                    html: '<p class="govuk-body-s">Feature content</p><p><a href="" class="govuk-link">Link</a></p>'
+                }
+            })
+        })
     </script>
 
 {% endblock %}
