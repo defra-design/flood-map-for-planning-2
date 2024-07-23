@@ -23,10 +23,6 @@
 
 {% block pageScripts %}
 
-    <!-- Load Map Components from CDN-->
-    <!-- <script src="https://js.arcgis.com/4.30/"></script>
-    <script type="module" src="https://js.arcgis.com/map-components/4.30/arcgis-map-components.esm.js"></script> -->
-
     <script src="/public/javascripts/tokens.js"></script>
 
     <script>
@@ -35,66 +31,91 @@
 
         const isDarkBasemap = false
 
-        let map, isDark
+        let map, isDark, isRamp
+
+        const layers = [
+            'Surface_water_spatial_planning_1in30_depth_VTP_2',
+            'Surface_water_spatial_planning_1in100_depth_VTP',
+            'Surface_water_spatial_planning_1in1000_depth_VTP',
+            'Rivers_1in30_Sea_1in30_defended_depth_VTP',
+            'Rivers_1in100_Sea_1in200_defended_depth_VTP2',
+            'Rivers_1in1000_Sea_1in1000_defended_depth_VTP_22',
+            'Rivers_1in100_Sea_1in200_undefended_depth_VTP',
+            'Rivers_1in1000_Sea_1in1000_undefended_depth_VTP'
+        ]
+
+        const ids = [
+            'swpdhr',
+            'swpdmr',
+            'swpdlr',
+            'rsdpdhr',
+            'rsdpdmr',
+            'rsdpdlr',
+            'rsupdmr',
+            'rsupdlr'
+        ]
 
         const addLayers = (VectorTileLayer) => {
-            map.add(new VectorTileLayer({
-                id: 'surface-water-high',
-                style: {
-                    'version': 8,
-                    'sources': {
-                        'esri': {
-                            'type': 'vector',
-                            'bounds': [-6.98694, 49.8816, 2.07537, 55.8333],
-                            'minzoom': 4,
-                            'maxzoom': 16,
-                            'scheme': 'xyz',
-                            'url': 'https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/Surface_water_spatial_planning_1in30_depth_VTP/VectorTileServer'
-                        }
+            layers.forEach(layer => {
+                map.add(new VectorTileLayer({
+                    id: layer,
+                    style: {
+                        'version': 8,
+                        'sources': {
+                            'esri': {
+                                'type': 'vector',
+                                'bounds': [-6.98694, 49.8816, 2.07537, 55.8333],
+                                'minzoom': 4,
+                                'maxzoom': 16,
+                                'scheme': 'xyz',
+                                'url': `https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer}/VectorTileServer`
+                            }
+                        },
+                        'layers': [
+                            {
+                                'id': layer,
+                                'type': 'fill',
+                                'source': 'esri',
+                                'source-layer': `${layer.split('_VTP')[0]}_N`,
+                                'minzoom': 4.7597,
+                                'paint': {
+                                    'fill-color': '#B26C28'
+                                }
+                            }
+                        ]
                     },
-                    'layers': [
-                        {
-                            'id': 'surface-water-high',
-                            'type': 'fill',
-                            'source': 'esri',
-                            'source-layer': 'Surface_water_spatial_planning_1in30_depth_N',
-                            'minzoom': 4.7597
-                        }
-                    ]
-                },
-                visibile: false
-            }))
-        }
-
-        const toggleVisibility = (segments) => {
-            // Conditionally add/remove layers - could be better for performance
-            map.layers.forEach(layer => {
-                if (layer.id === 'surface-water-high') {
-                    layer.visible = ['sw', 'pd', 'hr'].every(v => segments.includes(v))
-                }
+                    visible: false
+                }))
             })
         }
 
-        const setStyle = (layerId) => {
+        const toggleVisibility = (segments) => {
+            // Conditionally add/remove layers might offer better for performance
+            layers.forEach((l, i) => {
+                const layer = map.findLayerById(l)
+                layer.visible = layer.id === layers[i] && segments.join('') === ids[i]
+            })
+        }
+
+        const setStyle = (layerId, isRamp) => {
+            if (!layers.includes(layerId)) return
             const layer = map.findLayerById(layerId)
-            if (!layer) return
-            if (layerId === 'surface-water-high') {
-                const style = layer.getStyleLayer('surface-water-high')
-                style.paint = {
-                    'fill-color': ['match',
-                        ['get', '_symbol'],
-                        0, isDark ? '#99004D' : '#B26C28',
-                        1, isDark ? '#E6772E' : '#CD7A29',
-                        2, isDark ? '#FFBFC9' : '#E48824',
-                        3, isDark ? '#FFBFC9' : '#F8971C',
-                        4, isDark ? '#FFBFC9' : '#FBAA34',
-                        5, isDark ? '#FFBFC9' : '#FDBF66',
-                        isDark ? '#FFD37F' : '#FFD599'
-                    ],
-                    'fill-opacity': 0.75
-                }
-                layer.setStyleLayer(style)
+            const style = layer.getStyleLayer(layerId)
+            style.paint = {
+                'fill-color': ['match',
+                    ['get', '_symbol'],
+                    0, isRamp ? isDark ? '#08589e' : '#08589e' : '#2b8cbe', // > 2300
+                    1, isRamp ? isDark ? '#2b8cbe' : '#2b8cbe' : '#2b8cbe', // 1200-2300
+                    2, isRamp ? isDark ? '#4eb3d3' : '#4eb3d3' : '#2b8cbe', // 900-1200
+                    3, isRamp ? isDark ? '#7bccc4' : '#7bccc4' : '#2b8cbe', // 600-900
+                    4, isRamp ? isDark ? '#a8ddb5' : '#a8ddb5' : '#2b8cbe', // 300-600
+                    5, isRamp ? isDark ? '#ccebc5' : '#ccebc5' : '#2b8cbe', // 150-300
+                    6, isRamp ? isDark ? '#f0f9e8' : '#f0f9e8' : '#2b8cbe', // > 150
+                    isDark ? '#2b8cbe' : '#2b8cbe' // Extent only
+                ],
+                'fill-opacity': 0.75
             }
+            layer.setStyleLayer(style)
         }
 
         Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
@@ -103,7 +124,7 @@
                 place: 'Newport, Isle of White',
                 zoom: 14,
                 minZoom: 6,
-                maxZoom: 16,
+                maxZoom: 18,
                 // centre: [-2.938769, 54.893806],
                 centre: [337297, 503995],
                 // bbox: [-2.989707, 54.864555, -2.878635, 54.937635],
@@ -219,42 +240,42 @@
                     ],
                     key: [
                         {
-                            id: 'fed',
+                            id: 'md',
                             type: 'ramp',
                             parentIds: ['pd', 'cl'],
                             heading: 'Flood extent and depth',
                             collapse: 'collapse',
                             expandRampHeading: 'Maximum depth in metres', // Optional
                             collapseFillLabel: 'Extent only',
-                            fill: '#F8971C', // Optional - sets ramp to initial collapse 
+                            fill: '#2b8cbe', // Optional - sets ramp to initial collapse 
                             items: [
                                 {
-                                    label: '0.15',
-                                    fill: '#FFD599'
-                                },
-                                {
-                                    label: '0.3',
-                                    fill: '#FDBF66'
-                                },
-                                {
-                                    label: '0.6',
-                                    fill: '#FBAA34'
-                                },
-                                {
-                                    label: '0.9',
-                                    fill: '#F8971C'
-                                },
-                                {
-                                    label: '1.2',
-                                    fill: '#E48824'
+                                    label: 'above 2.3',
+                                    fill: '#08589e'
                                 },
                                 {
                                     label: '2.3',
-                                    fill: '#CD7A29'
+                                    fill: '#2b8cbe'
                                 },
                                 {
-                                    label: 'above 2.3',
-                                    fill: '#B26C28'
+                                    label: '1.2',
+                                    fill: '#4eb3d3'
+                                },
+                                {
+                                    label: '0.9',
+                                    fill: '#7bccc4'
+                                },
+                                {
+                                    label: '0.6',
+                                    fill: '#a8ddb5'
+                                },
+                                {
+                                    label: '0.3',
+                                    fill: '#ccebc5'
+                                },
+                                {
+                                    label: '0.15',
+                                    fill: '#f0f9e8'
                                 }
                             ]
                         },
@@ -313,9 +334,9 @@
                     defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
                     darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
                     minZoom: 12,
-                    maxZoom: 16
+                    maxZoom: 18
                 },
-                queryPixel: ['surface-water-1-30']
+                queryPixel: ['Surface_water_spatial_planning_1in30_depth_VTP_2']
             })
 
             // Component is ready and we have access to map
@@ -324,19 +345,20 @@
                 map = fm.map
                 const { view, VectorTileLayer, basemap, segments, layers } = e.detail
                 isDark = basemap === 'dark'
+                isRamp = layers.includes('md')
                 addLayers(VectorTileLayer)
                 toggleVisibility(segments, layers)
-                view.on('layerview-create', e => { setStyle(e.layer.id) })
+                view.on('layerview-create', e => { setStyle(e.layer.id, isRamp) })
             })
 
             // Listen for segments, layers or style changes
             fm.addEventListener('change', e => {
                 const { basemap, segments, layers } = e.detail
                 isDark = basemap === 'dark'
+                isRamp = layers.includes('md')
                 toggleVisibility(segments, layers)
-                map.layers.forEach(layer => setStyle(layer.id))
+                map.layers.forEach(layer => setStyle(layer.id, isRamp))
             })
-
             // Listen to map queries
             fm.addEventListener('query', e => {
                 fm.info = {
