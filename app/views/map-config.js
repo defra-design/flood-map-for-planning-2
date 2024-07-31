@@ -60,13 +60,13 @@ const style = (layer) => {
                 'paint': {
                     'fill-color': ['match',
                         ['get', '_symbol'],
-                        0, isRamp ? isDark ? '#08589e' : '#08589e' : isDark ? '#2b8cbe' : '#2b8cbe', // > 2300 (darkDpeth, lightDepth, darkSingle, lightSingle)
-                        1, isRamp ? isDark ? '#2b8cbe' : '#2b8cbe' : isDark ? '#2b8cbe' : '#2b8cbe', // 1200-2300
-                        2, isRamp ? isDark ? '#4eb3d3' : '#4eb3d3' : isDark ? '#2b8cbe' : '#2b8cbe', // 900-1200
-                        3, isRamp ? isDark ? '#7bccc4' : '#7bccc4' : isDark ? '#2b8cbe' : '#2b8cbe', // 600-900
-                        4, isRamp ? isDark ? '#a8ddb5' : '#a8ddb5' : isDark ? '#2b8cbe' : '#2b8cbe', // 300-600
-                        5, isRamp ? isDark ? '#ccebc5' : '#ccebc5' : isDark ? '#2b8cbe' : '#2b8cbe', // 150-300
-                        6, isRamp ? isDark ? '#f0f9e8' : '#f0f9e8' : isDark ? '#2b8cbe' : '#2b8cbe', // > 150
+                        0, isRamp ? isDark ? '#08589e' : '#7f2704' : isDark ? '#2b8cbe' : '#2b8cbe', // > 2300 (darkDpeth, lightDepth, darkSingle, lightSingle)
+                        1, isRamp ? isDark ? '#2b8cbe' : '#a63603' : isDark ? '#2b8cbe' : '#2b8cbe', // 1200-2300
+                        2, isRamp ? isDark ? '#4eb3d3' : '#d94801' : isDark ? '#2b8cbe' : '#2b8cbe', // 900-1200
+                        3, isRamp ? isDark ? '#7bccc4' : '#f16913' : isDark ? '#2b8cbe' : '#2b8cbe', // 600-900
+                        4, isRamp ? isDark ? '#a8ddb5' : '#fd8d3c' : isDark ? '#2b8cbe' : '#2b8cbe', // 300-600
+                        5, isRamp ? isDark ? '#ccebc5' : '#fdae6b' : isDark ? '#2b8cbe' : '#2b8cbe', // 150-300
+                        6, isRamp ? isDark ? '#f0f9e8' : '#fdd0a2' : isDark ? '#2b8cbe' : '#2b8cbe', // > 150
                         isDark ? '#2b8cbe' : '#2b8cbe' // Extent only (darkSingle, lightSingle)
                     ],
                     'fill-opacity': 0.75
@@ -103,7 +103,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         minZoom: 6,
         maxZoom: 18,
         centre: [337297, 503995],
-        height: '700px',
+        height: '800px',
         provider: {
             name: 'esri',
             tokens: tokens,
@@ -221,36 +221,36 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     expandRampHeading: 'Maximum depth in metres', // Optional
                     collapseFillLabel: 'Extent only',
                     fill: '#2b8cbe', // Optional - sets ramp to initial collapse 
-                    items: [
-                        {
-                            label: 'above 2.3',
-                            fill: '#08589e'
-                        },
-                        {
-                            label: '2.3',
-                            fill: '#2b8cbe'
-                        },
-                        {
-                            label: '1.2',
-                            fill: '#4eb3d3'
-                        },
-                        {
-                            label: '0.9',
-                            fill: '#7bccc4'
-                        },
-                        {
-                            label: '0.6',
-                            fill: '#a8ddb5'
-                        },
-                        {
-                            label: '0.3',
-                            fill: '#ccebc5'
-                        },
-                        {
-                            label: '0.15',
-                            fill: '#f0f9e8'
-                        }
-                    ]
+                     items: [
+                         {
+                             label: 'above 2.3',
+                             fill: '#7f2704'
+                         },
+                         {
+                             label: '2.3',
+                             fill: '#a63603'
+                         },
+                         {
+                             label: '1.2',
+                             fill: '#d94801'
+                         },
+                         {
+                             label: '0.9',
+                             fill: '#f16913'
+                         },
+                         {
+                             label: '0.6',
+                             fill: '#fd8d3c'
+                         },
+                         {
+                             label: '0.3',
+                             fill: '#fdae6b'
+                         },
+                         {
+                             label: '0.15',
+                             fill: '#fdd0a2'
+                         }
+                     ]
                 },
                 {
                     type: 'symbol',
@@ -361,11 +361,14 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             console.log(attributes)
             fm.info = {
                 width: '360px',
-                label: 'Info stuff',
+                label: 'Information',
                 html: `<p class="govuk-body-s">
+                    <strong>Easting and northing:</strong> ${Math.round(point.x)}, ${Math.round(point.y)}<br/>
                     <strong>Maximum depth:</strong> ${depthMap[band]} metres<br/>
-                    <strong>Model:</strong> ${attributes.model}</br/>
-                    <strong>Model year:</strong> ${attributes.model_year}
+                    <strong>Model name:</strong> ${attributes.model}</br/>
+                    <strong>Model year:</strong> ${attributes.model_year}</br/>
+                    <strong>Model scale:</strong> ${attributes.scale}</br/>
+
                 </p>`
             }
         })

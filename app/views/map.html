@@ -1,6 +1,6 @@
 {% extends "layouts/main.html" %}
 {% block header %}
-<header class="govuk-header" data-module="govuk-header">
+<header class="govuk-header" style="padding-left: 0.75em;padding-right: 0.75em;" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-containergovuk-!-width-full">
       <div class="govuk-header__logo">
         <a href="#" class="govuk-header__link govuk-header__link--homepage">
@@ -67,6 +67,7 @@
 {% endblock %}
 
 {% block pageScripts %}
+    <script src="https://js.arcgis.com/4.30/"></script>
 
     <script src="/public/javascripts/tokens.js"></script>
 
@@ -75,4 +76,6 @@
         {% include "map-config.js" %}
     </script>
 
+{% endblock %}
+{% block footer %}
 {% endblock %}
