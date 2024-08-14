@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="/map?x=357940&y=171286&cz=356498.2252829491,171375.55122466126,17.996078&lyr=fz23" method="post">
+
+        
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {% set placeHtml %}
+        {{ govukInput({
+          id: "place",
+          name: "place",
+          type: "text",
+          spellcheck: false,
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Search for a location",
+            classes: "govuk-visually-hidden"
+          }
+        }) }}
+        {% endset -%}
+
+    
+
+        
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "Find the location",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Search for a location",
+              text: "Search for a location",
+              hint: {
+                text: "By place or postcode, National Grid Reference (NGR) or easting and northing."
+              
+              },
+              conditional: {
+                html: placeHtml
+              }
+            },
+            {
+              value: "Skip to map",
+              text: "Skip to map",
+              hint: {
+                text: "You will see the full map of England, where you can zoom in to your location."
+              
+              }
+            }
+            
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <p class="govuk-heading-m">
+        This service is for planning applications
+      </p>
+      <p>
+        If you are not doing a planning application, you can <a href="https://www.gov.uk/check-long-term-flood-risk">check your long term flood risk</a>
+      </p>
+    </div>
+  </div>
+
+{% endblock %}

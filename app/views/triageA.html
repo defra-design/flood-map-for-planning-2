@@ -76,11 +76,12 @@
         }) }}
         {% endset -%}
 
+        
         {{ govukRadios({
           name: "contact",
           fieldset: {
             legend: {
-              text: "Find the location",
+              text: "What is your interest in flood risk?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
@@ -88,21 +89,21 @@
           items: [
             {
               value: "Place or postcode",
-              text: "Place or postcode",
+              text: "I'm a flood professional interested in a planning application",
               conditional: {
                 html: placeHtml
               }
             },
             {
               value: "National Grid Reference (NGR)",
-              text: "National Grid Reference (NGR)",
+              text: "I'm a citizen interested in a planning application",
               conditional: {
                 html: ngrHtml
               }
             },
             {
               value: "Easting and northing",
-              text: "Easting and northing",
+              text: "I'm a citizen interested in my flood risk",
               conditional: {
                 html: eastingHtml
               }
@@ -110,11 +111,6 @@
           ]
         }) }}
 
-        <div class="govuk-form-group">
-          <p>
-            <a href="/map">Skip to map</a>
-          </p>
-        </div>
 
         {{ govukButton({
           text: "Continue"
@@ -124,14 +120,6 @@
 
     </div>
 
-    <div class="govuk-grid-column-one-third">
-      <p class="govuk-heading-m">
-        This service is for planning applications
-      </p>
-      <p>
-        If you are not doing a planning application, you can <a href="https://www.gov.uk/check-long-term-flood-risk">check your long term flood risk</a>
-      </p>
-    </div>
-  </div>
+    
 
 {% endblock %}

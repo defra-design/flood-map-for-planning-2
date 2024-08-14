@@ -3,7 +3,7 @@
 <header class="govuk-header" style="padding-left: 0.75em;padding-right: 0.75em;" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-containergovuk-!-width-full">
       <div class="govuk-header__logo">
-        <a href="#" class="govuk-header__link govuk-header__link--homepage">
+        <a href="/" class="govuk-header__link govuk-header__link--homepage">
           <svg
             focusable="false"
             role="img"
@@ -19,7 +19,7 @@
         </a>
       </div>
       <div class="govuk-header__content">
-        <a href="#" class="govuk-header__link govuk-header__service-name">
+        <a href="/" class="govuk-header__link govuk-header__service-name">
           Flood map for planning
         </a>
       </div>
@@ -61,8 +61,11 @@
     </script>
 
     <h1 class="govuk-visually-hidden">A basic map</h1>
-    
-    <div id="map"></div>
+    <p>
+      {{ data['bbox'] }}
+  </p>
+
+    <div id="map" data-centre="[{{ data['x'] }},{{ data['y'] }}]"></div>
 
 {% endblock %}
 
@@ -78,4 +81,5 @@
 
 {% endblock %}
 {% block footer %}
+{{ data| dump }}
 {% endblock %}

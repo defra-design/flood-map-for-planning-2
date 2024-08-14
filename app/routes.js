@@ -8,6 +8,18 @@ const router = govukPrototypeKit.requests.setupRouter()
 
 // Add your routes here
 
+// set up route variable location page option
+router.get('/skipLink', function (req, res) {
+	req.session.data = { locationOption: 'skipLink' }
+	res.redirect(`/start`)
+})
+
+// set up route variable location page option
+router.get('/radioOption', function (req, res) {
+	req.session.data = { locationOption: 'radioLink' }
+	res.redirect(`/start`)
+})
+
 const authESRI = require('./esri-auth')
 const authOS = require('./os-auth')
 
