@@ -483,23 +483,23 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         ` : ''
 
         const Defended = isRiversSeasDefended
-        ? `<strong>Layer:</strong> Rivers and seas defended<br/>`
+        ? `<strong>Layer:</strong> Rivers and seas with defences<br/>`
         : ''
 
         const Undefended = isRiversSeasUnDefended
-        ? `<strong>Layer:</strong> Rivers and seas undefended<br/>`
+        ? `<strong>Layer:</strong> Rivers and seas without defences<br/>`
         : ''
 
         const medium = is1in200
-        ? `<strong>Annual likelihood of flooding:</strong> 0.1% to 0.5% AEP<br/>`
+        ? `<strong>Annual likelihood of flooding:</strong> 0.1% to 0.5%<br/>`
         : ''
 
         const low = is1in1000
-        ? `<strong>Annual likelihood of flooding:</strong> Below 0.1% AEP<br/>`
+        ? `<strong>Annual likelihood of flooding:</strong> Below 0.1%<br/>`
         : ''
 
         const high = is1in30
-        ? `<strong>Annual likelihood of flooding:</strong> Above 3.3% AEP<br/>`
+        ? `<strong>Annual likelihood of flooding:</strong> Above 3.3%<br/>`
         : ''
 
         fm.info = {
