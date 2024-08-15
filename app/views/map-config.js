@@ -451,9 +451,17 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
 
         //     </p>`
         // }
+
+
         const band = e.detail.features[0]._symbol
         const layerName = e.detail.features[0].layer
+        const isRiversSeasDefended = layerName.includes('_defended')
+        const isRiversSeasUnDefended = layerName.includes('undefended')
         const isFloodZone = layerName.includes('Zone')
+        const is1in200 = layerName.includes('1in200')
+        const is1in1000 = layerName.includes('1in1000')
+        const is1in30 = layerName.includes('1in30')
+
 
         // const title = isFloodZone
         // ? `<strong>Flood zone</strong>: ${band + 2}<br>`
@@ -463,12 +471,36 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const floodZoneText = isFloodZone
         ? `<strong>Flood zone:</strong> ${band + 2}<br>`
         : ''
+        
+        // Display the layer name with conditional logic
+        const layerNameText = layerName
+        ? `<strong>Layer:</strong> ${layerName}<br/>`
+        : ''
 
         const model = attributes ? `
             <strong>Model:</strong> ${attributes.model}</br/>
             <strong>Model year:</strong> ${attributes.model_year}
         ` : ''
 
+        const Defended = isRiversSeasDefended
+        ? `<strong>Layer:</strong> Rivers and seas defended<br/>`
+        : ''
+
+        const Undefended = isRiversSeasUnDefended
+        ? `<strong>Layer:</strong> Rivers and seas undefended<br/>`
+        : ''
+
+        const medium = is1in200
+        ? `<strong>Annual likelihood of flooding:</strong> 0.1% to 0.5% AEP<br/>`
+        : ''
+
+        const low = is1in1000
+        ? `<strong>Annual likelihood of flooding:</strong> Below 0.1% AEP<br/>`
+        : ''
+
+        const high = is1in30
+        ? `<strong>Annual likelihood of flooding:</strong> Above 3.3% AEP<br/>`
+        : ''
 
         fm.info = {
             width: '360px',
@@ -477,8 +509,14 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             
             
                 <p class="govuk-body-s">
+                <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}<br/>
                 ${floodZoneText}
-                <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}
+                ${Defended}
+                ${Undefended}
+                ${high}
+                ${medium}
+                ${low}
+                <strong>Timeframe:</strong> Present day<br/>
                 <strong>Maximum depth:</strong> ${depthMap[band]} mm<br/>
                 <strong>Model name:</strong> ${attributes.model}</br/>
                 <strong>Model year:</strong> ${attributes.model_year}</br/>
@@ -487,3 +525,4 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         }
     })
 })
+
