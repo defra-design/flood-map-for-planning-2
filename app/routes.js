@@ -5,6 +5,8 @@
 
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
+const fs = require('fs')
+const path = require('path')
 
 // Add your routes here
 
@@ -43,3 +45,18 @@ router.get('/os-token', async (req, res, next) => {
     })
     res.send(response)
 })
+
+router.get([
+    '/styles/open-tile.json',
+    '/styles/OS_VTS_27700_Outdoor.json',
+    '/styles/OS_VTS_27700_Open_Outdoor.json',
+    '/styles/OS_VTS_27700_Dark.json',
+    '/styles/OS_VTS_27700_Open_Dark.json'
+  ], async (req, res, next) => {
+    fs.readFile(path.resolve(__dirname, req.originalUrl.substring(1).split('?')[0]), (err, result) => {
+      if (err) throw err
+      const jsonData = JSON.parse(result)
+      res.setHeader('Content-Type', 'application/json')
+      res.json(jsonData)
+    })
+  })

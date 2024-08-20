@@ -1,6 +1,6 @@
 const tokens = {}
 
-let map, isDark, isRamp, VectorTileLayer, FeatureLayer, Point
+let map, view, isDark, isRamp, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer_gdb' },
@@ -24,7 +24,7 @@ const vtLayers = [
 
 const fLayers = [
     { n: 'nat_defences', q: 'fd'},
-    { n: 'nat_fsa', q: 'wsa'}
+    { n: 'nat_fsa', q: 'fsa'}
 ]
 
 const ids = [
@@ -56,7 +56,6 @@ const addLayers = async (layers) => {
                 'sources': {
                     'esri': {
                         'type': 'vector',
-                        'bounds': [-6.98694, 49.8816, 2.07537, 55.8333],
                         'minzoom': 4,
                         'maxzoom': 16,
                         'scheme': 'xyz',
@@ -71,7 +70,7 @@ const addLayers = async (layers) => {
                     'minzoom': 4.7597,
                     'filter': ['==', '_symbol', j],
                     'layout': {
-                        'visibility': i === 0 ? getFloodZoneVisibility(j, layers) : 'visible'
+                        'visibility': i === 0 ? getFloodZoneVisibility(layers) : 'visible'
                     },
                     'paint': {
                         'fill-color': i === 0 ? fillFloodZones(j) : fillModel(j),
@@ -133,7 +132,7 @@ const renderFloodStorage = () => {
     }
 }
 
-const getFloodZoneVisibility = (index, layers) => {
+const getFloodZoneVisibility = (layers) => {
     const isVisible = layers.includes('fz23')
     return isVisible ? 'visible' : 'none'
 }
@@ -144,7 +143,8 @@ const toggleVisibility = (type, mode, segments, layers) => {
     vtLayers.forEach((l, i) => {
         const id = l.n
         const layer = map.findLayerById(id)
-        const isVisible = !isDrawMode && layer.id === vtLayers[i].n && segments.join('') === ids[i]
+        const isHiddenExtentDepth = layer.id !== 'fz' && layers.includes('na')
+        const isVisible = !isDrawMode && !isHiddenExtentDepth && layer.id === vtLayers[i].n && segments.join('') === ids[i]
         const isModeChange = type === 'mode'
         layer.visible = isVisible
         Array(i === 0 ? 2 : 7).fill(0).forEach((_, j) => {
@@ -154,20 +154,27 @@ const toggleVisibility = (type, mode, segments, layers) => {
                 layer.setPaintProperties(id + j, paintProperties)
                 if (i !== 0) return
                 // Flood zones visiblity
-                const visibility = getFloodZoneVisibility(j, layers)
+                const visibility = getFloodZoneVisibility(layers)
                 layer.setLayoutProperties(id + j, { 'visibility': visibility })
             }
         })
     })
     fLayers.forEach(l => {
         const layer = map.findLayerById(l.n)
-        const isVisible = !isDrawMode && !segments.includes('fz') && layers.includes(l.q)
+        const isVisible = !isDrawMode && layers.includes(l.q)
         layer.visible = isVisible
     })
 }
 
+const getSymbols = () => {
+    return ['water-storage', 'flood-defence'].map(s => `/public/images/${s}.svg`)
+}
+
+const symbols = getSymbols()
+
 const depthMap = ['over 2300', '2300', '1200', '900', '600', '300', '150'];
 
+let isInfoOpen = false
 
 Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     const fm = new defraMap.FloodMap('map', {
@@ -179,18 +186,16 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         centre: [337297, 503995],
         height: '800px',
         provider: {
-            name: 'esri',
             tokens: tokens,
-            defaultUrl: '{{ env.ESRI_DEFAULT_URL }}',
-            darkUrl: '{{ env.ESRI_DARK_URL }}',
+            defaultUrl: '{{ env.OS_VTAPI_DEFAULT_URL }}',
+            darkUrl: '{{ env.OS_VTAPI_DARK_URL }}',
             // aerialUrl: '{{ env.ESRI_AERIAL_URL }}',
             reverseGeocodeProvider: 'esri-world-geocoder',
             reverseGeocodeToken: tokens.esri,
             // reverseGeocodeProvider: 'os-open-names',
             // reverseGeocodeToken: '{{ env.OS_API_KEY }}',
-            imagesPath: '/plugin-assets/%40defra%2Fflood-map/plugin/images',
-            symbolPath: '/public/images/symbols',
-            symbolName: ['flood-defence', 'main-river', 'water-storage']
+            images: '/plugin-assets/%40defra%2Fflood-map/plugin/images',
+            symbols: symbols
         },
         search: {
             label: 'Search for a place',
@@ -202,17 +207,17 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             token: tokens.esri
         },
         legend: {
-            // width: '360px',
-            // display: 'inset',
-            // isVisible: true,
+            width: '280px',
+            // display: 'compact',
+            isVisible: true,
             title: 'Menu',
-            keyDisplay: 'none',
-            isPersistInUrl: true,
-            symbolPath: '/public/images/symbols',
+            keyWidth: '360px',
+            keyDisplay: 'min',
+            symbolPath: '/assets/images/symbols',
             segments: [
                 {
                     heading: 'Datasets',
-                    // collapse: 'collapse',
+                    collapse: 'collapse',
                     items: [
                         {
                             id: 'fz',
@@ -230,6 +235,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                             id: 'sw',
                             label: 'Surface water'
                         }
+
                     ]
                 },
                 {
@@ -244,7 +250,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                         },
                         {
                             id: 'cl',
-                            label: 'Climate change'
+                            label: '2040\'s to 2060\'s'
                         }
                     ]
                 },
@@ -287,90 +293,111 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             ],
             key: [
                 {
-                    id: 'md',
-                    type: 'ramp',
-                    parentIds: ['pd', 'cl'],
                     heading: 'Flood extent and depth',
+                    parentIds: ['pd', 'cl'],
                     collapse: 'collapse',
-                    expandRampHeading: 'Maximum depth in millimeters', // Optional
-                    collapseFillLabel: 'Extent only',
-                    fill: 'default: #2b8cbe, dark: #7fcdbb', // Optional - sets ramp to initial collapse 
-                     items: [
-                         {
-                             label: 'above 2300mm',
-                            //  fill: 'default: #7f2704, dark: #f7fbff' //BLUE
-                             fill: 'default: #7f2704, dark: #f7fcf5' //GREEN
-                         },
-                         {
-                             label: '2300mm',
-                            //  fill: 'default: #a63603, dark: #deebf7' //BLUE
-                             fill: 'default: #a63603, dark: #e5f5e0' //GREEN
-                         },
-                         {
-                             label: '1200mm',
-                            //  fill: 'default: #d94801, dark: #c6dbef' //BLUE
-                             fill: 'default: #d94801, dark: #c7e9c0' //GREEN
-
-                         },
-                         {
-                             label: '900mm',
-                            //  fill: 'default: #f16913, dark: #9ecae1' //BLUE
-                             fill: 'default: #f16913, dark: #a1d99b' //GREEN
-                         },
-                         {
-                             label: '600mm',
-                            //  fill: 'default: #fd8d3c, dark: #6baed6' //BLUE
-                             fill: 'default: #fd8d3c, dark: #74c476' //GREEN
-                         },
-                         {
-                             label: '300mm',
-                            //  fill: 'default: #fdae6b, dark: #4292c6' //BLUE
-                             fill: 'default: #fdae6b, dark: #41ab5d' //GREEN
-                         },
-                         {
-                             label: '150mm',
-                            //  fill: 'default: #fdd0a2, dark: #2171b5' //BLUE
-                             fill: 'default: #fdd0a2, dark: #238b45' //GREEN
-                         }
-                     ]
-                },
-                {
-                    id: 'fz23',
-                    type: 'symbol',
-                    heading: 'Flood zones',
-                    parentIds: ['fz'],
-                    isSelected: true,
-                    checked: true,
+                    type: 'radio',
                     items: [
+                        // {
+                        //     id: 'na',
+                        //     label: 'Hidden',
+                        //     // fill: 'default: #ff0000, dark: #00ff00',
+                        //     isSelected: true
+                        // },
                         {
-                            label: 'Flood zone 2',
-                            fill: 'default: #00A4CD, dark: #41ab5d',
+                            id: 'fe',
+                            label: 'Flood extent',
+                            fill: 'default: #2b8cbe, dark: #7fcdbb',
                             isSelected: true
                         },
                         {
-                            label: 'Flood zone 3',
-                            fill: 'default: #003078, dark: #e5f5e0',
-                            isSelected: true
+                            id: 'md',
+                            label: 'Maximum depth in metres',
+                            display: 'ramp',
+                            numLabels: 3,
+                            items: [
+                                {
+                                    label: 'above 2.3',
+                                    fill: 'default: #7f2704, dark: #f7fcf5'
+                                },
+                                {
+                                    label: '2.3',
+                                    fill: '#a63603, dark: #e5f5e0'
+                                },
+                                {
+                                    label: '1.2',
+                                    fill: '#d94801, dark: #c7e9c0'
+                                },
+                                {
+                                    label: '0.9',
+                                    fill: '#f16913, dark: #a1d99b'
+                                },
+                                {
+                                    label: '0.6',
+                                    fill: '#fd8d3c, dark: #74c476'
+                                },
+                                {
+                                    label: '0.3',
+                                    fill: '#fdae6b, dark: #41ab5d'
+                                },
+                                {
+                                    label: '0.15',
+                                    fill: '#fdd0a2, dark: #238b45'
+                                }
+                            ]
                         }
                     ]
-                    
                 },
                 {
-                    type: 'symbol',
                     heading: 'Map features',
-                    parentIds: ['pd', 'cl','fz'],
+                    parentIds: ['fz'],
                     collapse: 'collapse',
-                    isSelected: true,
                     items: [
                         {
-                            id: 'wsa',
-                            label: 'Water storage area',
-                            icon: 'water-storage'
+                            id: 'fz23',
+                            label: 'Flood zones',
+                            isSelected: true,
+                            items: [
+                                {
+                                    label: 'Flood zone 2',
+                                    fill: 'default: #1d70b8, dark: #41ab5d'
+                                },
+                                {
+                                    label: 'Flood zone 3',
+                                    fill: 'default: #003078, dark: #e5f5e0'
+                                }
+                            ]
+                        },
+                        {
+                            id: 'fsa',
+                            label: 'Water storage',
+                            icon: symbols[0],
+                            fill: 'default: #d4351c, dark: #d4351c'
                         },
                         {
                             id: 'fd',
                             label: 'Flood defence',
-                            icon: 'flood-defence'
+                            icon: symbols[1],
+                            fill: '	#f47738'
+                        }
+                    ]
+                },
+                {
+                    heading: 'Map features',
+                    parentIds: ['pd', 'cl'],
+                    collapse: 'collapse',
+                    items: [
+                        {
+                            id: 'fsa',
+                            label: 'Water storage',
+                            icon: symbols[0],
+                            fill: 'default: #d4351c, dark: #d4351c'
+                        },
+                        {
+                            id: 'fd',
+                            label: 'Flood defence',
+                            icon: symbols[1],
+                            fill: '	#f47738'
                         }
                     ]
                 }
@@ -392,10 +419,11 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     // Component is ready and we have access to map
     // We can listen for map events now, such as 'loaded'
     fm.addEventListener('ready', async e => {
-        map = fm.map
         VectorTileLayer = fm.modules.VectorTileLayer
         FeatureLayer = fm.modules.FeatureLayer
         Point = fm.modules.Point
+        map = e.detail.map
+        view = e.detail.view
         const { mode, basemap, segments, layers } = e.detail
         isDark = basemap === 'dark'
         isRamp = layers.includes('md')
@@ -411,16 +439,29 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     })
     // Listen to map queries
     fm.addEventListener('query', async e => {
-        const { resultType, point } = e.detail
-        
-        if (!resultType) {
-            fm.info = null
+        const { point, features } = e.detail
+        const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
+
+        if (!feature) {
+            fm.info = {
+                width: '360px',
+                label: 'No flood data found',
+                html: `
+                    <p class="govuk-body-s">
+                    <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}
+                    </p>
+                    <p class="govuk-body-s">
+                    There is no flood data at this grid reference point, on this layer.<br/></p>
+                    <p class="govuk-body-s">
+                    This is either due to incomplete data in our dataset, or the risk of flooding for this area is below 1 in 1000<br/></p>
+                `
+            }
             return
         }
-        const result = e.detail.features[0]
-        const name = result.layer.split('_VTP')[0]
-        const layer = vtLayers.find(l => l.n === name)
         
+        const name = feature.layer.split('_VTP')[0]
+        const layer = vtLayers.find(l => l.n === name)
+
         let attributes
 
         if (layer.m) {
@@ -439,47 +480,25 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                 attributes = results.features[0].attributes
             }
         }
-        // fm.info = {
-        //     width: '360px',
-        //     label: 'Information',
-        //     html: `<p class="govuk-body-s">
-        //         <strong>Easting and northing:</strong> ${Math.round(point.x)}, ${Math.round(point.y)}<br/>
-        //         <strong>Maximum depth:</strong> ${depthMap[band]} metres<br/>
-        //         <strong>Model name:</strong> ${attributes.model}</br/>
-        //         <strong>Model year:</strong> ${attributes.model_year}</br/>
-        //         <strong>Model scale:</strong> ${attributes.scale}</br/>
-
-        //     </p>`
-        // }
-
-
-        const band = e.detail.features[0]._symbol
-        const layerName = e.detail.features[0].layer
+        
+        const band = feature._symbol
+        const layerName = feature.layer
+        const isFloodZone = layerName.includes('Zone')
         const isRiversSeasDefended = layerName.includes('_defended')
         const isRiversSeasUnDefended = layerName.includes('undefended')
-        const isFloodZone = layerName.includes('Zone')
         const is1in200 = layerName.includes('1in200')
         const is1in1000 = layerName.includes('1in1000')
         const is1in30 = layerName.includes('1in30')
+        isInfoOpen = true
 
-
-        // const title = isFloodZone
-        // ? `<strong>Flood zone</strong>: ${band + 2}<br>`
-        // : `<strong>Maximum depth:</strong> ${depthMap[band]}metres<br/>`
-
-        // Conditional text for flood zone
-        const floodZoneText = isFloodZone
-        ? `<strong>Flood zone:</strong> ${band + 2}<br>`
-        : ''
-        
-        // Display the layer name with conditional logic
-        const layerNameText = layerName
-        ? `<strong>Layer:</strong> ${layerName}<br/>`
+        const title = isFloodZone
+        ? `<strong>Flood zone</strong>: ${band + 2}<br>`
         : ''
 
         const model = attributes ? `
             <strong>Model:</strong> ${attributes.model}</br/>
-            <strong>Model year:</strong> ${attributes.model_year}
+            <strong>Model year:</strong> ${attributes.model_year}</br/>
+            <strong>Model scale:</strong> ${attributes.scale}
         ` : ''
 
         const Defended = isRiversSeasDefended
@@ -506,22 +525,18 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             width: '360px',
             label: 'Information',
             html: `
-            
-            
                 <p class="govuk-body-s">
                 <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}<br/>
-                ${floodZoneText}
-                ${Defended}
                 ${Undefended}
-                ${high}
+                ${Defended}
+                ${title}
                 ${medium}
                 ${low}
+                ${high}
                 <strong>Timeframe:</strong> Present day<br/>
                 <strong>Maximum depth:</strong> ${depthMap[band]} mm<br/>
-                <strong>Model name:</strong> ${attributes.model}</br/>
-                <strong>Model year:</strong> ${attributes.model_year}</br/>
-                <strong>Model scale:</strong> ${attributes.scale}</br/>
-                </p>`
+                ${model}
+            `
         }
     })
 })
