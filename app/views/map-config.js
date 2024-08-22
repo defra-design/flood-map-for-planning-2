@@ -1,50 +1,30 @@
 const tokens = {}
 
-let map, view, isDark, isRamp, VectorTileLayer, FeatureLayer, Point
+let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
-    { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Surface_water_spatial_planning_1in30', s: '_depth_N', v: '_depth_VTP_2', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb2' },
-    { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer' },
-    { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer' },
-    { n: 'Rivers_1in1000_Sea_1in1000_defended_depth', s: '_N', v: '_VTP_22', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Rivers_1in100_Sea_1in200_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb' },
-    { n: 'Surface_water_spatial_planning_1in30_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Rivers_1in100_Sea_1in200_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null },
-    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null },
+    { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer_gdb', q: 'fz' },
+    { n: 'Surface_water_spatial_planning_1in30', s: '_depth_N', v: '_depth_VTP_2', m: '_Model_Origin_Layer_gdb', q: 'swpdhr' },
+    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb2', q: 'swpdmr' },
+    { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb', q: 'swpdlr' },
+    { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
+    { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer', q: 'rsdpdmr' },
+    { n: 'Rivers_1in1000_Sea_1in1000_defended_depth', s: '_N', v: '_VTP_22', m: '_Model_Origin_Layer_gdb', q: 'rsdpdlr' },
+    { n: 'Rivers_1in100_Sea_1in200_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdmr' },
+    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdlr' },
+    { n: 'Surface_water_spatial_planning_1in30_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclhr' },
+    { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclmr' },
+    { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swcllr' },
+    { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclhr' },
+    { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
+    { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdcllr' },
+    { n: 'Rivers_1in100_Sea_1in200_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsuclmr' },
+    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsucllr' },
 ]
 
 const fLayers = [
     { n: 'nat_defences', q: 'fd'},
     { n: 'nat_fsa', q: 'fsa'}
-]
-
-const ids = [
-    'fz',
-    'swpdhr',
-    'swpdmr',
-    'swpdlr',
-    'rsdpdhr',
-    'rsdpdmr',
-    'rsdpdlr',
-    'rsupdmr',
-    'rsupdlr',
-    'swclhr',
-    'swclmr',
-    'swcllr',
-    'rsdclhr',
-    'rsdclmr',
-    'rsdcllr',
-    'rsuclmr',
-    'rsucllr',
 ]
 
 const addLayers = async (layers) => {
@@ -143,8 +123,8 @@ const toggleVisibility = (type, mode, segments, layers) => {
     vtLayers.forEach((l, i) => {
         const id = l.n
         const layer = map.findLayerById(id)
-        const isHiddenExtentDepth = layer.id !== 'fz' && layers.includes('na')
-        const isVisible = !isDrawMode && !isHiddenExtentDepth && layer.id === vtLayers[i].n && segments.join('') === ids[i]
+        const isVisibleLyr = vtLayers[i].q === 'fz' || ['fe', 'md'].some(l => layers.includes(l))
+        const isVisible = !isDrawMode && isVisibleLyr && segments.join('') === vtLayers[i].q
         const isModeChange = type === 'mode'
         layer.visible = isVisible
         Array(i === 0 ? 2 : 7).fill(0).forEach((_, j) => {
@@ -250,7 +230,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                         },
                         {
                             id: 'cl',
-                            label: '2040\'s to 2060\'s'
+                            label: 'Climate change'
                         }
                     ]
                 },
@@ -262,15 +242,15 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     items: [
                         {
                             id: 'hr',
-                            label: 'Above 3.3%'
+                            label: 'Rivers and sea 3.3%'
                         },
                         {
                             id: 'mr',
-                            label: '0.1% to 0.5%'
+                            label: 'Rivers 1% Sea 0.5%'
                         },
                         {
                             id: 'lr',
-                            label: 'Below 0.1%'
+                            label: 'Rivers and sea 0.1% - 1%'
                         }
                     ]
                 },
@@ -282,11 +262,11 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     items: [
                         {
                             id: 'mr',
-                            label: '0.1% to 0.5%'
+                            label: 'Rivers 1% Sea 0.5%'
                         },
                         {
                             id: 'lr',
-                            label: 'below 0.1%'
+                            label: 'Rivers and sea 0.1% - 1%'
                         }
                     ]
                 }
@@ -300,9 +280,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     items: [
                         // {
                         //     id: 'na',
-                        //     label: 'Hidden',
-                        //     // fill: 'default: #ff0000, dark: #00ff00',
-                        //     isSelected: true
+                        //     label: 'Hidden'
                         // },
                         {
                             id: 'fe',
@@ -424,7 +402,8 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         Point = fm.modules.Point
         map = e.detail.map
         view = e.detail.view
-        const { mode, basemap, segments, layers } = e.detail
+        const { mode, basemap, layers } = e.detail
+        segments = e.detail.segments
         isDark = basemap === 'dark'
         isRamp = layers.includes('md')
         await addLayers(layers)
@@ -432,7 +411,9 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     })
     // Listen for segments, layers or style changes
     fm.addEventListener('change', e => {
-        const { type, mode, basemap, segments, layers } = e.detail
+        const { type, mode, basemap, layers } = e.detail
+        if (['layer', 'segment'].includes(type)) fm.info = null
+        segments = e.detail.segments
         isDark = basemap === 'dark'
         isRamp = layers.includes('md')
         toggleVisibility(type, mode, segments, layers)
@@ -441,19 +422,144 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     fm.addEventListener('query', async e => {
         const { point, features } = e.detail
         const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
+        const floodZoneText = segments.includes('fz')
+        const isDefended = segments.includes('rsd')
+        const isUnDefended = segments.includes('rsu')
+        const isSWater = segments.includes('sw')
+        const isDefendedMed = ['rsd','mr'].every(item => segments.includes(item));
+        const isClimate = segments.includes('cl')
+        const isSWNoData = ['sw', 'pd', 'mr'].every(item => segments.includes(item));
+        const isSWNoDataLr = ['sw', 'pd', 'lr'].every(item => segments.includes(item));
 
+
+
+        const climate = isClimate
+        ? `<div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                <span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <span class="govuk-body-s">Climate change</span>
+            </dd>
+            </div>`
+            : '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key"><span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span></dt><dd class="govuk-summary-list__value"><span class="govuk-body-s">Present day</span></dd></div>'
+
+
+        const floodZoneOne = floodZoneText
+        ? `          
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                <span class="govuk-body-s"><strong><strong>Flood zone</strong></strong></span>
+
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <span class="govuk-body-s">1</span>
+            </dd>
+            </div>`
+            : ''
+
+        const SWater = isSWater
+        ? `          
+            <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+        
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <span class="govuk-body-s">Surface water</span>
+            </dd>
+            </div>`
+            : ''
+
+        const mediumDefended = isDefendedMed
+        ? `  
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">Rivers 1% Sea 0.5%</span>
+              </dd>
+            </div> 
+            <p>Missing dataset</p>`
+            : ''
+
+        const sWNoData = isSWNoData
+        ? `  
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">1%</span>
+              </dd>
+            </div> 
+            <p>Missing dataset</p>`
+            : ''
+
+        const sWNoDataLr = isSWNoDataLr
+        ? ` 
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">0.1 to 1%</span>
+              </dd>
+            </div> 
+            <p>Missing dataset</p>`
+            : ''
+
+        const riversSeaDefended = isDefended
+            ? `<div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+            <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-s">Rivers and seas with defences</span>
+            </dd>
+            </div>`
+            : ''
+
+        const riversSeaUnDefended = isUnDefended
+            ? `<div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+            <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-s">Rivers and seas without defences</span>
+            </dd>
+            </div>`
+            : ''
+
+    console.log(e.detail)
+    console.log(segments)
         if (!feature) {
             fm.info = {
                 width: '360px',
-                label: 'No flood data found',
+                label: 'Information',
                 html: `
-                    <p class="govuk-body-s">
-                    <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}
-                    </p>
-                    <p class="govuk-body-s">
-                    There is no flood data at this grid reference point, on this layer.<br/></p>
-                    <p class="govuk-body-s">
-                    This is either due to incomplete data in our dataset, or the risk of flooding for this area is below 1 in 1000<br/></p>
+                <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                  <span class="govuk-body-s"><strong>Easting and northing</strong></span>
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                  <span class="govuk-body-s">${Math.round(point[0])},${Math.round(point[1])}</span>
+                  </dd>
+                </div>
+                ${climate}
+                ${floodZoneOne}
+                ${riversSeaDefended}
+                ${riversSeaUnDefended}
+                ${mediumDefended}
+                ${SWater}
+                ${sWNoData}
+                ${sWNoDataLr}
+              </dl>
+                
+               
+                    
                 `
             }
             return
@@ -485,57 +591,170 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const layerName = feature.layer
         const isFloodZone = layerName.includes('Zone')
         const isRiversSeasDefended = layerName.includes('_defended')
+        const isClimateChange = layerName.includes('CC')
         const isRiversSeasUnDefended = layerName.includes('undefended')
         const is1in200 = layerName.includes('1in200')
         const is1in1000 = layerName.includes('1in1000')
         const is1in30 = layerName.includes('1in30')
+        const isSurfaceWater = layerName.includes('Surface')
+
         isInfoOpen = true
 
         const title = isFloodZone
-        ? `<strong>Flood zone</strong>: ${band + 2}<br>`
+        ? `<div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+                <span class="govuk-body-s"><strong><strong>Flood zone</strong></strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+                <span class="govuk-body-s">${band + 2}</span>
+            </dd>
+        </div>`
         : ''
 
         const model = attributes ? `
-            <strong>Model:</strong> ${attributes.model}</br/>
-            <strong>Model year:</strong> ${attributes.model_year}</br/>
-            <strong>Model scale:</strong> ${attributes.scale}
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Model title</strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">${attributes.model}</span>
+        </dd>
+        </div>   
+
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Model year</strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s"> ${attributes.model_year}</span>
+        </dd>
+        </div>                  
+    
+        <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Model scale</strong></span> 
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">${attributes.scale}</span>
+        </dd>
+        </div>
         ` : ''
 
+        const timeframe = isClimateChange
+            ? `<div class="govuk-summary-list__row">
+                <dt class="govuk-summary-list__key">
+                    <span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span>
+                </dt>
+                <dd class="govuk-summary-list__value">
+                    <span class="govuk-body-s">Climate change</span>
+                </dd>
+            </div>`
+            : '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key"><span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span></dt><dd class="govuk-summary-list__value"><span class="govuk-body-s">Present day</span></dd></div>'
+
         const Defended = isRiversSeasDefended
-        ? `<strong>Layer:</strong> Rivers and seas with defences<br/>`
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">Rivers and seas with defences</span>
+        </dd>
+        </div>`
         : ''
 
         const Undefended = isRiversSeasUnDefended
-        ? `<strong>Layer:</strong> Rivers and seas without defences<br/>`
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">Rivers and seas without defences</span>
+        </dd>
+        </div>`
+        : ''
+
+        const surfaceWater = isSurfaceWater
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">Surface water</span>
+        </dd>
+        </div>`
         : ''
 
         const medium = is1in200
-        ? `<strong>Annual likelihood of flooding:</strong> 0.1% to 0.5%<br/>`
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">0.1% to 0.5%</span>
+        </dd>
+        </div>`
         : ''
 
         const low = is1in1000
-        ? `<strong>Annual likelihood of flooding:</strong> Below 0.1%<br/>`
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">Below 0.1%</span>
+        </dd>
+        </div>`
         : ''
 
         const high = is1in30
-        ? `<strong>Annual likelihood of flooding:</strong> Above 3.3%<br/>`
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">Above 3.3%</span>
+        </dd>
+        </div>`
         : ''
+
+        // const floodZoneLowRisk = isSegmentfz23
+        // ? `
+        // <span class="govuk-body-s">This location sits outside of a flood zone</span>
+        // `
+        // : ''
 
         fm.info = {
             width: '360px',
             label: 'Information',
             html: `
-                <p class="govuk-body-s">
-                <strong>Easting and northing:</strong> ${Math.round(point[0])},${Math.round(point[1])}<br/>
-                ${Undefended}
-                ${Defended}
-                ${title}
-                ${medium}
-                ${low}
-                ${high}
-                <strong>Timeframe:</strong> Present day<br/>
-                <strong>Maximum depth:</strong> ${depthMap[band]} mm<br/>
-                ${model}
+                <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key govuk-!-width-one-half">
+                    <span class="govuk-body-s"><strong>Easting and northing</strong></span>
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                    <span class="govuk-body-s">${Math.round(point[0])},${Math.round(point[1])}</span>
+                    </dd>
+                  </div>
+                  ${timeframe}
+                  ${title}
+                  ${Undefended}
+                  ${Defended}
+                  ${surfaceWater}
+                  ${medium}
+                  ${low}
+                  ${high}
+                  <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+                    <span class="govuk-body-s"><strong>Maximum depth</strong></span>
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                    <span class="govuk-body-s">${depthMap[band]}mm</span>
+                    </dd>
+                  </div>
+                  ${model}
+                </dl>
+
             `
         }
     })
