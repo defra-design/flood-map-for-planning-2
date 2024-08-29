@@ -16,8 +16,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <form class="form" action="/map?x=357940&y=171286&cz=356498.2252829491,171375.55122466126,17.996078&lyr=fz23" method="post">
-
+      <form action="{{formAction}}" method="post">
         
         {% from "govuk/components/input/macro.njk" import govukInput %}
 
@@ -39,7 +38,7 @@
 
         
         {{ govukRadios({
-          name: "contact",
+          name: "findLocation",
           fieldset: {
             legend: {
               text: "Find the location",
@@ -49,7 +48,7 @@
           },
           items: [
             {
-              value: "Search for a location",
+              value: "Location",
               text: "Search for a location",
               hint: {
                 text: "By place or postcode, National Grid Reference (NGR) or easting and northing."
@@ -60,7 +59,7 @@
               }
             },
             {
-              value: "Skip to map",
+              value: "Skip",
               text: "Skip to map",
               hint: {
                 text: "You will see the full map of England, where you can zoom in to your location."

@@ -3,7 +3,7 @@ const tokens = {}
 let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
-    { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer_gdb', q: 'fz' },
+    { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
     { n: 'Surface_water_spatial_planning_1in30', s: '_depth_N', v: '_depth_VTP_2', m: '_Model_Origin_Layer_gdb', q: 'swpdhr' },
     { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb2', q: 'swpdmr' },
     { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb', q: 'swpdlr' },
@@ -123,8 +123,8 @@ const toggleVisibility = (type, mode, segments, layers) => {
     vtLayers.forEach((l, i) => {
         const id = l.n
         const layer = map.findLayerById(id)
-        const isVisibleLyr = vtLayers[i].q === 'fz' || ['fe', 'md'].some(l => layers.includes(l))
-        const isVisible = !isDrawMode && isVisibleLyr && segments.join('') === vtLayers[i].q
+        // const isVisibleLyr = vtLayers[i].q === 'fz' || ['fe', 'md'].some(l => layers.includes(l))
+        const isVisible = !isDrawMode && segments.join('') === vtLayers[i].q
         const isModeChange = type === 'mode'
         layer.visible = isVisible
         Array(i === 0 ? 2 : 7).fill(0).forEach((_, j) => {
@@ -238,7 +238,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     id: 'af1',
                     heading: 'Annual likelihood of flooding',
                     collapse: 'collapse',
-                    parentIds: ['rsd', 'sw'],
+                    parentIds: ['rsd'],
                     items: [
                         {
                             id: 'hr',
@@ -251,6 +251,26 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                         {
                             id: 'lr',
                             label: 'Rivers and sea 0.1% - 1%'
+                        }
+                    ]
+                },
+                {
+                    id: 'af1',
+                    heading: 'Annual likelihood of flooding',
+                    collapse: 'collapse',
+                    parentIds: ['sw'],
+                    items: [
+                        {
+                            id: 'hr',
+                            label: '3.3%'
+                        },
+                        {
+                            id: 'mr',
+                            label: '1%'
+                        },
+                        {
+                            id: 'lr',
+                            label: '0.1% - 1%'
                         }
                     ]
                 },
@@ -418,6 +438,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         isRamp = layers.includes('md')
         toggleVisibility(type, mode, segments, layers)
     })
+    
     // Listen to map queries
     fm.addEventListener('query', async e => {
         const { point, features } = e.detail
@@ -426,12 +447,11 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const isDefended = segments.includes('rsd')
         const isUnDefended = segments.includes('rsu')
         const isSWater = segments.includes('sw')
+        const isSurfaceWaterHighRisk = ['sw','hr'].every(item => segments.includes(item));
         const isDefendedMed = ['rsd','mr'].every(item => segments.includes(item));
         const isClimate = segments.includes('cl')
         const isSWNoData = ['sw', 'pd', 'mr'].every(item => segments.includes(item));
         const isSWNoDataLr = ['sw', 'pd', 'lr'].every(item => segments.includes(item));
-
-
 
         const climate = isClimate
         ? `<div class="govuk-summary-list__row">
@@ -471,6 +491,20 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             </div>`
             : ''
 
+            isSurfaceWaterHighRisk
+
+        const surfaceHighRisk = isSurfaceWaterHighRisk
+        ? `  
+            <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key">
+              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">3.3%</span>
+              </dd>
+            </div>`
+            : ''
+
         const mediumDefended = isDefendedMed
         ? `  
             <div class="govuk-summary-list__row">
@@ -504,7 +538,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
               <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
               </dt>
               <dd class="govuk-summary-list__value">
-              <span class="govuk-body-s">0.1 to 1%</span>
+              <span class="govuk-body-s">0.1 - 1%</span>
               </dd>
             </div> 
             <p>Missing dataset</p>`
@@ -594,8 +628,8 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const isClimateChange = layerName.includes('CC')
         const isRiversSeasUnDefended = layerName.includes('undefended')
         const is1in200 = layerName.includes('1in200')
-        const is1in1000 = layerName.includes('1in1000')
-        const is1in30 = layerName.includes('1in30')
+        const is1in1000 = layerName.includes('Sea_1in1000')
+        const is1in30 = layerName.includes('Sea_1in30')
         const isSurfaceWater = layerName.includes('Surface')
 
         isInfoOpen = true
@@ -690,7 +724,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
         </dt>
         <dd class="govuk-summary-list__value">
-        <span class="govuk-body-s">0.1% to 0.5%</span>
+        <span class="govuk-body-s">Rivers 1% Sea 0.5%</span>
         </dd>
         </div>`
         : ''
@@ -701,7 +735,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
         </dt>
         <dd class="govuk-summary-list__value">
-        <span class="govuk-body-s">Below 0.1%</span>
+        <span class="govuk-body-s">Rivers and sea 0.1% - 1%</span>
         </dd>
         </div>`
         : ''
@@ -712,7 +746,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
         </dt>
         <dd class="govuk-summary-list__value">
-        <span class="govuk-body-s">Above 3.3%</span>
+        <span class="govuk-body-s">Rivers and sea 3.3%</span>
         </dd>
         </div>`
         : ''
@@ -744,6 +778,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                   ${medium}
                   ${low}
                   ${high}
+                  ${surfaceHighRisk}
                   <div class="govuk-summary-list__row">
                     <dt class="govuk-summary-list__key">
                     <span class="govuk-body-s"><strong>Maximum depth</strong></span>

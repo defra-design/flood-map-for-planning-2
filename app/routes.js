@@ -10,6 +10,30 @@ const path = require('path')
 
 // Add your routes here
 
+// Direct to map from location page when radios ==============================================================
+
+router.get('/location-radio', function (req, res) {
+    res.render('/location-radio',{
+        "formAction":"/location-radio-check"
+    })
+  })
+
+  router.post('/location-radio', function (req, res) {
+    res.render('/location-radio',{
+        "formAction":"/location-radio-check"
+    })
+  })
+  
+  // Route to check if an alert or warning has been selected
+  router.post('/location-radio-check', function (req, res) {
+  
+    if (req.body['findLocation']=="Location") {
+        res.redirect("/map?x=357940&y=171286&cz=356498.2252829491,171375.55122466126,17.996078&lyr=fz23")
+    } else if (req.body['findLocation']=="Skip"){
+        res.redirect("/map?x=357940&y=171286&lyr=fz23&cz=526148.5329675591,316351.21801096,7.767954")
+    }
+  })
+
 // set up route variable location page option
 router.get('/skipLink', function (req, res) {
 	req.session.data = { locationOption: 'skipLink' }
@@ -60,3 +84,5 @@ router.get([
       res.json(jsonData)
     })
   })
+
+   
