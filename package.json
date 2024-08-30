@@ -6,7 +6,7 @@
   },
   "dependencies": {
     "@arcgis/map-components": "^4.30.5",
-    "@defra/flood-map": "github:defra-design/defra-map",
+    "@defra/flood-map": "git+https://git@github.com/defra-design/defra-map",
     "@esri/arcgis-rest-request": "^4.2.3",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "govuk-frontend": "5.4.0",
