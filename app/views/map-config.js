@@ -440,7 +440,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     
     // Listen to map queries
     fm.addEventListener('query', async e => {
-        const { point, features } = e.detail
+        const { coord, features } = e.detail
         const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
         const floodZoneText = segments.includes('fz')
         const isDefended = segments.includes('rsd')
@@ -578,7 +578,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                   <span class="govuk-body-s"><strong>Easting and northing</strong></span>
                   </dt>
                   <dd class="govuk-summary-list__value">
-                  <span class="govuk-body-s">${Math.round(point[0])},${Math.round(point[1])}</span>
+                  <span class="govuk-body-s">${Math.round(coord[0])},${Math.round(coord[1])}</span>
                   </dd>
                 </div>
                 ${climate}
@@ -608,7 +608,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                 url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.m}/FeatureServer`
             })
             const results = await model.queryFeatures({
-                geometry: new Point({ x: point[0], y: point[1], spatialReference: 27700 }),
+                geometry: new Point({ x: coord[0], y: coord[1], spatialReference: 27700 }),
                 outFields: ['*'],
                 spatialRelationship: 'intersects',
                 distance: 1,
@@ -766,7 +766,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                     <span class="govuk-body-s"><strong>Easting and northing</strong></span>
                     </dt>
                     <dd class="govuk-summary-list__value">
-                    <span class="govuk-body-s">${Math.round(point[0])},${Math.round(point[1])}</span>
+                    <span class="govuk-body-s">${Math.round(coord[0])},${Math.round(coord[1])}</span>
                     </dd>
                   </div>
                   ${timeframe}

@@ -1,5 +1,14 @@
 {% extends "layouts/main.html" %}
 {% block header %}
+<script>
+  /* Only needed if buttonFirst or hyrbid */
+  if (location.search.indexOf('view=map') >= 0) {
+    if (window.matchMedia('(max-width: 640px)').matches) { // Condition need for Hybrid
+      document.body.classList.add('fm-js-hidden')
+    }
+  }
+</script>
+
 <header class="govuk-header" style="padding-left: 0.75em;padding-right: 0.75em;" data-module="govuk-header">
     <div class="govuk-header__container govuk-width-containergovuk-!-width-full">
       <div class="govuk-header__logo">
@@ -51,21 +60,16 @@
 
 {% block main %}
 
-    <script>
-      /* Only needed if buttonFirst or hyrbid */
-      if (location.search.indexOf('view=map') >= 0) {
-        if (window.matchMedia('(max-width: 640px)').matches) { // Condition need for Hybrid
-          document.body.classList.add('fm-js-hidden')
-        }
-      }
-    </script>
+<main id="main-content">
 
-    <h1 class="govuk-visually-hidden">A basic map</h1>
-    <p>
-      {{ data['bbox'] }}
+  <h1 class="govuk-visually-hidden">A basic map</h1>
+  <p>
+    {{ data['bbox'] }}
   </p>
 
-    <div id="map" data-centre="[{{ data['x'] }},{{ data['y'] }}]"></div>
+  <div id="map" data-centre="[{{ data['x'] }},{{ data['y'] }}]"></div>
+  
+</main>
 
 {% endblock %}
 
