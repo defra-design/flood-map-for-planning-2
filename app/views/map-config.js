@@ -413,31 +413,29 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         },
         queryPixel: vtLayers.map(l => l.n)
     })
-
     // Component is ready and we have access to map
     // We can listen for map events now, such as 'loaded'
     fm.addEventListener('ready', async e => {
-        // VectorTileLayer = fm.modules.VectorTileLayer
-        // FeatureLayer = fm.modules.FeatureLayer
-        // Point = fm.modules.Point
-        // map = e.detail.map
-        // view = e.detail.view
-        // const { mode, basemap, layers } = e.detail
-        // segments = e.detail.segments
-        // isDark = basemap === 'dark'
-        // isRamp = layers.includes('md')
-        // await addLayers(layers)
-        // toggleVisibility(null, mode, segments, layers)
+        VectorTileLayer = fm.modules.VectorTileLayer
+        FeatureLayer = fm.modules.FeatureLayer
+        Point = fm.modules.Point
+        map = e.detail.map
+        view = e.detail.view
+        const { mode, basemap, layers } = e.detail
+        segments = e.detail.segments
+        isDark = basemap === 'dark'
+        isRamp = layers.includes('md')
+        await addLayers(layers)
+        toggleVisibility(null, mode, segments, layers)
     })
-
     // Listen for segments, layers or style changes
     fm.addEventListener('change', e => {
-        // const { type, mode, basemap, layers } = e.detail
-        // if (['layer', 'segment'].includes(type)) fm.info = null
-        // segments = e.detail.segments
-        // isDark = basemap === 'dark'
-        // isRamp = layers.includes('md')
-        // toggleVisibility(type, mode, segments, layers)
+        const { type, mode, basemap, layers } = e.detail
+        if (['layer', 'segment'].includes(type)) fm.info = null
+        segments = e.detail.segments
+        isDark = basemap === 'dark'
+        isRamp = layers.includes('md')
+        toggleVisibility(type, mode, segments, layers)
     })
     
     // Listen to map queries
