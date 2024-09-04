@@ -158,6 +158,7 @@ let isInfoOpen = false
 
 Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     const fm = new defraMap.FloodMap('map', {
+        target: 'target',
         type: 'hybrid',
         place: 'Ambleside',
         zoom: 14,
@@ -410,6 +411,13 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
             minZoom: 14,
             maxZoom: 20
+        },
+        info: {
+            markerCoord: [337297, 503995],
+            hasData: true,
+            width: '360px',
+            label: '[dynamic title]',
+            html: '<p class="govuk-body-s">[dynamic body]</p>'
         },
         queryPixel: vtLayers.map(l => l.n)
     })

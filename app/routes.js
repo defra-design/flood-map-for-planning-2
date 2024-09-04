@@ -26,7 +26,6 @@ router.get('/location-radio', function (req, res) {
   
   // Route to check if an alert or warning has been selected
   router.post('/location-radio-check', function (req, res) {
-  
     if (req.body['findLocation']=="Location") {
         res.redirect("/map?x=357940&y=171286&cz=356498.2252829491,171375.55122466126,17.996078&lyr=fz23")
     } else if (req.body['findLocation']=="Skip"){
