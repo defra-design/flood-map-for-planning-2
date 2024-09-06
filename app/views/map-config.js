@@ -421,6 +421,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         },
         queryPixel: vtLayers.map(l => l.n)
     })
+
     // Component is ready and we have access to map
     // We can listen for map events now, such as 'loaded'
     fm.addEventListener('ready', async e => {
@@ -436,6 +437,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         await addLayers(layers)
         toggleVisibility(null, mode, segments, layers)
     })
+    
     // Listen for segments, layers or style changes
     fm.addEventListener('change', e => {
         const { type, mode, basemap, layers } = e.detail
