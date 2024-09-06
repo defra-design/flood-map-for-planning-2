@@ -5,9 +5,9 @@ let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
     { n: 'Surface_water_spatial_planning_1in30', s: '_depth_N', v: '_depth_VTP_2', m: '_Model_Origin_Layer_gdb', q: 'swpdhr' },
-    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb2', q: 'swpdmr' },
+    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_Model_Origin_Layer_gdb2', q: 'swpdmr' },
     { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_Model_Origin_Layer_gdb', q: 'swpdlr' },
-    { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
+    { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
     { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer', q: 'rsdpdmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_defended_depth', s: '_N', v: '_VTP_22', m: '_Model_Origin_Layer_gdb', q: 'rsdpdlr' },
     { n: 'Rivers_1in100_Sea_1in200_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdmr' },
@@ -19,7 +19,7 @@ const vtLayers = [
     { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdcllr' },
     { n: 'Rivers_1in100_Sea_1in200_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsuclmr' },
-    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsucllr' },
+    { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '', m: null, q: 'rsucllr' },
 ]
 
 const fLayers = [
