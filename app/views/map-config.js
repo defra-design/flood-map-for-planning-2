@@ -158,14 +158,13 @@ let isInfoOpen = false
 
 Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     const fm = new defraMap.FloodMap('map', {
-        target: 'target',
         type: 'hybrid',
         place: 'Ambleside',
         zoom: 14,
         minZoom: 6,
         maxZoom: 18,
         centre: [337297, 503995],
-        height: '800px',
+        height: '100%',
         provider: {
             tokens: tokens,
             defaultUrl: '{{ env.OS_VTAPI_DEFAULT_URL }}',
