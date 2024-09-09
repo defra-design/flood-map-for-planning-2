@@ -802,4 +802,3 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         }
     })
 })
-
