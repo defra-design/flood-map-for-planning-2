@@ -156,6 +156,16 @@ const depthMap = ['over 2300', '2300', '1200', '900', '600', '300', '150'];
 
 let isInfoOpen = false
 
+const urlParams = new URLSearchParams(window.location.search)
+let seg = urlParams.get('seg')
+const qxy = urlParams.get('qxy')
+const lyr = urlParams.get('lyr')
+if (seg && qxy) {
+    seg = seg.replaceAll(',','')
+    console.log(qxy)
+    console.log(seg)
+}
+
 Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
     const fm = new defraMap.FloodMap('map', {
         target: 'target',
