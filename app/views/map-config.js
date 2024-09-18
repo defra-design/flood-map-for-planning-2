@@ -162,7 +162,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         place: 'Ambleside',
         zoom: 14,
         minZoom: 6,
-        maxZoom: 18,
+        maxZoom: 20,
         centre: [337297, 503995],
         height: '100%',
         provider: {
@@ -411,13 +411,13 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             minZoom: 14,
             maxZoom: 20
         },
-        info: {
-            markerCoord: [337297, 503995],
-            hasData: true,
-            width: '360px',
-            label: '[dynamic title]',
-            html: '<p class="govuk-body-s">[dynamic body]</p>'
-        },
+        // info: {
+        //     markerCoord: [337297, 503995],
+        //     hasData: true,
+        //     width: '360px',
+        //     label: '[dynamic title]',
+        //     html: '<p class="govuk-body-s">[dynamic body]</p>'
+        // },
         queryPixel: vtLayers.map(l => l.n)
     })
 

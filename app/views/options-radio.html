@@ -38,31 +38,44 @@
 
         
         {{ govukRadios({
-          name: "findLocation",
+          name: "triage",
           fieldset: {
             legend: {
-              text: "Find the location",
+              text: "What flood information do you need?",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
           },
           items: [
             {
-              value: "Location",
-              text: "Search for a location",
+              value: "planning",
+              text: "Flood risk information for a planning application",
               hint: {
-                text: "By place or postcode, National Grid Reference (NGR) or easting and northing."
+                text: ""
               
-              },
-              conditional: {
-                html: placeHtml
               }
             },
             {
-              value: "Skip",
-              text: "Skip to map",
+              value: "buySell",
+              text: "For buying, selling or valuing a property ",
               hint: {
-                text: "You will see the full map of England, where you can zoom in to your location."
+                text: ""
+              
+              }
+            },
+            {
+              value: "pastFlood",
+              text: "Checking if a location has flooded in the past",
+              hint: {
+                text: ""
+              
+              }
+            },
+            {
+              value: "notEngland",
+              text: "Flood risk information for a location in Scotland, Wales or Northern Ireland",
+              hint: {
+                text: ""
               
               }
             }
@@ -78,7 +91,7 @@
 
     </div>
 
-    <div class="govuk-grid-column-one-third">
+    <!-- <div class="govuk-grid-column-one-third">
       <p class="govuk-heading-m">
         This service is for planning applications
       </p>
@@ -86,6 +99,6 @@
         If you are not doing a planning application, you can <a href="https://www.gov.uk/check-long-term-flood-risk">check your long term flood risk</a>
       </p>
     </div>
-  </div>
+  </div> -->
 
 {% endblock %}

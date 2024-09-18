@@ -12,38 +12,42 @@ const path = require('path')
 
 // Direct to map from location page when radios ==============================================================
 
-router.get('/location-radio', function (req, res) {
-    res.render('/location-radio',{
-        "formAction":"/location-radio-check"
+router.get('/options-radio', function (req, res) {
+    res.render('/options-radio',{
+        "formAction":"/options-radio-check"
     })
   })
 
-  router.post('/location-radio', function (req, res) {
-    res.render('/location-radio',{
-        "formAction":"/location-radio-check"
+  router.post('/options-radio', function (req, res) {
+    res.render('/options-radio',{
+        "formAction":"/options-radio-check"
     })
   })
   
   // Route to check if an alert or warning has been selected
-  router.post('/location-radio-check', function (req, res) {
-    if (req.body['findLocation']=="Location") {
-        res.redirect("/map?x=357940&y=171286&cz=356498.2252829491,171375.55122466126,17.996078&lyr=fz23")
-    } else if (req.body['findLocation']=="Skip"){
-        res.redirect("/map?x=357940&y=171286&lyr=fz23&cz=526148.5329675591,316351.21801096,7.767954")
-    }
+  router.post('/options-radio-check', function (req, res) {
+    if (req.body['triage']=="planning") {
+        res.redirect("/map?id=&qxy=&cz=416803.7324857929,350039.18434241525,6.839382")
+    } else if (req.body['triage']=="buySell"){
+        res.redirect("https://www.gov.uk/check-long-term-flood-risk")
+    } else if (req.body['triage']=="pastFlood"){
+      res.redirect("https://www.gov.uk/request-flooding-history")
+    } else if (req.body['triage']=="notEngland"){
+    res.redirect("https://flood-map-for-planning.service.gov.uk/england-only")
+}
   })
 
 // set up route variable location page option
-router.get('/skipLink', function (req, res) {
-	req.session.data = { locationOption: 'skipLink' }
-	res.redirect(`/start`)
-})
+// router.get('/skipLink', function (req, res) {
+// 	req.session.data = { locationOption: 'skipLink' }
+// 	res.redirect(`/start`)
+// })
 
-// set up route variable location page option
-router.get('/radioOption', function (req, res) {
-	req.session.data = { locationOption: 'radioLink' }
-	res.redirect(`/start`)
-})
+// // set up route variable location page option
+// router.get('/radioOption', function (req, res) {
+// 	req.session.data = { locationOption: 'radioLink' }
+// 	res.redirect(`/start`)
+// })
 
 const authESRI = require('./esri-auth')
 const authOS = require('./os-auth')
