@@ -162,7 +162,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         place: 'Ambleside',
         zoom: 14,
         minZoom: 6,
-        maxZoom: 20,
+        maxZoom: 21,
         centre: [337297, 503995],
         height: '100%',
         provider: {
@@ -639,6 +639,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const is1in1000 = layerName.includes('Sea_1in1000')
         const is1in30 = layerName.includes('Sea_1in30')
         const isSurfaceWater = layerName.includes('Surface')
+        const availableDepth = ['rsu', 'rsd', 'sw'].some(item => segments.includes(item));
 
         isInfoOpen = true
 
@@ -759,6 +760,17 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         </div>`
         : ''
 
+        const maxDepth = availableDepth
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Maximum depth</strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">${depthMap[band]}mm</span>
+        </dd>
+      </div>`
+        : ''
+
         // const floodZoneLowRisk = isSegmentfz23
         // ? `
         // <span class="govuk-body-s">This location sits outside of a flood zone</span>
@@ -787,14 +799,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                   ${low}
                   ${high}
                   ${surfaceHighRisk}
-                  <div class="govuk-summary-list__row">
-                    <dt class="govuk-summary-list__key">
-                    <span class="govuk-body-s"><strong>Maximum depth</strong></span>
-                    </dt>
-                    <dd class="govuk-summary-list__value">
-                    <span class="govuk-body-s">${depthMap[band]}mm</span>
-                    </dd>
-                  </div>
+                  ${maxDepth}
                   ${model}
                 </dl>
 
