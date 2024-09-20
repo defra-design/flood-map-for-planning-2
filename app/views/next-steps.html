@@ -1,0 +1,119 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Results page – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  <a href="#" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <h1 class="govuk-heading-xl">
+          Next steps for your planning application 
+        </h1>
+        <h3 class="govuk-heading-m">
+          Decide what you need for your planning application  
+        </h3>
+        <p>Contact your local planning authority to check their requirements.</p>
+        </br>
+        <p>Get a Flood Risk Assessment (FRA). You will normally need to pay a flood risk specialist to carry it out. </p>
+        </br>
+        <p>For developments in flood zone ((Flood zone)) your FRA should include an assessment of all sources of flooding and <a href="">take into account climate change allowances</a>. </p>
+        </br>
+        <p>Find out <a href="#">how to do an assessment</a>. </p>
+        </br>
+        <p>
+          To find out about other factors that might affect the flood risk of this location, you should also check:  
+        </p>
+        </br>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            <a href="#">surface water, groundwater and reservoir flood risk </a>
+          </li>
+          <li>
+            your local planning authority’s strategic flood risk assessment (SFRA), which includes future flood risk. 
+          </li>
+        </ul>
+
+        <h3 class="govuk-heading-m">
+          Other data you may need   
+        </h3>
+
+      <p>You will also need to assess residual risk from flood defence breach in this location. If available, we will provide breach hazard mapping data to help you do this. </p>
+
+       </br>
+
+      <h3 class="govuk-heading-m">
+        Get help    
+      </h3>
+
+    <p>
+      For help deciding what flood risk information you need, email the Environment Agency team in ((AreaName)) at ((PSOEmail)) 
+    </p>
+
+  </br>
+
+      <h3 class="govuk-heading-m">
+        Order flood risk data for rivers and the sea 
+      </h3>
+
+      <p>The flood risk data usually includes: </p>
+
+    </br>
+
+     <ul class="govuk-list govuk-list--bullet">
+       <li>
+        detailed flood data  
+       </li>
+       <li>
+        past flood event data   
+       </li>
+       <li>
+        modelled flood levels and extents  
+       </li>
+       <li>
+        flood defence locations and attributes 
+       </li>
+     </ul>
+
+</br>
+
+<p>You should receive your data within 20 working days.</p>
+
+</br>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Download flood map for this location (PDF)
+        </button>
+      </br>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Order flood risk data
+        </button>
+
+      
+      </div>
+
+    </div>
+
+  </main>
+  
+</div>
+
+{% endblock %}

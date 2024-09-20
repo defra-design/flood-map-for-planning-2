@@ -1,0 +1,268 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Results page – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  <a href="#" class="govuk-back-link">Back</a>
+
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <h1 class="govuk-heading-xl">
+          This location is in flood zone 3 
+        </h1>
+        
+        <p>
+          Flooding risk for this location includes: 
+        </p>
+        </br>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            rivers and the sea
+          </li>
+          <li>
+            surface water
+          </li>
+        </ul>
+
+      <p>Review the flood risks for your location then complete the next steps for your planning application. </p>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></hr>
+
+      <h2 class="govuk-heading-l">
+        Rivers and the sea - flood zone 3 
+      </h2>
+
+      <p><a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information" alt="See the risk from rivers and sea on a map">See this risk on a map</a></p>
+
+      </br>
+
+      <h3 class="govuk-heading-s">What flood zone 3 means</h3>
+
+      <p>Land within flood zone 3 has a high probability of flooding from rivers and the sea.</p>
+
+      </br>
+
+      <p>You need to carry out a flood risk assessment (FRA) as part of the planning application for this development.</p>
+
+      <p><a href="#">Find out more about flood zones and what they mean</a>.</p>
+
+      </br>
+
+      <h3 class="govuk-heading-s">Predicted likelihood of flooding by the year 2125</h3>
+
+      <p>By 2125, if this location flooded, the water could be up to 600mm deep.</p>
+
+      <p><a href="#">Find out more about climate change allowances</a>.</p>
+
+      </br>
+
+      <h3 class="govuk-heading-s">Current depth of flooding</h3>
+
+      <p>If this location flooded now, the water could be up to 300mm deep.</p>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></hr>
+
+
+      <h2 class="govuk-heading-l">
+        Functional floodplain 
+      </h2>
+
+      <p><a href="#" alt="More details on functional flood plain">More details</a></p>
+
+    </br>
+
+      <h2 class="govuk-heading-s">
+        Predicted likelihood of flooding by the year 2125  
+      </h2>
+
+      <p>By 2125, if this location flooded, the water could be up to 1200mm deep.</p>
+
+      <p><a href="#">Find out more about functional floodplains</a>.</p>
+
+      </br>
+
+
+      <h2 class="govuk-heading-s">
+        Current likelihood of flooding   
+      </h2>
+
+      <p>This location has a 3.3% or greater annual probability of flooding each year.</p>
+
+      <p>This location is only suitable for: </p>
+
+    </br>
+
+      <ul class="govuk-list govuk-list--bullet">
+
+        <li>
+          water compatible developments 
+        </li>
+
+        <li>
+          essential infrastructure that has passed the Exception Test 
+        </li>
+
+      </ul>
+
+      </br>
+
+      <h2 class="govuk-heading-s">
+        Current depth of flooding    
+      </h2>
+
+      <p>If this location flooded now, the water could be up to 900mm deep.</p>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></hr>
+
+      </br>
+
+      <h2 class="govuk-heading-l">
+      Surface water for planning 
+      </h2>
+
+      <p><a href="#" alt="More details on Surface water for planning">More details</a></p>
+      <p><a href="#" alt="See this risk on Surface water for planning on a map">See this risk on a map</a></p>
+
+      </br>
+
+      <h2 class="govuk-heading-s">
+      Predicted likelihood of flooding by the year 2061  
+      </h2>
+
+      <p>By 2061, the chance of surface water flooding at this location is more than 3.3% each year. If this location flooded, the water could be up to 600mm deep. </p>
+
+      <p><a href="#">Find out more about climate change allowances</a>.</p>
+
+      </br>
+
+      <h2 class="govuk-heading-s">
+      Current likelihood of flooding   
+      </h2>
+
+      <p>High risk of surface water (or flash) flooding. The chance of surface water flooding at this location is more than 3.3% each year.</p>
+
+       </br>
+
+      <h2 class="govuk-heading-s">
+      Current depth of flooding 
+      </h2> 
+
+      <p>If this location flooded now, the water could be up to 300mm deep. </p>
+
+      </br>
+
+      <h2 class="govuk-heading-s">
+      Current flow speed (velocity) of flooding 
+      </h2> 
+
+      <p>If this location flooded now, the velocity could be less than 0.5 metre per second. </p>
+
+      <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></hr>
+
+      <h2 class="govuk-heading-l">
+      Next steps 
+      </h2>
+  
+        <p><a href="#">I need help deciding what to include in my planning application.</a></p>
+
+      </br>
+
+      <h2 class="govuk-heading-s">
+      Download rivers and sea flood map for this location   
+      </h2> 
+
+      <p>The flood map is suitable for a local planning authority to use when checking a planning application to see if a development is:</p>
+
+     </br>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          in flood zone 1, 2 or 3  
+        </li>
+        <li>
+          within 20 meters of a main river or a flood defence  
+        </li>
+        <li>
+          in a water storage area 
+        </li>
+      </ul>
+
+      <p><a href="#">Add a reference to the flood map and set the scale </a></p>
+
+   
+     </br>
+
+      <!-- <div class="govuk-button-group">
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Download flood map for this location (PDF)
+        </button>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Order flood risk data
+        </button>
+      </div> -->
+
+        <!-- <button type="submit" class="govuk-button" data-module="govuk-button">
+          Download flood map for this location (PDF)
+        </button>
+      </br>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Order flood risk data
+        </button> -->
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Download flood map for this location (PDF)
+        </button>
+      </br>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Order flood risk data
+        </button>
+
+      </br>
+
+        <!-- <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Download flood map for this location (PDF)
+        </button>
+      </br>
+        <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+          Order flood risk data
+        </button> -->
+
+        <h2 class="govuk-heading-s">
+          Change the location  
+        </h2> 
+        <ul class="govuk-list govuk-list--bullet">
+          <li>
+            redraw the boundary of your site 
+          </li>
+          <li>
+            search for a different location   
+          </li>
+        </ul>
+
+      </div>
+
+    </div>
+
+  </main>
+
+</div>
+
+{% endblock %}
