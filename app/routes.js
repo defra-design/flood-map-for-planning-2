@@ -8,34 +8,25 @@ const router = govukPrototypeKit.requests.setupRouter()
 const fs = require('fs')
 const path = require('path')
 
+
 // Add your routes here
 
-// Direct to map from location page when radios ==============================================================
+// all routes for FMFP with defra componant
+router.use('/v1', require('./routes_v1'))
 
-router.get('/options-radio', function (req, res) {
-    res.render('/options-radio',{
-        "formAction":"/options-radio-check"
-    })
-  })
+// set up route variable location page option
+router.get('/results-a', function (req, res) {
+	req.session.data = { resultsType: 'resultsA' }
+	res.redirect(`/v1/start`)
+})
 
-  router.post('/options-radio', function (req, res) {
-    res.render('/options-radio',{
-        "formAction":"/options-radio-check"
-    })
-  })
-  
-  // Route to check if an alert or warning has been selected
-  router.post('/options-radio-check', function (req, res) {
-    if (req.body['triage']=="planning") {
-        res.redirect("/map?id=&qxy=&cz=416803.7324857929,350039.18434241525,6.839382")
-    } else if (req.body['triage']=="buySell"){
-        res.redirect("https://www.gov.uk/check-long-term-flood-risk")
-    } else if (req.body['triage']=="pastFlood"){
-      res.redirect("https://www.gov.uk/request-flooding-history")
-    } else if (req.body['triage']=="notEngland"){
-    res.redirect("https://flood-map-for-planning.service.gov.uk/england-only")
-}
-  })
+// set up route variable location page option
+router.get('/results-b', function (req, res) {
+	req.session.data = { resultsType: 'resultsB' }
+	res.redirect(`/v1/start`)
+})
+
+// // Direct to map from location page when radios ==============================================================
 
 // set up route variable location page option
 // router.get('/skipLink', function (req, res) {
@@ -48,6 +39,7 @@ router.get('/options-radio', function (req, res) {
 // 	req.session.data = { locationOption: 'radioLink' }
 // 	res.redirect(`/start`)
 // })
+
 
 const authESRI = require('./esri-auth')
 const authOS = require('./os-auth')
@@ -88,4 +80,4 @@ router.get([
     })
   })
 
-   
+module.exports = router
