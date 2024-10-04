@@ -17,13 +17,13 @@ router.use('/v1', require('./routes_v1'))
 // set up route variable location page option
 router.get('/results-a', function (req, res) {
 	req.session.data = { resultsType: 'resultsA' }
-	res.redirect(`/v1/start`)
+	res.redirect(`/v1/results`)
 })
 
 // set up route variable location page option
 router.get('/results-b', function (req, res) {
 	req.session.data = { resultsType: 'resultsB' }
-	res.redirect(`/v1/start`)
+	res.redirect(`/v1/results`)
 })
 
 // // Direct to map from location page when radios ==============================================================

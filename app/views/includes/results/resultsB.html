@@ -1,6 +1,9 @@
 <div class="govuk-width-container">
 
-  <a href="#" class="govuk-back-link">Back</a>
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 
   <main class="govuk-main-wrapper">
 
