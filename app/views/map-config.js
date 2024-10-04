@@ -91,8 +91,9 @@ const renderFloodDefence = () => {
         type: 'simple',
         symbol: {
           type: 'simple-line',
-          width: '2px',
-          color: '#f47738'
+          width: '3px',
+        //  color: '#f47738'
+        color: '#12393d'
         }
     }
 }
@@ -103,9 +104,10 @@ const renderFloodStorage = () => {
         symbol: {
             type: 'simple-fill',
             style: 'diagonal-cross',
-            color: '#d4351c',
+            color: '#12393d',
             outline: {
-                color: '#d4351c',
+            //    color: '#d4351c',
+            color: '#12393d',
                 width: 1
             }
         }
@@ -369,13 +371,15 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                             id: 'fsa',
                             label: 'Water storage',
                             icon: symbols[0],
-                            fill: 'default: #d4351c, dark: #d4351c'
+                            fill: 'default: #12393d, dark: #12393d'
                         },
                         {
                             id: 'fd',
                             label: 'Flood defence',
                             icon: symbols[1],
-                            fill: '	#f47738'
+                          //  fill: '	#f47738'
+                            fill: '#12393d'
+
                         }
                     ]
                 },
@@ -388,13 +392,14 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                             id: 'fsa',
                             label: 'Water storage',
                             icon: symbols[0],
-                            fill: 'default: #d4351c, dark: #d4351c'
+                            fill: 'default: #12393d, dark: #12393d'
                         },
                         {
                             id: 'fd',
                             label: 'Flood defence',
                             icon: symbols[1],
-                            fill: '	#f47738'
+                          //  fill: '	#f47738'
+                          fill: '#12393d'
                         }
                     ]
                 }
