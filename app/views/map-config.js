@@ -455,7 +455,7 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         const isDefended = segments.includes('rsd')
         const isUnDefended = segments.includes('rsu')
         const isSWater = segments.includes('sw')
-        const isSurfaceWaterHighRisk = ['sw','hr'].every(item => segments.includes(item));
+        const isSurfaceWaterHighRisk = ['sw', 'pd', 'hr'].every(item => segments.includes(item));
         const isDefendedMed = ['rsd','mr'].every(item => segments.includes(item));
         const isClimate = segments.includes('cl')
         const isSWNoData = ['sw', 'pd', 'mr'].every(item => segments.includes(item));
@@ -499,18 +499,19 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             </div>`
             : ''
 
-            isSurfaceWaterHighRisk
 
         const surfaceHighRisk = isSurfaceWaterHighRisk
-        ? `  
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
-              </dt>
-              <dd class="govuk-summary-list__value">
-              <span class="govuk-body-s">3.3%</span>
-              </dd>
-            </div>`
+            // High risk
+            // <div class="govuk-summary-list__row">
+            //   <dt class="govuk-summary-list__key">
+            //   <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+            //   </dt>
+            //   <dd class="govuk-summary-list__value">
+            //   <span class="govuk-body-s">3.3%</span>
+            //   </dd>
+            // </div>
+            ? `  
+            <p>Missing dataset</p>`
             : ''
 
         const mediumDefended = isDefendedMed
@@ -527,28 +528,30 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
             : ''
 
         const sWNoData = isSWNoData
+    //    Medium risk
+    //  <div class="govuk-summary-list__row">
+    //     <dt class="govuk-summary-list__key">
+    //     <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+    //     </dt>
+    //     <dd class="govuk-summary-list__value">
+    //     <span class="govuk-body-s">1%</span>
+    //     </dd>
+    //   </div> 
         ? `  
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
-              </dt>
-              <dd class="govuk-summary-list__value">
-              <span class="govuk-body-s">1%</span>
-              </dd>
-            </div> 
             <p>Missing dataset</p>`
             : ''
 
         const sWNoDataLr = isSWNoDataLr
+    //    Low risk
+    //     <div class="govuk-summary-list__row">
+    //     <dt class="govuk-summary-list__key">
+    //     <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+    //     </dt>
+    //     <dd class="govuk-summary-list__value">
+    //     <span class="govuk-body-s">0.1 - 1%</span>
+    //     </dd>
+    //   </div> 
         ? ` 
-            <div class="govuk-summary-list__row">
-              <dt class="govuk-summary-list__key">
-              <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
-              </dt>
-              <dd class="govuk-summary-list__value">
-              <span class="govuk-body-s">0.1 - 1%</span>
-              </dd>
-            </div> 
             <p>Missing dataset</p>`
             : ''
 
@@ -598,6 +601,8 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                 ${SWater}
                 ${sWNoData}
                 ${sWNoDataLr}
+                ${surfaceHighRisk}
+
               </dl>
                 
                
@@ -631,17 +636,21 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         
         const band = feature._symbol
         const layerName = feature.layer
-        const isFloodZone = layerName.includes('Zone')
-        const isRiversSeasDefended = layerName.includes('_defended')
-        const isClimateChange = layerName.includes('CC')
-        const isRiversSeasUnDefended = layerName.includes('undefended')
+        const isFloodZone = segments.includes('fz')
+        const isRiversSeasDefended = segments.includes('rsd')
+        const isClimateChange = segments.includes('cl')
+        const isRiversSeasUnDefended = segments.includes('rsu')
         const is1in200 = layerName.includes('1in200')
         const is1in1000 = layerName.includes('Sea_1in1000')
         const is1in30 = layerName.includes('Sea_1in30')
-        const isSurfaceWater = layerName.includes('Surface')
+        const isSW1in30 = layerName.includes('spatial_planning_1in30_depth_CCP1')
+        const isSW1in100 = layerName.includes('Surface_water_spatial_planning_1in100_depth_CCP1')
+        const isSW1in1000 = layerName.includes('Surface_water_spatial_planning_1in1000_depth_CCP1')
+        const isSurfaceWater = segments.includes('sw')
         const availableDepth = ['rsu', 'rsd', 'sw'].some(item => segments.includes(item));
 
         isInfoOpen = true
+        console.log(layerName)
 
         const title = isFloodZone
         ? `<div class="govuk-summary-list__row">
@@ -738,6 +747,39 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
         </div>`
         : ''
 
+        const swLowCC = isSW1in1000
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">0.1% - 1%</span>
+        </dd>
+        </div>`
+        : ''
+
+        const swMedCC = isSW1in100
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">1%</span>
+        </dd>
+        </div>`
+        : ''
+
+        const swHighCC = isSW1in30
+        ? `<div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+        </dt>
+        <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">3.3%</span>
+        </dd>
+        </div>`
+        : ''
+
         const low = is1in1000
         ? `<div class="govuk-summary-list__row">
         <dt class="govuk-summary-list__key">
@@ -801,6 +843,9 @@ Promise.all([getOsToken(tokens), getEsriToken(tokens)]).then(() => {
                   ${surfaceHighRisk}
                   ${maxDepth}
                   ${model}
+                  ${swLowCC}
+                  ${swMedCC}
+                  ${swHighCC}
                 </dl>
 
             `
