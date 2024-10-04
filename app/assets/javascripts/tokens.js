@@ -1,33 +1,37 @@
-const getOsToken = async (tokens) => {
-    try {
-        const response = await fetch('/os-token');
-        const json = await response.json();
-        
-        if (json.access_token) {
-            tokens.os = json.access_token;
-            const timeout = (json.expires_in - 30) * 1000;
-            setTimeout(() => getOsToken(tokens), timeout);
-        } else {
-            throw new Error('No access token received');
-        }
-    } catch (err) {
-        console.log('Error getting OS access token: ', err);
-        throw err;
-    }
-};
+const osAuth = {}
+const esriAuth = {}
 
-const getEsriToken = async (tokens) => {
-    try {
-        const response = await fetch('/esri-token');
-        const json = await response.json();
-        
-        if (json.token) {
-            tokens.esri = json.token;
-        } else {
-            throw new Error('No ESRI token received');
+const getOsToken = async () => {
+    // Check token is valid
+    const isExpired = !Object.keys(osAuth).length || Date.now() >= osAuth?.expiresAt
+
+    if (isExpired) {
+        try {
+            const response = await fetch('/os-token')
+            const json = JSON.parse(await response.json())
+            osAuth.token = json.access_token
+            osAuth.expiresAt = Date.now() + ((json.expires_in - 30) * 1000)
+        } catch (err) {
+            console.log('Error getting OS access token: ', err)
         }
-    } catch (err) {
-        console.log('Error getting ESRI access token: ', err);
-        throw err;
     }
-};
+
+    return osAuth
+}
+
+const getEsriToken = async () => {
+    // *ESRI manages this somehow?
+    const hasToken = esriAuth.token
+
+    if (!hasToken) {
+        try {
+            const response = await fetch('/esri-token')
+            const json = await response.json()
+            esriAuth.token = json.token
+        } catch (err) {
+            console.log('Error getting ESRI access token: ', err)
+        }
+    }
+
+    return esriAuth
+}
