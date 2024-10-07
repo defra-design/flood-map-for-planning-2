@@ -398,19 +398,6 @@ const fm = new defraMap.FloodMap('map', {
             }
         ]
     },
-    draw: {
-        heading: 'Get a boundary  report',
-        startLabel: 'Add site boundary',
-        editLabel: 'Edit site boundary',
-        confirmLabel: 'Continue',
-        queryLabel: 'Get report',
-        helpLabel: 'How to draw a shape',
-        html: '<p class="govuk-body-s">Instructions</p>',
-        defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
-        darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
-        minZoom: 14,
-        maxZoom: 20
-    },
     // info: {
     //     markerCoord: [337297, 503995],
     //     hasData: true,
@@ -418,6 +405,20 @@ const fm = new defraMap.FloodMap('map', {
     //     label: '[dynamic title]',
     //     html: '<p class="govuk-body-s">[dynamic body]</p>'
     // },
+    queryPolygon: {
+        heading: 'Get a boundary  report',
+        startLabel: 'Add site boundary',
+        editLabel: 'Edit site boundary',
+        addLabel: 'Add boundary',
+        updateLabel: 'Update boundary',
+        submitLabel: 'Get site report',
+        helpLabel: 'How to draw a shape',
+        html: '<p class="govuk-body-s">Instructions</p>',
+        defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
+        darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
+        minZoom: 14,
+        maxZoom: 20
+    },
     queryPixel: vtLayers.map(l => l.n)
 })
 
