@@ -176,6 +176,7 @@ const fm = new defraMap.FloodMap('map', {
     search: {
         label: 'Search for a place',
         isAutocomplete: true,
+        isExpanded: true,
         hasGeoLocation: true,
         provider: 'esri-world-geocoder',
         tokenCallback: getEsriToken
