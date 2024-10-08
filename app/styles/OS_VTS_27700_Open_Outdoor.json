@@ -5,7 +5,7 @@
   "sources": {
     "esri": {
       "type": "vector",
-      "url": "/open-tile.json",
+      "url": "open-tile.json",
       "maxzoom": 15,
       "minzoom": 0
     }

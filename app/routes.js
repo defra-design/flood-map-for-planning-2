@@ -66,6 +66,7 @@ router.get('/os-token', async (req, res, next) => {
 })
 
 router.get([
+    '/styles/vts-tile.json',
     '/styles/open-tile.json',
     '/styles/OS_VTS_27700_Outdoor.json',
     '/styles/OS_VTS_27700_Open_Outdoor.json',
