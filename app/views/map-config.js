@@ -161,7 +161,7 @@ const fm = new defraMap.FloodMap('map', {
     place: 'Ambleside',
     zoom: 14,
     minZoom: 6,
-    maxZoom: 21,
+    maxZoom: 20,
     centre: [337297, 503995],
     height: '100%',
     provider: {
@@ -417,7 +417,7 @@ const fm = new defraMap.FloodMap('map', {
         defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
         darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
         minZoom: 14,
-        maxZoom: 20
+        maxZoom: 21
     },
     queryPixel: vtLayers.map(l => l.n)
 })
