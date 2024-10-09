@@ -412,7 +412,7 @@ const fm = new defraMap.FloodMap('map', {
         editLabel: 'Edit site boundary',
         addLabel: 'Add boundary',
         updateLabel: 'Update boundary',
-        submitLabel: 'Get site report',
+        submitLabel: 'Get summary report',
         helpLabel: 'How to draw a shape',
         html: '<p class="govuk-body-s">Instructions</p>',
         defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
@@ -438,6 +438,13 @@ fm.addEventListener('ready', async e => {
     await addLayers(layers)
     toggleVisibility(null, mode, segments, layers)
 })
+
+//event to fire for 'Get site report' button to non dynamic results page
+document.addEventListener('click', e => {
+    if (e.target.innerText === 'Get site report') {
+       window.location = '/v1/results'
+    }
+  })
 
 // Listen for segments, layers or style changes
 fm.addEventListener('change', e => {
