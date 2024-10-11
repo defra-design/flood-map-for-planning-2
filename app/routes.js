@@ -26,6 +26,18 @@ router.get('/results-b', function (req, res) {
 	res.redirect(`/v1/results`)
 })
 
+// set up route variable e2e fz1
+router.get('/fz1', function (req, res) {
+	req.session.data = { floodZone: 'fz1', resultsType: 'resultsB' }
+	res.redirect(`/v1/summary-fz1`)
+})
+
+// set up route variable e2e fz2
+router.get('/fz1', function (req, res) {
+	req.session.data = { floodZone: 'fz2', resultsType: 'resultsB' }
+	res.redirect(`/v1/summary-fz2`)
+})
+
 // // Direct to map from location page when radios ==============================================================
 
 // set up route variable location page option

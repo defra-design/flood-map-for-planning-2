@@ -441,7 +441,7 @@ fm.addEventListener('ready', async e => {
 
 //event to fire for 'Get site report' button to non dynamic results page
 document.addEventListener('click', e => {
-    if (e.target.innerText === 'Get site report') {
+    if (e.target.innerText === 'Get summary report') {
        window.location = '/v1/results'
     }
   })
@@ -519,8 +519,7 @@ fm.addEventListener('query', async e => {
         //   <span class="govuk-body-s">3.3%</span>
         //   </dd>
         // </div>
-        ? `  
-        <p>Missing dataset</p>`
+        ? ``
         : ''
 
     const mediumDefended = isDefendedMed
@@ -608,10 +607,9 @@ console.log(segments)
             ${riversSeaUnDefended}
             ${mediumDefended}
             ${SWater}
+            ${surfaceHighRisk}
             ${sWNoData}
             ${sWNoDataLr}
-            ${surfaceHighRisk}
-
             </dl>
             
             
@@ -851,7 +849,6 @@ console.log(segments)
                 ${high}
                 ${surfaceHighRisk}
                 ${maxDepth}
-                ${model}
                 ${swLowCC}
                 ${swMedCC}
                 ${swHighCC}
