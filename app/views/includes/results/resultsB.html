@@ -11,10 +11,24 @@
     <div class="govuk-grid-row">
 
       <div class="govuk-grid-column-three-quarters">
-
+        {% if data.floodZone=="fz1" %}
+        <h1 class="govuk-heading-xl">
+          This location is in flood zone 1 
+        </h1>
+        {% elseif data.floodZone=="fz2"%}
+        <h1 class="govuk-heading-xl">
+          This location is in flood zone 2 
+        </h1>
+        {% elseif data.floodZone=="fz3"%}
         <h1 class="govuk-heading-xl">
           This location is in flood zone 3 
         </h1>
+        {% elseif data.floodZone=="fzd"%}
+        <h1 class="govuk-heading-xl">
+          This location is in flood zone 3 
+        </h1>
+        {% endif %}
+
         
         <p>
           Flooding risk for this location includes: 
@@ -79,6 +93,88 @@
           </tr>
         </tbody>
       </table> -->
+      {% if data.floodZone=="fz1" %}
+
+      <h3 class="govuk-heading-l">
+        Rivers and the sea
+      </h3>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          <span class="govuk-body-m"><strong>Current likelihood of flooding</strong></span>
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <span class="govuk-body-m">Flood zone 1</span>
+          </dd>
+        </div>
+        <!-- <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Current depth of flooding</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">300mm</span>
+            </dd>
+        </div>
+        <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Predicted depth of flooding by 2125</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">600mm</span>
+            </dd>
+          </div> -->
+            <div class="govuk-summary-list__row">          
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              <span class="govuk-body-m"><strong>View this risk on a map</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-m">View rivers and sea risk on a map</span>
+              </dd>
+        </div>
+      </dl>
+
+      {% elseif data.floodZone=="fz2"%}
+      <h3 class="govuk-heading-l">
+        Rivers and the sea
+      </h3>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          <span class="govuk-body-m"><strong>Current likelihood of flooding</strong></span>
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <span class="govuk-body-m">Flood zone 2</span>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Current depth of flooding</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">150mm</span>
+            </dd>
+        </div>
+        <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Predicted depth of flooding by 2125</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">300mm</span>
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">          
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              <span class="govuk-body-m"><strong>View this risk on a map</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-m">View rivers and sea risk on a map</span>
+              </dd>
+        </div>
+      </dl>
+
+      {% elseif data.floodZone=="fz3"%}
       <h3 class="govuk-heading-l">
         Rivers and the sea
       </h3>
@@ -117,6 +213,46 @@
               </dd>
         </div>
       </dl>
+      {% elseif data.floodZone=="fzd"%}
+      <h3 class="govuk-heading-l">
+        Rivers and the sea
+      </h3>
+
+      <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          <span class="govuk-body-m"><strong>Current likelihood of flooding</strong></span>
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <span class="govuk-body-m">Flood zone 3</span>
+          </dd>
+        </div>
+        <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Current depth of flooding</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">300mm</span>
+            </dd>
+        </div>
+        <div class="govuk-summary-list__row">          
+          <dt class="govuk-summary-list__key govuk-!-width-one-half">
+            <span class="govuk-body-m"><strong>Predicted depth of flooding by 2125</strong></span>
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <span class="govuk-body-m">600mm</span>
+            </dd>
+          </div>
+            <div class="govuk-summary-list__row">          
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              <span class="govuk-body-m"><strong>View this risk on a map</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-m">View rivers and sea risk on a map</span>
+              </dd>
+        </div>
+      </dl>
+      {% endif %}
 
     </br>
 
@@ -180,7 +316,7 @@
       Next steps 
       </h2>
   
-        <p><a href="#">I need help deciding what to include in my planning application.</a></p>
+        <p><a href="next-steps">I need help deciding what to include in my planning application.</a></p>
 
       </br>
 
@@ -260,7 +396,6 @@
       </div>
 
     </div>
-
   </main>
   
 </div>

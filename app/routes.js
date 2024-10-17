@@ -29,13 +29,25 @@ router.get('/results-b', function (req, res) {
 // set up route variable e2e fz1
 router.get('/fz1', function (req, res) {
 	req.session.data = { floodZone: 'fz1', resultsType: 'resultsB' }
-	res.redirect(`/v1/summary-fz1`)
+	res.redirect(`/v1/start`)
 })
 
 // set up route variable e2e fz2
-router.get('/fz1', function (req, res) {
+router.get('/fz2', function (req, res) {
 	req.session.data = { floodZone: 'fz2', resultsType: 'resultsB' }
-	res.redirect(`/v1/summary-fz2`)
+	res.redirect(`/v1/start`)
+})
+
+// set up route variable e2e fz3
+router.get('/fz3', function (req, res) {
+	req.session.data = { floodZone: 'fz3', resultsType: 'resultsB' }
+	res.redirect(`/v1/start`)
+})
+
+// set up route variable e2e fzd
+router.get('/fzd', function (req, res) {
+	req.session.data = { floodZone: 'fzd', resultsType: 'resultsB' }
+	res.redirect(`/v1/start`)
 })
 
 // // Direct to map from location page when radios ==============================================================

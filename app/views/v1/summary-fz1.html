@@ -15,6 +15,7 @@
   }) }}
 
   <div class="govuk-main-wrapper">
+    <form action="confirmation-fz1.html">
 
     <div class="govuk-grid-row">
 
@@ -86,15 +87,18 @@
           </div>
         </dl>
 
-        <a href="{{ data['confirmation'] }}" role="button" draggable="false" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 " data-module="govuk-button">
-          Request your flood risk assessment data
-        </a>
+        {{ govukButton({
+          text: "Request your flood risk assessment data",
+          classes: "govuk-!-margin-top-9"
+        }) }}
+
 
       </div>
 
     </div>
 
   </div>
+</form>
 
 </div>
 
