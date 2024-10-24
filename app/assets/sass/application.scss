@@ -15,7 +15,8 @@
             padding-right: 0.75em;
         }
     }
-    .govuk-header__container {
+
+.govuk-header__container {
         @include mq ($from: tablet) {
             padding-left: 0.75em;
             padding-right: 0.75em;
@@ -36,3 +37,4 @@
         height: 100%;
     }
 }
+

@@ -55,7 +55,7 @@ const addLayers = async (layers) => {
                         'fill-opacity': 0.75
                     }
                 }})
-            },
+         },
             visible: false
         }))
     })
@@ -217,7 +217,7 @@ const fm = new defraMap.FloodMap('map', {
                 id: 'tf',
                 heading: 'Time frame',
                 collapse: 'collapse',
-                parentIds: ['rsd', 'rsu', 'sw'],
+                parentIds: ['rsd', 'rsu'],
                 items: [
                     {
                         id: 'pd',
@@ -226,6 +226,17 @@ const fm = new defraMap.FloodMap('map', {
                     {
                         id: 'cl',
                         label: 'Climate change'
+                    }
+                ]
+            },
+            {
+                id: 'tf',
+                heading: 'Present day',
+                parentIds: ['sw'],
+                items: [
+                    {
+                        id: 'pd',
+                        label: 'Present day'
                     }
                 ]
             },
@@ -286,59 +297,60 @@ const fm = new defraMap.FloodMap('map', {
                 ]
             }
         ],
+        // Skip rendering this section entirely
         key: [
             {
-                heading: 'Flood extent and depth',
+                heading: 'Flood extent',
                 parentIds: ['pd', 'cl'],
-                collapse: 'collapse',
                 type: 'radio',
                 items: [
-                    // {
-                    //     id: 'na',
-                    //     label: 'Hidden'
-                    // },
+                    //  {
+                    //      id: 'na',
+                    //      label: 'Hidden'
+                    //  },
                     {
                         id: 'fe',
                         label: 'Flood extent',
                         fill: 'default: #2b8cbe, dark: #7fcdbb',
                         isSelected: true
-                    },
-                    {
-                        id: 'md',
-                        label: 'Maximum depth in metres',
-                        display: 'ramp',
-                        numLabels: 3,
-                        items: [
-                            {
-                                label: 'above 2.3',
-                                fill: 'default: #7f2704, dark: #f7fcf5'
-                            },
-                            {
-                                label: '2.3',
-                                fill: '#a63603, dark: #e5f5e0'
-                            },
-                            {
-                                label: '1.2',
-                                fill: '#d94801, dark: #c7e9c0'
-                            },
-                            {
-                                label: '0.9',
-                                fill: '#f16913, dark: #a1d99b'
-                            },
-                            {
-                                label: '0.6',
-                                fill: '#fd8d3c, dark: #74c476'
-                            },
-                            {
-                                label: '0.3',
-                                fill: '#fdae6b, dark: #41ab5d'
-                            },
-                            {
-                                label: '0.15',
-                                fill: '#fdd0a2, dark: #238b45'
-                            }
-                        ]
                     }
+                //     },
+                //    {
+                //         id: 'md',
+                //         label: 'Maximum depth in metres',
+                //         display: 'ramp',
+                //         numLabels: 3,
+                //         items: [
+                //             {
+                //                 label: 'above 2.3',
+                //                 fill: 'default: #7f2704, dark: #f7fcf5'
+                //             },
+                //             {
+                //                 label: '2.3',
+                //                 fill: '#a63603, dark: #e5f5e0'
+                //             },
+                //             {
+                //                 label: '1.2',
+                //                 fill: '#d94801, dark: #c7e9c0'
+                //             },
+                //             {
+                //                 label: '0.9',
+                //                 fill: '#f16913, dark: #a1d99b'
+                //             },
+                //             {
+                //                 label: '0.6',
+                //                 fill: '#fd8d3c, dark: #74c476'
+                //             },
+                //             {
+                //                 label: '0.3',
+                //                 fill: '#fdae6b, dark: #41ab5d'
+                //             },
+                //             {
+                //                 label: '0.15',
+                //                 fill: '#fdd0a2, dark: #238b45'
+                //             }
+                //         ]
+                //    }
                 ]
             },
             {
@@ -848,7 +860,6 @@ console.log(segments)
                 ${low}
                 ${high}
                 ${surfaceHighRisk}
-                ${maxDepth}
                 ${swLowCC}
                 ${swMedCC}
                 ${swHighCC}
