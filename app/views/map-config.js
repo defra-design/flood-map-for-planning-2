@@ -209,6 +209,10 @@ const fm = new defraMap.FloodMap('map', {
                     {
                         id: 'sw',
                         label: 'Surface water'
+                    },
+                    {
+                        id: 'na',
+                        label: 'Map only'
                     }
 
                 ]
@@ -232,6 +236,7 @@ const fm = new defraMap.FloodMap('map', {
             {
                 id: 'tf',
                 heading: 'Present day',
+                collapse: 'collapse',
                 parentIds: ['sw'],
                 items: [
                     {
@@ -297,7 +302,6 @@ const fm = new defraMap.FloodMap('map', {
                 ]
             }
         ],
-        // Skip rendering this section entirely
         key: [
             {
                 heading: 'Flood extent',
@@ -310,7 +314,7 @@ const fm = new defraMap.FloodMap('map', {
                     //  },
                     {
                         id: 'fe',
-                        label: 'Flood extent',
+                        label: 'Show flood extent',
                         fill: 'default: #2b8cbe, dark: #7fcdbb',
                         isSelected: true
                     }
@@ -389,6 +393,28 @@ const fm = new defraMap.FloodMap('map', {
                     }
                 ]
             },
+            {
+                heading: 'Map features',
+                parentIds: ['na'],
+                collapse: 'collapse',
+                items: [
+                    {
+                        id: 'fsa',
+                        label: 'Water storage',
+                        icon: symbols[0],
+                        fill: 'default: #12393d, dark: #12393d'
+                    },
+                    {
+                        id: 'fd',
+                        label: 'Flood defence',
+                        icon: symbols[1],
+                          //  fill: '	#f47738'
+                        fill: '#12393d'
+
+                    }
+                ]
+            },
+
             {
                 heading: 'Map features',
                 parentIds: ['pd', 'cl'],
