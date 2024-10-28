@@ -240,7 +240,7 @@ const fm = new defraMap.FloodMap('map', {
                 parentIds: ['sw'],
                 items: [
                     {
-                        id: 'pd',
+                        id: 'pdsw',
                         label: 'Present day'
                     }
                 ]
@@ -305,7 +305,7 @@ const fm = new defraMap.FloodMap('map', {
         key: [
             {
                 heading: 'Flood extent',
-                parentIds: ['pd', 'cl'],
+                parentIds: ['pd', 'cl', 'pdsw'],
                 type: 'radio',
                 items: [
                     //  {
@@ -364,7 +364,6 @@ const fm = new defraMap.FloodMap('map', {
                 items: [
                     {
                         id: 'fz23',
-                        label: 'Flood zones',
                         isSelected: true,
                         items: [
                             {
@@ -417,7 +416,7 @@ const fm = new defraMap.FloodMap('map', {
 
             {
                 heading: 'Map features',
-                parentIds: ['pd', 'cl'],
+                parentIds: ['pd', 'cl', 'pdsw'],
                 collapse: 'collapse',
                 items: [
                     {
