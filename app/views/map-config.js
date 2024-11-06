@@ -2,17 +2,17 @@ let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
-    { n: 'Surface_water_spatial_planning_1in30', s: '_N', v: '_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swpdhr' },
-    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swpdmr' },
-    { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swpdlr' },
+    { n: 'Surface_water_spatial_planning_1in30', s: '_N', v: '_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swhr' },
+    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' },
+    { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
     { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsdpdmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_defended_depth', s: '_N', v: '_VTP_22', m: '_Model_Origin_Layer_gdb', q: 'rsdpdlr' },
     { n: 'Rivers_1in100_Sea_1in200_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdlr' },
-    { n: 'Surface_water_spatial_planning_1in30_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclhr' },
-    { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclmr' },
-    { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swcllr' },
+    // { n: 'Surface_water_spatial_planning_1in30_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclhr' },
+    // { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclmr' },
+    // { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swcllr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclhr' },
     { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdcllr' },
@@ -48,7 +48,7 @@ const addLayers = async (layers) => {
                     'minzoom': 4.7597,
                     'filter': ['==', '_symbol', j],
                     'layout': {
-                        'visibility': i === 0 ? getFloodZoneVisibility(layers) : 'visible'
+                        'visibility': 'visible' //i === 0 ? getFloodZoneVisibility(layers) : 'visible'
                     },
                     'paint': {
                         'fill-color': i === 0 ? fillFloodZones(j) : fillModel(j),
@@ -112,14 +112,14 @@ const renderFloodStorage = () => {
     }
 }
 
-const getFloodZoneVisibility = (layers) => {
-    const isVisible = layers.includes('fz23')
-    return isVisible ? 'visible' : 'none'
-}
+// const getFloodZoneVisibility = (layers) => {
+//     const isVisible = layers.includes('fz23')
+//     return isVisible ? 'visible' : 'none'
+// }
 
 const toggleVisibility = (type, mode, segments, layers) => {
     // Conditionally add/remove layers might offer better for performance
-    const isDrawMode = ['draw', 'edit'].includes(mode)
+    const isDrawMode = ['frame', 'draw'].includes(mode)
     vtLayers.forEach((l, i) => {
         const id = l.n
         const layer = map.findLayerById(id)
@@ -132,10 +132,10 @@ const toggleVisibility = (type, mode, segments, layers) => {
             if (paintProperties && isVisible && !isModeChange) {
                 paintProperties['fill-color'] = i === 0 ? fillFloodZones(j) : fillModel(j)
                 layer.setPaintProperties(id + j, paintProperties)
-                if (i !== 0) return
-                // Flood zones visiblity
-                const visibility = getFloodZoneVisibility(layers)
-                layer.setLayoutProperties(id + j, { 'visibility': visibility })
+                // if (i !== 0) return
+                // // Flood zones visiblity
+                // const visibility = getFloodZoneVisibility(layers)
+                // layer.setLayoutProperties(id + j, { 'visibility': visibility })
             }
         })
     })
@@ -209,6 +209,10 @@ const fm = new defraMap.FloodMap('map', {
                     {
                         id: 'sw',
                         label: 'Surface water'
+                    },
+                    {
+                        id: 'mo',
+                        label: 'None'
                     }
 
                 ]
@@ -217,7 +221,8 @@ const fm = new defraMap.FloodMap('map', {
                 id: 'tf',
                 heading: 'Time frame',
                 collapse: 'collapse',
-                parentIds: ['rsd', 'rsu', 'sw'],
+                // parentIds: ['rsd', 'rsu', 'sw'],
+                parentIds: ['rsd', 'rsu'],
                 items: [
                     {
                         id: 'pd',
@@ -287,79 +292,128 @@ const fm = new defraMap.FloodMap('map', {
             }
         ],
         key: [
-            {
-                heading: 'Flood extent and depth',
-                parentIds: ['pd', 'cl'],
-                collapse: 'collapse',
-                type: 'radio',
-                items: [
-                    // {
-                    //     id: 'na',
-                    //     label: 'Hidden'
-                    // },
-                    {
-                        id: 'fe',
-                        label: 'Flood extent',
-                        fill: 'default: #2b8cbe, dark: #7fcdbb',
-                        isSelected: true
-                    },
-                    {
-                        id: 'md',
-                        label: 'Maximum depth in metres',
-                        display: 'ramp',
-                        numLabels: 3,
-                        items: [
-                            {
-                                label: 'above 2.3',
-                                fill: 'default: #7f2704, dark: #f7fcf5'
-                            },
-                            {
-                                label: '2.3',
-                                fill: '#a63603, dark: #e5f5e0'
-                            },
-                            {
-                                label: '1.2',
-                                fill: '#d94801, dark: #c7e9c0'
-                            },
-                            {
-                                label: '0.9',
-                                fill: '#f16913, dark: #a1d99b'
-                            },
-                            {
-                                label: '0.6',
-                                fill: '#fd8d3c, dark: #74c476'
-                            },
-                            {
-                                label: '0.3',
-                                fill: '#fdae6b, dark: #41ab5d'
-                            },
-                            {
-                                label: '0.15',
-                                fill: '#fdd0a2, dark: #238b45'
-                            }
-                        ]
-                    }
-                ]
-            },
+            // {
+            //     heading: 'Flood extent and depth',
+            //     parentIds: ['pd', 'cl'],
+            //     collapse: 'collapse',
+            //     type: 'radio',
+            //     items: [
+            //         // {
+            //         //     id: 'na',
+            //         //     label: 'Hidden'
+            //         // },
+            //         {
+            //             id: 'fe',
+            //             label: 'Flood extent',
+            //             fill: 'default: #2b8cbe, dark: #7fcdbb',
+            //             isSelected: true
+            //         },
+            //         {
+            //             id: 'md',
+            //             label: 'Maximum depth in metres',
+            //             display: 'ramp',
+            //             numLabels: 3,
+            //             items: [
+            //                 {
+            //                     label: 'above 2.3',
+            //                     fill: 'default: #7f2704, dark: #f7fcf5'
+            //                 },
+            //                 {
+            //                     label: '2.3',
+            //                     fill: '#a63603, dark: #e5f5e0'
+            //                 },
+            //                 {
+            //                     label: '1.2',
+            //                     fill: '#d94801, dark: #c7e9c0'
+            //                 },
+            //                 {
+            //                     label: '0.9',
+            //                     fill: '#f16913, dark: #a1d99b'
+            //                 },
+            //                 {
+            //                     label: '0.6',
+            //                     fill: '#fd8d3c, dark: #74c476'
+            //                 },
+            //                 {
+            //                     label: '0.3',
+            //                     fill: '#fdae6b, dark: #41ab5d'
+            //                 },
+            //                 {
+            //                     label: '0.15',
+            //                     fill: '#fdd0a2, dark: #238b45'
+            //                 }
+            //             ]
+            //         }
+            //     ]
+            // },
+            // {
+            //     heading: 'Map features',
+            //     parentIds: ['fz'],
+            //     collapse: 'collapse',
+            //     items: [
+            //         {
+            //             id: 'fz23',
+            //             label: 'Flood zones',
+            //             isSelected: true,
+            //             items: [
+            //                 {
+            //                     label: 'Flood zone 2',
+            //                     fill: 'default: #1d70b8, dark: #41ab5d'
+            //                 },
+            //                 {
+            //                     label: 'Flood zone 3',
+            //                     fill: 'default: #003078, dark: #e5f5e0'
+            //                 }
+            //             ]
+            //         },
+            //         {
+            //             id: 'fsa',
+            //             label: 'Water storage',
+            //             icon: symbols[0],
+            //             fill: 'default: #12393d, dark: #12393d'
+            //         },
+            //         {
+            //             id: 'fd',
+            //             label: 'Flood defence',
+            //             icon: symbols[1],
+            //               //  fill: '	#f47738'
+            //             fill: '#12393d'
+
+            //         }
+            //     ]
+            // },
+            // {
+            //     heading: 'Map features',
+            //     parentIds: ['pd', 'cl'],
+            //     collapse: 'collapse',
+            //     items: [
+            //         {
+            //             id: 'fsa',
+            //             label: 'Water storage',
+            //             icon: symbols[0],
+            //             fill: 'default: #12393d, dark: #12393d'
+            //         },
+            //         {
+            //             id: 'fd',
+            //             label: 'Flood defence',
+            //             icon: symbols[1],
+            //           //  fill: '	#f47738'
+            //               fill: '#12393d'
+            //         }
+            //     ]
+            // },
             {
                 heading: 'Map features',
                 parentIds: ['fz'],
                 collapse: 'collapse',
                 items: [
                     {
-                        id: 'fz23',
-                        label: 'Flood zones',
-                        isSelected: true,
-                        items: [
-                            {
-                                label: 'Flood zone 2',
-                                fill: 'default: #1d70b8, dark: #41ab5d'
-                            },
-                            {
-                                label: 'Flood zone 3',
-                                fill: 'default: #003078, dark: #e5f5e0'
-                            }
-                        ]
+                        label: 'Flood zone 2',
+                        fill: 'default: #1d70b8, dark: #41ab5d'
+                    },
+                    {
+                        label: 'Flood zone 3',
+                        fill: 'default: #003078, dark: #e5f5e0'
                     },
                     {
                         id: 'fsa',
@@ -371,15 +425,38 @@ const fm = new defraMap.FloodMap('map', {
                         id: 'fd',
                         label: 'Flood defence',
                         icon: symbols[1],
-                          //  fill: '	#f47738'
-                        fill: '#12393d'
-
+                      //  fill: '	#f47738'
+                          fill: '#12393d'
                     }
                 ]
             },
             {
                 heading: 'Map features',
-                parentIds: ['pd', 'cl'],
+                parentIds: ['rsd', 'rsu', 'sw'],
+                collapse: 'collapse',
+                items: [
+                    {
+                        label: 'Flood extent',
+                        fill: 'default: #2b8cbe, dark: #7fcdbb'
+                    },
+                    {
+                        id: 'fsa',
+                        label: 'Water storage',
+                        icon: symbols[0],
+                        fill: 'default: #12393d, dark: #12393d'
+                    },
+                    {
+                        id: 'fd',
+                        label: 'Flood defence',
+                        icon: symbols[1],
+                      //  fill: '	#f47738'
+                          fill: '#12393d'
+                    }
+                ]
+            },
+            {
+                heading: 'Map features',
+                parentIds: ['mo'],
                 collapse: 'collapse',
                 items: [
                     {
@@ -414,10 +491,11 @@ const fm = new defraMap.FloodMap('map', {
         updateLabel: 'Update boundary',
         submitLabel: 'Get summary report',
         helpLabel: 'How to draw a shape',
-        html: '<p class="govuk-body-s">Instructions</p>',
+        keyLabel: 'Site boundary',
+        html: '<p><strong>For an approximate site boundary</strong>: <ul class="govuk-list govuk-list--bullet"><li>use the red square to define your site area</li><li>zoom and move the map as needed to position the boundary</li><li>confirm the selection with the Add boundary button</li></ul></p></br><p><strong>To draw a more detailed boundary:</strong></p><ul class="govuk-list govuk-list--bullet"><li>select Edit shape to turn the square into the accurate shape for your site boudary</li><li>Once in edit mode, move the dots to change the shape to that of your boundary</li><li>Select Add boundary to confirm your selection</li></ul>',
         defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
         darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
-        minZoom: 14,
+        minZoom: 19,
         maxZoom: 21
     },
     queryPixel: vtLayers.map(l => l.n)
@@ -640,7 +718,22 @@ console.log(segments)
             attributes = results.features[0].attributes
         }
     }
-    
+    console.log(attributes)
+    // const fSource = attributes.flood_source
+    const rsmodel = new FeatureLayer({
+        url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/FeatureClassPublish_gdb/FeatureServer/0`
+    })
+    const results = await rsmodel.queryFeatures({
+        geometry: new Point({ x: coord[0], y: coord[1], spatialReference: 27700 }),
+        outFields: ['*'],
+        spatialRelationship: 'intersects',
+        distance: 1,
+        units: 'meters',
+        returnGeometry: false
+    })
+    const {flood_source: fSource} = results.features[0] ? results.features[0].attributes : {}
+
+
     const band = feature._symbol
     const layerName = feature.layer
     const isFloodZone = segments.includes('fz')
@@ -658,6 +751,17 @@ console.log(segments)
 
     isInfoOpen = true
     console.log(layerName)
+
+    const floodSource = isFloodZone && fSource
+    ? `<div class="govuk-summary-list__row">
+    <dt class="govuk-summary-list__key">
+        <span class="govuk-body-s"><strong><strong>Flood source</strong></strong></span>
+    </dt>
+    <dd class="govuk-summary-list__value">
+        <span class="govuk-body-s">${fSource}</span>
+    </dd>
+    </div>`
+    : ''   
 
     const title = isFloodZone
     ? `<div class="govuk-summary-list__row">
@@ -848,10 +952,10 @@ console.log(segments)
                 ${low}
                 ${high}
                 ${surfaceHighRisk}
-                ${maxDepth}
                 ${swLowCC}
                 ${swMedCC}
                 ${swHighCC}
+                ${floodSource}
             </dl>
 
         `
