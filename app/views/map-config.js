@@ -23,7 +23,7 @@ const vtLayers = [
 const fLayers = [
     { n: 'nat_defences', q: 'fd'},
     { n: 'nat_fsa', q: 'fsa'}, 
-    { n: 'main_rivers', q: 'mainr'}
+    { n: 'Statutory_Main_River_Map', q: 'mainr'}
 ]
 
 const addLayers = async (layers) => {
@@ -61,14 +61,25 @@ const addLayers = async (layers) => {
         }))
     })
     fLayers.forEach(layer => {
+        let renderer;
+    
+        if (layer.n === 'nat_defences') {
+            renderer = renderFloodDefence();
+            console.log("Applying renderFloodDefence to:", layer.n);
+        } else if (layer.n === 'nat_fsa') {
+            renderer = renderFloodStorage();
+            console.log("Applying renderFloodStorage to:", layer.n);
+        } else if (layer.n === 'Statutory_Main_River_Map') {
+            renderer = renderStatutory_Main_River_Map();
+            console.log("Applying renderStatutory_Main_River_Map to:", layer.n);
+        } else {
+            console.error("No renderer assigned for:", layer.n);
+        }
+    
         map.add(new FeatureLayer({
             id: layer.n,
             url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n}/FeatureServer`,
-            renderer: layer.n === 'nat_defences' 
-                ? renderFloodDefence() 
-                : layer.n === 'nat_fsa' 
-                ? renderFloodStorage()
-                : renderStatutory_Main_River_Map(), // New renderer for `main_rivers`
+            renderer: renderer,
             visible: false
         }));
     });
@@ -107,8 +118,7 @@ const renderStatutory_Main_River_Map = () => {
         symbol: {
           type: 'simple-line',
           width: '3px',
-        //  color: '#f47738'
-        color: '#12393d'
+          color: '#f47738'
         }
     }
 }
@@ -449,8 +459,7 @@ const fm = new defraMap.FloodMap('map', {
                         id: 'mainr',
                         label: 'Main Rivers',
                         icon: symbols[1],
-                      //  fill: '	#f47738'
-                          fill: '#12393d'
+                        fill: '	#f47738'
                     }
                 ]
             },
@@ -475,6 +484,12 @@ const fm = new defraMap.FloodMap('map', {
                         icon: symbols[1],
                       //  fill: '	#f47738'
                           fill: '#12393d'
+                    },
+                    {
+                        id: 'mainr',
+                        label: 'Main Rivers',
+                        icon: symbols[1],
+                        fill: '	#f47738'
                     }
                 ]
             },
@@ -495,6 +510,12 @@ const fm = new defraMap.FloodMap('map', {
                         icon: symbols[1],
                       //  fill: '	#f47738'
                           fill: '#12393d'
+                    },
+                    {
+                        id: 'mainr',
+                        label: 'Main Rivers',
+                        icon: symbols[1],
+                        fill: '	#f47738'
                     }
                 ]
             }
