@@ -20,6 +20,12 @@ router.get('/results-a', function (req, res) {
 	res.redirect(`/v1/results`)
 })
 
+// set up route variable about map page option
+router.get('/about-map-b', function (req, res) {
+	req.session.data = { floodZone: 'fz3', resultsType: 'resultsB', aboutMap: 'optionB' }
+	res.redirect(`/v1/start`)
+})
+
 // set up route variable location page option
 router.get('/results-b', function (req, res) {
 	req.session.data = { resultsType: 'resultsB' }

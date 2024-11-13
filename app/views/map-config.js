@@ -2,7 +2,7 @@ let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
-    { n: 'Surface_water_spatial_planning_1in30', s: '_N', v: '_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swhr' },
+    { n: 'Surface_water_spatial_planning_1in30', s: '_VTP', v: '_depth_VTP', m: 'Model_Origin_Layer_gdb', q: 'swhr' },
     { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' },
     { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
@@ -138,6 +138,24 @@ const renderFloodStorage = () => {
         }
     }
 }
+
+// const renderFloodStorage = () => {
+//     console.log(isDark)
+//     const colour = isDark ? '#d4351c' : '#AAFF00'
+//     return {
+//         type: 'simple',
+//         symbol: {
+//             type: 'simple-fill',
+//             style: 'diagonal-cross',
+//             color: colour,
+//             outline: {
+//             //    color: '#d4351c',
+//                 color: colour,
+//                 width: 1
+//             }
+//         }
+//     }
+// }
 
 // const getFloodZoneVisibility = (layers) => {
 //     const isVisible = layers.includes('fz23')
@@ -297,7 +315,7 @@ const fm = new defraMap.FloodMap('map', {
                     },
                     {
                         id: 'lr',
-                        label: '1%'
+                        label: '0.1%'
                     }
                 ]
             },
@@ -777,7 +795,6 @@ console.log(segments)
         returnGeometry: false
     })
     const {flood_source: fSource} = results.features[0] ? results.features[0].attributes : {}
-
 
     const band = feature._symbol
     const layerName = feature.layer
