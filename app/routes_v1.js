@@ -32,11 +32,10 @@ router.post('/location/catigories', function (req, res) {
   })
 })
 
-
 // dirceting to regions
 router.post('/options-radio-check', function (req, res) {
   if (req.body['triage']=="planning") {
-    res.redirect("/v1/map?id=&qxy=&cz=416803.7324857929,350039.18434241525,6.839382")
+    res.redirect("/v1/about-map")
 } else if (req.body['triage']=="buySell"){
     res.redirect("https://www.gov.uk/check-long-term-flood-risk")
 } else if (req.body['triage']=="pastFlood"){
@@ -75,4 +74,6 @@ router.post('/contact-check', function (req, res) {
       res.redirect("/"+ folder + "/summary-fzd")  
     }
 })
+
+
 module.exports = router;

@@ -2,7 +2,7 @@ let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
-    { n: 'Surface_water_spatial_planning_1in30', s: '_N', v: '_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swhr' },
+    { n: 'Surface_water_spatial_planning_1in30', s: '_VTP', v: '_depth_VTP', m: 'Model_Origin_Layer_gdb', q: 'swhr' },
     { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' },
     { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
@@ -22,7 +22,8 @@ const vtLayers = [
 
 const fLayers = [
     { n: 'nat_defences', q: 'fd'},
-    { n: 'nat_fsa', q: 'fsa'}
+    { n: 'nat_fsa', q: 'fsa'}, 
+    { n: 'Statutory_Main_River_Map', q: 'mainr'}
 ]
 
 const addLayers = async (layers) => {
@@ -60,14 +61,29 @@ const addLayers = async (layers) => {
         }))
     })
     fLayers.forEach(layer => {
+        let renderer;
+    
+        if (layer.n === 'nat_defences') {
+            renderer = renderFloodDefence();
+            console.log("Applying renderFloodDefence to:", layer.n);
+        } else if (layer.n === 'nat_fsa') {
+            renderer = renderFloodStorage();
+            console.log("Applying renderFloodStorage to:", layer.n);
+        } else if (layer.n === 'Statutory_Main_River_Map') {
+            renderer = renderStatutory_Main_River_Map();
+            console.log("Applying renderStatutory_Main_River_Map to:", layer.n);
+        } else {
+            console.error("No renderer assigned for:", layer.n);
+        }
+    
         map.add(new FeatureLayer({
             id: layer.n,
             url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n}/FeatureServer`,
-            renderer: layer.n === 'nat_defences' ? renderFloodDefence() : renderFloodStorage(),
+            renderer: renderer,
             visible: false
-        }))
-    })
-}
+        }));
+    });
+};
 
 const fillModel = (band) => {
     const light = '#2b8cbe'
@@ -96,6 +112,17 @@ const renderFloodDefence = () => {
     }
 }
 
+const renderStatutory_Main_River_Map = () => {
+    return {
+        type: 'simple',
+        symbol: {
+          type: 'simple-line',
+          width: '3px',
+          color: '#f47738'
+        }
+    }
+}
+
 const renderFloodStorage = () => {
     return {
         type: 'simple',
@@ -111,6 +138,24 @@ const renderFloodStorage = () => {
         }
     }
 }
+
+// const renderFloodStorage = () => {
+//     console.log(isDark)
+//     const colour = isDark ? '#d4351c' : '#AAFF00'
+//     return {
+//         type: 'simple',
+//         symbol: {
+//             type: 'simple-fill',
+//             style: 'diagonal-cross',
+//             color: colour,
+//             outline: {
+//             //    color: '#d4351c',
+//                 color: colour,
+//                 width: 1
+//             }
+//         }
+//     }
+// }
 
 // const getFloodZoneVisibility = (layers) => {
 //     const isVisible = layers.includes('fz23')
@@ -250,7 +295,7 @@ const fm = new defraMap.FloodMap('map', {
                     },
                     {
                         id: 'lr',
-                        label: 'Rivers and sea 0.1% - 1%'
+                        label: 'Rivers and sea 1%'
                     }
                 ]
             },
@@ -270,7 +315,7 @@ const fm = new defraMap.FloodMap('map', {
                     },
                     {
                         id: 'lr',
-                        label: '0.1% - 1%'
+                        label: '0.1%'
                     }
                 ]
             },
@@ -286,7 +331,7 @@ const fm = new defraMap.FloodMap('map', {
                     },
                     {
                         id: 'lr',
-                        label: 'Rivers and sea 0.1% - 1%'
+                        label: 'Rivers and sea 1%'
                     }
                 ]
             }
@@ -427,6 +472,12 @@ const fm = new defraMap.FloodMap('map', {
                         icon: symbols[1],
                       //  fill: '	#f47738'
                           fill: '#12393d'
+                    },
+                    {
+                        id: 'mainr',
+                        label: 'Main Rivers',
+                        icon: symbols[1],
+                        fill: '	#f47738'
                     }
                 ]
             },
@@ -451,6 +502,12 @@ const fm = new defraMap.FloodMap('map', {
                         icon: symbols[1],
                       //  fill: '	#f47738'
                           fill: '#12393d'
+                    },
+                    {
+                        id: 'mainr',
+                        label: 'Main Rivers',
+                        icon: symbols[1],
+                        fill: '	#f47738'
                     }
                 ]
             },
@@ -471,6 +528,12 @@ const fm = new defraMap.FloodMap('map', {
                         icon: symbols[1],
                       //  fill: '	#f47738'
                           fill: '#12393d'
+                    },
+                    {
+                        id: 'mainr',
+                        label: 'Main Rivers',
+                        icon: symbols[1],
+                        fill: '	#f47738'
                     }
                 ]
             }
@@ -634,7 +697,7 @@ fm.addEventListener('query', async e => {
 //     <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
 //     </dt>
 //     <dd class="govuk-summary-list__value">
-//     <span class="govuk-body-s">0.1 - 1%</span>
+//     <span class="govuk-body-s">1%</span>
 //     </dd>
 //   </div> 
     ? ` 
@@ -732,7 +795,6 @@ console.log(segments)
         returnGeometry: false
     })
     const {flood_source: fSource} = results.features[0] ? results.features[0].attributes : {}
-
 
     const band = feature._symbol
     const layerName = feature.layer
@@ -864,7 +926,7 @@ console.log(segments)
     <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
     </dt>
     <dd class="govuk-summary-list__value">
-    <span class="govuk-body-s">0.1% - 1%</span>
+    <span class="govuk-body-s">1%</span>
     </dd>
     </div>`
     : ''
@@ -897,7 +959,7 @@ console.log(segments)
     <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
     </dt>
     <dd class="govuk-summary-list__value">
-    <span class="govuk-body-s">Rivers and sea 0.1% - 1%</span>
+    <span class="govuk-body-s">Rivers and sea 1%</span>
     </dd>
     </div>`
     : ''
