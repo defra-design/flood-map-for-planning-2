@@ -4,25 +4,22 @@
 {% block pageTitle %}
   Check your details - GOV.UK
 {% endblock %}
-
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
 {% block content %}
 
 
 
-    {{ govukBackLink({
-      text: "Back",
-      href: "javascript:window.history.back()"
-    }) }}
 
-
-
-
-
-
-    
+ 
     <h1 class="govuk-heading-xl">
-        Data included in the map
+        Changes to flood data
       </h1>
+ 
       <p>
         This service now includes data from the new national flood risk assessment (NaFRA2). </br><a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information">See updates to national flood and coastal erosion risk information</a>.  
       </p>
