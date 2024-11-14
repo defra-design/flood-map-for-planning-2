@@ -1,16 +1,14 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  About the map – {{ serviceName }} – GOV.UK Prototype Kit
-{% endblock %}
-
-{% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {{ govukHeader() }}
+Data included in the map  {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-  
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
 {% endblock %}
 
 {% block content %}
@@ -22,16 +20,11 @@
       <h1 class="govuk-heading-xl">
         Data included in the map
       </h1>
-      
       <p>
-        This service now includes data from the new national flood risk assessment (NaFRA2).   
-      </p>
-      </br>
-      <p>
-          See <a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information">updates to national flood and coastal erosion risk information</a>.  
+        This service now includes data from the new national flood risk assessment (NaFRA2). <a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information">See updates to national flood and coastal erosion risk information</a>.  
       </p>
         </br>
-
+        
         <table class="govuk-table">
           <caption class="govuk-table__caption govuk-table__caption--m">Existing data </caption>
           <thead class="govuk-table__head">

@@ -1,8 +1,9 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Start page template – {{ serviceName }} – GOV.UK Prototype Kit
+  Get flood warnings prototypes
 {% endblock %}
+
 
 {% block header %}
   <!-- Blank header with no service name for the start page -->
@@ -54,11 +55,11 @@
       </ul> -->
 
       <p>This service now includes data from the new national flood risk assessment (NaFRA2). </p>
-    </br>
-      <p>See <a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information">updates to national flood and coastal erosion risk information.</a></p>
-    </br>
-      <p>Get flood risk information for <a href="https://www.nidirect.gov.uk/articles/check-the-risk-of-flooding-in-your-area">Northern Ireland</a>, <a href="http://www.sepa.org.uk/environment/water/flooding">Scotland</a> or <a href="https://naturalresources.wales/">Wales</a>.</p>
-    </br>
+ 
+    <div class="govuk-inset-text">
+    <p>There are different services to get information on the <a href="http://www.sepa.org.uk/environment/water/flooding">flood risk in Scotland</a>, <a href="https://naturalresources.wales/">flood risk in Wales</a>  or  <a href="https://www.nidirect.gov.uk/articles/check-the-risk-of-flooding-in-your-area">flood risk in Northern Ireland</a></p>
+    </div>
+  
       <a
             href="options-radio"
             role="button"
