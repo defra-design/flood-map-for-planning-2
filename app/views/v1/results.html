@@ -15,10 +15,11 @@
 
 {% block content %}
 
-{% if data.resultsType=="resultsA" %}
-{% include "includes/results/resultsA.html" %}
-{% elseif data.resultsType=="resultsB"%}
+
+{% if data.resultsType=="resultsB"%}
 {% include "includes/results/resultsB.html" %}
+{% elseif data.resultsType=="resultsA" %}
+{% include "includes/results/resultsA.html" %}
 {% endif %}
 
 {% endblock %}

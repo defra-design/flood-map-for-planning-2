@@ -50,3 +50,25 @@
         height: 100%;
     }
 }
+.govuk-header__container {
+    @include mq ($from: tablet) {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding-left: 0.75em;
+            padding-right: 0.75em;
+
+    .govuk-header__logo {
+            width: auto;
+            padding-right: 0;
+            float: none;            
+        }            
+
+    .govuk-header__content {
+        width: auto;
+        float: none;
+        padding-left: 0;
+        transform: translateX(-80px);
+        }        
+    }    
+}
