@@ -4,17 +4,17 @@
 {% block pageTitle %}
   Check your details - GOV.UK
 {% endblock %}
-
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
 {% block content %}
 
 <div class="govuk-width-container">
 
-  {{ govukBackLink({
-      text: 'Back',
-      href: 'contact'
-  }) }}
 
-  <div class="govuk-main-wrapper">
     <form action="confirmation-fz1.html">
 
     <div class="govuk-grid-row">
@@ -95,7 +95,6 @@
 
       </div>
 
-    </div>
 
   </div>
 </form>

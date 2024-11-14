@@ -3,14 +3,15 @@
 {% block pageTitle %}
   Request flood risk assessment data - GOV.UK
 {% endblock %}
-
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
 {% block content %}
 
 <div class="govuk-width-container">
-
-  <a href="#" class="govuk-back-link">Back</a>
-
-  <div class="govuk-main-wrapper">
 
     <div class="govuk-grid-row">
 
@@ -62,7 +63,6 @@
 
         </div>
 
-      </div>
 
     </div>
 
