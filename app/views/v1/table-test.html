@@ -1,0 +1,244 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your details - GOV.UK
+{% endblock %}
+
+{% block content %}
+
+
+
+    {{ govukBackLink({
+      text: "Back",
+      href: "javascript:window.history.back()"
+    }) }}
+
+
+
+
+
+
+    
+    <h1 class="govuk-heading-xl">
+        Data included in the map
+      </h1>
+      <p>
+        This service now includes data from the new national flood risk assessment (NaFRA2). </br><a href="https://www.gov.uk/guidance/updates-to-national-flood-and-coastal-erosion-risk-information">See updates to national flood and coastal erosion risk information</a>.  
+      </p>
+        </br>
+
+
+
+
+          <!-- existing data -->
+          <div class="govuk-summary-card" id="existing-data">
+            <div class="govuk-summary-card__title-wrapper vlow">
+              <h2 class="govuk-summary-card__title">Existing data</h2>
+              <ul class="govuk-summary-card__actions">
+               
+              </ul>
+            </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Changed
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    flood zones 2 and 3
+                  </dd>
+                  </div>
+                    <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+
+                    <h3 class="govuk-heading-s">Unchanged</h3>
+
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                                main river lines
+                            </li>
+                            <li>
+                                flood defences
+                            </li>
+                            <li>
+                                water storage areas
+                            </li>
+                          </ul>
+                  </dd>
+                </div>
+
+              
+                
+            </div>
+          </div>
+
+          <!-- new data R & S -->
+          <div class="govuk-summary-card" id="rivers-sea">
+            <div class="govuk-summary-card__title-wrapper vlow">
+              <h2 class="govuk-summary-card__title">New data</h2>
+              <ul class="govuk-summary-card__actions">
+               
+              </ul>
+            </div>
+            <div class="govuk-summary-card__title-wrapper vlow">
+                <h4 class="govuk-summary-card__title">Rivers and the sea for present day, and with climate change</h4>
+                <ul class="govuk-summary-card__actions">
+                 
+                </ul>
+              </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Defended
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>
+                            3.3%
+                        </li>
+                        <li>
+                            1% fluvial and 0.5% tidal
+                        </li>
+                        <li>
+                            0.1% AEP
+                        </li>
+                      </ul>
+                  </dd>
+                  </div>
+                    <div class="govuk-summary-list__row">
+                    <dt class="govuk-summary-list__key">
+
+                    <h3 class="govuk-heading-s">Undefended</br>
+                        <!-- <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                                defended
+                            </li>
+                            <li>
+                                undefended
+                            </li>
+                            <li>
+                                present day
+                            </li>
+                            <li>
+                                climate change
+                            </li>
+                          </ul>  -->
+                        </h3>
+
+                    </dt>
+                    <dd class="govuk-summary-list__value">
+                        <ul class="govuk-list govuk-list--bullet">
+                            <li>
+                                3.3%
+                            </li>
+                            <li>
+                                1% fluvial and 0.5% tidal
+                            </li>
+                            <li>
+                                0.1% AEP
+                            </li>
+                          </ul>
+                  </dd>
+                </div>
+
+              
+                
+            </div>
+          </div>
+
+          <!-- new data surface water -->
+          <div class="govuk-summary-card" id="surface-water">
+            <div class="govuk-summary-card__title-wrapper vlow">
+              <h2 class="govuk-summary-card__title">New data</h2>
+              <ul class="govuk-summary-card__actions">
+               
+              </ul>
+            </div>
+            <div class="govuk-summary-card__title-wrapper vlow">
+                <h4 class="govuk-summary-card__title">Climate change</h4>
+                <ul class="govuk-summary-card__actions">
+                 
+                </ul>
+              </div>
+            <div class="govuk-summary-card__content">
+              <dl class="govuk-summary-list">
+                
+                <div class="govuk-summary-list__row">
+                  <dt class="govuk-summary-list__key">
+                    Present day
+                  </dt>
+                  <dd class="govuk-summary-list__value">
+                    <ul class="govuk-list govuk-list--bullet">
+                        <li>
+                            3.3%
+                        </li>
+                        <li>
+                            1%
+                        </li>
+                        <li>
+                            0.1%
+                        </li>
+                      </ul>
+                  </dd>
+                  </div>
+                </div>
+            </div>
+            <div class="govuk-grid-row">
+
+                <div class="govuk-grid-column-three-quarters">
+                      
+                
+
+        <h4 class="govuk-heading-s">Climate change</h4>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the allowances used have been chosen from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Flood risk assessment: climate change allowances</a></li>
+          <li>for river flooding we have used the ‘central’ allowance – based on the 50th percentile for the 2080s epoch</li>
+          <li>for sea and tidal flooding we have used the ‘upper end’ allowance – based on the 95th percentile for 2125</li>
+        </ul>
+ 
+      </br>
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="skip-next-time">
+          <div class="govuk-checkboxes" data-module="govuk-checkboxes">
+            <div class="govuk-checkboxes__item">
+              <input class="govuk-checkboxes__input" id="waste" name="waste" type="checkbox" value="carcasses">
+              <label class="govuk-label govuk-checkboxes__label" for="waste">
+                Don't show me this information again
+              </label>
+            </div>
+          </div>
+        </fieldset>
+      </div>
+
+        <a
+        href="/v1/map?id=&qxy=&cz=416803.7324857929,350039.18434241525,6.839382"
+        role="button"
+        draggable="false"
+        class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--start"
+        data-module="govuk-button">
+        Continue
+        <svg
+          class="govuk-button__start-icon"
+          xmlns="http://www.w3.org/2000/svg"
+          width="17.5"
+          height="19"
+          viewBox="0 0 33 40"
+          role="presentation"
+          focusable="false">
+          <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+        </svg>
+      </a>
+</div>
+</div>
+
+        
+
+
+
+{% endblock %}
