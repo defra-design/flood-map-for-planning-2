@@ -2,7 +2,8 @@ let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
     { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
-    { n: 'Surface_water_spatial_planning_1in30', s: '_VTP', v: '_depth_VTP', m: 'Model_Origin_Layer_gdb', q: 'swhr' },
+    { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swhr' },
+    // { n: 'Surface_water_spatial_planning_1in30', s: '_VTP', v: '_depth_VTP', m: 'Model_Origin_Layer_gdb', q: 'swhr' },
     { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' },
     { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
@@ -14,7 +15,8 @@ const vtLayers = [
     // { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclmr' },
     // { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swcllr' },
     { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclhr' },
-    { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
+    { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
+    // { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdcllr' },
     { n: 'Rivers_1in100_Sea_1in200_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsuclmr' },
     { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '', m: null, q: 'rsucllr' },
@@ -29,7 +31,7 @@ const fLayers = [
 const addLayers = async (layers) => {
     vtLayers.forEach((layer, i) => {
         map.add(new VectorTileLayer({
-            id: layer.n,
+            id: layer.q,
             style: {
                 'version': 8,
                 'sources': {
@@ -166,7 +168,7 @@ const toggleVisibility = (type, mode, segments, layers) => {
     // Conditionally add/remove layers might offer better for performance
     const isDrawMode = ['frame', 'draw'].includes(mode)
     vtLayers.forEach((l, i) => {
-        const id = l.n
+        const id = l.q
         const layer = map.findLayerById(id)
         // const isVisibleLyr = vtLayers[i].q === 'fz' || ['fe', 'md'].some(l => layers.includes(l))
         const isVisible = !isDrawMode && segments.join('') === vtLayers[i].q
@@ -186,7 +188,7 @@ const toggleVisibility = (type, mode, segments, layers) => {
     })
     fLayers.forEach(l => {
         const layer = map.findLayerById(l.n)
-        const isVisible = !isDrawMode && layers.includes(l.q)
+        const isVisible = !isDrawMode && layers.includes(l.n)
         layer.visible = isVisible
     })
 }
@@ -665,15 +667,8 @@ fm.addEventListener('query', async e => {
 
     const mediumDefended = isDefendedMed
     ? `  
-        <div class="govuk-summary-list__row">
-            <dt class="govuk-summary-list__key">
-            <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
-            </dt>
-            <dd class="govuk-summary-list__value">
-            <span class="govuk-body-s">Rivers 1% Sea 0.5%</span>
-            </dd>
-        </div> 
-        <p>Missing dataset</p>`
+        
+        `
         : ''
 
     const sWNoData = isSWNoData
@@ -686,8 +681,7 @@ fm.addEventListener('query', async e => {
 //     <span class="govuk-body-s">1%</span>
 //     </dd>
 //   </div> 
-    ? `  
-        <p>Missing dataset</p>`
+    ? ``
         : ''
 
     const sWNoDataLr = isSWNoDataLr
@@ -700,8 +694,7 @@ fm.addEventListener('query', async e => {
 //     <span class="govuk-body-s">1%</span>
 //     </dd>
 //   </div> 
-    ? ` 
-        <p>Missing dataset</p>`
+    ? ``
         : ''
 
     const riversSeaDefended = isDefended
