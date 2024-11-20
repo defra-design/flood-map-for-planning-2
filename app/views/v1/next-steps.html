@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Results page – {{ serviceName }} – GOV.UK Prototype Kit
+  Next steps – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 
@@ -34,7 +34,7 @@
         </br>
         <p>Get a Flood Risk Assessment (FRA). You will normally need to pay a flood risk specialist to carry it out. </p>
         </br>
-        <p>For developments in flood zone ((Flood zone)) your FRA should include an assessment of all sources of flooding and <a href="">take into account climate change allowances</a>. </p>
+        <p>For developments in flood zone 3 your FRA should include an assessment of all sources of flooding and <a href="">take into account climate change allowances</a>. </p>
         </br>
         <p>Find out <a href="#">how to do an assessment</a>. </p>
         </br>
@@ -45,6 +45,9 @@
         <ul class="govuk-list govuk-list--bullet">
           <li>
             <a href="#">surface water, groundwater and reservoir flood risk </a>
+          </li>
+          <li>
+            the <a href="https://www.bgs.ac.uk/datasets/groundwater-flooding/">British Geological Survey groundwater flooding data</a>, <a href="https://www.gov.uk/government/collections/groundwater-current-status-and-flood-risk">groundwater: current status and flood risk</a> and the guide on <a href="https://www.gov.uk/guidance/mining-and-groundwater-constraints-for-development">mining and groundwater constraints for development</a> for information on groundwater flood risk   
           </li>
           <li>
             your local planning authority’s strategic flood risk assessment (SFRA), which includes future flood risk. 
@@ -70,41 +73,40 @@
   </br>
 
       <h3 class="govuk-heading-m">
-        Order flood risk data for rivers and the sea 
+        Download a flood map for this location      
       </h3>
 
-      <p>The flood risk data usually includes: </p>
+      <p>The flood map is suitable for a local planning authority to use when checking a planning application to see if a development is:</p>
 
     </br>
 
      <ul class="govuk-list govuk-list--bullet">
        <li>
-        detailed flood data  
+        in flood zone 1, 2 or 3 
        </li>
        <li>
-        past flood event data   
+        within 20 meters of a main river or a flood defence      
        </li>
        <li>
-        modelled flood levels and extents  
-       </li>
-       <li>
-        flood defence locations and attributes 
+        in a water storage area   
        </li>
      </ul>
 
-</br>
-
-<p>You should receive your data within 20 working days.</p>
-
-</br>
 
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Download flood map for this location (PDF)
         </button>
       </br>
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Order flood risk data
-        </button>
+    </br>
+      <h3 class="govuk-heading-m">
+        Order detailed flood risk data        
+      </h3>
+
+      <p>Order detailed flood risk information to be used for a flood risk assessment as part of a planning application. </p>
+    </br>
+    <a href="contact" class="govuk-button" data-module="govuk-button">
+      Order flood risk data
+    </a>
 
       
       </div>
