@@ -555,7 +555,7 @@ const fm = new defraMap.FloodMap('map', {
         submitLabel: 'Get summary report',
         helpLabel: 'How to draw a shape',
         keyLabel: 'Site boundary',
-        html: '<p><strong>For an approximate site boundary</strong>: <ul class="govuk-list govuk-list--bullet"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><p><strong>For a more detailed site boundary:</strong></p><ul class="govuk-list govuk-list--bullet"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square</li><li>when you move one of the smaller, white dots, two more dots will appear</li><li>move the dots until the shape matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
+        html: '<p><strong>For an approximate site boundary</strong>: <ul class="govuk-list govuk-list--bullet"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><p><strong>For a more detailed site boundary:</strong></p><ul class="govuk-list govuk-list--bullet"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square until it matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
         defaultUrl: '{{ env.OS_VTAPI_DEFAULT_DRAW_URL }}',
         darkUrl: '{{ env.OS_VTAPI_DARK_DRAW_URL }}',
         minZoom: 19,

@@ -35,13 +35,15 @@ What flood information do you need?  {{ serviceName }} – GOV.UK Prototype Kit
         {% endset -%}
 
     
-
+        <h1 class="govuk-heading-xl">
+          What flood information do you need?
+        </h1>
         
         {{ govukRadios({
           name: "triage",
           fieldset: {
             legend: {
-              text: "What flood information do you need?",
+              text: "",
               isPageHeading: true,
               classes: "govuk-fieldset__legend--l"
             }
