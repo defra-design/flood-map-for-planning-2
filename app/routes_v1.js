@@ -41,7 +41,7 @@ router.post('/options-radio-check', function (req, res) {
 } else if (req.body['triage']=="pastFlood"){
   res.redirect("https://www.gov.uk/request-flooding-history")
 } else if (req.body['triage']=="insurance"){
-res.redirect("https://www.gov.uk/prepare-for-flooding/get-insurance")
+res.redirect("https://www.gov.uk/check-long-term-flood-risk")
 } else if (req.body['triage']=="notListed"){
   res.redirect("https://www.gov.uk/browse/environment-countryside/flooding-extreme-weather")
 }
