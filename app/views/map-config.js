@@ -175,10 +175,10 @@ const toggleVisibility = (type, mode, segments, layers) => {
         const isModeChange = type === 'mode'
         layer.visible = isVisible
         Array(i === 0 ? 2 : 7).fill(0).forEach((_, j) => {
-            const paintProperties = layer.getPaintProperties(id + j)
+            const paintProperties = layer.getPaintProperties(l.n + j)
             if (paintProperties && isVisible && !isModeChange) {
                 paintProperties['fill-color'] = i === 0 ? fillFloodZones(j) : fillModel(j)
-                layer.setPaintProperties(id + j, paintProperties)
+                layer.setPaintProperties(l.n + j, paintProperties)
                 // if (i !== 0) return
                 // // Flood zones visiblity
                 // const visibility = getFloodZoneVisibility(layers)
