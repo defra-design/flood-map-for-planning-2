@@ -188,7 +188,7 @@ const toggleVisibility = (type, mode, segments, layers) => {
     })
     fLayers.forEach(l => {
         const layer = map.findLayerById(l.n)
-        const isVisible = !isDrawMode && layers.includes(l.n)
+        const isVisible = !isDrawMode && layers.includes(l.q)
         layer.visible = isVisible
     })
 }
