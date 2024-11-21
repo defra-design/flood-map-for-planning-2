@@ -65,9 +65,9 @@ router.post('/contact-check', function (req, res) {
   var floodZone = req.body.floodZone
 
     if (req.session.data.floodZone==="fz1") {
-      res.redirect("/"+ folder + "/summary-fz1")
+      res.redirect("/"+ folder + "/summary-fz3")
     } else if (req.session.data.floodZone==="fz2"){
-      res.redirect("/"+ folder + "/summary-fz2")
+      res.redirect("/"+ folder + "/summary-fz3")
     } else if (req.session.data.floodZone==="fz3"){
       res.redirect("/"+ folder + "/summary-fz3")    
     } else if (req.session.data.floodZone==="fzd"){
