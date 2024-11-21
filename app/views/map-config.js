@@ -563,7 +563,7 @@ const fm = new defraMap.FloodMap('map', {
         minZoom: 19,
         maxZoom: 21
     },
-    queryPixel: vtLayers.map(l => l.n)
+    queryPixel: vtLayers.map(l => l.q)
 })
 
 // Component is ready and we have access to map
@@ -753,8 +753,7 @@ console.log(segments)
         return
     }
     
-    const name = feature.layer.split('_VTP')[0]
-    const layer = vtLayers.find(l => l.n === name)
+    const layer = vtLayers.find(l => l.q === feature.layer)
 
     let attributes
 
@@ -790,7 +789,7 @@ console.log(segments)
     const {flood_source: fSource} = results.features[0] ? results.features[0].attributes : {}
 
     const band = feature._symbol
-    const layerName = feature.layer
+    const layerName = layer.n
     const isFloodZone = segments.includes('fz')
     const isRiversSeasDefended = segments.includes('rsd')
     const isClimateChange = segments.includes('cl')
