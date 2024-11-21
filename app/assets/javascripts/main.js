@@ -158,7 +158,7 @@ const toggleVisibility = (type, mode, segments, layers) => {
 }
 
 const getSymbols = () => {
-  return ['water-storage', 'flood-defence'].map(s => `/assets/images/symbols/${s}.svg`)
+  return ['water-storage', 'flood-defence'].map(s => `/public/images/${s}.svg`)
 }
 
 const symbols = getSymbols()

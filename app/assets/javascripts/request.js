@@ -63,7 +63,7 @@ const getOsToken = async () => {
           'Content-Type': 'application/json'
         }
       })
-      const json = JSON.parse(await response.json()) // Requires JSON parse - Webpack issue possibly?
+      const json = await response.json()
       osAuth.token = json.access_token
       osAuth.expiresAt = Date.now() + ((json.expires_in - 30) * 1000)
     } catch (err) {
