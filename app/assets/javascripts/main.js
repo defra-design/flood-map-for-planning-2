@@ -689,8 +689,8 @@ fm.addEventListener('query', async e => {
       </div>`
       : ''
 
-console.log(e.detail)
-console.log(segments)
+  console.log(e.detail)
+  console.log(segments)
   if (!feature) {
       fm.info = {
           width: '360px',
@@ -727,6 +727,8 @@ console.log(segments)
 
   let attributes
 
+  console.log(layer)
+  console.log(feature.layer)
   if (layer.m) {
       const model = new FeatureLayer({
           url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.m}/FeatureServer`
