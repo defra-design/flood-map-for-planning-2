@@ -1,8 +1,6 @@
 {
   "scripts": {
     "dev": "webpack && govuk-prototype-kit dev",
-    "quick": "webpack --config webpack.config.main.mjs",
-    "webpack": "webpack",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
   },
