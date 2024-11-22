@@ -9,16 +9,18 @@ dotenv.config({ path: path.join(__dirname, './.env') })
 
 export default {
   entry: {
-    main: [
-      path.join(__dirname, 'app/assets/javascripts/main.js')
-    ]
+    map: path.join(__dirname, 'node_modules/@defra/flood-map/src/flood-map.js')
   },
   devtool: 'source-map',
   // mode: 'development',
   mode: 'production',
   output: {
     filename: '[name].js',
-    path: path.resolve(__dirname, '.tmp/public/javascripts')
+    path: path.resolve(__dirname, '.tmp/public/javascripts'),
+    library: {
+      name: 'defra',
+      type: 'window'
+    }
   },
   optimization: {
     splitChunks: {
@@ -55,12 +57,12 @@ export default {
       {
         test: /\.jsx?$/i,
         use: 'babel-loader',
-        exclude: /node_modules\/(?!@defra).+/
+        exclude: /node_modules\/(?!(@defra|event-target-polyfill)\/).*/
       },
       {
         test: /\.jsx?$/,
         use: 'magic-comments-loader',
-        exclude: /node_modules\/(?!@defra).+/
+        exclude: /node_modules\/(?!(@defra|@arcgis)\/).*/
       }
     ]
   },

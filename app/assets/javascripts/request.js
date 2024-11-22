@@ -2,7 +2,7 @@ const osAuth = {}
 const esriAuth = {}
 
 // ESRI return an array of interceptor objects
-export const getInterceptors = () => {
+const getInterceptors = () => {
   return [{
     urls: 'https://api.os.uk/maps/vector/v1/vts',
     before: async params => {
@@ -15,7 +15,7 @@ export const getInterceptors = () => {
 }
 
 // All other requests can be asyncronous and return a request object itself
-export const getRequest = async (url) => {
+const getRequest = async (url) => {
   let options = {}
 
   // OS Open Names
@@ -33,7 +33,7 @@ export const getRequest = async (url) => {
   return new Request(url, options)
 }
 
-export const getEsriToken = async () => {
+const getEsriToken = async () => {
     // *ESRI manages this somehow?
     const hasToken = esriAuth.token
   

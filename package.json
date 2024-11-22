@@ -1,12 +1,14 @@
 {
   "scripts": {
     "dev": "webpack && govuk-prototype-kit dev",
+    "quick": "webpack --config webpack.config.main.mjs",
     "webpack": "webpack",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
   },
   "dependencies": {
     "@defra/flood-map": "^0.3.0",
+    "@arcgis/core": "^4.31.0",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "govuk-frontend": "5.4.0",
     "govuk-prototype-kit": "13.16.2"

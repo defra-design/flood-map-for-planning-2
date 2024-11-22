@@ -1,15 +1,14 @@
-import { FloodMap } from '../../../node_modules/@defra/flood-map/src/flood-map.js'
-import { getInterceptors, getRequest, getEsriToken } from './request.js'
 
-let map, isDark, isRamp
+let map, view, isDark, isRamp, segments, VectorTileLayer, FeatureLayer, Point
 
 const vtLayers = [
   { n: 'Flood_Zone_2_3_Rivers_and_Sea', s: '_N', v: '_VTP2', m: '_Model_Origin_Layer', q: 'fz' },
-  { n: 'Surface_water_spatial_planning_1in30', s: '_depth_N', v: '_depth_VTP_2', m: '_depth_Model_Origin_Layer_gdb', q: 'swhr' }, // q: 'swpdhr'
-  { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' }, // q: 'swpdmr'
-  { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' }, // q: 'swpdlr'
+  { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swhr' },
+  // { n: 'Surface_water_spatial_planning_1in30', s: '_VTP', v: '_depth_VTP', m: 'Model_Origin_Layer_gdb', q: 'swhr' },
+  { n: 'Surface_water_spatial_planning_1in100', s: '_depth_N', v: '_depth', m: '_depth_Model_Origin_Layer_gdb2', q: 'swmr' },
+  { n: 'Surface_water_spatial_planning_1in1000', s: '_depth_N', v: '_depth_VTP', m: '_depth_Model_Origin_Layer_gdb', q: 'swlr' },
   { n: 'Rivers_1in30_Sea_1in30_defended_depth', s: '_N', v: '', m: '_Model_Origin_Layer', q: 'rsdpdhr' },
-  { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer', q: 'rsdpdmr' },
+  { n: 'Rivers_1in100_Sea_1in200_defended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsdpdmr' },
   { n: 'Rivers_1in1000_Sea_1in1000_defended_depth', s: '_N', v: '_VTP_22', m: '_Model_Origin_Layer_gdb', q: 'rsdpdlr' },
   { n: 'Rivers_1in100_Sea_1in200_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdmr' },
   { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth', s: '_N', v: '_VTP', m: '_Model_Origin_Layer_gdb', q: 'rsupdlr' },
@@ -17,107 +16,131 @@ const vtLayers = [
   // { n: 'Surface_water_spatial_planning_1in100_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swclmr' },
   // { n: 'Surface_water_spatial_planning_1in1000_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'swcllr' },
   { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclhr' },
-  { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
+  { n: 'Rivers_1in30_Sea_1in30_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
+  // { n: 'Rivers_1in100_Sea_1in200_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdclmr' },
   { n: 'Rivers_1in1000_Sea_1in1000_defended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsdcllr' },
   { n: 'Rivers_1in100_Sea_1in200_undefended_depth_CCP1', s: '_N', v: '_VTP', m: null, q: 'rsuclmr' },
-  { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '', m: null, q: 'rsucllr' }
+  { n: 'Rivers_1in1000_Sea_1in1000_undefended_depth_CCP1', s: '_N', v: '', m: null, q: 'rsucllr' },
 ]
 
 const fLayers = [
-  { n: 'nat_defences', q: 'fd' },
-  { n: 'nat_fsa', q: 'fsa' }
+  { n: 'nat_defences', q: 'fd'},
+  { n: 'nat_fsa', q: 'fsa'}, 
+  { n: 'Statutory_Main_River_Map', q: 'mainr'}
 ]
 
-const addLayers = (layers) => {
-  return Promise.all([
-    import(/* webpackChunkName: "esri-sdk" */ '@arcgis/core/layers/VectorTileLayer.js'),
-    import(/* webpackChunkName: "esri-sdk" */ '@arcgis/core/layers/FeatureLayer.js')
-  ]).then(modules => {
-    const VectorTileLayer = modules[0].default
-    const FeatureLayer = modules[1].default
-    vtLayers.forEach((layer, i) => {
-      map.add(new VectorTileLayer({
-        id: layer.n,
-        style: {
-          version: 8,
-          sources: {
-            esri: {
-              type: 'vector',
-              minzoom: 4,
-              maxzoom: 16,
-              scheme: 'xyz',
-              url: `https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.v}/VectorTileServer`
-            }
-          },
-          layers: Array(i === 0 ? 2 : 7).fill(0).map((_, j) => {
-            return {
-              id: layer.n + j,
-              type: 'fill',
-              source: 'esri',
-              'source-layer': `${layer.n + layer.s}`,
-              minzoom: 4.7597,
-              filter: ['==', '_symbol', j],
-              layout: {
-                visibility: 'visible' // i === 0 ? getFloodZoneVisibility(layers) : 'visible'
-              },
-              paint: {
-                'fill-color': i === 0 ? fillFloodZones(j) : fillModel(j),
-                'fill-opacity': 0.75
-              }
-            }
-          })
+const addLayers = async (layers) => {
+  vtLayers.forEach((layer, i) => {
+    map.add(new VectorTileLayer({
+      id: layer.n,
+      style: {
+        version: 8,
+        sources: {
+          esri: {
+            type: 'vector',
+            minzoom: 4,
+            maxzoom: 16,
+            scheme: 'xyz',
+            url: `https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.v}/VectorTileServer`
+          }
         },
-        visible: false
-      }))
-    })
-    fLayers.forEach(layer => {
-      map.add(new FeatureLayer({
+        layers: Array(i === 0 ? 2 : 7).fill(0).map((_, j) => {
+          return {
+            id: layer.n + j,
+            type: 'fill',
+            source: 'esri',
+            'source-layer': `${layer.n + layer.s}`,
+            minzoom: 4.7597,
+            filter: ['==', '_symbol', j],
+            layout: {
+              visibility: 'visible' // i === 0 ? getFloodZoneVisibility(layers) : 'visible'
+            },
+            paint: {
+              'fill-color': i === 0 ? fillFloodZones(j) : fillModel(j),
+              'fill-opacity': 0.75
+            }
+          }
+        })
+      },
+      visible: false
+    }))
+  })
+  fLayers.forEach(layer => {
+    let renderer;
+
+    if (layer.n === 'nat_defences') {
+        renderer = renderFloodDefence();
+        console.log("Applying renderFloodDefence to:", layer.n);
+    } else if (layer.n === 'nat_fsa') {
+        renderer = renderFloodStorage();
+        console.log("Applying renderFloodStorage to:", layer.n);
+    } else if (layer.n === 'Statutory_Main_River_Map') {
+        renderer = renderStatutory_Main_River_Map();
+        console.log("Applying renderStatutory_Main_River_Map to:", layer.n);
+    } else {
+        console.error("No renderer assigned for:", layer.n);
+    }
+
+    map.add(new FeatureLayer({
         id: layer.n,
         url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n}/FeatureServer`,
-        renderer: layer.n === 'nat_defences' ? renderFloodDefence() : renderFloodStorage(),
+        renderer: renderer,
         visible: false
-      }))
-    })
-  })
+    }));
+  });
 }
 
 const fillModel = (band) => {
   const light = '#2b8cbe'
-  const dark = '#00ff00'
-  const depthLight = ['#08589e', '#2b8cbe', '#4eb3d3', '#7bccc4', '#a8ddb5', '#ccebc5', '#f0f9e8'] // light tones > 2300 to < 150
-  const depthDark = ['#08589e', '#2b8cbe', '#4eb3d3', '#7bccc4', '#a8ddb5', '#ccebc5', '#f0f9e8'] // dark tones > 2300 to < 150
+  const dark = '#7fcdbb'
+  const depthLight = ['#7f2704', '#a63603', '#d94801', '#f16913', '#fd8d3c', '#fdae6b', '#fdd0a2'] // light tones > 2300 to < 150
+  // const depthDark = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5'] // BLUES dark tones > 2300 to < 150
+  const depthDark = ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45'] // GREENS dark tones > 2300 to < 150
   return isRamp ? isDark ? depthDark[band] : depthLight[band] : isDark ? dark : light
 }
 
 const fillFloodZones = (zone) => {
   const light = ['#1d70b8', '#003078'] // light tones Zone 2, Zone 3
-  const dark = ['#b58840', '#6f72af'] // dark tones Zone 2, Zone 3
+  const dark = ['#41ab5d', '#e5f5e0'] // dark tones Zone 2, Zone 3
   return isDark ? dark[zone] : light[zone]
 }
 
 const renderFloodDefence = () => {
   return {
-    type: 'simple',
-    symbol: {
-      type: 'simple-line',
-      width: '2px',
-      color: '#f47738'
-    }
+      type: 'simple',
+      symbol: {
+        type: 'simple-line',
+        width: '3px',
+      //  color: '#f47738'
+      color: '#12393d'
+      }
+  }
+}
+
+const renderStatutory_Main_River_Map = () => {
+  return {
+      type: 'simple',
+      symbol: {
+        type: 'simple-line',
+        width: '3px',
+        color: '#f47738'
+      }
   }
 }
 
 const renderFloodStorage = () => {
   return {
-    type: 'simple',
-    symbol: {
-      type: 'simple-fill',
-      style: 'diagonal-cross',
-      color: '#d4351c',
-      outline: {
-        color: '#d4351c',
-        width: 1
+      type: 'simple',
+      symbol: {
+          type: 'simple-fill',
+          style: 'diagonal-cross',
+          color: '#12393d',
+          outline: {
+          //    color: '#d4351c',
+          color: '#12393d',
+              width: 1
+          }
       }
-    }
   }
 }
 
@@ -165,7 +188,9 @@ const symbols = getSymbols()
 
 const depthMap = ['over 2.3', '2.3', '1.2', '0.9', '0.6', '0.3', '0.15']
 
-const fm = new FloodMap('map', {
+let isInfoOpen = false
+
+const fm = new defra.FloodMap('map', {
   framework: 'esri',
   type: 'hybrid',
   place: 'Ambleside',
@@ -181,8 +206,8 @@ const fm = new FloodMap('map', {
   styles: {
     tokenCallback: getEsriToken,
     interceptorsCallback: getInterceptors,
-    defaultUrl: process.env.OS_VTAPI_DEFAULT_URL,
-    darkUrl: process.env.OS_VTAPI_DARK_URL
+    defaultUrl: '/styles/OS_VTS_27700_Open_Outdoor.json',
+    darkUrl: '/styles/OS_VTS_27700_Open_Dark.json' 
   },
   search: {
     label: 'Search for a place',
@@ -227,7 +252,6 @@ const fm = new FloodMap('map', {
         id: 'tf',
         heading: 'Time frame',
         collapse: 'collapse',
-        // parentIds: ['rsd', 'rsu', 'sw'],
         parentIds: ['rsd', 'rsu'],
         items: [
           {
@@ -236,7 +260,7 @@ const fm = new FloodMap('map', {
           },
           {
             id: 'cl',
-            label: '2040\'s to 2060\'s'
+            label: 'Climate change'
           }
         ]
       },
@@ -244,37 +268,57 @@ const fm = new FloodMap('map', {
         id: 'af1',
         heading: 'Annual likelihood of flooding',
         collapse: 'collapse',
-        parentIds: ['rsd', 'sw'],
+        parentIds: ['rsd'],
         items: [
-          {
-            id: 'hr',
-            label: 'Above 3.3%'
-          },
-          {
-            id: 'mr',
-            label: '0.1% to 0.5%'
-          },
-          {
-            id: 'lr',
-            label: 'Below 0.1%'
-          }
+            {
+                id: 'hr',
+                label: 'Rivers and sea 3.3%'
+            },
+            {
+                id: 'mr',
+                label: 'Rivers 1% Sea 0.5%'
+            },
+            {
+                id: 'lr',
+                label: 'Rivers and sea 1%'
+            }
         ]
       },
       {
-        id: 'af2',
-        heading: 'Annual likelihood of flooding',
-        collapse: 'collapse',
-        parentIds: ['rsu'],
-        items: [
-          {
-            id: 'mr',
-            label: '0.1% to 0.5%'
-          },
-          {
-            id: 'lr',
-            label: 'below 0.1%'
-          }
-        ]
+          id: 'af1',
+          heading: 'Annual likelihood of flooding',
+          collapse: 'collapse',
+          parentIds: ['sw'],
+          items: [
+              {
+                  id: 'hr',
+                  label: '3.3%'
+              },
+              {
+                  id: 'mr',
+                  label: '1%'
+              },
+              {
+                  id: 'lr',
+                  label: '0.1%'
+              }
+          ]
+      },
+      {
+          id: 'af2',
+          heading: 'Annual likelihood of flooding',
+          collapse: 'collapse',
+          parentIds: ['rsu'],
+          items: [
+              {
+                  id: 'mr',
+                  label: 'Rivers 1% Sea 0.5%'
+              },
+              {
+                  id: 'lr',
+                  label: 'Rivers and sea 1%'
+              }
+          ]
       }
     ],
     key: [
@@ -390,28 +434,33 @@ const fm = new FloodMap('map', {
         parentIds: ['fz'],
         collapse: 'collapse',
         items: [
-          {
-            // id: 'fz1',
-            label: 'Flood zone 1',
-            fill: '#00A4CD'
-          },
-          {
-            // id: 'fz2',
-            label: 'Flood zone 2',
-            fill: '#003078'
-          },
-          {
-            id: 'fsa',
-            label: 'Water storage',
-            icon: symbols[0],
-            fill: 'default: #d4351c, dark: #00703c'
-          },
-          {
-            id: 'fd',
-            label: 'Flood defence',
-            icon: symbols[1],
-            fill: '	#f47738'
-          }
+            {
+                label: 'Flood zone 2',
+                fill: 'default: #1d70b8, dark: #41ab5d'
+            },
+            {
+                label: 'Flood zone 3',
+                fill: 'default: #003078, dark: #e5f5e0'
+            },
+            {
+                id: 'fsa',
+                label: 'Water storage',
+                icon: symbols[0],
+                fill: 'default: #12393d, dark: #12393d'
+            },
+            {
+                id: 'fd',
+                label: 'Flood defence',
+                icon: symbols[1],
+              //  fill: '	#f47738'
+                  fill: '#12393d'
+            },
+            {
+                id: 'mainr',
+                label: 'Main Rivers',
+                icon: symbols[1],
+                fill: '	#f47738'
+            }
         ]
       },
       {
@@ -419,23 +468,29 @@ const fm = new FloodMap('map', {
         parentIds: ['rsd', 'rsu', 'sw'],
         collapse: 'collapse',
         items: [
-          {
-            // id: 'fz1',
-            label: 'Flood extent',
-            fill: 'default: #ff0000, dark: #00ff00'
-          },
-          {
-            id: 'fsa',
-            label: 'Water storage',
-            icon: symbols[0],
-            fill: 'default: #d4351c, dark: #00703c'
-          },
-          {
-            id: 'fd',
-            label: 'Flood defence',
-            icon: symbols[1],
-            fill: '	#f47738'
-          }
+            {
+                label: 'Flood extent',
+                fill: 'default: #2b8cbe, dark: #7fcdbb'
+            },
+            {
+                id: 'fsa',
+                label: 'Water storage',
+                icon: symbols[0],
+                fill: 'default: #12393d, dark: #12393d'
+            },
+            {
+                id: 'fd',
+                label: 'Flood defence',
+                icon: symbols[1],
+              //  fill: '	#f47738'
+                  fill: '#12393d'
+            },
+            {
+                id: 'mainr',
+                label: 'Main Rivers',
+                icon: symbols[1],
+                fill: '	#f47738'
+            }
         ]
       },
       {
@@ -443,18 +498,25 @@ const fm = new FloodMap('map', {
         parentIds: ['mo'],
         collapse: 'collapse',
         items: [
-          {
-            id: 'fsa',
-            label: 'Water storage',
-            icon: symbols[0],
-            fill: 'default: #d4351c, dark: #00703c'
-          },
-          {
-            id: 'fd',
-            label: 'Flood defence',
-            icon: symbols[1],
-            fill: '	#f47738'
-          }
+            {
+                id: 'fsa',
+                label: 'Water storage',
+                icon: symbols[0],
+                fill: 'default: #12393d, dark: #12393d'
+            },
+            {
+                id: 'fd',
+                label: 'Flood defence',
+                icon: symbols[1],
+              //  fill: '	#f47738'
+                  fill: '#12393d'
+            },
+            {
+                id: 'mainr',
+                label: 'Main Rivers',
+                icon: symbols[1],
+                fill: '	#f47738'
+            }
         ]
       }
     ]
@@ -472,8 +534,8 @@ const fm = new FloodMap('map', {
     helpLabel: 'How to draw a shape',
     keyLabel: 'Report area',
     html: '<p class="govuk-body-s">Instructions</p>',
-    defaultUrl: process.env.OS_VTAPI_DEFAULT_DRAW_URL,
-    darkUrl: process.env.OS_VTAPI_DARK_DRAW_URL,
+    defaultUrl: '/styles/OS_VTS_27700_Outdoor.json',
+    darkUrl: '/styles/OS_VTS_27700_Dark.json',
     minZoom: 12,
     maxZoom: 21
   },
@@ -482,14 +544,18 @@ const fm = new FloodMap('map', {
 
 // Component is ready and we have access to map
 // We can listen for map events now, such as 'loaded'
-fm.addEventListener('ready', e => {
-  map = fm.map
-  const { mode, basemap, segments, layers } = e.detail
+fm.addEventListener('ready', async e => {
+  VectorTileLayer = fm.modules.VectorTileLayer
+  FeatureLayer = fm.modules.FeatureLayer
+  Point = fm.modules.Point
+  map = e.detail.map
+  view = e.detail.view
+  const { mode, basemap, layers } = e.detail
+  segments = e.detail.segments
   isDark = basemap === 'dark'
   isRamp = layers.includes('md')
-  addLayers(layers).then(() => {
-    toggleVisibility(null, mode, segments, layers)
-  })
+  await addLayers(layers)
+  toggleVisibility(null, mode, segments, layers)
 })
 
 // Listen for mode, segments, layers or style changes
@@ -504,75 +570,418 @@ fm.addEventListener('change', e => {
 })
 
 // Listen to map queries
-fm.addEventListener('query', e => {
-  if(e.detail.resultType === 'polygon'){
-    console.log('Polygon query',e.detail)
-    return
-  }
-  
+fm.addEventListener('query', async e => {
   const { coord, features } = e.detail
   const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
+  const floodZoneText = segments.includes('fz')
+  const isDefended = segments.includes('rsd')
+  const isUnDefended = segments.includes('rsu')
+  const isSWater = segments.includes('sw')
+  const isSurfaceWaterHighRisk = ['sw', 'pd', 'hr'].every(item => segments.includes(item));
+  const isDefendedMed = ['rsd','mr'].every(item => segments.includes(item));
+  const isClimate = segments.includes('cl')
+  const isSWNoData = ['sw', 'pd', 'mr'].every(item => segments.includes(item));
+  const isSWNoDataLr = ['sw', 'pd', 'lr'].every(item => segments.includes(item));
 
+  const climate = isClimate
+  ? `<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+          <span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span>
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <span class="govuk-body-s">Climate change</span>
+      </dd>
+      </div>`
+      : '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key"><span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span></dt><dd class="govuk-summary-list__value"><span class="govuk-body-s">Present day</span></dd></div>'
+
+
+  const floodZoneOne = floodZoneText
+  ? `          
+      <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          <span class="govuk-body-s"><strong><strong>Flood zone</strong></strong></span>
+
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <span class="govuk-body-s">1</span>
+      </dd>
+      </div>`
+      : ''
+
+  const SWater = isSWater
+  ? `          
+      <div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key govuk-!-width-one-half">
+          <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+  
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <span class="govuk-body-s">Surface water</span>
+      </dd>
+      </div>`
+      : ''
+
+
+  const surfaceHighRisk = isSurfaceWaterHighRisk
+      // High risk
+      // <div class="govuk-summary-list__row">
+      //   <dt class="govuk-summary-list__key">
+      //   <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+      //   </dt>
+      //   <dd class="govuk-summary-list__value">
+      //   <span class="govuk-body-s">3.3%</span>
+      //   </dd>
+      // </div>
+      ? ``
+      : ''
+
+  const mediumDefended = isDefendedMed
+  ? `  
+      
+      `
+      : ''
+
+  const sWNoData = isSWNoData
+//    Medium risk
+//  <div class="govuk-summary-list__row">
+//     <dt class="govuk-summary-list__key">
+//     <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+//     </dt>
+//     <dd class="govuk-summary-list__value">
+//     <span class="govuk-body-s">1%</span>
+//     </dd>
+//   </div> 
+  ? ``
+      : ''
+
+  const sWNoDataLr = isSWNoDataLr
+//    Low risk
+//     <div class="govuk-summary-list__row">
+//     <dt class="govuk-summary-list__key">
+//     <span class="govuk-body-s"><strong>Annual likelihood of flood</strong></span>
+//     </dt>
+//     <dd class="govuk-summary-list__value">
+//     <span class="govuk-body-s">1%</span>
+//     </dd>
+//   </div> 
+  ? ``
+      : ''
+
+  const riversSeaDefended = isDefended
+      ? `<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+      <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+      </dt>
+      <dd class="govuk-summary-list__value">
+      <span class="govuk-body-s">Rivers and seas with defences</span>
+      </dd>
+      </div>`
+      : ''
+
+  const riversSeaUnDefended = isUnDefended
+      ? `<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+      <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+      </dt>
+      <dd class="govuk-summary-list__value">
+      <span class="govuk-body-s">Rivers and seas without defences</span>
+      </dd>
+      </div>`
+      : ''
+
+console.log(e.detail)
+console.log(segments)
   if (!feature) {
-    fm.info = {
-      width: '360px',
-      label: 'Title',
-      html: `
-                <p class="govuk-body-s">No feature info</p>
-            `
-    }
-    return
+      fm.info = {
+          width: '360px',
+          label: 'Information',
+          html: `
+          <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+          <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              <span class="govuk-body-s"><strong>Easting and northing</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">${Math.round(coord[0])},${Math.round(coord[1])}</span>
+              </dd>
+          </div>
+          ${climate}
+          ${floodZoneOne}
+          ${riversSeaDefended}
+          ${riversSeaUnDefended}
+          ${mediumDefended}
+          ${SWater}
+          ${surfaceHighRisk}
+          ${sWNoData}
+          ${sWNoDataLr}
+          </dl>
+          
+          
+              
+          `
+      }
+      return
   }
+  
+  const layer = vtLayers.find(l => l.q === feature.layer)
 
-  const name = feature.layer.split('_VTP')[0]
-  const layer = vtLayers.find(l => l.n === name)
+  let attributes
 
-  Promise.all([
-    import(/* webpackChunkName: "esri-sdk" */ '@arcgis/core/layers/FeatureLayer.js'),
-    import(/* webpackChunkName: "esri-sdk" */ '@arcgis/core/geometry/Point.js')
-  ]).then(modules => {
-    const FeatureLayer = modules[0].default
-    const Point = modules[1].default
-    Promise.resolve({ FeatureLayer, Point })
-  }).then((FeatureLayer, Point) => layer.m ? () => {
-    const model = new FeatureLayer({
-      url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.m}/FeatureServer`
-    })
-    model.queryFeatures({
+  if (layer.m) {
+      const model = new FeatureLayer({
+          url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/${layer.n + layer.m}/FeatureServer`
+      })
+      const results = await model.queryFeatures({
+          geometry: new Point({ x: coord[0], y: coord[1], spatialReference: 27700 }),
+          outFields: ['*'],
+          spatialRelationship: 'intersects',
+          distance: 1,
+          units: 'meters',
+          returnGeometry: false
+      })
+      if (results.features.length) {
+          attributes = results.features[0].attributes
+      }
+  }
+  console.log(attributes)
+  // const fSource = attributes.flood_source
+  const rsmodel = new FeatureLayer({
+      url: `https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services/FeatureClassPublish_gdb/FeatureServer/0`
+  })
+  const results = await rsmodel.queryFeatures({
       geometry: new Point({ x: coord[0], y: coord[1], spatialReference: 27700 }),
       outFields: ['*'],
       spatialRelationship: 'intersects',
       distance: 1,
       units: 'meters',
       returnGeometry: false
-    }).then(results => {
-      if (results.features.length) {
-        Promise.resolve(results.features[0].attributes)
-      } else {
-        Promise.resolve(null)
-      }
-    })
-  } : Promise.resolve()).finally(attributes => {
-    const band = feature._symbol
-    const layerName = feature.layer
-    const isFloodZone = layerName.includes('Zone')
-    const title = isFloodZone
-      ? `<strong>Flood zone</strong>: ${band + 2}<br>`
-      : `<strong>Maximum depth:</strong> ${depthMap[band]}metres<br/>`
-    const model = attributes
-      ? `
-          <strong>Model:</strong> ${attributes.model}</br/>
-          <strong>Model year:</strong> ${attributes.model_year}
-      `
-      : ''
-    fm.info = {
-      width: '360px',
-      label: 'Title',
-      html: `
-        <p class="govuk-body-s">${title}${model}</p>
-        <p class="govuk-body-s govuk-!-margin-top-1">${layerName}</p>
-        <p class="govuk-body-s govuk-!-margin-bottom-0">Section 1.10.32 of "de Finibus Bonorum et Malorum", written by Cicero in 45 BC "Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo. Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor sit amet, consectetur, adipisci velit, sed quia non numquam eius modi tempora incidunt ut labore et dolore magnam aliquam quaerat voluptatem. Ut enim ad minima veniam, quis nostrum exercitationem ullam corporis suscipit laboriosam, nisi ut aliquid ex ea commodi consequatur? Quis autem vel eum iure reprehenderit qui in ea voluptate velit esse quam nihil molestiae consequatur, vel illum qui dolorem eum fugiat quo voluptas nulla pariatur?" 1914 translation by H. Rackham "But I must explain to you how all this mistaken idea of denouncing pleasure and praising pain was born and I will give you a complete account of the system, and expound the actual teachings of the great explorer of the truth, the master-builder of human happiness. No one rejects, dislikes, or avoids pleasure itself, because it is pleasure, but because those who do not know how to pursue pleasure rationally encounter consequences that are extremely painful. Nor again is there anyone who loves or pursues or desires to obtain pain of itself, because it is pain, but because occasionally circumstances occur in which toil and pain can procure him some great pleasure. To take a trivial example, which of us ever undertakes laborious physical exercise, except to obtain some advantage from it? But who has any right to find fault with a man who chooses to enjoy a pleasure that has no annoying consequences, or one who avoids a pain that produces no resultant pleasure?"</p>
-      `
-    }
   })
+  const {flood_source: fSource} = results.features[0] ? results.features[0].attributes : {}
+
+  const band = feature._symbol
+  const layerName = layer.n
+  const isFloodZone = segments.includes('fz')
+  const isRiversSeasDefended = segments.includes('rsd')
+  const isClimateChange = segments.includes('cl')
+  const isRiversSeasUnDefended = segments.includes('rsu')
+  const is1in200 = layerName.includes('1in200')
+  const is1in1000 = layerName.includes('Sea_1in1000')
+  const is1in30 = layerName.includes('Sea_1in30')
+  const isSW1in30 = layerName.includes('spatial_planning_1in30_depth_CCP1')
+  const isSW1in100 = layerName.includes('Surface_water_spatial_planning_1in100_depth_CCP1')
+  const isSW1in1000 = layerName.includes('Surface_water_spatial_planning_1in1000_depth_CCP1')
+  const isSurfaceWater = segments.includes('sw')
+  const availableDepth = ['rsu', 'rsd', 'sw'].some(item => segments.includes(item));
+
+  isInfoOpen = true
+  console.log(layerName)
+
+  const floodSource = isFloodZone && fSource
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+      <span class="govuk-body-s"><strong><strong>Flood source</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+      <span class="govuk-body-s">${fSource}</span>
+  </dd>
+  </div>`
+  : ''   
+
+  const title = isFloodZone
+  ? `<div class="govuk-summary-list__row">
+      <dt class="govuk-summary-list__key">
+          <span class="govuk-body-s"><strong><strong>Flood zone</strong></strong></span>
+      </dt>
+      <dd class="govuk-summary-list__value">
+          <span class="govuk-body-s">${band + 2}</span>
+      </dd>
+  </div>`
+  : ''
+
+  const model = attributes ? `
+  <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Model title</strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">${attributes.model}</span>
+  </dd>
+  </div>   
+
+  <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Model year</strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s"> ${attributes.model_year}</span>
+  </dd>
+  </div>                  
+
+  <div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Model scale</strong></span> 
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">${attributes.scale}</span>
+  </dd>
+  </div>
+  ` : ''
+
+  const timeframe = isClimateChange
+      ? `<div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+              <span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span>
+          </dt>
+          <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">Climate change</span>
+          </dd>
+      </div>`
+      : '<div class="govuk-summary-list__row"><dt class="govuk-summary-list__key"><span class="govuk-body-s"><strong><strong>Timeframe</strong></strong></span></dt><dd class="govuk-summary-list__value"><span class="govuk-body-s">Present day</span></dd></div>'
+
+  const Defended = isRiversSeasDefended
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Rivers and seas with defences</span>
+  </dd>
+  </div>`
+  : ''
+
+  const Undefended = isRiversSeasUnDefended
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Rivers and seas without defences</span>
+  </dd>
+  </div>`
+  : ''
+
+  const surfaceWater = isSurfaceWater
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong><strong>Dataset</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Surface water</span>
+  </dd>
+  </div>`
+  : ''
+
+  const medium = is1in200
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Rivers 1% Sea 0.5%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const swLowCC = isSW1in1000
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">1%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const swMedCC = isSW1in100
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">1%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const swHighCC = isSW1in30
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">3.3%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const low = is1in1000
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Rivers and sea 1%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const high = is1in30
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong><strong>Annual likelihood of flooding</strong></strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">Rivers and sea 3.3%</span>
+  </dd>
+  </div>`
+  : ''
+
+  const maxDepth = availableDepth
+  ? `<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+  <span class="govuk-body-s"><strong>Maximum depth</strong></span>
+  </dt>
+  <dd class="govuk-summary-list__value">
+  <span class="govuk-body-s">${depthMap[band]}mm</span>
+  </dd>
+  </div>`
+  : ''
+
+  // const floodZoneLowRisk = isSegmentfz23
+  // ? `
+  // <span class="govuk-body-s">This location sits outside of a flood zone</span>
+  // `
+  // : ''
+
+  fm.info = {
+      width: '360px',
+      label: 'Information',
+      html: `
+          <dl class="govuk-summary-list govuk-!-margin-bottom-3">
+              <div class="govuk-summary-list__row">
+              <dt class="govuk-summary-list__key govuk-!-width-one-half">
+              <span class="govuk-body-s"><strong>Easting and northing</strong></span>
+              </dt>
+              <dd class="govuk-summary-list__value">
+              <span class="govuk-body-s">${Math.round(coord[0])},${Math.round(coord[1])}</span>
+              </dd>
+              </div>
+              ${timeframe}
+              ${title}
+              ${Undefended}
+              ${Defended}
+              ${surfaceWater}
+              ${medium}
+              ${low}
+              ${high}
+              ${surfaceHighRisk}
+              ${swLowCC}
+              ${swMedCC}
+              ${swHighCC}
+              ${floodSource}
+          </dl>
+
+      `
+  }
 })
