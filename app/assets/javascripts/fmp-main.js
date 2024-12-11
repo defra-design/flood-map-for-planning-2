@@ -628,6 +628,11 @@ getDefraMapConfig().then((defraMapConfig) => {
   floodMap.addEventListener('query', async e => {
     const { coord, features } = e.detail
     const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
+
+    // This part builds the info container as an array [] of entries named listContents.
+    // To add a line to the info, you should push a pair of values, ['Title', 'Value']
+    // eg: listContents.push(['Flood zone', 2])
+
     const listContents = [
       ['Easting and northing', `${Math.round(coord[0])},${Math.round(coord[1])}`],
       ['Timeframe', mapState.segments.includes('cl') ? 'Climate change' : 'Present day']
@@ -636,10 +641,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
 
     if (feature && feature._symbol !== undefined) {
-      console.log('feature', feature)
+      // This part is currently only applicable to Flood_Zones
       const floodZone = floodZoneSymbolIndex[feature._symbol]
       if (floodZone) {
         listContents.push(['Flood zone', floodZone])
+        // call getModelFeatureLayer to get the flood source
+        // (was previously using ModelOriginLayer but Lloyd said Feature Layer is better.)
         const attributes = await getModelFeatureLayer(coord, feature.layer)
         if (attributes && attributes.flood_source) {
           listContents.push(['Flood source', formatFloodSource(attributes.flood_source)])
@@ -647,8 +654,12 @@ getDefraMapConfig().then((defraMapConfig) => {
       }
     } else {
       if (mapState.segments.includes('fz')) {
+        // This part is applicable for Flood_Zones, when an area outside 
+        // of a zone has been clicked
         listContents.push(['Flood zone', '1'])
       } else {
+        // This part is applicable for non Flood_Zones layers, when an area outside 
+        // of a zone has been clicked
         const dataset = getDataset()
         if (dataset) {
           listContents.push(['Dataset', dataset])
@@ -658,7 +669,9 @@ getDefraMapConfig().then((defraMapConfig) => {
         }
       }
     }
-
+    // finally tell the map-component to redraw the info 
+    // using the listContents that have been built.
+    // The HTML markup that wraps the info is defined in the file infoRenderer
     floodMap.info = renderInfo(renderList(listContents))
   })
 })
