@@ -1,13 +1,15 @@
 // /flood-map Path defined as an alias to npm or submodule version in webpack alias
-import { FloodMap } from '/flood-map' // eslint-disable-line import/no-absolute-path
+// import { FloodMap } from '/flood-map' // eslint-disable-line import/no-absolute-path
+const FloodMap = defra.FloodMap
+let VectorTileLayer, FeatureLayer, Point
 import { getEsriToken, getRequest, getInterceptors, getDefraMapConfig } from './tokens.js'
-import { renderInfo, renderList } from './infoRenderer'
+import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 
 const symbols = {
-  waterStorageAreas: '/assets/images/water-storage.svg',
-  floodDefences: '/assets/images/flood-defence.svg',
-  mainRivers: '/assets/images/main-rivers.svg'
+  waterStorageAreas: '/public/images/water-storage.svg',
+  floodDefences: '/public/images/flood-defence.svg',
+  mainRivers: '/public/images/main-rivers.svg'
 }
 
 const keyItemDefinitions = {
@@ -245,32 +247,23 @@ getDefraMapConfig().then((defraMapConfig) => {
     // })
   }
   const addLayers = async () => {
-    return Promise.all([
-      /* eslint-disable */
-      import(/* webpackChunkName: "esri-sdk" */ '/@arcgis-path/core/layers/VectorTileLayer.js'),
-      import(/* webpackChunkName: "esri-sdk" */ '/@arcgis-path/core/layers/FeatureLayer.js')
-      /* eslint-enable */
-    ]).then(modules => {
-      const VectorTileLayer = modules[0].default
-      const FeatureLayer = modules[1].default
-      vtLayers.forEach((vtLayer) => {
-        const vectorTileLayer = new VectorTileLayer({
-          id: vtLayer.name,
-          url: getVectorTileUrl(vtLayer.name),
-          visible: false
-        })
-        floodMap.map.add(vectorTileLayer)
+    vtLayers.forEach((vtLayer) => {
+      const vectorTileLayer = new VectorTileLayer({
+        id: vtLayer.name,
+        url: getVectorTileUrl(vtLayer.name),
+        visible: false
       })
-      fLayers.forEach(fLayer => {
-        floodMap.map.add(new FeatureLayer({
-          id: fLayer.name,
-          url: getFeatureLayerUrl(fLayer.name),
-          renderer: fLayer.renderer,
-          visible: false
-        }))
-      })
+      floodMap.map.add(vectorTileLayer)
     })
-  }
+    fLayers.forEach(fLayer => {
+      floodMap.map.add(new FeatureLayer({
+        id: fLayer.name,
+        url: getFeatureLayerUrl(fLayer.name),
+        renderer: fLayer.renderer,
+        visible: false
+      }))
+    })
+   }
 
   const toggleVisibility = (type, mode, segments, layers, map, isDark) => {
     const isDrawMode = ['frame', 'draw'].includes(mode)
@@ -306,8 +299,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     styles: {
       tokenCallback: getEsriToken,
       interceptorsCallback: getInterceptors,
-      defaultUrl: '/map/styles/base-map-default',
-      darkUrl: '/map/styles/base-map-dark'
+      defaultUrl: defraMapConfig.mapStyleUrl,
+      darkUrl: defraMapConfig.darkMapStyleUrl
     },
     search: {
       label: 'Search for a place',
@@ -565,6 +558,9 @@ getDefraMapConfig().then((defraMapConfig) => {
   // Component is ready and we have access to map
   // We can listen for map events now, such as 'loaded'
   floodMap.addEventListener('ready', async e => {
+    VectorTileLayer = floodMap.modules.VectorTileLayer
+    FeatureLayer = floodMap.modules.FeatureLayer
+    Point = floodMap.modules.Point
     const { mode, segments, layers, basemap } = e.detail
     mapState.segments = segments
     mapState.layers = layers
@@ -604,13 +600,6 @@ getDefraMapConfig().then((defraMapConfig) => {
   }
 
   const getModelFeatureLayer = async (coords, layerName) => {
-    const [{ default: FeatureLayer }, { default: Point }] = await Promise.all([
-      /* eslint-disable */
-      import(/* webpackChunkName: "esri-sdk" */ '/@arcgis-path/core/layers/FeatureLayer.js'),
-      import(/* webpackChunkName: "esri-sdk" */ '/@arcgis-path/core/geometry/Point.js')
-      /* eslint-enable */
-    ])
-
     const model = new FeatureLayer({ url: getModelFeatureLayerUrl(layerName) })
     const results = await model.queryFeatures({
       geometry: new Point({ x: coords[0], y: coords[1], spatialReference: 27700 }),

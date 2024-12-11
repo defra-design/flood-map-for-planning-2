@@ -2,7 +2,7 @@ const osAuth = {}
 const esriAuth = {}
 
 // ESRI return an array of interceptor objects
-const getInterceptors = () => {
+export const getInterceptors = () => {
   return [{
     urls: 'https://api.os.uk/maps/vector/v1/vts',
     before: async params => {
@@ -15,7 +15,7 @@ const getInterceptors = () => {
 }
 
 // All other requests can be asyncronous and return a request object itself
-const getRequest = async (url) => {
+export const getRequest = async (url) => {
   let options = {}
 
   // OS Open Names
@@ -33,7 +33,7 @@ const getRequest = async (url) => {
   return new Request(url, options)
 }
 
-const getEsriToken = async () => {
+export const getEsriToken = async () => {
     // *ESRI manages this somehow?
     const hasToken = esriAuth.token
   
@@ -73,3 +73,11 @@ const getOsToken = async () => {
 
   return osAuth
 }
+
+export const getDefraMapConfig = async () => ({
+  layerNameSuffix: "_NON_PRODUCTION",
+  agolServiceUrl: "https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
+  agolVectorTileUrl: "https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
+  mapStyleUrl: '/styles/OS_VTS_27700_Open_Outdoor.json',
+  darkMapStyleUrl: '/styles/OS_VTS_27700_Open_Dark.json'
+})
