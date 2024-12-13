@@ -604,6 +604,13 @@ getDefraMapConfig().then((defraMapConfig) => {
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
   })
 
+  //event to fire for 'Get site report' button to non dynamic results page
+  document.addEventListener('click', e => {
+    if (e.target.innerText === 'Get summary report') {
+      window.location = '/v1/results'
+    }
+  })
+
   // Listen for mode, segments, layers or style changes
   floodMap.addEventListener('change', e => {
     const { type, mode, segments, layers, basemap } = e.detail
