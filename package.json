@@ -2,7 +2,7 @@
   "scripts": {
     "dev": "webpack && govuk-prototype-kit dev",
     "serve": "govuk-prototype-kit serve",
-    "start": "webpack && govuk-prototype-kit start"
+    "start": "govuk-prototype-kit start"
   },
   "dependencies": {
     "@defra/flood-map": "^0.3.0",
