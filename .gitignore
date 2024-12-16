@@ -3,6 +3,7 @@ node_modules/
 
 # Prototype ignores - per-user
 .tmp/
+!.tmp/public
 .env
 migrate.log
 usage-data-config.json

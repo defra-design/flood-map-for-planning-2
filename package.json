@@ -1,12 +1,13 @@
 {
   "scripts": {
-    "dev": "webpack && govuk-prototype-kit dev",
+    "dev": "govuk-prototype-kit dev",
+    "webpack": "webpack",
     "serve": "govuk-prototype-kit serve",
-    "start": "webpack && govuk-prototype-kit start"
+    "start": "govuk-prototype-kit start"
   },
   "dependencies": {
-    "@defra/flood-map": "^0.3.0",
     "@arcgis/core": "^4.31.0",
+    "@defra/flood-map": "^0.3.0",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "govuk-frontend": "5.4.0",
     "govuk-prototype-kit": "13.16.2"
@@ -32,7 +33,6 @@
     "url-loader": "^4.1.1",
     "webpack": "^5.96.1",
     "webpack-cli": "^5.1.4",
-    "webpack-merge": "^5.10.0",
     "webpack-remove-empty-scripts": "^1.0.4"
   }
 }
