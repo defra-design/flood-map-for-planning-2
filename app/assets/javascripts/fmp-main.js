@@ -717,7 +717,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.segments.includes('cl')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      extraContent += `<h2 class="govuk-heading-s">Climate Change</h2>
+      extraContent += `<h2 class="govuk-heading-s govuk-!-font-size-16">Climate change allowances</h2>
           <ul class="govuk-list govuk-list--bullet">
             <li class='govuk-body-s'>
               the allowances used have been chosen from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">Flood risk assessment: climate change allowances</a>
@@ -729,11 +729,19 @@ getDefraMapConfig().then((defraMapConfig) => {
               for sea and tidal flooding we have used the ‘upper end’ allowance – based on the 95th percentile for 2125
             </li>
           </ul>`
+        } 
+
+    let contentFloodZones = ''
+
+    if (mapState.segments.includes('fz')) {
+      // if you want more than one bit of extraContent, then keep appending it like this
+      // extraContent += 'Whatever else you want to be added' 
+      contentFloodZones += '<h2 class="govuk-heading-s govuk-!-font-size-16">Updates to Flood zones 2 and 3</h2> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
     }
 
     // finally tell the map-component to redraw the info 
     // using the listContents that have been built.
     // The HTML markup that wraps the info is defined in the file infoRenderer
-    floodMap.info = renderInfo(renderList(listContents), extraContent)
+    floodMap.info = renderInfo(renderList(listContents), contentFloodZones, extraContent, 'Information')
   })
 })
