@@ -91,15 +91,16 @@ getDefraMapConfig().then((defraMapConfig) => {
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended/1'],
       // likelihoodLabel: terms.likelihood.rsHigh,
       // chanceLabel: terms.chance.rsHigh,
-      likelihoodchanceLabel: terms.likelihoodchance.rsHigh
+      likelihoodchanceLabel: terms.likelihood.rsHigh,
+      chanceLabel: terms.chance.rsHigh
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_Depth',
       q: 'rsdpdhr',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended Depth/1'],
-      // likelihoodLabel: terms.likelihood.rsHigh,
-      // chanceLabel: terms.chance.rsHigh,
-      likelihoodchanceLabel: terms.likelihoodchance.rsHigh
+      likelihoodLabel: terms.likelihood.rsHigh,
+      chanceLabel: terms.chance.rsHigh
+      //likelihoodchanceLabel: terms.likelihoodchance.rsHigh
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Defended_Depth',
@@ -202,7 +203,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       q: 'swpdhr',
       // styleLayers: surfaceWaterStyleLayers,
       // likelihoodLabel: terms.likelihood.swHigh,
-      chanceLabel: terms.chance.swHigh
+      chanceLabel: terms.likelihoodchance.swHigh
     }
   ]
 
@@ -238,12 +239,18 @@ getDefraMapConfig().then((defraMapConfig) => {
     'Rivers 1 in 100 Sea 1 in 200 Undefended Depth CCP1/1': [nonFloodZoneLight, nonFloodZoneDark],
     'Rivers 1 in 1000 Sea 1 in 1000 Defended Depth CCP1/1': [nonFloodZoneLight, nonFloodZoneDark],
     'Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth CCP1/1': [nonFloodZoneLight, nonFloodZoneDark],
-    'Risk of Flooding from Surface Water Depth > 0mm/1': [nonFloodZoneDepthBandsLight[6], nonFloodZoneDepthBandsDark[6]],
-    'Risk of Flooding from Surface Water Depth > 200mm/1': [nonFloodZoneDepthBandsLight[5], nonFloodZoneDepthBandsDark[5]],
-    'Risk of Flooding from Surface Water Depth > 300mm/1': [nonFloodZoneDepthBandsLight[4], nonFloodZoneDepthBandsDark[4]],
-    'Risk of Flooding from Surface Water Depth > 600mm/1': [nonFloodZoneDepthBandsLight[3], nonFloodZoneDepthBandsDark[3]],
-    'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneDepthBandsLight[2], nonFloodZoneDepthBandsDark[2]],
-    'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneDepthBandsLight[1], nonFloodZoneDepthBandsDark[1]]
+    // 'Risk of Flooding from Surface Water Depth > 0mm/1': [nonFloodZoneDepthBandsLight[6], nonFloodZoneDepthBandsDark[6]],
+    // 'Risk of Flooding from Surface Water Depth > 200mm/1': [nonFloodZoneDepthBandsLight[5], nonFloodZoneDepthBandsDark[5]],
+    // 'Risk of Flooding from Surface Water Depth > 300mm/1': [nonFloodZoneDepthBandsLight[4], nonFloodZoneDepthBandsDark[4]],
+    // 'Risk of Flooding from Surface Water Depth > 600mm/1': [nonFloodZoneDepthBandsLight[3], nonFloodZoneDepthBandsDark[3]],
+    // 'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneDepthBandsLight[2], nonFloodZoneDepthBandsDark[2]],
+    // 'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneDepthBandsLight[1], nonFloodZoneDepthBandsDark[1]]
+    'Risk of Flooding from Surface Water Depth > 0mm/1': [nonFloodZoneLight, nonFloodZoneDark],
+    'Risk of Flooding from Surface Water Depth > 200mm/1': [nonFloodZoneLight, nonFloodZoneDark],
+    'Risk of Flooding from Surface Water Depth > 300mm/1': [nonFloodZoneLight, nonFloodZoneDark],
+    'Risk of Flooding from Surface Water Depth > 600mm/1': [nonFloodZoneLight, nonFloodZoneDark],
+    'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneLight, nonFloodZoneDark],
+    'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneLight, nonFloodZoneDark]
   }
 
   const fLayers = [
@@ -734,13 +741,13 @@ getDefraMapConfig().then((defraMapConfig) => {
           listContents.push(['Dataset', dataset])
         }
         if (vtLayer && vtLayer.likelihoodLabel) {
-          listContents.push(['Annual likelihood of flooding', vtLayer.likelihoodLabel])
+          listContents.push(['Annual exceedance probability', vtLayer.likelihoodLabel])
         }
         if (vtLayer && vtLayer.chanceLabel) {
-          listContents.push(['Annual chance of event', vtLayer.chanceLabel])
+          listContents.push(['Annual likelihood of flooding', vtLayer.chanceLabel])
         }
         if (vtLayer && vtLayer.likelihoodchanceLabel) {
-          listContents.push(['Annual likelihood of flooding', vtLayer.likelihoodchanceLabel])
+          listContents.push(['Annual exceedance probability', vtLayer.likelihoodchanceLabel])
         }
       }
     }
