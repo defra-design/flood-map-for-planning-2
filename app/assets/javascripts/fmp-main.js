@@ -215,11 +215,13 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   // These will require reinstating when depth band data is available
   // // light tones > 2300 to < 150
-  const nonFloodZoneDepthBandsLight = ['#7f2704', '#a63603', '#d94801', '#f16913', '#fd8d3c', '#fdae6b', '#fdd0a2']
+  // //const nonFloodZoneDepthBandsLight = ['#7f2704', '#a63603', '#d94801', '#f16913', '#fd8d3c', '#fdae6b', '#fdd0a2']
+  //const nonFloodZoneDepthBandsLight = ['#2b8cbe', '#2b8cbe', '#2b8cbe', '#2b8cbe', '#2b8cbe', '#2b8cbe', '#2b8cbe']
+
   // // GREENS dark tones > 2300 to < 150
-  const nonFloodZoneDepthBandsDark = ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45']
+  //const nonFloodZoneDepthBandsDark = ['#f7fcf5', '#e5f5e0', '#c7e9c0', '#a1d99b', '#74c476', '#41ab5d', '#238b45']
   // // BLUES dark tones > 2300 to < 150
-  // // const nonFloodZoneDepthBandsDark = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5']
+    // // const nonFloodZoneDepthBandsDark = ['#f7fbff', '#deebf7', '#c6dbef', '#9ecae1', '#6baed6', '#4292c6', '#2171b5']
 
   const paintProperties = {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': [floodZone2Light, floodZone2Dark],
@@ -431,15 +433,15 @@ getDefraMapConfig().then((defraMapConfig) => {
         items: [
           {
             id: 'hr',
-            label: terms.likelihood.rsHigh
+            label: terms.chance.rsHigh
           },
           {
             id: 'mr',
-            label: terms.likelihood.rsMedium
+            label: terms.chance.rsMedium
           },
           {
             id: 'lr',
-            label: terms.likelihood.rsLow
+            label: terms.chance.rsLow
           }
         ]
       },
@@ -451,15 +453,15 @@ getDefraMapConfig().then((defraMapConfig) => {
         items: [
           {
             id: 'hr',
-            label: terms.likelihood.swHigh
+            label: terms.chance.swHigh
           },
           {
             id: 'mr',
-            label: terms.likelihood.swMedium
+            label: terms.chance.swMedium
           },
           {
             id: 'lr',
-            label: terms.likelihood.swLow
+            label: terms.chance.swLow
           }
         ]
       },
@@ -471,11 +473,11 @@ getDefraMapConfig().then((defraMapConfig) => {
         items: [
           {
             id: 'mr',
-            label: terms.likelihood.rsMedium
+            label: terms.chance.rsMedium
           },
           {
             id: 'lr',
-            label: terms.likelihood.rsLow
+            label: terms.chance.rsLow
           }
         ]
       }

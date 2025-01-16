@@ -252,7 +252,7 @@ const fm = new defra.FloodMap('map', {
         id: 'tf',
         heading: 'Time frame',
         collapse: 'collapse',
-        parentIds: ['rsd', 'rsu'],
+        parentIds: ['rsd', 'rsu', 'sw'],
         items: [
           {
             id: 'pd',
