@@ -303,7 +303,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (layerPaintProperties) {
         const fillColour = paintProperties[styleLayerName][isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
-        layerPaintProperties['fill-opacity'] = 0.75
+    // layerPaintProperties['fill-opacity'] = 0.75
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
@@ -321,6 +321,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       const vectorTileLayer = new VectorTileLayer({
         id: vtLayer.name,
         url: getVectorTileUrl(vtLayer.name),
+        opacity: 0.75,
         visible: false
       })
       floodMap.map.add(vectorTileLayer)
