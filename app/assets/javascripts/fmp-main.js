@@ -183,7 +183,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_Low',
-      q: 'swpdlr',
+      q: 'swlr',
       styleLayers: surfaceWaterStyleLayers,
       likelihoodLabel: terms.likelihood.swLow,
       chanceLabel: terms.chance.swLow
@@ -191,7 +191,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_Medium',
-      q: 'swpdmr',
+      q: 'swmr',
       styleLayers: surfaceWaterStyleLayers,
       likelihoodLabel: terms.likelihood.swMedium,
       chanceLabel: terms.chance.swMedium
@@ -199,7 +199,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_High',
-      q: 'swpdhr',
+      q: 'swhr',
       styleLayers: surfaceWaterStyleLayers,
       likelihoodLabel: terms.likelihood.swHigh,
       chanceLabel: terms.chance.swHigh
@@ -414,7 +414,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         id: 'tf',
         heading: 'Time frame',
         collapse: 'collapse',
-        parentIds: ['rsd', 'rsu', 'sw'],
+        parentIds: ['rsd', 'rsu'],
         items: [
           {
             id: 'pd',
