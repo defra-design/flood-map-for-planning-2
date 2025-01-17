@@ -1,0 +1,118 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Location page - GOV.UK
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Find the location
+            </h1>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">
+            Select one option to search location, or skip to go striaght to map
+          </div>
+          <div class="govuk-radios" data-module="govuk-radios">
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location" name="location" type="radio" value="placePost" data-aria-controls="conditional-location">
+              <label class="govuk-label govuk-radios__label" for="location">
+                Place or postcode
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location">
+              <div class="govuk-form-group">
+                <div id="ngr-hint" class="govuk-hint">
+                  For example, Bakewell or WA4 1AB
+                </div>
+                <input class="govuk-input govuk-!-width-one-third" id="location-place-post" name="locationPlacePost"  type="email" spellcheck="false" autocomplete="email">
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-2" name="location" type="radio" value="ngr" data-aria-controls="conditional-location-2">
+              <label class="govuk-label govuk-radios__label" for="location-2">
+                National Grid Reference (NGR)
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+              <div class="govuk-form-group">
+                <div id="ngr-hint" class="govuk-hint">
+                  For example, SJ8632197947 (10 or 12 digits)
+                </div>
+                <input class="govuk-input govuk-!-width-one-third" id="location-ngr" name="locationNGR">
+              </div>
+            </div>
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-3" name="location" type="radio" value="text" data-aria-controls="conditional-location-3">
+              <label class="govuk-label govuk-radios__label" for="location-3">
+                Easting and northing
+              </label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-3">
+              <div id="ngr-hint" class="govuk-hint">
+                Eastings and northings should only include numbers. For example: 123456
+              </div>
+                <div class="govuk-form-group">
+
+                <label class="govuk-label" for="location-3">
+                Easting
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="easting" name="easting" type="tel" autocomplete="tel">
+                </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="location-3">
+                Northing
+                </label>
+                <input class="govuk-input govuk-!-width-one-third" id="northing" name="northing" type="tel" autocomplete="tel">
+                </div>
+              </div>
+            </div>
+            <!-- <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location" name="location" type="radio" value="skip" data-aria-controls="conditional-location">
+              <label class="govuk-label govuk-radios__label" for="location">
+                Skip to map
+              </label>
+            </div> -->
+          </div>
+        </fieldset>
+        <p><a href="map">Skip to map</a></p>
+</br>
+<p>        
+<a
+  href="map"
+  role="button"
+  draggable="false"
+  class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8 govuk-button--start"
+  data-module="govuk-button">
+  Continue
+  <svg
+    class="govuk-button__start-icon"
+    xmlns="http://www.w3.org/2000/svg"
+    width="17.5"
+    height="19"
+    viewBox="0 0 33 40"
+    role="presentation"
+    focusable="false">
+    <path fill="currentColor" d="M0 0h13l20 20-20 20H0l20-20z"></path>
+  </svg>
+</a></p>
+      </div>
+    </div>
+  </div>
+
+{% endblock %}
