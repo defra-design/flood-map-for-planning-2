@@ -1,5 +1,5 @@
 /*!
- * @esri/arcgis-html-sanitizer - v4.1.0-next.3 - Wed Sep 25 2024 10:04:57 GMT-0400 (Eastern Daylight Time)
+ * @esri/arcgis-html-sanitizer - v4.1.0 - Tue Dec 03 2024 09:13:28 GMT-0500 (Eastern Standard Time)
  * Copyright (c) 2024 - Environmental Systems Research Institute, Inc.
  * Apache-2.0
  * 
@@ -12,7 +12,7 @@
 /*!
  * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
  * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
- * v2.13.2
+ * v2.13.0
  */
 
 /*! *****************************************************************************

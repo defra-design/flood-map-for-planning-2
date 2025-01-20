@@ -65,6 +65,16 @@ const surfaceWaterStyleLayers = [
 ]
 
 getDefraMapConfig().then((defraMapConfig) => {
+
+  // Temp fix until 0.5.0
+  // Map will not load if localStorage basemap is not one of default OR dark
+  // but 0.3.0 sets the value to 'default,light', which screws up
+  // the map component after an upgrade to 0.4.0
+  const basemap = window.localStorage.getItem('basemap')
+  if (basemap !== 'default' && basemap !== 'dark') {
+    window.localStorage.removeItem('basemap')
+  }
+
   const getVectorTileUrl = (layerName) => `${defraMapConfig.agolVectorTileUrl}/${layerName + defraMapConfig.layerNameSuffix}/VectorTileServer`
   const getFeatureLayerUrl = (layerName) => `${defraMapConfig.agolServiceUrl}/${layerName}/FeatureServer`
   const getModelFeatureLayerUrl = (layerName) => `${defraMapConfig.agolServiceUrl}/${layerName + defraMapConfig.layerNameSuffix}/FeatureServer`
@@ -363,7 +373,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     maxZoom: 20,
     centre: [340367, 322766],
     height: '100%',
-    hasGeoLocation: true,
+    hasGeoLocation: false,
     framework: 'esri',
     symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers],
     requestCallback: getRequest,
