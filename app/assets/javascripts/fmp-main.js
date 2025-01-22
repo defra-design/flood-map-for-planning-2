@@ -253,7 +253,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneLight, nonFloodZoneDark],
     'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneLight, nonFloodZoneDark]
   }
-
+  
   const fLayers = [
     {
       name: 'nat_defences',
@@ -376,7 +376,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     search: {
       label: 'Search for a place',
       isAutocomplete: true,
-      isExpanded: false
+      country: 'england'
     },
     legend: {
       width: '280px',
