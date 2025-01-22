@@ -79,5 +79,7 @@ export const getDefraMapConfig = async () => ({
   agolServiceUrl: "https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
   agolVectorTileUrl: "https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
   mapStyleUrl: '/styles/OS_VTS_27700_Open_Outdoor.json',
-  darkMapStyleUrl: '/styles/OS_VTS_27700_Open_Dark.json'
+  darkMapStyleUrl: '/styles/OS_VTS_27700_Open_Dark.json',
+  masterMapUrl: '/styles/polygon-default.json',
+  masterMapDarkUrl: '/styles/polygon-dark.json'
 })
