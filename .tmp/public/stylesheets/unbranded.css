@@ -8087,6 +8087,10 @@ p + .govuk-heading-s,
   display: none;
 }
 
+#map-map-container {
+  cursor: pointer;
+}
+
 .flood-map {
   display: flex;
   flex-direction: column;
