@@ -386,7 +386,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     search: {
       label: 'Search for a place',
       isAutocomplete: true,
-      isExpanded: false
+      country: 'england'
     },
     legend: {
       width: '280px',
