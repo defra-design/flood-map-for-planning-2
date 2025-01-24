@@ -27,13 +27,13 @@ const keyItemDefinitions = {
     id: 'fsa',
     label: 'Water storage',
     icon: symbols.waterStorageAreas,
-    fill: 'default: #12393d, dark: #ffffff'
+    fill: 'default: #12393d, dark: #c979a9'
   },
   floodDefences: {
     id: 'fd',
     label: 'Flood defence',
     icon: symbols.floodDefences,
-    fill: 'default: #12393d, dark: #ffffff'
+    fill: '#12393d, dark: #c979a9'
   },
   mainRivers: {
     id: 'mainr',
@@ -273,7 +273,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         symbol: {
           type: 'simple-line',
           width: '3px',
-          color: 'default: #12393d, dark: #ffffff'
+          color: '#12393d'
         }
       }
     },
@@ -285,9 +285,9 @@ getDefraMapConfig().then((defraMapConfig) => {
         symbol: {
           type: 'simple-fill',
           style: 'diagonal-cross',
-          color: 'default: #12393d, dark: #ffffff',
+          color: '#12393d',
           outline: {
-            color: 'default: #12393d, dark: #ffffff',
+            color: '#12393d',
             width: 1
           }
         }
@@ -771,7 +771,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.segments.includes('cl')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      extraContent += `<h2 class="govuk-heading-s govuk-!-font-size-16">Climate change allowances</h2>
+      extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
           <ul class="govuk-list govuk-list--bullet">
             <li class='govuk-body-s'>
               the allowances used have been chosen from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">Flood risk assessment: climate change allowances</a>
@@ -790,7 +790,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.segments.includes('fz')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      contentFloodZones += '<h2 class="govuk-heading-s govuk-!-font-size-16">Updates to Flood zones 2 and 3</h2> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
+      contentFloodZones += '<p class="govuk-body-s"><strong>Updates to Flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
     }
 
     // finally tell the map-component to redraw the info 
