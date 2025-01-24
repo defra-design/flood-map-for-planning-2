@@ -263,7 +263,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneLight, nonFloodZoneDark],
     'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneLight, nonFloodZoneDark]
   }
-
+  
   const fLayers = [
     {
       name: 'nat_defences',
