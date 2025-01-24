@@ -8091,6 +8091,12 @@ p + .govuk-heading-s,
   cursor: pointer;
 }
 
+@media (max-width: 40.0525em) {
+  .govuk-cookie-banner, .govuk-header {
+    display: none;
+  }
+}
+
 .flood-map {
   display: flex;
   flex-direction: column;

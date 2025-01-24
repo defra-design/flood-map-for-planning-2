@@ -8,6 +8,12 @@
     cursor: pointer;
 }
 
+.govuk-cookie-banner, .govuk-header {
+    @include mq ($until: tablet) {
+        display:none;
+    }
+}
+
 .flood-map {
     display: flex;
     flex-direction: column;

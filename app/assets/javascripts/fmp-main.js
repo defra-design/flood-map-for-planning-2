@@ -27,19 +27,19 @@ const keyItemDefinitions = {
     id: 'fsa',
     label: 'Water storage',
     icon: symbols.waterStorageAreas,
-    fill: 'default: #12393d, dark: #12393d'
+    fill: 'default: #12393d, dark: #ffffff'
   },
   floodDefences: {
     id: 'fd',
     label: 'Flood defence',
     icon: symbols.floodDefences,
-    fill: '#12393d'
+    fill: 'default: #12393d, dark: #ffffff'
   },
   mainRivers: {
     id: 'mainr',
     label: 'Main Rivers',
     icon: symbols.mainRivers,
-    fill: '#f47738'
+    fill: '#f47738' 
   },
   floodExtents: {
     // id: 'fz2',
@@ -273,7 +273,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         symbol: {
           type: 'simple-line',
           width: '3px',
-          color: '#12393d'
+          color: 'default: #12393d, dark: #ffffff'
         }
       }
     },
@@ -285,9 +285,9 @@ getDefraMapConfig().then((defraMapConfig) => {
         symbol: {
           type: 'simple-fill',
           style: 'diagonal-cross',
-          color: '#12393d',
+          color: 'default: #12393d, dark: #ffffff',
           outline: {
-            color: '#12393d',
+            color: 'default: #12393d, dark: #ffffff',
             width: 1
           }
         }
