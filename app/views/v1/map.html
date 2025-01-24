@@ -8,12 +8,7 @@
 
 {% block bodyStart %}
 <script>
-  /* Only needed if buttonFirst or hyrbid */
-  if (location.search.indexOf('view=map') >= 0) {
-    if (window.matchMedia('(max-width: 640px)').matches) { // Condition need for Hybrid
-      document.body.classList.add('fm-js-hidden')
-    }
-  }
+  document.body.classList.add('fm-js-hidden')
 </script>
 {% endblock %}
 
