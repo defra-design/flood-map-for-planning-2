@@ -411,7 +411,8 @@ getDefraMapConfig().then((defraMapConfig) => {
       tokenCallback: getEsriToken,
       interceptorsCallback: getInterceptors,
       defaultUrl: defraMapConfig.mapStyleUrl,
-      darkUrl: defraMapConfig.darkMapStyleUrl
+      darkUrl: defraMapConfig.darkMapStyleUrl,
+      attribution: 'OS data © Crown copyright and database rights 2025'
     },
     search: {
       label: 'Search for a place',
