@@ -412,7 +412,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       interceptorsCallback: getInterceptors,
       defaultUrl: defraMapConfig.mapStyleUrl,
       darkUrl: defraMapConfig.darkMapStyleUrl,
-      attribution: 'OS data © Crown copyright and database rights 2025'
+      attribution:`OS data © Crown copyright and database rights ${(new Date()).getFullYear()} OS AB0123456789`,
     },
     search: {
       label: 'Search for a place',

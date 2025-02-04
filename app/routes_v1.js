@@ -47,33 +47,33 @@ res.redirect("https://www.gov.uk/check-long-term-flood-risk")
 }
 })
 
-// IN PROGRESS ============
-router.get('/contact', function (req, res) {
-  res.render(folder + '/contact',{
-    "formAction":"/"+ folder + "/contact-check"
-  })
-})
+// // IN PROGRESS ============
+// router.get('/contact', function (req, res) {
+//   res.render(folder + '/contact',{
+//     "formAction":"/"+ folder + "/contact-check"
+//   })
+// })
 
-router.post('/contact', function (req, res) {
-  res.render(folder + '/contact',{
-    "formAction":"/"+ folder + "/contact-check"
-  })
-})
+// router.post('/contact', function (req, res) {
+//   res.render(folder + '/contact',{
+//     "formAction":"/"+ folder + "/contact-check"
+//   })
+// })
 
-// dirceting to correct flood zone
-router.post('/contact-check', function (req, res) {
-  var floodZone = req.body.floodZone
+// // dirceting to correct flood zone
+// router.post('/contact-check', function (req, res) {
+//   var floodZone = req.body.floodZone
 
-    if (req.session.data.floodZone==="fz1") {
-      res.redirect("/"+ folder + "/summary-fz3")
-    } else if (req.session.data.floodZone==="fz2"){
-      res.redirect("/"+ folder + "/summary-fz3")
-    } else if (req.session.data.floodZone==="fz3"){
-      res.redirect("/"+ folder + "/summary-fz3")    
-    } else if (req.session.data.floodZone==="fzd"){
-      res.redirect("/"+ folder + "/summary-fzd")  
-    }
-})
+//     if (req.session.data.floodZone==="fz1") {
+//       res.redirect("/"+ folder + "/summary-fz3")
+//     } else if (req.session.data.floodZone==="fz2"){
+//       res.redirect("/"+ folder + "/summary-fz3")
+//     } else if (req.session.data.floodZone==="fz3"){
+//       res.redirect("/"+ folder + "/summary-fz3")    
+//     } else if (req.session.data.floodZone==="fzd"){
+//       res.redirect("/"+ folder + "/summary-fzd")  
+//     }
+// })
 
 
 module.exports = router;
