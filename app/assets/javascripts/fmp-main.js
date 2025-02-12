@@ -394,29 +394,46 @@ getDefraMapConfig().then((defraMapConfig) => {
   }
 
   // const depthMap = ['over 2.3', '2.3', '1.2', '0.9', '0.6', '0.3', '0.15']
+  const osAccountNumber = 'AC0000807064' // FCRM-5609 is raised to add this to a constants file
+  const currentYear = new Date().getFullYear()
+  const osAttribution = `Contains OS data © Crown copyright and database rights ${currentYear}`
+  const osMasterMapAttribution = `© Crown copyright and database rights ${currentYear} OS ${osAccountNumber}`
+  // FCRM-5599 Use these hyperlinks once the map component supports embedding them as markup (currently embeds as text)
+  // const osAttributionHyperlink = `<a href="os-terms" class="os-credits__link"> Contains OS data &copy; Crown copyright and database rights >
+  // const osMasterMapAttributionHyperlink = `<a href="os-terms" class="os-credits__link">&copy; Crown copyright and database rights ${current>
+
 
   const floodMap = new FloodMap('map', {
-    type: 'inline',
+    behaviour: 'inline',
     place: 'England',
     zoom: 7.7,
     minZoom: 6,
     maxZoom: 20,
-    centre: [340367, 322766],
+    center: [340367, 322766],
+    maxExtent: [0, 0, 700000, 1300000],
     height: '100%',
     hasGeoLocation: false,
     framework: 'esri',
     symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers],
-    requestCallback: getRequest,
-    styles: {
-      tokenCallback: getEsriToken,
-      interceptorsCallback: getInterceptors,
-      defaultUrl: defraMapConfig.mapStyleUrl,
-      darkUrl: defraMapConfig.darkMapStyleUrl,
-      attribution:`OS data © Crown copyright and database rights ${(new Date()).getFullYear()} OS AB0123456789`,
-    },
+    transformSearchRequest: getRequest,
+    interceptorsCallback: getInterceptors,
+    tokenCallback: getEsriToken,
+    styles: [
+      {
+        name: 'default',
+        url: defraMapConfig.mapStyleUrl,
+        attribution: osAttribution,
+      },
+      {
+        name: 'dark',
+        url: defraMapConfig.darkMapStyleUrl,
+        attribution: osAttribution,
+      }
+    ],
     search: {
       label: 'Search for a place',
       isAutocomplete: true,
+      isExpanded: false,
       country: 'england'
     },
     legend: {
@@ -642,7 +659,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         }
       ]
     },
-    queryPolygon: {
+    queryArea: {
       heading: 'Get a boundary report',
       startLabel: 'Add site boundary',
       editLabel: 'Edit site boundary',
@@ -652,12 +669,24 @@ getDefraMapConfig().then((defraMapConfig) => {
       helpLabel: 'How to draw a shape',
       keyLabel: 'Report area',
       html: '<h3 class="govuk-heading-m govuk-!-font-size-16">For an approximate site boundary</h3> <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><h3 class="govuk-heading-m govuk-!-font-size-16">For a more detailed site boundary:</h3><ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square until it matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
-      defaultUrl: defraMapConfig.masterMapUrl,
-      darkUrl: defraMapConfig.masterMapDarkUrl,
       minZoom: 19,
-      maxZoom: 21
+      maxZoom: 21,
+      styles: [
+        {
+          name: 'default',
+          url: defraMapConfig.masterMapUrl,
+          attribution: osMasterMapAttribution
+        },
+        {
+          name: 'dark',
+          url: defraMapConfig.masterMapDarkUrl,
+          attribution: osMasterMapAttribution
+        }
+      ]
     },
-    queryPixel: vtLayers.map(vtLayer => vtLayer.name)
+    queryLocation: {
+      layers: vtLayers.map(vtLayer => vtLayer.name)
+    }
   })
 
   const mapState = {
@@ -673,10 +702,10 @@ getDefraMapConfig().then((defraMapConfig) => {
     VectorTileLayer = floodMap.modules.VectorTileLayer
     FeatureLayer = floodMap.modules.FeatureLayer
     Point = floodMap.modules.Point
-    const { mode, segments, layers, basemap } = e.detail
+    const { mode, segments, layers, style } = e.detail
     mapState.segments = segments
     mapState.layers = layers
-    mapState.isDark = basemap === 'dark'
+    mapState.isDark = style?.name === 'dark'
     mapState.isRamp = layers.includes('md')
     console.log('ready mapState', mapState)
     await addLayers()
@@ -692,14 +721,14 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   // Listen for mode, segments, layers or style changes
   floodMap.addEventListener('change', e => {
-    const { type, mode, segments, layers, basemap } = e.detail
+    const { type, mode, segments, layers, style } = e.detail
     mapState.segments = segments
     mapState.layers = layers
-    mapState.isDark = basemap === 'dark'
+    mapState.isDark = style === 'dark'
     mapState.isRamp = layers.includes('md')
     console.log('onChange mapState', mapState)
     if (['layer', 'segment'].includes(type)) {
-      floodMap.info = null
+      floodMap.setInfo(null)
     }
     const map = floodMap.map
     toggleVisibility(type, mode, segments, layers, map, mapState.isDark)
@@ -728,9 +757,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       units: 'meters',
       returnGeometry: false
     })
-    console.log('results', results)
     const attributes = results.features.length ? results.features[0].attributes : undefined
-    console.log('attributes', attributes)
     return attributes
   }
 
@@ -827,6 +854,6 @@ getDefraMapConfig().then((defraMapConfig) => {
     // finally tell the map-component to redraw the info 
     // using the listContents that have been built.
     // The HTML markup that wraps the info is defined in the file infoRenderer
-    floodMap.info = renderInfo(renderList(listContents), contentFloodZones, extraContent, 'Information')
+    floodMap.setInfo(renderInfo(renderList(listContents), contentFloodZones, extraContent, 'Information'))
   })
 })
