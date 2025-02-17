@@ -439,12 +439,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     legend: {
       width: '280px',
       isVisible: true,
-      title: 'Menu',
+  //    title: 'Menu',
       keyWidth: '360px',
       keyDisplay: 'min',
       segments: [{
         heading: 'Datasets',
-        collapse: 'collapse',
+  //      collapse: 'collapse',
         items: [
           {
             id: 'fz',
@@ -471,7 +471,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'tf',
         heading: 'Time frame',
-        collapse: 'collapse',
+  //      collapse: 'collapse',
         parentIds: ['rsd', 'rsu'],
         items: [
           {
@@ -487,7 +487,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af1',
         heading: 'Annual likelihood of flooding',
-        collapse: 'collapse',
+  //      collapse: 'collapse',
         parentIds: ['rsd'],
         items: [
           {
@@ -507,7 +507,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'sw1',
         heading: 'Annual likelihood of flooding',
-        collapse: 'collapse',
+  //      collapse: 'collapse',
         parentIds: ['sw'],
         items: [
           {
@@ -527,7 +527,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af2',
         heading: 'Annual likelihood of flooding',
-        collapse: 'collapse',
+  //      collapse: 'collapse',
         parentIds: ['rsu'],
         items: [
           {
@@ -627,7 +627,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['fz'],
-          collapse: 'collapse',
+  //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodZone2,
             keyItemDefinitions.floodZone3,
@@ -639,7 +639,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['rsd', 'rsu', 'sw'],
-          collapse: 'collapse',
+  //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
@@ -650,7 +650,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['mo'],
-          collapse: 'collapse',
+    //      collapse: 'collapse',
           items: [
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
