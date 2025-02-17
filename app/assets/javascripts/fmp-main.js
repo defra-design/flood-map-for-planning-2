@@ -444,7 +444,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       keyDisplay: 'min',
       segments: [{
         heading: 'Datasets',
-        collapse: 'collapse',
+        collapse: 'expanded',
         items: [
           {
             id: 'fz',
@@ -627,7 +627,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['fz'],
-          collapse: 'collapse',
+          collapse: 'expanded',
           items: [
             keyItemDefinitions.floodZone2,
             keyItemDefinitions.floodZone3,
@@ -639,7 +639,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['rsd', 'rsu', 'sw'],
-          collapse: 'collapse',
+          collapse: 'expanded',
           items: [
             keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
@@ -650,7 +650,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: 'Map features',
           parentIds: ['mo'],
-          collapse: 'collapse',
+          collapse: 'expanded',
           items: [
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
