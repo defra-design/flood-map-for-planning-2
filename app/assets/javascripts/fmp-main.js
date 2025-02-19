@@ -100,120 +100,122 @@ getDefraMapConfig().then((defraMapConfig) => {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended',
       q: '',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended/1'],
-      likelihoodLabel: terms.likelihood.rsHigh,
-      chanceLabel: terms.chance.rsHigh
-      //likelihoodchanceLabel: terms.likelihood.rsHigh,
+      //likelihoodLabel: terms.likelihood.rsHigh,
+      //chanceLabel: terms.chance.rsHigh
+      likelihoodchanceLabel: terms.likelihood.rsHigh,
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_Depth',
       q: 'rsdpdhr',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended Depth/1'],
-      likelihoodLabel: terms.likelihood.rsHigh,
-      chanceLabel: terms.chance.rsHigh
-      //likelihoodchanceLabel: terms.likelihoodchance.rsHigh
+      //likelihoodLabel: terms.likelihood.rsHigh,
+      //chanceLabel: terms.chance.rsHigh
+      likelihoodchanceLabel: terms.likelihoodchance.rsHigh
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Defended_Depth',
       q: 'rsdpdmr',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Defended Depth/1'],
-      likelihoodLabel: terms.likelihood.rsMedium,
-      chanceLabel: terms.chance.rsMedium
-      // likelihoodchanceLabel: terms.likelihoodchance.rsMedium
+      //likelihoodLabel: terms.likelihood.rsMedium,
+      //chanceLabel: terms.chance.rsMedium
+      likelihoodchanceLabel: terms.likelihoodchance.rsMedium
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Undefended_Depth',
       q: 'rsupdmr',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Undefended Depth/1'],
-      likelihoodLabel: terms.likelihood.rsMedium,
-      chanceLabel: terms.chance.rsMedium
-      // likelihoodchanceLabel: terms.likelihoodchance.rsMedium
+      //likelihoodLabel: terms.likelihood.rsMedium,
+      //chanceLabel: terms.chance.rsMedium
+      likelihoodchanceLabel: terms.likelihoodchance.rsMedium
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Defended_Depth',
       q: 'rsdpdlr',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Defended Depth/1'],
-      likelihoodLabel: terms.likelihood.rsLow,
-      chanceLabel: terms.chance.rsLow
-      // likelihoodchanceLabel: terms.likelihoodchance.rsLow
+      //likelihoodLabel: terms.likelihood.rsLow,
+      //chanceLabel: terms.chance.rsLow
+      likelihoodchanceLabel: terms.likelihoodchance.rsLow
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Undefended_Depth',
       q: 'rsupdlr',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth/1'],
-      likelihoodLabel: terms.likelihood.rsLow,
-      chanceLabel: terms.chance.rsLow
-      // likelihoodchanceLabel: terms.likelihoodchance.rsLow
+      //likelihoodLabel: terms.likelihood.rsLow,
+      //chanceLabel: terms.chance.rsLow
+      likelihoodchanceLabel: terms.likelihoodchance.rsLow
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_CCP1',
       q: '',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsHigh,
-      chanceLabel: terms.chance.rsHigh
-      // likelihoodchanceLabel: terms.likelihoodchance.rsHigh
+      //likelihoodLabel: terms.likelihood.rsHigh,
+      //chanceLabel: terms.chance.rsHigh
+      likelihoodchanceLabel: terms.likelihoodchance.rsHigh
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_Depth_CCP1',
       q: 'rsdclhr',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended Depth CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsHigh,
-      chanceLabel: terms.chance.rsHigh
-      // likelihoodchanceLabel: terms.likelihoodchance.rsHigh
+      //likelihoodLabel: terms.likelihood.rsHigh,
+      //chanceLabel: terms.chance.rsHigh
+      likelihoodchanceLabel: terms.likelihoodchance.rsHigh
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Defended_Depth_CCP1',
       q: 'rsdclmr',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Defended Depth CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsMedium,
-      chanceLabel: terms.chance.rsMedium
-      // likelihoodchanceLabel: terms.likelihoodchance.rsMedium
+      //likelihoodLabel: terms.likelihood.rsMedium,
+      //chanceLabel: terms.chance.rsMedium
+      likelihoodchanceLabel: terms.likelihoodchance.rsMedium
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Undefended_Depth_CCP1',
       q: 'rsuclmr',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Undefended Depth CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsMedium,
-      chanceLabel: terms.chance.rsMedium
-      //likelihoodchanceLabel: terms.likelihoodchance.rsMedium
+      //likelihoodLabel: terms.likelihood.rsMedium,
+      //chanceLabel: terms.chance.rsMedium
+      likelihoodchanceLabel: terms.likelihoodchance.rsMedium
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Defended_Depth_CCP1',
       q: 'rsdcllr',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Defended Depth CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsLow,
-      chanceLabel: terms.chance.rsLow
-      //likelihoodchanceLabel: terms.likelihoodchance.rsLow
+      //likelihoodLabel: terms.likelihood.rsLow,
+      //chanceLabel: terms.chance.rsLow
+      likelihoodchanceLabel: terms.likelihoodchance.rsLow
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Undefended_Depth_CCP1',
       q: 'rsucllr',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth CCP1/1'],
-      likelihoodLabel: terms.likelihood.rsLow,
-      chanceLabel: terms.chance.rsLow
-      // likelihoodchanceLabel: terms.likelihoodchance.rsLow
+      //likelihoodLabel: terms.likelihood.rsLow,
+      //chanceLabel: terms.chance.rsLow
+      likelihoodchanceLabel: terms.likelihoodchance.rsLow
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_Low',
       q: 'swlr',
       styleLayers: surfaceWaterStyleLayers,
-      likelihoodLabel: terms.likelihood.swLow,
-      chanceLabel: terms.chance.swLow
-      // likelihoodchanceLabel: terms.likelihoodchance.swLow
+      //likelihoodLabel: terms.likelihood.swLow,
+      //chanceLabel: terms.chance.swLow
+      likelihoodchanceLabel: terms.likelihoodchance.swLow
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_Medium',
       q: 'swmr',
       styleLayers: surfaceWaterStyleLayers,
-      likelihoodLabel: terms.likelihood.swMedium,
-      chanceLabel: terms.chance.swMedium
-      // likelihoodchanceLabel: terms.likelihoodchance.swMedium
+      //likelihoodLabel: terms.likelihood.swMedium,
+      //chanceLabel: terms.chance.swMedium
+      likelihoodchanceLabel: terms.likelihoodchance.swMedium
     },
     {
       name: 'Risk_of_Flooding_from_Surface_Water_High',
       q: 'swhr',
-      styleLayers: surfaceWaterStyleLayers,
-      likelihoodLabel: terms.likelihood.swHigh,
-      chanceLabel: terms.chance.swHigh
+     styleLayers: surfaceWaterStyleLayers,
+     // likelihoodLabel: terms.likelihood.swHigh,
+    //chanceLabel: terms.chance.swHigh,
+      likelihoodchanceLabel: terms.likelihoodchance.swHigh
+
     }
   ]
 
@@ -669,7 +671,8 @@ getDefraMapConfig().then((defraMapConfig) => {
       helpLabel: 'How to draw a shape',
       keyLabel: 'Report area',
       html: '<h3 class="govuk-heading-m govuk-!-font-size-16">For an approximate site boundary</h3> <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><h3 class="govuk-heading-m govuk-!-font-size-16">For a more detailed site boundary:</h3><ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square until it matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
-      minZoom: 19,
+      minZoom: 18,
+      //min zoom update to edit boundary zoom restriction
       maxZoom: 21,
       styles: [
         {
