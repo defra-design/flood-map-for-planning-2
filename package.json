@@ -7,7 +7,7 @@
   },
   "dependencies": {
     "@arcgis/core": "^4.31.0",
-    "@defra/flood-map": "^0.6.2",
+    "@defra/flood-map": "^0.6.3",
     "@govuk-prototype-kit/common-templates": "2.0.1",
     "@turf/distance": "^7.2.0",
     "govuk-frontend": "5.4.0",
