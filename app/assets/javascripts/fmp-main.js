@@ -851,7 +851,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.segments.includes('fz')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      contentFloodZones += '<p class="govuk-body-s"><strong>Updates to Flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
+      contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
     }
 
     // finally tell the map-component to redraw the info 
