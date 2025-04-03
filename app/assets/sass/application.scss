@@ -4,9 +4,12 @@
 // 
 
 // Add extra styles here
+// #map-map-container {
+//     cursor: pointer;
+// }
+
 #map-map-container {
-    cursor: pointer;
-}
+    cursor:crosshair;}
 
 .govuk-cookie-banner, .govuk-header {
     @include mq ($until: tablet) {
