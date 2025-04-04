@@ -49,9 +49,9 @@ How you can use the data
               <dd class="govuk-summary-list__value">
                 <p class="govuk-body">To identify the need for Flood Risk Assessment use:</p>
                 <ul class="govuk-list govuk-list--bullet">
-                  <li>Flood zones 2 and 3</li>
-                  <li>Water storage areas</li>
-                  <li>All rivers and sea, and surface water layers</li>
+                  <li>flood zones 2 and 3</li>
+                  <li>water storage areas</li>
+                  <li>all rivers and sea, and surface water layers</li>
                 </ul>
                 </dd>
 
@@ -84,10 +84,10 @@ How you can use the data
             <dd class="govuk-summary-list__value">
             <p class="govuk-body">To inform application of exception and sequential test use:</p>
                 <ul class="govuk-list govuk-list--bullet">
-                  <li>Flood zones 2 and 3</li>
-                  <li>Defences</li>
-                  <li>All rivers and sea, and surface water layers</li>
-                  <li>Water storage areas**</li>
+                  <li>flood zones 2 and 3</li>
+                  <li>defences</li>
+                  <li>all rivers and sea, and surface water layers</li>
+                  <li>water storage areas (if local planning authority’s strategic flood risk assessment defines as Flood Zone 3b)</li>
                 </ul>
                 </dd>
 
@@ -102,9 +102,9 @@ How you can use the data
   <dd class="govuk-summary-list__value">
   <p class="govuk-body">To identify the need for exception test use:</p>
       <ul class="govuk-list govuk-list--bullet">
-        <li>Flood zones 2 and 3</li>
-        <li>water storage areas**</li>
-        <li>Rivers and sea 3.3%**</li>
+        <li>flood zones 2 and 3</li>
+        <li>water storage areas (if local planning authority’s strategic flood risk assessment defines as Flood Zone 3b)</li>
+        <li>rivers and sea 3.3% (if local planning authority’s strategic flood risk assessment defines as Flood Zone 3b)</li>
       </ul>
       </dd>
 </div>
@@ -115,9 +115,9 @@ How you can use the data
   <dd class="govuk-summary-list__value">
     <p class="govuk-body">To identify the need for sequential test use:</p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>Flood zones 2 an 3</li>
-      <li>Water storage areas**</li>
-      <li>All rivers and sea, and surface water layes</li>
+      <li>flood zones 2 an 3</li>
+      <li>water storage areas (if local planning authority’s strategic flood risk assessment defines as Flood Zone 3b)</li>
+      <li>all rivers and sea, and surface water layes</li>
     </ul>
       </dd>
 </div>
@@ -141,10 +141,10 @@ How you can use the data
           <div class="govuk-summary-list__row">
 
             <dd class="govuk-summary-list__value">
-              <p class="govuk-body">To Inform local planning authority designation of 3b (functional floodplain) in strategic flood risk assessment use:</p>
+              <p class="govuk-body">To Inform local planning authority designation of 3b (functional floodplain), in strategic flood risk assessment, subject to local agreement with the Environment Agency, use:</p>
               <ul class="govuk-list govuk-list--bullet">
-                <li>water storage areas***</li>
-                <li>Rivers and sea 3.3%***</li>
+                <li>water storage area</li>
+                <li>rivers and sea 3.3%</li>
               </ul>
                 </dd>
 
@@ -173,9 +173,9 @@ How you can use the data
             <dd class="govuk-summary-list__value">
               <p class="govuk-body">To check development incompatible – <a href="">Table 2 PPG</a> use:</p>
               <ul class="govuk-list govuk-list--bullet">
-                <li>Flood zones 2 and 3</li>
-                <li>Water storage areas***</li>
-                <li>Rivers and sea 3.3%***</li>
+                <li>flood zones 2 and 3</li>
+                <li>water storage areas (subject to local agreement with the Environment Agency)</li>
+                <li>rivers and sea 3.3 (subject to local agreement with the Environment Agency)</li>
               </ul>
                 </dd>
 
@@ -199,31 +199,37 @@ How you can use the data
     
         </ul>
       </div>
+
+     
       <div class="govuk-summary-card__content">
         <dl class="govuk-summary-list">
           
 
           <div class="govuk-summary-list__row">
-
+            <dt class="govuk-summary-list__key">
+              Data that can be used to trigger for local planning authority to consult Environment Agency, or apply standing advice
+            </dt>
             <dd class="govuk-summary-list__value">
-              <p class="govuk-body">To trigger for local planning authority to consult Environment Agency or apply standing advice use:</p>
-              <ul class="govuk-list govuk-list--bullet">
-                <li>Flood zones*</li>
-                <li>Main rivers*</li>
-                <li>Water storage areas**</li>
-                <li>Rivers and sea 3.3%**</li>
-                <li>All Climate change Rivers and sea layers****</li>
-              </ul>
-                </dd>
+              <p class="govuk-body">Subject to apply the process set out in National flood Risk Standing Advice for local planning authorities:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>flood zones</li>
+              <li>main rivers</li>
+             </ul>
+            
+             <p class="govuk-body">If local planning authority’s strategic flood risk assessment defines as Flood Zone 3b:</p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li>water storage areas</li>
+              <li>rivers and sea 3.3%</li>
+            </ul>
 
-
-
+            <p class="govuk-body">All climate change rivers and sea layers if site location is FZ1, in which case, apply National flood risk standing advice for local planning authorities as if site were Flood Zone 2.</p>
+          </dd>
 
 </div>
 </div>
 </div>
 
-<p class="govuk-body">* subject to apply the process set out in National flood Risk Standing Advice for local planning authorities
+<!-- <p class="govuk-body">* subject to apply the process set out in National flood Risk Standing Advice for local planning authorities
 </p>
 <p class="govuk-body">
   ** If local planning authority’s strategic flood risk assessment defines as Flood Zone 3b
@@ -233,5 +239,5 @@ How you can use the data
 </p>
 <p class="govuk-body">
   **** Only if site location is FZ1, in which case, apply National flood risk standing advice for local planning authorities as if site were Flood Zone 2
-</p>
+</p> -->
 {% endblock %}
