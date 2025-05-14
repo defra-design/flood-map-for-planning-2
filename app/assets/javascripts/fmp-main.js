@@ -82,7 +82,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const vtLayers = [
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea',
-      q: 'fz',
+      q: 'fzpd',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1',
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1'
@@ -90,10 +90,11 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-      q: '',
+      q: 'fzcl',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 3/1',
-        'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 2/1'
+        'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 2/1',
+        'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1'
       ]
     },
     {
@@ -106,7 +107,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_Depth',
-      q: 'rsdpdhr',
+      q: '',
+      //q: 'rsdpdhr',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended Depth/1'],
       //likelihoodLabel: terms.likelihood.rsHigh,
       //chanceLabel: terms.chance.rsHigh
@@ -114,7 +116,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Defended_Depth',
-      q: 'rsdpdmr',
+      q: '',
+      //q: 'rsdpdmr',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Defended Depth/1'],
       //likelihoodLabel: terms.likelihood.rsMedium,
       //chanceLabel: terms.chance.rsMedium
@@ -122,7 +125,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Undefended_Depth',
-      q: 'rsupdmr',
+      //q: 'rsupdmr',
+      q: '',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Undefended Depth/1'],
       //likelihoodLabel: terms.likelihood.rsMedium,
       //chanceLabel: terms.chance.rsMedium
@@ -130,7 +134,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Defended_Depth',
-      q: 'rsdpdlr',
+      //q: 'rsdpdlr',
+      q: '',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Defended Depth/1'],
       //likelihoodLabel: terms.likelihood.rsLow,
       //chanceLabel: terms.chance.rsLow
@@ -138,7 +143,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Undefended_Depth',
-      q: 'rsupdlr',
+      //q: 'rsupdlr',
+      q: '',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth/1'],
       //likelihoodLabel: terms.likelihood.rsLow,
       //chanceLabel: terms.chance.rsLow
@@ -154,7 +160,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_30_Sea_1_in_30_Defended_Depth_CCP1',
-      q: 'rsdclhr',
+      //q: 'rsdclhr',
+      q: '',
       styleLayers: ['Rivers 1 in 30 Sea 1 in 30 Defended Depth CCP1/1'],
       //likelihoodLabel: terms.likelihood.rsHigh,
       //chanceLabel: terms.chance.rsHigh
@@ -162,7 +169,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Defended_Depth_CCP1',
-      q: 'rsdclmr',
+      //q: 'rsdclmr',
+      q: '',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Defended Depth CCP1/1'],
       //likelihoodLabel: terms.likelihood.rsMedium,
       //chanceLabel: terms.chance.rsMedium
@@ -170,7 +178,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_100_Sea_1_in_200_Undefended_Depth_CCP1',
-      q: 'rsuclmr',
+      //: 'rsuclmr',
+      q: '',
       styleLayers: ['Rivers 1 in 100 Sea 1 in 200 Undefended Depth CCP1/1'],
       //likelihoodLabel: terms.likelihood.rsMedium,
       //chanceLabel: terms.chance.rsMedium
@@ -178,7 +187,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Defended_Depth_CCP1',
-      q: 'rsdcllr',
+      //q: 'rsdcllr',
+      q: '',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Defended Depth CCP1/1'],
       //likelihoodLabel: terms.likelihood.rsLow,
       //chanceLabel: terms.chance.rsLow
@@ -186,7 +196,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Rivers_1_in_1000_Sea_1_in_1000_Undefended_Depth_CCP1',
-      q: 'rsucllr',
+      //q: 'rsucllr',
+      q: '',
       styleLayers: ['Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth CCP1/1'],
       //likelihoodLabel: terms.likelihood.rsLow,
       //chanceLabel: terms.chance.rsLow
@@ -224,6 +235,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 3/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 2/1': colours.floodZone2,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
     'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
     'Rivers 1 in 30 Sea 1 in 30 Defended Depth/1': colours.nonFloodZone,
     'Rivers 1 in 100 Sea 1 in 200 Defended Depth/1': colours.nonFloodZone,
@@ -452,14 +464,14 @@ getDefraMapConfig().then((defraMapConfig) => {
             id: 'fz',
             label: 'Flood zones 2 and 3'
           },
-          {
-            id: 'rsd',
-            label: 'River and sea with defences'
-          },
-          {
-            id: 'rsu',
-            label: 'River and sea without defences'
-          },
+          // {
+          //   id: 'rsd',
+          //   label: 'River and sea with defences'
+          // },
+          // {
+          //   id: 'rsu',
+          //   label: 'River and sea without defences'
+          // },
           {
             id: 'sw',
             label: 'Surface water'
@@ -474,7 +486,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         id: 'tf',
         heading: 'Time frame',
   //      collapse: 'collapse',
-        parentIds: ['rsd', 'rsu'],
+        parentIds: ['fz', 'rsd', 'rsu'],
         items: [
           {
             id: 'pd',
