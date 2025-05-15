@@ -9,7 +9,7 @@
 // }
 
 #map-map-container {
-    cursor:crosshair;}
+    cursor:pointer;}
 
 .govuk-cookie-banner, .govuk-header {
     @include mq ($until: tablet) {

@@ -8103,7 +8103,7 @@ p + .govuk-heading-s,
 }
 
 #map-map-container {
-  cursor: crosshair;
+  cursor: pointer;
 }
 
 @media (max-width: 40.0525em) {
