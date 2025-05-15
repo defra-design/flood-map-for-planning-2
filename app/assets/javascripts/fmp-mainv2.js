@@ -500,7 +500,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       },
       {
         id: 'tf',
-        heading: 'Time frame',
+        heading: 'Climate change',
   //      collapse: 'collapse',
         parentIds: ['fz', 'rsd', 'rsu'],
         items: [
@@ -510,7 +510,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'cl',
-            label: 'Climate change'
+            label: 'Years 2070 to 2125'
           }
         ]
       },
