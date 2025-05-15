@@ -24,6 +24,11 @@ const keyItemDefinitions = {
     label: 'Flood zone 3',
     fill: getKeyItemFill(colours.floodZone3)
   },
+  noData: {
+    // id: 'fz2',
+    label: 'No Data',
+    fill: getKeyItemFill(colours.floodZoneNoData)
+  },
   waterStorageAreas: {
     id: 'fsa',
     label: 'Water storage',
@@ -240,8 +245,8 @@ getDefraMapConfig().then((defraMapConfig) => {
   const paintProperties = {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': colours.floodZone2,
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 3/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 2/1': colours.floodZone2,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zone 3/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
     'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
     'Rivers 1 in 30 Sea 1 in 30 Defended Depth/1': colours.nonFloodZone,
@@ -652,6 +657,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           items: [
             keyItemDefinitions.floodZone2,
             keyItemDefinitions.floodZone3,
+            keyItemDefinitions.noData,
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
             keyItemDefinitions.mainRivers
