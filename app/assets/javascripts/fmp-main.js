@@ -56,6 +56,13 @@ const keyItemDefinitions = {
 // after a data upload to arcGis
 const floodZoneSymbolIndex = ['3', '2']
 
+const getFloodZoneFromFeature = (feature) => { 
+  if(feature.flood_zone === 'FZ2'){ return '2'}
+  if(feature.flood_zone === 'FZ3'){ return '3'}
+  if(feature.flood_zone){ return 'No Data'}
+  return floodZoneSymbolIndex[feature._symbol]
+}
+
 const surfaceWaterStyleLayers = [
   'Risk of Flooding from Surface Water Depth > 0mm/1',
   'Risk of Flooding from Surface Water Depth > 200mm/1',
@@ -803,7 +810,8 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     if (feature && feature._symbol !== undefined) {
       // This part is currently only applicable to Flood_Zones
-      const floodZone = floodZoneSymbolIndex[feature._symbol]
+      //const floodZone = floodZoneSymbolIndex[feature._symbol]
+      const floodZone = getFloodZoneFromFeature(feature)
       if (floodZone) {
         listContents.push(['Flood zone', floodZone])
         // call getModelFeatureLayer to get the flood source
