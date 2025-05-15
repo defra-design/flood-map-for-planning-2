@@ -473,8 +473,12 @@ getDefraMapConfig().then((defraMapConfig) => {
   //      collapse: 'collapse',
         items: [
           {
-            id: 'fz',
+            id: 'fzpd',
             label: 'Flood zones 2 and 3'
+          },
+          {
+            id: 'fzcl',
+            label: 'Flood zones 2 and 3 with climate change'
           },
           // {
           //   id: 'rsd',
@@ -652,7 +656,19 @@ getDefraMapConfig().then((defraMapConfig) => {
       //   },
         {
           heading: 'Map features',
-          parentIds: ['fz'],
+          parentIds: ['fzpd'],
+  //        collapse: 'collapse',
+          items: [
+            keyItemDefinitions.floodZone2,
+            keyItemDefinitions.floodZone3,
+            keyItemDefinitions.waterStorageAreas,
+            keyItemDefinitions.floodDefences,
+            keyItemDefinitions.mainRivers
+          ]
+        },
+        {
+          heading: 'Map features',
+          parentIds: ['fzcl'],
   //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodZone2,
@@ -855,7 +871,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let extraContent = ''
 
-    if (mapState.segments.includes('cl')) {
+    if (mapState.segments.includes('fzcl')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
@@ -874,7 +890,12 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let contentFloodZones = ''
 
-    if (mapState.segments.includes('fz')) {
+    if (mapState.segments.includes('fzpd')) {
+      // if you want more than one bit of extraContent, then keep appending it like this
+      // extraContent += 'Whatever else you want to be added' 
+      contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
+    }
+    if (mapState.segments.includes('fzcl')) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
