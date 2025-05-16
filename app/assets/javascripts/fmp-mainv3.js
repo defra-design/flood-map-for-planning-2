@@ -501,12 +501,11 @@ getDefraMapConfig().then((defraMapConfig) => {
         parentIds: ['fz'],
         items: [
           {
-            id: 'fz2',
-            label: 'Flood zone 2'
-          },
-          {
             id: 'fz3',
             label: 'Flood zone 3'
+          },          {
+            id: 'fz2',
+            label: 'Flood zone 2'
           }
         ]
       },
@@ -684,6 +683,30 @@ getDefraMapConfig().then((defraMapConfig) => {
   //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodZone2,
+            keyItemDefinitions.floodZone3,
+            keyItemDefinitions.noData,
+            keyItemDefinitions.waterStorageAreas,
+            keyItemDefinitions.floodDefences,
+            keyItemDefinitions.mainRivers
+          ]
+        },
+        {
+          heading: 'Map features',
+          parentIds: ['fz2'],
+  //        collapse: 'collapse',
+          items: [
+            keyItemDefinitions.floodZone3,
+            keyItemDefinitions.noData,
+            keyItemDefinitions.waterStorageAreas,
+            keyItemDefinitions.floodDefences,
+            keyItemDefinitions.mainRivers
+          ]
+        },
+        {
+          heading: 'Map features',
+          parentIds: ['fz3'],
+  //        collapse: 'collapse',
+          items: [
             keyItemDefinitions.floodZone3,
             keyItemDefinitions.noData,
             keyItemDefinitions.waterStorageAreas,
