@@ -63,13 +63,13 @@ const keyItemDefinitions = {
 // And  the feature sometimes contains flood_zone
 // So this is the best attempt at infering the flood zone correctly
 const floodZoneSymbolIndex = ['3', '2']
-const floodZoneCCSymbolIndex = ['2', '3']
+const floodZoneCCSymbolIndex = ['2', '3', 'No data']
 
-const getFloodZoneFromFeature = (feature) => { 
+const getFloodZoneFromFeature = (feature, mapState) => { 
   if(feature.flood_zone === 'FZ2'){ return '2'}
   if(feature.flood_zone === 'FZ3'){ return '3'}
-  if(feature.flood_zone){ return 'No Data'}
-  const symbolIndex = mapState.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
+  if(feature.flood_zone){ return 'No data'}
+  const symbolIndex = mapState?.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
   return symbolIndex[feature._symbol]
 }
 
@@ -854,7 +854,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (feature && feature._symbol !== undefined) {
       // This part is currently only applicable to Flood_Zones
       //const floodZone = floodZoneSymbolIndex[feature._symbol]
-      const floodZone = getFloodZoneFromFeature(feature)
+      const floodZone = getFloodZoneFromFeature(feature, mapState)
       if (floodZone) {
         listContents.push(['Flood zone', floodZone])
         // call getModelFeatureLayer to get the flood source
