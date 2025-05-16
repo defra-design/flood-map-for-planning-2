@@ -59,13 +59,18 @@ const keyItemDefinitions = {
 // and it is used to infer the flood zone that has been clicked on by a user.
 // On a previous data set, these values were in the reverse order so we need to verify that they remain correct
 // after a data upload to arcGis
+// Also the climateChange data is the opposite way round from the non climatechange one 
+// And  the feature sometimes contains flood_zone
+// So this is the best attempt at infering the flood zone correctly
 const floodZoneSymbolIndex = ['3', '2']
+const floodZoneCCSymbolIndex = ['2', '3']
 
 const getFloodZoneFromFeature = (feature) => { 
   if(feature.flood_zone === 'FZ2'){ return '2'}
   if(feature.flood_zone === 'FZ3'){ return '3'}
   if(feature.flood_zone){ return 'No Data'}
-  return floodZoneSymbolIndex[feature._symbol]
+  const symbolIndex = mapState.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
+  return symbolIndex[feature._symbol]
 }
 
 const surfaceWaterStyleLayers = [
@@ -755,6 +760,15 @@ getDefraMapConfig().then((defraMapConfig) => {
     segments: []
   }
 
+  const updateMapState = (segments, layers, style) => {
+    mapState.segments = segments
+    mapState.layers = layers
+    mapState.isDark = style?.name === 'dark'
+    mapState.isRamp = layers.includes('md')
+    mapState.isClimateChange = segments.includes('cl') || segments.includes('fzcl')
+    console.log('mapState: ', mapState)
+  }
+
   // Component is ready and we have access to map
   // We can listen for map events now, such as 'loaded'
   floodMap.addEventListener('ready', async e => {
@@ -762,11 +776,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     FeatureLayer = floodMap.modules.FeatureLayer
     Point = floodMap.modules.Point
     const { mode, segments, layers, style } = e.detail
-    mapState.segments = segments
-    mapState.layers = layers
-    mapState.isDark = style?.name === 'dark'
-    mapState.isRamp = layers.includes('md')
-    console.log('ready mapState', mapState)
+    updateMapState(segments, layers, style)
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
   })
@@ -781,11 +791,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   // Listen for mode, segments, layers or style changes
   floodMap.addEventListener('change', e => {
     const { type, mode, segments, layers, style } = e.detail
-    mapState.segments = segments
-    mapState.layers = layers
-    mapState.isDark = style === 'dark'
-    mapState.isRamp = layers.includes('md')
-    console.log('onChange mapState', mapState)
+    updateMapState(segments, layers, style)
     if (['layer', 'segment'].includes(type)) {
       floodMap.setInfo(null)
     }
@@ -840,7 +846,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     const listContents = [
       ['Easting and northing', `${Math.round(coord[0])},${Math.round(coord[1])}`],
-      ['Timeframe', mapState.segments.includes('cl') ? 'Climate change' : 'Present day']
+      ['Timeframe', mapState.isClimateChange ? 'Climate change' : 'Present day']
     ]
 
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
@@ -886,7 +892,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let extraContent = ''
 
-    if (mapState.segments.includes('cl')) {
+    if (mapState.isClimateChange) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
