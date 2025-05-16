@@ -24,7 +24,7 @@ const keyItemDefinitions = {
     label: 'Flood zone 3',
     fill: getKeyItemFill(colours.floodZone3)
   },
-  noData: {
+  floodZoneNoData: {
     // id: 'fz2',
     label: 'No Data',
     fill: getKeyItemFill(colours.floodZoneNoData)
@@ -94,7 +94,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const vtLayers = [
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea',
-      q: 'fzpd',
+      q: 'fzfzpd',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1',
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1'
@@ -102,7 +102,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-      q: 'fzcl',
+      q: 'fzfzcl',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1',
         'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1',
@@ -340,7 +340,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   }
   const getMapFeatureRenderer = (name) => {
     const mode = mapState.isDark ? 'dark' : 'default'
-    return mapFeatureRenderers[name][mode]
+    return mapFeatureRenderers[name]?.[mode]
   }
 
   const fLayers = [
@@ -363,6 +363,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
     vtLayer.styleLayers.forEach((styleLayerName) => {
+
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         const fillColour = paintProperties[styleLayerName][isDark ? 1 : 0]
@@ -382,6 +383,9 @@ getDefraMapConfig().then((defraMapConfig) => {
   }
   const addLayers = async () => {
     vtLayers.forEach((vtLayer) => {
+      if (!vtLayer.q) {
+        return
+      }
       const vectorTileLayer = new VectorTileLayer({
         id: vtLayer.name,
         url: getVectorTileUrl(vtLayer.name),
@@ -403,6 +407,9 @@ getDefraMapConfig().then((defraMapConfig) => {
   const toggleVisibility = (type, mode, segments, layers, map, isDark) => {
     const isDrawMode = ['frame', 'draw'].includes(mode)
     vtLayers.forEach((vtLayer, i) => {
+      if (!vtLayer.q) {
+        return
+      }
       const id = vtLayer.name
       const layer = map.findLayerById(id)
       const isVisible = !isDrawMode && segments.join('') === vtLayer.q
@@ -497,8 +504,22 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'tf',
         heading: 'Time frame',
-  //      collapse: 'collapse',
-        parentIds: ['fz', 'rsd', 'rsu'],
+        parentIds: ['fz'],
+        items: [
+          {
+            id: 'fzpd',
+            label: 'Present day'
+          },
+          {
+            id: 'fzcl',
+            label: 'Climate change'
+          }
+        ]
+      },
+      {
+        id: 'tf',
+        heading: 'Time frame',
+        parentIds: ['rsd', 'rsu'],
         items: [
           {
             id: 'pd',
@@ -650,20 +671,30 @@ getDefraMapConfig().then((defraMapConfig) => {
       //       keyItemDefinitions.floodDefences
       //     ]
       //   },
-        {
-          heading: 'Map features',
-          parentIds: ['fz'],
-  //        collapse: 'collapse',
-          items: [
-            keyItemDefinitions.floodZone2,
-            keyItemDefinitions.floodZone3,
-            keyItemDefinitions.noData,
-            keyItemDefinitions.waterStorageAreas,
-            keyItemDefinitions.floodDefences,
-            keyItemDefinitions.mainRivers
-          ]
-        },
-        {
+      {
+        heading: 'Map features',
+        parentIds: ['fzpd'],
+        items: [
+          keyItemDefinitions.floodZone2,
+          keyItemDefinitions.floodZone3,
+          keyItemDefinitions.waterStorageAreas,
+          keyItemDefinitions.floodDefences,
+          keyItemDefinitions.mainRivers
+        ]
+      },
+      {
+        heading: 'Map features',
+        parentIds: ['fzcl'],
+        items: [
+          keyItemDefinitions.floodZone2,
+          keyItemDefinitions.floodZone3,
+          keyItemDefinitions.floodZoneNoData,
+          keyItemDefinitions.waterStorageAreas,
+          keyItemDefinitions.floodDefences,
+          keyItemDefinitions.mainRivers
+        ]
+      },
+    {
           heading: 'Map features',
           parentIds: ['rsd', 'rsu', 'sw'],
   //        collapse: 'collapse',
