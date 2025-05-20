@@ -99,7 +99,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const vtLayers = [
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea',
-      q: 'fzfzpd',
+      q: window.FMP_MAP_VERSION === 1 ? 'fzfzpd' : 'fzpd',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1',
         'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1'
@@ -107,7 +107,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     {
       name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-      q: 'fzfzcl',
+      q:  window.FMP_MAP_VERSION === 1 ? 'fzfzcl' : 'fzcl',
       styleLayers: [
         'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1',
         'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1',
@@ -485,8 +485,12 @@ getDefraMapConfig().then((defraMapConfig) => {
   //      collapse: 'collapse',
         items: [
           {
-            id: 'fz',
+            id: window.FMP_MAP_VERSION === 1 ? 'fz' : 'fzpd',
             label: 'Flood zones 2 and 3'
+          },
+          {
+            id: 'fzcl',
+            label: 'Flood zones 2 and 3 with climate change'
           },
           // {
           //   id: 'rsd',
@@ -504,12 +508,17 @@ getDefraMapConfig().then((defraMapConfig) => {
             id: 'mo',
             label: 'None'
           }
-        ]
+        ].filter((item) => {
+          if (window.FMP_MAP_VERSION === 1 && item.id === 'fzcl') {
+            return false // remove 'fzcl' on version 1
+          }
+          return true
+        })
       },
       {
         id: 'tf',
         heading: 'Climate change',
-        parentIds: ['fz'],
+        parentIds: window.FMP_MAP_VERSION === 1 ? ['fz'] : ['DONT_SHOW'],
         items: [
           {
             id: 'fzpd',
@@ -757,7 +766,9 @@ getDefraMapConfig().then((defraMapConfig) => {
     isDark: false,
     isRamp: false,
     layers: [],
-    segments: []
+    segments: [],
+    isClimateChange: false,
+    isFloodZone: false
   }
 
   const updateMapState = (segments, layers, style) => {
@@ -766,6 +777,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     mapState.isDark = style?.name === 'dark'
     mapState.isRamp = layers.includes('md')
     mapState.isClimateChange = segments.includes('cl') || segments.includes('fzcl')
+    mapState.isFloodZone = segments.includes('fz') || segments.includes('fzcl') || segments.includes('fzpd')
     console.log('mapState: ', mapState)
   }
 
@@ -865,7 +877,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         }
       }
     } else {
-      if (mapState.segments.includes('fz')) {
+      if (mapState.isFloodZone) {
         // This part is applicable for Flood_Zones, when an area outside 
         // of a zone has been clicked
         listContents.push(['Flood zone', '1'])
@@ -911,7 +923,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let contentFloodZones = ''
 
-    if (mapState.segments.includes('fz')) {
+    if (mapState.isFloodZone) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
