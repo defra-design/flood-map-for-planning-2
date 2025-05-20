@@ -24,6 +24,16 @@ const keyItemDefinitions = {
     label: 'Flood zone 3',
     fill: getKeyItemFill(colours.floodZone3)
   },
+  floodZone2CC: {
+    // id: 'fz2',
+    label: 'Flood zone 2 with climate change',
+    fill: getKeyItemFill(colours.floodZone2)
+  },
+  floodZone3CC: {
+    // id: 'fz2',
+    label: 'Flood zone 3 with climate change',
+    fill: getKeyItemFill(colours.floodZone3)
+  },
   floodZoneNoData: {
     // id: 'fz2',
     label: 'No Data',
@@ -700,8 +710,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         heading: 'Map features',
         parentIds: ['fzcl'],
         items: [
-          keyItemDefinitions.floodZone2,
-          keyItemDefinitions.floodZone3,
+          keyItemDefinitions.floodZone2CC,
+          keyItemDefinitions.floodZone3CC,
           keyItemDefinitions.floodZoneNoData,
           keyItemDefinitions.waterStorageAreas,
           keyItemDefinitions.floodDefences,
