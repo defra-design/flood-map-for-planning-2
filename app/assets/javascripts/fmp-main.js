@@ -26,12 +26,12 @@ const keyItemDefinitions = {
   },
   floodZone2CC: {
     // id: 'fz2',
-    label: 'Flood zone 2 with climate change',
+    label: 'Flood zone 2 (2070 to 2125)',
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3CC: {
     // id: 'fz2',
-    label: 'Flood zone 3 with climate change',
+    label: "Flood zone 3 (2070 to 2125)",
     fill: getKeyItemFill(colours.floodZone3)
   },
   floodZoneNoData: {
@@ -500,7 +500,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Flood zones 2 and 3 with climate change'
+            label: 'Flood zones 2 and 3 (2070 to 2125)'
           },
           // {
           //   id: 'rsd',
@@ -536,7 +536,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Years 2070 to 2125'
+            label: 'Future risk (2070 to 2125)'
           }
         ]
       },
