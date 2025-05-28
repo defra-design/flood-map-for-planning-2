@@ -11,7 +11,8 @@ let visibleVtLayer
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
-  mainRivers: '/public/images/main-rivers.svg'
+  mainRivers: '/public/images/main-rivers.svg',
+  noData: '/public/images/no-data.svg',
 }
 
 const keyItemDefinitions = {
@@ -38,6 +39,7 @@ const keyItemDefinitions = {
   floodZoneNoData: {
     // id: 'fz2',
     label: 'No Data',
+    icon: symbols.noData,
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
   waterStorageAreas: {
@@ -464,7 +466,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     height: '100%',
     hasGeoLocation: false,
     framework: 'esri',
-    symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers],
+    symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers, symbols.noData],
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
     tokenCallback: getEsriToken,
