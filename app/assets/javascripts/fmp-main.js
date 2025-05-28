@@ -902,11 +902,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     ]
 
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
+    let floodZone
 
     if (feature && feature._symbol !== undefined) {
       // This part is currently only applicable to Flood_Zones
       //const floodZone = floodZoneSymbolIndex[feature._symbol]
-      const floodZone = getFloodZoneFromFeature(feature, mapState)
+      floodZone = getFloodZoneFromFeature(feature, mapState)
       if (floodZone) {
         listContents.push(['Flood zone', floodZone])
         // call getModelFeatureLayer to get the flood source
@@ -967,6 +968,10 @@ getDefraMapConfig().then((defraMapConfig) => {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
+
+      if (floodZone === 'No data') {
+        contentFloodZones += '<p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p>'
+      }
     }
 
     // finally tell the map-component to redraw the info 
