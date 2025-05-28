@@ -37,7 +37,7 @@ const keyItemDefinitions = {
   },
   floodZoneNoData: {
     // id: 'fz2',
-    label: 'No Data',
+    label: 'No data available',
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
   waterStorageAreas: {
@@ -538,7 +538,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Future risk (2070 to 2125)'
+            label: '2070 to 2125'
           }
         ]
       },
@@ -951,7 +951,7 @@ getDefraMapConfig().then((defraMapConfig) => {
               these have been taken from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">Flood risk assessment: climate change allowances</a>
             </li>
             <li class='govuk-body-s'>
-              river flooding uses the ‘central’ allowance – based on the 50th percentile for the 2080s epoch
+              river flooding uses the 'central' allowance, based on the 50th percentile for the 2080s epoch
             </li>
             <li class='govuk-body-s'>
               sea and tidal flooding uses the ‘upper end’ allowance – based on the 95th percentile for 2125
@@ -964,7 +964,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.isFloodZone) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
+      contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p><p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p> '
     }
 
     // finally tell the map-component to redraw the info 
