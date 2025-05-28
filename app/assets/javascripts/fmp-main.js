@@ -954,7 +954,7 @@ getDefraMapConfig().then((defraMapConfig) => {
               river flooding uses the 'central' allowance, based on the 50th percentile for the 2080s epoch
             </li>
             <li class='govuk-body-s'>
-              sea and tidal flooding uses the ‘upper end’ allowance – based on the 95th percentile for 2125
+              sea and tidal flooding uses the 'upper end' allowance, based on the 95th percentile for 2125
             </li>
           </ul>`
         } 
