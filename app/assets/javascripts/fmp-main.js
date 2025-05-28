@@ -11,8 +11,7 @@ let visibleVtLayer
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
-  mainRivers: '/public/images/main-rivers.svg',
-  noData: '/public/images/no-data.svg',
+  mainRivers: '/public/images/main-rivers.svg'
 }
 
 const keyItemDefinitions = {
@@ -38,8 +37,7 @@ const keyItemDefinitions = {
   },
   floodZoneNoData: {
     // id: 'fz2',
-    label: 'No Data',
-    icon: symbols.noData,
+    label: 'No data available',
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
   waterStorageAreas: {
@@ -466,7 +464,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     height: '100%',
     hasGeoLocation: false,
     framework: 'esri',
-    symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers, symbols.noData],
+    symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers],
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
     tokenCallback: getEsriToken,
@@ -540,7 +538,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Future risk (2070 to 2125)'
+            label: '2070 to 2125'
           }
         ]
       },
@@ -902,21 +900,18 @@ getDefraMapConfig().then((defraMapConfig) => {
     ]
 
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
-    let floodZone
 
     if (feature && feature._symbol !== undefined) {
       // This part is currently only applicable to Flood_Zones
       //const floodZone = floodZoneSymbolIndex[feature._symbol]
-      floodZone = getFloodZoneFromFeature(feature, mapState)
+      const floodZone = getFloodZoneFromFeature(feature, mapState)
       if (floodZone) {
         listContents.push(['Flood zone', floodZone])
         // call getModelFeatureLayer to get the flood source
         // (was previously using ModelOriginLayer but Lloyd said Feature Layer is better.)
-        if (floodZone !== 'No data') {
-          const attributes = await getModelFeatureLayer(coord, feature.layer)
-          if (attributes && attributes.flood_source) {
-            listContents.push(['Flood source', formatFloodSource(attributes.flood_source)])
-          }
+        const attributes = await getModelFeatureLayer(coord, feature.layer)
+        if (attributes && attributes.flood_source) {
+          listContents.push(['Flood source', formatFloodSource(attributes.flood_source)])
         }
       }
     } else {
@@ -947,7 +942,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let extraContent = ''
 
-    if (mapState.isClimateChange && floodZone !== 'No data') {
+    if (mapState.isClimateChange) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
@@ -956,7 +951,7 @@ getDefraMapConfig().then((defraMapConfig) => {
               these have been taken from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">Flood risk assessment: climate change allowances</a>
             </li>
             <li class='govuk-body-s'>
-              river flooding uses the ‘central’ allowance – based on the 50th percentile for the 2080s epoch
+              river flooding uses the 'central' allowance, based on the 50th percentile for the 2080s epoch
             </li>
             <li class='govuk-body-s'>
               sea and tidal flooding uses the ‘upper end’ allowance – based on the 95th percentile for 2125
@@ -969,12 +964,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.isFloodZone) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      if (floodZone === 'No data') {
-        contentFloodZones += '<p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p>'
-      } else if (mapState.isClimateChange) {
-        contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p>'      
-      }
-      
+      contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p><p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p> '
     }
 
     // finally tell the map-component to redraw the info 
