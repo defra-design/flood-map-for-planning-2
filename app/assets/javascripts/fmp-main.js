@@ -312,12 +312,15 @@ getDefraMapConfig().then((defraMapConfig) => {
       default: {
         type: 'simple',
         symbol: {
-          type: 'simple-fill',
-          style: 'diagonal-cross',
-          color: colours.waterStorageAreas[LIGHT_INDEX],
+          type: 'picture-fill',
+          url: '/public/images/water-storage.svg',
+          width: '18pt',
+          height: '18pt',
+          xscale: 1,
+          yscale: 1,
           outline: {
-            color: colours.waterStorageAreas[LIGHT_INDEX],
-            width: 1
+            style: 'solid',
+            color: '#ff0000'
           }
         }
       },
