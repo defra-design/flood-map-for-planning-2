@@ -7,6 +7,7 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 
+let visibleVtLayer
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
@@ -430,6 +431,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       const isVisible = !isDrawMode && segments.join('') === vtLayer.q
       layer.visible = isVisible
       setStylePaintProperties(vtLayer, layer, isDark)
+      visibleVtLayer = isVisible ? layer : visibleVtLayer
     })
     fLayers.forEach(fLayer => {
       const layer = map.findLayerById(fLayer.name)
@@ -801,6 +803,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     updateMapState(segments, layers, style)
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
+    initPointerMove()
   })
 
   //event to fire for 'Get site report' button to non dynamic results page
@@ -820,6 +823,27 @@ getDefraMapConfig().then((defraMapConfig) => {
     const map = floodMap.map
     toggleVisibility(type, mode, segments, layers, map, mapState.isDark)
   })
+
+  const initPointerMove = () => {
+    let lastHit = 0
+    const throttleMs = 20 // Throttle to reduce hitTest usage
+    const minScale = 250000 // vector tile layers use minScale value from arcgis online config for visibility
+    floodMap.view.on('pointer-move', e => {
+      const now = Date.now()
+      if (now - lastHit < throttleMs || floodMap.view.scale > minScale) {
+        return
+      }
+      lastHit = now
+      floodMap.view.hitTest(e, { include: [visibleVtLayer] }).then((response) => {
+        document.body.style.cursor = response?.results?.length > 0 ? 'pointer' : 'default'
+      })
+    })
+
+    floodMap.view.on('pointer-leave', _e => {
+      document.body.style.cursor = 'default'
+    })
+  }
+  
 
   const getDataset = () => {
     if (mapState.segments.includes('sw')) {
@@ -861,6 +885,10 @@ getDefraMapConfig().then((defraMapConfig) => {
   floodMap.addEventListener('query', async e => {
     const { coord, features } = e.detail
     const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
+    if (!feature) {
+      floodMap.setInfo(null)
+      return
+    }
 
     // This part builds the info container as an array [] of entries named listContents.
     // To add a line to the info, you should push a pair of values, ['Title', 'Value']
