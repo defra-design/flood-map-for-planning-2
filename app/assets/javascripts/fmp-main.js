@@ -76,12 +76,12 @@ const keyItemDefinitions = {
 // And  the feature sometimes contains flood_zone
 // So this is the best attempt at infering the flood zone correctly
 const floodZoneSymbolIndex = ['3', '2']
-const floodZoneCCSymbolIndex = ['2', '3', 'No data']
+const floodZoneCCSymbolIndex = ['2', '3', 'No data available']
 
 const getFloodZoneFromFeature = (feature, mapState) => { 
   if(feature.flood_zone === 'FZ2'){ return '2'}
   if(feature.flood_zone === 'FZ3'){ return '3'}
-  if(feature.flood_zone){ return 'No data'}
+  if(feature.flood_zone){ return 'No data available'}
   const symbolIndex = mapState?.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
   return symbolIndex[feature._symbol]
 }
@@ -912,7 +912,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         listContents.push(['Flood zone', floodZone])
         // call getModelFeatureLayer to get the flood source
         // (was previously using ModelOriginLayer but Lloyd said Feature Layer is better.)
-        if (floodZone !== 'No data') {
+        if (floodZone !== 'No data available') {
           const attributes = await getModelFeatureLayer(coord, feature.layer)
           if (attributes && attributes.flood_source) {
             listContents.push(['Flood source', formatFloodSource(attributes.flood_source)])
@@ -947,7 +947,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     let extraContent = ''
 
-    if (mapState.isClimateChange && floodZone !== 'No data') {
+    if (mapState.isClimateChange && floodZone !== 'No data available') {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
       extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
@@ -969,7 +969,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (mapState.isFloodZone) {
       // if you want more than one bit of extraContent, then keep appending it like this
       // extraContent += 'Whatever else you want to be added' 
-      if (floodZone === 'No data') {
+      if (floodZone === 'No data available') {
         contentFloodZones += '<p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p>'
       } else if (mapState.isClimateChange) {
         contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p>'
