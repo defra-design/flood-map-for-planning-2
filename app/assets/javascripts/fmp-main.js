@@ -33,7 +33,7 @@ const keyItemDefinitions = {
   // },
   floodZone3CC: {
     // id: 'fz2',
-    label: "Flood zone 2 & 3 (2070 to 2125)",
+    label: "Flood zones plus climate change",
     fill: getKeyItemFill(colours.floodZone3)
   },
   floodZoneNoData: {
@@ -500,11 +500,11 @@ getDefraMapConfig().then((defraMapConfig) => {
         items: [
           {
             id: window.FMP_MAP_VERSION === 1 ? 'fz' : 'fzpd',
-            label: 'Flood zones 2 and 3'
+            label: window.FMP_MAP_VERSION === 1 ? 'Flood zones' : 'Flood zones 2 and 3'
           },
           {
             id: 'fzcl',
-            label: 'Flood zones 2 and 3 (2070 to 2125)'
+            label: 'Flood zones plus climate change'
           },
           // {
           //   id: 'rsd',
@@ -540,7 +540,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: '2070 to 2125'
+            label: 'Flood zones plus climate change'
           }
         ]
       },
