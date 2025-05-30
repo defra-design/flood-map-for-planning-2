@@ -34,12 +34,12 @@ const keyItemDefinitions = {
   floodZone3CC: {
     // id: 'fz2',
     label: "Flood zones plus climate change",
-    fill: getKeyItemFill(colours.floodZone3)
+    fill: getKeyItemFill(colours.floodZone2and3)
   },
   floodZoneNoData: {
     // id: 'fz2',
     label: 'No data available',
-    icon: symbols.noData,
+    // icon: symbols.noData,
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
   waterStorageAreas: {
@@ -263,8 +263,8 @@ getDefraMapConfig().then((defraMapConfig) => {
   const paintProperties = {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': colours.floodZone2,
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZone3,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZone2and3,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZone2and3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
     'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
     'Rivers 1 in 30 Sea 1 in 30 Defended Depth/1': colours.nonFloodZone,
@@ -787,7 +787,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const updateMapState = (segments, layers, style) => {
     mapState.segments = segments
     mapState.layers = layers
-    mapState.isDark = style?.name === 'dark'
+    mapState.isDark = style ? style === 'dark' || style?.name === 'dark' : mapState.isDark
     mapState.isRamp = layers.includes('md')
     mapState.isClimateChange = segments.includes('cl') || segments.includes('fzcl')
     mapState.isFloodZone = segments.includes('fz') || segments.includes('fzcl') || segments.includes('fzpd')
