@@ -26,14 +26,14 @@ const keyItemDefinitions = {
     label: 'Flood zone 3',
     fill: getKeyItemFill(colours.floodZone3)
   },
-  floodZone2CC: {
-    // id: 'fz2',
-    label: 'Flood zone 2 (2070 to 2125)',
-    fill: getKeyItemFill(colours.floodZone2)
-  },
+  // floodZone2CC: {
+  //   // id: 'fz2',
+  //   label: 'Flood zone 2 (2070 to 2125)',
+  //   fill: getKeyItemFill(colours.floodZone3)
+  // },
   floodZone3CC: {
     // id: 'fz2',
-    label: "Flood zone 3 (2070 to 2125)",
+    label: "Flood zone 2 & 3 (2070 to 2125)",
     fill: getKeyItemFill(colours.floodZone3)
   },
   floodZoneNoData: {
@@ -263,7 +263,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const paintProperties = {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': colours.floodZone2,
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZone2,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZone3,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
     'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
@@ -714,7 +714,6 @@ getDefraMapConfig().then((defraMapConfig) => {
         heading: 'Map features',
         parentIds: ['fzcl'],
         items: [
-          keyItemDefinitions.floodZone2CC,
           keyItemDefinitions.floodZone3CC,
           keyItemDefinitions.floodZoneNoData,
           keyItemDefinitions.waterStorageAreas,
@@ -909,7 +908,9 @@ getDefraMapConfig().then((defraMapConfig) => {
       //const floodZone = floodZoneSymbolIndex[feature._symbol]
       floodZone = getFloodZoneFromFeature(feature, mapState)
       if (floodZone) {
-        listContents.push(['Flood zone', floodZone])
+        if(!mapState.isClimateChange || floodZone === 'No data available') {
+          listContents.push(['Flood zone', floodZone])
+        }
         // call getModelFeatureLayer to get the flood source
         // (was previously using ModelOriginLayer but Lloyd said Feature Layer is better.)
         if (floodZone !== 'No data available') {
