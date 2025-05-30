@@ -76,12 +76,13 @@ const keyItemDefinitions = {
 // And  the feature sometimes contains flood_zone
 // So this is the best attempt at infering the flood zone correctly
 const floodZoneSymbolIndex = ['3', '2']
-const floodZoneCCSymbolIndex = ['2', '3', 'No data available']
+//const floodZoneCCSymbolIndex = ['2', '3', 'No data available']
+const floodZoneCCSymbolIndex = ['2', '3']
 
 const getFloodZoneFromFeature = (feature, mapState) => { 
   if(feature.flood_zone === 'FZ2'){ return '2'}
   if(feature.flood_zone === 'FZ3'){ return '3'}
-  if(feature.flood_zone){ return 'No data available'}
+  //if(feature.flood_zone){ return 'No data available'}
   const symbolIndex = mapState?.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
   return symbolIndex[feature._symbol]
 }
