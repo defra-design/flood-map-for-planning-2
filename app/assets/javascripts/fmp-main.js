@@ -504,7 +504,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Flood zones plus climate change'
+            label: 'Flood zones with climate change'
           },
           // {
           //   id: 'rsd',
@@ -540,7 +540,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'fzcl',
-            label: 'Flood zones plus climate change'
+            label: 'Flood zones with climate change'
           }
         ]
       },
@@ -973,7 +973,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (floodZone === 'No data available') {
         contentFloodZones += '<p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">This data is currently unavailable. In some locations we are working on important improvements to supporting layers. In those locations we have kept our previous flood zones while these improvements are made. We will publish the data when it becomes available.</p>'
       } else if (mapState.isClimateChange) {
-        contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p>'
+        contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones with climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="#">Find out more about this data and how it should be used</a></p>'
       } else {
         contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
        }
