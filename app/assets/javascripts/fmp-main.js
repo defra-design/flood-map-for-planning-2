@@ -33,7 +33,8 @@ const keyItemDefinitions = {
   // },
   floodZone3CC: {
     // id: 'fz2',
-    label: "Flood zones plus climate change",
+    label: window.FMP_MAP_VERSION === 1 ? '2070 to 2125' : 'Flood zones 2 and 3 (2070 to 2125)',
+    //label: "Flood zones plus climate change",
     fill: getKeyItemFill(colours.floodZone2and3)
   },
   floodZoneNoData: {
