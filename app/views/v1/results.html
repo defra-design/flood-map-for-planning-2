@@ -14,6 +14,27 @@
 
 
 
+{{ dump }}
+{% if data['mapType'] == 'v2CC' %}
+<p class="govuk-!-margin-bottom-0">
+Version 2 climate change
+</p>
+{% endif %}
+{% if data['mapType'] == 'v1CC' %}
+<p class="govuk-!-margin-bottom-0">
+Version 1 climate change
+</p>
+{% endif %}
+{% if data['mapType'] == 'v1Pd' %}
+<p class="govuk-!-margin-bottom-0">
+Version 1 present day
+</p>
+{% endif %}
+{% if data['mapType'] == 'v2Pd' %}
+<p class="govuk-!-margin-bottom-0">
+Version 2 present day
+</p>
+{% endif %}
 
 <h1 class="govuk-heading-xl">
   This location is in flood zone 3 
