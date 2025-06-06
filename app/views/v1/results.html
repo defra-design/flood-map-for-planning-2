@@ -77,7 +77,7 @@ Version 2 present day
           <a class="govuk-link" href="map?seg=fzpd&cz=340367,322766,7.7">
             See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
             </a>
-          {% endif %}
+          {% endif %}</p>
           {% if data['mapType'] == 'v2Pd' %}
           <a class="govuk-link" href="mapv2?seg=fzpd&cz=340367,322766,7.7">
           See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
@@ -85,6 +85,16 @@ Version 2 present day
           {% endif %}
           {% if data['mapType'] == 'v2CC' %}
           <a class="govuk-link" href="mapv2?seg=fzpd&cz=340367,322766,7.7">
+          See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
+          </a>
+          {% endif %}
+          {% if data['mapType'] == 'v2PdCC' %}
+          <a class="govuk-link" href="mapv2?seg=fzpd&cz=340367,322766,7.7">
+          See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
+          </a>
+          {% endif %}
+          {% if data['mapType'] == 'v1PdCC' %}
+          <a class="govuk-link" href="map?seg=fzpd&cz=340367,322766,7.7">
           See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
           </a>
           {% endif %}
@@ -119,6 +129,239 @@ Version 2 present day
             
           </dd>
         </div> -->
+
+        {% if data['mapType'] == 'v1CC' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+
+            Climate change: projected chance of flooding 
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <p class="govuk-body">This location is at risk from flooding from rivers or the sea when climate change is taken into account: </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+              <li>from rivers for the period 2070 to 2125 </li>
+              <li>from the sea (tidal flooding) by the year 2125 </li>
+
+          </ul>
+           <p class="govuk-body">
+            We do not show the chance of flooding each year, or annual exceedance probability (AEP), for this dataset, as it is produced using a number of different source datasets.  
+           </p>
+           <p class="">
+            Our rivers and sea information that is used to produce this dataset includes: 
+           </p>
+           <ul class="govuk-list govuk-list--bullet">
+              <li>
+                undefended 
+              </li>
+              <li>
+                defended 
+              </li>
+              <li>
+                other suitable data from third parties 
+              </li>
+           </ul>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘defended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling has taken into account the presence of existing flood defences </li>
+                <li>there is still a flood risk if the flood defences fail or if their design standard is exceeded (if the flood event is more than they are designed to cope with) </li>
+                <li>when considering climate change, we assume the presence of flood defences stay the same as present day  </li>
+              </ul>
+            </div>
+          </details>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘undefended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling ignores the presence of existing flood defences </li>
+              </ul>
+            </div>
+          </details>
+          <p class="govuk-body">
+            Flood zones with climate change are given to help you further investigate flood risk. </br></br><a href="data">Find out more about this data and how it should be used </a>
+          </p>
+           </dd>
+        </div>
+
+        {% endif %}
+        {% if data['mapType'] == 'v1Pd' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <h3 class="govuk-heading-s">Climate change: projected chance of flooding - no data available</h3>
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">
+              In this location, all or part of the site is included in a location where we hold limited flood risk information.  
+            </p>
+            <p class="govuk-body">
+              No data in this location does not mean there is no flood risk. Further assessment is needed to understand the flood risk in this location.  
+            </p>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does ‘no data available’ mean?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  In some locations, we have chosen to remove datasets because of missing data, low confidence in the datasets or potential data inconsistencies.   
+                </p>  
+                <p class="govuk-body">
+                  The Environment Agency may still hold flood risk information that can be used to inform or prepare a flood risk assessment, which can be requested through the flood map for planning service.              
+                </p>
+                <p class="govuk-body">
+                  ‘No data available’ locations are currently under review.           
+                </p>
+                <p class="govuk-body">
+                  As new models, data and information become available that meet our quality assurance standards, we will add these to the flood map for planning.  
+                </p>
+              </div>
+  
+            </details>
+            <!-- <p class="govuk-body">
+              In some locations this data layer may show inconsistent results.  
+            </p>  <p class="govuk-body">
+              <a href="data">Find out more about this data and how it should be used </a>
+            </p>
+            <p class="govuk-body">
+              The flood zones are not affected by this issue. 
+            </p> -->
+  
+      <p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+        
+          </dd>
+
+        </div>
+        {% endif %}</p>
+        {% if data['mapType'] == 'v2Pd' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <h3 class="govuk-heading-s">Climate change: projected chance of flooding - no data available</h3>
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">
+              In this location, all or part of the site is included in a location where we hold limited flood risk information.  
+            </p>
+            <p class="govuk-body">
+              No data in this location does not mean there is no flood risk. Further assessment is needed to understand the flood risk in this location.  
+            </p>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does ‘no data available’ mean?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  In some locations, we have chosen to remove datasets because of missing data, low confidence in the datasets or potential data inconsistencies.   
+                </p>  
+                <p class="govuk-body">
+                  The Environment Agency may still hold flood risk information that can be used to inform or prepare a flood risk assessment, which can be requested through the flood map for planning service.              
+                </p>
+                <p class="govuk-body">
+                  ‘No data available’ locations are currently under review.           
+                </p>
+                <p class="govuk-body">
+                  As new models, data and information become available that meet our quality assurance standards, we will add these to the flood map for planning.  
+                </p>
+              </div>
+  
+            </details>
+            <!-- <p class="govuk-body">
+              In some locations this data layer may show inconsistent results.  
+            </p>  <p class="govuk-body">
+              <a href="data">Find out more about this data and how it should be used </a>
+            </p>
+            <p class="govuk-body">
+              The flood zones are not affected by this issue. 
+            </p> -->
+  
+      <p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+        
+          </dd>
+
+        </div>
+        {% endif %}
+        {% if data['mapType'] == 'v2CC' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+
+            Climate change: projected chance of flooding 
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <p class="govuk-body">This location is at risk from flooding from rivers or the sea when climate change is taken into account: </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+              <li>from rivers for the period 2070 to 2125 </li>
+              <li>from the sea (tidal flooding) by the year 2125 </li>
+
+          </ul>
+           <p class="govuk-body">
+            We do not show the chance of flooding each year, or annual exceedance probability (AEP), for this dataset, as it is produced using a number of different source datasets.  
+           </p>
+           <p class="">
+            Our rivers and sea information that is used to produce this dataset includes: 
+           </p>
+           <ul class="govuk-list govuk-list--bullet">
+              <li>
+                undefended 
+              </li>
+              <li>
+                defended 
+              </li>
+              <li>
+                other suitable data from third parties 
+              </li>
+           </ul>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘defended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling has taken into account the presence of existing flood defences </li>
+                <li>there is still a flood risk if the flood defences fail or if their design standard is exceeded (if the flood event is more than they are designed to cope with) </li>
+                <li>when considering climate change, we assume the presence of flood defences stay the same as present day  </li>
+              </ul>
+            </div>
+          </details>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘undefended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling ignores the presence of existing flood defences </li>
+              </ul>
+            </div>
+          </details>
+          <p class="govuk-body">
+            Flood zones with climate change are given to help you further investigate flood risk. </br></br><a href="data">Find out more about this data and how it should be used </a>
+          </p>
+           </dd>
+        </div>
+
+        {% endif %}
+
+        {% if data['mapType'] == 'v2PdCC' %}
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
 
@@ -184,7 +427,7 @@ Version 2 present day
 
         <div class="govuk-summary-list__row">
           <dt class="govuk-summary-list__key">
-            <h3 class="govuk-heading-s">No data available</h3>
+            <h3 class="govuk-heading-s">Climate change: projected chance of flooding - no data available</h3>
 
           </dt>
           <dd class="govuk-summary-list__value">
@@ -230,9 +473,122 @@ Version 2 present day
           </dd>
 
         </div>
+        {% endif %}
 
-         
+        {% if data['mapType'] == 'v1PdCC' %}
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+
+            Climate change: projected chance of flooding 
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <p class="govuk-body">This location is at risk from flooding from rivers or the sea when climate change is taken into account: </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+              <li>from rivers for the period 2070 to 2125 </li>
+              <li>from the sea (tidal flooding) by the year 2125 </li>
+
+          </ul>
+           <p class="govuk-body">
+            We do not show the chance of flooding each year, or annual exceedance probability (AEP), for this dataset, as it is produced using a number of different source datasets.  
+           </p>
+           <p class="">
+            Our rivers and sea information that is used to produce this dataset includes: 
+           </p>
+           <ul class="govuk-list govuk-list--bullet">
+              <li>
+                undefended 
+              </li>
+              <li>
+                defended 
+              </li>
+              <li>
+                other suitable data from third parties 
+              </li>
+           </ul>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘defended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling has taken into account the presence of existing flood defences </li>
+                <li>there is still a flood risk if the flood defences fail or if their design standard is exceeded (if the flood event is more than they are designed to cope with) </li>
+                <li>when considering climate change, we assume the presence of flood defences stay the same as present day  </li>
+              </ul>
+            </div>
+          </details>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘undefended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling ignores the presence of existing flood defences </li>
+              </ul>
+            </div>
+          </details>
+          <p class="govuk-body">
+            Flood zones with climate change are given to help you further investigate flood risk. </br></br><a href="data">Find out more about this data and how it should be used </a>
+          </p>
+           </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <h3 class="govuk-heading-s">Climate change: projected chance of flooding - no data available</h3>
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">
+              In this location, all or part of the site is included in a location where we hold limited flood risk information.  
+            </p>
+            <p class="govuk-body">
+              No data in this location does not mean there is no flood risk. Further assessment is needed to understand the flood risk in this location.  
+            </p>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does ‘no data available’ mean?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  In some locations, we have chosen to remove datasets because of missing data, low confidence in the datasets or potential data inconsistencies.   
+                </p>  
+                <p class="govuk-body">
+                  The Environment Agency may still hold flood risk information that can be used to inform or prepare a flood risk assessment, which can be requested through the flood map for planning service.              
+                </p>
+                <p class="govuk-body">
+                  ‘No data available’ locations are currently under review.           
+                </p>
+                <p class="govuk-body">
+                  As new models, data and information become available that meet our quality assurance standards, we will add these to the flood map for planning.  
+                </p>
+              </div>
+  
+            </details>
+            <!-- <p class="govuk-body">
+              In some locations this data layer may show inconsistent results.  
+            </p>  <p class="govuk-body">
+              <a href="data">Find out more about this data and how it should be used </a>
+            </p>
+            <p class="govuk-body">
+              The flood zones are not affected by this issue. 
+            </p> -->
+  
+      <p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
         
+          </dd>
+
+        </div>
+        {% endif %}
+             
     </div>
   </div>
 
@@ -306,8 +662,18 @@ Current depth of flooding
             See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
           </a>
           {% endif %}
+          {% if data['mapType'] == 'v1PdCC' %}
+          <a class="govuk-link" href="map?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
+            See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
+          </a>
+          {% endif %}
+          {% if data['mapType'] == 'v2PdCC' %}
+          <a class="govuk-link" href="mapv2?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
+            See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
+          </a>
+          {% endif %}
           {% if data['mapType'] == 'v2Pd' %}
-          <a class="govuk-link" href="map2?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
+          <a class="govuk-link" href="mapv2?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
             See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
           </a>
           {% endif %}
@@ -317,7 +683,7 @@ Current depth of flooding
           </a>
           {% endif %}
           {% if data['mapType'] == 'v2CC' %}
-          <a class="govuk-link" href="map2?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
+          <a class="govuk-link" href="mapv2?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
             See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
           </a>
           {% endif %}

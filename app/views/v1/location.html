@@ -90,8 +90,25 @@
             </div> -->
           </div>
         </fieldset>
-        <p><a href="map">Skip to map</a></p>
-</br>
+        {% if data['mapType'] == 'v1CC' %}
+        <p class="govuk-body"><a href="map">Skip to map</a></p>
+        {% endif %}
+        {% if data['mapType'] == 'v1Pd' %}
+        <p class="govuk-body"><a href="map">Skip to map</a></p>
+        {% endif %}
+        {% if data['mapType'] == 'v2Pd' %}
+        <p class="govuk-body"><a href="mapv2">Skip to map</a></p>
+        {% endif %}
+        {% if data['mapType'] == 'v2CC' %}
+        <p class="govuk-body"><a href="mapv2">Skip to map</a></p>
+        {% endif %}
+        {% if data['mapType'] == 'v2PdCC' %}
+        <p class="govuk-body"><a href="mapv2">Skip to map</a></p>
+        {% endif %}
+        {% if data['mapType'] == 'v1PdCC' %}
+        <p class="govuk-body"><a href="map">Skip to map</a></p>
+        {% endif %}
+
 <p>        
 <a
   href="map"
