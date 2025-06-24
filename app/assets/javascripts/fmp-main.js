@@ -455,6 +455,33 @@ getDefraMapConfig().then((defraMapConfig) => {
   // const osAttributionHyperlink = `<a href="os-terms" class="os-credits__link"> Contains OS data &copy; Crown copyright and database rights >
   // const osMasterMapAttributionHyperlink = `<a href="os-terms" class="os-credits__link">&copy; Crown copyright and database rights ${current>
 
+  // TEMPORARY HACK while we await https://eaflood.atlassian.net/browse/FMC-188
+  const replaceButtonText = (element, value, replaceText) => {
+    if (!element) {
+      return
+    }
+    const buttonElement = element.querySelector(`button[value="${value}"]`)
+    if (buttonElement) {
+      const textNode = [...buttonElement.childNodes].find((node) => node.nodeType === window.Node.TEXT_NODE)
+      if (textNode) {
+        textNode.textContent = replaceText
+      }
+    }
+  }
+  const observer = new window.MutationObserver((mutations) => {
+    const addedNodes = mutations.map(({ addedNodes }) => addedNodes)
+    const mapPanelElement = addedNodes
+      .filter((nodeList) => [...nodeList]
+        .find((element) => element.id === 'map-panel-style'))?.[0]?.[0]
+    replaceButtonText(mapPanelElement, 'tritanopia', 'Greyscale')
+    const divElement = addedNodes
+      .filter((nodeList) => [...nodeList]
+        .find((element) => element.nodeName === 'DIV'))?.[0]?.[0]
+    replaceButtonText(divElement, 'deuteranopia', 'Light')
+  })
+  observer.observe(document, { attributes: false, childList: true, characterData: false, subtree: true })
+  // END OF TEMPORARY HACK
+
 
   const floodMap = new FloodMap('map', {
     behaviour: 'inline',
@@ -481,6 +508,16 @@ getDefraMapConfig().then((defraMapConfig) => {
         name: 'dark',
         url: defraMapConfig.darkMapStyleUrl,
         attribution: osAttribution,
+      },
+      {
+        name: 'tritanopia',
+        url: defraMapConfig.greyscaleBaseMapUrl,
+        attribution: osAttribution
+      },
+      {
+        name: 'deuteranopia',
+        url: defraMapConfig.lightBaseMapUrl,
+        attribution: osAttribution
       }
     ],
     search: {
@@ -768,7 +805,18 @@ getDefraMapConfig().then((defraMapConfig) => {
           name: 'dark',
           url: defraMapConfig.masterMapDarkUrl,
           attribution: osMasterMapAttribution
+        },
+        {
+          name: 'tritanopia',
+          url: defraMapConfig.masterMapUrl,
+          attribution: osMasterMapAttribution
+        },
+        {
+          name: 'deuteranopia',
+          url: defraMapConfig.masterMapUrl,
+          attribution: osMasterMapAttribution
         }
+
       ]
     },
     queryLocation: {

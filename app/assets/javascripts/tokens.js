@@ -81,5 +81,7 @@ export const getDefraMapConfig = async () => ({
   mapStyleUrl: '/styles/OS_VTS_27700_Open_Outdoor.json',
   darkMapStyleUrl: '/styles/OS_VTS_27700_Open_Dark.json',
   masterMapUrl: '/styles/polygon-default.json',
-  masterMapDarkUrl: '/styles/polygon-dark.json'
+  masterMapDarkUrl: '/styles/polygon-dark.json',
+  greyscaleBaseMapUrl: '/styles/OS_VTS_27700_Greyscale.json',
+  lightBaseMapUrl: '/styles/OS_VTS_27700_Light.json'
 })
