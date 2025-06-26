@@ -806,6 +806,18 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
+
+    floodMap.setInfo({
+      width: '360px',
+      label: `Map hints`,
+      html: `<div> 
+        </br><h2 class="govuk-heading-s">How to query the map</h2>
+        <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
+        <p class="govuk-body">If using a keyboard, navigate to the point, centering the crosshare at the location, then press enter.</p>
+        <h2 class="govuk-heading-s">Keyboard Navigation</h2>
+        <p class="govuk-body">Press F3+Alt+Shift to view keyboard controls</p>
+      </div>`
+    })
   })
 
   //event to fire for 'Get site report' button to non dynamic results page

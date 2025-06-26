@@ -789,8 +789,19 @@ getDefraMapConfig().then((defraMapConfig) => {
     console.log('ready mapState', mapState)
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
-  })
 
+    floodMap.setInfo({
+      width: '360px',
+      label: 'Hints',
+      html: `<div> 
+        <h2>How to query the map</h2>
+        <p>If using a mouse....</p>
+        <h2>Keyboard Navigation</h2>
+        <p>Press F3+Alt+Shift to view keyboard controls</p>
+      </div>`
+    })
+  })
+  
   //event to fire for 'Get site report' button to non dynamic results page
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
