@@ -104,8 +104,7 @@ router.get([
     '/styles/OS_VTS_27700_Open_Dark.json',
     '/styles/polygon-default.json',
     '/styles/polygon-dark.json',
-    '/styles/OS_VTS_27700_Greyscale.json',
-    '/styles/OS_VTS_27700_Light.json'
+    '/styles/OS_VTS_27700_Black_and_White.json'
   ], async (req, res, next) => {
     fs.readFile(path.resolve(__dirname, req.originalUrl.substring(1).split('?')[0]), (err, result) => {
       if (err) throw err

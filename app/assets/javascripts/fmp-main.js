@@ -6,6 +6,7 @@ import { getEsriToken, getRequest, getInterceptors, getDefraMapConfig } from './
 import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
+import { setUpBaseMaps } from './baseMap.js'
 
 let visibleVtLayer
 const symbols = {
@@ -97,15 +98,6 @@ const surfaceWaterStyleLayers = [
 ]
 
 getDefraMapConfig().then((defraMapConfig) => {
-
-  // Temp fix until 0.5.0
-  // Map will not load if localStorage basemap is not one of default OR dark
-  // but 0.3.0 sets the value to 'default,light', which screws up
-  // the map component after an upgrade to 0.4.0
-  const basemap = window.localStorage.getItem('basemap')
-  if (basemap !== 'default' && basemap !== 'dark') {
-    window.localStorage.removeItem('basemap')
-  }
 
   const getVectorTileUrl = (layerName) => `${defraMapConfig.agolVectorTileUrl}/${layerName + defraMapConfig.layerNameSuffix}/VectorTileServer`
   const getFeatureLayerUrl = (urlLayerName) => `${defraMapConfig.agolServiceUrl}/${urlLayerName}/FeatureServer`
@@ -448,40 +440,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   // const depthMap = ['over 2.3', '2.3', '1.2', '0.9', '0.6', '0.3', '0.15']
   const osAccountNumber = 'AC0000807064' // FCRM-5609 is raised to add this to a constants file
-  const currentYear = new Date().getFullYear()
-  const osAttribution = `Contains OS data © Crown copyright and database rights ${currentYear}`
-  const osMasterMapAttribution = `© Crown copyright and database rights ${currentYear} OS ${osAccountNumber}`
-  // FCRM-5599 Use these hyperlinks once the map component supports embedding them as markup (currently embeds as text)
-  // const osAttributionHyperlink = `<a href="os-terms" class="os-credits__link"> Contains OS data &copy; Crown copyright and database rights >
-  // const osMasterMapAttributionHyperlink = `<a href="os-terms" class="os-credits__link">&copy; Crown copyright and database rights ${current>
-
-  // TEMPORARY HACK while we await https://eaflood.atlassian.net/browse/FMC-188
-  const replaceButtonText = (element, value, replaceText) => {
-    if (!element) {
-      return
-    }
-    const buttonElement = element.querySelector(`button[value="${value}"]`)
-    if (buttonElement) {
-      const textNode = [...buttonElement.childNodes].find((node) => node.nodeType === window.Node.TEXT_NODE)
-      if (textNode) {
-        textNode.textContent = replaceText
-      }
-    }
-  }
-  const observer = new window.MutationObserver((mutations) => {
-    const addedNodes = mutations.map(({ addedNodes }) => addedNodes)
-    const mapPanelElement = addedNodes
-      .filter((nodeList) => [...nodeList]
-        .find((element) => element.id === 'map-panel-style'))?.[0]?.[0]
-    replaceButtonText(mapPanelElement, 'tritanopia', 'Greyscale')
-    const divElement = addedNodes
-      .filter((nodeList) => [...nodeList]
-        .find((element) => element.nodeName === 'DIV'))?.[0]?.[0]
-    replaceButtonText(divElement, 'deuteranopia', 'Light')
-  })
-  observer.observe(document, { attributes: false, childList: true, characterData: false, subtree: true })
-  // END OF TEMPORARY HACK
-
+  const { baseMapStyles, digitisingMapStyles } = setUpBaseMaps(defraMapConfig, osAccountNumber)
 
   const floodMap = new FloodMap('map', {
     behaviour: 'inline',
@@ -498,28 +457,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
     tokenCallback: getEsriToken,
-    styles: [
-      {
-        name: 'default',
-        url: defraMapConfig.mapStyleUrl,
-        attribution: osAttribution,
-      },
-      {
-        name: 'dark',
-        url: defraMapConfig.darkMapStyleUrl,
-        attribution: osAttribution,
-      },
-      {
-        name: 'tritanopia',
-        url: defraMapConfig.greyscaleBaseMapUrl,
-        attribution: osAttribution
-      },
-      {
-        name: 'deuteranopia',
-        url: defraMapConfig.lightBaseMapUrl,
-        attribution: osAttribution
-      }
-    ],
+    styles: baseMapStyles,
     search: {
       label: 'Search for a place',
       isAutocomplete: true,
@@ -795,29 +733,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       minZoom: 21,
       //min zoom update to edit boundary zoom restriction
       maxZoom: 17,
-      styles: [
-        {
-          name: 'default',
-          url: defraMapConfig.masterMapUrl,
-          attribution: osMasterMapAttribution
-        },
-        {
-          name: 'dark',
-          url: defraMapConfig.masterMapDarkUrl,
-          attribution: osMasterMapAttribution
-        },
-        {
-          name: 'tritanopia',
-          url: defraMapConfig.masterMapUrl,
-          attribution: osMasterMapAttribution
-        },
-        {
-          name: 'deuteranopia',
-          url: defraMapConfig.masterMapUrl,
-          attribution: osMasterMapAttribution
-        }
-
-      ]
+      styles: digitisingMapStyles
     },
     queryLocation: {
       layers: vtLayers.map(vtLayer => vtLayer.name)
