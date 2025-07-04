@@ -6,7 +6,7 @@ import { getEsriToken, getRequest, getInterceptors, getDefraMapConfig } from './
 import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
-import { setUpBaseMaps } from './baseMap.js'
+import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
 
 let visibleVtLayer
