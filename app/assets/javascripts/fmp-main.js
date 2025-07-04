@@ -37,7 +37,7 @@ const keyItemDefinitions = {
     // id: 'fz2',
     label: window.FMP_MAP_VERSION === 1 ? '2070 to 2125' : 'Flood zones 2 and 3 (2070 to 2125)',
     //label: "Flood zones plus climate change",
-    fill: getKeyItemFill(colours.floodZone2and3)
+    fill: getKeyItemFill(colours.floodZoneCC)
   },
   floodZoneNoData: {
     // id: 'fz2',
@@ -107,8 +107,8 @@ getDefraMapConfig().then((defraMapConfig) => {
   const paintProperties = {
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': colours.floodZone2,
     'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZone2and3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZone2and3,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZoneCC,
+    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZoneCC,
     'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
     'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
     'Rivers 1 in 30 Sea 1 in 30 Defended Depth/1': colours.nonFloodZone,
@@ -224,11 +224,11 @@ getDefraMapConfig().then((defraMapConfig) => {
   ]
 
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
-    vtLayer.styleLayers.forEach((styleLayerName) => {
+    vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
 
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
-        const fillColour = paintProperties[styleLayerName][isDark ? 1 : 0]
+        const fillColour = paintProperties[isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
     // layerPaintProperties['fill-opacity'] = 0.75
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
@@ -248,13 +248,18 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      const vectorTileLayer = new VectorTileLayer({
-        id: vtLayer.name,
-        url: getVectorTileUrl(vtLayer.name),
-        opacity: 0.75,
-        visible: false
-      })
-      floodMap.map.add(vectorTileLayer)
+      if (vtLayer.getVtLayer) {
+        vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer)
+          .forEach((groupLayer) => floodMap.map.add(groupLayer))
+      } else {
+        const vectorTileLayer = new VectorTileLayer({
+          id: vtLayer.name,
+          url: getVectorTileUrl(vtLayer.name),
+          opacity: 0.75,
+          visible: false
+        })
+        floodMap.map.add(vectorTileLayer)
+      }
     })
     fLayers.forEach(fLayer => {
       floodMap.map.add(new FeatureLayer({
@@ -276,7 +281,15 @@ getDefraMapConfig().then((defraMapConfig) => {
       const layer = map.findLayerById(id)
       const isVisible = !isDrawMode && segments.join('') === vtLayer.q
       layer.visible = isVisible
-      setStylePaintProperties(vtLayer, layer, isDark)
+      if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
+        const ccpLayer = map.findLayerById('Flood_Zones_2_and_3_Rivers_and_Sea_OnCCP')
+        if (ccpLayer) {
+          ccpLayer.visible = isVisible
+          setStylePaintProperties(vtLayer, ccpLayer, isDark)
+        }
+      }
+      const allLayers = layer.allLayers || [layer]
+      allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
       visibleVtLayer = isVisible ? layer : visibleVtLayer
     })
     fLayers.forEach(fLayer => {
@@ -541,6 +554,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         heading: 'Map features',
         parentIds: ['fzcl'],
         items: [
+          keyItemDefinitions.floodZone2,
+          keyItemDefinitions.floodZone3,
           keyItemDefinitions.floodZone3CC,
           keyItemDefinitions.floodZoneNoData,
           keyItemDefinitions.waterStorageAreas,
