@@ -644,8 +644,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         </br><h2 class="govuk-heading-s">How to query the map</h2>
         <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
         <p class="govuk-body">If using a keyboard, navigate to the point, centering the crosshare at the location, then press enter.</p>
-        <h2 class="govuk-heading-s">Keyboard Navigation</h2>
-        <p class="govuk-body">Press F3+Alt+Shift to view keyboard controls</p>
+        <h2 class="govuk-heading-s">Keyboard map controls</h2>
+        <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
       </div>`
     })
   })
