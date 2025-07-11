@@ -1,3 +1,8 @@
 {
-  "serviceName": "Flood map for planning"
+  "serviceName": "Flood map for planning",
+  "plugins": {
+  "govuk-frontend": {
+	"rebrand": true
+  }
+}
 }
