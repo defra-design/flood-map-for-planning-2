@@ -20,12 +20,12 @@ const symbols = {
 const keyItemDefinitions = {
   floodZone2: {
     // id: 'fz2',
-    label: 'Flood zone 2',
+    label: 'Flood zone 2 (present day)',
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3: {
     // id: 'fz2',
-    label: 'Flood zone 3',
+    label: 'Flood zone 3 (present day)',
     fill: getKeyItemFill(colours.floodZone3)
   },
   // floodZone2CC: {
@@ -35,13 +35,13 @@ const keyItemDefinitions = {
   // },
   floodZone3CC: {
     // id: 'fz2',
-    label: window.FMP_MAP_VERSION === 1 ? '2070 to 2125' : 'Flood zones 2 and 3 (2070 to 2125)',
+    label: window.FMP_MAP_VERSION === 1 ? 'Climate change (2070 to 2125)' : 'Flood zones 2 and 3 (2070 to 2125)',
     //label: "Flood zones plus climate change",
     fill: getKeyItemFill(colours.floodZoneCC)
   },
   floodZoneNoData: {
     // id: 'fz2',
-    label: 'No data available',
+    label: 'Climate change data unavailable',
     // icon: symbols.noData,
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
