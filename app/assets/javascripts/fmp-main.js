@@ -20,10 +20,20 @@ const symbols = {
 const keyItemDefinitions = {
   floodZone2: {
     // id: 'fz2',
-    label: 'Flood zone 2 (present day)',
+    label: 'Flood zone 2', 
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3: {
+    // id: 'fz2',
+    label: 'Flood zone 3',
+    fill: getKeyItemFill(colours.floodZone3)
+  },
+  floodZone2pd: {
+    // id: 'fz2',
+    label: 'Flood zone 2 (present day)', 
+    fill: getKeyItemFill(colours.floodZone2)
+  },
+  floodZone3pd: {
     // id: 'fz2',
     label: 'Flood zone 3 (present day)',
     fill: getKeyItemFill(colours.floodZone3)
@@ -554,8 +564,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         heading: 'Map features',
         parentIds: ['fzcl'],
         items: [
-          keyItemDefinitions.floodZone2,
-          keyItemDefinitions.floodZone3,
+          keyItemDefinitions.floodZone2pd,
+          keyItemDefinitions.floodZone3pd,
           keyItemDefinitions.floodZone3CC,
           keyItemDefinitions.floodZoneNoData,
           keyItemDefinitions.waterStorageAreas,
