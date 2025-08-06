@@ -1,13 +1,13 @@
 // /flood-map Path defined as an alias to npm or submodule version in webpack alias
 // import { FloodMap } from '/flood-map' // eslint-disable-line import/no-absolute-path
-const FloodMap = defra.FloodMap
-let VectorTileLayer, FeatureLayer, Point
 import { getEsriToken, getRequest, getInterceptors, getDefraMapConfig } from './tokens.js'
 import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
+const FloodMap = window.defra.FloodMap
+let VectorTileLayer, FeatureLayer
 // const GroupLayer = await $arcgis.import("@arcgis/core/layers/GroupLayer.js")
 const GroupLayer = undefined // Add in when we can work out how to import it
 
@@ -16,12 +16,12 @@ const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
   mainRivers: '/public/images/main-rivers.svg',
-  noData: '/public/images/no-data.svg',
+  noData: '/public/images/no-data.svg'
 }
 
 const keyItemDefinitions = {
   floodZone2: {
-    label: 'Flood zone 2', 
+    label: 'Flood zone 2',
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3: {
@@ -29,7 +29,7 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.floodZone3)
   },
   floodZone2PresentDay: {
-    label: 'Flood zone 2 (present day)', 
+    label: 'Flood zone 2 (present day)',
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3PresentDay: {
@@ -74,66 +74,24 @@ const keyItemDefinitions = {
 // and it is used to infer the flood zone that has been clicked on by a user.
 // On a previous data set, these values were in the reverse order so we need to verify that they remain correct
 // after a data upload to arcGis
-// Also the climateChange data is the opposite way round from the non climatechange one 
+// Also the climateChange data is the opposite way round from the non climatechange one
 // And  the feature sometimes contains flood_zone
-// So this is the best attempt at infering the flood zone correctly
+// So this is the best attempt at inferring the flood zone correctly
 const floodZoneSymbolIndex = ['3', '2']
-const floodZoneCCSymbolIndex = ['2', '3', 'No data available']
+const floodZoneCCSymbolIndex = ['2', '3', terms.labels.noData]
 
-const getFloodZoneFromFeature = (feature, mapState) => { 
-  if(feature.flood_zone === 'FZ2'){ return '2'}
-  if(feature.flood_zone === 'FZ3'){ return '3'}
-  if(feature.flood_zone){ return 'No data available'}
+const getFloodZoneFromFeature = (feature, mapState) => {
+  if (feature.flood_zone === terms.keys.fz2) { return '2' }
+  if (feature.flood_zone === terms.keys.fz3) { return '3' }
+  if (feature.flood_zone === terms.keys.fzCC) { return terms.keys.fzCC }
+  if (feature.flood_zone === terms.keys.fzNoData) { return terms.keys.fzNoData }
   const symbolIndex = mapState?.isClimateChange ? floodZoneCCSymbolIndex : floodZoneSymbolIndex
   return symbolIndex[feature._symbol]
 }
 
-const surfaceWaterStyleLayers = [
-  'Risk of Flooding from Surface Water Depth > 0mm/1',
-  'Risk of Flooding from Surface Water Depth > 200mm/1',
-  'Risk of Flooding from Surface Water Depth > 300mm/1',
-  'Risk of Flooding from Surface Water Depth > 600mm/1',
-  'Risk of Flooding from Surface Water Depth > 900mm/1',
-  'Risk of Flooding from Surface Water Depth > 1200mm/1'
-]
-
 getDefraMapConfig().then((defraMapConfig) => {
-
   const getVectorTileUrl = (layerName) => `${defraMapConfig.agolVectorTileUrl}/${layerName + defraMapConfig.layerNameSuffix}/VectorTileServer`
   const getFeatureLayerUrl = (urlLayerName) => `${defraMapConfig.agolServiceUrl}/${urlLayerName}/FeatureServer`
-  const getModelFeatureLayerUrl = (layerName) => `${defraMapConfig.agolServiceUrl}/${layerName + defraMapConfig.layerNameSuffix}/FeatureServer`
-
-  const paintProperties = {
-    'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1': colours.floodZone2,
-    'Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1': colours.floodZone3,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ2/1': colours.floodZoneCC,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/FZ3/1': colours.floodZoneCC,
-    'Flood Zones 2 and 3 Rivers and Sea CCP1/No Data/1': colours.floodZoneNoData,
-    'Rivers 1 in 30 Sea 1 in 30 Defended/1': colours.nonFloodZone,
-    'Rivers 1 in 30 Sea 1 in 30 Defended Depth/1': colours.nonFloodZone,
-    'Rivers 1 in 100 Sea 1 in 200 Defended Depth/1': colours.nonFloodZone,
-    'Rivers 1 in 100 Sea 1 in 200 Undefended Depth/1': colours.nonFloodZone,
-    'Rivers 1 in 1000 Sea 1 in 1000 Defended Depth/1': colours.nonFloodZone,
-    'Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth/1': colours.nonFloodZone,
-    'Rivers 1 in 30 Sea 1 in 30 Defended CCP1/1': colours.nonFloodZone,
-    'Rivers 1 in 30 Sea 1 in 30 Defended Depth CCP1/1': colours.nonFloodZone,
-    'Rivers 1 in 100 Sea 1 in 200 Defended Depth CCP1/1': colours.nonFloodZone,
-    'Rivers 1 in 100 Sea 1 in 200 Undefended Depth CCP1/1': colours.nonFloodZone,
-    'Rivers 1 in 1000 Sea 1 in 1000 Defended Depth CCP1/1': colours.nonFloodZone,
-    'Rivers 1 in 1000 Sea 1 in 1000 Undefended Depth CCP1/1': colours.nonFloodZone,
-    [surfaceWaterStyleLayers[0]]: colours.nonFloodZone,
-    [surfaceWaterStyleLayers[1]]: colours.nonFloodZone,
-    [surfaceWaterStyleLayers[2]]: colours.nonFloodZone,
-    [surfaceWaterStyleLayers[3]]: colours.nonFloodZone,
-    [surfaceWaterStyleLayers[4]]: colours.nonFloodZone,
-    [surfaceWaterStyleLayers[5]]: colours.nonFloodZone
-    // 'Risk of Flooding from Surface Water Depth > 0mm/1': [nonFloodZoneDepthBandsLight[6], nonFloodZoneDepthBandsDark[6]],
-    // 'Risk of Flooding from Surface Water Depth > 200mm/1': [nonFloodZoneDepthBandsLight[5], nonFloodZoneDepthBandsDark[5]],
-    // 'Risk of Flooding from Surface Water Depth > 300mm/1': [nonFloodZoneDepthBandsLight[4], nonFloodZoneDepthBandsDark[4]],
-    // 'Risk of Flooding from Surface Water Depth > 600mm/1': [nonFloodZoneDepthBandsLight[3], nonFloodZoneDepthBandsDark[3]],
-    // 'Risk of Flooding from Surface Water Depth > 900mm/1': [nonFloodZoneDepthBandsLight[2], nonFloodZoneDepthBandsDark[2]],
-    // 'Risk of Flooding from Surface Water Depth > 1200mm/1': [nonFloodZoneDepthBandsLight[1], nonFloodZoneDepthBandsDark[1]]
-  }
 
   const mapFeatureRenderers = {
     floodDefences: {
@@ -224,12 +182,11 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
     vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
-
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         const fillColour = paintProperties[isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
-    // layerPaintProperties['fill-opacity'] = 0.75
+        // layerPaintProperties['fill-opacity'] = 0.75
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
@@ -268,7 +225,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         visible: false
       }))
     })
-   }
+  }
 
   const toggleVisibility = (type, mode, segments, layers, map, isDark) => {
     const isDrawMode = ['frame', 'draw'].includes(mode)
@@ -330,12 +287,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     legend: {
       width: '280px',
       isVisible: true,
-  //    title: 'Menu',
+      //    title: 'Menu',
       keyWidth: '360px',
       keyDisplay: 'min',
       segments: [{
         heading: 'Datasets',
-  //      collapse: 'collapse',
+        //      collapse: 'collapse',
         items: [
           {
             id: window.FMP_MAP_VERSION === 1 ? 'fz' : 'fzpd',
@@ -401,7 +358,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af1',
         heading: terms.labels.annualLikelihood,
-  //      collapse: 'collapse',
+        //      collapse: 'collapse',
         parentIds: ['rsd'],
         items: [
           {
@@ -421,7 +378,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'sw1',
         heading: terms.labels.annualLikelihood,
-  //      collapse: 'collapse',
+        //      collapse: 'collapse',
         parentIds: ['sw'],
         items: [
           {
@@ -441,7 +398,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af2',
         heading: terms.labels.annualLikelihood,
-  //      collapse: 'collapse',
+        //      collapse: 'collapse',
         parentIds: ['rsu'],
         items: [
           {
@@ -483,7 +440,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: terms.labels.mapFeatures,
           parentIds: ['rsd', 'rsu', 'sw'],
-  //        collapse: 'collapse',
+          //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
@@ -494,7 +451,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         {
           heading: terms.labels.mapFeatures,
           parentIds: ['mo'],
-    //      collapse: 'collapse',
+          //      collapse: 'collapse',
           items: [
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
@@ -514,7 +471,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       keyLabel: 'Report area',
       html: '<h3 class="govuk-heading-m govuk-!-font-size-16">For an approximate site boundary</h3> <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><h3 class="govuk-heading-m govuk-!-font-size-16">For a more detailed site boundary:</h3><ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square until it matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
       minZoom: 21,
-      //min zoom update to edit boundary zoom restriction
+      // min zoom update to edit boundary zoom restriction
       maxZoom: 17,
       styles: digitisingMapStyles
     },
@@ -547,7 +504,6 @@ getDefraMapConfig().then((defraMapConfig) => {
   floodMap.addEventListener('ready', async e => {
     VectorTileLayer = floodMap.modules.VectorTileLayer
     FeatureLayer = floodMap.modules.FeatureLayer
-    Point = floodMap.modules.Point
 
     const { mode, segments, layers, style } = e.detail
     updateMapState(segments, layers, style)
@@ -557,7 +513,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     floodMap.setInfo({
       width: '360px',
-      label: `Map hints`,
+      label: 'Map hints',
       html: `<div> 
         </br><p class="govuk-body-s"><strong>How to query the map</p class="govuk-body-s"></strong>
         <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
@@ -568,7 +524,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     })
   })
 
-  //event to fire for 'Get site report' button to non dynamic results page
+  // event to fire for 'Get site report' button to non dynamic results page
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
       window.location = '/v1/results'
@@ -606,7 +562,6 @@ getDefraMapConfig().then((defraMapConfig) => {
       document.body.style.cursor = 'default'
     })
   }
-  
 
   const getDataset = () => {
     if (mapState.segments.includes('sw')) {
@@ -621,20 +576,6 @@ getDefraMapConfig().then((defraMapConfig) => {
     return undefined
   }
 
-  const getModelFeatureLayer = async (coords, layerName) => {
-    const model = new FeatureLayer({ url: getModelFeatureLayerUrl(layerName) })
-    const results = await model.queryFeatures({
-      geometry: new Point({ x: coords[0], y: coords[1], spatialReference: 27700 }),
-      outFields: ['*'],
-      spatialRelationship: 'intersects',
-      distance: 1,
-      units: 'meters',
-      returnGeometry: false
-    })
-    const attributes = results.features.length ? results.features[0].attributes : undefined
-    return attributes
-  }
-
   const formatFloodSource = (floodSource = '') => {
     if (floodSource === 'Coastal') {
       return 'Sea'
@@ -644,107 +585,174 @@ getDefraMapConfig().then((defraMapConfig) => {
     return floodSource[0].toUpperCase() + floodSource.slice(1)
   }
 
-  // Listen to map queries
-  floodMap.addEventListener('query', async e => {
-    const { coord, features } = e.detail
-    const feature = features.isPixelFeaturesAtPixel ? features.items[0] : null
-    if (!feature) {
-      floodMap.setInfo(null)
-      return
+  const getTimeFrame = (feature) => {
+    if (mapState.isClimateChange) {
+      if (mapState.isFloodZone && feature.flood_zone !== terms.keys.fzCC && feature.flood_zone !== terms.keys.fzNoData) {
+        return terms.labels.presentDay
+      }
+      return terms.labels.climateChange
     }
+    return terms.labels.presentDay
+  }
 
-    // This part builds the info container as an array [] of entries named listContents.
-    // To add a line to the info, you should push a pair of values, ['Title', 'Value']
-    // eg: listContents.push(['Flood zone', 2])
+  const transformFeature = (features) => {
+    if (!features.isPixelFeaturesAtPixel) {
+      return null
+    }
+    const feature = { ...features.items[0] }
+    feature.name = feature.name || feature.Name
+    feature.flood_source = feature.flood_source || feature.Flood_source
+    if (mapState.isFloodZone && mapState.isClimateChange) {
+      // This Implies we have clicked on  CC ZONE
+      // delete feature.flood_source -- awaiting confirmation from Lloyd on whether to show or hide this if available
+      if (feature.name === 'Flood Zones plus climate change') {
+        feature.flood_zone = terms.keys.fzCC
+      }
+      if (feature.name === 'Unavailable') {
+        feature.flood_zone = terms.keys.fzNoData
+      }
+    }
+    return feature
+  }
 
+  const getQueryContentHeader = (e) => {
+    const { coord, features } = e.detail
+    if (!features || !coord || !features.isPixelFeaturesAtPixel) {
+      return {}
+    }
+    const feature = transformFeature(features)
+    const timeFrame = getTimeFrame(feature)
     const listContents = [
       ['Easting and northing', `${Math.round(coord[0])},${Math.round(coord[1])}`],
-      ['Timeframe', mapState.isClimateChange ? terms.labels.climateChange : terms.labels.presentDay]
+      ['Timeframe', timeFrame]
     ]
 
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
-    let floodZone
+    return { listContents, vtLayer, coord, feature }
+  }
 
-    if (feature && feature._symbol !== undefined) {
-      // This part is currently only applicable to Flood_Zones
-      //const floodZone = floodZoneSymbolIndex[feature._symbol]
-      floodZone = getFloodZoneFromFeature(feature, mapState)
-      if (floodZone) {
-        if(!mapState.isClimateChange) {
-          listContents.push(['Flood zone', floodZone])
-        }
-        // call getModelFeatureLayer to get the flood source
-        // (was previously using ModelOriginLayer but Lloyd said Feature Layer is better.)
-        if (floodZone !== 'No data available') {
-          const attributes = await getModelFeatureLayer(coord, feature.layer)
-          if (attributes && attributes.flood_source) {
-            listContents.push(['Flood source', formatFloodSource(attributes.flood_source)])
-          }
-        }
-      }
+  const addQueryFloodZonesContent = (listContents, feature) => {
+    if (!mapState.isFloodZone) {
+      return ''
+    }
+    const floodZone = getFloodZoneFromFeature(feature, mapState)
+    if (floodZone !== terms.keys.fzNoData && floodZone !== terms.keys.fzCC) {
+      listContents.push(['Flood zone', floodZone])
+    }
+
+    if (floodZone !== terms.keys.fzNoData && feature.flood_source) {
+      listContents.push(['Flood Source', formatFloodSource(feature.flood_source)])
+    }
+    return floodZone
+  }
+
+  const addQueryNonFloodZonesContent = (listContents, vtLayer) => {
+    // This part is applicable for non Flood_Zones layers, when an area outside
+    // of a zone has been clicked
+    const dataset = getDataset()
+    if (dataset) {
+      listContents.push(['Dataset', dataset])
+    }
+    if (vtLayer?.likelihoodLabel) {
+      listContents.push([terms.labels.aep, vtLayer.likelihoodLabel])
+    }
+    if (vtLayer?.chanceLabel) {
+      listContents.push([terms.labels.annualLikelihood, vtLayer.chanceLabel])
+    }
+    if (vtLayer?.likelihoodchanceLabel) {
+      listContents.push([terms.labels.aep, vtLayer.likelihoodchanceLabel])
+    }
+  }
+
+  const getClimateChangeExtraContent = (floodZone) => (mapState.isClimateChange && floodZone === terms.keys.fzCC)
+    ? `
+    <h2 class="govuk-heading-s">Climate change allowances</h2>
+    <p class="govuk-body-s">
+      Flood zones plus climate change uses the following climate change allowances:
+    </p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li class='govuk-body-s'>
+        peak river flow 'central' allowance, based on the 50th percentile for the 2080s epoch
+      </li>
+      <li class='govuk-body-s'>
+        sea and tidal flooding 'upper end' allowance to account for cumulative sea level rise to 2125, based on the 95th percentile
+      </li>
+    </ul>
+    <p class="govuk-body-s">
+      These have been taken from the Environment Agency's 
+        <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">
+          Flood risk assessment: climate change allowances
+        </a>
+    </p>
+    `
+    : ''
+
+  const getFloodZonesExtraContent = (floodZone) => {
+    if (!mapState.isFloodZone) {
+      return ''
+    }
+    const $findOutMoreLink = `<p class="govuk-body-s"> 
+      <a href="/how-to-use-flood-map-for-planning-data">
+        Find out more about flood map for planning data and how it should be used
+      </a>
+    </p>`
+    if (floodZone === terms.keys.fzNoData) {
+      return `<h2 class="govuk-heading-s">Climate change data unavailable</h2>
+        <p class="govuk-body-s">
+          In some locations flood zones plus climate change data is not currently available while we make important improvements to our data.
+        </p>
+        ${$findOutMoreLink}`
+    } else if (floodZone === terms.keys.fzCC) {
+      return `<h2 class="govuk-heading-s">How to use flood zones plus climate change</h2>
+        <p class="govuk-body-s">
+          Flood zones plus climate change data is provided to help you further investigate flood risk.
+        </p>
+        ${$findOutMoreLink}`
     } else {
-      if (mapState.isFloodZone) {
-        // This part is applicable for Flood_Zones, when an area outside 
-        // of a zone has been clicked
-        listContents.push(['Flood zone', '1'])
-      } else {
-        // This part is applicable for non Flood_Zones layers, when an area outside 
-        // of a zone has been clicked
-        const dataset = getDataset()
-        if (dataset) {
-          listContents.push(['Dataset', dataset])
-        }
-        if (vtLayer && vtLayer.likelihoodLabel) {
-          listContents.push(['Annual exceedance probability (AEP)', vtLayer.likelihoodLabel])
-        }
-        if (vtLayer && vtLayer.chanceLabel) {
-          listContents.push([terms.labels.annualLikelihood, vtLayer.chanceLabel])
-        }
-        if (vtLayer && vtLayer.likelihoodchanceLabel) {
-          listContents.push(['Annual exceedance probability (AEP)', vtLayer.likelihoodchanceLabel])
-        }
-      }
+      return `<h2 class="govuk-heading-s">Updates to flood zones 2 and 3</h2>
+        <p class="govuk-body-s">
+          Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.
+        </p>`
     }
+  }
 
-    // Add any markup that you want at the end of the info panel to extraContent
-
+  const getQueryExtraContent = (vtLayer, floodZone) => {
     let extraContent = ''
+    extraContent += getFloodZonesExtraContent(floodZone)
+    extraContent += getClimateChangeExtraContent(floodZone)
+    return extraContent
+  }
 
-    if (mapState.isClimateChange && floodZone !== 'No data available') {
-      // if you want more than one bit of extraContent, then keep appending it like this
-      // extraContent += 'Whatever else you want to be added' 
-      extraContent += `<p class="govuk-body-s"><strong>Climate change allowances<strong></p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li class='govuk-body-s'>
-              these have been taken from the Environment Agency’s <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances" contenteditable="false" style="cursor: pointer;">Flood risk assessment: climate change allowances</a>
-            </li>
-            <li class='govuk-body-s'>
-              river flooding uses the 'central' allowance, based on the 50th percentile for the 2080s epoch
-            </li>
-            <li class='govuk-body-s'>
-              sea and tidal flooding uses the 'upper end' allowance, based on the 95th percentile for 2125
-            </li>
-          </ul>`
-        } 
+  const getTitle = (floodZone) => {
+    switch (floodZone) {
+      case terms.keys.fzNoData:
+      case terms.keys.fzCC:
+        return 'Flood zones plus climate change'
+      case '2':
+      case '3':
+        return 'Flood zones'
+      default:
+        return getDataset()
+    }
+  }
 
-    let contentFloodZones = ''
-
-    if (mapState.isFloodZone) {
-      // if you want more than one bit of extraContent, then keep appending it like this
-      // extraContent += 'Whatever else you want to be added' 
-      if (floodZone === 'No data available') {
-        contentFloodZones += '<p class="govuk-body-s"><strong>No data available</strong></p><p class="govuk-body-s">Climate change data is currently unavailable at this location. We will publish the data when it becomes available.</p>'
-      } else if (mapState.isClimateChange) {
-        contentFloodZones += '<p class="govuk-body-s"><strong>How to use flood zones plus climate change</strong></p> <p class="govuk-body-s">Flood zones plus climate change are given to help you further investigate flood risk. </br> <a href="data">Find out more about this data and how it should be used</a></p>'
-      } else {
-        contentFloodZones += '<p class="govuk-body-s"><strong>Updates to flood zones 2 and 3</strong></p> <p class="govuk-body-s">Flood zones 2 and 3 have been updated to include local detailed models, and a new improved national model.</p> '
-       }
-      
+  // Listen to map queries
+  floodMap.addEventListener('query', e => {
+    const { listContents, vtLayer, feature } = getQueryContentHeader(e)
+    if (!listContents || !feature) {
+      floodMap.setInfo(null)
+      return
+    }
+    const floodZone = addQueryFloodZonesContent(listContents, feature)
+    if (!floodZone) {
+      addQueryNonFloodZonesContent(listContents, vtLayer)
     }
 
-    // finally tell the map-component to redraw the info 
-    // using the listContents that have been built.
-    // The HTML markup that wraps the info is defined in the file infoRenderer
-    floodMap.setInfo(renderInfo(renderList(listContents), contentFloodZones, extraContent, 'Information'))
+    const title = getTitle(floodZone)
+
+    floodMap.setInfo(
+      renderInfo(renderList(listContents),
+        getQueryExtraContent(vtLayer, floodZone),
+        title))
   })
 })
