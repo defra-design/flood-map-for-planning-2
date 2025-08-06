@@ -21,40 +21,28 @@ const symbols = {
 
 const keyItemDefinitions = {
   floodZone2: {
-    // id: 'fz2',
     label: 'Flood zone 2', 
     fill: getKeyItemFill(colours.floodZone2)
   },
   floodZone3: {
-    // id: 'fz2',
     label: 'Flood zone 3',
     fill: getKeyItemFill(colours.floodZone3)
   },
-  floodZone2pd: {
-    // id: 'fz2',
+  floodZone2PresentDay: {
     label: 'Flood zone 2 (present day)', 
     fill: getKeyItemFill(colours.floodZone2)
   },
-  floodZone3pd: {
-    // id: 'fz2',
+  floodZone3PresentDay: {
     label: 'Flood zone 3 (present day)',
     fill: getKeyItemFill(colours.floodZone3)
   },
-  // floodZone2CC: {
-  //   // id: 'fz2',
-  //   label: 'Flood zone 2 (2070 to 2125)',
-  //   fill: getKeyItemFill(colours.floodZone3)
-  // },
   floodZone3CC: {
-    // id: 'fz2',
     label: window.FMP_MAP_VERSION === 1 ? 'Climate change (2070 to 2125)' : 'Flood zones 2 and 3 (2070 to 2125)',
-    //label: "Flood zones plus climate change",
     fill: getKeyItemFill(colours.floodZoneCC)
   },
   floodZoneNoData: {
-    // id: 'fz2',
-    label: 'Climate change data unavailable',
-    // icon: symbols.noData,
+    label: terms.labels.noData,
+    icon: symbols.noData,
     fill: getKeyItemFill(colours.floodZoneNoData)
   },
   waterStorageAreas: {
@@ -76,7 +64,6 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.mainRivers)
   },
   floodExtents: {
-    // id: 'fz2',
     label: 'Flood extent',
     fill: getKeyItemFill(colours.floodExtents)
   }
@@ -352,7 +339,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         items: [
           {
             id: window.FMP_MAP_VERSION === 1 ? 'fz' : 'fzpd',
-            label: window.FMP_MAP_VERSION === 1 ? 'Flood zones' : 'Flood zones 2 and 3'
+            label: 'Flood zones 2 and 3'
           },
           {
             id: 'fzcl',
@@ -383,27 +370,27 @@ getDefraMapConfig().then((defraMapConfig) => {
       },
       {
         id: 'tf',
-        heading: 'Climate change',
+        heading: terms.labels.climateChange,
         parentIds: window.FMP_MAP_VERSION === 1 ? ['fz'] : ['DONT_SHOW'],
         items: [
           {
             id: 'fzpd',
-            label: 'Present day'
+            label: terms.labels.presentDay
           },
           {
             id: 'fzcl',
-            label: '2070 to 2125'
+            label: terms.labels.fzClimateChange
           }
         ]
       },
       {
         id: 'tf',
-        heading: 'Climate change',
+        heading: terms.labels.climateChange,
         parentIds: ['rsd', 'rsu'],
         items: [
           {
             id: 'pd',
-            label: 'Present day'
+            label: terms.labels.presentDay
           },
           {
             id: 'cl',
@@ -413,7 +400,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       },
       {
         id: 'af1',
-        heading: 'Annual likelihood of flooding',
+        heading: terms.labels.annualLikelihood,
   //      collapse: 'collapse',
         parentIds: ['rsd'],
         items: [
@@ -433,7 +420,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       },
       {
         id: 'sw1',
-        heading: 'Annual likelihood of flooding',
+        heading: terms.labels.annualLikelihood,
   //      collapse: 'collapse',
         parentIds: ['sw'],
         items: [
@@ -453,7 +440,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       },
       {
         id: 'af2',
-        heading: 'Annual likelihood of flooding',
+        heading: terms.labels.annualLikelihood,
   //      collapse: 'collapse',
         parentIds: ['rsu'],
         items: [
@@ -469,114 +456,32 @@ getDefraMapConfig().then((defraMapConfig) => {
       }
       ],
       key: [
-      //   {
-      //     heading: 'Flood extent and depth',
-      //     parentIds: ['pd', 'cl'],
-      //     collapse: 'collapse',
-      //     type: 'radio',
-      //     items: [
-      //       {
-      //         id: 'na',
-      //         label: 'Hidden'
-      //       },
-      //         {
-      //             id: 'fe',
-      //             label: 'Flood extent',
-      //             fill: 'default: #2b8cbe, dark: #7fcdbb',
-      //             isSelected: true
-      //         },
-      //       keyItemDefinitions.floodExtents,
-      //       {
-      //         id: 'md',
-      //         label: 'Maximum depth in metres',
-      //         display: 'ramp',
-      //         numLabels: 3,
-      //             items: [
-      //                 {
-      //                     label: 'above 2.3',
-      //                     fill: 'default: #7f2704, dark: #f7fcf5'
-      //                 },
-      //                 {
-      //                     label: '2.3',
-      //                     fill: '#a63603, dark: #e5f5e0'
-      //                 },
-      //                 {
-      //                     label: '1.2',
-      //                     fill: '#d94801, dark: #c7e9c0'
-      //                 },
-      //                 {
-      //                     label: '0.9',
-      //                     fill: '#f16913, dark: #a1d99b'
-      //                 },
-      //                 {
-      //                     label: '0.6',
-      //                     fill: '#fd8d3c, dark: #74c476'
-      //                 },
-      //                 {
-      //                     label: '0.3',
-      //                     fill: '#fdae6b, dark: #41ab5d'
-      //                 },
-      //                 {
-      //                     label: '0.15',
-      //                     fill: '#fdd0a2, dark: #238b45'
-      //                 }
-      //             ]
-      //       }
-      //     ]
-      //   },
-      //   {
-      //     heading: 'Map features',
-      //     parentIds: ['fz'],
-      //     collapse: 'collapse',
-      //     items: [
-      //       {
-      //         id: 'fz23',
-      //         label: 'Flood zones',
-      //         isSelected: true,
-      //         items: [
-      //           keyItemDefinitions.floodZone2,
-      //           keyItemDefinitions.floodZone3
-      //         ]
-      //       },
-      //       keyItemDefinitions.waterStorageAreas,
-      //       keyItemDefinitions.floodDefences
-      //     ]
-      //   },
-      //   {
-      //     heading: 'Map features',
-      //     parentIds: ['pd', 'cl'],
-      //     collapse: 'collapse',
-      //     items: [
-      //       keyItemDefinitions.waterStorageAreas,
-      //       keyItemDefinitions.floodDefences
-      //     ]
-      //   },
-      {
-        heading: 'Map features',
-        parentIds: ['fzpd'],
-        items: [
-          keyItemDefinitions.floodZone2,
-          keyItemDefinitions.floodZone3,
-          keyItemDefinitions.waterStorageAreas,
-          keyItemDefinitions.floodDefences,
-          keyItemDefinitions.mainRivers
-        ]
-      },
-      {
-        heading: 'Map features',
-        parentIds: ['fzcl'],
-        items: [
-          keyItemDefinitions.floodZone2pd,
-          keyItemDefinitions.floodZone3pd,
-          keyItemDefinitions.floodZone3CC,
-          keyItemDefinitions.floodZoneNoData,
-          keyItemDefinitions.waterStorageAreas,
-          keyItemDefinitions.floodDefences,
-          keyItemDefinitions.mainRivers
-        ]
-      },
-    {
-          heading: 'Map features',
+        {
+          heading: terms.labels.mapFeatures,
+          parentIds: ['fzpd'],
+          items: [
+            keyItemDefinitions.floodZone2,
+            keyItemDefinitions.floodZone3,
+            keyItemDefinitions.waterStorageAreas,
+            keyItemDefinitions.floodDefences,
+            keyItemDefinitions.mainRivers
+          ]
+        },
+        {
+          heading: terms.labels.mapFeatures,
+          parentIds: ['fzcl'],
+          items: [
+            keyItemDefinitions.floodZone2PresentDay,
+            keyItemDefinitions.floodZone3PresentDay,
+            keyItemDefinitions.floodZone3CC,
+            keyItemDefinitions.floodZoneNoData,
+            keyItemDefinitions.waterStorageAreas,
+            keyItemDefinitions.floodDefences,
+            keyItemDefinitions.mainRivers
+          ]
+        },
+        {
+          heading: terms.labels.mapFeatures,
           parentIds: ['rsd', 'rsu', 'sw'],
   //        collapse: 'collapse',
           items: [
@@ -587,7 +492,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           ]
         },
         {
-          heading: 'Map features',
+          heading: terms.labels.mapFeatures,
           parentIds: ['mo'],
     //      collapse: 'collapse',
           items: [
@@ -753,7 +658,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     const listContents = [
       ['Easting and northing', `${Math.round(coord[0])},${Math.round(coord[1])}`],
-      ['Timeframe', mapState.isClimateChange ? 'Climate change' : 'Present day']
+      ['Timeframe', mapState.isClimateChange ? terms.labels.climateChange : terms.labels.presentDay]
     ]
 
     const vtLayer = feature && vtLayers.find(vtLayer => vtLayer.name === feature.layer)
@@ -792,7 +697,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           listContents.push(['Annual exceedance probability (AEP)', vtLayer.likelihoodLabel])
         }
         if (vtLayer && vtLayer.chanceLabel) {
-          listContents.push(['Annual likelihood of flooding', vtLayer.chanceLabel])
+          listContents.push([terms.labels.annualLikelihood, vtLayer.chanceLabel])
         }
         if (vtLayer && vtLayer.likelihoodchanceLabel) {
           listContents.push(['Annual exceedance probability (AEP)', vtLayer.likelihoodchanceLabel])

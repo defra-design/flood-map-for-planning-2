@@ -1,11 +1,18 @@
 const terms = {
-  likelihood: {
-    rsHigh: 'Rivers and sea 3.3%',
-    rsMedium: 'Rivers 1% Sea 0.5%',
-    rsLow: 'Rivers and sea 0.1%',
-    swHigh: '3.3%',
-    swMedium: '1%',
-    swLow: '0.1%'
+  keys: {
+    fz2: 'FZ2',
+    fz3: 'FZ3',
+    fzCC: 'FZCC',
+    fzNoData: 'FZNODATA'
+  },
+  labels: {
+    noData: 'Climate change data unavailable',
+    climateChange: 'Climate change',
+    fzClimateChange: '2070 to 2125',
+    presentDay: 'Present day',
+    mapFeatures: 'Map features',
+    annualLikelihood: 'Annual likelihood of flooding',
+    aep: 'Annual exceedance probability (AEP)'
   },
   chance: {
     rsHigh: 'Rivers and sea 1 in 30',
@@ -16,7 +23,7 @@ const terms = {
     swLow: '1 in 1000'
   },
   likelihoodchance: {
-    rsHigh: '<p class="govuk-body-s">3.3% (1 in 30)</br>chance of flooding each year </br><details class="govuk-details govuk-!-font-size-16""> <summary class="govuk-details__summary"> <span class="govuk-details__summary-text">About this data</span></summary><div class="govuk-details__text">This data is shown to help local authorities define the functional flood plain, flood zone 3b</div></details></p>',
+    rsHigh: '<p class="govuk-body-s">3.3% (1 in 30)</br>chance of flooding each year</p>',
     rsMedium: '<p class="govuk-body-s">Rivers 1% (1 in 100)</br>Sea 0.5% (1 in 200)</br>chance of flooding each year</p>',
     rsLow: '<p class="govuk-body-s">0.1% (1 in 1000)</br>chance of flooding each year</p>',
     swHigh: '3.3% (1 in 30)</br>chance of flooding each year',
