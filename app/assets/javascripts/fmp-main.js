@@ -8,6 +8,8 @@ import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
+// const GroupLayer = await $arcgis.import("@arcgis/core/layers/GroupLayer.js")
+const GroupLayer = undefined // Add in when we can work out how to import it
 
 let visibleVtLayer
 const symbols = {
@@ -259,7 +261,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         return
       }
       if (vtLayer.getVtLayer) {
-        vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer)
+        vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer, GroupLayer)
           .forEach((groupLayer) => floodMap.map.add(groupLayer))
       } else {
         const vectorTileLayer = new VectorTileLayer({
@@ -641,6 +643,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     VectorTileLayer = floodMap.modules.VectorTileLayer
     FeatureLayer = floodMap.modules.FeatureLayer
     Point = floodMap.modules.Point
+
     const { mode, segments, layers, style } = e.detail
     updateMapState(segments, layers, style)
     await addLayers()
