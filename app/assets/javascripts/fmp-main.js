@@ -753,6 +753,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     floodMap.setInfo(
       renderInfo(renderList(listContents),
         getQueryExtraContent(vtLayer, floodZone),
+        '',
         title))
   })
 })
