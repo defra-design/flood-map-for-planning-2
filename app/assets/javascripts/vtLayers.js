@@ -56,7 +56,7 @@ const vtLayers = [
     name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
     q: window.FMP_MAP_VERSION === 1 ? 'fzfzcl' : 'fzcl',
     getVtLayer: getFloodZoneCCGroupLayer,
-    // setStyleProperties: setFloodZoneCCGroupLayerStyles, // add in when GroupLayers
+    setStyleProperties: setFloodZoneCCGroupLayerStyles, // add in when GroupLayers
     styleLayers: [
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3],

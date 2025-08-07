@@ -190,6 +190,10 @@ getDefraMapConfig().then((defraMapConfig) => {
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
+    if (vtLayer.setStyleProperties) {
+      vtLayer.setStyleProperties(vectorTileLayer, isDark)
+    }
+
     // Un comment this section to infer the styleLayers for each vector layer
     // They don't seem to be defined anywhere server side, so Paul is anxious that
     // they may change when new layers are published.
