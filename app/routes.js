@@ -115,40 +115,11 @@ router.get([
     })
   })
 
-//V1 with full summary page (including climate change)
-router.get('/v1-cc', function (req, res) {
-	req.session.data = { mapType: 'v1CC' }
-	res.redirect(`/v1/location`)
-})
-
-//V2 with summary page without climate change (no data)
-router.get('/v2-cc', function (req, res) {
-	req.session.data = { mapType: 'v2CC' }
-	res.redirect(`/v1/location`)
-})
-
-//V2 with summary page without climate change (no data)
-router.get('/v2-pd', function (req, res) {
-	req.session.data = { mapType: 'v2Pd' }
-	res.redirect(`/v1/location`)
-})
-
-//V1 with full summary page (including climate change)
-router.get('/v1-pd', function (req, res) {
-	req.session.data = { mapType: 'v1Pd' }
-	res.redirect(`/v1/location`)
-})
-
-//V2 with summary page without climate change (no data)
-router.get('/v2-ccpd', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v1/location`)
-})
 
 //V1 with full summary page (including climate change)
 router.get('/v1-ccpd', function (req, res) {
 	req.session.data = { mapType: 'v1PdCC' }
-	res.redirect(`/v1/location`)
+	res.redirect(`/v1/start`)
 })
 
 module.exports = router
