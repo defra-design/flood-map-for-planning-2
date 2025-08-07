@@ -238,11 +238,11 @@ getDefraMapConfig().then((defraMapConfig) => {
       const isVisible = !isDrawMode && segments.join('') === vtLayer.q
       layer.visible = isVisible
       if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-        const ccpLayer = map.findLayerById('Flood_Zones_2_and_3_Rivers_and_Sea_OnCCP')
-        if (ccpLayer) {
+        const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
+        ccpLayers.forEach((ccpLayer) => {
           ccpLayer.visible = isVisible
           setStylePaintProperties(vtLayer, ccpLayer, isDark)
-        }
+        })
       }
       const allLayers = layer.allLayers || [layer]
       allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))

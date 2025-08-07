@@ -12,7 +12,7 @@ const surfaceWaterStyleLayers = [
 
 const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer) => {
   const floodZonesLayer = new VectorTileLayer({
-    id: 'Flood_Zones_2_and_3_Rivers_and_Sea_OnCCP', // change to Flood_Zones_2_and_3_Rivers_and_Sea_CCP1 when _GroupLayer
+    id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
     url: getVectorTileUrl('Flood_Zones_2_and_3_Rivers_and_Sea'),
     opacity: 0.75,
     visible: false
