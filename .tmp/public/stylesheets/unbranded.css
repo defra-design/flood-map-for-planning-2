@@ -8873,3 +8873,11 @@ p + .govuk-heading-s,
   -webkit-overflow-scrolling: touch;
   touch-action: pan-x pan-y;
 }
+
+.govuk-heading-s,
+.govuk-body-s a,
+.govuk-heading-m,
+.govuk-list > li,
+.govuk-details__text {
+  color: var(--foreground-colour);
+}
