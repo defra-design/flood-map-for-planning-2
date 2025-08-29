@@ -1,9 +1,10 @@
 {% extends "layouts/main.html" %}
-
 {% set pageName="Home" %}
+
 {% block content %}
+
 <div class="govuk-grid-row">
-  <div class="govuk-grid-column-full-width">
+    
 
     <h1 class="govuk-heading-xl">
       {{ serviceName }}
@@ -21,14 +22,15 @@
           </li> -->
 
           <table class="govuk-table">
-            <caption class="govuk-table__caption govuk-table__caption--m">User research prototypes</caption>
+            <caption class="govuk-table__caption govuk-table__caption--m">Versions</caption>
             <thead class="govuk-table__head">
               <tr class="govuk-table__row">
                 <th scope="col" class="govuk-table__header">Prototype</th>
                 <th scope="col" class="govuk-table__header">Design history</th>
                 <th scope="col" class="govuk-table__header">Release</th>
                 <th scope="col" class="govuk-table__header">Map</th>
-                <th scope="col" class="govuk-table__header govuk-!-width-one-half">Developed features and content</th>
+                <th scope="col" class="govuk-table__header">Copy decks</th>
+                <th scope="col" class="govuk-table__header govuk-!-width-one-third">Developed features and content</th>
 
 
               </tr>
@@ -36,76 +38,81 @@
             <tbody class="govuk-table__body">
               <tr class="govuk-table__row">
                 <td class="govuk-table__cell"><a class="govuk-link" href="/v1-ccPd">v3.0.1</a></td>
-                <td class="govuk-table__cell">Not yet published</td>
+                <td class="govuk-table__cell"><a class="govuk-link" href="https://flood-map-fp-design-history-cd4ad1ba07fa.herokuapp.com/release-0-3-4/">Design history 3.4</a></td>
 
 
                 <td class="govuk-table__cell">v3.4</td>
                 <td class="govuk-table__cell">v0.6.4</td>
+                <td class="govuk-table__cell">v0.3.4</td>
                 <td class="govuk-table__cell">
                   <div style="margin-bottom: 2em;">
 
-                  <span style="padding-bottom: 1em;">
-                    <strong class="govuk-tag govuk-tag--blue">Map query</strong>
-                    </span>
+                    <div style="margin-bottom: 2em;">
+
+                      <span style="padding-bottom: 1em;">
+                        <strong class="govuk-tag govuk-tag--blue">Map query</strong>
+                        <strong class="govuk-tag govuk-tag--turquoise">No data areas</strong>
+                      </span>
+                      <div style="margin-top: 0.5em;">
+                        <strong class="govuk-tag govuk-tag--grey">Basemaps</strong>  
+                        
+                        <strong class="govuk-tag govuk-tag--green">Climate data</strong>
+    
+                        <strong class="govuk-tag govuk-tag--light-blue">Data page</strong>  
+                        </div>
+                        <div style="margin-top: 0.5em;"><strong class="govuk-tag govuk-tag--purple">Results page</strong> <strong class="govuk-tag govuk-tag--pink">New branding</strong> 
+                        </div>
+                        <div style="margin-top: 0.5em;">
+                        <strong class="govuk-tag govuk-tag--light-blue">Start page</strong></div>
+                      </div>
                   </div>
               </td>
               </tr>
+ <!--    
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">v3.0.0</td>
-                <td class="govuk-table__cell">Not yet published</td>
-
-
-                <td class="govuk-table__cell">v3.4</td>
-                <td class="govuk-table__cell">v0.6.4</td>
-                <td class="govuk-table__cell">
-                  <div style="margin-bottom: 2em;">
-
-                  <span style="padding-bottom: 1em;">
-                    <strong class="govuk-tag govuk-tag--blue">Map query</strong>
-                    <strong class="govuk-tag govuk-tag--turquoise">No data areas</strong>
-
-                    <strong class="govuk-tag govuk-tag--grey">Basemaps</strong>  <strong class="govuk-tag govuk-tag--green">Climate data</strong>
-                  </span>
-                  <div style="margin-top: 0.5em;">
-                    <strong class="govuk-tag govuk-tag--light-blue">Data page</strong>  <strong class="govuk-tag govuk-tag--purple">Results page</strong> <strong class="govuk-tag govuk-tag--pink">New branding</strong> <strong class="govuk-tag govuk-tag--light-blue">Start page</strong>
-                  </div>
-                </div>
-              </td>
-              </tr>
-              <tr class="govuk-table__row">
-                <td class="govuk-table__cell">v2.0.0</td>
-                <td class="govuk-table__cell">Not yet published</td>
+                <td class="govuk-table__cell">-</td>
+                <td class="govuk-table__cell">-</td>
 
 
                 <td class="govuk-table__cell">v3.3</td>
-                <td class="govuk-table__cell">v0.6.4</td>
+                <td class="govuk-table__cell">v0.6.3</td>
+                <td class="govuk-table__cell">v0.3.3</td>
                 <td class="govuk-table__cell">
                   <div style="margin-bottom: 2em;">
-                    <strong class="govuk-tag govuk-tag--turquoise">Data banner</strong> <strong class="govuk-tag govuk-tag--light-blue">Data page</strong> <strong class="govuk-tag govuk-tag--light-blue">Start page</strong> <strong class="govuk-tag govuk-tag--purple">Results page</strong> 
+                    <div style="margin-top: 0.5em;"><strong class="govuk-tag govuk-tag--turquoise">Data banner</strong> <strong class="govuk-tag govuk-tag--light-blue">Data page</strong> <strong class="govuk-tag govuk-tag--light-blue">Start page</strong> </div>
+                    <div style="margin-top: 0.5em;"<strong class="govuk-tag govuk-tag--purple">Results page</strong> </div>
                   </div>
                   </td>
               </tr>
               <tr class="govuk-table__row">
-                <td class="govuk-table__cell">v1.0.0</td>
-                <td class="govuk-table__cell">Not yet published</td>
+                <td class="govuk-table__cell">-</td>
+                <td class="govuk-table__cell">-</td>
 
 
                 <td class="govuk-table__cell">v3.2</td>
-                <td class="govuk-table__cell">v0.6.4</td>
+                <td class="govuk-table__cell">v0.6.2</td>
+                <td class="govuk-table__cell">v0.3.2</td>
                 <td class="govuk-table__cell">
                   <div style="margin-bottom: 2em;">
                   <span style="padding-bottom: 1em;">
+                    <div style="margin-top: 0.5em;">
                     <strong class="govuk-tag govuk-tag--blue">Map query</strong>
                     
 
-                    <strong class="govuk-tag govuk-tag--grey">Basemaps</strong>  <strong class="govuk-tag govuk-tag--green">Climate data</strong> <strong class="govuk-tag govuk-tag--light-blue">Data page</strong>
+                    <strong class="govuk-tag govuk-tag--grey">Basemaps</strong>
+                  </div>
+                  <div style="margin-top: 0.5em;">
+                    
+                    <strong class="govuk-tag govuk-tag--green">Climate data</strong> <strong class="govuk-tag govuk-tag--light-blue">Data page</strong>
                   </span>
                   <div style="margin-top: 0.5em;">
-                    <strong class="govuk-tag govuk-tag--light-blue">Start page</strong> <strong class="govuk-tag govuk-tag--light-blue">Triage page</strong> <strong class="govuk-tag govuk-tag--light-blue">Location page</strong> <strong class="govuk-tag govuk-tag--purple">Results page</strong> 
+                    <strong class="govuk-tag govuk-tag--light-blue">Start page</strong> <strong class="govuk-tag govuk-tag--light-blue">Triage page</strong> 
+                  </div>
+                  <div style="margin-top: 0.5em;"><strong class="govuk-tag govuk-tag--light-blue">Location page</strong> <strong class="govuk-tag govuk-tag--purple">Results page</strong> 
                   </div>
                 </div>
               </td>
-              </tr>
+              </tr>-->
             </tbody>
           </table>
 
@@ -126,7 +133,6 @@
     </p>
 
 
-  </div>
 </div>
 
 {% endblock %}
