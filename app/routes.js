@@ -13,48 +13,49 @@ const path = require('path')
 
 // all routes for FMFP with defra componant
 router.use('/v1', require('./routes_v1'))
+router.use('/v2', require('./routes_v2'))
 
-// set up route variable location page option
+// set up route variable results page option
 router.get('/results-a', function (req, res) {
 	req.session.data = { resultsType: 'resultsA' }
-	res.redirect(`/v1/results`)
+	res.redirect("/" + folder + "/results")
 })
 
 // set up route variable about map page option
 router.get('/about-map-b', function (req, res) {
 	req.session.data = { floodZone: 'fz3', resultsType: 'resultsA', aboutMap: 'optionB' }
-	res.redirect(`/v1/start`)
+	res.redirect("/" + folder + "/start")
 })
 
-// set up route variable location page option
+// set up route variable results page option
 router.get('/results-b', function (req, res) {
 	req.session.data = { resultsType: 'resultsB' }
-	res.redirect(`/v1/results`)
+	res.redirect("/" + folder + "/results")
 })
 
-// set up route variable e2e fz1
-router.get('/fz1', function (req, res) {
-	req.session.data = { floodZone: 'fz1', resultsType: 'resultsA' }
-	res.redirect(`/v1/start`)
-})
+// // set up route variable e2e fz1
+// router.get('/fz1', function (req, res) {
+// 	req.session.data = { floodZone: 'fz1', resultsType: 'resultsA' }
+// 	res.redirect("/" + folder + "/start")
+// })
 
-// set up route variable e2e fz2
-router.get('/fz2', function (req, res) {
-	req.session.data = { floodZone: 'fz2', resultsType: 'resultsA' }
-	res.redirect(`/v1/start`)
-})
+// // set up route variable e2e fz2
+// router.get('/fz2', function (req, res) {
+// 	req.session.data = { floodZone: 'fz2', resultsType: 'resultsA' }
+// 	res.redirect("/" + folder + "/start")
+// })
 
-// set up route variable e2e fz3
-router.get('/fz3', function (req, res) {
-	req.session.data = { floodZone: 'fz3', resultsType: 'resultsA' }
-	res.redirect(`/v1/start`)
-})
+// // set up route variable e2e fz3
+// router.get('/fz3', function (req, res) {
+// 	req.session.data = { floodZone: 'fz3', resultsType: 'resultsA' }
+// 	res.redirect("/" + folder + "/start")
+// })
 
-// set up route variable e2e fzd
-router.get('/fzd', function (req, res) {
-	req.session.data = { floodZone: 'fzd', resultsType: 'resultsA' }
-	res.redirect(`/v1/start`)
-})
+// // set up route variable e2e fzd
+// router.get('/fzd', function (req, res) {
+// 	req.session.data = { floodZone: 'fzd', resultsType: 'resultsA' }
+// 	res.redirect("/" + folder + "/start")
+// })
 
 // // Direct to map from location page when radios ==============================================================
 
@@ -120,6 +121,12 @@ router.get([
 router.get('/v1-ccpd', function (req, res) {
 	req.session.data = { mapType: 'v1PdCC' }
 	res.redirect(`/v1/start`)
+})
+
+//V2 with full summary page (including climate change)
+router.get('/v2-ccpd', function (req, res) {
+	req.session.data = { mapType: 'v2PdCC' }
+	res.redirect(`/v2/start`)
 })
 
 module.exports = router
