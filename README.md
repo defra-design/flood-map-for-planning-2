@@ -1,8 +1,10 @@
 ## GOV.UK Flood Map For Planning Service prototype
 
-The flood map for planning service provides flood risk information for planning purposes. This prototype is used for the user research of new designs and concepts. The prototype is versioned to track changes to the journey and design over time. Design notes against our design versions can be found within the design history. 
+The flood map for planning service provides flood risk information for planning purposes. 
 
-Our documented design history can be found at [Flood map for planning design history](https://flood-map-fp-design-history-cd4ad1ba07fa.herokuapp.com/) 
+This prototype is used for the user research of new designs and concepts. The prototype is versioned to track changes to the journey and design over time. Design notes against our design versions can be found within the  [Flood map for planning design history](https://flood-map-fp-design-history-cd4ad1ba07fa.herokuapp.com/).
+
+
 
 For example:
 
