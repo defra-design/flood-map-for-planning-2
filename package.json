@@ -2,13 +2,15 @@
   "scripts": {
     "dev": "govuk-prototype-kit dev",
     "webpack": "webpack",
+    "webpack-branch": "webpack --config webpack-branch.config.mjs",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
   },
   "dependencies": {
     "@arcgis/core": "^4.31.0",
-    "@defra/flood-map": "^0.6.4",
+    "@defra/flood-map": "github:DEFRA/defra-map#feature/FCRM-6232-constraint-callback",
     "@govuk-prototype-kit/common-templates": "2.0.1",
+    "@mapbox/mapbox-gl-draw": "^1.5.0",
     "@turf/distance": "^7.2.0",
     "govuk-frontend": "5.11.0",
     "govuk-prototype-kit": "13.17.0"
@@ -27,7 +29,7 @@
     "geodesy": "^2.4.0",
     "html-webpack-plugin": "^5.6.0",
     "magic-comments-loader": "^2.1.1",
-    "mini-css-extract-plugin": "^2.7.6",
+    "mini-css-extract-plugin": "^2.9.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
     "sass-loader": "^13.3.2",

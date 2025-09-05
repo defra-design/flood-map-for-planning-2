@@ -7,6 +7,7 @@ import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
 const FloodMap = window.defra.FloodMap
+
 let VectorTileLayer, FeatureLayer
 // const GroupLayer = await $arcgis.import("@arcgis/core/layers/GroupLayer.js")
 const GroupLayer = undefined // Add in when we can work out how to import it
