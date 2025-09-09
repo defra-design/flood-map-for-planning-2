@@ -1,2 +1,1379 @@
-"use strict";(self.webpackChunkdefra=self.webpackChunkdefra||[]).push([[9920],{31012:function(e,t,n){n.d(t,{A:function(){return d}});var r=n(53804),i=n(83525),o=n(50659),s=n(75743),a=n(88781),u=n(30905),c=n(23502),l=(n(58941),n(40633),n(65953));let f=0,p=class extends((0,u.Te)((0,s.O)((0,a.sA)(i.A)))){constructor(e){super(e),this.id=`${Date.now().toString(16)}-analysis-${f++}`,this.title=null}get parent(){return this._get("parent")}set parent(e){const t=this.parent;if(null!=t)switch(t.type){case"line-of-sight":case"dimension":case"viewshed":t.releaseAnalysis(this);break;case"2d":case"3d":t.analyses.includes(this)&&t.analyses.remove(this)}this._set("parent",e)}get isEditable(){return this.requiredPropertiesForEditing.every(o.Ru)}};(0,r._)([(0,c.MZ)({type:String,constructOnly:!0,clonable:!1})],p.prototype,"id",void 0),(0,r._)([(0,c.MZ)({type:String})],p.prototype,"title",void 0),(0,r._)([(0,c.MZ)({clonable:!1,value:null})],p.prototype,"parent",null),(0,r._)([(0,c.MZ)({readOnly:!0})],p.prototype,"isEditable",null),p=(0,r._)([(0,l.$)("esri.analysis.Analysis")],p);const d=p},97922:function(e,t,n){n.d(t,{xH:function(){return s},N1:function(){return u}}),n(20551);var r=n(32501),i=n(79578),o=(n(38177),n(73364),n(24761),n(13794),n(50456));function s(e,t){return a(e)===a(t)}function a(e){if(null==e)return null;const t=null!=e.layer?e.layer.id:"";let n=null;return n=null!=e.objectId?e.objectId:null!=e.layer&&"objectIdField"in e.layer&&null!=e.layer.objectIdField&&null!=e.attributes?e.attributes[e.layer.objectIdField]:e.uid,null==n?null:`o-${t}-${n}`}n(59356),o.R6,o.HE,o.R6,o.R6,n(89756),n(84363),(0,r.vt)();const u={json:{write:{writer:function(e,t){null!=e?.layer?.objectIdField&&null!=e.attributes&&(t.feature={layerId:e.layer.id,objectId:e.attributes[e.layer.objectIdField]})},target:{"feature.layerId":{type:[Number,String]},"feature.objectId":{type:[Number,String]}}},origins:{"web-scene":{read:function(e){if(null!=e.layerId&&null!=e.objectId)return{uid:null,layer:{id:e.layerId,objectIdField:"ObjectId"},attributes:{ObjectId:e.objectId}}}}}}};(0,i.vt)(),(0,r.vt)()},2075:function(e,t,n){n.d(t,{a:function(){return b},b:function(){return k},c:function(){return m},f:function(){return I},g:function(){return _},h:function(){return N},u:function(){return S}}),n(58941);var r=n(40633),i=n(15774),o=n(89736),s=n(73364),a=n(39714),u=n(20551),c=n(32501),l=n(87416),f=n(72485),p=n(73313),d=n(5596),g=n(79578),y=n(29531),h=n(50973);const v=()=>r.A.getLogger("esri.views.3d.support.geometryUtils.boundedPlane");function b(e=G){return{plane:(0,d.vt)(e.plane),origin:(0,c.o8)(e.origin),basis1:(0,c.o8)(e.basis1),basis2:(0,c.o8)(e.basis2)}}function m(e,t=b()){return I(e.origin,e.basis1,e.basis2,t)}function I(e,t,n,r=b()){return(0,u.c)(r.origin,e),(0,u.c)(r.basis1,t),(0,u.c)(r.basis2,n),S(r),function(e,t){Math.abs((0,u.f)(e.basis1,e.basis2)/((0,u.l)(e.basis1)*(0,u.l)(e.basis2)))>1e-6&&v().warn(t,"Provided basis vectors are not perpendicular"),Math.abs((0,u.f)(e.basis1,x(e)))>1e-6&&v().warn(t,"Basis vectors and plane normal are not perpendicular"),Math.abs(-(0,u.f)(x(e),e.origin)-e.plane[3])>1e-6&&v().warn(t,"Plane offset is not consistent with plane origin")}(r,"fromValues()"),r}function S(e){(0,d.mR)(e.basis2,e.basis1,e.origin,e.plane)}function w(e,t,n){e!==n&&m(e,n);const r=(0,u.h)(h.rq.get(),x(e),t);return(0,u.g)(n.origin,n.origin,r),n.plane[3]-=t,n}function _(e,t=b()){const n=(e[2]-e[0])/2,r=(e[3]-e[1])/2;return(0,u.i)(t.origin,e[0]+n,e[1]+r,0),(0,u.i)(t.basis1,n,0,0),(0,u.i)(t.basis2,0,r,0),(0,d.fA)(0,0,1,0,t.plane),t}function M(e,t,n){return!!(0,d.Ui)(e.plane,t,n)&&q(e,n)}function T(e,t,n){const r=Z.get();C(e,t,r,Z.get());let o=Number.POSITIVE_INFINITY;for(const s of $){const a=P(e,s,U.get()),c=h.rq.get();if((0,d.T7)(r,a,c)){const e=(0,u.o)(h.rq.get(),t.origin,c),r=Math.abs((0,i.XM)((0,u.f)(t.direction,e)));r<o&&(o=r,(0,u.c)(n,c))}}return o===Number.POSITIVE_INFINITY?E(e,t,n):n}function E(e,t,n){if(M(e,t,n))return n;const r=Z.get(),i=Z.get();C(e,t,r,i);let o=Number.POSITIVE_INFINITY;for(const s of $){const a=P(e,s,U.get()),c=h.rq.get();if((0,d.gv)(r,a,c)){const e=(0,g.kb)(t,c);if(!(0,d.Tj)(i,c))continue;e<o&&(o=e,(0,u.c)(n,c))}}return O(e,t.origin)<o&&A(e,t.origin,n),n}function A(e,t,n){const r=(0,d._I)(e.plane,t,h.rq.get()),i=(0,p.H6)(R(e,e.basis1),r,-1,1,h.rq.get()),o=(0,p.H6)(R(e,e.basis2),r,-1,1,h.rq.get());return(0,u.d)(n,(0,u.g)(h.rq.get(),i,o),e.origin),n}function L(e,t,n){const{origin:r,basis1:i,basis2:o}=e,s=(0,u.d)(h.rq.get(),t,r),a=(0,y.gr)(i,s),c=(0,y.gr)(o,s),l=(0,y.gr)(x(e),s);return(0,u.i)(n,a,c,l)}function O(e,t){const n=L(e,t,h.rq.get()),{basis1:r,basis2:i}=e,o=(0,u.l)(r),s=(0,u.l)(i),a=Math.max(Math.abs(n[0])-o,0),c=Math.max(Math.abs(n[1])-s,0),l=n[2];return a*a+c*c+l*l}function N(e,t){return Math.sqrt(O(e,t))}function j(e,t){const n=-e.plane[3];return(0,y.gr)(x(e),t)-n}function x(e){return(0,d.Qj)(e.plane)}function q(e,t){const n=(0,u.d)(h.rq.get(),t,e.origin),r=(0,u.k)(e.basis1),i=(0,u.k)(e.basis2),o=(0,u.f)(e.basis1,n),s=(0,u.f)(e.basis2,n);return-o-r<0&&o-r<0&&-s-i<0&&s-i<0}function R(e,t){const n=U.get();return(0,u.c)(n.origin,e.origin),(0,u.c)(n.vector,t),n}function P(e,t,n){const{basis1:r,basis2:i,origin:o}=e,s=(0,u.h)(h.rq.get(),r,t.origin[0]),a=(0,u.h)(h.rq.get(),i,t.origin[1]);(0,u.g)(n.origin,s,a),(0,u.g)(n.origin,n.origin,o);const c=(0,u.h)(h.rq.get(),r,t.direction[0]),l=(0,u.h)(h.rq.get(),i,t.direction[1]);return(0,u.h)(n.vector,(0,u.g)(c,c,l),2),n}function C(e,t,n,r){const i=x(e);(0,d.mR)(i,t.direction,t.origin,n),(0,d.mR)((0,d.Qj)(n),i,t.origin,r)}const G={plane:(0,d.vt)(),origin:(0,c.fA)(0,0,0),basis1:(0,c.fA)(1,0,0),basis2:(0,c.fA)(0,1,0)},Z=new o.I(d.vt),U=new o.I(p.vt),D=(0,c.vt)(),F=new o.I((()=>b())),$=[{origin:[-1,-1],direction:[1,0]},{origin:[1,-1],direction:[0,1]},{origin:[1,1],direction:[-1,0]},{origin:[-1,1],direction:[0,-1]}],V=(0,a.vt)(),B=(0,a.vt)(),k=Object.freeze(Object.defineProperty({__proto__:null,BoundedPlaneClass:class{constructor(){this.plane=(0,d.vt)(),this.origin=(0,c.vt)(),this.basis1=(0,c.vt)(),this.basis2=(0,c.vt)()}},altitudeAt:j,axisAt:function(e,t,n,r){return function(e,t,n){switch(t){case f._.X:(0,u.c)(n,e.basis1),(0,u.n)(n,n);break;case f._.Y:(0,u.c)(n,e.basis2),(0,u.n)(n,n);break;case f._.Z:(0,u.c)(n,x(e))}return n}(e,n,r)},cameraFrustumCoverage:function(e,t){return(t-e)/t},closestPoint:E,closestPointOnSilhouette:T,copy:m,copyWithoutVerify:function(e,t){(0,u.c)(t.origin,e.origin),(0,u.c)(t.basis1,e.basis1),(0,u.c)(t.basis2,e.basis2),(0,d.C)(t.plane,e.plane)},create:b,distance:N,distance2:O,distanceToSilhouette:function(e,t){let n=Number.NEGATIVE_INFINITY;for(const r of $){const i=P(e,r,U.get()),o=(0,p.kb)(i,t);o>n&&(n=o)}return Math.sqrt(n)},elevate:w,equals:function(e,t){return(0,u.p)(e.basis1,t.basis1)&&(0,u.p)(e.basis2,t.basis2)&&(0,u.p)(e.origin,t.origin)},extrusionContainsPoint:function(e,t){return(0,d.Tj)(e.plane,t)&&q(e,t)},fromAABoundingRect:_,fromValues:I,getExtent:function(e,t){const n=e.basis1[0],r=e.basis2[1],[i,o]=e.origin;return(0,l.fA)(i-n,o-r,i+n,o+r,t)},intersectRay:M,intersectRayClosestSilhouette:function(e,t,n){if(M(e,t,n))return n;const r=T(e,t,h.rq.get());return(0,u.g)(n,t.origin,(0,u.h)(h.rq.get(),t.direction,(0,u.j)(t.origin,r)/(0,u.l)(t.direction))),n},normal:x,projectPoint:A,projectPointLocal:L,rotate:function(e,t,n,r){return e!==r&&m(e,r),(0,s.$0)(B,t,n),(0,u.t)(r.basis1,e.basis1,B),(0,u.t)(r.basis2,e.basis2,B),S(r),r},setAltitudeAt:function(e,t,n,r){const i=j(e,t),o=(0,u.h)(D,x(e),n-i);return(0,u.g)(r,t,o),r},setExtent:function(e,t,n){return _(t,n),w(n,j(e,e.origin),n),n},transform:function(e,t,n){return e!==n&&m(e,n),(0,s.B8)(V,t),(0,s.mg)(V,V),(0,u.t)(n.basis1,e.basis1,V),(0,u.t)(n.basis2,e.basis2,V),(0,u.t)((0,d.Qj)(n.plane),(0,d.Qj)(e.plane),V),(0,u.t)(n.origin,e.origin,t),(0,d.mP)(n.plane,n.plane,n.origin),n},up:G,updateUnboundedPlane:S,wrap:function(e,t,n){const r=F.get();return r.origin=e,r.basis1=t,r.basis2=n,r.plane=(0,d.LV)(0,0,0,0),S(r),r}},Symbol.toStringTag,{value:"Module"}))},13794:function(e,t,n){n.d(t,{N:function(){return y},a:function(){return _},c:function(){return h},e:function(){return m},f:function(){return M},g:function(){return w},k:function(){return N},l:function(){return I},m:function(){return v},n:function(){return E},o:function(){return G},p:function(){return x},s:function(){return D},w:function(){return S}}),n(58941),n(40633);var r=n(15774),i=n(73364),o=n(20551),s=n(32501),a=n(33400),u=n(41546),c=n(8527),l=n(72485),f=n(79578);function p(e,t){const n=(0,o.l)(e),i=(0,r.YN)(e[2]/n),s=Math.atan2(e[1]/n,e[0]/n);return(0,o.i)(t,n,i,s),t}var d=n(29531),g=n(50973);const y=h();function h(){return(0,u.vt)()}const v=a.e,b=a.e;function m(e,t){return(0,a.c)(t,e)}function I(e,t){return(0,u.fA)(e[0],e[1],e[2],t)}function S(e){return e}function w(e){return e[3]}function _(e){return e}function M(e,t,n,r){return(0,u.fA)(e,t,n,r)}function T(e,t,n){if(null==t)return!1;if(!L(e,t,A))return!1;let{t0:r,t1:i}=A;if((r<0||i<r&&i>0)&&(r=i),r<0)return!1;if(n){const{origin:e,direction:i}=t;n[0]=e[0]+i[0]*r,n[1]=e[1]+i[1]*r,n[2]=e[2]+i[2]*r}return!0}function E(e,t,n){const r=(0,f.Cr)(t,n);if(!L(e,r,A))return[];const{origin:i,direction:a}=r,{t0:u,t1:l}=A,p=t=>{const n=(0,s.vt)();return(0,o.b)(n,i,a,t),x(e,n,n)};return Math.abs(u-l)<(0,c.FD)()?[p(u)]:[p(u),p(l)]}const A={t0:0,t1:0};function L(e,t,n){const{origin:r,direction:i}=t,o=O;o[0]=r[0]-e[0],o[1]=r[1]-e[1],o[2]=r[2]-e[2];const s=i[0]*i[0]+i[1]*i[1]+i[2]*i[2];if(0===s)return!1;const a=2*(i[0]*o[0]+i[1]*o[1]+i[2]*o[2]),u=a*a-4*s*(o[0]*o[0]+o[1]*o[1]+o[2]*o[2]-e[3]*e[3]);if(u<0)return!1;const c=Math.sqrt(u);return n.t0=(-a-c)/(2*s),n.t1=(-a+c)/(2*s),!0}const O=(0,s.vt)();function N(e,t){return T(e,t,null)}function j(e,t,n){const r=g.rq.get(),s=g.Rc.get();(0,o.e)(r,t.origin,t.direction);const a=w(e);(0,o.e)(n,r,t.origin),(0,o.h)(n,n,1/(0,o.l)(n)*a);const u=q(e,t.origin),c=(0,d.g7)(t.origin,n);return(0,i.$0)(s,c+u,r),(0,o.t)(n,n,s),n}function x(e,t,n){const r=(0,o.d)(g.rq.get(),t,e),i=(0,o.h)(g.rq.get(),r,e[3]/(0,o.l)(r));return(0,o.g)(n,i,e)}function q(e,t){const n=(0,o.d)(g.rq.get(),t,e),i=(0,o.l)(n),s=w(e),a=s+Math.abs(s-i);return(0,r.XM)(s/a)}const R=(0,s.vt)();function P(e,t,n,r){const i=(0,o.d)(R,t,e);switch(n){case l._.X:{const e=p(i,R)[2];return(0,o.i)(r,-Math.sin(e),Math.cos(e),0)}case l._.Y:{const e=p(i,R),t=e[1],n=e[2],s=Math.sin(t);return(0,o.i)(r,-s*Math.cos(n),-s*Math.sin(n),Math.cos(t))}case l._.Z:return(0,o.n)(r,i);default:return}}function C(e,t){const n=(0,o.d)(Z,t,e);return(0,o.l)(n)-e[3]}function G(e,t){const n=(0,o.s)(e,t),r=w(e);return n<=r*r}const Z=(0,s.vt)(),U=h(),D=Object.freeze(Object.defineProperty({__proto__:null,NullSphere:y,altitudeAt:C,angleToSilhouette:q,axisAt:P,cameraFrustumCoverage:function(e,t,n,r){const i=w(e),o=i*i,s=t+.5*Math.PI,a=n*n+o-2*Math.cos(s)*n*i,u=Math.sqrt(a),c=a-o;if(c<=0)return.5;const l=Math.sqrt(c),f=Math.acos(l/u)-Math.asin(i/(u/Math.sin(s)));return Math.min(1,(f+.5*r)/r)},clear:function(e){e[0]=e[1]=e[2]=e[3]=0},closestPoint:function(e,t,n){return T(e,t,n)?n:((0,f.oC)(t,e,n),x(e,n,n))},closestPointOnSilhouette:j,containsPoint:G,copy:m,create:h,distanceToSilhouette:function(e,t){const n=(0,o.d)(g.rq.get(),t,e),r=(0,o.k)(n),i=e[3]*e[3];return Math.sqrt(Math.abs(r-i))},elevate:function(e,t,n){return e!==n&&(n[0]=e[0],n[1]=e[1],n[2]=e[2]),n[3]=e[3]+t,n},equals:b,exactEquals:v,fromCenterAndRadius:I,fromRadius:function(e,t){return e[0]=e[1]=e[2]=0,e[3]=t,e},fromValues:M,getCenter:_,getExtent:function(e,t){return t},getRadius:w,intersectLine:E,intersectRay:T,intersectRayClosestSilhouette:function(e,t,n){if(T(e,t,n))return n;const r=j(e,t,g.rq.get());return(0,o.g)(n,t.origin,(0,o.h)(g.rq.get(),t.direction,(0,o.j)(t.origin,r)/(0,o.l)(t.direction))),n},intersectsRay:N,projectPoint:x,setAltitudeAt:function(e,t,n,r){const i=C(e,t),s=P(e,t,l._.Z,Z),a=(0,o.h)(Z,s,n-i);return(0,o.g)(r,t,a)},setExtent:function(e,t,n){return e!==n&&m(e,n),n},tmpSphere:U,union:function(e,t,n=(0,u.vt)()){const r=(0,o.j)(e,t),i=e[3],s=t[3];return r+s<i?((0,a.c)(n,e),n):r+i<s?((0,a.c)(n,t),n):((0,o.m)(n,e,t,(r+s-i)/(2*r)),n[3]=(r+i+s)/2,n)},wrap:S},Symbol.toStringTag,{value:"Module"}))},92709:function(e,t,n){n.d(t,{T:function(){return r},d:function(){return y}});const r={Base64:0,Hex:1,String:2,Raw:3},i=8,o=(1<<i)-1;function s(e,t){const n=(65535&e)+(65535&t);return(e>>16)+(t>>16)+(n>>16)<<16|65535&n}function a(e){const t=[];for(let n=0,r=e.length*i;n<r;n+=i)t[n>>5]|=(e.charCodeAt(n/i)&o)<<n%32;return t}function u(e){const t=[];for(let n=0,r=32*e.length;n<r;n+=i)t.push(String.fromCharCode(e[n>>5]>>>n%32&o));return t.join("")}function c(e,t,n,r,i,o){return s(function(e,t){return e<<t|e>>>32-t}(s(s(t,e),s(r,o)),i),n)}function l(e,t,n,r,i,o,s){return c(t&n|~t&r,e,t,i,o,s)}function f(e,t,n,r,i,o,s){return c(t&r|n&~r,e,t,i,o,s)}function p(e,t,n,r,i,o,s){return c(t^n^r,e,t,i,o,s)}function d(e,t,n,r,i,o,s){return c(n^(t|~r),e,t,i,o,s)}function g(e,t){e[t>>5]|=128<<t%32,e[14+(t+64>>>9<<4)]=t;let n=1732584193,r=-271733879,i=-1732584194,o=271733878;for(let t=0;t<e.length;t+=16){const a=n,u=r,c=i,g=o;n=l(n,r,i,o,e[t],7,-680876936),o=l(o,n,r,i,e[t+1],12,-389564586),i=l(i,o,n,r,e[t+2],17,606105819),r=l(r,i,o,n,e[t+3],22,-1044525330),n=l(n,r,i,o,e[t+4],7,-176418897),o=l(o,n,r,i,e[t+5],12,1200080426),i=l(i,o,n,r,e[t+6],17,-1473231341),r=l(r,i,o,n,e[t+7],22,-45705983),n=l(n,r,i,o,e[t+8],7,1770035416),o=l(o,n,r,i,e[t+9],12,-1958414417),i=l(i,o,n,r,e[t+10],17,-42063),r=l(r,i,o,n,e[t+11],22,-1990404162),n=l(n,r,i,o,e[t+12],7,1804603682),o=l(o,n,r,i,e[t+13],12,-40341101),i=l(i,o,n,r,e[t+14],17,-1502002290),r=l(r,i,o,n,e[t+15],22,1236535329),n=f(n,r,i,o,e[t+1],5,-165796510),o=f(o,n,r,i,e[t+6],9,-1069501632),i=f(i,o,n,r,e[t+11],14,643717713),r=f(r,i,o,n,e[t],20,-373897302),n=f(n,r,i,o,e[t+5],5,-701558691),o=f(o,n,r,i,e[t+10],9,38016083),i=f(i,o,n,r,e[t+15],14,-660478335),r=f(r,i,o,n,e[t+4],20,-405537848),n=f(n,r,i,o,e[t+9],5,568446438),o=f(o,n,r,i,e[t+14],9,-1019803690),i=f(i,o,n,r,e[t+3],14,-187363961),r=f(r,i,o,n,e[t+8],20,1163531501),n=f(n,r,i,o,e[t+13],5,-1444681467),o=f(o,n,r,i,e[t+2],9,-51403784),i=f(i,o,n,r,e[t+7],14,1735328473),r=f(r,i,o,n,e[t+12],20,-1926607734),n=p(n,r,i,o,e[t+5],4,-378558),o=p(o,n,r,i,e[t+8],11,-2022574463),i=p(i,o,n,r,e[t+11],16,1839030562),r=p(r,i,o,n,e[t+14],23,-35309556),n=p(n,r,i,o,e[t+1],4,-1530992060),o=p(o,n,r,i,e[t+4],11,1272893353),i=p(i,o,n,r,e[t+7],16,-155497632),r=p(r,i,o,n,e[t+10],23,-1094730640),n=p(n,r,i,o,e[t+13],4,681279174),o=p(o,n,r,i,e[t],11,-358537222),i=p(i,o,n,r,e[t+3],16,-722521979),r=p(r,i,o,n,e[t+6],23,76029189),n=p(n,r,i,o,e[t+9],4,-640364487),o=p(o,n,r,i,e[t+12],11,-421815835),i=p(i,o,n,r,e[t+15],16,530742520),r=p(r,i,o,n,e[t+2],23,-995338651),n=d(n,r,i,o,e[t],6,-198630844),o=d(o,n,r,i,e[t+7],10,1126891415),i=d(i,o,n,r,e[t+14],15,-1416354905),r=d(r,i,o,n,e[t+5],21,-57434055),n=d(n,r,i,o,e[t+12],6,1700485571),o=d(o,n,r,i,e[t+3],10,-1894986606),i=d(i,o,n,r,e[t+10],15,-1051523),r=d(r,i,o,n,e[t+1],21,-2054922799),n=d(n,r,i,o,e[t+8],6,1873313359),o=d(o,n,r,i,e[t+15],10,-30611744),i=d(i,o,n,r,e[t+6],15,-1560198380),r=d(r,i,o,n,e[t+13],21,1309151649),n=d(n,r,i,o,e[t+4],6,-145523070),o=d(o,n,r,i,e[t+11],10,-1120210379),i=d(i,o,n,r,e[t+2],15,718787259),r=d(r,i,o,n,e[t+9],21,-343485551),n=s(n,a),r=s(r,u),i=s(i,c),o=s(o,g)}return[n,r,i,o]}function y(e,t=r.Hex){const n=t||r.Base64,o=g(a(e),e.length*i);switch(n){case r.Raw:return o;case r.Hex:return function(e){const t="0123456789abcdef",n=[];for(let r=0,i=4*e.length;r<i;r++)n.push(t.charAt(e[r>>2]>>r%4*8+4&15)+t.charAt(e[r>>2]>>r%4*8&15));return n.join("")}(o);case r.String:return u(o);case r.Base64:return function(e){const t=[];for(let n=0,r=4*e.length;n<r;n+=3){const r=(e[n>>2]>>n%4*8&255)<<16|(e[n+1>>2]>>(n+1)%4*8&255)<<8|e[n+2>>2]>>(n+2)%4*8&255;for(let i=0;i<4;i++)8*n+6*i>32*e.length?t.push("="):t.push("ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/".charAt(r>>6*(3-i)&63))}return t.join("")}(o)}}},77793:function(e,t,n){n.d(t,{P:function(){return m},L:function(){return I}});var r=n(53804),i=n(83525),o=n(90194),s=n(21609),a=n(72977);class u{constructor(){this._propertyOriginMap=new Map,this._originStores=new Array(a.AU),this._values=new Map,this.multipleOriginsSupported=!0}clone(e){const t=new u,n=this._originStores[a.Gr.DEFAULTS];n&&n.forEach(((e,n)=>{t.set(n,(0,s.o8)(e),a.Gr.DEFAULTS)}));for(let n=a.Gr.SERVICE;n<a.AU;n++){const r=this._originStores[n];r&&r.forEach(((r,i)=>{e&&e.has(i)||t.set(i,(0,s.o8)(r),n)}))}return t}get(e,t){const n=void 0===t?this._values:this._originStores[t];return n?n.get(e):void 0}keys(e){const t=null==e?this._values:this._originStores[e];return t?[...t.keys()]:[]}set(e,t,n=a.Gr.USER){let r=this._originStores[n];if(r||(r=new Map,this._originStores[n]=r),r.set(e,t),!this._values.has(e)||this._propertyOriginMap.get(e)<=n){const r=this._values.get(e);return this._values.set(e,t),this._propertyOriginMap.set(e,n),r!==t}return!1}delete(e,t=a.Gr.USER){const n=this._originStores[t];if(!n)return;const r=n.get(e);if(n.delete(e),this._values.has(e)&&this._propertyOriginMap.get(e)===t){this._values.delete(e);for(let n=t-1;n>=0;n--){const t=this._originStores[n];if(t&&t.has(e)){this._values.set(e,t.get(e)),this._propertyOriginMap.set(e,n);break}}}return r}has(e,t){const n=void 0===t?this._values:this._originStores[t];return!!n&&n.has(e)}revert(e,t){for(;t>0&&!this.has(e,t);)--t;const n=this._originStores[t],r=n?.get(e),i=this._values.get(e);return this._values.set(e,r),this._propertyOriginMap.set(e,t),i!==r}originOf(e){return this._propertyOriginMap.get(e)||a.Gr.DEFAULTS}forEach(e){this._values.forEach(e)}}var c=n(97354),l=n(63693),f=n(65953);const p=e=>{let t=class extends e{constructor(...e){super(...e);const t=(0,l.oY)(this),n=t.store,r=new u;t.store=r,(0,o.k)(t,n,r)}read(e,t){(0,c.L)(this,e,t)}getAtOrigin(e,t){const n=d(this),r=(0,a.aB)(t);if("string"==typeof e)return n.get(e,r);const i={};return e.forEach((e=>{i[e]=n.get(e,r)})),i}originOf(e){return(0,a.OL)(this.originIdOf(e))}originIdOf(e){return d(this).originOf(e)}revert(e,t){const n=d(this),r=(0,a.aB)(t),i=(0,l.oY)(this);let o;o="string"==typeof e?"*"===e?n.keys(r):[e]:e,o.forEach((e=>{i.invalidate(e),n.revert(e,r),i.commit(e)}))}};return t=(0,r._)([(0,f.$)("esri.core.ReadOnlyMultiOriginJSONSupport")],t),t};function d(e){return(0,l.oY)(e).store}let g=class extends(p(i.A)){};g=(0,r._)([(0,f.$)("esri.core.ReadOnlyMultiOriginJSONSupport")],g);var y=n(62664),h=n(99495);const v=e=>{let t=class extends e{constructor(...e){super(...e)}clear(e,t="user"){return b(this).delete(e,(0,a.aB)(t))}write(e,t){return(0,h.M)(this,e=e||{},t),e}setAtOrigin(e,t,n){(0,l.oY)(this).setAtOrigin(e,t,(0,a.aB)(n))}removeOrigin(e){const t=b(this),n=(0,a.aB)(e),r=t.keys(n);for(const e of r)t.originOf(e)===n&&t.set(e,t.get(e,n),a.Gr.USER)}updateOrigin(e,t){const n=b(this),r=(0,a.aB)(t),i=(0,y.Jt)(this,e);for(let t=r+1;t<a.AU;++t)n.delete(e,t);n.set(e,i,r)}toJSON(e){return this.write({},e)}};return t=(0,r._)([(0,f.$)("esri.core.MultiOriginJSONSupport.WriteableMultiOriginJSONSupport")],t),t.prototype.toJSON.isDefaultToJSON=!0,t};function b(e){return(0,l.oY)(e).store}const m=e=>{let t=class extends(v(p(e))){constructor(...e){super(...e)}};return t=(0,r._)([(0,f.$)("esri.core.MultiOriginJSONSupport")],t),t};let I=class extends(m(i.A)){};I=(0,r._)([(0,f.$)("esri.core.MultiOriginJSONSupport")],I)},89736:function(e,t,n){n.d(t,{I:function(){return i}});var r=n(29601);class i{constructor(e){this._allocator=e,this._items=[],this._itemsPtr=0,this._grow()}get(){return 0===this._itemsPtr&&(0,r.d)((()=>this._reset())),this._itemsPtr===this._items.length&&this._grow(),this._items[this._itemsPtr++]}_reset(){const e=Math.min(3*Math.max(8,this._itemsPtr),this._itemsPtr+3*o);this._items.length=Math.min(e,this._items.length),this._itemsPtr=0}_grow(){for(let e=0;e<Math.max(8,Math.min(this._items.length,o));e++)this._items.push(this._allocator())}}const o=1024},18627:function(e,t,n){n.d(t,{P:function(){return d}});var r=n(39819),i=n(92709),o=n(73888),s=n(90683),a=n(66110),u=n(75779),c=n(72977),l=n(23502),f=n(82465),p=n(60534);function d(e){const t=e?.origins??[void 0];return(n,r)=>{const i=function(e,t,n){if("resource"===e?.type)return function(e,t,n){const r=(0,u.z4)(t,n);return{type:String,read:(e,t,n)=>{const i=(0,p.r)(e,t,n);return r.type===String?i:"function"==typeof r.type?new r.type({url:i}):void 0},write:{writer(t,i,a,u){if(!u?.resources)return"string"==typeof t?void(i[a]=(0,p.t)(t,u)):void(i[a]=t.write({},u));const l=function(e){return null==e?null:"string"==typeof e?e:e.url}(t),d=(0,p.t)(l,{...u,verifyItemRelativeUrls:u?.verifyItemRelativeUrls?{writtenUrls:u.verifyItemRelativeUrls.writtenUrls,rootPath:void 0}:void 0},p.M.NO),v=r.type!==String&&(!(0,o.H)(this)||u?.origin&&this.originIdOf(n)>(0,c.aB)(u.origin)),b={object:this,propertyName:n,value:t,targetUrl:d,dest:i,targetPropertyName:a,context:u,params:e};u?.portalItem&&d&&!(0,s.oP)(d)?v&&e?.contentAddressed?g(b):v?function(e){const{context:t,targetUrl:n,params:r,value:i,dest:o,targetPropertyName:a}=e;if(!t.portalItem)return;const u=t.portalItem.resourceFromPath(n),c=h(i,n,t),l=(0,f.n)(c),p=(0,s.Zo)(u.path),d=r?.compress??!1;l===p?(t.resources&&y({...e,resource:u,content:c,compress:d,updates:t.resources.toUpdate}),o[a]=n):g(e)}(b):function({context:e,targetUrl:t,dest:n,targetPropertyName:r}){e.portalItem&&e.resources&&(e.resources.toKeep.push({resource:e.portalItem.resourceFromPath(t),compress:!1}),n[r]=t)}(b):u?.portalItem&&(null==d||null!=(0,p.i)(d)||(0,s.w8)(d)||v)?g(b):i[a]=d}}}}(e,t,n);switch(e?.type??"other"){case"other":return{read:!0,write:!0};case"url":{const{read:e,write:t}=p.b;return{read:e,write:t}}}}(e,n,r);for(const e of t){const t=(0,l.rM)(n,e,r);for(const e in i)t[e]=i[e]}}}function g(e){const{targetUrl:t,params:n,value:o,context:u,dest:c,targetPropertyName:l}=e;if(!u.portalItem)return;const d=(0,p.p)(t),g=h(o,t,u);if(n?.contentAddressed&&"json"!==g.type)return void u.messages?.push(new r.A("persistable:contentAddressingUnsupported",`Property "${l}" is trying to serializing a resource with content of type ${g.type} with content addressing. Content addressing is only supported for json resources.`,{content:g}));const v=n?.contentAddressed&&"json"===g.type?(0,i.d)(g.jsonString):d?.filename??(0,a.lk)(),b=(0,s.fj)(n?.prefix??d?.prefix,v),m=`${b}.${(0,f.n)(g)}`;if(n?.contentAddressed&&u.resources&&"json"===g.type){const e=u.resources.toKeep.find((({resource:e})=>e.path===m))??u.resources.toAdd.find((({resource:e})=>e.path===m));if(e)return void(c[l]=e.resource.itemRelativeUrl)}const I=u.portalItem.resourceFromPath(m);(0,s.w8)(t)&&u.resources&&u.resources.pendingOperations.push((0,s.tk)(t).then((e=>{I.path=`${b}.${(0,f.n)({type:"blob",blob:e})}`,c[l]=I.itemRelativeUrl})).catch((()=>{})));const S=n?.compress??!1;u.resources&&y({...e,resource:I,content:g,compress:S,updates:u.resources.toAdd}),c[l]=I.itemRelativeUrl}function y({object:e,propertyName:t,updates:n,resource:r,content:i,compress:o}){n.push({resource:r,content:i,compress:o,finish:n=>{!function(e,t,n){"string"==typeof e[t]?e[t]=n.url:e[t].url=n.url}(e,t,n)}})}function h(e,t,n){return"string"==typeof e?{type:"url",url:t}:{type:"json",jsonString:JSON.stringify(e.toJSON(n))}}},64786:function(e,t,n){n.d(t,{K:function(){return r}});const r=["operational-layers","basemap","ground"]},87725:function(e,t,n){function r(){return[1,0,0,0,1,0,0,0,1]}function i(e,t,n,r,i,o,s,a,u){return[e,t,n,r,i,o,s,a,u]}n.d(t,{fA:function(){return i},vt:function(){return r},zK:function(){return o}});const o=[1,0,0,0,1,0,0,0,1];Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:o,clone:function(e){return[e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8]]},create:r,createView:function(e,t){return new Float64Array(e,t,9)},fromValues:i},Symbol.toStringTag,{value:"Module"}))},39714:function(e,t,n){function r(){return[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]}function i(e){return[e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8],e[9],e[10],e[11],e[12],e[13],e[14],e[15]]}function o(e,t,n,r,i,o,s,a,u,c,l,f,p,d,g,y){return[e,t,n,r,i,o,s,a,u,c,l,f,p,d,g,y]}n.d(t,{fA:function(){return o},o8:function(){return i},vt:function(){return r},zK:function(){return s}});const s=[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1];Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:s,clone:i,create:r,createView:function(e,t){return new Float64Array(e,t,16)},fromValues:o},Symbol.toStringTag,{value:"Module"}))},61769:function(e,t,n){function r(){return[0,0,0,1]}function i(e){return[e[0],e[1],e[2],e[3]]}n.d(t,{o8:function(){return i},vt:function(){return r},zK:function(){return o}});const o=[0,0,0,1];Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:o,clone:i,create:r,fromValues:function(e,t,n,r){return[e,t,n,r]}},Symbol.toStringTag,{value:"Module"}))},73888:function(e,t,n){function r(e){return e&&"getAtOrigin"in e&&"originOf"in e}n.d(t,{H:function(){return r}})},66110:function(e,t,n){n.d(t,{AG:function(){return a},lk:function(){return i},vD:function(){return s},yS:function(){return o}});const r="randomUUID"in crypto;function i(){if(r)return crypto.randomUUID();const e=crypto.getRandomValues(new Uint16Array(8));e[3]=4095&e[3]|16384,e[4]=16383&e[4]|32768;const t=t=>e[t].toString(16).padStart(4,"0");return t(0)+t(1)+"-"+t(2)+"-"+t(3)+"-"+t(4)+"-"+t(5)+t(6)+t(7)}function o(){return`{${i().toUpperCase()}}`}function s(){return`{${i()}}`}function a(e){const t=e.toUpperCase();return"{"!==e[0]?`{${t}}`:t}},73313:function(e,t,n){n.d(t,{C:function(){return c},Cr:function(){return f},H6:function(){return y},_I:function(){return d},dz:function(){return h},fA:function(){return l},kb:function(){return p},ld:function(){return v},sd:function(){return g},vt:function(){return u}});var r=n(15774),i=n(89736),o=n(20551),s=n(32501),a=n(50973);function u(e){return e?{origin:(0,s.o8)(e.origin),vector:(0,s.o8)(e.vector)}:{origin:(0,s.vt)(),vector:(0,s.vt)()}}function c(e,t=u()){return l(e.origin,e.vector,t)}function l(e,t,n=u()){return(0,o.c)(n.origin,e),(0,o.c)(n.vector,t),n}function f(e,t,n=u()){return(0,o.c)(n.origin,e),(0,o.d)(n.vector,t,e),n}function p(e,t){const n=(0,o.d)(a.rq.get(),t,e.origin),i=(0,o.f)(e.vector,n),s=(0,o.f)(e.vector,e.vector),u=(0,r.qE)(i/s,0,1),c=(0,o.d)(a.rq.get(),(0,o.h)(a.rq.get(),e.vector,u),n);return(0,o.f)(c,c)}function d(e,t,n){return y(e,t,0,1,n)}function g(e,t,n){return(0,o.g)(n,e.origin,(0,o.h)(n,e.vector,t))}function y(e,t,n,i,s){const{vector:u,origin:c}=e,l=(0,o.d)(a.rq.get(),t,c),f=(0,o.f)(u,l)/(0,o.k)(u);return(0,o.h)(s,u,(0,r.qE)(f,n,i)),(0,o.g)(s,s,e.origin)}function h(e,t){if(b(e,function(e,t){const n=I.get();return n.origin=e,n.vector=t,n}(t.origin,t.direction),!1,m)){const{tA:t,pB:n,distance2:r}=m;if(t>=0&&t<=1)return r;if(t<0)return(0,o.s)(e.origin,n);if(t>1)return(0,o.s)((0,o.g)(a.rq.get(),e.origin,e.vector),n)}return null}function v(e,t,n){return!!b(e,t,!0,m)&&((0,o.c)(n,m.pA),!0)}function b(e,t,n,i){const s=1e-6,u=e.origin,c=(0,o.g)(a.rq.get(),u,e.vector),l=t.origin,f=(0,o.g)(a.rq.get(),l,t.vector),p=a.rq.get(),d=a.rq.get();if(p[0]=u[0]-l[0],p[1]=u[1]-l[1],p[2]=u[2]-l[2],d[0]=f[0]-l[0],d[1]=f[1]-l[1],d[2]=f[2]-l[2],Math.abs(d[0])<s&&Math.abs(d[1])<s&&Math.abs(d[2])<s)return!1;const g=a.rq.get();if(g[0]=c[0]-u[0],g[1]=c[1]-u[1],g[2]=c[2]-u[2],Math.abs(g[0])<s&&Math.abs(g[1])<s&&Math.abs(g[2])<s)return!1;const y=p[0]*d[0]+p[1]*d[1]+p[2]*d[2],h=d[0]*g[0]+d[1]*g[1]+d[2]*g[2],v=p[0]*g[0]+p[1]*g[1]+p[2]*g[2],b=d[0]*d[0]+d[1]*d[1]+d[2]*d[2],m=(g[0]*g[0]+g[1]*g[1]+g[2]*g[2])*b-h*h;if(Math.abs(m)<s)return!1;let I=(y*h-v*b)/m,S=(y+h*I)/b;n&&(I=(0,r.qE)(I,0,1),S=(0,r.qE)(S,0,1));const w=a.rq.get(),_=a.rq.get();return w[0]=u[0]+I*g[0],w[1]=u[1]+I*g[1],w[2]=u[2]+I*g[2],_[0]=l[0]+S*d[0],_[1]=l[1]+S*d[1],_[2]=l[2]+S*d[2],i.tA=I,i.tB=S,i.pA=w,i.pB=_,i.distance2=(0,o.s)(w,_),!0}const m={tA:0,tB:0,pA:(0,s.vt)(),pB:(0,s.vt)(),distance2:0},I=new i.I((()=>u()))},5596:function(e,t,n){n.d(t,{C:function(){return f},Cr:function(){return y},Io:function(){return P},LV:function(){return l},O_:function(){return g},Qj:function(){return p},T7:function(){return O},Tj:function(){return j},U5:function(){return A},Ui:function(){return L},Z1:function(){return R},_I:function(){return q},b6:function(){return x},ci:function(){return v},fA:function(){return d},gv:function(){return N},lU:function(){return h},mN:function(){return C},mP:function(){return M},mR:function(){return E},vt:function(){return c},ze:function(){return T}});var r=n(15774),i=n(20551),o=n(32501),s=(n(33400),n(29531)),a=n(50973),u=n(76185);function c(e=F){return[e[0],e[1],e[2],e[3]]}function l(e=F[0],t=F[1],n=F[2],r=F[3]){return d(e,t,n,r,a.Km.get())}function f(e,t){return d(t[0],t[1],t[2],t[3],e)}function p(e){return e}function d(e,t,n,r,i=c()){return i[0]=e,i[1]=t,i[2]=n,i[3]=r,i}function g(e,t,n){const r=t[0]*t[0]+t[1]*t[1]+t[2]*t[2],i=Math.abs(r-1)>1e-5&&r>1e-12?1/Math.sqrt(r):1;return n[0]=t[0]*i,n[1]=t[1]*i,n[2]=t[2]*i,n[3]=-(n[0]*e[0]+n[1]*e[1]+n[2]*e[2]),n}function y(e,t,n,r=c()){const i=n[0]-t[0],o=n[1]-t[1],s=n[2]-t[2],a=e[0]-t[0],u=e[1]-t[1],l=e[2]-t[2],f=o*l-s*u,p=s*a-i*l,d=i*u-o*a,g=f*f+p*p+d*d,y=Math.abs(g-1)>1e-5&&g>1e-12?1/Math.sqrt(g):1;return r[0]=f*y,r[1]=p*y,r[2]=d*y,r[3]=-(r[0]*e[0]+r[1]*e[1]+r[2]*e[2]),r}function h(e,t,n,r=0,o=Math.floor(n*(1/3)),s=Math.floor(n*(2/3))){if(n<3)return!1;t(m,r);let a=o,u=!1;for(;a<n-1&&!u;)t(I,a),a++,u=!(0,i.p)(m,I);if(!u)return!1;for(a=Math.max(a,s),u=!1;a<n&&!u;)t(S,a),a++,(0,i.d)(w,m,I),(0,i.n)(w,w),(0,i.d)(_,I,S),(0,i.n)(_,_),u=!(0,i.p)(m,S)&&!(0,i.p)(I,S)&&Math.abs((0,i.f)(w,_))<b;return u?(y(m,I,S,e),!0):(0!==r||1!==o||2!==s)&&h(e,t,n,0,1,2)}function v(e,t,n=!0){const r=t.length/3;return h(e,((e,n)=>(0,i.i)(e,t[3*n+0],t[3*n+1],t[3*n+2])),n?r-1:r)}const b=.99619469809,m=(0,o.vt)(),I=(0,o.vt)(),S=(0,o.vt)(),w=(0,o.vt)(),_=(0,o.vt)();function M(e,t,n){return t!==e&&f(e,t),e[3]=-(0,i.f)(e,n),e}function T(e,t){return t[0]=-e[0],t[1]=-e[1],t[2]=-e[2],t[3]=-e[3],t}function E(e,t,n,r){return(0,i.e)(S,t,e),g(n,S,r)}function A(e,t,n,r){return U(D(e,t,(0,i.d)(a.rq.get(),n,t),V,r))}function L(e,t,n){return null!=t&&U(D(e,t.origin,t.direction,B,n))}function O(e,t,n){return U(D(e,t.origin,t.vector,$.NONE,n))}function N(e,t,n){return U(D(e,t.origin,t.vector,$.CLAMP,n))}function j(e,t){return C(e,t)>=0}function x(e,t){const n=(0,i.f)(e,t.ray.direction),r=-C(e,t.ray.origin);if(n>-1e-6&&n<1e-6)return r>0;const o=r/n;return n>0?o<t.c1&&(t.c1=o):o>t.c0&&(t.c0=o),t.c0<=t.c1}function q(e,t,n){const r=(0,i.h)(a.rq.get(),e,-e[3]),o=function(e,t,n){const r=(0,i.h)(a.rq.get(),e,(0,i.f)(e,t));return(0,i.d)(n,t,r),n}(e,(0,i.d)(a.rq.get(),t,r),a.rq.get());return(0,i.g)(n,o,r),n}function R(e,t,n,r){const o=e,c=a.rq.get(),l=a.rq.get();(0,u.VV)(o,c,l);const f=(0,i.d)(a.rq.get(),n,t),p=(0,s.gr)(c,f),d=(0,s.gr)(l,f),g=(0,s.gr)(o,f);return(0,i.i)(r,p,d,g)}function P(e,t){return Math.abs(C(e,t))}function C(e,t){return(0,i.f)(e,t)+e[3]}var G,Z;function U(e){return e===G.INTERSECTS_INSIDE_OUT||e===G.INTERSECTS_OUTSIDE_IN}function D(e,t,n,o,s){const a=(0,i.f)(e,n),u=C(e,t);if(0===a)return u>=0?G.INSIDE:G.OUTSIDE;let c=-u/a;return o&$.CLAMP&&(c=(0,r.qE)(c,0,1)),!(o&$.INFINITE_MIN)&&c<0||!(o&$.INFINITE_MAX)&&c>1?u>=0?G.INSIDE:G.OUTSIDE:((0,i.g)(s,t,(0,i.h)(s,n,c)),u>=0?G.INTERSECTS_INSIDE_OUT:G.INTERSECTS_OUTSIDE_IN)}(Z=G||(G={}))[Z.INTERSECTS_INSIDE_OUT=0]="INTERSECTS_INSIDE_OUT",Z[Z.INTERSECTS_OUTSIDE_IN=1]="INTERSECTS_OUTSIDE_IN",Z[Z.INSIDE=2]="INSIDE",Z[Z.OUTSIDE=3]="OUTSIDE";const F=[0,0,1,0];var $;!function(e){e[e.NONE=0]="NONE",e[e.CLAMP=1]="CLAMP",e[e.INFINITE_MIN=4]="INFINITE_MIN",e[e.INFINITE_MAX=8]="INFINITE_MAX"}($||($={}));const V=$.INFINITE_MIN|$.INFINITE_MAX,B=$.INFINITE_MAX},79578:function(e,t,n){n.d(t,{C:function(){return f},Cr:function(){return p},LV:function(){return l},kb:function(){return d},oC:function(){return g},vt:function(){return u}}),n(50659);var r=n(89736),i=(n(44705),n(87725)),o=n(20551),s=n(32501),a=n(50973);function u(e){return e?c((0,s.o8)(e.origin),(0,s.o8)(e.direction)):c((0,s.vt)(),(0,s.vt)())}function c(e,t){return{origin:e,direction:t}}function l(e,t){const n=y.get();return n.origin=e,n.direction=t,n}function f(e,t=u()){return function(e,t,n=u()){return(0,o.c)(n.origin,e),(0,o.c)(n.direction,t),n}(e.origin,e.direction,t)}function p(e,t,n=u()){return(0,o.c)(n.origin,e),(0,o.d)(n.direction,t,e),n}function d(e,t){const n=(0,o.e)(a.rq.get(),(0,o.n)(a.rq.get(),e.direction),(0,o.d)(a.rq.get(),t,e.origin));return(0,o.f)(n,n)}function g(e,t,n){const r=(0,o.f)(e.direction,(0,o.d)(n,t,e.origin));return(0,o.g)(n,e.origin,(0,o.h)(n,e.direction,r)),n}const y=new r.I((()=>u()));(0,s.vt)(),(0,s.vt)(),(0,s.vt)(),(0,i.vt)()},29531:function(e,t,n){n.d(t,{EJ:function(){return c},_I:function(){return s},g7:function(){return u},gr:function(){return a}});var r=n(15774),i=n(20551),o=n(32501);function s(e,t,n){const r=(0,i.f)(e,t)/(0,i.f)(e,e);return(0,i.h)(n,e,r)}function a(e,t){return(0,i.f)(e,t)/(0,i.l)(e)}function u(e,t){const n=(0,i.f)(e,t)/((0,i.l)(e)*(0,i.l)(t));return-(0,r.XM)(n)}function c(e,t,n){(0,i.n)(l,e),(0,i.n)(f,t);const o=(0,i.f)(l,f),s=(0,r.XM)(o),a=(0,i.e)(l,l,f);return(0,i.f)(a,n)<0?2*Math.PI-s:s}const l=(0,o.vt)(),f=(0,o.vt)()},50973:function(e,t,n){n.d(t,{Rc:function(){return g},J8:function(){return y},oG:function(){return f},rq:function(){return p},Km:function(){return d}}),n(58941);var r=n(29601),i=n(87725),o=n(39714),s=n(61769),a=n(1932),u=n(32501),c=n(41546);class l{constructor(e){this._create=e,this._items=new Array,this._itemsPtr=0}get(){return 0===this._itemsPtr&&(0,r.d)((()=>this._reset())),this._itemsPtr>=this._items.length&&this._items.push(this._create()),this._items[this._itemsPtr++]}_reset(){const e=2*this._itemsPtr;this._items.length>e&&(this._items.length=e),this._itemsPtr=0}static createVec2f64(){return new l(a.vt)}static createVec3f64(){return new l(u.vt)}static createVec4f64(){return new l(c.vt)}static createMat3f64(){return new l(i.vt)}static createMat4f64(){return new l(o.vt)}static createQuatf64(){return new l(s.vt)}get test(){}}const f=l.createVec2f64(),p=l.createVec3f64(),d=l.createVec4f64(),g=(l.createMat3f64(),l.createMat4f64()),y=l.createQuatf64()},47738:function(e,t,n){n.r(t),n.d(t,{default:function(){return q}});var r=n(53804),i=n(31012),o=n(97922),s=n(83525),a=n(75743),u=n(30905),c=n(95929),l=n(23502),f=(n(58941),n(40633),n(13798),n(65953)),p=n(18627),d=n(45532),g=n(6422);let y=class extends((0,u.Te)((0,a.O)(s.A))){constructor(e){super(e),this.position=null,this.elevationInfo=null,this.feature=null}equals(e){return(0,c.CM)(this.position,e.position)&&(0,c.CM)(this.elevationInfo,e.elevationInfo)&&(0,o.xH)(this.feature,e.feature)}};(0,r._)([(0,l.MZ)({type:d.default,json:{write:{isRequired:!0}}})],y.prototype,"position",void 0),(0,r._)([(0,l.MZ)({type:g.A}),(0,p.P)()],y.prototype,"elevationInfo",void 0),(0,r._)([(0,l.MZ)(o.N1)],y.prototype,"feature",void 0),y=(0,r._)([(0,f.$)("esri.analysis.LineOfSightAnalysisObserver")],y);const h=y;let v=class extends((0,u.Te)(a.P)){constructor(e){super(e),this.position=null,this.elevationInfo=null,this.feature=null}equals(e){return(0,c.CM)(this.position,e.position)&&(0,c.CM)(this.elevationInfo,e.elevationInfo)&&(0,o.xH)(this.feature,e.feature)}};(0,r._)([(0,l.MZ)({type:d.default}),(0,p.P)()],v.prototype,"position",void 0),(0,r._)([(0,l.MZ)({type:g.A}),(0,p.P)()],v.prototype,"elevationInfo",void 0),(0,r._)([(0,l.MZ)(o.N1)],v.prototype,"feature",void 0),v=(0,r._)([(0,f.$)("esri.analysis.LineOfSightAnalysisTarget")],v);const b=v;var m=n(78879),I=n(61500),S=n(28181),w=n(46157),_=n(24761),M=n(68945);const T=m.A.ofType(b);let E=class extends i.A{constructor(e){super(e),this.type="line-of-sight",this.observer=null,this.extent=null}initialize(){this.addHandles((0,S.watch)((()=>this._computeExtent()),(e=>{null==e?.pending&&this._set("extent",null!=e?e.extent:null)}),S.pc))}get targets(){return this._get("targets")||new T}set targets(e){this._set("targets",(0,I.V)(e,this.targets,T))}get spatialReference(){return null!=this.observer?.position?this.observer.position.spatialReference:null}get requiredPropertiesForEditing(){return[this.observer?.position]}async waitComputeExtent(){const e=this._computeExtent();return null!=e?e.pending:Promise.resolve()}_computeExtent(){const e=this.spatialReference;if(null==this.observer?.position||null==e)return null;const t=e=>"absolute-height"===(0,M.w7)(e.position,e.elevationInfo),n=this.observer.position,r=(0,_.fA)(n.x,n.y,n.z,n.x,n.y,n.z);for(const t of this.targets)if(null!=t.position){const n=(0,w.projectOrLoad)(t.position,e);if(null!=n.pending)return{pending:n.pending,extent:null};if(null!=n.geometry){const{x:e,y:t,z:i}=n.geometry;(0,_.iT)(r,[e,t,i])}}const i=(0,_.w1)(r,e);return t(this.observer)&&this.targets.every(t)||(i.zmin=void 0,i.zmax=void 0),{pending:null,extent:i}}clear(){this.observer=null,this.targets.removeAll()}};(0,r._)([(0,l.MZ)({type:["line-of-sight"]})],E.prototype,"type",void 0),(0,r._)([(0,l.MZ)({type:h,json:{read:!0,write:!0}})],E.prototype,"observer",void 0),(0,r._)([(0,l.MZ)({cast:I.H,type:T,nonNullable:!0,json:{read:!0,write:!0}})],E.prototype,"targets",null),(0,r._)([(0,l.MZ)({value:null,readOnly:!0})],E.prototype,"extent",void 0),(0,r._)([(0,l.MZ)({readOnly:!0})],E.prototype,"spatialReference",null),(0,r._)([(0,l.MZ)({readOnly:!0})],E.prototype,"requiredPropertiesForEditing",null),E=(0,r._)([(0,f.$)("esri.analysis.LineOfSightAnalysis")],E);const A=E;var L=n(77793),O=n(20833),N=n(92078);const j=m.A.ofType(b);let x=class extends((0,N.q)((0,L.P)(O.A))){constructor(e){super(e),this.type="line-of-sight",this.operationalLayerType="LineOfSightLayer",this.analysis=new A,this.opacity=1}initialize(){this.addHandles((0,S.watch)((()=>this.analysis),((e,t)=>{null!=t&&t.parent===this&&(t.parent=null),null!=e&&(e.parent=this)}),S.pc))}async load(){return null!=this.analysis&&this.addResolvingPromise(this.analysis.waitComputeExtent()),this}get observer(){return this.analysis?.observer}set observer(e){const{analysis:t}=this;t&&(t.observer=e)}get targets(){return null!=this.analysis?this.analysis.targets:new m.A}set targets(e){(0,I.V)(e,this.analysis?.targets)}get fullExtent(){return null!=this.analysis?this.analysis.extent:null}get spatialReference(){return null!=this.analysis?this.analysis.spatialReference:null}releaseAnalysis(e){this.analysis===e&&(this.analysis=new A)}};(0,r._)([(0,l.MZ)({json:{read:!1},readOnly:!0})],x.prototype,"type",void 0),(0,r._)([(0,l.MZ)({type:["LineOfSightLayer"]})],x.prototype,"operationalLayerType",void 0),(0,r._)([(0,l.MZ)({type:h,json:{read:!0,write:{isRequired:!0,ignoreOrigin:!0}}})],x.prototype,"observer",null),(0,r._)([(0,l.MZ)({type:j,json:{read:!0,write:{ignoreOrigin:!0}}})],x.prototype,"targets",null),(0,r._)([(0,l.MZ)({nonNullable:!0,json:{read:!1,write:!1}})],x.prototype,"analysis",void 0),(0,r._)([(0,l.MZ)({readOnly:!0})],x.prototype,"fullExtent",null),(0,r._)([(0,l.MZ)({readOnly:!0})],x.prototype,"spatialReference",null),(0,r._)([(0,l.MZ)({readOnly:!0,json:{read:!1,write:!1,origins:{service:{read:!1,write:!1},"portal-item":{read:!1,write:!1},"web-document":{read:!1,write:!1}}}})],x.prototype,"opacity",void 0),(0,r._)([(0,l.MZ)({type:["show","hide"]})],x.prototype,"listMode",void 0),x=(0,r._)([(0,f.$)("esri.layers.LineOfSightLayer")],x);const q=x},92078:function(e,t,n){n.d(t,{q:function(){return I}});var r=n(53804),i=n(39819),o=n(90683),s=n(23502),a=n(67888),u=(n(13798),n(58941),n(47332)),c=n(65953),l=n(81392),f=n(64786),p=n(97354),d=n(99495);const g={ArcGISAnnotationLayer:!0,ArcGISDimensionLayer:!0,ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISImageServiceVectorLayer:!0,ArcGISMapServiceLayer:!0,ArcGISStreamLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BingMapsAerial:!0,BingMapsHybrid:!0,BingMapsRoad:!0,CatalogLayer:!0,CSV:!0,GeoJSON:!0,GeoRSS:!0,GroupLayer:!0,KML:!0,KnowledgeGraphLayer:!0,MediaLayer:!0,OGCFeatureLayer:!0,OrientedImageryLayer:!0,SubtypeGroupLayer:!0,VectorTileLayer:!0,WFS:!0,WMS:!0,WebTiledLayer:!0},y={ArcGISImageServiceLayer:!0,ArcGISImageServiceVectorLayer:!0,ArcGISMapServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BingMapsAerial:!0,BingMapsHybrid:!0,BingMapsRoad:!0,OpenStreetMap:!0,VectorTileLayer:!0,WMS:!0,WebTiledLayer:!0},h={ArcGISFeatureLayer:!0,SubtypeGroupTable:!0},v={"web-scene/operational-layers":{ArcGISDimensionLayer:!0,ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISMapServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISTiledElevationServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BuildingSceneLayer:!0,CatalogLayer:!0,CSV:!0,GeoJSON:!0,GroupLayer:!0,IntegratedMesh3DTilesLayer:!0,IntegratedMeshLayer:!0,KML:!0,LineOfSightLayer:!0,MediaLayer:!0,OGCFeatureLayer:!0,OrientedImageryLayer:!0,PointCloudLayer:!0,RasterDataLayer:!0,VectorTileLayer:!0,ViewshedLayer:!0,Voxel:!0,WFS:!0,WMS:!0,WebTiledLayer:!0},"web-scene/basemap":{ArcGISImageServiceLayer:!0,ArcGISMapServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,OpenStreetMap:!0,VectorTileLayer:!0,WMS:!0,WebTiledLayer:!0},"web-scene/ground":{ArcGISTiledElevationServiceLayer:!0,RasterDataElevationLayer:!0},"web-scene/tables":{ArcGISFeatureLayer:!0},"web-map/operational-layers":g,"web-map/basemap":y,"web-map/tables":h,"link-chart/operational-layers":{...g,LinkChartLayer:!0},"link-chart/basemap":y,"link-chart/tables":h,"portal-item/operational-layers":{ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISStreamLayer:!0,ArcGISTiledImageServiceLayer:!0,BuildingSceneLayer:!0,IntegratedMesh3DTilesLayer:!0,IntegratedMeshLayer:!0,MediaLayer:!0,OrientedImageryLayer:!0,PointCloudLayer:!0,SubtypeGroupLayer:!0}};var b=n(7010),m=n(52038);const I=e=>{let t=class extends e{constructor(){super(...arguments),this.persistenceEnabled=!0,this.title=null}readId(e,t,n){return"Group Layer"===n?.portalItem?.type?void 0:e}writeListMode(e,t,n,r){(r&&"ground"===r.layerContainerType||e&&(0,d.R)(this,n,{},r))&&(t[n]=e)}writeOperationalLayerType(e,t,n,r){e&&"tables"!==r?.layerContainerType&&(t.layerType=e)}writeTitle(e,t){t.title=e??"Layer"}readTimeExtent(e){return e?m.A.fromArray(e):null}writeTimeExtent(e,t,n,r){e&&"tables"!==r.layerContainerType&&(e.isEmpty?r?.messages&&r.messages.push(new i.A("layer:invalid-visibilityTimeExtent","visibilityTimeExtent cannot be empty")):t[n]=e.toArray())}read(e,t){t&&(t.layer=this),(0,p.t)(this,e,(t=>super.read(e,t)),t)}write(e,t){if(!this.persistenceEnabled&&!t?.ignorePersistenceEnabled)return null;if(t?.origin){const e=`${t.origin}/${t.layerContainerType||"operational-layers"}`,n=v[e];let r=!!n?.[this.operationalLayerType];if("ArcGISTiledElevationServiceLayer"===this.operationalLayerType&&"web-scene/operational-layers"===e&&(r=!1),"ArcGISDimensionLayer"===this.operationalLayerType&&"web-map/operational-layers"===e&&(r=!1),!r)return t.messages?.push(new i.A("layer:unsupported",`Layers (${this.title}, ${this.id}) of type '${this.declaredClass}' are not supported in the context of '${e}'`,{layer:this})),null}const n=super.write(e,{...t,layer:this}),r=!!t&&!!t.messages&&!!t.messages.filter((e=>e instanceof i.A&&"web-document-write:property-required"===e.name)).length;return(0,o.w8)(n?.url)?(t?.messages?.push(new i.A("layer:invalid-url",`Layer (${this.title}, ${this.id}) of type '${this.declaredClass}' using a Blob URL cannot be written to web scenes and web maps`,{layer:this})),null):!this.url&&r?null:n}beforeSave(){}};return(0,r._)([(0,s.MZ)({type:String,json:{write:{ignoreOrigin:!0},origins:{"web-scene":{write:{isRequired:!0,ignoreOrigin:!0}},"portal-item":{write:!1}}}})],t.prototype,"id",void 0),(0,r._)([(0,u.w)("id",["id"])],t.prototype,"readId",null),(0,r._)([(0,s.MZ)(b.C1)],t.prototype,"listMode",void 0),(0,r._)([(0,l.K)("listMode")],t.prototype,"writeListMode",null),(0,r._)([(0,s.MZ)({type:String,readOnly:!0,json:{read:!1,write:{target:"layerType",ignoreOrigin:!0},origins:{"portal-item":{write:!1},"web-scene":{name:"layerType",read:!1,write:{enabled:!0,ignoreOrigin:!0,layerContainerTypes:f.K}}}}})],t.prototype,"operationalLayerType",void 0),(0,r._)([(0,l.K)("operationalLayerType")],t.prototype,"writeOperationalLayerType",null),(0,r._)([(0,s.MZ)(b.ke)],t.prototype,"opacity",void 0),(0,r._)([(0,s.MZ)({type:Boolean,readOnly:!1})],t.prototype,"persistenceEnabled",void 0),(0,r._)([(0,s.MZ)({type:String,json:{write:{ignoreOrigin:!0,writerEnsuresNonNull:!0},origins:{"web-scene":{write:{isRequired:!0,ignoreOrigin:!0,writerEnsuresNonNull:!0}},"portal-item":{write:!1}}},value:"Layer"})],t.prototype,"title",void 0),(0,r._)([(0,l.K)("title"),(0,l.K)(["web-scene"],"title")],t.prototype,"writeTitle",null),(0,r._)([(0,s.MZ)({type:m.A,json:{origins:{"web-scene":{write:{layerContainerTypes:f.K}}}}})],t.prototype,"visibilityTimeExtent",void 0),(0,r._)([(0,u.w)("visibilityTimeExtent")],t.prototype,"readTimeExtent",null),(0,r._)([(0,l.K)(["portal-item","web-map","web-scene"],"visibilityTimeExtent",{visibilityTimeExtent:{type:[[a.jz,a.Uv]]}})],t.prototype,"writeTimeExtent",null),(0,r._)([(0,s.MZ)({type:Boolean,json:{origins:{"web-scene":{name:"visibility",write:{enabled:!0,layerContainerTypes:f.K}}},name:"visibility",write:!0}})],t.prototype,"visible",void 0),t=(0,r._)([(0,c.$)("esri.layers.mixins.OperationalLayer")],t),t}},7010:function(e,t,n){n.d(t,{C1:function(){return M},Fm:function(){return I},Ih:function(){return m},M6:function(){return f},OZ:function(){return d},PY:function(){return l},Qo:function(){return h},Yj:function(){return y},fV:function(){return g},hG:function(){return _},hn:function(){return w},id:function(){return S},kF:function(){return p},ke:function(){return b},zQ:function(){return T}});var r=n(64786),i=n(91484),o=n(57165),s=n(60534),a=n(6422),u=n(92777),c=n(59798);const l={type:Boolean,value:!0,json:{origins:{service:{read:!1,write:!1},"web-map":{read:!1,write:!1}},name:"screenSizePerspective",write:{enabled:!0,layerContainerTypes:r.K}}},f={type:Boolean,value:!0,json:{name:"disablePopup",read:{reader:(e,t)=>!t.disablePopup},write:{enabled:!0,writer(e,t,n){t[n]=!e}}}},p={type:Boolean,value:!0,nonNullable:!0,json:{name:"showLabels",write:{enabled:!0,layerContainerTypes:r.K}}},d={type:String,json:{origins:{"portal-item":{write:!1}},write:{isRequired:!0,ignoreOrigin:!0,writer:s.w}}},g={type:Boolean,value:!0,nonNullable:!0,json:{origins:{service:{read:{enabled:!1}}},name:"showLegend",write:{enabled:!0,layerContainerTypes:r.K}}},y={value:null,type:a.A,json:{origins:{service:{name:"elevationInfo",write:!0}},name:"layerDefinition.elevationInfo",write:{enabled:!0,layerContainerTypes:r.K}}};function h(e){return{type:e,readOnly:!0,json:{origins:{service:{read:!0}},read:!1}}}const v={write:{enabled:!0,layerContainerTypes:r.K},read:!0},b={type:Number,json:{origins:{"web-document":v,"portal-item":{write:!0}}}},m={...b,json:{...b.json,origins:{"web-document":{...v,write:{enabled:!0,layerContainerTypes:r.K,target:{opacity:{type:Number},"layerDefinition.drawingInfo.transparency":{type:Number}}}}},read:{source:["layerDefinition.drawingInfo.transparency","drawingInfo.transparency"],reader:(e,t,n)=>n&&"service"!==n.origin||!t.drawingInfo||void 0===t.drawingInfo.transparency?t.layerDefinition?.drawingInfo&&void 0!==t.layerDefinition.drawingInfo.transparency?(0,c.D)(t.layerDefinition.drawingInfo.transparency):void 0:(0,c.D)(t.drawingInfo.transparency)}}},I={type:i.default,readOnly:!0,json:{origins:{service:{read:{source:["fullExtent","spatialReference"],reader:(e,t)=>{const n=i.default.fromJSON(e);return null!=t.spatialReference&&"object"==typeof t.spatialReference&&(n.spatialReference=o.A.fromJSON(t.spatialReference)),n}}}},read:!1}},S={type:String,json:{origins:{service:{read:!1},"portal-item":{read:!1}}}},w={type:Number,json:{origins:{service:{write:{enabled:!1}},"web-scene":{name:"layerDefinition.minScale",write:{enabled:!0,layerContainerTypes:r.K}}},name:"layerDefinition.minScale",write:!0}},_={type:Number,json:{origins:{service:{write:{enabled:!1}},"web-scene":{name:"layerDefinition.maxScale",write:{enabled:!0,layerContainerTypes:r.K}}},name:"layerDefinition.maxScale",write:!0}},M={json:{write:{ignoreOrigin:!0,layerContainerTypes:r.K},origins:{"web-map":{read:!1,write:!1}}}},T={type:u.A,json:{name:"attributeTableInfo",write:!0,origins:{"web-scene":{read:!1,write:!1}}}}},82465:function(e,t,n){n.d(t,{n:function(){return i}});var r=n(90683);function i(e){return o[function(e){return"json"===e.type?"application/json":"blob"===e.type?e.blob.type:function(e){const t=(0,r.Zo)(e);return u[t]||s}(e.url)}(e)]||a}const o={},s="text/plain",a=o[s],u={png:"image/png",jpeg:"image/jpeg",jpg:"image/jpg",bmp:"image/bmp",gif:"image/gif",json:"application/json",txt:"text/plain",xml:"application/xml",svg:"image/svg+xml",zip:"application/zip",pbf:"application/vnd.mapbox-vector-tile",gz:"application/gzip","bin.gz":"application/octet-stream"};for(const e in u)o[u[e]]=e},68945:function(e,t,n){n.d(t,{$7:function(){return T},B:function(){return M},Fo:function(){return S},M7:function(){return L},NN:function(){return p},Q5:function(){return w},Tq:function(){return N},Up:function(){return _},XF:function(){return A},Ze:function(){return v},bK:function(){return a},bh:function(){return f},id:function(){return b},ky:function(){return l},qt:function(){return O},tW:function(){return E},v9:function(){return d},w7:function(){return u},wF:function(){return s},wS:function(){return m},wz:function(){return y},x:function(){return g},xS:function(){return I},ze:function(){return c}});var r=n(62938),i=n(32e3);function o(e){return e?O:N}function s(e,t){return t?.mode?t.mode:o(e).mode}function a(e,t){return null!=t?t:o(e)}function u(e,t){return s(null==e||(e.hasZ??!1),t)}function c(e,t){return a(null==e||(e.hasZ??!1),t)}function l(e){const t=h(e);return u(e.geometry,t)}function f(e){const t=h(e),n=u(e.geometry,t),r=null!=t&&"on-the-ground"!==n?L(t):0,i=t?.featureExpressionInfo;return{mode:n,offset:r,featureExpressionInfo:i}}function p(e){return y(f(e))}function d(e){return y(e)||g(e)}function g(e){return"0"===e?.featureExpressionInfo?.expression}function y(e){if(!e)return!1;if("on-the-ground"===e.mode)return!1;const t=e?.featureExpressionInfo?e.featureExpressionInfo.expression:null;return!(!t||"0"===t)}function h(e){return e.layer&&"elevationInfo"in e.layer?e.layer.elevationInfo:null}function v(e,t){if(!e?.offset)return 0;const{offset:n,unit:i}=e;if("decimal-degrees"===i)return 0;const o="unknown"!==i&&i?i:"meters",s=(0,r.mq)(t);return s?(0,r.oU)(n,o,s):0}function b(e,t,n){if(!n?.mode)return;const r=e.hasZ?e.z:0,i=v(n,e.spatialReference);switch(n.mode){case"absolute-height":return r-i;case"on-the-ground":return 0;case"relative-to-ground":return r-((t.elevationProvider.getElevation(e.x,e.y,r,e.spatialReference,"ground")??0)+i);case"relative-to-scene":return r-((t.elevationProvider.getElevation(e.x,e.y,r,e.spatialReference,"scene")??0)+i)}}function m(e,t,n,r=null){return S(e,t.x,t.y,t.hasZ?t.z:0,t.spatialReference,n,r)}function I(e,t,n,r,i=null){return S(e,t[0],t[1],t.length>2?t[2]:0,n,r,i)}function S(e,t,n,r,i,o,s=null){if(null==o)return;const a=null!=s?s.mode:"absolute-height";if("on-the-ground"===a)return 0;const{absoluteZ:u}=w(t,n,r,i,e,o);return function(e,t,n,r,i,o,s,a){const u=v(s,i);switch(a){case"absolute-height":return e-u;case"relative-to-ground":return e-((o.elevationProvider.getElevation(t,n,r,i,"ground")??0)+u);case"relative-to-scene":return e-((o.elevationProvider.getElevation(t,n,r,i,"scene")??0)+u)}}(u,t,n,r,i,e,s,a)}function w(e,t,n,r,i,o){const s=v(o,r);switch(o.mode){case"absolute-height":return{absoluteZ:n+s,elevation:0};case"on-the-ground":{const n=i.elevationProvider.getElevation(e,t,0,r,"ground")??0;return{absoluteZ:n,elevation:n}}case"relative-to-ground":{const o=i.elevationProvider.getElevation(e,t,n,r,"ground")??0;return{absoluteZ:n+o+s,elevation:o}}case"relative-to-scene":{const o=i.elevationProvider.getElevation(e,t,n,r,"scene")??0;return{absoluteZ:n+o+s,elevation:o}}}}function _(e,t){if(null==t)return!1;const{mode:n}=t;return null!=n&&("scene"===e&&"relative-to-scene"===n||"ground"===e&&"absolute-height"!==n)}function M(e,t,n){return n&&n.mode!==t?`${e} only support ${t} elevation mode`:null}function T(e,t,n){return n?.mode===t?`${e} do not support ${t} elevation mode`:null}function E(e,t){return null!=t?.featureExpressionInfo&&"0"!==t.featureExpressionInfo.expression?`${e} do not support featureExpressionInfo`:null}function A(e,t){t&&e.warn(".elevationInfo=",t)}function L(e){return(e?.offset??0)*(0,i.Ao)(e?.unit)}const O={mode:"absolute-height",offset:0},N={mode:"on-the-ground",offset:null}},92777:function(e,t,n){n.d(t,{A:function(){return q}});var r=n(53804),i=n(30905),o=n(21609),s=n(23502),a=n(77560),u=n(47332),c=n(65953),l=n(81392);let f=class extends i.oY{constructor(e){super(e),this.description=null,this.label=null,this.type=null}};(0,r._)([(0,s.MZ)({type:String,json:{write:!0}})],f.prototype,"description",void 0),(0,r._)([(0,s.MZ)({type:String,json:{write:!0}})],f.prototype,"label",void 0),(0,r._)([(0,s.MZ)()],f.prototype,"type",void 0),f=(0,r._)([(0,c.$)("esri.tables.elements.AttributeTableElement")],f);const p=f;var d,g=n(67888);n(58941),n(40633),n(13798);let y=d=class extends p{constructor(e){super(e),this.displayType="auto",this.type="attachment"}clone(){return new d({description:this.description,displayType:this.displayType,label:this.label})}};(0,r._)([(0,s.MZ)({type:["auto"],json:{write:!0}})],y.prototype,"displayType",void 0),(0,r._)([(0,s.MZ)({type:["attachment"],readOnly:!0,json:{read:!1,write:!0}})],y.prototype,"type",void 0),y=d=(0,r._)([(0,c.$)("esri.tables.elements.AttributeTableAttachmentElement")],y);const h=y;var v;let b=v=class extends p{constructor(e){super(e),this.fieldName=null,this.type="field"}clone(){return new v({description:this.description,fieldName:this.fieldName,label:this.label})}};(0,r._)([(0,s.MZ)({type:String,json:{write:!0}})],b.prototype,"fieldName",void 0),(0,r._)([(0,s.MZ)({type:String,json:{read:!1,write:!0}})],b.prototype,"type",void 0),b=v=(0,r._)([(0,c.$)("esri.tables.elements.AttributeTableFieldElement")],b);const m=b;var I;let S=I=class extends p{constructor(e){super(e),this.relationshipId=null,this.type="relationship"}clone(){return new I({description:this.description,label:this.label,relationshipId:this.relationshipId})}};(0,r._)([(0,s.MZ)({type:Number,json:{write:!0}})],S.prototype,"relationshipId",void 0),(0,r._)([(0,s.MZ)({type:["relationship"],json:{read:!1,write:!0}})],S.prototype,"type",void 0),S=I=(0,r._)([(0,c.$)("esri.tables.elements.AttributeTableRelationshipElement")],S);const w=S;function _(e){return{typesWithGroup:{base:p,key:"type",typeMap:{attachment:h,field:m,group:e,relationship:w}},typesWithoutGroup:{base:p,key:"type",typeMap:{attachment:h,field:m,relationship:w}}}}function M(e,t,n=!0){if(!e)return null;const r=n?t.typesWithGroup.typeMap:t.typesWithoutGroup.typeMap;return e.filter((e=>r[e.type])).map((e=>r[e.type].fromJSON(e)))}function T(e,t,n=!0){if(!e)return null;const r=n?t.typesWithGroup.typeMap:t.typesWithoutGroup.typeMap;return e.filter((e=>r[e.type])).map((e=>e.toJSON()))}function E(e,t,n=!0){return e?e.map((e=>(0,g.aq)(n?t.typesWithGroup:t.typesWithoutGroup,e))):null}var A;let L=A=class extends p{constructor(e){super(e),this.elements=null,this.type="group"}castElements(e){return E(e,O,!1)}readElements(e,t){return M(t.attributeTableElements,O,!1)}writeElements(e,t){t.attributeTableElements=T(e,O,!1)}clone(){return new A({description:this.description,elements:(0,o.o8)(this.elements),label:this.label})}};(0,r._)([(0,s.MZ)({json:{write:!0}})],L.prototype,"elements",void 0),(0,r._)([(0,a.w)("elements")],L.prototype,"castElements",null),(0,r._)([(0,u.w)("elements",["attributeTableElements"])],L.prototype,"readElements",null),(0,r._)([(0,l.K)("elements")],L.prototype,"writeElements",null),(0,r._)([(0,s.MZ)({type:String,json:{read:!1,write:!0}})],L.prototype,"type",void 0),L=A=(0,r._)([(0,c.$)("esri.tables.elements.AttributeTableGroupElement")],L);const O=_(L);var N;const j=_(L);let x=N=class extends i.oY{constructor(e){super(e),this.elements=null,this.orderByFields=null}castElements(e){return E(e,j)}readElements(e,t){return M(t.attributeTableElements,j)}writeElements(e,t){t.attributeTableElements=T(e,j)}clone(){return new N({elements:(0,o.o8)(this.elements),orderByFields:this.orderByFields})}};(0,r._)([(0,s.MZ)({json:{write:!0}})],x.prototype,"elements",void 0),(0,r._)([(0,a.w)("elements")],x.prototype,"castElements",null),(0,r._)([(0,u.w)("elements",["attributeTableElements"])],x.prototype,"readElements",null),(0,r._)([(0,l.K)("elements")],x.prototype,"writeElements",null),(0,r._)([(0,s.MZ)({type:[Object],json:{write:!0}})],x.prototype,"orderByFields",void 0),x=N=(0,r._)([(0,c.$)("esri.tables.AttributeTableTemplate")],x);const q=x},76185:function(e,t,n){n.d(t,{VV:function(){return a},hG:function(){return o},wp:function(){return s}}),n(15774);var r=n(20551),i=n(32501);function o(e){const t=e[0]*e[0]+e[4]*e[4]+e[8]*e[8],n=e[1]*e[1]+e[5]*e[5]+e[9]*e[9],r=e[2]*e[2]+e[6]*e[6]+e[10]*e[10];return Math.sqrt(Math.max(t,n,r))}function s(e,t){const n=Math.sqrt(t[0]*t[0]+t[4]*t[4]+t[8]*t[8]),i=Math.sqrt(t[1]*t[1]+t[5]*t[5]+t[9]*t[9]),o=Math.sqrt(t[2]*t[2]+t[6]*t[6]+t[10]*t[10]);return(0,r.i)(e,n,i,o),e}function a(e,t,n){Math.abs(e[0])>Math.abs(e[1])?(0,r.i)(t,0,1,0):(0,r.i)(t,1,0,0),(0,r.e)(n,e,t),(0,r.e)(t,n,e),(0,r.n)(n,n),(0,r.n)(t,t)}(0,i.vt)(),(0,i.vt)(),(0,i.vt)(),(0,i.vt)(),(0,i.vt)()},89756:function(e,t,n){n.d(t,{MQ:function(){return i}}),n(38177);var r=n(50456);n(59356);class i extends r.R6{constructor(e,t,n){super(e,t),this.triangleNr=n}}},38177:function(e,t,n){var r,i;n.d(t,{H6:function(){return o},dz:function(){return r},oH:function(){return i}}),function(e){e[e.OBJECT=0]="OBJECT",e[e.HUD=1]="HUD",e[e.TERRAIN=2]="TERRAIN",e[e.OVERLAY=3]="OVERLAY",e[e.I3S=4]="I3S",e[e.PCL=5]="PCL",e[e.LOD=6]="LOD",e[e.VOXEL=7]="VOXEL",e[e.TILES3D=8]="TILES3D"}(r||(r={}));class o{constructor(){this.verticalOffset=0,this.selectionMode=!1,this.hud=!0,this.selectOpaqueTerrainOnly=!0,this.invisibleTerrain=!1,this.backfacesTerrain=!0,this.isFiltered=!1,this.filteredLayerUids=[],this.store=i.ALL,this.normalRequired=!0,this.excludeLabels=!1}}!function(e){e[e.MIN=0]="MIN",e[e.MINMAX=1]="MINMAX",e[e.ALL=2]="ALL"}(i||(i={}))},50456:function(e,t,n){n.d(t,{B$:function(){return o},HE:function(){return s},R6:function(){return a}});var r=n(32501);class i{constructor(e,t,n){this.object=e,this.geometryId=t,this.triangleNr=n}}class o extends i{constructor(e,t,n,i){super(e,t,n),this.center=null!=i?(0,r.o8)(i):null}}class s{constructor(e){this.layerUid=e}}class a extends s{constructor(e,t){super(e),this.graphicUid=t}}},59356:function(e,t,n){n.d(t,{i3:function(){return i}}),n(20551);var r=n(32501);function i(e){return null!=e?.dist}n(2075),n(38177),(0,r.vt)()},84363:function(e,t,n){n.d(t,{h:function(){return i}}),n(38177);var r=n(50456);n(59356);class i extends r.R6{constructor(e,t,n,r,i,o){super(e,t),this.layerUid=e,this.graphicUid=t,this.geometryId=n,this.triangleNr=r,this.baseBoundingSphere=i,this.numLodLevels=o}}}}]);
+"use strict";
+(self["webpackChunkdefra"] = self["webpackChunkdefra"] || []).push([["LineOfSightLayer"],{
+
+/***/ "./node_modules/@arcgis/core/analysis/Analysis.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@arcgis/core/analysis/Analysis.js ***!
+  \********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ c; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_Accessor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/Accessor.js */ "./node_modules/@arcgis/core/core/Accessor.js");
+/* harmony import */ var _core_arrayUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/arrayUtils.js */ "./node_modules/@arcgis/core/core/arrayUtils.js");
+/* harmony import */ var _core_Clonable_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/Clonable.js */ "./node_modules/@arcgis/core/core/Clonable.js");
+/* harmony import */ var _core_Identifiable_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Identifiable.js */ "./node_modules/@arcgis/core/core/Identifiable.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let l=0,p=class extends((0,_core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_5__.JSONSupportMixin)((0,_core_Clonable_js__WEBPACK_IMPORTED_MODULE_3__.ClonableMixin)((0,_core_Identifiable_js__WEBPACK_IMPORTED_MODULE_4__.IdentifiableMixin)(_core_Accessor_js__WEBPACK_IMPORTED_MODULE_1__["default"])))){constructor(e){super(e),this.id=`${Date.now().toString(16)}-analysis-${l++}`,this.title=null}get parent(){return this._get("parent")}set parent(e){const t=this.parent;if(null!=t)switch(t.type){case"line-of-sight":case"dimension":case"viewshed":t.releaseAnalysis(this);break;case"2d":case"3d":t.analyses.includes(this)&&t.analyses.remove(this)}this._set("parent",e)}get isEditable(){return this.requiredPropertiesForEditing.every(_core_arrayUtils_js__WEBPACK_IMPORTED_MODULE_2__.isSome)}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({type:String,constructOnly:!0,clonable:!1})],p.prototype,"id",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({type:String})],p.prototype,"title",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({clonable:!1,value:null})],p.prototype,"parent",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({readOnly:!0})],p.prototype,"isEditable",null),p=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_9__.subclass)("esri.analysis.Analysis")],p);const c=p;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysis.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/analysis/LineOfSightAnalysis.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ v; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _Analysis_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Analysis.js */ "./node_modules/@arcgis/core/analysis/Analysis.js");
+/* harmony import */ var _LineOfSightAnalysisObserver_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./LineOfSightAnalysisObserver.js */ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisObserver.js");
+/* harmony import */ var _LineOfSightAnalysisTarget_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./LineOfSightAnalysisTarget.js */ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisTarget.js");
+/* harmony import */ var _core_Collection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Collection.js */ "./node_modules/@arcgis/core/core/Collection.js");
+/* harmony import */ var _core_collectionUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/collectionUtils.js */ "./node_modules/@arcgis/core/core/collectionUtils.js");
+/* harmony import */ var _core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/reactiveUtils.js */ "./node_modules/@arcgis/core/core/reactiveUtils.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _geometry_projection_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../geometry/projection.js */ "./node_modules/@arcgis/core/geometry/projection.js");
+/* harmony import */ var _geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../geometry/support/aaBoundingBox.js */ "./node_modules/@arcgis/core/geometry/support/aaBoundingBox.js");
+/* harmony import */ var _support_elevationInfoUtils_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../support/elevationInfoUtils.js */ "./node_modules/@arcgis/core/support/elevationInfoUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const y=_core_Collection_js__WEBPACK_IMPORTED_MODULE_4__["default"].ofType(_LineOfSightAnalysisTarget_js__WEBPACK_IMPORTED_MODULE_3__["default"]);let d=class extends _Analysis_js__WEBPACK_IMPORTED_MODULE_1__["default"]{constructor(t){super(t),this.type="line-of-sight",this.observer=null,this.extent=null}initialize(){this.addHandles((0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__.watch)((()=>this._computeExtent()),(t=>{null==t?.pending&&this._set("extent",null!=t?t.extent:null)}),_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__.syncAndInitial))}get targets(){return this._get("targets")||new y}set targets(t){this._set("targets",(0,_core_collectionUtils_js__WEBPACK_IMPORTED_MODULE_5__.referenceSetter)(t,this.targets,y))}get spatialReference(){return null!=this.observer?.position?this.observer.position.spatialReference:null}get requiredPropertiesForEditing(){return[this.observer?.position]}async waitComputeExtent(){const t=this._computeExtent();return null!=t?t.pending:Promise.resolve()}_computeExtent(){const t=this.spatialReference;if(null==this.observer?.position||null==t)return null;const e=t=>"absolute-height"===(0,_support_elevationInfoUtils_js__WEBPACK_IMPORTED_MODULE_14__.getGeometryEffectiveElevationMode)(t.position,t.elevationInfo),o=this.observer.position,r=(0,_geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_13__.fromValues)(o.x,o.y,o.z,o.x,o.y,o.z);for(const i of this.targets)if(null!=i.position){const e=(0,_geometry_projection_js__WEBPACK_IMPORTED_MODULE_12__.projectOrLoad)(i.position,t);if(null!=e.pending)return{pending:e.pending,extent:null};if(null!=e.geometry){const{x:t,y:o,z:s}=e.geometry;(0,_geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_13__.expandWithVec3)(r,[t,o,s])}}const s=(0,_geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_13__.toExtent)(r,t);return e(this.observer)&&this.targets.every(e)||(s.zmin=void 0,s.zmax=void 0),{pending:null,extent:s}}clear(){this.observer=null,this.targets.removeAll()}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({type:["line-of-sight"]})],d.prototype,"type",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({type:_LineOfSightAnalysisObserver_js__WEBPACK_IMPORTED_MODULE_2__["default"],json:{read:!0,write:!0}})],d.prototype,"observer",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({cast:_core_collectionUtils_js__WEBPACK_IMPORTED_MODULE_5__.castForReferenceSetter,type:y,nonNullable:!0,json:{read:!0,write:!0}})],d.prototype,"targets",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({value:null,readOnly:!0})],d.prototype,"extent",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({readOnly:!0})],d.prototype,"spatialReference",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_7__.property)({readOnly:!0})],d.prototype,"requiredPropertiesForEditing",null),d=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_11__.subclass)("esri.analysis.LineOfSightAnalysis")],d);const v=d;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisObserver.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/analysis/LineOfSightAnalysisObserver.js ***!
+  \***************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ u; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./featureReferenceUtils.js */ "./node_modules/@arcgis/core/analysis/featureReferenceUtils.js");
+/* harmony import */ var _core_Accessor_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/Accessor.js */ "./node_modules/@arcgis/core/core/Accessor.js");
+/* harmony import */ var _core_Clonable_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/Clonable.js */ "./node_modules/@arcgis/core/core/Clonable.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_maybe_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/maybe.js */ "./node_modules/@arcgis/core/core/maybe.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_decorators_persistable_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../core/accessorSupport/decorators/persistable.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/persistable.js");
+/* harmony import */ var _geometry_Point_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../geometry/Point.js */ "./node_modules/@arcgis/core/geometry/Point.js");
+/* harmony import */ var _symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../symbols/support/ElevationInfo.js */ "./node_modules/@arcgis/core/symbols/support/ElevationInfo.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let l=class extends((0,_core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_4__.JSONSupportMixin)((0,_core_Clonable_js__WEBPACK_IMPORTED_MODULE_3__.ClonableMixin)(_core_Accessor_js__WEBPACK_IMPORTED_MODULE_2__["default"]))){constructor(o){super(o),this.position=null,this.elevationInfo=null,this.feature=null}equals(o){return (0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_5__.equalsMaybe)(this.position,o.position)&&(0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_5__.equalsMaybe)(this.elevationInfo,o.elevationInfo)&&(0,_featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__.featureReferenceEquals)(this.feature,o.feature)}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({type:_geometry_Point_js__WEBPACK_IMPORTED_MODULE_12__["default"],json:{write:{isRequired:!0}}})],l.prototype,"position",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)({type:_symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_13__["default"]}),(0,_core_accessorSupport_decorators_persistable_js__WEBPACK_IMPORTED_MODULE_11__.persistable)()],l.prototype,"elevationInfo",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_6__.property)(_featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__.featureReferenceProperty)],l.prototype,"feature",void 0),l=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_10__.subclass)("esri.analysis.LineOfSightAnalysisObserver")],l);const u=l;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisTarget.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/analysis/LineOfSightAnalysisTarget.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ f; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./featureReferenceUtils.js */ "./node_modules/@arcgis/core/analysis/featureReferenceUtils.js");
+/* harmony import */ var _core_Clonable_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/Clonable.js */ "./node_modules/@arcgis/core/core/Clonable.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_maybe_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/maybe.js */ "./node_modules/@arcgis/core/core/maybe.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_decorators_persistable_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/accessorSupport/decorators/persistable.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/persistable.js");
+/* harmony import */ var _geometry_Point_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../geometry/Point.js */ "./node_modules/@arcgis/core/geometry/Point.js");
+/* harmony import */ var _symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../symbols/support/ElevationInfo.js */ "./node_modules/@arcgis/core/symbols/support/ElevationInfo.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let l=class extends((0,_core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_3__.JSONSupportMixin)(_core_Clonable_js__WEBPACK_IMPORTED_MODULE_2__.Clonable)){constructor(o){super(o),this.position=null,this.elevationInfo=null,this.feature=null}equals(o){return (0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_4__.equalsMaybe)(this.position,o.position)&&(0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_4__.equalsMaybe)(this.elevationInfo,o.elevationInfo)&&(0,_featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__.featureReferenceEquals)(this.feature,o.feature)}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_5__.property)({type:_geometry_Point_js__WEBPACK_IMPORTED_MODULE_11__["default"]}),(0,_core_accessorSupport_decorators_persistable_js__WEBPACK_IMPORTED_MODULE_10__.persistable)()],l.prototype,"position",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_5__.property)({type:_symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_12__["default"]}),(0,_core_accessorSupport_decorators_persistable_js__WEBPACK_IMPORTED_MODULE_10__.persistable)()],l.prototype,"elevationInfo",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_5__.property)(_featureReferenceUtils_js__WEBPACK_IMPORTED_MODULE_1__.featureReferenceProperty)],l.prototype,"feature",void 0),l=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_9__.subclass)("esri.analysis.LineOfSightAnalysisTarget")],l);const f=l;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/analysis/featureReferenceUtils.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/analysis/featureReferenceUtils.js ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   featureReferenceEquals: function() { return /* binding */ c; },
+/* harmony export */   featureReferenceProperty: function() { return /* binding */ b; },
+/* harmony export */   getFeatureId: function() { return /* binding */ d; },
+/* harmony export */   updatePointsFromFeatureReference: function() { return /* binding */ m; }
+/* harmony export */ });
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../geometry/support/ray.js */ "./node_modules/@arcgis/core/geometry/support/ray.js");
+/* harmony import */ var _views_3d_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../views/3d/webgl-engine/lib/IntersectorInterfaces.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js");
+/* harmony import */ var _views_3d_webgl_engine_lib_intersectorUtilsConversions_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../views/3d/webgl-engine/lib/intersectorUtilsConversions.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtilsConversions.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function c(e,t){return d(e)===d(t)}function d(e){if(null==e)return null;const t=null!=e.layer?e.layer.id:"";let r=null;return r=null!=e.objectId?e.objectId:null!=e.layer&&"objectIdField"in e.layer&&null!=e.layer.objectIdField&&null!=e.attributes?e.attributes[e.layer.objectIdField]:e.uid,null==r?null:`o-${t}-${r}`}const b={json:{write:{writer:f,target:{"feature.layerId":{type:[Number,String]},"feature.objectId":{type:[Number,String]}}},origins:{"web-scene":{read:I}}}};function f(e,t){null!=e?.layer?.objectIdField&&null!=e.attributes&&(t.feature={layerId:e.layer.id,objectId:e.attributes[e.layer.objectIdField]})}function I(e){if(null!=e.layerId&&null!=e.objectId)return{uid:null,layer:{id:e.layerId,objectIdField:"ObjectId"},attributes:{ObjectId:e.objectId}}}function m(l,a,s,c){const{sceneIntersectionHelper:b}=l,{observer:f,observerFeatureId:I,targetFeatureId:m,target:g}=s;if(null==I&&null==m)return;c||(c=e=>e),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__.a)(p,f,g);const v=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__.l)(p),S=1;(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__.b)(p,f,p,S/v);const F=(0,_geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_2__.fromPoints)(p,g,y);a.options.store=_views_3d_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_3__.StoreResults.ALL,b.intersectToolIntersectorRay(F,a);let N=null,w=null,R=null,A=null;for(const e of a.results.all){const t=(0,_views_3d_webgl_engine_lib_intersectorUtilsConversions_js__WEBPACK_IMPORTED_MODULE_4__.toGraphic)(e,l);if(null==t||null==e.distanceInRenderSpace)continue;const r=d(t);null!=r&&(null!=I&&r===I&&(N??=c(j(e,l,v)),e.distanceInRenderSpace-S<N&&(R=e)),null!=m&&r===m&&(w??=c(j(e,l,v)),null==A&&e.distanceInRenderSpace-S<v&&v-e.distanceInRenderSpace+S<w&&(A=e)))}const{observerAdjusted:T,targetAdjusted:h}=s;R?.getIntersectionPoint(T)?s.observerSurfaceNormal=R.getTransformedNormal((0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__.create)()):s.observerSurfaceNormal=null,A?.getIntersectionPoint(h)?s.targetSurfaceNormal=A.getTransformedNormal((0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__.create)()):s.targetSurfaceNormal=null}function j(e,t,r){if((0,_views_3d_webgl_engine_lib_intersectorUtilsConversions_js__WEBPACK_IMPORTED_MODULE_4__.hasLod)(e)){const n=(0,_views_3d_webgl_engine_lib_intersectorUtilsConversions_js__WEBPACK_IMPORTED_MODULE_4__.getIntersectedFeatureBSRadius)(e,t);if(null!=n)return Math.min(n*g,r)}return 1e-5*r}const g=.05,y=(0,_geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_2__.create)(),p=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/chunks/boundedPlane.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@arcgis/core/chunks/boundedPlane.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ ls; },
+/* harmony export */   B: function() { return /* binding */ G; },
+/* harmony export */   C: function() { return /* binding */ ms; },
+/* harmony export */   D: function() { return /* binding */ ds; },
+/* harmony export */   E: function() { return /* binding */ Ms; },
+/* harmony export */   a: function() { return /* binding */ W; },
+/* harmony export */   b: function() { return /* binding */ ks; },
+/* harmony export */   c: function() { return /* binding */ Z; },
+/* harmony export */   d: function() { return /* binding */ os; },
+/* harmony export */   e: function() { return /* binding */ fs; },
+/* harmony export */   f: function() { return /* binding */ J; },
+/* harmony export */   g: function() { return /* binding */ ts; },
+/* harmony export */   h: function() { return /* binding */ gs; },
+/* harmony export */   i: function() { return /* binding */ is; },
+/* harmony export */   j: function() { return /* binding */ H; },
+/* harmony export */   k: function() { return /* binding */ Q; },
+/* harmony export */   l: function() { return /* binding */ ss; },
+/* harmony export */   m: function() { return /* binding */ ns; },
+/* harmony export */   n: function() { return /* binding */ ys; },
+/* harmony export */   o: function() { return /* binding */ rs; },
+/* harmony export */   p: function() { return /* binding */ es; },
+/* harmony export */   q: function() { return /* binding */ as; },
+/* harmony export */   r: function() { return /* binding */ js; },
+/* harmony export */   s: function() { return /* binding */ $; },
+/* harmony export */   t: function() { return /* binding */ hs; },
+/* harmony export */   u: function() { return /* binding */ K; },
+/* harmony export */   v: function() { return /* binding */ cs; },
+/* harmony export */   w: function() { return /* binding */ X; },
+/* harmony export */   x: function() { return /* binding */ us; },
+/* harmony export */   y: function() { return /* binding */ bs; },
+/* harmony export */   z: function() { return /* binding */ ps; }
+/* harmony export */ });
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/ObjectStack.js */ "./node_modules/@arcgis/core/core/ObjectStack.js");
+/* harmony import */ var _core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/math/mat4.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/math/mat4.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_mat4f64_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/factories/mat4f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat4f64.js");
+/* harmony import */ var _vec32_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _geometry_support_aaBoundingRect_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../geometry/support/aaBoundingRect.js */ "./node_modules/@arcgis/core/geometry/support/aaBoundingRect.js");
+/* harmony import */ var _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../geometry/support/Axis.js */ "./node_modules/@arcgis/core/geometry/support/Axis.js");
+/* harmony import */ var _geometry_support_lineSegment_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../geometry/support/lineSegment.js */ "./node_modules/@arcgis/core/geometry/support/lineSegment.js");
+/* harmony import */ var _geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../geometry/support/plane.js */ "./node_modules/@arcgis/core/geometry/support/plane.js");
+/* harmony import */ var _geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../geometry/support/ray.js */ "./node_modules/@arcgis/core/geometry/support/ray.js");
+/* harmony import */ var _geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../geometry/support/vector.js */ "./node_modules/@arcgis/core/geometry/support/vector.js");
+/* harmony import */ var _geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../geometry/support/vectorStacks.js */ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const z=()=>_core_Logger_js__WEBPACK_IMPORTED_MODULE_1__["default"].getLogger("esri.views.3d.support.geometryUtils.boundedPlane");class D{constructor(){this.plane=(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.create)(),this.origin=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.create)(),this.basis1=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.create)(),this.basis2=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.create)()}}const G=D;function W(s=Ms){return{plane:(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.create)(s.plane),origin:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.clone)(s.origin),basis1:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.clone)(s.basis1),basis2:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.clone)(s.basis2)}}function X(s,t,i){const n=As.get();return n.origin=s,n.basis1=t,n.basis2=i,n.plane=(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.wrap)(0,0,0,0),K(n),n}function Z(s,t=W()){return J(s.origin,s.basis1,s.basis2,t)}function H(s,t){(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(t.origin,s.origin),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(t.basis1,s.basis1),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(t.basis2,s.basis2),(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.copy)(t.plane,s.plane)}function J(s,t,i,n=W()){return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(n.origin,s),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(n.basis1,t),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(n.basis2,i),K(n),ws(n,"fromValues()"),n}function K(s){(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.fromVectorsAndPoint)(s.basis2,s.basis1,s.origin,s.plane)}function Q(s,t,i){s!==i&&Z(s,i);const n=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),ys(s),t);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(i.origin,i.origin,n),i.plane[3]-=t,i}function $(s,t,i){return ts(t,i),Q(i,ls(s,s.origin),i),i}function ss(s,t){const i=s.basis1[0],n=s.basis2[1],[r,o]=s.origin;return (0,_geometry_support_aaBoundingRect_js__WEBPACK_IMPORTED_MODULE_8__.fromValues)(r-i,o-n,r+i,o+n,t)}function ts(s,t=W()){const i=(s[2]-s[0])/2,n=(s[3]-s[1])/2;return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.i)(t.origin,s[0]+i,s[1]+n,0),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.i)(t.basis1,i,0,0),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.i)(t.basis2,0,n,0),(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.fromValues)(0,0,1,0,t.plane),t}function is(s,t,i){return!!(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.intersectRay)(s.plane,t,i)&&Ps(s,i)}function ns(s,t,i){if(is(s,t,i))return i;const n=rs(s,t,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get());return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(i,t.origin,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),t.direction,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.j)(t.origin,n)/(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.l)(t.direction))),i}function rs(s,i,n){const r=Ss.get();xs(s,i,r,Ss.get());let o=Number.POSITIVE_INFINITY;for(const e of Es){const c=Ns(s,e,Ts.get()),u=_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get();if((0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.intersectLineSegment)(r,c,u)){const s=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.o)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),i.origin,u),r=Math.abs((0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_2__.acosClamped)((0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(i.direction,s)));r<o&&(o=r,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(n,u))}}return o===Number.POSITIVE_INFINITY?es(s,i,n):n}function os(s,t){return(t-s)/t}function es(s,t,i){if(is(s,t,i))return i;const n=Ss.get(),r=Ss.get();xs(s,t,n,r);let o=Number.POSITIVE_INFINITY;for(const e of Es){const c=Ns(s,e,Ts.get()),u=_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get();if((0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.intersectLineSegmentClamp)(n,c,u)){const s=(0,_geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_12__.distance2)(t,u);if(!(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.isPointInside)(r,u))continue;s<o&&(o=s,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i,u))}}return us(s,t.origin)<o&&as(s,t.origin,i),i}function as(s,t,i){const n=(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.projectPoint)(s.plane,t,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get()),r=(0,_geometry_support_lineSegment_js__WEBPACK_IMPORTED_MODULE_10__.projectPointClamp)(vs(s,s.basis1),n,-1,1,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get()),o=(0,_geometry_support_lineSegment_js__WEBPACK_IMPORTED_MODULE_10__.projectPointClamp)(vs(s,s.basis2),n,-1,1,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get());return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.d)(i,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),r,o),s.origin),i}function cs(s,t,i){const{origin:n,basis1:r,basis2:o}=s,e=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.d)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),t,n),a=(0,_geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_13__.projectPointSignedLength)(r,e),c=(0,_geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_13__.projectPointSignedLength)(o,e),u=(0,_geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_13__.projectPointSignedLength)(ys(s),e);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.i)(i,a,c,u)}function us(s,t){const i=cs(s,t,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get()),{basis1:n,basis2:r}=s,o=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.l)(n),e=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.l)(r),a=Math.max(Math.abs(i[0])-o,0),c=Math.max(Math.abs(i[1])-e,0),u=i[2];return a*a+c*c+u*u}function gs(s,t){return Math.sqrt(us(s,t))}function bs(s,t){let i=Number.NEGATIVE_INFINITY;for(const n of Es){const r=Ns(s,n,Ts.get()),o=(0,_geometry_support_lineSegment_js__WEBPACK_IMPORTED_MODULE_10__.distance2)(r,t);o>i&&(i=o)}return Math.sqrt(i)}function fs(s,t){return (0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.isPointInside)(s.plane,t)&&Ps(s,t)}function ps(s,t,i,n){return Is(s,i,n)}function ls(s,t){const i=-s.plane[3];return (0,_geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_13__.projectPointSignedLength)(ys(s),t)-i}function ms(s,t,i,n){const r=ls(s,t),o=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(Vs,ys(s),i-r);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(n,t,o),n}function ds(s,t){return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.p)(s.basis1,t.basis1)&&(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.p)(s.basis2,t.basis2)&&(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.p)(s.origin,t.origin)}function hs(s,t,i){return s!==i&&Z(s,i),(0,_core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_4__.invert)(_s,t),(0,_core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_4__.transpose)(_s,_s),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)(i.basis1,s.basis1,_s),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)(i.basis2,s.basis2,_s),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)((0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.getNormal)(i.plane),(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.getNormal)(s.plane),_s),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)(i.origin,s.origin,t),(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.setOffsetFromPoint)(i.plane,i.plane,i.origin),i}function js(s,t,i,n){return s!==n&&Z(s,n),(0,_core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_4__.fromRotation)(Os,t,i),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)(n.basis1,s.basis1,Os),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.t)(n.basis2,s.basis2,Os),K(n),n}function ys(s){return (0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.getNormal)(s.plane)}function Is(s,t,i){switch(t){case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.X:(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i,s.basis1),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.n)(i,i);break;case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.Y:(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i,s.basis2),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.n)(i,i);break;case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.Z:(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i,ys(s))}return i}function Ps(s,t){const i=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.d)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),t,s.origin),n=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.k)(s.basis1),r=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.k)(s.basis2),o=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(s.basis1,i),e=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(s.basis2,i);return-o-n<0&&o-n<0&&-e-r<0&&e-r<0}function vs(s,t){const i=Ts.get();return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i.origin,s.origin),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.c)(i.vector,t),i}function Ns(s,t,i){const{basis1:n,basis2:r,origin:o}=s,e=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),n,t.origin[0]),a=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),r,t.origin[1]);(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(i.origin,e,a),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(i.origin,i.origin,o);const g=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),n,t.direction[0]),b=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_14__.sv3d.get(),r,t.direction[1]);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.h)(i.vector,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.g)(g,g,b),2),i}function ws(s,t){Math.abs((0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(s.basis1,s.basis2)/((0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.l)(s.basis1)*(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.l)(s.basis2)))>1e-6&&z().warn(t,"Provided basis vectors are not perpendicular"),Math.abs((0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(s.basis1,ys(s)))>1e-6&&z().warn(t,"Basis vectors and plane normal are not perpendicular"),Math.abs(-(0,_vec32_js__WEBPACK_IMPORTED_MODULE_6__.f)(ys(s),s.origin)-s.plane[3])>1e-6&&z().warn(t,"Plane offset is not consistent with plane origin")}function xs(s,t,i,n){const r=ys(s);(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.fromVectorsAndPoint)(r,t.direction,t.origin,i),(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.fromVectorsAndPoint)((0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.getNormal)(i),r,t.origin,n)}const Ms={plane:(0,_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.create)(),origin:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.fromValues)(0,0,0),basis1:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.fromValues)(1,0,0),basis2:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.fromValues)(0,1,0)},Ss=new _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_3__.ObjectStack(_geometry_support_plane_js__WEBPACK_IMPORTED_MODULE_11__.create),Ts=new _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_3__.ObjectStack(_geometry_support_lineSegment_js__WEBPACK_IMPORTED_MODULE_10__.create),Vs=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_7__.create)(),As=new _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_3__.ObjectStack((()=>W())),Es=[{origin:[-1,-1],direction:[1,0]},{origin:[1,-1],direction:[0,1]},{origin:[1,1],direction:[-1,0]},{origin:[-1,1],direction:[0,-1]}],_s=(0,_core_libs_gl_matrix_2_factories_mat4f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),Os=(0,_core_libs_gl_matrix_2_factories_mat4f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),ks=Object.freeze(Object.defineProperty({__proto__:null,BoundedPlaneClass:G,altitudeAt:ls,axisAt:ps,cameraFrustumCoverage:os,closestPoint:es,closestPointOnSilhouette:rs,copy:Z,copyWithoutVerify:H,create:W,distance:gs,distance2:us,distanceToSilhouette:bs,elevate:Q,equals:ds,extrusionContainsPoint:fs,fromAABoundingRect:ts,fromValues:J,getExtent:ss,intersectRay:is,intersectRayClosestSilhouette:ns,normal:ys,projectPoint:as,projectPointLocal:cs,rotate:js,setAltitudeAt:ms,setExtent:$,transform:hs,up:Ms,updateUnboundedPlane:K,wrap:X},Symbol.toStringTag,{value:"Module"}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/chunks/sphere.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@arcgis/core/chunks/sphere.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   A: function() { return /* binding */ W; },
+/* harmony export */   B: function() { return /* binding */ rt; },
+/* harmony export */   C: function() { return /* binding */ st; },
+/* harmony export */   D: function() { return /* binding */ ot; },
+/* harmony export */   E: function() { return /* binding */ et; },
+/* harmony export */   N: function() { return /* binding */ C; },
+/* harmony export */   a: function() { return /* binding */ U; },
+/* harmony export */   b: function() { return /* binding */ L; },
+/* harmony export */   c: function() { return /* binding */ E; },
+/* harmony export */   d: function() { return /* binding */ Q; },
+/* harmony export */   e: function() { return /* binding */ w; },
+/* harmony export */   f: function() { return /* binding */ V; },
+/* harmony export */   g: function() { return /* binding */ N; },
+/* harmony export */   h: function() { return /* binding */ tt; },
+/* harmony export */   i: function() { return /* binding */ F; },
+/* harmony export */   j: function() { return /* binding */ K; },
+/* harmony export */   k: function() { return /* binding */ H; },
+/* harmony export */   l: function() { return /* binding */ O; },
+/* harmony export */   m: function() { return /* binding */ _; },
+/* harmony export */   n: function() { return /* binding */ I; },
+/* harmony export */   o: function() { return /* binding */ it; },
+/* harmony export */   p: function() { return /* binding */ $; },
+/* harmony export */   q: function() { return /* binding */ k; },
+/* harmony export */   r: function() { return /* binding */ z; },
+/* harmony export */   s: function() { return /* binding */ ft; },
+/* harmony export */   t: function() { return /* binding */ ut; },
+/* harmony export */   u: function() { return /* binding */ at; },
+/* harmony export */   v: function() { return /* binding */ Z; },
+/* harmony export */   w: function() { return /* binding */ T; },
+/* harmony export */   x: function() { return /* binding */ B; },
+/* harmony export */   y: function() { return /* binding */ D; },
+/* harmony export */   z: function() { return /* binding */ J; }
+/* harmony export */ });
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/math/mat4.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/math/mat4.js");
+/* harmony import */ var _vec32_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _vec42_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vec42.js */ "./node_modules/@arcgis/core/chunks/vec42.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/factories/vec4f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec4f64.js");
+/* harmony import */ var _core_libs_gl_matrix_2_math_common_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/libs/gl-matrix-2/math/common.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/math/common.js");
+/* harmony import */ var _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../geometry/support/Axis.js */ "./node_modules/@arcgis/core/geometry/support/Axis.js");
+/* harmony import */ var _geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../geometry/support/ray.js */ "./node_modules/@arcgis/core/geometry/support/ray.js");
+/* harmony import */ var _geometry_support_sphereUtils_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../geometry/support/sphereUtils.js */ "./node_modules/@arcgis/core/geometry/support/sphereUtils.js");
+/* harmony import */ var _geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../geometry/support/vector.js */ "./node_modules/@arcgis/core/geometry/support/vector.js");
+/* harmony import */ var _geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../geometry/support/vectorStacks.js */ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const C=E();function E(){return (0,_core_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__.create)()}const _=_vec42_js__WEBPACK_IMPORTED_MODULE_6__.e,k=_vec42_js__WEBPACK_IMPORTED_MODULE_6__.e;function w(t,r){return (0,_vec42_js__WEBPACK_IMPORTED_MODULE_6__.c)(r,t)}function O(t,r){return (0,_core_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__.fromValues)(t[0],t[1],t[2],r)}function T(t){return t}function z(t){t[0]=t[1]=t[2]=t[3]=0}function L(t,r){return t[0]=t[1]=t[2]=0,t[3]=r,t}function N(t){return t[3]}function U(t){return t}function V(t,r,n,s){return (0,_core_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__.fromValues)(t,r,n,s)}function Z(t,r,n){return t!==n&&(n[0]=t[0],n[1]=t[1],n[2]=t[2]),n[3]=t[3]+r,n}function B(t,r,n){return t!==n&&w(t,n),n}function D(t,r){return r}function F(t,r,n){if(null==r)return!1;if(!Y(t,r,X))return!1;let{t0:s,t1:o}=X;if((s<0||o<s&&o>0)&&(s=o),s<0)return!1;if(n){const{origin:t,direction:o}=r;n[0]=t[0]+o[0]*s,n[1]=t[1]+o[1]*s,n[2]=t[2]+o[2]*s}return!0}function I(t,r,n){const s=(0,_geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_10__.fromPoints)(r,n);if(!Y(t,s,X))return[];const{origin:o,direction:e}=s,{t0:i,t1:a}=X,c=r=>{const n=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)();return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.b)(n,o,e,r),$(t,n,n)};return Math.abs(i-a)<(0,_core_libs_gl_matrix_2_math_common_js__WEBPACK_IMPORTED_MODULE_8__.getEpsilon)()?[c(i)]:[c(i),c(a)]}const X={t0:0,t1:0};function Y(t,r,n){const{origin:s,direction:o}=r,e=G;e[0]=s[0]-t[0],e[1]=s[1]-t[1],e[2]=s[2]-t[2];const i=o[0]*o[0]+o[1]*o[1]+o[2]*o[2];if(0===i)return!1;const a=2*(o[0]*e[0]+o[1]*e[1]+o[2]*e[2]),c=a*a-4*i*(e[0]*e[0]+e[1]*e[1]+e[2]*e[2]-t[3]*t[3]);if(c<0)return!1;const u=Math.sqrt(c);return n.t0=(-a-u)/(2*i),n.t1=(-a+u)/(2*i),!0}const G=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)();function H(t,r){return F(t,r,null)}function J(t,r,i){if(F(t,r,i))return i;const a=K(t,r,_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get());return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(i,r.origin,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),r.direction,(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.j)(r.origin,a)/(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.l)(r.direction))),i}function K(t,n,o){const c=_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),u=_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sm4d.get();(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.e)(c,n.origin,n.direction);const f=N(t);(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.e)(o,c,n.origin),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(o,o,1/(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.l)(o)*f);const m=rt(t,n.origin),l=(0,_geometry_support_vector_js__WEBPACK_IMPORTED_MODULE_12__.angle)(n.origin,o);return (0,_core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_3__.fromRotation)(u,l+m,c),(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.t)(o,o,u),o}function Q(t,r,n,s){const o=N(t),e=o*o,i=r+.5*Math.PI,a=n*n+e-2*Math.cos(i)*n*o,c=Math.sqrt(a),u=a-e;if(u<=0)return.5;const f=Math.sqrt(u),m=Math.acos(f/c)-Math.asin(o/(c/Math.sin(i)));return Math.min(1,(m+.5*s)/s)}function W(t,r,n){return F(t,r,n)?n:((0,_geometry_support_ray_js__WEBPACK_IMPORTED_MODULE_10__.closestPoint)(r,U(t),n),$(t,n,n))}function $(t,r,o){const i=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),r,U(t)),a=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),i,t[3]/(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.l)(i));return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(o,a,U(t))}function tt(t,r){const n=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),r,U(t)),s=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.k)(n),o=t[3]*t[3];return Math.sqrt(Math.abs(s-o))}function rt(r,n){const s=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(_geometry_support_vectorStacks_js__WEBPACK_IMPORTED_MODULE_13__.sv3d.get(),n,U(r)),o=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.l)(s),i=N(r),a=i+Math.abs(i-o);return (0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_2__.acosClamped)(i/a)}const nt=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)();function st(t,r,n,s){const o=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(nt,r,U(t));switch(n){case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.X:{const t=(0,_geometry_support_sphereUtils_js__WEBPACK_IMPORTED_MODULE_11__.cartesianToSpherical)(o,nt)[2];return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.i)(s,-Math.sin(t),Math.cos(t),0)}case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.Y:{const t=(0,_geometry_support_sphereUtils_js__WEBPACK_IMPORTED_MODULE_11__.cartesianToSpherical)(o,nt),r=t[1],n=t[2],e=Math.sin(r);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.i)(s,-e*Math.cos(n),-e*Math.sin(n),Math.cos(r))}case _geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.Z:return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.n)(s,o);default:return}}function ot(t,r){const n=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(ct,r,U(t));return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.l)(n)-t[3]}function et(t,r,o,e){const i=ot(t,r),a=st(t,r,_geometry_support_Axis_js__WEBPACK_IMPORTED_MODULE_9__.Axis.Z,ct),c=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(ct,a,o-i);return (0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(e,r,c)}function it(t,r){const n=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.s)(U(t),r),s=N(t);return n<=s*s}function at(t,r,n=(0,_core_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__.create)()){const s=(0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.j)(U(t),U(r)),e=t[3],i=r[3];return s+i<e?((0,_vec42_js__WEBPACK_IMPORTED_MODULE_6__.c)(n,t),n):s+e<i?((0,_vec42_js__WEBPACK_IMPORTED_MODULE_6__.c)(n,r),n):((0,_vec32_js__WEBPACK_IMPORTED_MODULE_4__.m)(n,U(t),U(r),(s+i-e)/(2*s)),n[3]=(s+e+i)/2,n)}const ct=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),ut=E(),ft=Object.freeze(Object.defineProperty({__proto__:null,NullSphere:C,altitudeAt:ot,angleToSilhouette:rt,axisAt:st,cameraFrustumCoverage:Q,clear:z,closestPoint:W,closestPointOnSilhouette:K,containsPoint:it,copy:w,create:E,distanceToSilhouette:tt,elevate:Z,equals:k,exactEquals:_,fromCenterAndRadius:O,fromRadius:L,fromValues:V,getCenter:U,getExtent:D,getRadius:N,intersectLine:I,intersectRay:F,intersectRayClosestSilhouette:J,intersectsRay:H,projectPoint:$,setAltitudeAt:et,setExtent:B,tmpSphere:ut,union:at,wrap:T},Symbol.toStringTag,{value:"Module"}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/MD5.js":
+/*!***********************************************!*\
+  !*** ./node_modules/@arcgis/core/core/MD5.js ***!
+  \***********************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createMD5Hash: function() { return /* binding */ x; },
+/* harmony export */   outputTypes: function() { return /* binding */ n; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const n={Base64:0,Hex:1,String:2,Raw:3},t=8,r=(1<<t)-1;function e(n,t){const r=(65535&n)+(65535&t);return(n>>16)+(t>>16)+(r>>16)<<16|65535&r}function o(n){const e=[];for(let o=0,u=n.length*t;o<u;o+=t)e[o>>5]|=(n.charCodeAt(o/t)&r)<<o%32;return e}function u(n){const e=[];for(let o=0,u=32*n.length;o<u;o+=t)e.push(String.fromCharCode(n[o>>5]>>>o%32&r));return e.join("")}function c(n){const t="0123456789abcdef",r=[];for(let e=0,o=4*n.length;e<o;e++)r.push(t.charAt(n[e>>2]>>e%4*8+4&15)+t.charAt(n[e>>2]>>e%4*8&15));return r.join("")}function f(n){const t="=",r="ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/",e=[];for(let o=0,u=4*n.length;o<u;o+=3){const u=(n[o>>2]>>o%4*8&255)<<16|(n[o+1>>2]>>(o+1)%4*8&255)<<8|n[o+2>>2]>>(o+2)%4*8&255;for(let c=0;c<4;c++)8*o+6*c>32*n.length?e.push(t):e.push(r.charAt(u>>6*(3-c)&63))}return e.join("")}function s(n,t){return n<<t|n>>>32-t}function i(n,t,r,o,u,c){return e(s(e(e(t,n),e(o,c)),u),r)}function h(n,t,r,e,o,u,c){return i(t&r|~t&e,n,t,o,u,c)}function a(n,t,r,e,o,u,c){return i(t&e|r&~e,n,t,o,u,c)}function l(n,t,r,e,o,u,c){return i(t^r^e,n,t,o,u,c)}function g(n,t,r,e,o,u,c){return i(r^(t|~e),n,t,o,u,c)}function p(n,t){n[t>>5]|=128<<t%32,n[14+(t+64>>>9<<4)]=t;let r=1732584193,o=-271733879,u=-1732584194,c=271733878;for(let f=0;f<n.length;f+=16){const t=r,s=o,i=u,p=c;r=h(r,o,u,c,n[f],7,-680876936),c=h(c,r,o,u,n[f+1],12,-389564586),u=h(u,c,r,o,n[f+2],17,606105819),o=h(o,u,c,r,n[f+3],22,-1044525330),r=h(r,o,u,c,n[f+4],7,-176418897),c=h(c,r,o,u,n[f+5],12,1200080426),u=h(u,c,r,o,n[f+6],17,-1473231341),o=h(o,u,c,r,n[f+7],22,-45705983),r=h(r,o,u,c,n[f+8],7,1770035416),c=h(c,r,o,u,n[f+9],12,-1958414417),u=h(u,c,r,o,n[f+10],17,-42063),o=h(o,u,c,r,n[f+11],22,-1990404162),r=h(r,o,u,c,n[f+12],7,1804603682),c=h(c,r,o,u,n[f+13],12,-40341101),u=h(u,c,r,o,n[f+14],17,-1502002290),o=h(o,u,c,r,n[f+15],22,1236535329),r=a(r,o,u,c,n[f+1],5,-165796510),c=a(c,r,o,u,n[f+6],9,-1069501632),u=a(u,c,r,o,n[f+11],14,643717713),o=a(o,u,c,r,n[f],20,-373897302),r=a(r,o,u,c,n[f+5],5,-701558691),c=a(c,r,o,u,n[f+10],9,38016083),u=a(u,c,r,o,n[f+15],14,-660478335),o=a(o,u,c,r,n[f+4],20,-405537848),r=a(r,o,u,c,n[f+9],5,568446438),c=a(c,r,o,u,n[f+14],9,-1019803690),u=a(u,c,r,o,n[f+3],14,-187363961),o=a(o,u,c,r,n[f+8],20,1163531501),r=a(r,o,u,c,n[f+13],5,-1444681467),c=a(c,r,o,u,n[f+2],9,-51403784),u=a(u,c,r,o,n[f+7],14,1735328473),o=a(o,u,c,r,n[f+12],20,-1926607734),r=l(r,o,u,c,n[f+5],4,-378558),c=l(c,r,o,u,n[f+8],11,-2022574463),u=l(u,c,r,o,n[f+11],16,1839030562),o=l(o,u,c,r,n[f+14],23,-35309556),r=l(r,o,u,c,n[f+1],4,-1530992060),c=l(c,r,o,u,n[f+4],11,1272893353),u=l(u,c,r,o,n[f+7],16,-155497632),o=l(o,u,c,r,n[f+10],23,-1094730640),r=l(r,o,u,c,n[f+13],4,681279174),c=l(c,r,o,u,n[f],11,-358537222),u=l(u,c,r,o,n[f+3],16,-722521979),o=l(o,u,c,r,n[f+6],23,76029189),r=l(r,o,u,c,n[f+9],4,-640364487),c=l(c,r,o,u,n[f+12],11,-421815835),u=l(u,c,r,o,n[f+15],16,530742520),o=l(o,u,c,r,n[f+2],23,-995338651),r=g(r,o,u,c,n[f],6,-198630844),c=g(c,r,o,u,n[f+7],10,1126891415),u=g(u,c,r,o,n[f+14],15,-1416354905),o=g(o,u,c,r,n[f+5],21,-57434055),r=g(r,o,u,c,n[f+12],6,1700485571),c=g(c,r,o,u,n[f+3],10,-1894986606),u=g(u,c,r,o,n[f+10],15,-1051523),o=g(o,u,c,r,n[f+1],21,-2054922799),r=g(r,o,u,c,n[f+8],6,1873313359),c=g(c,r,o,u,n[f+15],10,-30611744),u=g(u,c,r,o,n[f+6],15,-1560198380),o=g(o,u,c,r,n[f+13],21,1309151649),r=g(r,o,u,c,n[f+4],6,-145523070),c=g(c,r,o,u,n[f+11],10,-1120210379),u=g(u,c,r,o,n[f+2],15,718787259),o=g(o,u,c,r,n[f+9],21,-343485551),r=e(r,t),o=e(o,s),u=e(u,i),c=e(c,p)}return[r,o,u,c]}function x(r,e=n.Hex){const s=e||n.Base64,i=p(o(r),r.length*t);switch(s){case n.Raw:return i;case n.Hex:return c(i);case n.String:return u(i);case n.Base64:return f(i)}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/MultiOriginJSONSupport.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/MultiOriginJSONSupport.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   MultiOriginJSONMixin: function() { return /* binding */ S; },
+/* harmony export */   MultiOriginJSONSupport: function() { return /* binding */ m; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _Accessor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Accessor.js */ "./node_modules/@arcgis/core/core/Accessor.js");
+/* harmony import */ var _ReadOnlyMultiOriginJSONSupport_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./ReadOnlyMultiOriginJSONSupport.js */ "./node_modules/@arcgis/core/core/ReadOnlyMultiOriginJSONSupport.js");
+/* harmony import */ var _accessorSupport_get_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./accessorSupport/get.js */ "./node_modules/@arcgis/core/core/accessorSupport/get.js");
+/* harmony import */ var _accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./accessorSupport/PropertyOrigin.js */ "./node_modules/@arcgis/core/core/accessorSupport/PropertyOrigin.js");
+/* harmony import */ var _accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./accessorSupport/utils.js */ "./node_modules/@arcgis/core/core/accessorSupport/utils.js");
+/* harmony import */ var _accessorSupport_write_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./accessorSupport/write.js */ "./node_modules/@arcgis/core/core/accessorSupport/write.js");
+/* harmony import */ var _accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const l=t=>{let s=class extends t{constructor(...r){super(...r)}clear(r,t="user"){return O(this).delete(r,(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(t))}write(r,t){return (0,_accessorSupport_write_js__WEBPACK_IMPORTED_MODULE_6__.write)(this,r=r||{},t),r}setAtOrigin(r,t,s){(0,_accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_5__.getProperties)(this).setAtOrigin(r,t,(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(s))}removeOrigin(r){const t=O(this),s=(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(r),e=t.keys(s);for(const o of e)t.originOf(o)===s&&t.set(o,t.get(o,s),_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.OriginId.USER)}updateOrigin(r,t){const s=O(this),i=(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(t),c=(0,_accessorSupport_get_js__WEBPACK_IMPORTED_MODULE_3__.get)(this,r);for(let e=i+1;e<_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.originIdNum;++e)s.delete(r,e);s.set(r,c,i)}toJSON(r){return this.write({},r)}};return s=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__.subclass)("esri.core.MultiOriginJSONSupport.WriteableMultiOriginJSONSupport")],s),s.prototype.toJSON.isDefaultToJSON=!0,s};function O(r){return (0,_accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_5__.getProperties)(r).store}const S=t=>{let e=class extends(l((0,_ReadOnlyMultiOriginJSONSupport_js__WEBPACK_IMPORTED_MODULE_2__.ReadOnlyMultiOriginJSONMixin)(t))){constructor(...r){super(...r)}};return e=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__.subclass)("esri.core.MultiOriginJSONSupport")],e),e};let m=class extends(S(_Accessor_js__WEBPACK_IMPORTED_MODULE_1__["default"])){};m=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__.subclass)("esri.core.MultiOriginJSONSupport")],m);
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/ObjectStack.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/ObjectStack.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ObjectStack: function() { return /* binding */ s; }
+/* harmony export */ });
+/* harmony import */ var _nextTick_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./nextTick.js */ "./node_modules/@arcgis/core/core/nextTick.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class s{constructor(t){this._allocator=t,this._items=[],this._itemsPtr=0,this._grow()}get(){return 0===this._itemsPtr&&(0,_nextTick_js__WEBPACK_IMPORTED_MODULE_0__.nextTick)((()=>this._reset())),this._itemsPtr===this._items.length&&this._grow(),this._items[this._itemsPtr++]}_reset(){const t=Math.min(3*Math.max(8,this._itemsPtr),this._itemsPtr+3*i);this._items.length=Math.min(t,this._items.length),this._itemsPtr=0}_grow(){for(let t=0;t<Math.max(8,Math.min(this._items.length,i));t++)this._items.push(this._allocator())}}const i=1024;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/ReadOnlyMultiOriginJSONSupport.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/ReadOnlyMultiOriginJSONSupport.js ***!
+  \**************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   ReadOnlyMultiOriginJSONMixin: function() { return /* binding */ u; },
+/* harmony export */   ReadOnlyMultiOriginJSONSupport: function() { return /* binding */ f; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _Accessor_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./Accessor.js */ "./node_modules/@arcgis/core/core/Accessor.js");
+/* harmony import */ var _accessorSupport_defaultsStoreUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./accessorSupport/defaultsStoreUtils.js */ "./node_modules/@arcgis/core/core/accessorSupport/defaultsStoreUtils.js");
+/* harmony import */ var _accessorSupport_MultiOriginStore_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./accessorSupport/MultiOriginStore.js */ "./node_modules/@arcgis/core/core/accessorSupport/MultiOriginStore.js");
+/* harmony import */ var _accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./accessorSupport/PropertyOrigin.js */ "./node_modules/@arcgis/core/core/accessorSupport/PropertyOrigin.js");
+/* harmony import */ var _accessorSupport_read_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./accessorSupport/read.js */ "./node_modules/@arcgis/core/core/accessorSupport/read.js");
+/* harmony import */ var _accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./accessorSupport/utils.js */ "./node_modules/@arcgis/core/core/accessorSupport/utils.js");
+/* harmony import */ var _accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const u=t=>{let u=class extends t{constructor(...r){super(...r);const t=(0,_accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_6__.getProperties)(this),e=t.store,i=new _accessorSupport_MultiOriginStore_js__WEBPACK_IMPORTED_MODULE_3__["default"];t.store=i,(0,_accessorSupport_defaultsStoreUtils_js__WEBPACK_IMPORTED_MODULE_2__.setupConstructedDefaults)(t,e,i)}read(r,t){(0,_accessorSupport_read_js__WEBPACK_IMPORTED_MODULE_5__.read)(this,r,t)}getAtOrigin(r,t){const s=a(this),o=(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(t);if("string"==typeof r)return s.get(r,o);const i={};return r.forEach((r=>{i[r]=s.get(r,o)})),i}originOf(r){return (0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.idToName)(this.originIdOf(r))}originIdOf(r){return a(this).originOf(r)}revert(r,t){const s=a(this),o=(0,_accessorSupport_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_4__.nameToId)(t),i=(0,_accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_6__.getProperties)(this);let c;c="string"==typeof r?"*"===r?s.keys(o):[r]:r,c.forEach((r=>{i.invalidate(r),s.revert(r,o),i.commit(r)}))}};return u=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__.subclass)("esri.core.ReadOnlyMultiOriginJSONSupport")],u),u};function a(r){return (0,_accessorSupport_utils_js__WEBPACK_IMPORTED_MODULE_6__.getProperties)(r).store}let f=class extends(u(_Accessor_js__WEBPACK_IMPORTED_MODULE_1__["default"])){};f=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_7__.subclass)("esri.core.ReadOnlyMultiOriginJSONSupport")],f);
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/VectorStack.js":
+/*!*******************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/VectorStack.js ***!
+  \*******************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   VectorStack: function() { return /* binding */ m; }
+/* harmony export */ });
+/* harmony import */ var _has_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _nextTick_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./nextTick.js */ "./node_modules/@arcgis/core/core/nextTick.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_mat3f64_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/mat3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat3f64.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_mat4f64_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/mat4f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat4f64.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_quatf64_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/quatf64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/quatf64.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_vec2f64_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/vec2f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec2f64.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./libs/gl-matrix-2/factories/vec4f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec4f64.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class m{constructor(t){this._create=t,this._items=new Array,this._itemsPtr=0}get(){return 0===this._itemsPtr&&(0,_nextTick_js__WEBPACK_IMPORTED_MODULE_1__.nextTick)((()=>this._reset())),this._itemsPtr>=this._items.length&&this._items.push(this._create()),this._items[this._itemsPtr++]}_reset(){const t=2*this._itemsPtr;this._items.length>t&&(this._items.length=t),this._itemsPtr=0}static createVec2f64(){return new m(_libs_gl_matrix_2_factories_vec2f64_js__WEBPACK_IMPORTED_MODULE_5__.create)}static createVec3f64(){return new m(_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_6__.create)}static createVec4f64(){return new m(_libs_gl_matrix_2_factories_vec4f64_js__WEBPACK_IMPORTED_MODULE_7__.create)}static createMat3f64(){return new m(_libs_gl_matrix_2_factories_mat3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)}static createMat4f64(){return new m(_libs_gl_matrix_2_factories_mat4f64_js__WEBPACK_IMPORTED_MODULE_3__.create)}static createQuatf64(){return new m(_libs_gl_matrix_2_factories_quatf64_js__WEBPACK_IMPORTED_MODULE_4__.create)}get test(){}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/accessorSupport/MultiOriginStore.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/accessorSupport/MultiOriginStore.js ***!
+  \****************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ r; }
+/* harmony export */ });
+/* harmony import */ var _lang_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../lang.js */ "./node_modules/@arcgis/core/core/lang.js");
+/* harmony import */ var _PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./PropertyOrigin.js */ "./node_modules/@arcgis/core/core/accessorSupport/PropertyOrigin.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class r{constructor(){this._propertyOriginMap=new Map,this._originStores=new Array(_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.originIdNum),this._values=new Map,this.multipleOriginsSupported=!0}clone(i){const o=new r,n=this._originStores[_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.DEFAULTS];n&&n.forEach(((s,r)=>{o.set(r,(0,_lang_js__WEBPACK_IMPORTED_MODULE_0__.clone)(s),_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.DEFAULTS)}));for(let r=_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.SERVICE;r<_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.originIdNum;r++){const s=this._originStores[r];s&&s.forEach(((s,e)=>{i&&i.has(e)||o.set(e,(0,_lang_js__WEBPACK_IMPORTED_MODULE_0__.clone)(s),r)}))}return o}get(t,s){const e=void 0===s?this._values:this._originStores[s];return e?e.get(t):void 0}keys(t){const s=null==t?this._values:this._originStores[t];return s?[...s.keys()]:[]}set(t,s,r=_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.USER){let i=this._originStores[r];if(i||(i=new Map,this._originStores[r]=i),i.set(t,s),!this._values.has(t)||this._propertyOriginMap.get(t)<=r){const e=this._values.get(t);return this._values.set(t,s),this._propertyOriginMap.set(t,r),e!==s}return!1}delete(t,s=_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.USER){const r=this._originStores[s];if(!r)return;const i=r.get(t);if(r.delete(t),this._values.has(t)&&this._propertyOriginMap.get(t)===s){this._values.delete(t);for(let e=s-1;e>=0;e--){const s=this._originStores[e];if(s&&s.has(t)){this._values.set(t,s.get(t)),this._propertyOriginMap.set(t,e);break}}}return i}has(t,s){const e=void 0===s?this._values:this._originStores[s];return!!e&&e.has(t)}revert(t,s){for(;s>0&&!this.has(t,s);)--s;const e=this._originStores[s],r=e?.get(t),i=this._values.get(t);return this._values.set(t,r),this._propertyOriginMap.set(t,s),i!==r}originOf(t){return this._propertyOriginMap.get(t)||_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_1__.OriginId.DEFAULTS}forEach(t){this._values.forEach(t)}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/accessorSupport/decorators/persistable.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/accessorSupport/decorators/persistable.js ***!
+  \**********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   persistable: function() { return /* binding */ j; }
+/* harmony export */ });
+/* harmony import */ var _Error_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../Error.js */ "./node_modules/@arcgis/core/core/Error.js");
+/* harmony import */ var _MD5_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../MD5.js */ "./node_modules/@arcgis/core/core/MD5.js");
+/* harmony import */ var _multiOriginJSONSupportUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../multiOriginJSONSupportUtils.js */ "./node_modules/@arcgis/core/core/multiOriginJSONSupportUtils.js");
+/* harmony import */ var _urlUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../urlUtils.js */ "./node_modules/@arcgis/core/core/urlUtils.js");
+/* harmony import */ var _uuid_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../uuid.js */ "./node_modules/@arcgis/core/core/uuid.js");
+/* harmony import */ var _metadata_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../metadata.js */ "./node_modules/@arcgis/core/core/accessorSupport/metadata.js");
+/* harmony import */ var _PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../PropertyOrigin.js */ "./node_modules/@arcgis/core/core/accessorSupport/PropertyOrigin.js");
+/* harmony import */ var _property_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _portal_support_resourceExtension_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../../portal/support/resourceExtension.js */ "./node_modules/@arcgis/core/portal/support/resourceExtension.js");
+/* harmony import */ var _chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../../chunks/persistableUrlUtils.js */ "./node_modules/@arcgis/core/chunks/persistableUrlUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function j(t){const r=t?.origins??[void 0];return(e,o)=>{const s=U(t,e,o);for(const t of r){const r=(0,_property_js__WEBPACK_IMPORTED_MODULE_7__.propertyJSONMeta)(e,t,o);for(const t in s)r[t]=s[t]}}}function U(t,r,e){if("resource"===t?.type)return w(t,r,e);switch(t?.type??"other"){case"other":return{read:!0,write:!0};case"url":{const{read:t,write:r}=_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.b;return{read:t,write:r}}}}function w(t,r,n){const i=(0,_metadata_js__WEBPACK_IMPORTED_MODULE_5__.getPropertyMetadata)(r,n);return{type:String,read:(t,r,e)=>{const o=(0,_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.r)(t,r,e);return i.type===String?o:"function"==typeof i.type?new i.type({url:o}):void 0},write:{writer(r,p,c,u){if(!u?.resources)return"string"==typeof r?void(p[c]=(0,_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.t)(r,u)):void(p[c]=r.write({},u));const l=x(r),m=(0,_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.t)(l,{...u,verifyItemRelativeUrls:u?.verifyItemRelativeUrls?{writtenUrls:u.verifyItemRelativeUrls.writtenUrls,rootPath:void 0}:void 0},_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.M.NO),d=i.type!==String&&(!(0,_multiOriginJSONSupportUtils_js__WEBPACK_IMPORTED_MODULE_2__.isMultiOriginJSONMixin)(this)||u?.origin&&this.originIdOf(n)>(0,_PropertyOrigin_js__WEBPACK_IMPORTED_MODULE_6__.nameToId)(u.origin)),h={object:this,propertyName:n,value:r,targetUrl:m,dest:p,targetPropertyName:c,context:u,params:t};u?.portalItem&&m&&!(0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.isAbsolute)(m)?d&&t?.contentAddressed?I(h):d?N(h):P(h):u?.portalItem&&(null==m||null!=(0,_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.i)(m)||(0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.isBlobProtocol)(m)||d)?I(h):p[c]=m}}}}function I(e){const{targetUrl:o,params:p,value:u,context:a,dest:l,targetPropertyName:d}=e;if(!a.portalItem)return;const f=(0,_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_9__.p)(o),y=S(u,o,a);if(p?.contentAddressed&&"json"!==y.type)return void a.messages?.push(new _Error_js__WEBPACK_IMPORTED_MODULE_0__["default"]("persistable:contentAddressingUnsupported",`Property "${d}" is trying to serializing a resource with content of type ${y.type} with content addressing. Content addressing is only supported for json resources.`,{content:y}));const g=p?.contentAddressed&&"json"===y.type?(0,_MD5_js__WEBPACK_IMPORTED_MODULE_1__.createMD5Hash)(y.jsonString):f?.filename??(0,_uuid_js__WEBPACK_IMPORTED_MODULE_4__.generateUUID)(),v=(0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.join)(p?.prefix??f?.prefix,g),j=`${v}.${(0,_portal_support_resourceExtension_js__WEBPACK_IMPORTED_MODULE_8__.getResourceContentExtension)(y)}`;if(p?.contentAddressed&&a.resources&&"json"===y.type){const t=a.resources.toKeep.find((({resource:t})=>t.path===j))??a.resources.toAdd.find((({resource:t})=>t.path===j));if(t)return void(l[d]=t.resource.itemRelativeUrl)}const U=a.portalItem.resourceFromPath(j);(0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.isBlobProtocol)(o)&&a.resources&&a.resources.pendingOperations.push((0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.blobUrlToBlob)(o).then((t=>{U.path=`${v}.${(0,_portal_support_resourceExtension_js__WEBPACK_IMPORTED_MODULE_8__.getResourceContentExtension)({type:"blob",blob:t})}`,l[d]=U.itemRelativeUrl})).catch((()=>{})));const w=p?.compress??!1;a.resources&&b({...e,resource:U,content:y,compress:w,updates:a.resources.toAdd}),l[d]=U.itemRelativeUrl}function N(t){const{context:r,targetUrl:e,params:o,value:s,dest:n,targetPropertyName:i}=t;if(!r.portalItem)return;const c=r.portalItem.resourceFromPath(e),u=S(s,e,r),a=(0,_portal_support_resourceExtension_js__WEBPACK_IMPORTED_MODULE_8__.getResourceContentExtension)(u),l=(0,_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.getPathExtension)(c.path),d=o?.compress??!1;a===l?(r.resources&&b({...t,resource:c,content:u,compress:d,updates:r.resources.toUpdate}),n[i]=e):I(t)}function P({context:t,targetUrl:r,dest:e,targetPropertyName:o}){t.portalItem&&t.resources&&(t.resources.toKeep.push({resource:t.portalItem.resourceFromPath(r),compress:!1}),e[o]=r)}function b({object:t,propertyName:r,updates:e,resource:o,content:s,compress:n}){const i=e=>{O(t,r,e)};e.push({resource:o,content:s,compress:n,finish:i})}function S(t,r,e){return"string"==typeof t?{type:"url",url:r}:{type:"json",jsonString:JSON.stringify(t.toJSON(e))}}function x(t){return null==t?null:"string"==typeof t?t:t.url}function O(t,r,e){"string"==typeof t[r]?t[r]=e.url:t[r].url=e.url}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/accessorSupport/layerContainerType.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/accessorSupport/layerContainerType.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   excludeTables: function() { return /* binding */ a; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const a=(a=>a)(["operational-layers","basemap","ground"]);
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat3f64.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat3f64.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   IDENTITY: function() { return /* binding */ o; },
+/* harmony export */   clone: function() { return /* binding */ r; },
+/* harmony export */   create: function() { return /* binding */ e; },
+/* harmony export */   createView: function() { return /* binding */ n; },
+/* harmony export */   fromValues: function() { return /* binding */ t; },
+/* harmony export */   m: function() { return /* binding */ u; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function e(){return[1,0,0,0,1,0,0,0,1]}function r(e){return[e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8]]}function t(e,r,t,n,o,u,c,a,l){return[e,r,t,n,o,u,c,a,l]}function n(e,r){return new Float64Array(e,r,9)}const o=e(),u=Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:o,clone:r,create:e,createView:n,fromValues:t},Symbol.toStringTag,{value:"Module"}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat4f64.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat4f64.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   IDENTITY: function() { return /* binding */ o; },
+/* harmony export */   clone: function() { return /* binding */ r; },
+/* harmony export */   create: function() { return /* binding */ e; },
+/* harmony export */   createView: function() { return /* binding */ n; },
+/* harmony export */   fromValues: function() { return /* binding */ t; },
+/* harmony export */   m: function() { return /* binding */ u; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function e(){return[1,0,0,0,0,1,0,0,0,0,1,0,0,0,0,1]}function r(e){return[e[0],e[1],e[2],e[3],e[4],e[5],e[6],e[7],e[8],e[9],e[10],e[11],e[12],e[13],e[14],e[15]]}function t(e,r,t,n,o,u,c,a,l,f,i,_,b,m,p,s){return[e,r,t,n,o,u,c,a,l,f,i,_,b,m,p,s]}function n(e,r){return new Float64Array(e,r,16)}const o=e(),u=Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:o,clone:r,create:e,createView:n,fromValues:t},Symbol.toStringTag,{value:"Module"}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/quatf64.js":
+/*!******************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/quatf64.js ***!
+  \******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   IDENTITY: function() { return /* binding */ r; },
+/* harmony export */   clone: function() { return /* binding */ t; },
+/* harmony export */   create: function() { return /* binding */ e; },
+/* harmony export */   fromValues: function() { return /* binding */ n; },
+/* harmony export */   q: function() { return /* binding */ o; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function e(){return[0,0,0,1]}function t(e){return[e[0],e[1],e[2],e[3]]}function n(e,t,n,r){return[e,t,n,r]}const r=e(),o=Object.freeze(Object.defineProperty({__proto__:null,IDENTITY:r,clone:t,create:e,fromValues:n},Symbol.toStringTag,{value:"Module"}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/multiOriginJSONSupportUtils.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/multiOriginJSONSupportUtils.js ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isMultiOriginJSONMixin: function() { return /* binding */ i; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function i(i){return i&&"getAtOrigin"in i&&"originOf"in i}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/uuid.js":
+/*!************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/uuid.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateBracedUUID: function() { return /* binding */ r; },
+/* harmony export */   generateLowercaseBracedUUID: function() { return /* binding */ o; },
+/* harmony export */   generateUUID: function() { return /* binding */ n; },
+/* harmony export */   normalizeGlobalID: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t="randomUUID"in crypto;function n(){if(t)return crypto.randomUUID();const n=crypto.getRandomValues(new Uint16Array(8));n[3]=4095&n[3]|16384,n[4]=16383&n[4]|32768;const r=t=>n[t].toString(16).padStart(4,"0");return r(0)+r(1)+"-"+r(2)+"-"+r(3)+"-"+r(4)+"-"+r(5)+r(6)+r(7)}function r(){return`{${n().toUpperCase()}}`}function o(){return`{${n()}}`}function e(t){const n=t.toUpperCase();return"{"!==t[0]?`{${n}}`:n}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/lineSegment.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/lineSegment.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   closestLineSegmentPoint: function() { return /* binding */ B; },
+/* harmony export */   closestRayDistance2: function() { return /* binding */ d; },
+/* harmony export */   copy: function() { return /* binding */ p; },
+/* harmony export */   create: function() { return /* binding */ v; },
+/* harmony export */   distance2: function() { return /* binding */ M; },
+/* harmony export */   fromPoints: function() { return /* binding */ b; },
+/* harmony export */   fromValues: function() { return /* binding */ h; },
+/* harmony export */   pointAt: function() { return /* binding */ l; },
+/* harmony export */   projectPoint: function() { return /* binding */ j; },
+/* harmony export */   projectPointClamp: function() { return /* binding */ A; },
+/* harmony export */   wrap: function() { return /* binding */ m; }
+/* harmony export */ });
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/ObjectStack.js */ "./node_modules/@arcgis/core/core/ObjectStack.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vectorStacks.js */ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function v(t){return t?{origin:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.clone)(t.origin),vector:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.clone)(t.vector)}:{origin:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.create)(),vector:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.create)()}}function m(t,r){const n=S.get();return n.origin=t,n.vector=r,n}function p(t,r=v()){return h(t.origin,t.vector,r)}function h(t,r,o=v()){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.c)(o.origin,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.c)(o.vector,r),o}function b(t,r,e=v()){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.c)(e.origin,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.d)(e.vector,r,t),e}function M(r,n){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),n,r.origin),s=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.f)(r.vector,c),u=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.f)(r.vector,r.vector),a=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.clamp)(s/u,0,1),g=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.h)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),r.vector,a),c);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.f)(g,g)}function j(t,r,n){return A(t,r,0,1,n)}function l(t,r,n){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.g)(n,t.origin,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.h)(n,t.vector,r))}function A(r,n,u,a,g){const{vector:v,origin:m}=r,p=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),n,m),h=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.f)(v,p)/(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.k)(v);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.h)(g,v,(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.clamp)(h,u,a)),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.g)(g,g,r.origin)}function d(t,r){if(k(t,m(r.origin,r.direction),!1,x)){const{tA:r,pB:n,distance2:o}=x;if(r>=0&&r<=1)return o;if(r<0)return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.s)(t.origin,n);if(r>1)return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.s)((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.g)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),t.origin,t.vector),n)}return null}function B(t,r,o){return!!k(t,r,!0,x)&&((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.c)(o,x.pA),!0)}function k(r,n,o,e){const i=1e-6,s=r.origin,a=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.g)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),s,r.vector),g=n.origin,v=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.g)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),g,n.vector),m=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),p=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get();if(m[0]=s[0]-g[0],m[1]=s[1]-g[1],m[2]=s[2]-g[2],p[0]=v[0]-g[0],p[1]=v[1]-g[1],p[2]=v[2]-g[2],Math.abs(p[0])<i&&Math.abs(p[1])<i&&Math.abs(p[2])<i)return!1;const h=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get();if(h[0]=a[0]-s[0],h[1]=a[1]-s[1],h[2]=a[2]-s[2],Math.abs(h[0])<i&&Math.abs(h[1])<i&&Math.abs(h[2])<i)return!1;const b=m[0]*p[0]+m[1]*p[1]+m[2]*p[2],M=p[0]*h[0]+p[1]*h[1]+p[2]*h[2],j=m[0]*h[0]+m[1]*h[1]+m[2]*h[2],l=p[0]*p[0]+p[1]*p[1]+p[2]*p[2],A=(h[0]*h[0]+h[1]*h[1]+h[2]*h[2])*l-M*M;if(Math.abs(A)<i)return!1;let d=(b*M-j*l)/A,B=(b+M*d)/l;o&&(d=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.clamp)(d,0,1),B=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.clamp)(B,0,1));const k=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get(),x=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_4__.sv3d.get();return k[0]=s[0]+d*h[0],k[1]=s[1]+d*h[1],k[2]=s[2]+d*h[2],x[0]=g[0]+B*p[0],x[1]=g[1]+B*p[1],x[2]=g[2]+B*p[2],e.tA=d,e.tB=B,e.pA=k,e.pB=x,e.distance2=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_2__.s)(k,x),!0}const x={tA:0,tB:0,pA:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.create)(),pB:(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_3__.create)(),distance2:0},S=new _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_1__.ObjectStack((()=>v()));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/plane.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/plane.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   IntersectFlags: function() { return /* binding */ tt; },
+/* harmony export */   IntersectResult: function() { return /* binding */ W; },
+/* harmony export */   clip: function() { return /* binding */ B; },
+/* harmony export */   clipInfinite: function() { return /* binding */ G; },
+/* harmony export */   copy: function() { return /* binding */ h; },
+/* harmony export */   create: function() { return /* binding */ M; },
+/* harmony export */   distance: function() { return /* binding */ Q; },
+/* harmony export */   equals: function() { return /* binding */ g; },
+/* harmony export */   exactEquals: function() { return /* binding */ m; },
+/* harmony export */   fromArray: function() { return /* binding */ A; },
+/* harmony export */   fromManyPoints: function() { return /* binding */ v; },
+/* harmony export */   fromNormalAndOffset: function() { return /* binding */ C; },
+/* harmony export */   fromPoints: function() { return /* binding */ p; },
+/* harmony export */   fromPositionAndNormal: function() { return /* binding */ l; },
+/* harmony export */   fromValues: function() { return /* binding */ U; },
+/* harmony export */   fromVectorsAndPoint: function() { return /* binding */ P; },
+/* harmony export */   getNormal: function() { return /* binding */ O; },
+/* harmony export */   intersectLine: function() { return /* binding */ k; },
+/* harmony export */   intersectLineOrRay: function() { return /* binding */ Z; },
+/* harmony export */   intersectLineSegment: function() { return /* binding */ q; },
+/* harmony export */   intersectLineSegmentClamp: function() { return /* binding */ w; },
+/* harmony export */   intersectRay: function() { return /* binding */ x; },
+/* harmony export */   isPointInside: function() { return /* binding */ z; },
+/* harmony export */   negate: function() { return /* binding */ L; },
+/* harmony export */   projectPoint: function() { return /* binding */ H; },
+/* harmony export */   projectPointLocal: function() { return /* binding */ J; },
+/* harmony export */   projectVector: function() { return /* binding */ K; },
+/* harmony export */   setOffsetFromPoint: function() { return /* binding */ y; },
+/* harmony export */   signedDistance: function() { return /* binding */ V; },
+/* harmony export */   up: function() { return /* binding */ $; },
+/* harmony export */   wrap: function() { return /* binding */ D; }
+/* harmony export */ });
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _chunks_vec42_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chunks/vec42.js */ "./node_modules/@arcgis/core/chunks/vec42.js");
+/* harmony import */ var _vector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./vector.js */ "./node_modules/@arcgis/core/geometry/support/vector.js");
+/* harmony import */ var _vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./vectorStacks.js */ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js");
+/* harmony import */ var _views_3d_support_mathUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../views/3d/support/mathUtils.js */ "./node_modules/@arcgis/core/views/3d/support/mathUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function M(t=$){return[t[0],t[1],t[2],t[3]]}const m=_chunks_vec42_js__WEBPACK_IMPORTED_MODULE_3__.a,g=_chunks_vec42_js__WEBPACK_IMPORTED_MODULE_3__.e;function D(t=$[0],n=$[1],r=$[2],o=$[3]){return U(t,n,r,o,_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv4d.get())}function h(t,n){return U(n[0],n[1],n[2],n[3],t)}function O(t){return t}function U(t,n,r,o,c=M()){return c[0]=t,c[1]=n,c[2]=r,c[3]=o,c}function C(t,r,o){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.c)(o,t),o[3]=r,o}function l(t,n,r){const o=n[0]*n[0]+n[1]*n[1]+n[2]*n[2],c=Math.abs(o-1)>1e-5&&o>1e-12?1/Math.sqrt(o):1;return r[0]=n[0]*c,r[1]=n[1]*c,r[2]=n[2]*c,r[3]=-(r[0]*t[0]+r[1]*t[1]+r[2]*t[2]),r}function p(t,n,r,o=M()){const c=r[0]-n[0],e=r[1]-n[1],u=r[2]-n[2],I=t[0]-n[0],i=t[1]-n[1],f=t[2]-n[2],s=e*f-u*i,N=u*I-c*f,E=c*i-e*I,a=s*s+N*N+E*E,T=Math.abs(a-1)>1e-5&&a>1e-12?1/Math.sqrt(a):1;return o[0]=s*T,o[1]=N*T,o[2]=E*T,o[3]=-(o[0]*t[0]+o[1]*t[1]+o[2]*t[2]),o}function v(t,n,u,I=0,i=Math.floor(u*(1/3)),f=Math.floor(u*(2/3))){if(u<3)return!1;n(R,I);let s=i,N=!1;for(;s<u-1&&!N;)n(j,s),s++,N=!(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.p)(R,j);if(!N)return!1;for(s=Math.max(s,f),N=!1;s<u&&!N;)n(b,s),s++,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(d,R,j),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(d,d),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(X,j,b),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(X,X),N=!(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.p)(R,b)&&!(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.p)(j,b)&&Math.abs((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(d,X))<F;return N?(p(R,j,b,t),!0):(0!==I||1!==i||2!==f)&&v(t,n,u,0,1,2)}function A(t,n,r=!0){const o=n.length/3;return v(t,((t,r)=>(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(t,n[3*r+0],n[3*r+1],n[3*r+2])),r?o-1:o)}const F=.99619469809,R=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),j=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),b=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),d=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),X=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)();function y(t,n,r){return n!==t&&h(t,n),t[3]=-(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(t),r),t}function L(t,n){return n[0]=-t[0],n[1]=-t[1],n[2]=-t[2],n[3]=-t[3],n}function P(t,n,r,o){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(b,n,t),l(r,b,o)}function k(t,n,r,c){return Y(Z(t,n,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),r,n),nt,c))}function x(t,n,r){return null!=n&&Y(Z(t,n.origin,n.direction,rt,r))}function q(t,n,r){return Y(Z(t,n.origin,n.vector,tt.NONE,r))}function w(t,n,r){return Y(Z(t,n.origin,n.vector,tt.CLAMP,r))}function z(t,n){return V(t,n)>=0}function B(t,n){const r=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(t),n.ray.direction),o=-V(t,n.ray.origin);if(o<0&&r>=0)return!1;if(r>-1e-6&&r<1e-6)return o>0;if((o<0||r<0)&&!(o<0&&r<0))return!0;const c=o/r;return r>0?c<n.c1&&(n.c1=c):c>n.c0&&(n.c0=c),n.c0<=n.c1}function G(t,n){const r=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(t),n.ray.direction),o=-V(t,n.ray.origin);if(r>-1e-6&&r<1e-6)return o>0;const c=o/r;return r>0?c<n.c1&&(n.c1=c):c>n.c0&&(n.c0=c),n.c0<=n.c1}function H(t,n,r){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),O(t),-t[3]),e=K(t,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),n,c),_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get());return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(r,e,c),r}function J(t,n,r,c){const e=O(t),I=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),i=_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get();(0,_views_3d_support_mathUtils_js__WEBPACK_IMPORTED_MODULE_6__.tangentFrame)(e,I,i);const f=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),r,n),s=(0,_vector_js__WEBPACK_IMPORTED_MODULE_4__.projectPointSignedLength)(I,f),N=(0,_vector_js__WEBPACK_IMPORTED_MODULE_4__.projectPointSignedLength)(i,f),E=(0,_vector_js__WEBPACK_IMPORTED_MODULE_4__.projectPointSignedLength)(e,f);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(c,s,N,E)}function K(t,n,r){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_5__.sv3d.get(),O(t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(t),n));return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(r,n,c),r}function Q(t,n){return Math.abs(V(t,n))}function V(t,n){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(t),n)+t[3]}var W;function Y(t){return t===W.INTERSECTS_INSIDE_OUT||t===W.INTERSECTS_OUTSIDE_IN}function Z(n,r,o,c,u){const I=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(O(n),o),s=V(n,r);if(0===I)return s>=0?W.INSIDE:W.OUTSIDE;let N=-s/I;return c&tt.CLAMP&&(N=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.clamp)(N,0,1)),!(c&tt.INFINITE_MIN)&&N<0||!(c&tt.INFINITE_MAX)&&N>1?s>=0?W.INSIDE:W.OUTSIDE:((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(u,r,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(u,o,N)),s>=0?W.INTERSECTS_INSIDE_OUT:W.INTERSECTS_OUTSIDE_IN)}!function(t){t[t.INTERSECTS_INSIDE_OUT=0]="INTERSECTS_INSIDE_OUT",t[t.INTERSECTS_OUTSIDE_IN=1]="INTERSECTS_OUTSIDE_IN",t[t.INSIDE=2]="INSIDE",t[t.OUTSIDE=3]="OUTSIDE"}(W||(W={}));const $=[0,0,1,0];var tt;!function(t){t[t.NONE=0]="NONE",t[t.CLAMP=1]="CLAMP",t[t.INFINITE_MIN=4]="INFINITE_MIN",t[t.INFINITE_MAX=8]="INFINITE_MAX"}(tt||(tt={}));const nt=tt.INFINITE_MIN|tt.INFINITE_MAX,rt=tt.INFINITE_MAX;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/ray.js":
+/*!***********************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/ray.js ***!
+  \***********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   closestPoint: function() { return /* binding */ y; },
+/* harmony export */   closestPoints: function() { return /* binding */ M; },
+/* harmony export */   copy: function() { return /* binding */ v; },
+/* harmony export */   create: function() { return /* binding */ b; },
+/* harmony export */   distance2: function() { return /* binding */ w; },
+/* harmony export */   equals: function() { return /* binding */ x; },
+/* harmony export */   fromPoints: function() { return /* binding */ S; },
+/* harmony export */   fromValues: function() { return /* binding */ q; },
+/* harmony export */   wrap: function() { return /* binding */ k; }
+/* harmony export */ });
+/* harmony import */ var _core_arrayUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/arrayUtils.js */ "./node_modules/@arcgis/core/core/arrayUtils.js");
+/* harmony import */ var _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/ObjectStack.js */ "./node_modules/@arcgis/core/core/ObjectStack.js");
+/* harmony import */ var _core_libs_gl_matrix_2_math_mat3_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/math/mat3.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/math/mat3.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_mat3f64_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/factories/mat3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/mat3f64.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _vectorStacks_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./vectorStacks.js */ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function b(i){return i?h((0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.clone)(i.origin),(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.clone)(i.direction)):h((0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)())}function h(i,r){return{origin:i,direction:r}}function x(r,n){return (0,_core_arrayUtils_js__WEBPACK_IMPORTED_MODULE_0__.equals)(r.origin,n.origin)&&(0,_core_arrayUtils_js__WEBPACK_IMPORTED_MODULE_0__.equals)(r.direction,n.direction)}function k(i,r){const n=O.get();return n.origin=i,n.direction=r,n}function v(i,r=b()){return q(i.origin,i.direction,r)}function S(i,r,n=b()){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.c)(n.origin,i),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(n.direction,r,i),n}function q(i,r,n=b()){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.c)(n.origin,i),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.c)(n.direction,r),n}function w(i,r){const n=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.e)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_6__.sv3d.get(),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.n)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_6__.sv3d.get(),i.direction),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(_vectorStacks_js__WEBPACK_IMPORTED_MODULE_6__.sv3d.get(),r,i.origin));return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.f)(n,n)}function y(i,r,n){const t=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.f)(i.direction,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.d)(n,r,i.origin));return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(n,i.origin,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(n,i.direction,t)),n}function M(i,r,o,e){const c=i.origin,l=r.origin,j=i.direction,p=r.direction,b=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.f)((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.n)(z,j),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.n)(A,p));if(Math.abs(b)>=1)return null;const h=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.e)(z,j,p),x=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.a)(U,l,c),k=(0,_core_libs_gl_matrix_2_math_mat3_js__WEBPACK_IMPORTED_MODULE_2__.set)(B,j[0],j[1],j[2],-p[0],-p[1],-p[2],h[0],h[1],h[2]),v=(0,_core_libs_gl_matrix_2_math_mat3_js__WEBPACK_IMPORTED_MODULE_2__.invert)(B,k);if(null==v)return[o,e];const S=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.f)((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.i)(z,v[0],v[3],v[6]),x),q=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.f)((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.i)(A,v[1],v[4],v[7]),x);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(o,c,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(U,j,S)),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.g)(e,l,(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_4__.h)(U,p,q)),[o,e]}const O=new _core_ObjectStack_js__WEBPACK_IMPORTED_MODULE_1__.ObjectStack((()=>b())),U=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),z=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),A=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_5__.create)(),B=(0,_core_libs_gl_matrix_2_factories_mat3f64_js__WEBPACK_IMPORTED_MODULE_3__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/sphereUtils.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/sphereUtils.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   cartesianToSpherical: function() { return /* binding */ n; },
+/* harmony export */   sphericalToCartesian: function() { return /* binding */ a; }
+/* harmony export */ });
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function n(n,a){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(n),i=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.asinClamped)(n[2]/c),r=Math.atan2(n[1]/c,n[0]/c);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(a,c,i,r),a}function a(t,o){const n=t[0],a=t[1],c=t[2],i=Math.cos(a);(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(o,n*i*Math.cos(c),n*i*Math.sin(c),n*Math.sin(a))}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/vector.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/vector.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   angle: function() { return /* binding */ a; },
+/* harmony export */   angleAroundAxis: function() { return /* binding */ u; },
+/* harmony export */   projectPoint: function() { return /* binding */ i; },
+/* harmony export */   projectPointSignedLength: function() { return /* binding */ f; }
+/* harmony export */ });
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function i(t,o,s){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,o)/(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,t);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(s,t,c)}function f(t,n){return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,n)/(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(t)}function a(n,s){const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(n,s)/((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(n)*(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(s));return-(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.acosClamped)(c)}function u(n,o,e){(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(m,n),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(h,o);const i=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(m,h),f=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.acosClamped)(i),a=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(m,m,h);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(a,e)<0?2*Math.PI-f:f}const m=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),h=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/geometry/support/vectorStacks.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/geometry/support/vectorStacks.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   sm3d: function() { return /* binding */ a; },
+/* harmony export */   sm4d: function() { return /* binding */ f; },
+/* harmony export */   sq4d: function() { return /* binding */ o; },
+/* harmony export */   sv2d: function() { return /* binding */ t; },
+/* harmony export */   sv3d: function() { return /* binding */ c; },
+/* harmony export */   sv4d: function() { return /* binding */ r; }
+/* harmony export */ });
+/* harmony import */ var _core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/VectorStack.js */ "./node_modules/@arcgis/core/core/VectorStack.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createVec2f64(),c=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createVec3f64(),r=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createVec4f64(),a=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createMat3f64(),f=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createMat4f64(),o=_core_VectorStack_js__WEBPACK_IMPORTED_MODULE_0__.VectorStack.createQuatf64();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/layers/LineOfSightLayer.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@arcgis/core/layers/LineOfSightLayer.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ d; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _analysis_LineOfSightAnalysis_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../analysis/LineOfSightAnalysis.js */ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysis.js");
+/* harmony import */ var _analysis_LineOfSightAnalysisObserver_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../analysis/LineOfSightAnalysisObserver.js */ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisObserver.js");
+/* harmony import */ var _analysis_LineOfSightAnalysisTarget_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../analysis/LineOfSightAnalysisTarget.js */ "./node_modules/@arcgis/core/analysis/LineOfSightAnalysisTarget.js");
+/* harmony import */ var _core_Collection_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Collection.js */ "./node_modules/@arcgis/core/core/Collection.js");
+/* harmony import */ var _core_collectionUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/collectionUtils.js */ "./node_modules/@arcgis/core/core/collectionUtils.js");
+/* harmony import */ var _core_MultiOriginJSONSupport_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/MultiOriginJSONSupport.js */ "./node_modules/@arcgis/core/core/MultiOriginJSONSupport.js");
+/* harmony import */ var _core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/reactiveUtils.js */ "./node_modules/@arcgis/core/core/reactiveUtils.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _Layer_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./Layer.js */ "./node_modules/@arcgis/core/layers/Layer.js");
+/* harmony import */ var _mixins_OperationalLayer_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ./mixins/OperationalLayer.js */ "./node_modules/@arcgis/core/layers/mixins/OperationalLayer.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const m=_core_Collection_js__WEBPACK_IMPORTED_MODULE_4__["default"].ofType(_analysis_LineOfSightAnalysisTarget_js__WEBPACK_IMPORTED_MODULE_3__["default"]);let u=class extends((0,_mixins_OperationalLayer_js__WEBPACK_IMPORTED_MODULE_14__.OperationalLayer)((0,_core_MultiOriginJSONSupport_js__WEBPACK_IMPORTED_MODULE_6__.MultiOriginJSONMixin)(_Layer_js__WEBPACK_IMPORTED_MODULE_13__["default"]))){constructor(e){super(e),this.type="line-of-sight",this.operationalLayerType="LineOfSightLayer",this.analysis=new _analysis_LineOfSightAnalysis_js__WEBPACK_IMPORTED_MODULE_1__["default"],this.opacity=1}initialize(){this.addHandles((0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_7__.watch)((()=>this.analysis),((e,t)=>{null!=t&&t.parent===this&&(t.parent=null),null!=e&&(e.parent=this)}),_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_7__.syncAndInitial))}async load(){return null!=this.analysis&&this.addResolvingPromise(this.analysis.waitComputeExtent()),this}get observer(){return this.analysis?.observer}set observer(e){const{analysis:t}=this;t&&(t.observer=e)}get targets(){return null!=this.analysis?this.analysis.targets:new _core_Collection_js__WEBPACK_IMPORTED_MODULE_4__["default"]}set targets(e){(0,_core_collectionUtils_js__WEBPACK_IMPORTED_MODULE_5__.referenceSetter)(e,this.analysis?.targets)}get fullExtent(){return null!=this.analysis?this.analysis.extent:null}get spatialReference(){return null!=this.analysis?this.analysis.spatialReference:null}releaseAnalysis(e){this.analysis===e&&(this.analysis=new _analysis_LineOfSightAnalysis_js__WEBPACK_IMPORTED_MODULE_1__["default"])}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({json:{read:!1},readOnly:!0})],u.prototype,"type",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({type:["LineOfSightLayer"]})],u.prototype,"operationalLayerType",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({type:_analysis_LineOfSightAnalysisObserver_js__WEBPACK_IMPORTED_MODULE_2__["default"],json:{read:!0,write:{isRequired:!0,ignoreOrigin:!0}}})],u.prototype,"observer",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({type:m,json:{read:!0,write:{ignoreOrigin:!0}}})],u.prototype,"targets",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({nonNullable:!0,json:{read:!1,write:!1}})],u.prototype,"analysis",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({readOnly:!0})],u.prototype,"fullExtent",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({readOnly:!0})],u.prototype,"spatialReference",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({readOnly:!0,json:{read:!1,write:!1,origins:{service:{read:!1,write:!1},"portal-item":{read:!1,write:!1},"web-document":{read:!1,write:!1}}}})],u.prototype,"opacity",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_8__.property)({type:["show","hide"]})],u.prototype,"listMode",void 0),u=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_12__.subclass)("esri.layers.LineOfSightLayer")],u);const d=u;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/layers/mixins/OperationalLayer.js":
+/*!*********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/layers/mixins/OperationalLayer.js ***!
+  \*********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   OperationalLayer: function() { return /* binding */ b; },
+/* harmony export */   isOperationalLayer: function() { return /* binding */ T; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_Error_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/Error.js */ "./node_modules/@arcgis/core/core/Error.js");
+/* harmony import */ var _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/urlUtils.js */ "./node_modules/@arcgis/core/core/urlUtils.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_accessorSupport_ensureType_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/accessorSupport/ensureType.js */ "./node_modules/@arcgis/core/core/accessorSupport/ensureType.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/reader.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/reader.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/writer.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/writer.js");
+/* harmony import */ var _core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../../core/accessorSupport/layerContainerType.js */ "./node_modules/@arcgis/core/core/accessorSupport/layerContainerType.js");
+/* harmony import */ var _core_accessorSupport_read_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../../core/accessorSupport/read.js */ "./node_modules/@arcgis/core/core/accessorSupport/read.js");
+/* harmony import */ var _core_accessorSupport_write_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../../core/accessorSupport/write.js */ "./node_modules/@arcgis/core/core/accessorSupport/write.js");
+/* harmony import */ var _operationalLayers_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ./operationalLayers.js */ "./node_modules/@arcgis/core/layers/mixins/operationalLayers.js");
+/* harmony import */ var _support_commonProperties_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../support/commonProperties.js */ "./node_modules/@arcgis/core/layers/support/commonProperties.js");
+/* harmony import */ var _time_TimeExtent_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../../time/TimeExtent.js */ "./node_modules/@arcgis/core/time/TimeExtent.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const b=b=>{let T=class extends b{constructor(){super(...arguments),this.persistenceEnabled=!0,this.title=null}readId(e,r,t){return"Group Layer"===t?.portalItem?.type?void 0:e}writeListMode(e,r,t,i){(i&&"ground"===i.layerContainerType||e&&(0,_core_accessorSupport_write_js__WEBPACK_IMPORTED_MODULE_12__.willPropertyWrite)(this,t,{},i))&&(r[t]=e)}writeOperationalLayerType(e,r,t,i){e&&"tables"!==i?.layerContainerType&&(r.layerType=e)}writeTitle(e,r){r.title=e??"Layer"}readTimeExtent(e){return e?_time_TimeExtent_js__WEBPACK_IMPORTED_MODULE_15__["default"].fromArray(e):null}writeTimeExtent(e,t,i,o){e&&"tables"!==o.layerContainerType&&(e.isEmpty?o?.messages&&o.messages.push(new _core_Error_js__WEBPACK_IMPORTED_MODULE_1__["default"]("layer:invalid-visibilityTimeExtent","visibilityTimeExtent cannot be empty")):t[i]=e.toArray())}read(e,r){r&&(r.layer=this),(0,_core_accessorSupport_read_js__WEBPACK_IMPORTED_MODULE_11__.readLoadable)(this,e,(r=>super.read(e,r)),r)}write(e,i){if(!this.persistenceEnabled&&!i?.ignorePersistenceEnabled)return null;if(i?.origin){const e=`${i.origin}/${i.layerContainerType||"operational-layers"}`,t=_operationalLayers_js__WEBPACK_IMPORTED_MODULE_13__.supportedTypes[e];let o=!!t?.[this.operationalLayerType];if("ArcGISTiledElevationServiceLayer"===this.operationalLayerType&&"web-scene/operational-layers"===e&&(o=!1),"ArcGISDimensionLayer"===this.operationalLayerType&&"web-map/operational-layers"===e&&(o=!1),!o)return i.messages?.push(new _core_Error_js__WEBPACK_IMPORTED_MODULE_1__["default"]("layer:unsupported",`Layers (${this.title}, ${this.id}) of type '${this.declaredClass}' are not supported in the context of '${e}'`,{layer:this})),null}const o=super.write(e,{...i,layer:this}),s=!!i&&!!i.messages&&!!i.messages.filter((e=>e instanceof _core_Error_js__WEBPACK_IMPORTED_MODULE_1__["default"]&&"web-document-write:property-required"===e.name)).length;return (0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_2__.isBlobProtocol)(o?.url)?(i?.messages?.push(new _core_Error_js__WEBPACK_IMPORTED_MODULE_1__["default"]("layer:invalid-url",`Layer (${this.title}, ${this.id}) of type '${this.declaredClass}' using a Blob URL cannot be written to web scenes and web maps`,{layer:this})),null):!this.url&&s?null:o}beforeSave(){}};return (0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:String,json:{write:{ignoreOrigin:!0},origins:{"web-scene":{write:{isRequired:!0,ignoreOrigin:!0}},"portal-item":{write:!1}}}})],T.prototype,"id",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_7__.reader)("id",["id"])],T.prototype,"readId",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)(_support_commonProperties_js__WEBPACK_IMPORTED_MODULE_14__.listMode)],T.prototype,"listMode",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__.writer)("listMode")],T.prototype,"writeListMode",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:String,readOnly:!0,json:{read:!1,write:{target:"layerType",ignoreOrigin:!0},origins:{"portal-item":{write:!1},"web-scene":{name:"layerType",read:!1,write:{enabled:!0,ignoreOrigin:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_10__.excludeTables}}}}})],T.prototype,"operationalLayerType",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__.writer)("operationalLayerType")],T.prototype,"writeOperationalLayerType",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)(_support_commonProperties_js__WEBPACK_IMPORTED_MODULE_14__.opacity)],T.prototype,"opacity",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:Boolean,readOnly:!1})],T.prototype,"persistenceEnabled",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:String,json:{write:{ignoreOrigin:!0,writerEnsuresNonNull:!0},origins:{"web-scene":{write:{isRequired:!0,ignoreOrigin:!0,writerEnsuresNonNull:!0}},"portal-item":{write:!1}}},value:"Layer"})],T.prototype,"title",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__.writer)("title"),(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__.writer)(["web-scene"],"title")],T.prototype,"writeTitle",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:_time_TimeExtent_js__WEBPACK_IMPORTED_MODULE_15__["default"],json:{origins:{"web-scene":{write:{layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_10__.excludeTables}}}}})],T.prototype,"visibilityTimeExtent",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_7__.reader)("visibilityTimeExtent")],T.prototype,"readTimeExtent",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_9__.writer)(["portal-item","web-map","web-scene"],"visibilityTimeExtent",{visibilityTimeExtent:{type:[[_core_accessorSupport_ensureType_js__WEBPACK_IMPORTED_MODULE_4__.Integer,_core_accessorSupport_ensureType_js__WEBPACK_IMPORTED_MODULE_4__.Null]]}})],T.prototype,"writeTimeExtent",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:Boolean,json:{origins:{"web-scene":{name:"visibility",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_10__.excludeTables}}},name:"visibility",write:!0}})],T.prototype,"visible",void 0),T=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_8__.subclass)("esri.layers.mixins.OperationalLayer")],T),T};function T(e){return"operationalLayerType"in e}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/layers/mixins/operationalLayers.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/layers/mixins/operationalLayers.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   supportedTypes: function() { return /* binding */ i; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const e={ArcGISAnnotationLayer:!0,ArcGISDimensionLayer:!0,ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISImageServiceVectorLayer:!0,ArcGISMapServiceLayer:!0,ArcGISStreamLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BingMapsAerial:!0,BingMapsHybrid:!0,BingMapsRoad:!0,CatalogLayer:!0,CSV:!0,GeoJSON:!0,GeoRSS:!0,GroupLayer:!0,KML:!0,KnowledgeGraphLayer:!0,MediaLayer:!0,OGCFeatureLayer:!0,OrientedImageryLayer:!0,SubtypeGroupLayer:!0,VectorTileLayer:!0,WFS:!0,WMS:!0,WebTiledLayer:!0},r={ArcGISImageServiceLayer:!0,ArcGISImageServiceVectorLayer:!0,ArcGISMapServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BingMapsAerial:!0,BingMapsHybrid:!0,BingMapsRoad:!0,OpenStreetMap:!0,VectorTileLayer:!0,WMS:!0,WebTiledLayer:!0},a={ArcGISFeatureLayer:!0,SubtypeGroupTable:!0},i={"web-scene/operational-layers":{ArcGISDimensionLayer:!0,ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISMapServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISTiledElevationServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,BuildingSceneLayer:!0,CatalogLayer:!0,CSV:!0,GeoJSON:!0,GroupLayer:!0,IntegratedMesh3DTilesLayer:!0,IntegratedMeshLayer:!0,KML:!0,LineOfSightLayer:!0,MediaLayer:!0,OGCFeatureLayer:!0,OrientedImageryLayer:!0,PointCloudLayer:!0,RasterDataLayer:!0,VectorTileLayer:!0,ViewshedLayer:!0,Voxel:!0,WFS:!0,WMS:!0,WebTiledLayer:!0},"web-scene/basemap":{ArcGISImageServiceLayer:!0,ArcGISMapServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISTiledImageServiceLayer:!0,ArcGISTiledMapServiceLayer:!0,OpenStreetMap:!0,VectorTileLayer:!0,WMS:!0,WebTiledLayer:!0},"web-scene/ground":{ArcGISTiledElevationServiceLayer:!0,RasterDataElevationLayer:!0},"web-scene/tables":{ArcGISFeatureLayer:!0},"web-map/operational-layers":e,"web-map/basemap":r,"web-map/tables":a,"link-chart/operational-layers":{...e,LinkChartLayer:!0},"link-chart/basemap":r,"link-chart/tables":a,"portal-item/operational-layers":{ArcGISFeatureLayer:!0,ArcGISImageServiceLayer:!0,ArcGISSceneServiceLayer:!0,ArcGISStreamLayer:!0,ArcGISTiledImageServiceLayer:!0,BuildingSceneLayer:!0,IntegratedMesh3DTilesLayer:!0,IntegratedMeshLayer:!0,MediaLayer:!0,OrientedImageryLayer:!0,PointCloudLayer:!0,SubtypeGroupLayer:!0}};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/layers/support/commonProperties.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/layers/support/commonProperties.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   attributeTableTemplate: function() { return /* binding */ T; },
+/* harmony export */   elevationInfo: function() { return /* binding */ c; },
+/* harmony export */   id: function() { return /* binding */ u; },
+/* harmony export */   labelsVisible: function() { return /* binding */ p; },
+/* harmony export */   legendEnabled: function() { return /* binding */ d; },
+/* harmony export */   listMode: function() { return /* binding */ I; },
+/* harmony export */   maxScale: function() { return /* binding */ v; },
+/* harmony export */   minScale: function() { return /* binding */ j; },
+/* harmony export */   opacity: function() { return /* binding */ f; },
+/* harmony export */   opacityDrawingInfo: function() { return /* binding */ b; },
+/* harmony export */   popupEnabled: function() { return /* binding */ l; },
+/* harmony export */   readOnlyService: function() { return /* binding */ m; },
+/* harmony export */   sceneLayerFullExtent: function() { return /* binding */ g; },
+/* harmony export */   screenSizePerspectiveEnabled: function() { return /* binding */ s; },
+/* harmony export */   url: function() { return /* binding */ y; }
+/* harmony export */ });
+/* harmony import */ var _core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/accessorSupport/layerContainerType.js */ "./node_modules/@arcgis/core/core/accessorSupport/layerContainerType.js");
+/* harmony import */ var _geometry_Extent_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../geometry/Extent.js */ "./node_modules/@arcgis/core/geometry/Extent.js");
+/* harmony import */ var _geometry_SpatialReference_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../geometry/SpatialReference.js */ "./node_modules/@arcgis/core/geometry/SpatialReference.js");
+/* harmony import */ var _chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../chunks/persistableUrlUtils.js */ "./node_modules/@arcgis/core/chunks/persistableUrlUtils.js");
+/* harmony import */ var _symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../symbols/support/ElevationInfo.js */ "./node_modules/@arcgis/core/symbols/support/ElevationInfo.js");
+/* harmony import */ var _tables_AttributeTableTemplate_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../tables/AttributeTableTemplate.js */ "./node_modules/@arcgis/core/tables/AttributeTableTemplate.js");
+/* harmony import */ var _webdoc_support_opacityUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../webdoc/support/opacityUtils.js */ "./node_modules/@arcgis/core/webdoc/support/opacityUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const s={type:Boolean,value:!0,json:{origins:{service:{read:!1,write:!1},"web-map":{read:!1,write:!1}},name:"screenSizePerspective",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}},l={type:Boolean,value:!0,json:{name:"disablePopup",read:{reader:(e,r)=>!r.disablePopup},write:{enabled:!0,writer(e,r,n){r[n]=!e}}}},p={type:Boolean,value:!0,nonNullable:!0,json:{name:"showLabels",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}},y={type:String,json:{origins:{"portal-item":{write:!1}},write:{isRequired:!0,ignoreOrigin:!0,writer:_chunks_persistableUrlUtils_js__WEBPACK_IMPORTED_MODULE_3__.w}}},d={type:Boolean,value:!0,nonNullable:!0,json:{origins:{service:{read:{enabled:!1}}},name:"showLegend",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}},c={value:null,type:_symbols_support_ElevationInfo_js__WEBPACK_IMPORTED_MODULE_4__["default"],json:{origins:{service:{name:"elevationInfo",write:!0}},name:"layerDefinition.elevationInfo",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}};function m(e){return{type:e,readOnly:!0,json:{origins:{service:{read:!0}},read:!1}}}const w={write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables},read:!0},f={type:Number,json:{origins:{"web-document":w,"portal-item":{write:!0}}}},b={...f,json:{...f.json,origins:{"web-document":{...w,write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables,target:{opacity:{type:Number},"layerDefinition.drawingInfo.transparency":{type:Number}}}}},read:{source:["layerDefinition.drawingInfo.transparency","drawingInfo.transparency"],reader:(e,r,n)=>n&&"service"!==n.origin||!r.drawingInfo||void 0===r.drawingInfo.transparency?r.layerDefinition?.drawingInfo&&void 0!==r.layerDefinition.drawingInfo.transparency?(0,_webdoc_support_opacityUtils_js__WEBPACK_IMPORTED_MODULE_6__.transparencyToOpacity)(r.layerDefinition.drawingInfo.transparency):void 0:(0,_webdoc_support_opacityUtils_js__WEBPACK_IMPORTED_MODULE_6__.transparencyToOpacity)(r.drawingInfo.transparency)}}},g={type:_geometry_Extent_js__WEBPACK_IMPORTED_MODULE_1__["default"],readOnly:!0,json:{origins:{service:{read:{source:["fullExtent","spatialReference"],reader:(e,i)=>{const a=_geometry_Extent_js__WEBPACK_IMPORTED_MODULE_1__["default"].fromJSON(e);return null!=i.spatialReference&&"object"==typeof i.spatialReference&&(a.spatialReference=_geometry_SpatialReference_js__WEBPACK_IMPORTED_MODULE_2__["default"].fromJSON(i.spatialReference)),a}}}},read:!1}},u={type:String,json:{origins:{service:{read:!1},"portal-item":{read:!1}}}},j={type:Number,json:{origins:{service:{write:{enabled:!1}},"web-scene":{name:"layerDefinition.minScale",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}},name:"layerDefinition.minScale",write:!0}},v={type:Number,json:{origins:{service:{write:{enabled:!1}},"web-scene":{name:"layerDefinition.maxScale",write:{enabled:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables}}},name:"layerDefinition.maxScale",write:!0}},I={json:{write:{ignoreOrigin:!0,layerContainerTypes:_core_accessorSupport_layerContainerType_js__WEBPACK_IMPORTED_MODULE_0__.excludeTables},origins:{"web-map":{read:!1,write:!1}}}},T={type:_tables_AttributeTableTemplate_js__WEBPACK_IMPORTED_MODULE_5__["default"],json:{name:"attributeTableInfo",write:!0,origins:{"web-scene":{read:!1,write:!1}}}};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/portal/support/resourceExtension.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/portal/support/resourceExtension.js ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getResourceContentExtension: function() { return /* binding */ p; }
+/* harmony export */ });
+/* harmony import */ var _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/urlUtils.js */ "./node_modules/@arcgis/core/core/urlUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function p(i){return o[t(i)]||e}function t(i){return"json"===i.type?"application/json":"blob"===i.type?i.blob.type:n(i.url)}function n(p){const t=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_0__.getPathExtension)(p);return g[t]||a}const o={},a="text/plain",e=o[a],g={png:"image/png",jpeg:"image/jpeg",jpg:"image/jpg",bmp:"image/bmp",gif:"image/gif",json:"application/json",txt:"text/plain",xml:"application/xml",svg:"image/svg+xml",zip:"application/zip",pbf:"application/vnd.mapbox-vector-tile",gz:"application/gzip","bin.gz":"application/octet-stream"};for(const l in g)o[g[l]]=l;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/support/elevationInfoUtils.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@arcgis/core/support/elevationInfoUtils.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   absoluteHeightElevationInfo: function() { return /* binding */ j; },
+/* harmony export */   elevationContextAffectsAlignment: function() { return /* binding */ y; },
+/* harmony export */   elevationModeRequiredMessage: function() { return /* binding */ Z; },
+/* harmony export */   elevationModeUnsupportedMessage: function() { return /* binding */ P; },
+/* harmony export */   featureExpressionInfoIsZero: function() { return /* binding */ d; },
+/* harmony export */   featureExpressionUnsupportedMessage: function() { return /* binding */ w; },
+/* harmony export */   getConvertedElevation: function() { return /* binding */ m; },
+/* harmony export */   getConvertedElevationFromVector: function() { return /* binding */ x; },
+/* harmony export */   getConvertedElevationFromXYZ: function() { return /* binding */ E; },
+/* harmony export */   getEffectiveElevationInfo: function() { return /* binding */ u; },
+/* harmony export */   getEffectiveElevationMode: function() { return /* binding */ r; },
+/* harmony export */   getElevationOffset: function() { return /* binding */ h; },
+/* harmony export */   getElevationOffsetInMeters: function() { return /* binding */ R; },
+/* harmony export */   getGeometryEffectiveElevationInfo: function() { return /* binding */ s; },
+/* harmony export */   getGeometryEffectiveElevationMode: function() { return /* binding */ i; },
+/* harmony export */   getGraphicEffectiveElevationInfo: function() { return /* binding */ a; },
+/* harmony export */   getGraphicEffectiveElevationMode: function() { return /* binding */ l; },
+/* harmony export */   getZForElevationMode: function() { return /* binding */ p; },
+/* harmony export */   hasEffectiveFeatureExpressionInfo: function() { return /* binding */ v; },
+/* harmony export */   hasFeatureExpressionInfo: function() { return /* binding */ c; },
+/* harmony export */   hasGraphicFeatureExpressionInfo: function() { return /* binding */ f; },
+/* harmony export */   logInvalidElevationInfoWarning: function() { return /* binding */ $; },
+/* harmony export */   onTheGroundElevationInfo: function() { return /* binding */ z; },
+/* harmony export */   zValueInAbsoluteHeightMode: function() { return /* binding */ b; }
+/* harmony export */ });
+/* harmony import */ var _core_unitUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../core/unitUtils.js */ "./node_modules/@arcgis/core/core/unitUtils.js");
+/* harmony import */ var _symbols_support_unitConversionUtils_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../symbols/support/unitConversionUtils.js */ "./node_modules/@arcgis/core/symbols/support/unitConversionUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function o(e){return e?j:z}function r(e,n){return n?.mode?n.mode:o(e).mode}function u(e,n){return null!=n?n:o(e)}function i(e,n){return r(null==e||(e.hasZ??!1),n)}function s(e,n){return u(null==e||(e.hasZ??!1),n)}function l(e){const n=g(e);return i(e.geometry,n)}function a(e){const n=g(e),t=i(e.geometry,n),o=null!=n&&"on-the-ground"!==t?R(n):0,r=n?.featureExpressionInfo;return{mode:t,offset:o,featureExpressionInfo:r}}function f(e){return v(a(e))}function c(e){return v(e)||d(e)}function d(e){return"0"===e?.featureExpressionInfo?.expression}function v(e){if(!e)return!1;if("on-the-ground"===e.mode)return!1;const n=e?.featureExpressionInfo?e.featureExpressionInfo.expression:null;return!(!n||"0"===n)}function g(e){return e.layer&&"elevationInfo"in e.layer?e.layer.elevationInfo:null}function h(t,o){if(!t?.offset)return 0;const{offset:r,unit:u}=t;if("decimal-degrees"===u)return 0;const i="unknown"!==u&&u?u:"meters",s=(0,_core_unitUtils_js__WEBPACK_IMPORTED_MODULE_0__.verticalLengthUnitFromSpatialReference)(o);return s?(0,_core_unitUtils_js__WEBPACK_IMPORTED_MODULE_0__.convertUnit)(r,i,s):0}function p(e,n,t){if(!t?.mode)return;const o=e.hasZ?e.z:0,r=h(t,e.spatialReference);switch(t.mode){case"absolute-height":return o-r;case"on-the-ground":return 0;case"relative-to-ground":return o-((n.elevationProvider.getElevation(e.x,e.y,o,e.spatialReference,"ground")??0)+r);case"relative-to-scene":return o-((n.elevationProvider.getElevation(e.x,e.y,o,e.spatialReference,"scene")??0)+r)}}function m(e,n,t,o=null){return E(e,n.x,n.y,n.hasZ?n.z:0,n.spatialReference,t,o)}function x(e,n,t,o,r=null){return E(e,n[0],n[1],n.length>2?n[2]:0,t,o,r)}function E(e,n,t,o,r,u,i=null){if(null==u)return;const s=null!=i?i.mode:"absolute-height";if("on-the-ground"===s)return 0;const{absoluteZ:l}=b(n,t,o,r,e,u);return I(l,n,t,o,r,e,i,s)}function b(e,n,t,o,r,u){const i=h(u,o);switch(u.mode){case"absolute-height":return{absoluteZ:t+i,elevation:0};case"on-the-ground":{const t=r.elevationProvider.getElevation(e,n,0,o,"ground")??0;return{absoluteZ:t,elevation:t}}case"relative-to-ground":{const u=r.elevationProvider.getElevation(e,n,t,o,"ground")??0;return{absoluteZ:t+u+i,elevation:u}}case"relative-to-scene":{const u=r.elevationProvider.getElevation(e,n,t,o,"scene")??0;return{absoluteZ:t+u+i,elevation:u}}}}function I(e,n,t,o,r,u,i,s){const l=h(i,r);switch(s){case"absolute-height":return e-l;case"relative-to-ground":return e-((u.elevationProvider.getElevation(n,t,o,r,"ground")??0)+l);case"relative-to-scene":return e-((u.elevationProvider.getElevation(n,t,o,r,"scene")??0)+l)}}function y(e,n){if(null==n)return!1;const{mode:t}=n;return null!=t&&("scene"===e&&"relative-to-scene"===t||"ground"===e&&"absolute-height"!==t)}function Z(e,n,t){return t&&t.mode!==n?`${e} only support ${n} elevation mode`:null}function P(e,n,t){return t?.mode===n?`${e} do not support ${n} elevation mode`:null}function w(e,n){return null!=n?.featureExpressionInfo&&"0"!==n.featureExpressionInfo.expression?`${e} do not support featureExpressionInfo`:null}function $(e,n){n&&e.warn(".elevationInfo=",n)}function R(e){return(e?.offset??0)*(0,_symbols_support_unitConversionUtils_js__WEBPACK_IMPORTED_MODULE_1__.getMetersPerUnit)(e?.unit)}const j={mode:"absolute-height",offset:0},z={mode:"on-the-ground",offset:null};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/AttributeTableTemplate.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/AttributeTableTemplate.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ f; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_lang_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/lang.js */ "./node_modules/@arcgis/core/core/lang.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/accessorSupport/decorators/cast.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/cast.js");
+/* harmony import */ var _core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/accessorSupport/decorators/reader.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/reader.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/accessorSupport/decorators/writer.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/writer.js");
+/* harmony import */ var _elements_AttributeTableGroupElement_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./elements/AttributeTableGroupElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableGroupElement.js");
+/* harmony import */ var _support_elements_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./support/elements.js */ "./node_modules/@arcgis/core/tables/support/elements.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var d;const b=(0,_support_elements_js__WEBPACK_IMPORTED_MODULE_9__.buildTypeMaps)(_elements_AttributeTableGroupElement_js__WEBPACK_IMPORTED_MODULE_8__["default"]);let j=d=class extends _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__.JSONSupport{constructor(e){super(e),this.elements=null,this.orderByFields=null}castElements(e){return (0,_support_elements_js__WEBPACK_IMPORTED_MODULE_9__.ensureType)(e,b)}readElements(e,t){return (0,_support_elements_js__WEBPACK_IMPORTED_MODULE_9__.fromJSON)(t.attributeTableElements,b)}writeElements(e,t){t.attributeTableElements=(0,_support_elements_js__WEBPACK_IMPORTED_MODULE_9__.toJSON)(e,b)}clone(){return new d({elements:(0,_core_lang_js__WEBPACK_IMPORTED_MODULE_2__.clone)(this.elements),orderByFields:this.orderByFields})}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({json:{write:!0}})],j.prototype,"elements",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_4__.cast)("elements")],j.prototype,"castElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_5__.reader)("elements",["attributeTableElements"])],j.prototype,"readElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_7__.writer)("elements")],j.prototype,"writeElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_3__.property)({type:[Object],json:{write:!0}})],j.prototype,"orderByFields",void 0),j=d=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__.subclass)("esri.tables.AttributeTableTemplate")],j);const f=j;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/elements/AttributeTableAttachmentElement.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/elements/AttributeTableAttachmentElement.js ***!
+  \**************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ a; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AttributeTableElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var s;let p=s=class extends _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__["default"]{constructor(t){super(t),this.displayType="auto",this.type="attachment"}clone(){return new s({description:this.description,displayType:this.displayType,label:this.label})}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:["auto"],json:{write:!0}})],p.prototype,"displayType",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:["attachment"],readOnly:!0,json:{read:!1,write:!0}})],p.prototype,"type",void 0),p=s=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__.subclass)("esri.tables.elements.AttributeTableAttachmentElement")],p);const a=p;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js ***!
+  \****************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ p; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let s=class extends _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__.JSONSupport{constructor(t){super(t),this.description=null,this.label=null,this.type=null}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({type:String,json:{write:!0}})],s.prototype,"description",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({type:String,json:{write:!0}})],s.prototype,"label",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],s.prototype,"type",void 0),s=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_3__.subclass)("esri.tables.elements.AttributeTableElement")],s);const p=s;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/elements/AttributeTableFieldElement.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/elements/AttributeTableFieldElement.js ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ p; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AttributeTableElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var s;let i=s=class extends _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__["default"]{constructor(e){super(e),this.fieldName=null,this.type="field"}clone(){return new s({description:this.description,fieldName:this.fieldName,label:this.label})}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:String,json:{write:!0}})],i.prototype,"fieldName",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:String,json:{read:!1,write:!0}})],i.prototype,"type",void 0),i=s=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__.subclass)("esri.tables.elements.AttributeTableFieldElement")],i);const p=i;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/elements/AttributeTableGroupElement.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/elements/AttributeTableGroupElement.js ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ j; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_lang_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/lang.js */ "./node_modules/@arcgis/core/core/lang.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/cast.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/cast.js");
+/* harmony import */ var _core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/reader.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/reader.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/writer.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/writer.js");
+/* harmony import */ var _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./AttributeTableElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js");
+/* harmony import */ var _support_elements_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../support/elements.js */ "./node_modules/@arcgis/core/tables/support/elements.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var u;let b=u=class extends _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_7__["default"]{constructor(e){super(e),this.elements=null,this.type="group"}castElements(e){return (0,_support_elements_js__WEBPACK_IMPORTED_MODULE_8__.ensureType)(e,d,!1)}readElements(e,t){return (0,_support_elements_js__WEBPACK_IMPORTED_MODULE_8__.fromJSON)(t.attributeTableElements,d,!1)}writeElements(e,t){t.attributeTableElements=(0,_support_elements_js__WEBPACK_IMPORTED_MODULE_8__.toJSON)(e,d,!1)}clone(){return new u({description:this.description,elements:(0,_core_lang_js__WEBPACK_IMPORTED_MODULE_1__.clone)(this.elements),label:this.label})}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],b.prototype,"elements",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_3__.cast)("elements")],b.prototype,"castElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_reader_js__WEBPACK_IMPORTED_MODULE_4__.reader)("elements",["attributeTableElements"])],b.prototype,"readElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_writer_js__WEBPACK_IMPORTED_MODULE_6__.writer)("elements")],b.prototype,"writeElements",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({type:String,json:{read:!1,write:!0}})],b.prototype,"type",void 0),b=u=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__.subclass)("esri.tables.elements.AttributeTableGroupElement")],b);const d=(0,_support_elements_js__WEBPACK_IMPORTED_MODULE_8__.buildTypeMaps)(b),j=b;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/elements/AttributeTableRelationshipElement.js":
+/*!****************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/elements/AttributeTableRelationshipElement.js ***!
+  \****************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ p; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./AttributeTableElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var s;let i=s=class extends _AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_6__["default"]{constructor(e){super(e),this.relationshipId=null,this.type="relationship"}clone(){return new s({description:this.description,label:this.label,relationshipId:this.relationshipId})}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:Number,json:{write:!0}})],i.prototype,"relationshipId",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_1__.property)({type:["relationship"],json:{read:!1,write:!0}})],i.prototype,"type",void 0),i=s=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_5__.subclass)("esri.tables.elements.AttributeTableRelationshipElement")],i);const p=i;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/tables/support/elements.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@arcgis/core/tables/support/elements.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   buildTypeMaps: function() { return /* binding */ i; },
+/* harmony export */   ensureType: function() { return /* binding */ s; },
+/* harmony export */   fromJSON: function() { return /* binding */ n; },
+/* harmony export */   toJSON: function() { return /* binding */ u; }
+/* harmony export */ });
+/* harmony import */ var _core_accessorSupport_ensureType_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/accessorSupport/ensureType.js */ "./node_modules/@arcgis/core/core/accessorSupport/ensureType.js");
+/* harmony import */ var _elements_AttributeTableAttachmentElement_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../elements/AttributeTableAttachmentElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableAttachmentElement.js");
+/* harmony import */ var _elements_AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../elements/AttributeTableElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableElement.js");
+/* harmony import */ var _elements_AttributeTableFieldElement_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../elements/AttributeTableFieldElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableFieldElement.js");
+/* harmony import */ var _elements_AttributeTableRelationshipElement_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../elements/AttributeTableRelationshipElement.js */ "./node_modules/@arcgis/core/tables/elements/AttributeTableRelationshipElement.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function i(t){return{typesWithGroup:{base:_elements_AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_2__["default"],key:"type",typeMap:{attachment:_elements_AttributeTableAttachmentElement_js__WEBPACK_IMPORTED_MODULE_1__["default"],field:_elements_AttributeTableFieldElement_js__WEBPACK_IMPORTED_MODULE_3__["default"],group:t,relationship:_elements_AttributeTableRelationshipElement_js__WEBPACK_IMPORTED_MODULE_4__["default"]}},typesWithoutGroup:{base:_elements_AttributeTableElement_js__WEBPACK_IMPORTED_MODULE_2__["default"],key:"type",typeMap:{attachment:_elements_AttributeTableAttachmentElement_js__WEBPACK_IMPORTED_MODULE_1__["default"],field:_elements_AttributeTableFieldElement_js__WEBPACK_IMPORTED_MODULE_3__["default"],relationship:_elements_AttributeTableRelationshipElement_js__WEBPACK_IMPORTED_MODULE_4__["default"]}}}}function n(t,e,p=!0){if(!t)return null;const r=p?e.typesWithGroup.typeMap:e.typesWithoutGroup.typeMap;return t.filter((t=>r[t.type])).map((t=>r[t.type].fromJSON(t)))}function u(t,e,p=!0){if(!t)return null;const r=p?e.typesWithGroup.typeMap:e.typesWithoutGroup.typeMap;return t.filter((t=>r[t.type])).map((t=>t.toJSON()))}function s(e,p,r=!0){return e?e.map((e=>(0,_core_accessorSupport_ensureType_js__WEBPACK_IMPORTED_MODULE_0__.ensureOneOfType)(r?p.typesWithGroup:p.typesWithoutGroup,e))):null}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/layers/i3s/Intersector.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/layers/i3s/Intersector.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   I3sTarget: function() { return /* binding */ o; },
+/* harmony export */   PclTarget: function() { return /* binding */ s; },
+/* harmony export */   Tiles3DTarget: function() { return /* binding */ l; },
+/* harmony export */   VoxelTarget: function() { return /* binding */ c; },
+/* harmony export */   isI3sIntersectorResult: function() { return /* binding */ a; },
+/* harmony export */   isPclIntersectorResult: function() { return /* binding */ i; },
+/* harmony export */   isTiles3DIntersectorResult: function() { return /* binding */ p; },
+/* harmony export */   isVoxelIntersectorResult: function() { return /* binding */ u; }
+/* harmony export */ });
+/* harmony import */ var _webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../webgl-engine/lib/IntersectorInterfaces.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js");
+/* harmony import */ var _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../webgl-engine/lib/IntersectorTarget.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorTarget.js");
+/* harmony import */ var _webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../webgl-engine/lib/intersectorUtils.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class s extends _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.Graphic3DTarget{constructor(t,e,r,n){super(e,r),this.point=t,this.createGraphic=n}}function i(e){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(e)&&e.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.PCL&&!!e.target}class o extends _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.LayerTarget{constructor(t,e,r,n,s){super(t),this.layerUid=t,this.sublayerUid=e,this.nodeIndex=r,this.componentIndex=n,this.triangleNr=s}}class c extends _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.Graphic3DTarget{constructor(t,e,r){super(e,null),this.point=t,this.createVoxelGraphic=r}}class l extends _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.Graphic3DTarget{constructor(t,e){super(t,null),this.createTiles3DGraphic=e}}function a(e){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(e)&&e.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.I3S&&!!e.target}function u(e){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(e)&&e.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.VOXEL&&!!e.target}function p(e){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(e)&&e.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.TILES3D&&!!e.target}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/support/mathUtils.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/support/mathUtils.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   angle: function() { return /* binding */ v; },
+/* harmony export */   bilerp: function() { return /* binding */ b; },
+/* harmony export */   cosCapped: function() { return /* binding */ f; },
+/* harmony export */   fovx2fovy: function() { return /* binding */ M; },
+/* harmony export */   fovy2fovx: function() { return /* binding */ l; },
+/* harmony export */   makeOrthonormal: function() { return /* binding */ p; },
+/* harmony export */   makePiecewiseLinearFunction: function() { return /* binding */ d; },
+/* harmony export */   maxScale: function() { return /* binding */ m; },
+/* harmony export */   midpoint3d: function() { return /* binding */ U; },
+/* harmony export */   planeFromPoints: function() { return /* binding */ k; },
+/* harmony export */   scaleFromMatrix: function() { return /* binding */ g; },
+/* harmony export */   slerp: function() { return /* binding */ j; },
+/* harmony export */   slerpTangent: function() { return /* binding */ x; },
+/* harmony export */   tangentFrame: function() { return /* binding */ q; }
+/* harmony export */ });
+/* harmony import */ var _core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../core/mathUtils.js */ "./node_modules/@arcgis/core/core/mathUtils.js");
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function f(t,n){return t>n?Math.cos(n):Math.cos(t)}function M(t,n,s){return 2*Math.atan(s*Math.tan(.5*t)/n)}function l(t,n,s){return 2*Math.atan(n*Math.tan(.5*t)/s)}function m(t){const n=t[0]*t[0]+t[4]*t[4]+t[8]*t[8],s=t[1]*t[1]+t[5]*t[5]+t[9]*t[9],r=t[2]*t[2]+t[6]*t[6]+t[10]*t[10];return Math.sqrt(Math.max(n,s,r))}function g(t,s){const r=Math.sqrt(s[0]*s[0]+s[4]*s[4]+s[8]*s[8]),o=Math.sqrt(s[1]*s[1]+s[5]*s[5]+s[9]*s[9]),a=Math.sqrt(s[2]*s[2]+s[6]*s[6]+s[10]*s[10]);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(t,r,o,a),t}function p(t,o,a){a=a||t;const c=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,o);(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(a,t[0]-c*o[0],t[1]-c*o[1],t[2]-c*o[2]),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(a,a)}function q(t,s,a){Math.abs(t[0])>Math.abs(t[1])?(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(s,0,1,0):(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(s,1,0,0),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(a,t,s),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(s,a,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(a,a),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(s,s)}function b(t,n,s,r,o,a){const c=t+(n-t)*o;return c+(s+(r-s)*o-c)*a}function j(t,n,r,o=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)()){const h=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(t),f=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(n),M=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,n)/(h*f);if(M<.9999999999999999){const s=Math.acos(M),a=((1-r)*h+r*f)/Math.sin(s),u=a/h*Math.sin((1-r)*s),e=a/f*Math.sin(r*s);return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(A,t,u),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(B,n,e),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(o,A,B)}return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.m)(o,t,n,r)}function x(t,n,o,f=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),M=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)()){const l=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(t),m=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.l)(n),g=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,n)/(l*m);if(g<.9999999999999999){const s=Math.acos(g),r=Math.sin(s),a=Math.sin(o*s),u=Math.sin((1-o)*s),h=(1-o)*l+o*m;{const s=h/r,o=s/m*a;(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(A,t,s/l*u),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(B,n,o),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(f,A,B)}{const e=1/l*(-Math.cos((1-o)*s)*s*h+u*(-l+m));(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(A,t,e);const f=1/m*(Math.cos(o*s)*s*h+a*(-l+m));(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(B,n,f),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(M,A,B),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(M,M,1/r)}return M}return (0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.m)(f,t,n,o),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(M,n,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(M,M),M}function v(n,a,c){n=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(A,n),a=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(B,a);const i=(0,_core_mathUtils_js__WEBPACK_IMPORTED_MODULE_0__.acosClamped)((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(n,a));if(c){const t=(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(z,n,a);if((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,c)<0)return-i}return i}function d(t){const n=t.length;return s=>{if(s<=t[0][0])return t[0][1];if(s>=t[n-1][0])return t[n-1][1];let r=1;for(;s>t[r][0];)r++;const o=t[r-1][0],a=t[r][0],c=(a-s)/(a-o);return c*t[r-1][1]+(1-c)*t[r][1]}}function k(t,n,a,c){(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(w,n,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.d)(y,a,t),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.e)(c,w,y),(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.n)(c,c),c[3]=-(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.f)(t,c)}function U(t,s){if((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.i)(s,0,0,0),t.length>0){for(let n=0;n<t.length;++n)(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.g)(s,s,t[n]);(0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_1__.h)(s,s,1/t.length)}}const w=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),y=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),z=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),A=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)(),B=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_2__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/terrain/Intersector.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/terrain/Intersector.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   OverlayTarget: function() { return /* binding */ i; },
+/* harmony export */   isOverlayIntersectorResult: function() { return /* binding */ o; },
+/* harmony export */   isTerrainIntersectorResult: function() { return /* binding */ n; }
+/* harmony export */ });
+/* harmony import */ var _webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../webgl-engine/lib/IntersectorInterfaces.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js");
+/* harmony import */ var _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../webgl-engine/lib/IntersectorTarget.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorTarget.js");
+/* harmony import */ var _webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../webgl-engine/lib/intersectorUtils.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function n(r){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(r)&&r.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.TERRAIN&&!!r.target}class i extends _webgl_engine_lib_IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.Graphic3DTarget{constructor(e,r,t){super(e,r),this.triangleNr=t}}function o(r){return (0,_webgl_engine_lib_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(r)&&r.intersector===_webgl_engine_lib_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.OVERLAY&&!!r.target}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js":
+/*!**************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js ***!
+  \**************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   IntersectorOptions: function() { return /* binding */ s; },
+/* harmony export */   IntersectorType: function() { return /* binding */ i; },
+/* harmony export */   StoreResults: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var i,e;!function(i){i[i.OBJECT=0]="OBJECT",i[i.HUD=1]="HUD",i[i.TERRAIN=2]="TERRAIN",i[i.OVERLAY=3]="OVERLAY",i[i.I3S=4]="I3S",i[i.PCL=5]="PCL",i[i.LOD=6]="LOD",i[i.VOXEL=7]="VOXEL",i[i.TILES3D=8]="TILES3D"}(i||(i={}));class s{constructor(){this.verticalOffset=0,this.selectionMode=!1,this.hud=!0,this.selectOpaqueTerrainOnly=!0,this.invisibleTerrain=!1,this.backfacesTerrain=!0,this.isFiltered=!1,this.filteredLayerUids=[],this.store=e.ALL,this.normalRequired=!0,this.excludeLabels=!1}}!function(i){i[i.MIN=0]="MIN",i[i.MINMAX=1]="MINMAX",i[i.ALL=2]="ALL"}(e||(e={}));
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorTarget.js":
+/*!**********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorTarget.js ***!
+  \**********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Graphic3DTarget: function() { return /* binding */ o; },
+/* harmony export */   HudTarget: function() { return /* binding */ r; },
+/* harmony export */   LayerTarget: function() { return /* binding */ e; },
+/* harmony export */   ObjectTarget: function() { return /* binding */ t; },
+/* harmony export */   ValidHudTarget: function() { return /* binding */ c; }
+/* harmony export */ });
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class t{constructor(s,t,r){this.object=s,this.geometryId=t,this.triangleNr=r}}class r extends t{constructor(t,r,c,e){super(t,r,c),this.center=null!=e?(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_0__.clone)(e):null}}class c extends r{}class e{constructor(s){this.layerUid=s}}class o extends e{constructor(s,t){super(s),this.graphicUid=t}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isHudIntersectorResult: function() { return /* binding */ i; },
+/* harmony export */   isObjectIntersectorResult: function() { return /* binding */ s; },
+/* harmony export */   isValidIntersectorResult: function() { return /* binding */ o; },
+/* harmony export */   sliceFilterPredicate: function() { return /* binding */ c; }
+/* harmony export */ });
+/* harmony import */ var _chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../chunks/vec32.js */ "./node_modules/@arcgis/core/chunks/vec32.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _chunks_boundedPlane_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../chunks/boundedPlane.js */ "./node_modules/@arcgis/core/chunks/boundedPlane.js");
+/* harmony import */ var _IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./IntersectorInterfaces.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function o(t){return null!=t?.dist}function c(r){return(n,o,c)=>((0,_chunks_vec32_js__WEBPACK_IMPORTED_MODULE_0__.m)(u,n,o,c),!(0,_chunks_boundedPlane_js__WEBPACK_IMPORTED_MODULE_2__.e)(r,u))}function s(t){return o(t)&&t.intersector===_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_3__.IntersectorType.OBJECT&&!!t.target}function i(t){return o(t)&&t.intersector===_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_3__.IntersectorType.HUD&&!!t.target&&"center"in t.target&&null!=t.target.center}const u=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtilsConversions.js":
+/*!********************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtilsConversions.js ***!
+  \********************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getIntersectedFeatureBSRadius: function() { return /* binding */ V; },
+/* harmony export */   hasLod: function() { return /* binding */ w; },
+/* harmony export */   toGraphic: function() { return /* binding */ m; },
+/* harmony export */   toHit: function() { return /* binding */ h; },
+/* harmony export */   toOwner: function() { return /* binding */ f; }
+/* harmony export */ });
+/* harmony import */ var _core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../../core/libs/gl-matrix-2/math/mat4.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/math/mat4.js");
+/* harmony import */ var _core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../../core/libs/gl-matrix-2/factories/vec3f64.js */ "./node_modules/@arcgis/core/core/libs/gl-matrix-2/factories/vec3f64.js");
+/* harmony import */ var _geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../geometry/support/aaBoundingBox.js */ "./node_modules/@arcgis/core/geometry/support/aaBoundingBox.js");
+/* harmony import */ var _chunks_sphere_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../../../chunks/sphere.js */ "./node_modules/@arcgis/core/chunks/sphere.js");
+/* harmony import */ var _layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../layers/i3s/Intersector.js */ "./node_modules/@arcgis/core/views/3d/layers/i3s/Intersector.js");
+/* harmony import */ var _terrain_Intersector_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../terrain/Intersector.js */ "./node_modules/@arcgis/core/views/3d/terrain/Intersector.js");
+/* harmony import */ var _intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./intersectorUtils.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js");
+/* harmony import */ var _lodRendering_Intersector_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./lodRendering/Intersector.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/lodRendering/Intersector.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function f(r,e){return (0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isObjectIntersectorResult)(r)||(0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isHudIntersectorResult)(r)?U(r.target?.object,e):(0,_terrain_Intersector_js__WEBPACK_IMPORTED_MODULE_5__.isTerrainIntersectorResult)(r)?e.map?.ground:(0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isPclIntersectorResult)(r)||(0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isI3sIntersectorResult)(r)||(0,_terrain_Intersector_js__WEBPACK_IMPORTED_MODULE_5__.isOverlayIntersectorResult)(r)||(0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isVoxelIntersectorResult)(r)?U(r.target,e):null}function m(r,e){const t=h(r,e);return null!=t&&"graphic"===t.type?t.graphic:null}function h(r,e){if(null==r)return null;if((0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isObjectIntersectorResult)(r)||(0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isHudIntersectorResult)(r))return d(r.target?.object,e);if((0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isPclIntersectorResult)(r)){const e=r.target.createGraphic();return{type:"graphic",graphic:e,layer:e.layer}}if((0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isVoxelIntersectorResult)(r)){const e=r.target.createVoxelGraphic();return{type:"graphic",graphic:e,layer:e.layer}}if((0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isTiles3DIntersectorResult)(r)){const e=r.target.createTiles3DGraphic();return{type:"graphic",graphic:e,layer:e.layer}}return (0,_terrain_Intersector_js__WEBPACK_IMPORTED_MODULE_5__.isOverlayIntersectorResult)(r)||(0,_lodRendering_Intersector_js__WEBPACK_IMPORTED_MODULE_7__.isLodIntersectorResult)(r)?d(r.target,e):(0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isI3sIntersectorResult)(r)?y(r.target,e):null}function d(r,e){if(null==r?.graphicUid)return null;const t=U(r,e);if(null==t)return null;if(t===e.graphics)return null==e.graphicsView||"number"!=typeof r.graphicUid?null:e.graphicsView.getHit(r.graphicUid);const n=e.allLayerViews.find((r=>r.layer===t));return!n||n.suspended||null==r.graphicUid?null:"getHit"in n?n.getHit(r.graphicUid):null}function y(r,e){const t=U(r,e);if(null==t)return null;const n=e.allLayerViews.find((r=>r.layer===t));return n&&!n.suspended&&"getGraphicFromIntersectorTarget"in n?b(n.getGraphicFromIntersectorTarget(r)):null}function j(r,e){const t=U(r,e);if(null==t)return null;const n=e.allLayerViews.find((r=>r.layer===t));return n&&!n.suspended&&"getAABBFromIntersectorTarget"in n?n.getAABBFromIntersectorTarget(r):null}function b(r){return null!=r?{type:"graphic",graphic:r,layer:r.layer}:null}function U(r,e){return null==r?.layerUid?null:null!=e.graphicsView&&r.layerUid===e.graphicsView.processor.layer.id?e.graphics:e.map.allLayers.find((e=>e.uid===r.layerUid))}function V(e,i){if((0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isObjectIntersectorResult)(e)||(0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isHudIntersectorResult)(e))return (0,_chunks_sphere_js__WEBPACK_IMPORTED_MODULE_3__.g)(e.target.object.boundingVolumeWorldSpace.bounds);if((0,_lodRendering_Intersector_js__WEBPACK_IMPORTED_MODULE_7__.isLodIntersectorResult)(e)){(0,_core_libs_gl_matrix_2_math_mat4_js__WEBPACK_IMPORTED_MODULE_0__.getScaling)(B,e.transformation);const t=Math.max(B[0],B[1],B[2]);return e.target.baseBoundingSphere.radius*t}if((0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isI3sIntersectorResult)(e)){const r=j(e.target,i);return r?.5*(0,_geometry_support_aaBoundingBox_js__WEBPACK_IMPORTED_MODULE_2__.diameter)(r):null}return null}function w(r){return!(0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isObjectIntersectorResult)(r)&&!(0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_6__.isHudIntersectorResult)(r)&&((0,_lodRendering_Intersector_js__WEBPACK_IMPORTED_MODULE_7__.isLodIntersectorResult)(r)?r.target.numLodLevels>1:!!(0,_layers_i3s_Intersector_js__WEBPACK_IMPORTED_MODULE_4__.isI3sIntersectorResult)(r))}const B=(0,_core_libs_gl_matrix_2_factories_vec3f64_js__WEBPACK_IMPORTED_MODULE_1__.create)();
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/lodRendering/Intersector.js":
+/*!*****************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/webgl-engine/lib/lodRendering/Intersector.js ***!
+  \*****************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   LodTarget: function() { return /* binding */ s; },
+/* harmony export */   isLodIntersectorResult: function() { return /* binding */ i; }
+/* harmony export */ });
+/* harmony import */ var _IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../IntersectorInterfaces.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorInterfaces.js");
+/* harmony import */ var _IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../IntersectorTarget.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/IntersectorTarget.js");
+/* harmony import */ var _intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../intersectorUtils.js */ "./node_modules/@arcgis/core/views/3d/webgl-engine/lib/intersectorUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class s extends _IntersectorTarget_js__WEBPACK_IMPORTED_MODULE_1__.Graphic3DTarget{constructor(t,r,e,s,i,o){super(t,r),this.layerUid=t,this.graphicUid=r,this.geometryId=e,this.triangleNr=s,this.baseBoundingSphere=i,this.numLodLevels=o}}function i(r){return (0,_intersectorUtils_js__WEBPACK_IMPORTED_MODULE_2__.isValidIntersectorResult)(r)&&r.intersector===_IntersectorInterfaces_js__WEBPACK_IMPORTED_MODULE_0__.IntersectorType.LOD&&!!r.target}
+
+
+/***/ })
+
+}]);
 //# sourceMappingURL=LineOfSightLayer.js.map

@@ -2,7 +2,9 @@
   "scripts": {
     "dev": "govuk-prototype-kit dev",
     "webpack": "webpack",
+    "build-css": "sass ./node_modules/@defra/flood-map/src/flood-map.scss:./.tmp/public/css/map.css",
     "webpack-branch": "webpack --config webpack-branch.config.mjs",
+    "webpack-css": "webpack --config webpack-css.config.mjs",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
   },
@@ -32,6 +34,7 @@
     "mini-css-extract-plugin": "^2.9.4",
     "react": "^18.3.0",
     "react-dom": "^18.3.0",
+    "sass": "^1.92.1",
     "sass-loader": "^13.3.2",
     "url-loader": "^4.1.1",
     "webpack": "^5.96.1",

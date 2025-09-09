@@ -1,2 +1,84 @@
-"use strict";(self.webpackChunkdefra=self.webpackChunkdefra||[]).push([[3213],{73939:function(t,e,n){var i,r,o,a,s,u,c,l,p,f,g,d,N,m,S;n.d(e,{Pl:function(){return h},Qg:function(){return S},vE:function(){return b}}),function(t){t.U8="U8",t.I8="I8",t.U16="U16",t.I16="I16",t.U32="U32",t.I32="I32",t.F32="F32",t.F64="F64",t.Utf8String="Utf8String",t.NotSet="NotSet"}(i||(i={})),function(t){t.Png="Png",t.Jpeg="Jpeg",t.Dds="Dds",t.Raw="Raw",t.Dxt1="Dxt1",t.Dxt5="Dxt5",t.Etc2="Etc2",t.Astc="Astc",t.Pvrtc="Pvrtc",t.NotSet="NotSet"}(r||(r={})),function(t){t.Rgb8="Rgb8",t.Rgba8="Rgba8",t.R8="R8",t.Bgr8="Bgr8",t.Bgra8="Bgra8",t.Rg8="Rg8",t.Dxt1="Dxt1",t.Dxt5="Dxt5",t.NotSet="NotSet"}(o||(o={})),function(t){t.Position="Position",t.Normal="Normal",t.TexCoord="TexCoord",t.Color="Color",t.Tangent="Tangent",t.FeatureIndex="FeatureIndex",t.UvRegion="UvRegion",t.NotSet="NotSet"}(a||(a={})),function(t){t.Opaque="Opaque",t.Mask="Mask",t.Blend="Blend"}(s||(s={})),function(t){t.None="None",t.Mask="Mask",t.Alpha="Alpha",t.PreMultAlpha="PreMultAlpha",t.NotSet="NotSet"}(u||(u={})),function(t){t.Points="Points",t.Lines="Lines",t.LineStrip="LineStrip",t.Triangles="Triangles",t.TriangleStrip="TriangleStrip",t.NotSet="NotSet"}(c||(c={})),function(t){t.None="None",t.WrapXBit="WrapXBit",t.WrapYBit="WrapYBit",t.WrapXy="WrapXy",t.NotSet="NotSet"}(l||(l={})),function(t){t.Linear="Linear",t.Nearest="Nearest",t.NotSet="NotSet"}(p||(p={})),function(t){t.Linear="Linear",t.Nearest="Nearest",t.NearestMipmapNearest="NearestMipmapNearest",t.LinearMipmapNearest="LinearMipmapNearest",t.NearestMipmapLinear="NearestMipmapLinear",t.LinearMipmapLinear="LinearMipmapLinear",t.NotSet="NotSet"}(f||(f={})),function(t){t.FeatureId="FeatureId",t.GlobalUid="GlobalUid",t.UnspecifiedDateTime="UnspecifiedDateTime",t.EcmaIso8601DateTime="EcmaIso8601DateTime",t.EcmaIso8601DateOnly="EcmaIso8601DateOnly",t.TimeOnly="TimeOnly",t.TimeStamp="TimeStamp",t.ColorRgb="ColorRgb",t.ColorRgba="ColorRgba",t.Unrecognized="Unrecognized",t.NotSet="NotSet"}(g||(g={})),function(t){t.Texture="Texture",t.VertexAtrb="VertexAtrb",t.Implicit="Implicit",t.NotSet="NotSet"}(d||(d={})),function(t){t.Front="Front",t.Back="Back",t.None="None",t.NotSet="NotSet"}(N||(N={})),function(t){t.Pbr="Pbr",t.Unlit="Unlit"}(m||(m={})),function(t){t[t.Succeeded=0]="Succeeded",t[t.Failed=1]="Failed",t[t.MissingInputs=2]="MissingInputs"}(S||(S={}));const h=-1,b=-2},90853:function(t,e,n){n.d(e,{a:function(){return r},h:function(){return o}});var i=n(53216);function r(){return new Promise((t=>n.e(2725).then(n.bind(n,94437)).then((t=>t.l)).then((({default:e})=>{const n=e({locateFile:a,onRuntimeInitialized:()=>t(n)})})))).catch((t=>{throw t}))}function o(){return new Promise((t=>n.e(3936).then(n.bind(n,68042)).then((t=>t.l)).then((({default:e})=>{const n=e({locateFile:a,onRuntimeInitialized:()=>t(n)})})))).catch((t=>{throw t}))}function a(t){return(0,i.s)(`esri/libs/lyr3d/${t}`)}},6883:function(t,e,n){n.r(e),n.d(e,{destroyWasm:function(){return u},initialize:function(){return c},process:function(){return s}});var i=n(73939),r=n(90853);let o,a;async function s(t){if(await c(),t.inputs.length<1)return{result:{status:i.Qg.Failed,error:"",jobDescJson:"",data:new Uint8Array(0),missingInputUrls:[]},transferList:[]};const e={ptrs:[],sizes:[]};for(const n of t.inputs){const t=a._malloc(n.byteLength);new Uint8Array(a.HEAPU8.buffer,t,n.byteLength).set(new Uint8Array(n)),e.ptrs.push(t),e.sizes.push(n.byteLength)}const n=a.process(t.jobDescJson,e,t.isMissingResourceCase),r=n.status===i.Qg.Succeeded&&n.data,o=n.status===i.Qg.MissingInputs&&n.missingInputUrls.length>0;if(r){const t=n.data.slice();n.data=t}else o&&(n.jobDescJson=n.jobDescJson.slice(),n.originalInputs=t.inputs);for(let t=0;t<e.ptrs.length;++t)a._free(e.ptrs[t]);const s=[];if(r)s.push(n.data.buffer);else if(o)for(const e of t.inputs)s.push(e);return{result:n,transferList:s}}function u(){a&&(a.uninitialize_lyr3d_worker_wasm(),a=null)}function c(){return a?Promise.resolve():(o||(o=(0,r.h)().then((t=>{a=t,a.initialize_lyr3d_worker_wasm(),o=null}))),o)}}}]);
+"use strict";
+(self["webpackChunkdefra"] = self["webpackChunkdefra"] || []).push([["views-3d-layers-Lyr3DWorker"],{
+
+/***/ "./node_modules/@arcgis/core/layers/ILyr3DWasmPerSceneView.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/layers/ILyr3DWasmPerSceneView.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Lyr3DAlphaMode: function() { return /* binding */ a; },
+/* harmony export */   Lyr3DFaceCullingMode: function() { return /* binding */ S; },
+/* harmony export */   Lyr3DFeatureIndexSource: function() { return /* binding */ l; },
+/* harmony export */   Lyr3DImageFormat: function() { return /* binding */ t; },
+/* harmony export */   Lyr3DLightingModel: function() { return /* binding */ g; },
+/* harmony export */   Lyr3DMagFilterMode: function() { return /* binding */ p; },
+/* harmony export */   Lyr3DMinFilterMode: function() { return /* binding */ s; },
+/* harmony export */   Lyr3DPixelFormat: function() { return /* binding */ n; },
+/* harmony export */   Lyr3DPrimitiveType: function() { return /* binding */ r; },
+/* harmony export */   Lyr3DSchemaPropertySemantic: function() { return /* binding */ c; },
+/* harmony export */   Lyr3DTransparency: function() { return /* binding */ o; },
+/* harmony export */   Lyr3DType: function() { return /* binding */ e; },
+/* harmony export */   Lyr3DUvWrapMode: function() { return /* binding */ N; },
+/* harmony export */   Lyr3DVtxAtrbSemantic: function() { return /* binding */ i; },
+/* harmony export */   Lyr3DWasmWorkerOutputStatus: function() { return /* binding */ u; },
+/* harmony export */   invalidLayerView: function() { return /* binding */ m; },
+/* harmony export */   wasmFailedToInit: function() { return /* binding */ d; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var e,t,n,i,a,o,r,N,p,s,c,l,S,g,u;!function(e){e.U8="U8",e.I8="I8",e.U16="U16",e.I16="I16",e.U32="U32",e.I32="I32",e.F32="F32",e.F64="F64",e.Utf8String="Utf8String",e.NotSet="NotSet"}(e||(e={})),function(e){e.Png="Png",e.Jpeg="Jpeg",e.Dds="Dds",e.Raw="Raw",e.Dxt1="Dxt1",e.Dxt5="Dxt5",e.Etc2="Etc2",e.Astc="Astc",e.Pvrtc="Pvrtc",e.NotSet="NotSet"}(t||(t={})),function(e){e.Rgb8="Rgb8",e.Rgba8="Rgba8",e.R8="R8",e.Bgr8="Bgr8",e.Bgra8="Bgra8",e.Rg8="Rg8",e.Dxt1="Dxt1",e.Dxt5="Dxt5",e.NotSet="NotSet"}(n||(n={})),function(e){e.Position="Position",e.Normal="Normal",e.TexCoord="TexCoord",e.Color="Color",e.Tangent="Tangent",e.FeatureIndex="FeatureIndex",e.UvRegion="UvRegion",e.NotSet="NotSet"}(i||(i={})),function(e){e.Opaque="Opaque",e.Mask="Mask",e.Blend="Blend"}(a||(a={})),function(e){e.None="None",e.Mask="Mask",e.Alpha="Alpha",e.PreMultAlpha="PreMultAlpha",e.NotSet="NotSet"}(o||(o={})),function(e){e.Points="Points",e.Lines="Lines",e.LineStrip="LineStrip",e.Triangles="Triangles",e.TriangleStrip="TriangleStrip",e.NotSet="NotSet"}(r||(r={})),function(e){e.None="None",e.WrapXBit="WrapXBit",e.WrapYBit="WrapYBit",e.WrapXy="WrapXy",e.NotSet="NotSet"}(N||(N={})),function(e){e.Linear="Linear",e.Nearest="Nearest",e.NotSet="NotSet"}(p||(p={})),function(e){e.Linear="Linear",e.Nearest="Nearest",e.NearestMipmapNearest="NearestMipmapNearest",e.LinearMipmapNearest="LinearMipmapNearest",e.NearestMipmapLinear="NearestMipmapLinear",e.LinearMipmapLinear="LinearMipmapLinear",e.NotSet="NotSet"}(s||(s={})),function(e){e.FeatureId="FeatureId",e.GlobalUid="GlobalUid",e.UnspecifiedDateTime="UnspecifiedDateTime",e.EcmaIso8601DateTime="EcmaIso8601DateTime",e.EcmaIso8601DateOnly="EcmaIso8601DateOnly",e.TimeOnly="TimeOnly",e.TimeStamp="TimeStamp",e.ColorRgb="ColorRgb",e.ColorRgba="ColorRgba",e.Unrecognized="Unrecognized",e.NotSet="NotSet"}(c||(c={})),function(e){e.Texture="Texture",e.VertexAtrb="VertexAtrb",e.Implicit="Implicit",e.NotSet="NotSet"}(l||(l={})),function(e){e.Front="Front",e.Back="Back",e.None="None",e.NotSet="NotSet"}(S||(S={})),function(e){e.Pbr="Pbr",e.Unlit="Unlit"}(g||(g={})),function(e){e[e.Succeeded=0]="Succeeded",e[e.Failed=1]="Failed",e[e.MissingInputs=2]="MissingInputs"}(u||(u={}));const m=-1,d=-2;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/lyr3d/Lyr3DModule.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/lyr3d/Lyr3DModule.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   loadLyr3DMainWASM: function() { return /* binding */ n; },
+/* harmony export */   loadLyr3DWorkerWASM: function() { return /* binding */ e; }
+/* harmony export */ });
+/* harmony import */ var _assets_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../assets.js */ "./node_modules/@arcgis/core/assets.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function n(){return new Promise((t=>__webpack_require__.e(/*! import() | chunks-lyr3DMain */ "chunks-lyr3DMain").then(__webpack_require__.bind(__webpack_require__, /*! ../../chunks/lyr3DMain.js */ "./node_modules/@arcgis/core/chunks/lyr3DMain.js")).then((t=>t.l)).then((({default:n})=>{const e=n({locateFile:i,onRuntimeInitialized:()=>t(e)})})))).catch((t=>{throw t}))}function e(){return new Promise((t=>__webpack_require__.e(/*! import() | chunks-lyr3DWorker */ "chunks-lyr3DWorker").then(__webpack_require__.bind(__webpack_require__, /*! ../../chunks/lyr3DWorker.js */ "./node_modules/@arcgis/core/chunks/lyr3DWorker.js")).then((t=>t.l)).then((({default:n})=>{const e=n({locateFile:i,onRuntimeInitialized:()=>t(e)})})))).catch((t=>{throw t}))}function i(n){return (0,_assets_js__WEBPACK_IMPORTED_MODULE_0__.getAssetUrl)(`esri/libs/lyr3d/${n}`)}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/views/3d/layers/Lyr3DWorker.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/views/3d/layers/Lyr3DWorker.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   destroyWasm: function() { return /* binding */ i; },
+/* harmony export */   initialize: function() { return /* binding */ o; },
+/* harmony export */   process: function() { return /* binding */ r; }
+/* harmony export */ });
+/* harmony import */ var _layers_ILyr3DWasmPerSceneView_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../../layers/ILyr3DWasmPerSceneView.js */ "./node_modules/@arcgis/core/layers/ILyr3DWasmPerSceneView.js");
+/* harmony import */ var _libs_lyr3d_Lyr3DModule_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../../libs/lyr3d/Lyr3DModule.js */ "./node_modules/@arcgis/core/libs/lyr3d/Lyr3DModule.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let e,n;async function r(t){if(await o(),t.inputs.length<1)return{result:{status:_layers_ILyr3DWasmPerSceneView_js__WEBPACK_IMPORTED_MODULE_0__.Lyr3DWasmWorkerOutputStatus.Failed,error:"",jobDescJson:"",data:new Uint8Array(0),missingInputUrls:[]},transferList:[]};const e={ptrs:[],sizes:[]};for(const s of t.inputs){const t=n._malloc(s.byteLength);new Uint8Array(n.HEAPU8.buffer,t,s.byteLength).set(new Uint8Array(s)),e.ptrs.push(t),e.sizes.push(s.byteLength)}const r=n.process(t.jobDescJson,e,t.isMissingResourceCase),i=r.status===_layers_ILyr3DWasmPerSceneView_js__WEBPACK_IMPORTED_MODULE_0__.Lyr3DWasmWorkerOutputStatus.Succeeded&&r.data,a=r.status===_layers_ILyr3DWasmPerSceneView_js__WEBPACK_IMPORTED_MODULE_0__.Lyr3DWasmWorkerOutputStatus.MissingInputs&&r.missingInputUrls.length>0;if(i){const s=r.data.slice();r.data=s}else a&&(r.jobDescJson=r.jobDescJson.slice(),r.originalInputs=t.inputs);for(let s=0;s<e.ptrs.length;++s)n._free(e.ptrs[s]);const u=[];if(i)u.push(r.data.buffer);else if(a)for(const s of t.inputs)u.push(s);return{result:r,transferList:u}}function i(){n&&(n.uninitialize_lyr3d_worker_wasm(),n=null)}function o(){return n?Promise.resolve():(e||(e=(0,_libs_lyr3d_Lyr3DModule_js__WEBPACK_IMPORTED_MODULE_1__.loadLyr3DWorkerWASM)().then((s=>{n=s,n.initialize_lyr3d_worker_wasm(),e=null}))),e)}
+
+
+/***/ })
+
+}]);
 //# sourceMappingURL=views-3d-layers-Lyr3DWorker.js.map

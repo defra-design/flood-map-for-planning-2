@@ -12,6 +12,11 @@
 //     cursor:pointer;
 // }
 
+.flood-map-target .govuk-body-s {
+    margin-bottom: 0;
+}
+
+
 .govuk-cookie-banner, .govuk-header {
     @include mq ($until: tablet) {
         display:none;

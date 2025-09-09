@@ -1,3 +1,368 @@
-/*! For license information please see @esri-calcite-components-dist-components-calcite-flow.js.LICENSE.txt */
-"use strict";(self.webpackChunkdefra=self.webpackChunkdefra||[]).push([[6266],{10814:function(t,e,i){i.r(e),i.d(e,{CalciteFlow:function(){return d},defineCustomElement:function(){return f}});var n=i(3102),o=i(40313),s=i(832);const r="frame",a="frame--advancing",c="frame--retreating",l=(0,n.w$)(class extends n.wt{constructor(){super(),this.__registerHost(),this.__attachShadow(),this.itemMutationObserver=(0,o.c)("mutation",(()=>this.updateFlowProps())),this.getFlowDirection=(t,e)=>t&&e>1||t>1?e<t?"retreating":"advancing":null,this.updateFlowProps=()=>{const{customItemSelectors:t,el:e,items:i}=this,n=Array.from(e.querySelectorAll("calcite-flow-item"+(t?`,${t}`:""))).filter((t=>t.closest("calcite-flow")===e)),o=i.length,s=n.length,r=n[s-1],a=n[s-2];if(s&&r&&n.forEach((t=>{t.showBackButton=t===r&&s>1,t.hidden=t!==r})),a&&(a.menuOpen=!1),this.items=n,o!==s){const t=this.getFlowDirection(o,s);this.itemCount=s,this.flowDirection=t}},this.customItemSelectors=void 0,this.flowDirection=null,this.itemCount=0,this.items=[]}async back(){const{items:t}=this,e=t[t.length-1];if(!e)return;const i=e.beforeBack?e.beforeBack:()=>Promise.resolve();try{await i.call(e)}catch(t){return}return e.remove(),e}async setFocus(){await(0,s.c)(this);const{items:t}=this,e=t[t.length-1];return e?.setFocus()}connectedCallback(){this.itemMutationObserver?.observe(this.el,{childList:!0,subtree:!0}),this.updateFlowProps()}async componentWillLoad(){(0,s.s)(this)}componentDidLoad(){(0,s.a)(this)}disconnectedCallback(){this.itemMutationObserver?.disconnect()}async handleItemBackClick(t){if(!t.defaultPrevented)return await this.back(),this.setFocus()}render(){const{flowDirection:t}=this,e={[r]:!0,[a]:"advancing"===t,[c]:"retreating"===t};return(0,n.h)("div",{key:"01fbee965d48cb54fa5bd1b53a3435538df84332",class:e},(0,n.h)("slot",{key:"495880eceeb04387dd1352aa00337f037ab0636c"}))}get el(){return this}static get style(){return":host{box-sizing:border-box;background-color:var(--calcite-color-foreground-1);color:var(--calcite-color-text-2);font-size:var(--calcite-font-size--1)}:host *{box-sizing:border-box}:host{position:relative;display:flex;inline-size:100%;flex:1 1 auto;align-items:stretch;overflow:hidden;background-color:transparent}:host .frame{position:relative;margin:0px;display:flex;inline-size:100%;flex:1 1 auto;flex-direction:column;align-items:stretch;padding:0px}:host ::slotted(calcite-flow-item),:host ::slotted(calcite-panel){block-size:100%}:host ::slotted(.calcite-match-height:last-child){display:flex;flex:1 1 auto;overflow:hidden}:host .frame--advancing{animation:calcite-frame-advance var(--calcite-animation-timing)}:host .frame--retreating{animation:calcite-frame-retreat var(--calcite-animation-timing)}@keyframes calcite-frame-advance{0%{--tw-bg-opacity:0.5;transform:translate3d(50px, 0, 0)}100%{--tw-bg-opacity:1;transform:translate3d(0, 0, 0)}}@keyframes calcite-frame-retreat{0%{--tw-bg-opacity:0.5;transform:translate3d(-50px, 0, 0)}100%{--tw-bg-opacity:1;transform:translate3d(0, 0, 0)}}:host([hidden]){display:none}[hidden]{display:none}"}},[1,"calcite-flow",{customItemSelectors:[1,"custom-item-selectors"],flowDirection:[32],itemCount:[32],items:[32],back:[64],setFocus:[64]},[[0,"calciteFlowItemBack","handleItemBackClick"]]]);function u(){"undefined"!=typeof customElements&&["calcite-flow"].forEach((t=>{"calcite-flow"===t&&(customElements.get(t)||customElements.define(t,l))}))}u();const d=l,f=u},832:function(t,e,i){i.d(e,{a:function(){return c},c:function(){return l},s:function(){return a}});var n=i(3102),o=i(54038);const s=new WeakMap,r=new WeakMap;function a(t){r.set(t,new Promise((e=>s.set(t,e))))}function c(t){s.get(t)()}async function l(t){if(await function(t){return r.get(t)}(t),(0,o.i)())return(0,n.$x)(t),new Promise((t=>requestAnimationFrame((()=>t()))))}},40313:function(t,e,i){i.d(e,{c:function(){return o}});var n=i(54038);function o(t,e,i){if(!(0,n.i)())return;const o=function(t){class e extends window.MutationObserver{constructor(t){super(t),this.observedEntry=[],this.callback=t}observe(t,e){return this.observedEntry.push({target:t,options:e}),super.observe(t,e)}unobserve(t){const e=this.observedEntry.filter((e=>e.target!==t));this.observedEntry=[],this.callback(super.takeRecords(),this),this.disconnect(),e.forEach((t=>this.observe(t.target,t.options)))}}return"intersection"===t?window.IntersectionObserver:"mutation"===t?e:window.ResizeObserver}(t);return new o(e,i)}}}]);
+"use strict";
+(self["webpackChunkdefra"] = self["webpackChunkdefra"] || []).push([["@esri-calcite-components-dist-components-calcite-flow"],{
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/calcite-flow.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/calcite-flow.js ***!
+  \*******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   CalciteFlow: function() { return /* binding */ CalciteFlow; },
+/* harmony export */   defineCustomElement: function() { return /* binding */ defineCustomElement; }
+/* harmony export */ });
+/* harmony import */ var _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! @stencil/core/internal/client */ "./node_modules/@stencil/core/internal/client/index.js");
+/* harmony import */ var _observers_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./observers.js */ "./node_modules/@esri/calcite-components/dist/components/observers.js");
+/* harmony import */ var _loadable_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./loadable.js */ "./node_modules/@esri/calcite-components/dist/components/loadable.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+
+
+const CSS = {
+    frame: "frame",
+    frameAdvancing: "frame--advancing",
+    frameRetreating: "frame--retreating",
+};
+
+const flowCss = ":host{box-sizing:border-box;background-color:var(--calcite-color-foreground-1);color:var(--calcite-color-text-2);font-size:var(--calcite-font-size--1)}:host *{box-sizing:border-box}:host{position:relative;display:flex;inline-size:100%;flex:1 1 auto;align-items:stretch;overflow:hidden;background-color:transparent}:host .frame{position:relative;margin:0px;display:flex;inline-size:100%;flex:1 1 auto;flex-direction:column;align-items:stretch;padding:0px}:host ::slotted(calcite-flow-item),:host ::slotted(calcite-panel){block-size:100%}:host ::slotted(.calcite-match-height:last-child){display:flex;flex:1 1 auto;overflow:hidden}:host .frame--advancing{animation:calcite-frame-advance var(--calcite-animation-timing)}:host .frame--retreating{animation:calcite-frame-retreat var(--calcite-animation-timing)}@keyframes calcite-frame-advance{0%{--tw-bg-opacity:0.5;transform:translate3d(50px, 0, 0)}100%{--tw-bg-opacity:1;transform:translate3d(0, 0, 0)}}@keyframes calcite-frame-retreat{0%{--tw-bg-opacity:0.5;transform:translate3d(-50px, 0, 0)}100%{--tw-bg-opacity:1;transform:translate3d(0, 0, 0)}}:host([hidden]){display:none}[hidden]{display:none}";
+const CalciteFlowStyle0 = flowCss;
+
+const Flow = /*@__PURE__*/ (0,_stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_2__.proxyCustomElement)(class Flow extends _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_2__.HTMLElement {
+    constructor() {
+        super();
+        this.__registerHost();
+        this.__attachShadow();
+        this.itemMutationObserver = (0,_observers_js__WEBPACK_IMPORTED_MODULE_0__.c)("mutation", () => this.updateFlowProps());
+        this.getFlowDirection = (oldFlowItemCount, newFlowItemCount) => {
+            const allowRetreatingDirection = oldFlowItemCount > 1;
+            const allowAdvancingDirection = oldFlowItemCount && newFlowItemCount > 1;
+            if (!allowAdvancingDirection && !allowRetreatingDirection) {
+                return null;
+            }
+            return newFlowItemCount < oldFlowItemCount ? "retreating" : "advancing";
+        };
+        this.updateFlowProps = () => {
+            const { customItemSelectors, el, items } = this;
+            const newItems = Array.from(el.querySelectorAll(`calcite-flow-item${customItemSelectors ? `,${customItemSelectors}` : ""}`)).filter((flowItem) => flowItem.closest("calcite-flow") === el);
+            const oldItemCount = items.length;
+            const newItemCount = newItems.length;
+            const activeItem = newItems[newItemCount - 1];
+            const previousItem = newItems[newItemCount - 2];
+            if (newItemCount && activeItem) {
+                newItems.forEach((itemNode) => {
+                    itemNode.showBackButton = itemNode === activeItem && newItemCount > 1;
+                    itemNode.hidden = itemNode !== activeItem;
+                });
+            }
+            if (previousItem) {
+                previousItem.menuOpen = false;
+            }
+            this.items = newItems;
+            if (oldItemCount !== newItemCount) {
+                const flowDirection = this.getFlowDirection(oldItemCount, newItemCount);
+                this.itemCount = newItemCount;
+                this.flowDirection = flowDirection;
+            }
+        };
+        this.customItemSelectors = undefined;
+        this.flowDirection = null;
+        this.itemCount = 0;
+        this.items = [];
+    }
+    // --------------------------------------------------------------------------
+    //
+    //  Public Methods
+    //
+    // --------------------------------------------------------------------------
+    /**
+     * Removes the currently active `calcite-flow-item`.
+     */
+    async back() {
+        const { items } = this;
+        const lastItem = items[items.length - 1];
+        if (!lastItem) {
+            return;
+        }
+        const beforeBack = lastItem.beforeBack
+            ? lastItem.beforeBack
+            : () => Promise.resolve();
+        try {
+            await beforeBack.call(lastItem);
+        }
+        catch (_error) {
+            // back prevented
+            return;
+        }
+        lastItem.remove();
+        return lastItem;
+    }
+    /**
+     * Sets focus on the component.
+     */
+    async setFocus() {
+        await (0,_loadable_js__WEBPACK_IMPORTED_MODULE_1__.c)(this);
+        const { items } = this;
+        const activeItem = items[items.length - 1];
+        return activeItem?.setFocus();
+    }
+    // --------------------------------------------------------------------------
+    //
+    //  Lifecycle
+    //
+    // --------------------------------------------------------------------------
+    connectedCallback() {
+        this.itemMutationObserver?.observe(this.el, { childList: true, subtree: true });
+        this.updateFlowProps();
+    }
+    async componentWillLoad() {
+        (0,_loadable_js__WEBPACK_IMPORTED_MODULE_1__.s)(this);
+    }
+    componentDidLoad() {
+        (0,_loadable_js__WEBPACK_IMPORTED_MODULE_1__.a)(this);
+    }
+    disconnectedCallback() {
+        this.itemMutationObserver?.disconnect();
+    }
+    // --------------------------------------------------------------------------
+    //
+    //  Private Methods
+    //
+    // --------------------------------------------------------------------------
+    async handleItemBackClick(event) {
+        if (event.defaultPrevented) {
+            return;
+        }
+        await this.back();
+        return this.setFocus();
+    }
+    // --------------------------------------------------------------------------
+    //
+    //  Render Methods
+    //
+    // --------------------------------------------------------------------------
+    render() {
+        const { flowDirection } = this;
+        const frameDirectionClasses = {
+            [CSS.frame]: true,
+            [CSS.frameAdvancing]: flowDirection === "advancing",
+            [CSS.frameRetreating]: flowDirection === "retreating",
+        };
+        return ((0,_stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_2__.h)("div", { key: '01fbee965d48cb54fa5bd1b53a3435538df84332', class: frameDirectionClasses }, (0,_stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_2__.h)("slot", { key: '495880eceeb04387dd1352aa00337f037ab0636c' })));
+    }
+    get el() { return this; }
+    static get style() { return CalciteFlowStyle0; }
+}, [1, "calcite-flow", {
+        "customItemSelectors": [1, "custom-item-selectors"],
+        "flowDirection": [32],
+        "itemCount": [32],
+        "items": [32],
+        "back": [64],
+        "setFocus": [64]
+    }, [[0, "calciteFlowItemBack", "handleItemBackClick"]]]);
+function defineCustomElement$1() {
+    if (typeof customElements === "undefined") {
+        return;
+    }
+    const components = ["calcite-flow"];
+    components.forEach(tagName => { switch (tagName) {
+        case "calcite-flow":
+            if (!customElements.get(tagName)) {
+                customElements.define(tagName, Flow);
+            }
+            break;
+    } });
+}
+defineCustomElement$1();
+
+const CalciteFlow = Flow;
+const defineCustomElement = defineCustomElement$1;
+
+
+
+//# sourceMappingURL=calcite-flow.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/loadable.js":
+/*!***************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/loadable.js ***!
+  \***************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   a: function() { return /* binding */ setComponentLoaded; },
+/* harmony export */   b: function() { return /* binding */ componentLoaded; },
+/* harmony export */   c: function() { return /* binding */ componentFocusable; },
+/* harmony export */   s: function() { return /* binding */ setUpLoadableComponent; }
+/* harmony export */ });
+/* harmony import */ var _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! @stencil/core/internal/client */ "./node_modules/@stencil/core/internal/client/index.js");
+/* harmony import */ var _browser_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser.js */ "./node_modules/@esri/calcite-components/dist/components/browser.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+
+const resolveMap = new WeakMap();
+const promiseMap = new WeakMap();
+/**
+ * This helper util sets up the component for the ability to know when the component has been loaded.
+ *
+ * This should be used in the `componentWillLoad` lifecycle hook.
+ *
+ * ```
+ * componentWillLoad(): void {
+ *   setUpLoadableComponent(this);
+ * }
+ * ```
+ *
+ * @param component
+ */
+function setUpLoadableComponent(component) {
+    promiseMap.set(component, new Promise((resolve) => resolveMap.set(component, resolve)));
+}
+/**
+ * This helper util lets the loadable component know that it is now loaded.
+ *
+ * This should be used in the `componentDidLoad` lifecycle hook.
+ *
+ * ```
+ * componentDidLoad(): void {
+ *   setComponentLoaded(this);
+ * }
+ * ```
+ *
+ * @param component
+ */
+function setComponentLoaded(component) {
+    resolveMap.get(component)();
+}
+/**
+ * This helper util can be used to ensure a component has been loaded (The "componentDidLoad" Stencil lifecycle method has been called).
+ *
+ * Requires requires `LoadableComponent` to be implemented.
+ *
+ * A component developer can await this method before proceeding with any logic that requires a component to be loaded first.
+ *
+ * ```
+ * async myMethod(): Promise<void> {
+ *   await componentLoaded(this);
+ * }
+ * ```
+ *
+ * @param component
+ * @returns Promise<void>
+ */
+function componentLoaded(component) {
+    return promiseMap.get(component);
+}
+/**
+ * This helper util can be used to ensuring the component is loaded and rendered by the browser (The "componentDidLoad" Stencil lifecycle method has been called and any internal elements are focusable).
+ *
+ * Requires `LoadableComponent` to be implemented.
+ *
+ * A component developer can await this method before proceeding with any logic that requires a component to be loaded first and then an internal element be focused.
+ *
+ * ```
+ * async setFocus(): Promise<void> {
+ *   await componentFocusable(this);
+ *   this.internalElement?.focus();
+ * }
+ * ```
+ *
+ * @param component
+ * @returns Promise<void>
+ */
+async function componentFocusable(component) {
+    await componentLoaded(component);
+    if (!(0,_browser_js__WEBPACK_IMPORTED_MODULE_0__.i)()) {
+        return;
+    }
+    (0,_stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_1__.forceUpdate)(component);
+    return new Promise((resolve) => requestAnimationFrame(() => resolve()));
+}
+
+
+
+//# sourceMappingURL=loadable.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/observers.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/observers.js ***!
+  \****************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   c: function() { return /* binding */ createObserver; }
+/* harmony export */ });
+/* harmony import */ var _browser_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./browser.js */ "./node_modules/@esri/calcite-components/dist/components/browser.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+/**
+ * This utility ensures observers are created only for browser contexts.
+ *
+ * @param type - the type of observer to create
+ * @param callback - the observer callback
+ * @param options - the observer options
+ */
+function createObserver(type, callback, options) {
+    if (!(0,_browser_js__WEBPACK_IMPORTED_MODULE_0__.i)()) {
+        return undefined;
+    }
+    const Observer = getObserver(type);
+    return new Observer(callback, options);
+}
+function getObserver(type) {
+    // based on https://github.com/whatwg/dom/issues/126#issuecomment-1049814948
+    class ExtendedMutationObserver extends window.MutationObserver {
+        constructor(callback) {
+            super(callback);
+            this.observedEntry = [];
+            this.callback = callback;
+        }
+        observe(target, options) {
+            this.observedEntry.push({ target, options });
+            return super.observe(target, options);
+        }
+        unobserve(target) {
+            const newObservedEntries = this.observedEntry.filter((observed) => observed.target !== target);
+            this.observedEntry = [];
+            this.callback(super.takeRecords(), this);
+            this.disconnect();
+            newObservedEntries.forEach((observed) => this.observe(observed.target, observed.options));
+        }
+    }
+    return (function () {
+        return (type === "intersection"
+            ? window.IntersectionObserver
+            : type === "mutation"
+                ? ExtendedMutationObserver
+                : window.ResizeObserver);
+    })();
+}
+
+
+
+//# sourceMappingURL=observers.js.map
+
+/***/ })
+
+}]);
 //# sourceMappingURL=@esri-calcite-components-dist-components-calcite-flow.js.map

@@ -1,7 +1,7 @@
 import webpack from 'webpack'
 import path from 'path'
 import dotenv from 'dotenv'
-import MiniCssExtractPlugin from 'mini-css-extract-plugin'
+// import MiniCssExtractPlugin from 'mini-css-extract-plugin'
 
 const __dirname = path.dirname(new URL(import.meta.url).pathname)
 
@@ -9,14 +9,11 @@ dotenv.config({ path: path.join(__dirname, './.env') })
 
 export default {
   entry: {
-    map: [
-      path.join(__dirname, 'node_modules/@defra/flood-map/src/flood-map.js'),
-      path.join(__dirname, 'node_modules/@defra/flood-map/src/flood-map.scss')
-    ]
+    map: path.join(__dirname, 'node_modules/@defra/flood-map/src/flood-map.js')
   },
   devtool: 'source-map',
-  // mode: 'development',
-  mode: 'production',
+  mode: 'development',
+  // mode: 'production',
   output: {
     filename: '[name].js',
     path: path.resolve(__dirname, '.tmp/public/javascripts'),
@@ -33,9 +30,9 @@ export default {
     }
   },
   plugins: [
-    new MiniCssExtractPlugin({
-      filename: '[name].css'
-    }),
+    // new MiniCssExtractPlugin({
+    //   filename: '[name].css'
+    // }),
     new webpack.DefinePlugin({
       'process.env': {
         OS_VTAPI_DEFAULT_URL: JSON.stringify(process.env.OS_VTAPI_DEFAULT_URL),
@@ -70,10 +67,10 @@ export default {
         use: 'magic-comments-loader',
         exclude: /node_modules\/(?!(@defra|@arcgis)\/).*/
       },
-      {
-        test: /\.s[ac]ss$/i,
-        use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
-      }
+      // {
+      //   test: /\.s[ac]ss$/i,
+      //   use: [MiniCssExtractPlugin.loader, 'css-loader', 'sass-loader'],
+      // }
     ]
   },
   resolve: {

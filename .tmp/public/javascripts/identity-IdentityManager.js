@@ -1,3 +1,6296 @@
-/*! For license information please see identity-IdentityManager.js.LICENSE.txt */
-(self.webpackChunkdefra=self.webpackChunkdefra||[]).push([[7877],{54140:function(e){function t(e){return Promise.resolve().then((function(){var t=new Error("Cannot find module '"+e+"'");throw t.code="MODULE_NOT_FOUND",t}))}t.keys=function(){return[]},t.resolve=t,t.id=54140,e.exports=t},54038:function(e,t,r){"use strict";r.d(t,{i:function(){return s}});var n=r(3102);const s=()=>n.L2.isBrowser&&"undefined"!=typeof navigator&&"undefined"!=typeof window&&"undefined"!=typeof location&&"undefined"!=typeof document&&window.location===location&&window.document===document},67646:function(e,t,r){"use strict";r.d(t,{f:function(){return o},s:function(){return c}});var n=r(3102);const s=globalThis.calciteConfig,o=s?.focusTrapStack||[],i=(n.L2.isTesting&&n.L2.isBrowser,"2.13.2"),a="2024-10-24",l="e38e2977d";function c(){if(s&&s.version)return;console.info(`Using Calcite Components ${i} [Date: ${a}, Revision: ${l}]`);const e=s||globalThis.calciteConfig||{};Object.defineProperty(e,"version",{value:i,writable:!1}),globalThis.calciteConfig=e}},96367:function(e,t,r){"use strict";r.d(t,{C:function(){return o},D:function(){return i},a:function(){return n},d:function(){return s}});const n="calcite-mode-auto",s="calcite-mode-dark",o={autoMode:n,darkMode:s,lightMode:"calcite-mode-light",rtl:"calcite--rtl",calciteAnimate:"calcite-animate",calciteAnimateIn:"calcite-animate__in",calciteAnimateInUp:"calcite-animate__in-up",calciteAnimateInDown:"calcite-animate__in-down",calciteAnimateInRight:"calcite-animate__in-right",calciteAnimateInLeft:"calcite-animate__in-left",calciteAnimateInScale:"calcite-animate__in-scale"},i={filter:250,nextTick:0,resize:150,reposition:100}},3102:function(e,t,r){"use strict";r.d(t,{L2:function(){return i},FK:function(){return It},wt:function(){return k},xr:function(){return ne},lh:function(){return he},$x:function(){return tt},OX:function(){return F},h:function(){return te},w$:function(){return At},gv:function(){return M},Qu:function(){return q}});var n={allRenderFn:!1,cmpDidLoad:!0,cmpDidUnload:!1,cmpDidUpdate:!0,cmpDidRender:!0,cmpWillLoad:!0,cmpWillUpdate:!0,cmpWillRender:!0,connectedCallback:!0,disconnectedCallback:!0,element:!0,event:!0,hasRenderFn:!0,lifecycle:!0,hostListener:!0,hostListenerTargetWindow:!0,hostListenerTargetDocument:!0,hostListenerTargetBody:!0,hostListenerTargetParent:!1,hostListenerTarget:!0,member:!0,method:!0,mode:!0,observeAttribute:!0,prop:!0,propMutable:!0,reflect:!0,scoped:!0,shadowDom:!0,slot:!0,cssAnnotations:!0,state:!0,style:!0,formAssociated:!1,svg:!0,updatable:!0,vdomAttribute:!0,vdomXlink:!0,vdomClass:!0,vdomFunctional:!0,vdomKey:!0,vdomListener:!0,vdomRef:!0,vdomPropOrAttr:!0,vdomRender:!0,vdomStyle:!0,vdomText:!0,watchCallback:!0,taskQueue:!0,hotModuleReplacement:!1,isDebug:!1,isDev:!1,isTesting:!1,hydrateServerSide:!1,hydrateClientSide:!1,lifecycleDOMEvents:!1,lazyLoad:!1,profile:!1,slotRelocation:!0,appendChildSlotFix:!1,cloneNodeFix:!1,hydratedAttribute:!1,hydratedClass:!0,scriptDataOpts:!1,scopedSlotTextContentFix:!1,shadowDomShim:!1,slotChildNodesFix:!1,invisiblePrehydration:!0,propBoolean:!0,propNumber:!0,propString:!0,constructableCSS:!0,cmpShouldUpdate:!0,devTools:!1,shadowDelegatesFocus:!0,initializeNextTick:!1,asyncLoading:!1,asyncQueue:!1,transformTagName:!1,attachStyles:!0,experimentalSlotFixes:!1},s="app",o=Object.defineProperty,i={isDev:!!n.isDev,isBrowser:!0,isServer:!1,isTesting:!!n.isTesting},a=n.hotModuleReplacement?window.__STENCIL_HOSTREFS__||(window.__STENCIL_HOSTREFS__=new WeakMap):new WeakMap,l=e=>a.get(e),c=(e,t)=>t in e,d=(e,t)=>(0,console.error)(e,t),h=n.isTesting?["STENCIL:"]:["%cstencil","color: white;background:#4c47ff;font-weight: bold; font-size:10px; padding:2px 6px; border-radius: 5px"],u=(...e)=>console.error(...h,...e),p=(...e)=>console.warn(...h,...e),f=new Map,m=new Map,g=[],v="s-id",$="sty-id",y="c-id",w="http://www.w3.org/1999/xlink",_=["formAssociatedCallback","formResetCallback","formDisabledCallback","formStateRestoreCallback"],b="undefined"!=typeof window?window:{},S=b.document||{head:{}},k=b.HTMLElement||class{},x={$flags$:0,$resourcesUrl$:"",jmp:e=>e(),raf:e=>requestAnimationFrame(e),ael:(e,t,r,n)=>e.addEventListener(t,r,n),rel:(e,t,r,n)=>e.removeEventListener(t,r,n),ce:(e,t)=>new CustomEvent(e,t)},A=n.shadowDom,I=(()=>{let e=!1;try{S.addEventListener("e",null,Object.defineProperty({},"passive",{get(){e=!0}}))}catch(e){}return e})(),T=!!n.constructableCSS&&(()=>{try{return new CSSStyleSheet,"function"==typeof(new CSSStyleSheet).replaceSync}catch(e){}return!1})(),C=0,N=!1,R=[],O=[],U=[],L=(e,t)=>r=>{e.push(r),N||(N=!0,t&&4&x.$flags$?E(j):x.raf(j))},P=e=>{for(let t=0;t<e.length;t++)try{e[t](performance.now())}catch(e){d(e)}e.length=0},D=(e,t)=>{let r=0,n=0;for(;r<e.length&&(n=performance.now())<t;)try{e[r++](n)}catch(e){d(e)}r===e.length?e.length=0:0!==r&&e.splice(0,r)},j=()=>{if(n.asyncQueue&&C++,P(R),n.asyncQueue){const e=2==(6&x.$flags$)?performance.now()+14*Math.ceil(.1*C):1/0;D(O,e),D(U,e),O.length>0&&(U.push(...O),O.length=0),(N=R.length+O.length+U.length>0)?x.raf(j):C=0}else P(O),(N=R.length>0)&&x.raf(j)},E=e=>Promise.resolve(undefined).then(e),M=L(R,!1),z=L(O,!0),F=e=>{const t=new URL(e,x.$resourcesUrl$);return t.origin!==b.location.origin?t.href:t.pathname},q=e=>x.$resourcesUrl$=e,V={},H=e=>"object"==(e=typeof e)||"function"===e;((e,t)=>{for(var r in t)o(e,r,{get:t[r],enumerable:!0})})({},{err:()=>W,map:()=>Z,ok:()=>B,unwrap:()=>K,unwrapErr:()=>Q});var B=e=>({isOk:!0,isErr:!1,value:e}),W=e=>({isOk:!1,isErr:!0,value:e});function Z(e,t){if(e.isOk){const r=t(e.value);return r instanceof Promise?r.then((e=>B(e))):B(r)}if(e.isErr){const t=e.value;return W(t)}throw"should never get here"}var X,G,J,K=e=>{if(e.isOk)return e.value;throw e.value},Q=e=>{if(e.isErr)return e.value;throw e.value},Y=0,ee=(e,t="")=>{if(n.profile&&performance.mark){const r=`st:${e}:${t}:${Y++}`;return performance.mark(r),()=>performance.measure(`[Stencil] ${e}() <${t}>`,r)}return()=>{}},te=(e,t,...r)=>{let s=null,o=null,i=null,a=!1,l=!1;const c=[],d=t=>{for(let r=0;r<t.length;r++)s=t[r],Array.isArray(s)?d(s):null!=s&&"boolean"!=typeof s&&((a="function"!=typeof e&&!H(s))?s=String(s):n.isDev&&"function"!=typeof e&&void 0===s.$flags$&&u("vNode passed as children has unexpected type.\nMake sure it's using the correct h() function.\nEmpty objects can also be the cause, look for JSX comments that became objects."),a&&l?c[c.length-1].$text$+=s:c.push(a?re(null,s):s),l=a)};if(d(r),t&&(n.isDev&&"input"===e&&le(t),n.vdomKey&&t.key&&(o=t.key),n.slotRelocation&&t.name&&(i=t.name),n.vdomClass)){const e=t.className||t.class;e&&(t.class="object"!=typeof e?e:Object.keys(e).filter((t=>e[t])).join(" "))}if(n.isDev&&c.some(se)&&u("The <Host> must be the single root component. Make sure:\n- You are NOT using hostData() and <Host> in the same component.\n- <Host> is used once, and it's the single root component of the render() function."),n.vdomFunctional&&"function"==typeof e)return e(null===t?{}:t,c,oe);const h=re(e,null);return h.$attrs$=t,c.length>0&&(h.$children$=c),n.vdomKey&&(h.$key$=o),n.slotRelocation&&(h.$name$=i),h},re=(e,t)=>{const r={$flags$:0,$tag$:e,$text$:t,$elm$:null,$children$:null};return n.vdomAttribute&&(r.$attrs$=null),n.vdomKey&&(r.$key$=null),n.slotRelocation&&(r.$name$=null),r},ne={},se=e=>e&&e.$tag$===ne,oe={forEach:(e,t)=>e.map(ie).forEach(t),map:(e,t)=>e.map(ie).map(t).map(ae)},ie=e=>({vattrs:e.$attrs$,vchildren:e.$children$,vkey:e.$key$,vname:e.$name$,vtag:e.$tag$,vtext:e.$text$}),ae=e=>{if("function"==typeof e.vtag){const t={...e.vattrs};return e.vkey&&(t.key=e.vkey),e.vname&&(t.name=e.vname),te(e.vtag,t,...e.vchildren||[])}const t=re(e.vtag,e.vtext);return t.$attrs$=e.vattrs,t.$children$=e.vchildren,t.$key$=e.vkey,t.$name$=e.vname,t},le=e=>{const t=Object.keys(e),r=t.indexOf("value");if(-1===r)return;const n=t.indexOf("type"),s=t.indexOf("min"),o=t.indexOf("max"),i=t.indexOf("step");(r<n||r<s||r<o||r<i)&&p('The "value" prop of <input> should be set after "min", "max", "type" and "step"')},ce=(e,t,r,s,o,i,a)=>{let l,c,d,h;if(1===i.nodeType){if(l=i.getAttribute(y),l&&(c=l.split("."),c[0]!==a&&"0"!==c[0]||(d={$flags$:0,$hostId$:c[0],$nodeId$:c[1],$depth$:c[2],$index$:c[3],$tag$:i.tagName.toLowerCase(),$elm$:i,$attrs$:null,$children$:null,$key$:null,$name$:null,$text$:null},t.push(d),i.removeAttribute(y),e.$children$||(e.$children$=[]),e.$children$[d.$index$]=d,e=d,s&&"0"===d.$depth$&&(s[d.$index$]=d.$elm$))),i.shadowRoot)for(h=i.shadowRoot.childNodes.length-1;h>=0;h--)ce(e,t,r,s,o,i.shadowRoot.childNodes[h],a);for(h=i.childNodes.length-1;h>=0;h--)ce(e,t,r,s,o,i.childNodes[h],a)}else if(8===i.nodeType)c=i.nodeValue.split("."),c[1]!==a&&"0"!==c[1]||(l=c[0],d={$flags$:0,$hostId$:c[1],$nodeId$:c[2],$depth$:c[3],$index$:c[4],$elm$:i,$attrs$:null,$children$:null,$key$:null,$name$:null,$tag$:null,$text$:null},"t"===l?(d.$elm$=i.nextSibling,d.$elm$&&3===d.$elm$.nodeType&&(d.$text$=d.$elm$.textContent,t.push(d),i.remove(),e.$children$||(e.$children$=[]),e.$children$[d.$index$]=d,s&&"0"===d.$depth$&&(s[d.$index$]=d.$elm$))):d.$hostId$===a&&("s"===l?(d.$tag$="slot",c[5]?i["s-sn"]=d.$name$=c[5]:i["s-sn"]="",i["s-sr"]=!0,n.shadowDom&&s&&(d.$elm$=S.createElement(d.$tag$),d.$name$&&d.$elm$.setAttribute("name",d.$name$),i.parentNode.insertBefore(d.$elm$,i),i.remove(),"0"===d.$depth$&&(s[d.$index$]=d.$elm$)),r.push(d),e.$children$||(e.$children$=[]),e.$children$[d.$index$]=d):"r"===l&&(n.shadowDom&&s?i.remove():n.slotRelocation&&(o["s-cr"]=i,i["s-cn"]=!0))));else if(e&&"style"===e.$tag$){const t=re(null,i.textContent);t.$elm$=i,t.$index$="0",e.$children$=[t]}},de=(e,t)=>{if(1===e.nodeType){let r=0;if(e.shadowRoot)for(;r<e.shadowRoot.childNodes.length;r++)de(e.shadowRoot.childNodes[r],t);for(r=0;r<e.childNodes.length;r++)de(e.childNodes[r],t)}else if(8===e.nodeType){const r=e.nodeValue.split(".");"o"===r[0]&&(t.set(r[1]+"."+r[2],e),e.nodeValue="",e["s-en"]=r[3])}},he=(e,t,r)=>{const s=(e=>n.lazyLoad?l(e).$hostElement$:e)(e);return{emit:e=>(n.isDev&&!s.isConnected&&p(`The "${t}" event was emitted, but the dispatcher node is no longer connected to the dom.`),ue(s,t,{bubbles:!!(4&r),composed:!!(2&r),cancelable:!!(1&r),detail:e}))}},ue=(e,t,r)=>{const n=x.ce(t,r);return e.dispatchEvent(n),n},pe=new WeakMap,fe=(e,t,r)=>{var s;const o=me(t,r),i=m.get(o);if(!n.attachStyles)return o;if(e=11===e.nodeType?e:S,i)if("string"==typeof i){e=e.head||e;let r,a=pe.get(e);if(a||pe.set(e,a=new Set),!a.has(o)){if(n.hydrateClientSide&&e.host&&(r=e.querySelector(`[${$}="${o}"]`)))r.innerHTML=i;else{r=S.createElement("style"),r.innerHTML=i;const a=null!=(s=x.$nonce$)?s:function(e){var t,r,n;return null!=(n=null==(r=null==(t=e.head)?void 0:t.querySelector('meta[name="csp-nonce"]'))?void 0:r.getAttribute("content"))?n:void 0}(S);null!=a&&r.setAttribute("nonce",a),(n.hydrateServerSide||n.hotModuleReplacement)&&2&t.$flags$&&r.setAttribute($,o),(!(1&t.$flags$)||1&t.$flags$&&"HEAD"!==e.nodeName)&&e.insertBefore(r,e.querySelector("link"))}4&t.$flags$&&(r.innerHTML+="slot-fb{display:contents}slot-fb[hidden]{display:none}"),a&&a.add(o)}}else n.constructableCSS&&!e.adoptedStyleSheets.includes(i)&&(e.adoptedStyleSheets=[...e.adoptedStyleSheets,i]);return o},me=(e,t)=>"sc-"+(n.mode&&t&&32&e.$flags$?e.$tagName$+"-"+t:e.$tagName$),ge=(e,t,r,s,o,i)=>{if(r!==s){let a=c(e,t),l=t.toLowerCase();if(n.vdomClass&&"class"===t){const t=e.classList,n=$e(r),o=$e(s);t.remove(...n.filter((e=>e&&!o.includes(e)))),t.add(...o.filter((e=>e&&!n.includes(e))))}else if(n.vdomStyle&&"style"===t){if(n.updatable)for(const t in r)s&&null!=s[t]||(!n.hydrateServerSide&&t.includes("-")?e.style.removeProperty(t):e.style[t]="");for(const t in s)r&&s[t]===r[t]||(!n.hydrateServerSide&&t.includes("-")?e.style.setProperty(t,s[t]):e.style[t]=s[t])}else if(n.vdomKey&&"key"===t);else if(n.vdomRef&&"ref"===t)s&&s(e);else if(!n.vdomListener||(n.lazyLoad?a:e.__lookupSetter__(t))||"o"!==t[0]||"n"!==t[1]){if(n.vdomPropOrAttr){const c=H(s);if((a||c&&null!==s)&&!o)try{if(e.tagName.includes("-"))e[t]=s;else{const n=null==s?"":s;"list"===t?a=!1:null!=r&&e[t]==n||(e[t]=n)}}catch(e){}let d=!1;n.vdomXlink&&l!==(l=l.replace(/^xlink\:?/,""))&&(t=l,d=!0),null==s||!1===s?!1===s&&""!==e.getAttribute(t)||(n.vdomXlink&&d?e.removeAttributeNS(w,t):e.removeAttribute(t)):(!a||4&i||o)&&!c&&(s=!0===s?"":s,n.vdomXlink&&d?e.setAttributeNS(w,t,s):e.setAttribute(t,s))}}else if(t="-"===t[2]?t.slice(3):c(b,l)?l.slice(2):l[2]+t.slice(3),r||s){const n=t.endsWith(ye);t=t.replace(we,""),r&&x.rel(e,t,r,n),s&&x.ael(e,t,s,n)}}},ve=/\s/,$e=e=>e?e.split(ve):[],ye="Capture",we=new RegExp(ye+"$"),_e=(e,t,r)=>{const s=11===t.$elm$.nodeType&&t.$elm$.host?t.$elm$.host:t.$elm$,o=e&&e.$attrs$||V,i=t.$attrs$||V;if(n.updatable)for(const e of be(Object.keys(o)))e in i||ge(s,e,o[e],void 0,r,t.$flags$);for(const e of be(Object.keys(i)))ge(s,e,o[e],i[e],r,t.$flags$)};function be(e){return e.includes("ref")?[...e.filter((e=>"ref"!==e)),"ref"]:e}var Se=!1,ke=!1,xe=!1,Ae=!1,Ie=(e,t,r,s)=>{var o;const i=t.$children$[r];let a,l,c,d=0;if(n.slotRelocation&&!Se&&(xe=!0,"slot"===i.$tag$&&(X&&s.classList.add(X+"-s"),i.$flags$|=i.$children$?2:1)),n.isDev&&i.$elm$&&u(`The JSX ${null!==i.$text$?`"${i.$text$}" text`:`"${i.$tag$}" element`} node should not be shared within the same renderer. The renderer caches element lookups in order to improve performance. However, a side effect from this is that the exact same JSX node should not be reused. For more information please see https://stenciljs.com/docs/templating-jsx#avoid-shared-jsx-nodes`),n.vdomText&&null!==i.$text$)a=i.$elm$=S.createTextNode(i.$text$);else if(n.slotRelocation&&1&i.$flags$)a=i.$elm$=n.isDebug||n.hydrateServerSide?Be(i):S.createTextNode("");else{if(n.svg&&!Ae&&(Ae="svg"===i.$tag$),a=i.$elm$=n.svg?S.createElementNS(Ae?"http://www.w3.org/2000/svg":"http://www.w3.org/1999/xhtml",!Se&&n.slotRelocation&&2&i.$flags$?"slot-fb":i.$tag$):S.createElement(!Se&&n.slotRelocation&&2&i.$flags$?"slot-fb":i.$tag$),n.svg&&Ae&&"foreignObject"===i.$tag$&&(Ae=!1),n.vdomAttribute&&_e(null,i,Ae),!!a.getRootNode().querySelector("body")&&n.scoped&&null!=X&&a["s-si"]!==X&&a.classList.add(a["s-si"]=X),n.scoped&&Ve(a,s),i.$children$)for(d=0;d<i.$children$.length;++d)l=Ie(e,i,d,a),l&&a.appendChild(l);n.svg&&("svg"===i.$tag$?Ae=!1:"foreignObject"===a.tagName&&(Ae=!0))}return a["s-hn"]=J,n.slotRelocation&&3&i.$flags$&&(a["s-sr"]=!0,a["s-cr"]=G,a["s-sn"]=i.$name$||"",a["s-rf"]=null==(o=i.$attrs$)?void 0:o.ref,c=e&&e.$children$&&e.$children$[r],c&&c.$tag$===i.$tag$&&e.$elm$&&(n.experimentalSlotFixes?Te(e.$elm$):Ce(e.$elm$,!1))),a},Te=e=>{x.$flags$|=1;const t=e.closest(J.toLowerCase());if(null!=t){const r=Array.from(t.childNodes).find((e=>e["s-cr"])),n=Array.from(e.childNodes);for(const e of r?n.reverse():n)null!=e["s-sh"]&&(Fe(t,e,null!=r?r:null),e["s-sh"]=void 0,xe=!0)}x.$flags$&=-2},Ce=(e,t)=>{x.$flags$|=1;const r=Array.from(e.childNodes);if(e["s-sr"]&&n.experimentalSlotFixes){let t=e;for(;t=t.nextSibling;)t&&t["s-sn"]===e["s-sn"]&&t["s-sh"]===J&&r.push(t)}for(let e=r.length-1;e>=0;e--){const n=r[e];n["s-hn"]!==J&&n["s-ol"]&&(Fe(Le(n),n,Ue(n)),n["s-ol"].remove(),n["s-ol"]=void 0,n["s-sh"]=void 0,xe=!0),t&&Ce(n,t)}x.$flags$&=-2},Ne=(e,t,r,s,o,i)=>{let a,l=n.slotRelocation&&e["s-cr"]&&e["s-cr"].parentNode||e;for(n.shadowDom&&l.shadowRoot&&l.tagName===J&&(l=l.shadowRoot);o<=i;++o)s[o]&&(a=Ie(null,r,o,e),a&&(s[o].$elm$=a,Fe(l,a,n.slotRelocation?Ue(t):t)))},Re=(e,t,r)=>{for(let s=t;s<=r;++s){const t=e[s];if(t){const e=t.$elm$;ze(t),e&&(n.slotRelocation&&(ke=!0,e["s-ol"]?e["s-ol"].remove():Ce(e,!0)),e.remove())}}},Oe=(e,t,r=!1)=>!(e.$tag$!==t.$tag$||(n.slotRelocation&&"slot"===e.$tag$?"$nodeId$"in e&&r&&8!==e.$elm$.nodeType||e.$name$!==t.$name$:n.vdomKey&&!r&&e.$key$!==t.$key$)),Ue=e=>e&&e["s-ol"]||e,Le=e=>(e["s-ol"]?e["s-ol"]:e).parentNode,Pe=(e,t,r=!1)=>{const s=t.$elm$=e.$elm$,o=e.$children$,i=t.$children$,a=t.$tag$,l=t.$text$;let c;n.vdomText&&null!==l?n.vdomText&&n.slotRelocation&&(c=s["s-cr"])?c.parentNode.textContent=l:n.vdomText&&e.$text$!==l&&(s.data=l):(n.svg&&(Ae="svg"===a||"foreignObject"!==a&&Ae),(n.vdomAttribute||n.reflect)&&(n.slot&&"slot"===a&&!Se?n.experimentalSlotFixes&&e.$name$!==t.$name$&&(t.$elm$["s-sn"]=t.$name$||"",Te(t.$elm$.parentElement)):_e(e,t,Ae)),n.updatable&&null!==o&&null!==i?((e,t,r,s,o=!1)=>{let i,a,l=0,c=0,d=0,h=0,u=t.length-1,p=t[0],f=t[u],m=s.length-1,g=s[0],v=s[m];for(;l<=u&&c<=m;)if(null==p)p=t[++l];else if(null==f)f=t[--u];else if(null==g)g=s[++c];else if(null==v)v=s[--m];else if(Oe(p,g,o))Pe(p,g,o),p=t[++l],g=s[++c];else if(Oe(f,v,o))Pe(f,v,o),f=t[--u],v=s[--m];else if(Oe(p,v,o))!n.slotRelocation||"slot"!==p.$tag$&&"slot"!==v.$tag$||Ce(p.$elm$.parentNode,!1),Pe(p,v,o),Fe(e,p.$elm$,f.$elm$.nextSibling),p=t[++l],v=s[--m];else if(Oe(f,g,o))!n.slotRelocation||"slot"!==p.$tag$&&"slot"!==v.$tag$||Ce(f.$elm$.parentNode,!1),Pe(f,g,o),Fe(e,f.$elm$,p.$elm$),f=t[--u],g=s[++c];else{if(d=-1,n.vdomKey)for(h=l;h<=u;++h)if(t[h]&&null!==t[h].$key$&&t[h].$key$===g.$key$){d=h;break}n.vdomKey&&d>=0?(a=t[d],a.$tag$!==g.$tag$?i=Ie(t&&t[c],r,d,e):(Pe(a,g,o),t[d]=void 0,i=a.$elm$),g=s[++c]):(i=Ie(t&&t[c],r,c,e),g=s[++c]),i&&(n.slotRelocation?Fe(Le(p.$elm$),i,Ue(p.$elm$)):Fe(p.$elm$.parentNode,i,p.$elm$))}l>u?Ne(e,null==s[m+1]?null:s[m+1].$elm$,r,s,c,m):n.updatable&&c>m&&Re(t,l,u)})(s,o,t,i,r):null!==i?(n.updatable&&n.vdomText&&null!==e.$text$&&(s.textContent=""),Ne(s,null,t,i,0,i.length-1)):!r&&n.updatable&&null!==o&&Re(o,0,o.length-1),n.svg&&Ae&&"svg"===a&&(Ae=!1))},De=e=>{const t=e.childNodes;for(const e of t)if(1===e.nodeType){if(e["s-sr"]){const r=e["s-sn"];e.hidden=!1;for(const n of t)if(n!==e)if(n["s-hn"]!==e["s-hn"]||""!==r){if(1===n.nodeType&&(r===n.getAttribute("slot")||r===n["s-sn"])||3===n.nodeType&&r===n["s-sn"]){e.hidden=!0;break}}else if(1===n.nodeType||3===n.nodeType&&""!==n.textContent.trim()){e.hidden=!0;break}}De(e)}},je=[],Ee=e=>{let t,r,s;for(const o of e.childNodes){if(o["s-sr"]&&(t=o["s-cr"])&&t.parentNode){r=t.parentNode.childNodes;const e=o["s-sn"];for(s=r.length-1;s>=0;s--)if(t=r[s],!(t["s-cn"]||t["s-nr"]||t["s-hn"]===o["s-hn"]||n.experimentalSlotFixes&&t["s-sh"]&&t["s-sh"]===o["s-hn"]))if(Me(t,e)){let r=je.find((e=>e.$nodeToRelocate$===t));ke=!0,t["s-sn"]=t["s-sn"]||e,r?(r.$nodeToRelocate$["s-sh"]=o["s-hn"],r.$slotRefNode$=o):(t["s-sh"]=o["s-hn"],je.push({$slotRefNode$:o,$nodeToRelocate$:t})),t["s-sr"]&&je.map((e=>{Me(e.$nodeToRelocate$,t["s-sn"])&&(r=je.find((e=>e.$nodeToRelocate$===t)),r&&!e.$slotRefNode$&&(e.$slotRefNode$=r.$slotRefNode$))}))}else je.some((e=>e.$nodeToRelocate$===t))||je.push({$nodeToRelocate$:t})}1===o.nodeType&&Ee(o)}},Me=(e,t)=>1===e.nodeType?null===e.getAttribute("slot")&&""===t||e.getAttribute("slot")===t:e["s-sn"]===t||""===t,ze=e=>{n.vdomRef&&(e.$attrs$&&e.$attrs$.ref&&e.$attrs$.ref(null),e.$children$&&e.$children$.map(ze))},Fe=(e,t,r)=>{const s=null==e?void 0:e.insertBefore(t,r);return n.scoped&&Ve(t,e),s},qe=e=>{const t=[];return e&&t.push(...e["s-scs"]||[],e["s-si"],e["s-sc"],...qe(e.parentElement)),t},Ve=(e,t,r=!1)=>{var n;if(e&&t&&1===e.nodeType){const s=new Set(qe(t).filter(Boolean));if(s.size&&(null==(n=e.classList)||n.add(...e["s-scs"]=[...s]),e["s-ol"]||r))for(const t of Array.from(e.childNodes))Ve(t,e,!0)}},He=(e,t,r=!1)=>{var s,o,i,a,l;const c=e.$hostElement$,d=e.$cmpMeta$,h=e.$vnode$||re(null,null),u=se(t)?t:te(null,null,t);if(J=c.tagName,n.isDev&&Array.isArray(t)&&t.some(se))throw new Error(`The <Host> must be the single root component.\nLooks like the render() function of "${J.toLowerCase()}" is returning an array that contains the <Host>.\n\nThe render() function should look like this instead:\n\nrender() {\n  // Do not return an array\n  return (\n    <Host>{content}</Host>\n  );\n}\n  `);if(n.reflect&&d.$attrsToReflect$&&(u.$attrs$=u.$attrs$||{},d.$attrsToReflect$.map((([e,t])=>u.$attrs$[t]=c[e]))),r&&u.$attrs$)for(const e of Object.keys(u.$attrs$))c.hasAttribute(e)&&!["key","ref","style","class"].includes(e)&&(u.$attrs$[e]=c[e]);if(u.$tag$=null,u.$flags$|=4,e.$vnode$=u,u.$elm$=h.$elm$=n.shadowDom&&c.shadowRoot||c,(n.scoped||n.shadowDom)&&(X=c["s-sc"]),Se=A&&!!(1&d.$flags$),n.slotRelocation&&(G=c["s-cr"],ke=!1),Pe(h,u,r),n.slotRelocation){if(x.$flags$|=1,xe){Ee(u.$elm$);for(const e of je){const t=e.$nodeToRelocate$;if(!t["s-ol"]){const e=n.isDebug||n.hydrateServerSide?We(t):S.createTextNode("");e["s-nr"]=t,Fe(t.parentNode,t["s-ol"]=e,t)}}for(const e of je){const t=e.$nodeToRelocate$,l=e.$slotRefNode$;if(l){const e=l.parentNode;let r=l.nextSibling;if(!n.experimentalSlotFixes||r&&1===r.nodeType){let n=null==(s=t["s-ol"])?void 0:s.previousSibling;for(;n;){let s=null!=(o=n["s-nr"])?o:null;if(s&&s["s-sn"]===t["s-sn"]&&e===s.parentNode){for(s=s.nextSibling;s===t||(null==s?void 0:s["s-sr"]);)s=null==s?void 0:s.nextSibling;if(!s||!s["s-nr"]){r=s;break}}n=n.previousSibling}}(!r&&e!==t.parentNode||t.nextSibling!==r)&&t!==r&&(n.experimentalSlotFixes||t["s-hn"]||!t["s-ol"]||(t["s-hn"]=t["s-ol"].parentNode.nodeName),Fe(e,t,r),1===t.nodeType&&(t.hidden=null!=(i=t["s-ih"])&&i)),t&&"function"==typeof l["s-rf"]&&l["s-rf"](t)}else 1===t.nodeType&&(r&&(t["s-ih"]=null!=(a=t.hidden)&&a),t.hidden=!0)}}ke&&De(u.$elm$),x.$flags$&=-2,je.length=0}if(n.experimentalScopedSlotChanges&&2&d.$flags$)for(const e of u.$elm$.childNodes)e["s-hn"]===J||e["s-sh"]||(r&&null==e["s-ih"]&&(e["s-ih"]=null!=(l=e.hidden)&&l),e.hidden=!0);G=void 0},Be=e=>S.createComment(`<slot${e.$name$?' name="'+e.$name$+'"':""}> (host=${J.toLowerCase()})`),We=e=>S.createComment("org-location for "+(e.localName?`<${e.localName}> (host=${e["s-hn"]})`:`[${e.textContent}]`)),Ze=(e,t)=>{n.asyncLoading&&t&&!e.$onRenderResolve$&&t["s-p"]&&t["s-p"].push(new Promise((t=>e.$onRenderResolve$=t)))},Xe=(e,t)=>{if(n.taskQueue&&n.updatable&&(e.$flags$|=16),n.asyncLoading&&4&e.$flags$)return void(e.$flags$|=512);Ze(e,e.$ancestorComponent$);const r=()=>Ge(e,t);return n.taskQueue?z(r):r()},Ge=(e,t)=>{const r=e.$hostElement$,s=ee("scheduleUpdate",e.$cmpMeta$.$tagName$),o=n.lazyLoad?e.$lazyInstance$:r;if(!o)throw new Error(`Can't render component <${r.tagName.toLowerCase()} /> with invalid Stencil runtime! Make sure this imported component is compiled with a \`externalRuntime: true\` flag. For more information, please refer to https://stenciljs.com/docs/custom-elements#externalruntime`);let i;return t?(n.lazyLoad&&n.hostListener&&(e.$flags$|=256,e.$queuedListeners$&&(e.$queuedListeners$.map((([e,t])=>nt(o,e,t))),e.$queuedListeners$=void 0)),st(r,"componentWillLoad"),n.cmpWillLoad&&(i=nt(o,"componentWillLoad"))):(st(r,"componentWillUpdate"),n.cmpWillUpdate&&(i=nt(o,"componentWillUpdate"))),st(r,"componentWillRender"),n.cmpWillRender&&(i=Je(i,(()=>nt(o,"componentWillRender")))),s(),Je(i,(()=>Qe(e,o,t)))},Je=(e,t)=>Ke(e)?e.then(t).catch((e=>{console.error(e),t()})):t(),Ke=e=>e instanceof Promise||e&&e.then&&"function"==typeof e.then,Qe=async(e,t,r)=>{var s;const o=e.$hostElement$,i=ee("update",e.$cmpMeta$.$tagName$),a=o["s-rc"];n.style&&r&&(e=>{const t=e.$cmpMeta$,r=e.$hostElement$,s=t.$flags$,o=ee("attachStyles",t.$tagName$),i=fe(n.shadowDom&&A&&r.shadowRoot?r.shadowRoot:r.getRootNode(),t,e.$modeName$);(n.shadowDom||n.scoped)&&n.cssAnnotations&&10&s&&2&s&&(r["s-sc"]=i,r.classList.add(i+"-h"),n.scoped&&2&s&&r.classList.add(i+"-s")),o()})(e);const l=ee("render",e.$cmpMeta$.$tagName$);if(n.isDev&&(e.$flags$|=1024),n.hydrateServerSide?await Ye(e,t,o,r):Ye(e,t,o,r),n.isDev&&(e.$renderCount$=void 0===e.$renderCount$?1:e.$renderCount$+1,e.$flags$&=-1025),n.hydrateServerSide)try{it(o),r&&(1&e.$cmpMeta$.$flags$?o["s-en"]="":2&e.$cmpMeta$.$flags$&&(o["s-en"]="c"))}catch(e){d(e,o)}if(n.asyncLoading&&a&&(a.map((e=>e())),o["s-rc"]=void 0),l(),i(),n.asyncLoading){const t=null!=(s=o["s-p"])?s:[],r=()=>et(e);0===t.length?r():(Promise.all(t).then(r),e.$flags$|=4,t.length=0)}else et(e)},Ye=(e,t,r,s)=>{const o=!!n.allRenderFn,i=!!n.lazyLoad,a=!!n.taskQueue,l=!!n.updatable;try{if(t=(o||t.render)&&t.render(),l&&a&&(e.$flags$&=-17),(l||i)&&(e.$flags$|=2),n.hasRenderFn||n.reflect)if(n.vdomRender||n.reflect){if(n.hydrateServerSide)return Promise.resolve(t).then((t=>He(e,t,s)));He(e,t,s)}else{const n=r.shadowRoot;1&e.$cmpMeta$.$flags$?n.textContent=t:r.textContent=t}}catch(t){d(t,e.$hostElement$)}return null},et=e=>{const t=e.$cmpMeta$.$tagName$,r=e.$hostElement$,s=ee("postUpdate",t),o=n.lazyLoad?e.$lazyInstance$:r,i=e.$ancestorComponent$;n.cmpDidRender&&(n.isDev&&(e.$flags$|=1024),nt(o,"componentDidRender"),n.isDev&&(e.$flags$&=-1025)),st(r,"componentDidRender"),64&e.$flags$?(n.cmpDidUpdate&&(n.isDev&&(e.$flags$|=1024),nt(o,"componentDidUpdate"),n.isDev&&(e.$flags$&=-1025)),st(r,"componentDidUpdate"),s()):(e.$flags$|=64,n.asyncLoading&&n.cssAnnotations&&ot(r),n.cmpDidLoad&&(n.isDev&&(e.$flags$|=2048),nt(o,"componentDidLoad"),n.isDev&&(e.$flags$&=-2049)),st(r,"componentDidLoad"),s(),n.asyncLoading&&(e.$onReadyResolve$(r),i||rt(t))),n.method&&n.lazyLoad&&e.$onInstanceResolve$(r),n.asyncLoading&&(e.$onRenderResolve$&&(e.$onRenderResolve$(),e.$onRenderResolve$=void 0),512&e.$flags$&&E((()=>Xe(e,!1))),e.$flags$&=-517)},tt=e=>{if(n.updatable&&(i.isBrowser||i.isTesting)){const t=l(e),r=t.$hostElement$.isConnected;return r&&2==(18&t.$flags$)&&Xe(t,!1),r}return!1},rt=e=>{n.cssAnnotations&&ot(S.documentElement),n.asyncQueue&&(x.$flags$|=2),E((()=>ue(b,"appload",{detail:{namespace:s}}))),n.profile&&performance.measure&&performance.measure(`[Stencil] ${s} initial load (by ${e})`,"st:app:start")},nt=(e,t,r)=>{if(e&&e[t])try{return e[t](r)}catch(e){d(e)}},st=(e,t)=>{n.lifecycleDOMEvents&&ue(e,"stencil_"+t,{bubbles:!0,composed:!0,detail:{namespace:s}})},ot=e=>{var t,r;return n.hydratedClass?e.classList.add(null!=(t=n.hydratedSelectorName)?t:"hydrated"):n.hydratedAttribute?e.setAttribute(null!=(r=n.hydratedSelectorName)?r:"hydrated",""):void 0},it=e=>{const t=e.children;if(null!=t)for(let e=0,r=t.length;e<r;e++){const r=t[e];"function"==typeof r.connectedCallback&&r.connectedCallback(),it(r)}},at=(e,t,r)=>{var s,o;const i=e.prototype;if(n.formAssociated&&64&t.$flags$&&1&r&&_.forEach((e=>Object.defineProperty(i,e,{value(...t){const r=l(this),s=n.lazyLoad?r.$hostElement$:this,o=n.lazyLoad?r.$lazyInstance$:s;if(o){const r=o[e];"function"==typeof r&&r.call(o,...t)}else r.$onReadyPromise$.then((r=>{const n=r[e];"function"==typeof n&&n.call(r,...t)}))}}))),n.member&&t.$members$||n.watchCallback&&(t.$watchers$||e.watchers)){n.watchCallback&&e.watchers&&!t.$watchers$&&(t.$watchers$=e.watchers);const a=Object.entries(null!=(s=t.$members$)?s:{});if(a.map((([e,[s]])=>{(n.prop||n.state)&&(31&s||(!n.lazyLoad||2&r)&&32&s)?Object.defineProperty(i,e,{get(){return t=e,l(this).$instanceValues$.get(t);var t},set(o){if(n.isDev){const n=l(this);1&r||0!==(n&&8&n.$flags$)||!(31&s)||1024&s||p(`@Prop() "${e}" on <${t.$tagName$}> is immutable but was modified from within the component.\nMore information: https://stenciljs.com/docs/properties#prop-mutability`)}((e,t,r,s)=>{const o=l(e);if(n.lazyLoad&&!o)throw new Error(`Couldn't find host element for "${s.$tagName$}" as it is unknown to this Stencil runtime. This usually happens when integrating a 3rd party Stencil component with another Stencil component or application. Please reach out to the maintainers of the 3rd party Stencil component or report this on the Stencil Discord server (https://chat.stenciljs.com) or comment on this similar [GitHub issue](https://github.com/ionic-team/stencil/issues/5457).`);const i=n.lazyLoad?o.$hostElement$:e,a=o.$instanceValues$.get(t),c=o.$flags$,h=n.lazyLoad?o.$lazyInstance$:i;var u,f;u=r,f=s.$members$[t][0],r=null==u||H(u)?u:n.propBoolean&&4&f?"false"!==u&&(""===u||!!u):n.propNumber&&2&f?parseFloat(u):n.propString&&1&f?String(u):u;const m=Number.isNaN(a)&&Number.isNaN(r);if((!n.lazyLoad||!(8&c)||void 0===a)&&r!==a&&!m&&(o.$instanceValues$.set(t,r),n.isDev&&(1024&o.$flags$?p(`The state/prop "${t}" changed during rendering. This can potentially lead to infinite-loops and other bugs.`,"\nElement",i,"\nNew value",r,"\nOld value",a):2048&o.$flags$&&p(`The state/prop "${t}" changed during "componentDidLoad()", this triggers extra re-renders, try to setup on "componentWillLoad()"`,"\nElement",i,"\nNew value",r,"\nOld value",a)),!n.lazyLoad||h)){if(n.watchCallback&&s.$watchers$&&128&c){const e=s.$watchers$[t];e&&e.map((e=>{try{h[e](r,a,t)}catch(e){d(e,i)}}))}if(n.updatable&&2==(18&c)){if(n.cmpShouldUpdate&&h.componentShouldUpdate&&!1===h.componentShouldUpdate(r,a,t))return;Xe(o,!1)}}})(this,e,o,t)},configurable:!0,enumerable:!0}):n.lazyLoad&&n.method&&1&r&&64&s&&Object.defineProperty(i,e,{value(...t){var r;const n=l(this);return null==(r=null==n?void 0:n.$onInstancePromise$)?void 0:r.then((()=>{var r;return null==(r=n.$lazyInstance$)?void 0:r[e](...t)}))}})})),n.observeAttribute&&(!n.lazyLoad||1&r)){const r=new Map;i.attributeChangedCallback=function(e,s,o){x.jmp((()=>{var a;const c=r.get(e);if(this.hasOwnProperty(c))o=this[c],delete this[c];else{if(i.hasOwnProperty(c)&&"number"==typeof this[c]&&this[c]==o)return;if(null==c){const r=l(this),i=null==r?void 0:r.$flags$;if(i&&!(8&i)&&128&i&&o!==s){const i=n.lazyLoad?r.$hostElement$:this,l=n.lazyLoad?r.$lazyInstance$:i,c=null==(a=t.$watchers$)?void 0:a[e];null==c||c.forEach((t=>{null!=l[t]&&l[t].call(l,o,s,e)}))}return}}this[c]=(null!==o||"boolean"!=typeof this[c])&&o}))},e.observedAttributes=Array.from(new Set([...Object.keys(null!=(o=t.$watchers$)?o:{}),...a.filter((([e,t])=>15&t[0])).map((([e,s])=>{var o;const i=s[1]||e;return r.set(i,e),n.reflect&&512&s[0]&&(null==(o=t.$attrsToReflect$)||o.push([e,i])),i}))]))}}return e},lt=async(e,t,s,o)=>{let i;if(!(32&t.$flags$)){t.$flags$|=32;const c=s.$lazyBundleId$;if((n.lazyLoad||n.hydrateClientSide)&&c){const e=((e,t,s)=>{const o=e.$tagName$.replace(/-/g,"_"),i=e.$lazyBundleId$;if(n.isDev&&"string"!=typeof i)return void u(`Trying to lazily load component <${e.$tagName$}> with style mode "${t.$modeName$}", but it does not exist.`);if(!i)return;const a=!n.hotModuleReplacement&&f.get(i);return a?a[o]:r(54140)(`./${i}.entry.js${n.hotModuleReplacement&&s?"?s-hmr="+s:""}`).then((e=>(n.hotModuleReplacement||f.set(i,e),e[o])),d)})(s,t,o);if(e&&"then"in e){const r=(a=`st:load:${s.$tagName$}:${t.$modeName$}`,l=`[Stencil] Load module for <${s.$tagName$}>`,n.profile&&performance.mark?(0===performance.getEntriesByName(a,"mark").length&&performance.mark(a),()=>{0===performance.getEntriesByName(l,"measure").length&&performance.measure(l,a)}):()=>{});i=await e,r()}else i=e;if(!i)throw new Error(`Constructor for "${s.$tagName$}#${t.$modeName$}" was not found`);n.member&&!i.isProxied&&(n.watchCallback&&(s.$watchers$=i.watchers),at(i,s,2),i.isProxied=!0);const c=ee("createInstance",s.$tagName$);n.member&&(t.$flags$|=8);try{new i(t)}catch(e){d(e)}n.member&&(t.$flags$&=-9),n.watchCallback&&(t.$flags$|=128),c(),ct(t.$lazyInstance$)}else{i=e.constructor;const r=e.localName;customElements.whenDefined(r).then((()=>t.$flags$|=128))}if(n.style&&i&&i.style){let o;"string"==typeof i.style?o=i.style:n.mode&&"string"!=typeof i.style&&(t.$modeName$=(e=>g.map((t=>t(e))).find((e=>!!e)))(e),t.$modeName$&&(o=i.style[t.$modeName$]),n.hydrateServerSide&&t.$modeName$&&e.setAttribute("s-mode",t.$modeName$));const a=me(s,t.$modeName$);if(!m.has(a)){const e=ee("registerStyles",s.$tagName$);!n.hydrateServerSide&&n.shadowDom&&n.shadowDomShim&&8&s.$flags$&&(o=await r.e(4060).then(r.bind(r,64060)).then((e=>e.scopeCss(o,a)))),((e,t,r)=>{let n=m.get(e);T&&r?(n=n||new CSSStyleSheet,"string"==typeof n?n=t:n.replaceSync(t)):n=t,m.set(e,n)})(a,o,!!(1&s.$flags$)),e()}}}var a,l;const c=t.$ancestorComponent$,h=()=>Xe(t,!0);n.asyncLoading&&c&&c["s-rc"]?c["s-rc"].push(h):h()},ct=e=>{n.lazyLoad&&n.connectedCallback&&nt(e,"connectedCallback")},dt=e=>{const t=e["s-cr"]=S.createComment(n.isDebug?`content-ref (host=${e.localName})`:"");t["s-cn"]=!0,Fe(e,t,e.firstChild)},ht=e=>{n.lazyLoad&&n.disconnectedCallback&&nt(e,"disconnectedCallback"),n.cmpDidUnload&&nt(e,"componentDidUnload")},ut=e=>{const t=e.cloneNode;e.cloneNode=function(e){const r=this,s=!!n.shadowDom&&r.shadowRoot&&A,o=t.call(r,!!s&&e);if(n.slot&&!s&&e){let e,t,s=0;const i=["s-id","s-cr","s-lr","s-rc","s-sc","s-p","s-cn","s-sr","s-sn","s-hn","s-ol","s-nr","s-si","s-rf","s-scs"];for(;s<r.childNodes.length;s++)e=r.childNodes[s]["s-nr"],t=i.every((e=>!r.childNodes[s][e])),e&&(n.appendChildSlotFix&&o.__appendChild?o.__appendChild(e.cloneNode(!0)):o.appendChild(e.cloneNode(!0))),t&&o.appendChild(r.childNodes[s].cloneNode(!0))}return o}},pt=e=>{e.__appendChild=e.appendChild,e.appendChild=function(e){const t=e["s-sn"]=St(e),r=kt(this.childNodes,t,this.tagName);if(r){const n=xt(r,t),s=n[n.length-1],o=Fe(s.parentNode,e,s.nextSibling);return De(this),o}return this.__appendChild(e)}},ft=e=>{e.__removeChild=e.removeChild,e.removeChild=function(e){if(e&&void 0!==e["s-sn"]){const t=kt(this.childNodes,e["s-sn"],this.tagName);if(t){const r=xt(t,e["s-sn"]).find((t=>t===e));if(r)return r.remove(),void De(this)}}return this.__removeChild(e)}},mt=e=>{const t=e.prepend;e.prepend=function(...e){e.forEach((e=>{"string"==typeof e&&(e=this.ownerDocument.createTextNode(e));const r=e["s-sn"]=St(e),n=kt(this.childNodes,r,this.tagName);if(n){const t=document.createTextNode("");t["s-nr"]=e,n["s-cr"].parentNode.__appendChild(t),e["s-ol"]=t;const s=xt(n,r)[0];return Fe(s.parentNode,e,s.nextSibling)}return 1===e.nodeType&&e.getAttribute("slot")&&(e.hidden=!0),t.call(this,e)}))}},gt=e=>{e.append=function(...e){e.forEach((e=>{"string"==typeof e&&(e=this.ownerDocument.createTextNode(e)),this.appendChild(e)}))}},vt=e=>{const t=e.insertAdjacentHTML;e.insertAdjacentHTML=function(e,r){if("afterbegin"!==e&&"beforeend"!==e)return t.call(this,e,r);const n=this.ownerDocument.createElement("_");let s;if(n.innerHTML=r,"afterbegin"===e)for(;s=n.firstChild;)this.prepend(s);else if("beforeend"===e)for(;s=n.firstChild;)this.append(s)}},$t=e=>{e.insertAdjacentText=function(e,t){this.insertAdjacentHTML(e,t)}},yt=e=>{const t=e.insertAdjacentElement;e.insertAdjacentElement=function(e,r){return"afterbegin"!==e&&"beforeend"!==e?t.call(this,e,r):"afterbegin"===e?(this.prepend(r),r):"beforeend"===e?(this.append(r),r):r}},wt=e=>{const t=Object.getOwnPropertyDescriptor(Node.prototype,"textContent");Object.defineProperty(e,"__textContent",t),n.experimentalScopedSlotChanges?Object.defineProperty(e,"textContent",{get(){return" "+bt(this.childNodes).map((e=>{var t,r;const n=[];let s=e.nextSibling;for(;s&&s["s-sn"]===e["s-sn"];)3!==s.nodeType&&1!==s.nodeType||n.push(null!=(r=null==(t=s.textContent)?void 0:t.trim())?r:""),s=s.nextSibling;return n.filter((e=>""!==e)).join(" ")})).filter((e=>""!==e)).join(" ")+" "},set(e){bt(this.childNodes).forEach((t=>{let r=t.nextSibling;for(;r&&r["s-sn"]===t["s-sn"];){const e=r;r=r.nextSibling,e.remove()}if(""===t["s-sn"]){const r=this.ownerDocument.createTextNode(e);r["s-sn"]="",Fe(t.parentElement,r,t.nextSibling)}else t.remove()}))}}):Object.defineProperty(e,"textContent",{get(){var e;const t=kt(this.childNodes,"",this.tagName);return 3===(null==(e=null==t?void 0:t.nextSibling)?void 0:e.nodeType)?t.nextSibling.textContent:t?t.textContent:this.__textContent},set(e){var t;const r=kt(this.childNodes,"",this.tagName);if(3===(null==(t=null==r?void 0:r.nextSibling)?void 0:t.nodeType))r.nextSibling.textContent=e;else if(r)r.textContent=e;else{this.__textContent=e;const t=this["s-cr"];t&&Fe(this,t,this.firstChild)}}})},_t=(e,t)=>{class r extends Array{item(e){return this[e]}}if(8&t.$flags$){const t=e.__lookupGetter__("childNodes");Object.defineProperty(e,"children",{get(){return this.childNodes.map((e=>1===e.nodeType))}}),Object.defineProperty(e,"childElementCount",{get(){return e.children.length}}),Object.defineProperty(e,"childNodes",{get(){const e=t.call(this);if(!(1&x.$flags$)&&2&l(this).$flags$){const t=new r;for(let r=0;r<e.length;r++){const n=e[r]["s-nr"];n&&t.push(n)}return t}return r.from(e)}})}},bt=e=>{const t=[];for(const r of Array.from(e))r["s-sr"]&&t.push(r),t.push(...bt(r.childNodes));return t},St=e=>e["s-sn"]||1===e.nodeType&&e.getAttribute("slot")||"",kt=(e,t,r)=>{let n,s=0;for(;s<e.length;s++){if(n=e[s],n["s-sr"]&&n["s-sn"]===t&&n["s-hn"]===r)return n;if(n=kt(n.childNodes,t,r),n)return n}return null},xt=(e,t)=>{const r=[e];for(;(e=e.nextSibling)&&e["s-sn"]===t;)r.push(e);return r},At=(e,t)=>{const r={$flags$:t[0],$tagName$:t[1]};var s,o;n.member&&(r.$members$=t[2]),n.hostListener&&(r.$listeners$=t[3]),n.watchCallback&&(r.$watchers$=e.$watchers$),n.reflect&&(r.$attrsToReflect$=[]),n.shadowDom&&!A&&1&r.$flags$&&(r.$flags$|=8),n.experimentalSlotFixes?n.scoped&&2&r.$flags$&&(s=e.prototype,o=r,ut(s),pt(s),gt(s),mt(s),yt(s),vt(s),$t(s),wt(s),_t(s,o),ft(s)):(n.slotChildNodesFix&&_t(e.prototype,r),n.cloneNodeFix&&ut(e.prototype),n.appendChildSlotFix&&pt(e.prototype),n.scopedSlotTextContentFix&&2&r.$flags$&&wt(e.prototype));const i=e.prototype.connectedCallback,c=e.prototype.disconnectedCallback;return Object.assign(e.prototype,{__registerHost(){((e,t)=>{const r={$flags$:0,$hostElement$:e,$cmpMeta$:t,$instanceValues$:new Map};n.isDev&&(r.$renderCount$=0),n.method&&n.lazyLoad&&(r.$onInstancePromise$=new Promise((e=>r.$onInstanceResolve$=e))),n.asyncLoading&&(r.$onReadyPromise$=new Promise((e=>r.$onReadyResolve$=e)),e["s-p"]=[],e["s-rc"]=[]),a.set(e,r)})(this,r)},connectedCallback(){const e=l(this);Tt(this,e,r.$listeners$,!1),(e=>{if(!(1&x.$flags$)){const t=l(e),r=t.$cmpMeta$,s=ee("connectedCallback",r.$tagName$);if(n.hostListenerTargetParent&&Tt(e,t,r.$listeners$,!0),1&t.$flags$)Tt(e,t,r.$listeners$,!1),(null==t?void 0:t.$lazyInstance$)?ct(t.$lazyInstance$):(null==t?void 0:t.$onReadyPromise$)&&t.$onReadyPromise$.then((()=>ct(t.$lazyInstance$)));else{let s;if(t.$flags$|=1,n.hydrateClientSide&&(s=e.getAttribute(v),s)){if(n.shadowDom&&A&&1&r.$flags$){const t=n.mode?fe(e.shadowRoot,r,e.getAttribute("s-mode")):fe(e.shadowRoot,r);e.classList.remove(t+"-h",t+"-s")}((e,t,r,s)=>{const o=ee("hydrateClient",t),i=e.shadowRoot,a=[],l=n.shadowDom&&i?[]:null,c=s.$vnode$=re(t,null);x.$orgLocNodes$||de(S.body,x.$orgLocNodes$=new Map),e[v]=r,e.removeAttribute(v),ce(c,a,[],l,e,e,r),a.map((e=>{const r=e.$hostId$+"."+e.$nodeId$,n=x.$orgLocNodes$.get(r),s=e.$elm$;n&&A&&""===n["s-en"]&&n.parentNode.insertBefore(s,n.nextSibling),i||(s["s-hn"]=t,n&&(s["s-ol"]=n,s["s-ol"]["s-nr"]=s)),x.$orgLocNodes$.delete(r)})),n.shadowDom&&i&&l.map((e=>{e&&i.appendChild(e)})),o()})(e,r.$tagName$,s,t)}if(n.slotRelocation&&!s&&(n.hydrateServerSide||(n.slot||n.shadowDom)&&12&r.$flags$)&&dt(e),n.asyncLoading){let r=e;for(;r=r.parentNode||r.host;)if(n.hydrateClientSide&&1===r.nodeType&&r.hasAttribute("s-id")&&r["s-p"]||r["s-p"]){Ze(t,t.$ancestorComponent$=r);break}}n.prop&&!n.hydrateServerSide&&r.$members$&&Object.entries(r.$members$).map((([t,[r]])=>{if(31&r&&e.hasOwnProperty(t)){const r=e[t];delete e[t],e[t]=r}})),n.initializeNextTick?E((()=>lt(e,t,r))):lt(e,t,r)}s()}})(this),n.connectedCallback&&i&&i.call(this)},disconnectedCallback(){(async e=>{if(!(1&x.$flags$)){const t=l(e);n.hostListener&&t.$rmListeners$&&(t.$rmListeners$.map((e=>e())),t.$rmListeners$=void 0),n.lazyLoad?(null==t?void 0:t.$lazyInstance$)?ht(t.$lazyInstance$):(null==t?void 0:t.$onReadyPromise$)&&t.$onReadyPromise$.then((()=>ht(t.$lazyInstance$))):ht(e)}})(this),n.disconnectedCallback&&c&&c.call(this)},__attachShadow(){if(A)if(this.shadowRoot){if("open"!==this.shadowRoot.mode)throw new Error(`Unable to re-use existing shadow root for ${r.$tagName$}! Mode is set to ${this.shadowRoot.mode} but Stencil only supports open shadow roots.`)}else n.shadowDelegatesFocus?this.attachShadow({mode:"open",delegatesFocus:!!(16&r.$flags$)}):this.attachShadow({mode:"open"});else this.shadowRoot=this}}),e.is=r.$tagName$,at(e,r,3)},It=(e,t)=>t,Tt=(e,t,r,s)=>{n.hostListener&&r&&(n.hostListenerTargetParent&&(r=s?r.filter((([e])=>32&e)):r.filter((([e])=>!(32&e)))),r.map((([r,s,o])=>{const i=n.hostListenerTarget?Nt(e,r):e,a=Ct(t,o),l=Rt(r);x.ael(i,s,a,l),(t.$rmListeners$=t.$rmListeners$||[]).push((()=>x.rel(i,s,a,l)))})))},Ct=(e,t)=>r=>{var s;try{n.lazyLoad?256&e.$flags$?null==(s=e.$lazyInstance$)||s[t](r):(e.$queuedListeners$=e.$queuedListeners$||[]).push([t,r]):e.$hostElement$[t](r)}catch(e){d(e)}},Nt=(e,t)=>n.hostListenerTargetDocument&&4&t?S:n.hostListenerTargetWindow&&8&t?b:n.hostListenerTargetBody&&16&t?S.body:n.hostListenerTargetParent&&32&t&&e.parentElement?e.parentElement:e,Rt=e=>I?{passive:!!(1&e),capture:!!(2&e)}:!!(2&e)},88264:function(e,t,r){"use strict";function n(e){return"string"==typeof e?document.getElementById(e):e??null}function s(e,t){for(;;){const r=e.firstChild;if(!r)break;t.appendChild(r)}}r.d(t,{$:function(){return n},y:function(){return s}})},66110:function(e,t,r){"use strict";r.d(t,{AG:function(){return a},lk:function(){return s},vD:function(){return i},yS:function(){return o}});const n="randomUUID"in crypto;function s(){if(n)return crypto.randomUUID();const e=crypto.getRandomValues(new Uint16Array(8));e[3]=4095&e[3]|16384,e[4]=16383&e[4]|32768;const t=t=>e[t].toString(16).padStart(4,"0");return t(0)+t(1)+"-"+t(2)+"-"+t(3)+"-"+t(4)+"-"+t(5)+t(6)+t(7)}function o(){return`{${s().toUpperCase()}}`}function i(){return`{${s()}}`}function a(e){const t=e.toUpperCase();return"{"!==e[0]?`{${t}}`:t}},66275:function(e,t,r){"use strict";r.r(t),r.d(t,{default:function(){return H}});var n=r(7156),s=r(53804),o=r(25591),i=r(93040),a=r(39819),l=r(48996),c=r(40212),d=r(21609),h=r(34194),u=r(60539),p=r(90683),f=r(23502),m=(r(58941),r(40633),r(65953)),g=(r(64122),r(13798),r(31267)),v=r(28754),$=r(10362),y=r(90357),w=r(49146),_=r(93839),b=r(2581);const S="esri-identity-modal",k={base:S,info:`${S}__info`,notice:`${S}__notice`};let x=class extends g.A{constructor(e,t){super(e,t),this.container=document.createElement("div"),this.error=null,this.oAuthPrompt=!1,this.open=!1,this.signingIn=!1,this.server=null,this.resource=null,this._usernameInputNode=null,this._passwordInputNode=null,document.body.appendChild(this.container)}loadDependencies(){return(0,v.W)({button:()=>r.e(2974).then(r.bind(r,45399)),dialog:()=>r.e(2438).then(r.bind(r,15866)),input:()=>r.e(2498).then(r.bind(r,21512)),label:()=>r.e(3240).then(r.bind(r,31507)),notice:()=>r.e(2121).then(r.bind(r,80710))})}get title(){return this.commonMessages?.auth.signIn}render(){const{open:e,title:t,messages:r,signingIn:n,oAuthPrompt:s,server:o,resource:i,error:a}=this,{info:l,oAuthInfo:c,lblItem:d,invalidUser:h,noAuthService:u,lblUser:p,lblPwd:f,lblCancel:m,lblSigning:g,lblOk:v}=r;return(0,w.K)("div",{class:this.classes(k.base,(0,_.fJ)())},(0,w.K)("form",{bind:this,onsubmit:this._submit},(0,w.K)("calcite-dialog",{bind:this,heading:t,modal:!0,open:e,outsideCloseDisabled:!0,scale:"s",widthScale:"s",onCalciteDialogClose:this._cancel,onCalciteDialogOpen:this._focusUsernameInput},(0,w.K)("div",{class:k.info},(0,b.V)(s?c:l,{server:o&&/\.arcgis\.com/i.test(o)?"ArcGIS Online":o,resource:`(${i||d})`})),a?(0,w.K)("calcite-notice",{class:k.notice,icon:"exclamation-mark-triangle",kind:"danger",open:!0},(0,w.K)("div",{slot:"message"},a.details?.httpStatus?h:u)):null,s?null:[(0,w.K)("calcite-label",null,p,(0,w.K)("calcite-input",{afterCreate:e=>this._usernameInputNode=e,autocomplete:"off",bind:this,name:"username",required:!0,spellcheck:!1,type:"text",value:""})),(0,w.K)("calcite-label",null,f,(0,w.K)("calcite-input",{afterCreate:e=>this._passwordInputNode=e,bind:this,name:"password",required:!0,type:"password",value:""}))],(0,w.K)("calcite-button",{appearance:"outline",bind:this,onclick:this._cancel,slot:"footer-end",type:"button"},m),(0,w.K)("calcite-button",{loading:!!n,slot:"footer-end",type:"submit"},n?g:v))))}_focusUsernameInput(){return(0,$.Z6)((()=>this._usernameInputNode))}_cancel(){this._set("signingIn",!1),this.open=!1,this._usernameInputNode&&(this._usernameInputNode.value=""),this._passwordInputNode&&(this._passwordInputNode.value=""),this.emit("cancel")}_submit(e){e.preventDefault(),this._set("signingIn",!0);const t=this.oAuthPrompt?{}:{username:this._usernameInputNode?.value,password:this._passwordInputNode?.value};this.emit("submit",t)}};(0,s._)([(0,f.MZ)({readOnly:!0})],x.prototype,"container",void 0),(0,s._)([(0,f.MZ)(),(0,y.G)("esri/t9n/common")],x.prototype,"commonMessages",void 0),(0,s._)([(0,f.MZ)()],x.prototype,"error",void 0),(0,s._)([(0,f.MZ)(),(0,y.G)("esri/identity/t9n/identity")],x.prototype,"messages",void 0),(0,s._)([(0,f.MZ)()],x.prototype,"oAuthPrompt",void 0),(0,s._)([(0,f.MZ)()],x.prototype,"open",void 0),(0,s._)([(0,f.MZ)()],x.prototype,"signingIn",void 0),(0,s._)([(0,f.MZ)()],x.prototype,"server",void 0),(0,s._)([(0,f.MZ)({readOnly:!0})],x.prototype,"title",null),(0,s._)([(0,f.MZ)()],x.prototype,"resource",void 0),x=(0,s._)([(0,m.$)("esri.identity.IdentityModal")],x);const A=x,I="esriJSAPIOAuth";class T{constructor(e,t){this.oAuthInfo=null,this.storage=null,this.appId=null,this.codeVerifier=null,this.expires=null,this.refreshToken=null,this.ssl=null,this.stateUID=null,this.token=null,this.userId=null,this.oAuthInfo=e,this.storage=t,this._init()}isValid(){let e=!1;if(this.oAuthInfo&&this.userId&&(this.refreshToken||this.token))if(null==this.expires&&this.refreshToken)e=!0;else if(this.expires){const t=Date.now();this.expires>t&&(this.expires-t)/1e3>60*this.oAuthInfo.minTimeUntilExpiration&&(e=!0)}return e}save(){if(!this.storage)return!1;const e=this._load(),t=this.oAuthInfo;if(t?.authNamespace&&t.portalUrl){let r=e[t.authNamespace];r||(r=e[t.authNamespace]={}),this.appId||(this.appId=t.appId),r[t.portalUrl]={appId:this.appId,codeVerifier:this.codeVerifier,expires:this.expires,refreshToken:this.refreshToken,ssl:this.ssl,stateUID:this.stateUID,token:this.token,userId:this.userId};try{this.storage.setItem(I,JSON.stringify(e))}catch(e){return console.warn(e),!1}return!0}return!1}destroy(){const e=this._load(),t=this.oAuthInfo;if(t?.appId&&t?.portalUrl&&(null==this.expires||this.expires>Date.now())&&(this.refreshToken||this.token)){const e=t.portalUrl.replace(/^http:/i,"https:")+"/sharing/rest/oauth2/revokeToken",r=new FormData;if(r.append("f","json"),r.append("auth_token",this.refreshToken||this.token),r.append("client_id",t.appId),r.append("token_type_hint",this.refreshToken?"refresh_token":"access_token"),"function"==typeof navigator.sendBeacon)navigator.sendBeacon(e,r);else{const t=new XMLHttpRequest;t.open("POST",e),t.send(r)}}if(t?.authNamespace&&t.portalUrl&&this.storage){const r=e[t.authNamespace];if(r){delete r[t.portalUrl];try{this.storage.setItem(I,JSON.stringify(e))}catch(e){console.log(e)}}}t&&(t._oAuthCred=null,this.oAuthInfo=null)}_init(){const e=this._load(),t=this.oAuthInfo;if(t?.authNamespace&&t.portalUrl){let r=e[t.authNamespace];r&&(r=r[t.portalUrl],r&&(this.appId=r.appId,this.codeVerifier=r.codeVerifier,this.expires=r.expires,this.refreshToken=r.refreshToken,this.ssl=r.ssl,this.stateUID=r.stateUID,this.token=r.token,this.userId=r.userId))}}_load(){let e={};if(this.storage){const t=this.storage.getItem(I);if(t)try{e=JSON.parse(t)}catch(e){console.warn(e)}}return e}}T.prototype.declaredClass="esri.identity.OAuthCredential";var C,N=r(30905);let R=C=class extends N.oY{constructor(e){super(e),this._oAuthCred=null,this.appId=null,this.authNamespace="/",this.expiration=20160,this.flowType="auto",this.forceLogin=!1,this.forceUserId=!1,this.locale=null,this.minTimeUntilExpiration=30,this.popup=!1,this.popupCallbackUrl="oauth-callback.html",this.popupWindowFeatures="height=490,width=800,resizable,scrollbars,status",this.portalUrl="https://www.arcgis.com",this.preserveUrlHash=!1,this.userId=null}clone(){return C.fromJSON(this.toJSON())}};(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"appId",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"authNamespace",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"expiration",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"flowType",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"forceLogin",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"forceUserId",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"locale",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"minTimeUntilExpiration",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"popup",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"popupCallbackUrl",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"popupWindowFeatures",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"portalUrl",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"preserveUrlHash",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],R.prototype,"userId",void 0),R=C=(0,s._)([(0,m.$)("esri.identity.OAuthInfo")],R);const O=R;let U=class extends N.oY{constructor(e){super(e),this.adminTokenServiceUrl=null,this.currentVersion=null,this.hasPortal=null,this.hasServer=null,this.owningSystemUrl=null,this.owningTenant=null,this.server=null,this.shortLivedTokenValidity=null,this.tokenServiceUrl=null,this.webTierAuth=null}};(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"adminTokenServiceUrl",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"currentVersion",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"hasPortal",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"hasServer",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"owningSystemUrl",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"owningTenant",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"server",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"shortLivedTokenValidity",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"tokenServiceUrl",void 0),(0,s._)([(0,f.MZ)({json:{write:!0}})],U.prototype,"webTierAuth",void 0),U=(0,s._)([(0,m.$)("esri.identity.ServerInfo")],U);const L=U;var P=r(34020);const D={},j=e=>{const t=new p.s0(e.owningSystemUrl).host,r=new p.s0(e.server).host,n=/.+\.arcgis\.com$/i;return n.test(t)&&n.test(r)},E=(e,t)=>!!(j(e)&&t&&t.some((t=>t.test(e.server))));let M=null,z=null;try{M=window.localStorage,z=window.sessionStorage}catch{}class F extends l.A{constructor(){super(),this._portalConfig=globalThis.esriGeowConfig,this.serverInfos=[],this.oAuthInfos=[],this.credentials=[],this._soReqs=[],this._xoReqs=[],this._portals=[],this._defaultOAuthInfo=null,this._defaultTokenValidity=60,this.dialog=null,this.tokenValidity=null,this.normalizeWebTierAuth=!1,this._appOrigin="null"!==window.origin?window.origin:window.location.origin,this._appUrlObj=(0,p.An)(window.location.href),this._busy=null,this._rejectOnPersistedPageShow=!1,this._oAuthLocationParams=null,this._gwTokenUrl="/sharing/rest/generateToken",this._agsRest="/rest/services",this._agsPortal=/\/sharing(\/|$)/i,this._agsAdmin=/(https?:\/\/[^/]+\/[^/]+)\/admin\/?(\/.*)?$/i,this._adminSvcs=/\/rest\/admin\/services(\/|$)/i,this._gwDomains=[{regex:/^https?:\/\/www\.arcgis\.com/i,customBaseUrl:"maps.arcgis.com",tokenServiceUrl:"https://www.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:dev|[a-z\d-]+\.mapsdev)\.arcgis\.com/i,customBaseUrl:"mapsdev.arcgis.com",tokenServiceUrl:"https://dev.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:devext|[a-z\d-]+\.mapsdevext)\.arcgis\.com/i,customBaseUrl:"mapsdevext.arcgis.com",tokenServiceUrl:"https://devext.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:qaext|[a-z\d-]+\.mapsqa)\.arcgis\.com/i,customBaseUrl:"mapsqa.arcgis.com",tokenServiceUrl:"https://qaext.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/[a-z\d-]+\.maps\.arcgis\.com/i,customBaseUrl:"maps.arcgis.com",tokenServiceUrl:"https://www.arcgis.com/sharing/rest/generateToken"}],this._legacyFed=[],this._regexSDirUrl=/http.+\/rest\/services\/?/gi,this._regexServerType=/(\/(FeatureServer|GPServer|GeoDataServer|GeocodeServer|GeoenrichmentServer|GeometryServer|GlobeServer|ImageServer|KnowledgeGraphServer|MapServer|MissionServer|MobileServer|NAServer|NetworkDiagramServer|OGCFeatureServer|ParcelFabricServer|RelationalCatalogServer|SceneServer|StreamServer|UtilityNetworkServer|ValidationServer|VectorTileServer|VersionManagementServer|VideoServer)).*/gi,this._gwUser=/http.+\/users\/([^/]+).*/i,this._gwItem=/http.+\/items\/([^/]+).*/i,this._gwGroup=/http.+\/groups\/([^/]+).*/i,this._rePortalTokenSvc=/\/sharing(\/rest)?\/generatetoken/i,this._createDefaultOAuthInfo=!0,this._hasTestedIfAppIsOnPortal=!1,this._getPlatformSelfError=null,this._getOAuthLocationParams(),window.addEventListener("pageshow",(e=>{this._pageShowHandler(e)}))}registerServers(e){const t=this.serverInfos;t?(e=e.filter((e=>!this.findServerInfo(e.server))),this.serverInfos=t.concat(e)):this.serverInfos=e,e.forEach((e=>{e.owningSystemUrl&&this._portals.push(e.owningSystemUrl),e.hasPortal&&this._portals.push(e.server)}))}registerOAuthInfos(e){const t=this.oAuthInfos;if(t){for(const r of e){const e=this.findOAuthInfo(r.portalUrl);e&&t.splice(t.indexOf(e),1)}this.oAuthInfos=t.concat(e)}else this.oAuthInfos=e}registerToken(e){e={...e};const t=this._sanitizeUrl(e.server),r=this._isServerRsrc(t);let n,s=this.findServerInfo(t),o=!0;s||(s=new L,s.server=this._getServerInstanceRoot(t),r?s.hasServer=!0:(s.tokenServiceUrl=this._getTokenSvcUrl(t),s.hasPortal=!0),this.registerServers([s])),n=this._findCredential(t),n?(delete e.server,Object.assign(n,e),o=!1):(n=new q({userId:e.userId,server:s.server??void 0,token:e.token,expires:e.expires,ssl:e.ssl,scope:r?"server":"portal"}),n.resources=[t],this.credentials.push(n)),n.emitTokenChange(!1),o||n.refreshServerTokens()}toJSON(){return(0,d.oy)({serverInfos:this.serverInfos.map((e=>e.toJSON())),oAuthInfos:this.oAuthInfos.map((e=>e.toJSON())),credentials:this.credentials.map((e=>e.toJSON()))})}initialize(e){if(!e)return;"string"==typeof e&&(e=JSON.parse(e));const t=e.serverInfos,r=e.oAuthInfos,n=e.credentials;if(t){const e=[];t.forEach((t=>{t.server&&t.tokenServiceUrl&&e.push(t.declaredClass?t:new L(t))})),e.length&&this.registerServers(e)}if(r){const e=[];r.forEach((t=>{t.appId&&e.push(t.declaredClass?t:new O(t))})),e.length&&this.registerOAuthInfos(e)}n&&n.forEach((e=>{e.server&&e.token&&e.expires&&e.expires>Date.now()&&((e=e.declaredClass?e:new q(e)).emitTokenChange(),this.credentials.push(e))}))}findServerInfo(e){let t;e=this._sanitizeUrl(e);for(const r of this.serverInfos)if(this._hasSameServerInstance(r.server,e)){t=r;break}return t}findOAuthInfo(e){let t;e=this._sanitizeUrl(e);for(const r of this.oAuthInfos)if(this._hasSameServerInstance(r.portalUrl,e)){t=r;break}return t}findCredential(e,t){if(!e)return;let r;e=this._sanitizeUrl(e);const n=this._isServerRsrc(e)?"server":"portal";if(t){for(const s of this.credentials)if(this._hasSameServerInstance(s.server,e)&&t===s.userId&&s.scope===n){r=s;break}}else for(const t of this.credentials)if(this._hasSameServerInstance(t.server,e)&&-1!==this._getIdenticalSvcIdx(e,t)&&t.scope===n){r=t;break}return r}getCredential(e,t){let r,n,s=!0;t&&(r=!!t.token,n=t.error,s=!1!==t.prompt),t={...t},e=this._sanitizeUrl(e);const o=new AbortController,i=(0,u.Tw)();if(t.signal&&(0,u.u7)(t.signal,(()=>{o.abort()})),(0,u.u7)(o,(()=>{i.reject(new a.A("identity-manager:user-aborted","ABORTED"))})),(0,u.G4)(o))return i.promise;t.signal=o.signal;const l=this._isAdminResource(e),c=r?this.findCredential(e):null;let d;if(c&&n&&n.details&&498===n.details.httpStatus)c.destroy();else if(c)return d=new a.A("identity-manager:not-authorized","You are currently signed in as: '"+c.userId+"'. You do not have access to this resource: "+e,{error:n}),i.reject(d),i.promise;const h=this._findCredential(e,t);if(h)return i.resolve(h),i.promise;let f=this.findServerInfo(e);if(f)!f.hasPortal&&f.server&&f.owningSystemUrl&&this._hasSameServerInstance(f.server,f.owningSystemUrl)&&(f.hasPortal=!0),!f.hasServer&&this._isServerRsrc(e)&&(f._restInfoPms=this._getTokenSvcUrl(e),f.hasServer=!0);else{const t=this._getTokenSvcUrl(e);if(!t)return d=new a.A("identity-manager:unknown-resource","Unknown resource - could not find token service endpoint."),i.reject(d),i.promise;f=new L,f.server=this._getServerInstanceRoot(e),"string"==typeof t?(f.tokenServiceUrl=t,f.hasPortal=!0):(f._restInfoPms=t,f.hasServer=!0),this.registerServers([f])}return f.hasPortal&&void 0===f._selfReq&&(s||(0,p.FX)(f.tokenServiceUrl,this._appOrigin)||this._gwDomains.some((e=>e.tokenServiceUrl===f.tokenServiceUrl)))&&(f._selfReq={owningTenant:t?.owningTenant,selfDfd:this._getPortalSelf(f.tokenServiceUrl.replace(this._rePortalTokenSvc,"/sharing/rest/portals/self"),e)}),this._enqueue(e,f,t,i,l)}getResourceName(e){return this._isRESTService(e)?e.replace(this._regexSDirUrl,"").replace(this._regexServerType,"")||"":this._gwUser.test(e)&&e.replace(this._gwUser,"$1")||this._gwItem.test(e)&&e.replace(this._gwItem,"$1")||this._gwGroup.test(e)&&e.replace(this._gwGroup,"$1")||""}generateToken(e,t,r){const n=this._rePortalTokenSvc.test(e.tokenServiceUrl),s=new p.s0(this._appOrigin),o=e.shortLivedTokenValidity;let l,c,d,h,u,f,m,g;t&&(g=this.tokenValidity||o||this._defaultTokenValidity,g>o&&o>0&&(g=o)),r&&(l=r.isAdmin,c=r.serverUrl,d=r.token,f=r.signal,m=r.ssl,e.customParameters=r.customParameters),l?h=e.adminTokenServiceUrl:(h=e.tokenServiceUrl,u=new p.s0(h.toLowerCase()),e.webTierAuth&&r?.serverUrl&&!m&&"http"===s.scheme&&((0,p.FX)(s.uri,h,!0)||"https"===u.scheme&&s.host===u.host&&"7080"===s.port&&"7443"===u.port)&&(h=h.replace(/^https:/i,"http:").replace(/:7443/i,":7080")));const v={query:{request:"getToken",username:t?.username,password:t?.password,serverUrl:c,token:d,expiration:g,referer:l||n?this._appOrigin:null,client:l?"referer":null,f:"json",...e.customParameters},method:"post",authMode:"anonymous",useProxy:this._useProxy(e,r),signal:f,...r?.ioArgs};return n||(v.withCredentials=!1),(0,i.A)(h,v).then((r=>{const n=r.data;if(!n?.token)return new a.A("identity-manager:authentication-failed","Unable to generate token");const s=e.server;return D[s]||(D[s]={}),t&&(D[s][t.username]=t.password),n.validity=g,n}))}isBusy(){return!!this._busy}async checkSignInStatus(e){return(await this.checkAppAccess(e,"")).credential}checkAppAccess(e,t,r){let n=!1;return this.getCredential(e,{prompt:!1}).then((s=>{let o;const l={f:"json"};if("portal"===s.scope)if(t&&(this._doPortalSignIn(e)||r?.force))o=s.server+"/sharing/rest/oauth2/validateAppAccess",l.client_id=t;else{if(!s.token)return{credential:s};o=s.server+"/sharing/rest"}else{if(!s.token)return{credential:s};o=s.server+"/rest/services"}return s.token&&(l.token=s.token),(0,i.A)(o,{query:l,authMode:"anonymous"}).then((e=>{if(!1===e.data.valid)throw new a.A("identity-manager:not-authorized",`You are currently signed in as: '${s.userId}'.`,e.data);return n=!!e.data.viewOnlyUserTypeApp,{credential:s}})).catch((e=>{if("identity-manager:not-authorized"===e.name)throw e;const t=e.details?.httpStatus;if(498===t)throw s.destroy(),new a.A("identity-manager:not-authenticated","User is not signed in.");if(400===t)throw new a.A("identity-manager:invalid-request");return{credential:s}}))})).then((e=>({credential:e.credential,viewOnly:n})))}setOAuthResponseHash(e){e&&("#"===e.charAt(0)&&(e=e.slice(1)),this._processOAuthPopupParams((0,p.zf)(e)))}setOAuthRedirectionHandler(e){this._oAuthRedirectFunc=e}setProtocolErrorHandler(e){this._protocolFunc=e}signIn(e,t,r={}){const n=(0,u.Tw)(),s=()=>{l?.remove(),c?.remove(),this.dialog?.destroy(),this.dialog=l=c=null},o=()=>{s(),this._oAuthDfd=null,n.reject(new a.A("identity-manager:user-aborted","ABORTED"))};r.signal&&(0,u.u7)(r.signal,(()=>{o()}));const i=new A({open:!0,resource:this.getResourceName(e),server:t.server});this.dialog=i,this.emit("dialog-create");let l=i.on("cancel",o),c=i.on("submit",(e=>{this.generateToken(t,e,{isAdmin:r.isAdmin,signal:r.signal}).then((o=>{s();const i=new q({userId:e.username,server:t.server??void 0,token:o.token,expires:null!=o.expires?Number(o.expires):null,ssl:!!o.ssl,isAdmin:r.isAdmin,validity:o.validity});n.resolve(i)})).catch((e=>{i.error=e,i.signingIn=!1}))}));return n.promise}oAuthSignIn(e,t,r,n){this._oAuthDfd=(0,u.Tw)();const s=this._oAuthDfd;let o;n?.signal&&(0,u.u7)(n.signal,(()=>{const e=this._oAuthDfd&&this._oAuthDfd.oAuthWin_;e&&!e.closed?e.close():this.dialog&&d()})),s.resUrl_=e,s.sinfo_=t,s.oinfo_=r;const i=r._oAuthCred;if(i.storage&&("authorization-code"===r.flowType||"auto"===r.flowType&&t.currentVersion>=8.4)){let e=crypto.getRandomValues(new Uint8Array(32));o=(0,p.$1)(e),i.codeVerifier=o,e=crypto.getRandomValues(new Uint8Array(32)),i.stateUID=(0,p.$1)(e),i.save()||(i.codeVerifier=o=null)}else i.codeVerifier=null;let l,c;this._getCodeChallenge(o).then((s=>{const o=!n||!1!==n.oAuthPopupConfirmation;if(!r.popup||!o)return void this._doOAuthSignIn(e,t,r,s);const i=new A({oAuthPrompt:!0,server:t.server,open:!0});this.dialog=i,this.emit("dialog-create"),l=i.on("cancel",d),c=i.on("submit",(()=>{h(),this._doOAuthSignIn(e,t,r,s)}))}));const d=()=>{h(),this._oAuthDfd=null,s.reject(new a.A("identity-manager:user-aborted","ABORTED"))},h=()=>{l?.remove(),c?.remove(),this.dialog?.destroy(),this.dialog=null};return s.promise}destroyCredentials(){this.credentials&&this.credentials.slice().forEach((e=>{e.destroy()})),this.emit("credentials-destroy")}enablePostMessageAuth(e="https://www.arcgis.com/sharing/rest"){this._postMessageAuthHandle&&this._postMessageAuthHandle.remove(),this._postMessageAuthHandle=(0,c.on)(window,"message",(t=>{if((t.origin===this._appOrigin||t.origin.endsWith(".arcgis.com"))&&"arcgis:auth:requestCredential"===t.data?.type){const r=t.source;this.getCredential(e).then((e=>{r.postMessage({type:"arcgis:auth:credential",credential:{expires:e.expires,server:e.server,ssl:e.ssl,token:e.token,userId:e.userId}},t.origin)})).catch((e=>{r.postMessage({type:"arcgis:auth:error",error:{name:e.name,message:e.message}},t.origin)}))}}))}disablePostMessageAuth(){this._postMessageAuthHandle&&(this._postMessageAuthHandle.remove(),this._postMessageAuthHandle=null)}_getOAuthLocationParams(){let e=window.location.hash;if(e){"#"===e.charAt(0)&&(e=e.slice(1));const t=(0,p.zf)(e);let r=!1;if(t.access_token&&t.expires_in&&t.state&&t.hasOwnProperty("username"))try{t.state=JSON.parse(t.state),t.state.portalUrl&&(this._oAuthLocationParams=t,r=!0)}catch{}else if(t.error&&t.error_description&&(console.log("IdentityManager OAuth Error: ",t.error," - ",t.error_description),"access_denied"===t.error&&(r=!0,t.state)))try{t.state=JSON.parse(t.state)}catch{}r&&(window.location.hash=t.state?.hash||"")}let t=window.location.search;if(t){"?"===t.charAt(0)&&(t=t.slice(1));const e=(0,p.zf)(t);let r=!1;if(e.code&&e.state)try{e.state=JSON.parse(e.state),e.state.portalUrl&&e.state.uid&&(this._oAuthLocationParams=e,r=!0)}catch{}else if(e.error&&e.error_description&&(console.log("IdentityManager OAuth Error: ",e.error," - ",e.error_description),"access_denied"===e.error&&(r=!0,e.state)))try{e.state=JSON.parse(e.state)}catch{}if(r){const t={...e};["code","error","error_description","message_code","persist","state"].forEach((e=>{delete t[e]}));const r=(0,p.x0)(t),n=window.location.pathname+(r?`?${r}`:"")+(e.state?.hash||"");window.history.replaceState(window.history.state,"",n)}}}_getOAuthToken(e,t,r,n,s){return e=e.replace(/^http:/i,"https:"),(0,i.A)(`${e}/sharing/rest/oauth2/token`,{authMode:"anonymous",method:"post",query:n&&s?{grant_type:"authorization_code",code:t,redirect_uri:n,client_id:r,code_verifier:s}:{grant_type:"refresh_token",refresh_token:t,client_id:r}}).then((e=>e.data))}async _getCodeChallenge(e){if(e&&globalThis.isSecureContext){const t=(new TextEncoder).encode(e),r=await crypto.subtle.digest("SHA-256",t);return(0,p.$1)(new Uint8Array(r))}return null}_pageShowHandler(e){if(e.persisted&&this.isBusy()&&this._rejectOnPersistedPageShow){const e=new a.A("identity-manager:user-aborted","ABORTED");this._errbackFunc(e)}}_findCredential(e,t){let r,n,s,o,i=-1;const a=t?.token,l=t?.resource,c=this._isServerRsrc(e)?"server":"portal",d=this.credentials.filter((t=>this._hasSameServerInstance(t.server,e)&&t.scope===c));if(e=l||e,d.length)if(1===d.length){if(r=d[0],s=this.findServerInfo(r.server),n=s?.owningSystemUrl,o=n?this.findCredential(n,r.userId):void 0,i=this._getIdenticalSvcIdx(e,r),!a)return-1===i&&r.resources.push(e),this._addResource(e,o),r;-1!==i&&(r.resources.splice(i,1),this._removeResource(e,o))}else{let t,r;if(d.some((a=>(r=this._getIdenticalSvcIdx(e,a),-1!==r&&(t=a,s=this.findServerInfo(t.server),n=s?.owningSystemUrl,o=n?this.findCredential(n,t.userId):void 0,i=r,!0)))),a)t&&(t.resources.splice(i,1),this._removeResource(e,o));else if(t)return this._addResource(e,o),t}}_findOAuthInfo(e){let t=this.findOAuthInfo(e);if(!t)for(const r of this.oAuthInfos)if(this._isIdProvider(r.portalUrl,e)){t=r;break}return t}_addResource(e,t){t&&-1===this._getIdenticalSvcIdx(e,t)&&t.resources.push(e)}_removeResource(e,t){let r=-1;t&&(r=this._getIdenticalSvcIdx(e,t),r>-1&&t.resources.splice(r,1))}_useProxy(e,t){return t?.isAdmin&&!(0,p.FX)(e.adminTokenServiceUrl,this._appOrigin)||!this._isPortalDomain(e.tokenServiceUrl)&&"10.1"===String(e.currentVersion)&&!(0,p.FX)(e.tokenServiceUrl,this._appOrigin)}_getOrigin(e){const t=new p.s0(e);return t.scheme+"://"+t.host+(null!=t.port?":"+t.port:"")}_getServerInstanceRoot(e){const t=e.toLowerCase();let r=t.indexOf(this._agsRest);return-1===r&&this._isAdminResource(e)&&(r=this._agsAdmin.test(e)?e.replace(this._agsAdmin,"$1").length:e.search(this._adminSvcs)),-1!==r||(0,P.$E)(t)||(r=t.indexOf("/sharing")),-1===r&&t.endsWith("/")&&(r=t.length-1),r>-1?e.slice(0,r):e}_hasSameServerInstance(e,t){return e.endsWith("/")&&(e=e.slice(0,-1)),e=e.toLowerCase(),t=this._getServerInstanceRoot(t).toLowerCase(),e=(0,P.qG)(e),t=(0,P.qG)(t),(e=e.slice(Math.max(0,e.indexOf(":"))))===t.slice(Math.max(0,t.indexOf(":")))}_sanitizeUrl(e){const t=(o.default.request.proxyUrl||"").toLowerCase(),r=t?e.toLowerCase().indexOf(t+"?"):-1;return-1!==r&&(e=e.slice(r+t.length+1)),e=(0,p.S8)(e),(0,p.An)(e).path}_isRESTService(e){return e.includes(this._agsRest)}_isAdminResource(e){return this._agsAdmin.test(e)||this._adminSvcs.test(e)}_isServerRsrc(e){return this._isRESTService(e)||this._isAdminResource(e)}_isIdenticalService(e,t){let r=!1;if(this._isRESTService(e)&&this._isRESTService(t)){const n=this._getSuffix(e).toLowerCase(),s=this._getSuffix(t).toLowerCase();if(r=n===s,!r){const e=/(.*)\/(MapServer|FeatureServer|UtilityNetworkServer).*/gi;r=n.replaceAll(e,"$1")===s.replaceAll(e,"$1")}}else this._isAdminResource(e)&&this._isAdminResource(t)?r=!0:this._isServerRsrc(e)||this._isServerRsrc(t)||!this._isPortalDomain(e)||(r=!0);return r}_isPortalDomain(e){const t=new p.s0(e.toLowerCase()),r=this._portalConfig;let n=this._gwDomains.some((e=>e.regex.test(t.uri)));return!n&&r&&(n=this._hasSameServerInstance(this._getServerInstanceRoot(r.restBaseUrl),t.uri)),n||o.default.portalUrl&&(n=(0,p.FX)(t,o.default.portalUrl,!0)),n||(n=this._portals.some((e=>this._hasSameServerInstance(e,t.uri)))),n=n||this._agsPortal.test(t.path),n}_isIdProvider(e,t){let r=-1,n=-1;this._gwDomains.forEach(((s,o)=>{-1===r&&s.regex.test(e)&&(r=o),-1===n&&s.regex.test(t)&&(n=o)}));let s=!1;if(r>-1&&n>-1&&(0===r||4===r?0!==n&&4!==n||(s=!0):1===r?1!==n&&2!==n||(s=!0):2===r?2===n&&(s=!0):3===r&&3===n&&(s=!0)),!s){const r=this.findServerInfo(t),n=r?.owningSystemUrl;n&&j(r)&&this._isPortalDomain(n)&&this._isIdProvider(e,n)&&(s=!0)}return s}_getIdenticalSvcIdx(e,t){let r=-1;for(let n=0;n<t.resources.length;n++){const s=t.resources[n];if(this._isIdenticalService(e,s)){r=n;break}}return r}_getSuffix(e){return e.replace(this._regexSDirUrl,"").replace(this._regexServerType,"$1")}_getTokenSvcUrl(e){let t,r,n;if(this._isRESTService(e)||this._isAdminResource(e)){const n=this._getServerInstanceRoot(e);return t=n+"/admin/generateToken",r=(0,i.A)(e=n+"/rest/info",{query:{f:"json"}}).then((e=>e.data)),{adminUrl:t,promise:r}}if(this._isPortalDomain(e)){let t="";if(this._gwDomains.some((r=>(r.regex.test(e)&&(t=r.tokenServiceUrl),!!t))),t||this._portals.some((r=>(this._hasSameServerInstance(r,e)&&(t=r+this._gwTokenUrl),!!t))),t||(n=e.toLowerCase().indexOf("/sharing"),-1!==n&&(t=e.slice(0,n)+this._gwTokenUrl)),t||(t=this._getOrigin(e)+this._gwTokenUrl),t){const r=new p.s0(e).port;/^http:\/\//i.test(e)&&"7080"===r&&(t=t.replace(/:7080/i,":7443")),t=t.replace(/http:/i,"https:")}return t}}_processOAuthResponseParams(e,t,r){const n=t._oAuthCred;if(e.code){const s=n.codeVerifier;return n.codeVerifier=null,n.stateUID=null,n.save(),this._getOAuthToken(r.server,e.code,t.appId,this._getRedirectURI(t,!0),s).then((s=>{const o=new q({userId:s.username,server:r.server??void 0,token:s.access_token,expires:Date.now()+1e3*s.expires_in,ssl:s.ssl,oAuthState:e.state,_oAuthCred:n});return t.userId=o.userId,n.storage=s.persist?M:z,n.refreshToken=s.refresh_token,n.token=null,n.expires=s.refresh_token_expires_in?Date.now()+1e3*s.refresh_token_expires_in:null,n.userId=o.userId,n.ssl=o.ssl,n.save(),o}))}const s=new q({userId:e.username,server:r.server??void 0,token:e.access_token,expires:Date.now()+1e3*Number(e.expires_in),ssl:"true"===e.ssl,oAuthState:e.state,_oAuthCred:n});return t.userId=s.userId,n.storage=e.persist?M:z,n.refreshToken=null,n.token=s.token,n.expires=s.expires,n.userId=s.userId,n.ssl=s.ssl,n.save(),Promise.resolve(s)}_processOAuthPopupParams(e){const t=this._oAuthDfd;if(this._oAuthDfd=null,t)if(clearInterval(this._oAuthIntervalId),this._oAuthOnPopupHandle?.remove(),e.error){const r="access_denied"===e.error,n=new a.A(r?"identity-manager:user-aborted":"identity-manager:authentication-failed",r?"ABORTED":"OAuth: "+e.error+" - "+e.error_description);t.reject(n)}else this._processOAuthResponseParams(e,t.oinfo_,t.sinfo_).then((e=>{t.resolve(e)})).catch((e=>{t.reject(e)}))}_setOAuthResponseQueryString(e){e&&("?"===e.charAt(0)&&(e=e.slice(1)),this._processOAuthPopupParams((0,p.zf)(e)))}async _exchangeToken(e,t,r){return(await(0,i.A)(`${e}/sharing/rest/oauth2/exchangeToken`,{authMode:"anonymous",method:"post",query:{f:"json",client_id:t,token:r}})).data.token}async _getPlatformSelf(e,t){if(this._getPlatformSelfError&&Date.now()-this._getPlatformSelfError[1]<1e3)throw this._getPlatformSelfError[0];e=e.replace(/^http:/i,"https:");try{const r=await(0,i.A)(`${e}/sharing/rest/oauth2/platformSelf`,{authMode:"anonymous",headers:{"X-Esri-Auth-Client-Id":t,"X-Esri-Auth-Redirect-Uri":window.location.href.replace(/#.*$/,"")},method:"post",query:{f:"json",expiration:30},withCredentials:!0});return this._getPlatformSelfError=null,r.data}catch(e){throw"OAUTH_0066"===e.details?.messageCode&&(this._getPlatformSelfError=[e,Date.now()]),e}}_getPortalSelf(e,t){let r;return this._gwDomains.some((t=>(t.regex.test(e)&&(r=t.customBaseUrl),!!r))),r?Promise.resolve({allSSL:!0,currentVersion:"8.4",customBaseUrl:r,portalMode:"multitenant",supportsOAuth:!0}):(this._appOrigin.startsWith("https:")?e=e.replace(/^http:/i,"https:").replace(/:7080/i,":7443"):/^http:/i.test(t)&&(e=e.replace(/^https:/i,"http:").replace(/:7443/i,":7080")),(0,i.A)(e,{query:{f:"json"},authMode:"anonymous",withCredentials:!0}).then((e=>e.data)))}_doPortalSignIn(e){const t=this._portalConfig,r=window.location.href,n=this.findServerInfo(e);return!(!t&&!this._isPortalDomain(r)||!(n?n.hasPortal||n.owningSystemUrl&&this._isPortalDomain(n.owningSystemUrl):this._isPortalDomain(e))||!(this._isIdProvider(r,e)||t&&(this._hasSameServerInstance(this._getServerInstanceRoot(t.restBaseUrl),e)||this._isIdProvider(t.restBaseUrl,e))||(0,p.FX)(r,e,!0)))}_checkProtocol(e,t,r,n){let s=!0;const o=n?t.adminTokenServiceUrl:t.tokenServiceUrl;return o.trim().toLowerCase().startsWith("https:")&&!this._appOrigin.startsWith("https:")&&(0,p.zs)(o)&&(s=!!this._protocolFunc&&!!this._protocolFunc({resourceUrl:e,serverInfo:t}),!s)&&r(new a.A("identity-manager:aborted","Aborted the Sign-In process to avoid sending password over insecure connection.")),s}_enqueue(e,t,r,n,s,o){return n||(n=(0,u.Tw)()),n.resUrl_=e,n.sinfo_=t,n.options_=r,n.admin_=s,n.refresh_=o,this._busy?this._hasSameServerInstance(this._getServerInstanceRoot(e),this._busy.resUrl_)?(this._oAuthDfd&&this._oAuthDfd.oAuthWin_&&this._oAuthDfd.oAuthWin_.focus(),this._soReqs.push(n)):this._xoReqs.push(n):this._doSignIn(n),n.promise}_doSignIn(e){this._busy=e,this._rejectOnPersistedPageShow=!1;const t=t=>{const r=e.options_?.resource,n=e.resUrl_,s=e.refresh_;let o=!1;this.credentials.includes(t)||(s&&this.credentials.includes(s)?(s.userId=t.userId,s.token=t.token,s.expires=t.expires,s.validity=t.validity,s.ssl=t.ssl,s.creationTime=t.creationTime,o=!0,t=s):this.credentials.push(t)),t.resources||(t.resources=[]),t.resources.includes(r||n)||t.resources.push(r||n),t.scope=this._isServerRsrc(n)?"server":"portal",t.emitTokenChange();const i=this._soReqs,a={};this._soReqs=[],i.forEach((e=>{if(!this._isIdenticalService(n,e.resUrl_)){const r=this._getSuffix(e.resUrl_);a[r]||(a[r]=!0,t.resources.push(e.resUrl_))}})),e.resolve(t),i.forEach((e=>{this._hasSameServerInstance(this._getServerInstanceRoot(n),e.resUrl_)?e.resolve(t):this._soReqs.push(e)})),this._busy=e.resUrl_=e.sinfo_=e.refresh_=null,o||this.emit("credential-create",{credential:t}),this._soReqs.length?this._doSignIn(this._soReqs.shift()):this._xoReqs.length&&this._doSignIn(this._xoReqs.shift())},r=t=>{e.reject(t),this._busy=e.resUrl_=e.sinfo_=e.refresh_=null,this._soReqs.length?this._doSignIn(this._soReqs.shift()):this._xoReqs.length&&this._doSignIn(this._xoReqs.shift())},n=(s,o,i,l)=>{const d=e.sinfo_,h=!e.options_||!1!==e.options_.prompt,f=d.hasPortal&&this._findOAuthInfo(e.resUrl_);let m,g;if(s)t(new q({userId:s,server:d.server??void 0,token:i??void 0,expires:null!=l?Number(l):null,ssl:!!o}));else if(window!==window.parent&&this._appUrlObj.query?.["arcgis-auth-origin"]&&this._appUrlObj.query?.["arcgis-auth-portal"]&&this._hasSameServerInstance(this._getServerInstanceRoot(this._appUrlObj.query["arcgis-auth-portal"]),e.resUrl_)){window.parent.postMessage({type:"arcgis:auth:requestCredential"},this._appUrlObj.query["arcgis-auth-origin"]);const n=(0,c.on)(window,"message",(e=>{e.source===window.parent&&e.data&&("arcgis:auth:credential"===e.data.type?(n.remove(),e.data.credential.expires<Date.now()?r(new a.A("identity-manager:credential-request-failed","Parent application's token has expired.")):t(new q(e.data.credential))):"arcgis:auth:error"===e.data.type&&(n.remove(),"tokenExpiredError"===e.data.error.name?r(new a.A("identity-manager:credential-request-failed","Parent application's token has expired.")):r(a.A.fromJSON(e.data.error))))}));(0,u.u7)(e.options_?.signal,(()=>{n.remove()}))}else if(f){let s=f._oAuthCred;if(!s){const e=new T(f,M),t=new T(f,z);e.isValid()&&t.isValid()?e.expires>t.expires?(s=e,t.destroy()):(s=t,e.destroy()):s=e.isValid()?e:t,f._oAuthCred=s}if(s.isValid()){m=new q({userId:s.userId??void 0,server:d.server??void 0,token:s.token??void 0,expires:s.expires,ssl:s.ssl??void 0,_oAuthCred:s});const o=f.appId!==s.appId&&this._doPortalSignIn(e.resUrl_);o||s.refreshToken?(e._pendingDfd=s.refreshToken?this._getOAuthToken(d.server,s.refreshToken,s.appId).then((e=>(m.expires=Date.now()+1e3*e.expires_in,m.token=e.access_token,m))):Promise.resolve(m),e._pendingDfd.then((e=>o?this._exchangeToken(e.server,f.appId,e.token).then((t=>(e.token=t,e))).catch((()=>e)):e)).then((e=>{t(e)})).catch((e=>{const t=e.details?.httpStatus;t>0&&404!==t?(s.destroy(),n()):r(e)}))):t(m)}else if(this._oAuthLocationParams&&this._hasSameServerInstance(f.portalUrl,this._oAuthLocationParams.state.portalUrl)&&(this._oAuthLocationParams.access_token||this._oAuthLocationParams.code&&this._oAuthLocationParams.state.uid===s.stateUID&&s.codeVerifier)){const n=this._oAuthLocationParams;this._oAuthLocationParams=null,e._pendingDfd=this._processOAuthResponseParams(n,f,d).then((e=>{t(e)})).catch(r)}else{const n=()=>{h?e._pendingDfd=this.oAuthSignIn(e.resUrl_,d,f,e.options_).then(t,r):(g=new a.A("identity-manager:not-authenticated","User is not signed in."),r(g))};this._doPortalSignIn(e.resUrl_)?e._pendingDfd=this._getPlatformSelf(d.server,f.appId).then((e=>{(0,p.FX)(e.portalUrl,this._appOrigin,!0)?(m=new q({userId:e.username,server:d.server??void 0,expires:Date.now()+1e3*e.expires_in,token:e.token}),t(m)):n()})).catch(n):n()}}else if(h){if(this._checkProtocol(e.resUrl_,d,r,e.admin_)){let n=e.options_;e.admin_&&(n=n||{},n.isAdmin=!0),e._pendingDfd=this.signIn(e.resUrl_,d,n).then(t,r)}}else g=new a.A("identity-manager:not-authenticated","User is not signed in."),r(g)},s=()=>{const n=e.sinfo_,s=n.owningSystemUrl,o=e.options_;let i,a,l,c;if(o&&(i=o.token,a=o.error,l=o.prompt),c=this._findCredential(s,{token:i,resource:e.resUrl_}),!c)for(const e of this.credentials)if(this._isIdProvider(s,e.server)){c=e;break}if(c){const s=this.findCredential(e.resUrl_,c.userId);if(s)t(s);else if(E(n,this._legacyFed)){const e=c.toJSON();e.server=n.server,e.resources=null,t(new q(e))}else(e._pendingDfd=this.generateToken(this.findServerInfo(c.server),null,{serverUrl:e.resUrl_,token:c.token,signal:e.options_.signal,ssl:c.ssl})).then((r=>{t(new q({userId:c?.userId,server:n.server??void 0,token:r.token,expires:null!=r.expires?Number(r.expires):null,ssl:!!r.ssl,isAdmin:e.admin_,validity:r.validity}))}),r)}else this._busy=null,i&&(e.options_.token=null),(e._pendingDfd=this.getCredential(s.replace(/\/?$/,"/sharing"),{resource:e.resUrl_,owningTenant:n.owningTenant,signal:e.options_.signal,token:i,error:a,prompt:l})).then((()=>{this._enqueue(e.resUrl_,e.sinfo_,e.options_,e,e.admin_)}),(t=>{e.resUrl_=e.sinfo_=e.refresh_=null,e.reject(t)}))};this._errbackFunc=r;const o=e.sinfo_.owningSystemUrl,i=this._isServerRsrc(e.resUrl_),l=e.sinfo_._restInfoPms;l?l.promise.then((t=>{const r=e.sinfo_;if(r._restInfoPms){r.adminTokenServiceUrl=r._restInfoPms.adminUrl,r._restInfoPms=null,r.tokenServiceUrl=((0,h.wc)("authInfo.tokenServicesUrl",t)||(0,h.wc)("authInfo.tokenServiceUrl",t)||(0,h.wc)("tokenServiceUrl",t))??null,r.shortLivedTokenValidity=(0,h.wc)("authInfo.shortLivedTokenValidity",t)??null,r.currentVersion=t.currentVersion,r.owningTenant=t.owningTenant;const e=r.owningSystemUrl=t.owningSystemUrl;e&&this._portals.push(e)}i&&r.owningSystemUrl?s():n()}),(()=>{e.sinfo_._restInfoPms=null;const t=new a.A("identity-manager:server-identification-failed","Unknown resource - could not find token service endpoint.");r(t)})):i&&o?s():e.sinfo_._selfReq?e.sinfo_._selfReq.selfDfd.then((t=>{const r={};let n,s,o,i;return t&&(n=t.user?.username,r.username=n,r.allSSL=t.allSSL,s=t.supportsOAuth,i=parseFloat(t.currentVersion),"multitenant"===t.portalMode&&(o=t.customBaseUrl),e.sinfo_.currentVersion=i),e.sinfo_.webTierAuth=!!n,n&&this.normalizeWebTierAuth?this.generateToken(e.sinfo_,null,{ssl:r.allSSL}).catch((()=>null)).then((e=>(r.portalToken=e?.token,r.tokenExpiration=e?.expires,r))):!n&&s&&i>=4.4&&!this._findOAuthInfo(e.resUrl_)?this._generateOAuthInfo({portalUrl:e.sinfo_.server,customBaseUrl:o,owningTenant:e.sinfo_._selfReq.owningTenant}).catch((()=>null)).then((()=>r)):r})).catch((()=>null)).then((t=>{e.sinfo_._selfReq=null,t?n(t.username,t.allSSL,t.portalToken,t.tokenExpiration):n()})):n()}_generateOAuthInfo(e){let t,r=null,n=e.portalUrl;const s=e.customBaseUrl,o=e.owningTenant,a=!this._defaultOAuthInfo&&this._createDefaultOAuthInfo&&!this._hasTestedIfAppIsOnPortal;if(a){r=window.location.href;let e=r.indexOf("?");e>-1&&(r=r.slice(0,e)),e=r.search(/\/(apps|home)\//),r=e>-1?r.slice(0,e):null}return a&&r?(this._hasTestedIfAppIsOnPortal=!0,t=(0,i.A)(r+"/sharing/rest",{query:{f:"json"}}).then((()=>{this._defaultOAuthInfo=new O({appId:"arcgisonline",popupCallbackUrl:r+"/home/oauth-callback.html"})}))):t=Promise.resolve(),t.then((()=>{if(this._defaultOAuthInfo)return n=n.replace(/^http:/i,"https:"),(0,i.A)(n+"/sharing/rest/oauth2/validateRedirectUri",{query:{accountId:o,client_id:this._defaultOAuthInfo.appId,redirect_uri:(0,p.s2)(this._defaultOAuthInfo.popupCallbackUrl),f:"json"}}).then((e=>{if(e.data.valid){const t=this._defaultOAuthInfo.clone();e.data.urlKey&&s?t.portalUrl="https://"+e.data.urlKey.toLowerCase()+"."+s:t.portalUrl=n,t.popup=window!==window.top||!((0,p.FX)(n,this._appOrigin)||this._gwDomains.some((e=>e.regex.test(n)&&e.regex.test(this._appOrigin)))),this.oAuthInfos.push(t)}}))}))}_doOAuthSignIn(e,t,r,n){const s=r._oAuthCred,o={portalUrl:r.portalUrl};!r.popup&&r.preserveUrlHash&&window.location.hash&&(o.hash=window.location.hash),s.stateUID&&(o.uid=s.stateUID);const i={client_id:r.appId,response_type:s.codeVerifier?"code":"token",state:JSON.stringify(o),expiration:r.expiration,locale:r.locale,redirect_uri:this._getRedirectURI(r,!!s.codeVerifier)};r.forceLogin&&(i.force_login=!0),r.forceUserId&&r.userId&&(i.prepopulatedusername=r.userId),!r.popup&&this._doPortalSignIn(e)&&(i.redirectToUserOrgUrl=!0),s.codeVerifier&&(i.code_challenge=n||s.codeVerifier,i.code_challenge_method=n?"S256":"plain");const l=r.portalUrl.replace(/^http:/i,"https:")+"/sharing/oauth2/authorize",d=l+"?"+(0,p.x0)(i);if(r.popup){const e=window.open(d,"esriJSAPIOAuth",r.popupWindowFeatures);if(e)e.focus(),this._oAuthDfd.oAuthWin_=e,this._oAuthIntervalId=setInterval((()=>{if(e.closed){clearInterval(this._oAuthIntervalId),this._oAuthOnPopupHandle.remove();const e=this._oAuthDfd;if(e){const t=new a.A("identity-manager:user-aborted","ABORTED");e.reject(t)}}}),500),this._oAuthOnPopupHandle=(0,c.on)(window,["arcgis:auth:hash","arcgis:auth:location:search"],(e=>{"arcgis:auth:hash"===e.type?this.setOAuthResponseHash(e.detail):this._setOAuthResponseQueryString(e.detail)}));else{const e=new a.A("identity-manager:popup-blocked","ABORTED");this._oAuthDfd.reject(e)}}else this._rejectOnPersistedPageShow=!0,this._oAuthRedirectFunc?this._oAuthRedirectFunc({authorizeParams:i,authorizeUrl:l,resourceUrl:e,serverInfo:t,oAuthInfo:r}):window.location.href=d}_getRedirectURI(e,t){const r=window.location.href.replace(/#.*$/,"");if(e.popup)return(0,p.s2)(e.popupCallbackUrl);if(t){const e=(0,p.An)(r);return e.query&&["code","error","error_description","message_code","persist","state"].forEach((t=>{delete e.query[t]})),(0,p.a6)(e.path,e.query)}return r}}F.prototype.declaredClass="esri.identity.IdentityManagerBase";let q=class extends l.A.EventedAccessor{constructor(e){super(e),this._oAuthCred=null,this.tokenRefreshBuffer=2,e?._oAuthCred&&(this._oAuthCred=e._oAuthCred)}initialize(){this.resources=this.resources||[],null==this.creationTime&&(this.creationTime=Date.now())}refreshToken(){const e=n.id,t=e.findServerInfo(this.server),r=t?.owningSystemUrl,s=!!r&&"server"===this.scope,o=s&&E(t,e._legacyFed),i=t.webTierAuth,a=i&&e.normalizeWebTierAuth,l=D[this.server],c=l?.[this.userId];let d,h=this.resources&&this.resources[0],u=s?e.findServerInfo(r):null,p={username:this.userId,password:c};if(i&&!a)return;s&&!u&&e.serverInfos.some((t=>(e._isIdProvider(r,t.server)&&(u=t),!!u)));const f=u?e.findCredential(u.server,this.userId):null;if(!s||f){if(!o){if(s)d={serverUrl:h,token:f?.token,ssl:f?.ssl};else if(a)p=null,d={ssl:this.ssl};else{if(!c){let r;return h&&(h=e._sanitizeUrl(h),this._enqueued=1,r=e._enqueue(h,t,null,null,this.isAdmin,this),r.then((()=>{this._enqueued=0,this.refreshServerTokens()})).catch((()=>{this._enqueued=0}))),r}this.isAdmin&&(d={isAdmin:!0})}return e.generateToken(s?u:t,s?null:p,d).then((e=>{this.token=e.token,this.expires=null!=e.expires?Number(e.expires):null,this.creationTime=Date.now(),this.validity=e.validity,this.emitTokenChange(),this.refreshServerTokens()})).catch((()=>{}))}f?.refreshToken()}}refreshServerTokens(){if("portal"===this.scope){const e=n.id;e.credentials.forEach((t=>{const r=e.findServerInfo(t.server),n=r?.owningSystemUrl;t!==this&&t.userId===this.userId&&n&&"server"===t.scope&&(e._hasSameServerInstance(this.server,n)||e._isIdProvider(n,this.server))&&(E(r,e._legacyFed)?(t.token=this.token,t.expires=this.expires,t.creationTime=this.creationTime,t.validity=this.validity,t.emitTokenChange()):t.refreshToken())}))}}emitTokenChange(e){clearTimeout(this._refreshTimer);const t=n.id,r=this.server?t.findServerInfo(this.server):null,s=r?.owningSystemUrl,o=s?t.findServerInfo(s):null;!1===e||s&&"portal"!==this.scope&&(!o?.webTierAuth||t.normalizeWebTierAuth)||null==this.expires&&null==this.validity||this._startRefreshTimer(),this.emit("token-change")}destroy(){this.userId=this.server=this.token=this.expires=this.validity=this.resources=this.creationTime=null,this._oAuthCred&&(this._oAuthCred.destroy(),this._oAuthCred=null);const e=n.id,t=e.credentials.indexOf(this);t>-1&&e.credentials.splice(t,1),this.emitTokenChange(),this.emit("destroy")}toJSON(){const e=(0,d.oy)({userId:this.userId,server:this.server,token:this.token,expires:this.expires,validity:this.validity,ssl:this.ssl,isAdmin:this.isAdmin,creationTime:this.creationTime,scope:this.scope}),t=this.resources;return t&&t.length>0&&(e.resources=t.slice()),e}_startRefreshTimer(){clearTimeout(this._refreshTimer);const e=6e4*this.tokenRefreshBuffer,t=2**31-1;let r=(this.validity?this.creationTime+6e4*this.validity:this.expires)-Date.now();r<0?r=0:r>t&&(r=t),this._refreshTimer=setTimeout(this.refreshToken.bind(this),r>e?r-e:r)}};(0,s._)([(0,f.MZ)()],q.prototype,"creationTime",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"expires",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"isAdmin",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"oAuthState",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"resources",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"scope",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"server",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"ssl",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"token",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"tokenRefreshBuffer",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"userId",void 0),(0,s._)([(0,f.MZ)()],q.prototype,"validity",void 0),q=(0,s._)([(0,m.$)("esri.identity.Credential")],q);class V extends F{}V.prototype.declaredClass="esri.identity.IdentityManager";const H=new V;(0,n.Aq)(H)},92781:function(e,t,r){"use strict";r.d(t,{R:function(){return o},t:function(){return i}});var n=r(77528);const s={namespace:void 0,performanceLogger:()=>{},eventHandlerInterceptor:void 0,styleApplyer:(e,t,r)=>{"-"===t.charAt(0)?e.style.setProperty(t,r):e.style[t]=r}};let o=e=>(0,n.X$)(s,e),i={create:(e,t)=>(t=o(t),(0,n.dj)(e,document.createElement("div"),void 0,t),(0,n.Av)(e,t)),append:(e,t,r)=>(r=o(r),(0,n.dj)(t,e,void 0,r),(0,n.Av)(t,r)),insertBefore:(e,t,r)=>(r=o(r),(0,n.dj)(t,e.parentNode,e,r),(0,n.Av)(t,r)),merge:(e,t,r)=>(r=o(r),t.domNode=e,(0,n.OM)(e,t,r),(0,n.Av)(t,r)),replace:(e,t,r)=>(r=o(r),(0,n.dj)(t,e.parentNode,e,r),e.parentNode.removeChild(e),(0,n.Av)(t,r))}},77528:function(e,t,r){"use strict";r.d(t,{Av:function(){return T},OM:function(){return S},X$:function(){return l},dj:function(){return k}});var n=r(10362);const s="http://www.w3.org/",o=`${s}2000/svg`,i=`${s}1999/xlink`;let a=[],l=(e,t)=>{let r={};return Object.keys(e).forEach((t=>{r[t]=e[t]})),t&&Object.keys(t).forEach((e=>{r[e]=t[e]})),r},c=(e,t)=>e.vnodeSelector===t.vnodeSelector&&(e.properties&&t.properties?e.properties.key===t.properties.key&&e.properties.bind===t.properties.bind:!e.properties&&!t.properties),d=e=>{if("string"!=typeof e)throw new Error("Style values must be strings")},h=(e,t,r)=>{if(""!==t.vnodeSelector)for(let n=r;n<e.length;n++)if(c(e[n],t))return n;return-1},u=(e,t,r,n)=>{let s=e[t];if(""===s.vnodeSelector)return;let o=s.properties;if(!(o?void 0===o.key?o.bind:o.key:void 0))for(let o=0;o<e.length;o++)if(o!==t){let t=e[o];if(c(t,s))throw new Error(`${r.vnodeSelector} had a ${s.vnodeSelector} child ${"added"===n?n:"removed"}, but there is now more than one. You must add unique key properties to make them distinguishable.`)}},p=e=>{if(e.properties){let t=e.properties.enterAnimation;t&&t(e.domNode,e.properties)}},f=[],m=!1,g=e=>{(e.children||[]).forEach(g),e.properties&&e.properties.afterRemoved&&e.properties.afterRemoved.apply(e.properties.bind||e.properties,[e.domNode])},v=()=>{m=!1,f.forEach(g),f.length=0},$=e=>{f.push(e),m||(m=!0,"undefined"!=typeof window&&"requestIdleCallback"in window?window.requestIdleCallback(v,{timeout:16}):setTimeout(v,16))},y=e=>{let t=e.domNode;if(e.properties){let r=e.properties.exitAnimation;if(r){t.style.pointerEvents="none";let n=()=>{t.parentNode&&(t.parentNode.removeChild(t),$(e))};return void r(t,n,e.properties)}}t.parentNode&&(t.parentNode.removeChild(t),$(e))},w=(e,t,r)=>{if(!t)return;let s=r.eventHandlerInterceptor,a=Object.keys(t),l=a.length;for(let c=0;c<l;c++){let l=a[c],h=t[l];if("className"===l)throw new Error('Property "className" is not supported, use "class".');if("class"===l)x(e,h,!0);else if("classes"===l){let t=Object.keys(h),r=t.length;for(let n=0;n<r;n++){let r=t[n];h[r]&&e.classList.add(r)}}else if("styles"===l){let t=Object.keys(h),n=t.length;for(let s=0;s<n;s++){let n=t[s],o=h[n];o&&(d(o),r.styleApplyer(e,n,o))}}else if("key"!==l&&null!=h){let a=typeof h;"function"===a?(0===l.lastIndexOf("on",0)&&(s&&(h=s(l,h,e,t)),"oninput"===l&&function(){let e=h;h=function(t){e.apply(this,[t]),t.target["oninput-value"]=t.target.value}}()),e[l]=h):r.namespace===o?"href"===l?e.setAttributeNS(i,l,h):e.setAttribute(l,h):"string"===a&&"value"!==l?"innerHTML"===l?e[l]=n.W5.sanitize(h):_(e)&&l in e?e[l]=h:e.setAttribute(l,h):e[l]=h}}};function _(e){if(!(e instanceof Element&&e.tagName.includes("-")))return!1;const t=window.customElements.get(e.tagName.toLowerCase());return!!t&&e instanceof t}let b,S=(e,t,r)=>{((e,t,r)=>{if(t)for(let n of t)k(n,e,void 0,r)})(e,t.children,r),t.text&&(e.textContent=t.text),w(e,t.properties,r),t.properties&&t.properties.afterCreate&&t.properties.afterCreate.apply(t.properties.bind||t.properties,[e,r,t.vnodeSelector,t.properties,t.children])},k=(e,t,r,n)=>{let s,i=0,a=e.vnodeSelector,c=t.ownerDocument;if(""===a)s=e.domNode=c.createTextNode(e.text),void 0!==r?t.insertBefore(s,r):t.appendChild(s);else{for(let d=0;d<=a.length;++d){let h=a.charAt(d);if(d===a.length||"."===h||"#"===h){let h=a.charAt(i-1),u=a.slice(i,d);"."===h?s.classList.add(u):"#"===h?s.id=u:("svg"===u&&(n=l(n,{namespace:o})),void 0!==n.namespace?s=e.domNode=c.createElementNS(n.namespace,u):(s=e.domNode=e.domNode||c.createElement(u),"input"===u&&e.properties&&void 0!==e.properties.type&&s.setAttribute("type",e.properties.type)),void 0!==r?t.insertBefore(s,r):s.parentNode!==t&&t.appendChild(s)),i=d+1}}S(s,e,n)}},x=(e,t,r)=>{t&&t.split(" ").forEach((t=>{t&&e.classList.toggle(t,r)}))},A=(e,t,r,s)=>{if(!r)return;let a=!1,l=Object.keys(r),c=l.length;for(let h=0;h<c;h++){let c=l[h],u=r[c],p=t[c];if("class"===c)p!==u&&(x(e,p,!1),x(e,u,!0));else if("classes"===c){let t=e.classList,r=Object.keys(u),n=r.length;for(let e=0;e<n;e++){let n=r[e],s=!!u[n];s!==!!p[n]&&(a=!0,s?t.add(n):t.remove(n))}}else if("styles"===c){let t=Object.keys(u),r=t.length;for(let n=0;n<r;n++){let r=t[n],o=u[r];o!==p[r]&&(a=!0,o?(d(o),s.styleApplyer(e,r,o)):s.styleApplyer(e,r,""))}}else if(u||"string"!=typeof p||(u=""),"value"!==c||_(e)){if(u!==p){let t=typeof u;"function"===t&&s.eventHandlerInterceptor||(s.namespace===o?"href"===c?e.setAttributeNS(i,c,u):e.setAttribute(c,u):"string"===t?"innerHTML"===c?e[c]=n.W5.sanitize(u):"role"===c&&""===u?e.removeAttribute(c):_(e)&&c in e?e[c]=u:e.setAttribute(c,u):e[c]!==u&&(e[c]=u),a=!0)}}else{let t=e[c];t!==u&&(e["oninput-value"]?t===e["oninput-value"]:u!==p)&&(e[c]=u,e["oninput-value"]=void 0),u!==p&&(a=!0)}}return a},I=(e,t,r,n,s)=>{if(r===n)return!1;n=n||a;let o,i=(r=r||a).length,l=n.length,d=0,f=0,m=!1;for(;f<l;){let a=d<i?r[d]:void 0,l=n[f];if(void 0!==a&&c(a,l))m=b(a,l,s)||m,d++;else{let a=h(r,l,d+1);if(a>=0){for(o=d;o<a;o++)y(r[o]),u(r,o,e,"removed");m=b(r[a],l,s)||m,d=a+1}else k(l,t,d<i?r[d].domNode:void 0,s),p(l),u(n,f,e,"added")}f++}if(i>d)for(o=d;o<i;o++)y(r[o]),u(r,o,e,"removed");return m};b=(e,t,r)=>{let n=e.domNode,s=!1;if(e===t)return!1;let i=!1;if(""===t.vnodeSelector){if(t.text!==e.text){let e=n.ownerDocument.createTextNode(t.text);return n.parentNode.replaceChild(e,n),t.domNode=e,s=!0,s}t.domNode=n}else 0===t.vnodeSelector.lastIndexOf("svg",0)&&(r=l(r,{namespace:o})),e.text!==t.text&&(i=!0,void 0===t.text?n.removeChild(n.firstChild):n.textContent=t.text),t.domNode=n,i=I(t,n,e.children,t.children,r)||i,i=A(n,e.properties,t.properties,r)||i,t.properties&&t.properties.afterUpdate&&t.properties.afterUpdate.apply(t.properties.bind||t.properties,[n,r,t.vnodeSelector,t.properties,t.children]);return i&&t.properties&&t.properties.updateAnimation&&t.properties.updateAnimation(n,t.properties,e.properties),s};let T=(e,t)=>({getLastRender:()=>e,update:r=>{if(e.vnodeSelector!==r.vnodeSelector)throw new Error("The selector for the root VNode may not be changed. (consider using dom.merge and add one extra level to the virtual DOM)");let n=e;e=r,b(n,r,t)},domNode:e.domNode})},81401:function(e,t,r){"use strict";r.d(t,{F:function(){return a}});var n=r(92781);let s;s=Array.prototype.find?(e,t)=>e.find(t):(e,t)=>e.filter(t)[0];let o=(e,t)=>{let r=e;return t.forEach((e=>{r=r&&r.children?s(r.children,(t=>t.domNode===e)):void 0})),r},i=(e,t,r)=>{let n=function(n){r("domEvent",n);let s=t(),i=((e,t)=>{let r=[];for(;e&&e!==t;)r.push(e),e=e.parentNode;return r})(n.currentTarget,s.domNode);i.reverse();let a,l=o(s.getLastRender(),i);return e.scheduleRender(),l&&(a=l.properties[`on${n.type}`].apply(l.properties.bind||this,arguments)),r("domEventProcessed",n),a};return(e,t,r,s)=>n},a=e=>{let t,r,s=(0,n.R)(e),o=s.performanceLogger,a=!0,l=!1,c=[],d=[],h=(e,r,n)=>{let a;s.eventHandlerInterceptor=i(t,(()=>a),o),a=e(r,n(),s),c.push(a),d.push(n)},u=()=>{if(r=void 0,a){a=!1,o("renderStart",void 0);for(let e=0;e<c.length;e++){let t=d[e]();o("rendered",void 0),c[e].update(t),o("patched",void 0)}o("renderDone",void 0),a=!0}};return t={renderNow:u,scheduleRender:()=>{r||l||(r=requestAnimationFrame(u))},stop:()=>{r&&(cancelAnimationFrame(r),r=void 0),l=!0},resume:()=>{l=!1,a=!0,t.scheduleRender()},append:(e,t)=>{h(n.t.append,e,t)},insertBefore:(e,t)=>{h(n.t.insertBefore,e,t)},merge:(e,t)=>{h(n.t.merge,e,t)},replace:(e,t)=>{h(n.t.replace,e,t)},detach:e=>{for(let t=0;t<d.length;t++)if(d[t]===e)return d.splice(t,1),c.splice(t,1)[0];throw new Error("renderFunction was not found")}},t}},93839:function(e,t,r){"use strict";r.d(t,{fJ:function(){return o},g4:function(){return s},hY:function(){return i}});const n="calcite-mode-";function s(){return getComputedStyle(document.body).getPropertyValue("--esri-calcite-mode-name").replaceAll(/\s|'|"/g,"").startsWith("dark")}function o(){return`${n}${s()?"dark":"light"}`}function i(e){a(e),e.classList.add(o())}function a(e){Array.from(e.classList).forEach((t=>{t.startsWith(n)&&e.classList.remove(t)}))}},31267:function(e,t,r){"use strict";r.d(t,{A:function(){return E}});var n=r(53804),s=(r(64122),r(88022)),o=r(88264),i=r(48996),a=r(40212),l=(r(58941),r(21609)),c=r(40633),d=r(95929),h=r(62560),u=r(60539),p=r(28181),f=r(66110),m=r(23502),g=r(77560),v=r(65953),$=r(44567),y=r(6792),w=r(92781);r(81401);const _={handleInterceptedEvent:(e,t,r,n)=>(e.scheduleRender(),t.properties[`on${n.type}`].apply(t.properties.bind||r,[n]))},b={namespace:void 0,performanceLogger:()=>{},eventHandlerInterceptor:void 0,styleApplyer:(e,t,r)=>{"-"===t.charAt(0)?e.style.setProperty(t,r):e.style[t]=r}},S=(e,t,r=!1)=>{let n=e;return t.forEach(((e,s)=>{const o=n?.children?((e,t)=>e.find(t))(n.children,(t=>t.domNode===e)):void 0;r&&!o&&s!==t.length-1||(n=o)})),n};var k=r(28754),x=r(69987),A=r(50074);const I=new Set;var T,C=r(15351),N=r(10362),R=r(22739),O=r(38225);let U=0;function L(e,t){const r=Object.prototype.hasOwnProperty;for(const n in t)r.call(t,n)&&r.call(e,n)&&(null!=e[n]&&null!=t[n]&&"object"==typeof e[n]&&"object"==typeof t[n]?L(e[n],t[n]):e[n]=t[n]);return e}const P=(e=>{let t;const r={..._,...e},n=(o=r,{...b,...o}),s=n.performanceLogger;var o;let i,a=!0,l=!1;const c=[],d=[],h=(e,o,i)=>{let a;n.eventHandlerInterceptor=(e,n,o,i)=>function(e){let n;s("domEvent",e);const o=((e,t)=>{const r=[];for(;e&&e!==t;)r.push(e),e=e.parentNode;return r})(e.currentTarget,a.domNode),i=o.some((e=>customElements.get(e?.tagName?.toLowerCase())));if(e.eventPhase!==Event.CAPTURING_PHASE&&i){const t=e.composedPath(),r=t.slice(t.indexOf(e.currentTarget),t.indexOf(a.domNode)).reverse();n=S(a.getLastRender(),r,!0)}else o.reverse(),n=S(a.getLastRender(),o);let l;return n&&(l=r.handleInterceptedEvent(t,n,this,e)),s("domEventProcessed",e),l},r.postProcessProjectionOptions?.(n);const l=i();a=e(o,l,n),n.eventHandlerInterceptor=void 0,c.push(a),d.push(i),r.afterFirstVNodeRendered&&r.afterFirstVNodeRendered(a,l)};let u=()=>{if(i=void 0,a){a=!1,s("renderStart",void 0);for(let e=0;e<c.length;e++){const t=d[e]();s("rendered",void 0);try{c[e].update(t)}catch(e){console.error(e)}s("patched",void 0)}s("renderDone",void 0),a=!0}};return r.modifyDoRenderImplementation&&(u=r.modifyDoRenderImplementation(u,c,d)),t={renderNow:u,scheduleRender:()=>{i||l||(i=requestAnimationFrame(u))},stop:()=>{i&&(cancelAnimationFrame(i),i=void 0),l=!0},resume:()=>{l=!1,a=!0,t.scheduleRender()},append:(e,t)=>{h(w.t.append,e,t)},insertBefore:(e,t)=>{h(w.t.insertBefore,e,t)},merge:(e,t)=>{h(w.t.merge,e,t)},replace:(e,t)=>{h(w.t.replace,e,t)},detach:e=>{for(let t=0;t<d.length;t++)if(d[t]===e)return d.splice(t,1),c.splice(t,1)[0];throw new Error("renderFunction was not found")}},t})({postProcessProjectionOptions(e){const t=e.eventHandlerInterceptor,r=/capture$/i;e.eventHandlerInterceptor=(e,n,s,o)=>{const i=t?.(e,n,s,o),a=r.test(e);if(!((e=e.replace(r,"")).toLowerCase()in s)||a){const t=e[2].toLowerCase()+e.slice(3),r=e=>i?.call(s,e);s.addEventListener(t,r,a);const n=()=>s.removeEventListener(t,r,a),l=o.afterRemoved;o.afterRemoved=e=>{l?.(e),n()}}return i}},handleInterceptedEvent(e,t,r,n){const{eventPhase:s,type:o}=n,i=s===Event.CAPTURING_PHASE;let a=`on${o}${i?"capture":""}`;const l=t.properties;(l&&a in l||(a=`on${o[0].toUpperCase()}${o.slice(1)}${i?"Capture":""}`,l&&a in l))&&((0,C.Sh)(),e.scheduleRender(),l[a].call(l.bind||r,n))}});let D=!1,j=class extends((0,h.g)(i.A.EventedAccessor)){constructor(e,t){super(e,t),this._attached=!1,this._projector=P,this._readyForTrueRender=!1,this.key=this,this.autoRenderingEnabled=!0,this._loadLocale=(0,u.sg)((async()=>{if(this._messageBundleProps?.length){const e=await Promise.allSettled(this._messageBundleProps.map((async({bundlePath:e,propertyName:t})=>{if(this.destroyed)return;let r=await(0,O.ud)(e);this.uiStrings&&Object.keys(this.uiStrings)&&(r=L((0,l.o8)(r),this.uiStrings)),this[t]=r})));if(this.destroyed)return;for(const t of e)"rejected"===t.status&&c.A.getLogger(this).error("widget-intl:locale-error",this.declaredClass,t.reason)}await this.loadLocale()})),(0,k.V)();const r="esri-widget-uid-"+(0,f.lk)(),n=this.render.bind(this);this._trackingTarget=new y.r((()=>{this.autoRenderingEnabled&&this.scheduleRender()}));const s=()=>({vnodeSelector:"div",properties:{key:`${r}-hidden`,class:"",styles:{display:"none"}},domNode:null,children:void 0,text:void 0}),o=()=>{if(!this._readyForTrueRender||this.destroyed)return null;const e=n()??s(),t=e.properties??={};if(t.key??=r,(0,x.b)(e.vnodeSelector)){if(!this.visible)return s()}else this.visible?t.styles||(t.styles={}):(t.class="",t.styles={display:"none"}),t.styles.display??="";let o=0;return e.children?.forEach((e=>{(0,x.b)(e.vnodeSelector)||(e.properties??={},e.properties.key??=`${this.id}--${o++}`)})),(0,x.d)(this,e)};this.render=()=>{if(D)return o();let e=(0,C.rE)(this)??null;if(e)return e;this._trackingTarget.clear(),D=!0;try{e=(0,$.a)(this._trackingTarget,o)}catch(e){throw c.A.getLogger(this).error(e),e}finally{D=!1}return e&&(0,C.$U)(this,e),e};const i=this.beforeFirstRender();var a;i?this._resourcesFetch=i.then((()=>{this._readyForTrueRender=!0,this._postInitialize()})):(this._resourcesFetch=Promise.resolve().then((()=>{this._postInitialize()})),this._readyForTrueRender=!0),this.addResolvingPromise(this._resourcesFetch),a=this._resourcesFetch,I.add(a),a.finally((()=>I.delete(a)))}normalizeCtorArgs(e,t){const r={...e};return t&&(r.container=t),r}postInitialize(){}beforeFirstRender(){const e=this.loadDependencies();return this._messageBundleProps?.length||e?Promise.all([e,this._loadLocale()]).then((()=>{})).catch(u.jH):null}loadDependencies(){return null}loadLocale(){return null}destroy(){this.destroyed||((0,d.pR)(this._trackingTarget),(0,d.pR)(this.viewModel),this._detach(this.container),this._set("container",null),this._emitter.clear(),this.render=()=>null,this._projector=null,(0,C.Qw)(this))}set container(e){this._get("container")||this._set("container",e)}castContainer(e){return(0,o.$)(e)}get domNode(){return this.container}set domNode(e){this.container=e}get icon(){return null}set icon(e){this._overrideIfSome("icon",e)}get id(){return this._get("id")||this.container?.id||Date.now().toString(16)+"-widget-"+U++}set id(e){e&&this._set("id",e)}get label(){return this.declaredClass.split(".").pop()}set label(e){this._overrideIfSome("label",e)}get renderable(){return this._resourcesFetch}get visible(){return this._get("visible")}set visible(e){this._set("visible",e)}get[(T=A.x,A.D)](){return{projector:this._projector}}render(){throw new Error("not implemented")}scheduleRender(){this.destroyed||((0,C.Qw)(this),this._projector.scheduleRender())}own(e){(0,s.eO)(c.A.getLogger(this),"`Widget.own()` is deprecated in favor of 'Widget.addHandles()'",{replacement:"Widget.addHandles()",version:"4.28"}),this.addHandles(e)}classes(...e){return N.Ly.apply(this,e)}renderNow(){(0,C.Qw)(this),this._projector.renderNow()}_postInitialize(){if(this.destroyed)return;this.scheduleRender(),this._delegatedEventNames?.length&&this.addHandles((0,p.watch)((()=>this.viewModel),((e,t)=>{t&&this.removeHandles("delegated-events"),e&&(0,a.wb)(e)&&this.addHandles(this._delegatedEventNames.map((t=>(0,a.on)(e,t,(e=>{this.emit(t,e)})))),"delegated-events")}),p.pc)),this.postInitialize();const e=async()=>{await this._loadLocale().catch(u.jH),this.scheduleRender()};this.addHandles([(0,R.oQ)(e),(0,p.watch)((()=>this.uiStrings),e),(0,p.when)((()=>this.container),(e=>{this.destroyed||this._attach(e)}),{initial:!0,once:!0})])}_attach(e){e&&(this._projector.merge(e,this.render),this._attached=!0)}_detach(e){this._attached&&(this._projector.detach(this.render),this._attached=!1),e?.parentNode?.removeChild(e)}};j[T]=!0,j.vnodeSelector="div",(0,n._)([(0,m.MZ)()],j.prototype,"_readyForTrueRender",void 0),(0,n._)([(0,m.MZ)({value:null})],j.prototype,"container",null),(0,n._)([(0,g.w)("container")],j.prototype,"castContainer",null),(0,n._)([(0,m.MZ)()],j.prototype,"icon",null),(0,n._)([(0,m.MZ)()],j.prototype,"id",null),(0,n._)([(0,m.MZ)()],j.prototype,"label",null),(0,n._)([(0,m.MZ)()],j.prototype,"renderable",null),(0,n._)([(0,m.MZ)()],j.prototype,"uiStrings",void 0),(0,n._)([(0,m.MZ)()],j.prototype,"viewModel",void 0),(0,n._)([(0,m.MZ)({value:!0})],j.prototype,"visible",null),(0,n._)([(0,m.MZ)()],j.prototype,"key",void 0),(0,n._)([(0,m.MZ)()],j.prototype,"children",void 0),(0,n._)([(0,m.MZ)()],j.prototype,"afterCreate",void 0),(0,n._)([(0,m.MZ)()],j.prototype,"afterUpdate",void 0),(0,n._)([(0,m.MZ)()],j.prototype,"afterRemoved",void 0),j=(0,n._)([(0,v.$)("esri.widgets.Widget")],j);const E=j},28754:function(e,t,r){"use strict";r.d(t,{V:function(){return h},W:function(){return u}});var n=r(96367),s=r(67646),o=r(54038),i=r(3102);function a(){const{classList:e}=document.body,t=window.matchMedia("(prefers-color-scheme: dark)").matches,r=()=>e.contains(n.d)||e.contains(n.a)&&t?"dark":"light",s=e=>document.body.dispatchEvent(new CustomEvent("calciteModeChange",{bubbles:!0,detail:{mode:e}})),o=e=>{i!==e&&s(e),i=e};let i=r();s(i),window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change",(e=>o(e.matches?"dark":"light"))),new MutationObserver((()=>o(r()))).observe(document.body,{attributes:!0,attributeFilter:["class"]})}(0,o.i)()&&("interactive"===document.readyState?a():document.addEventListener("DOMContentLoaded",(()=>a()),{once:!0})),(0,s.s)();var l=r(53216),c=(r(58941),r(90683));let d;function h(){try{(0,i.OX)(".")}catch{(0,i.Qu)((0,c.s2)((0,l.s)(d)))}}function u(e){const t=[];for(const r of Object.keys(e))customElements.get(`calcite-${r}`)||t.push(e[r]?.());return t.length>0?Promise.all(t):null}d="components/assets"},90357:function(e,t,r){"use strict";function n(e){return(t,r)=>{t.hasOwnProperty("_messageBundleProps")||(t._messageBundleProps=t._messageBundleProps?t._messageBundleProps.slice():[]),t._messageBundleProps.push({bundlePath:e,propertyName:r})}}r.d(t,{G:function(){return n}})},49146:function(e,t,r){"use strict";r.d(t,{K:function(){return a},w:function(){return l}});var n=r(69987),s=function(e){return{vnodeSelector:"",properties:void 0,children:void 0,text:e.toString(),domNode:null}},o=function(e,t){for(var r=0,n=e.length;r<n;r++){var i=e[r];Array.isArray(i)?o(i,t):null!=i&&!1!==i&&(i.hasOwnProperty("vnodeSelector")||(i=s(i)),t.push(i))}},i=function(e,t){for(var r=[],n=2;n<arguments.length;n++)r[n-2]=arguments[n];if(1===r.length&&"string"==typeof r[0])return{vnodeSelector:e,properties:t||void 0,children:void 0,text:r[0],domNode:null};var s=[];return o(r,s),{vnodeSelector:e,properties:t||void 0,children:s,text:void 0,domNode:null}};function a(e,t,...r){return"function"!=typeof e||(0,n.b)(e)?i(e,t,...r):e(t,...r)}function l(...e){return e}},69987:function(e,t,r){"use strict";r.d(t,{b:function(){return u},d:function(){return l}});var n=r(61226),s=r(50074);const o=[],i={},a=new WeakMap;function l(e,t){let r=t.children;if(r?.length)for(let t=0;t<r.length;++t)r[t]=l(e,r[t]);else r=o;const n=t.vnodeSelector;if(u(n)){const s=t.properties||i,o=s.key||n,a={key:o,afterCreate:c,afterUpdate:d,afterRemoved:h,parentWidget:e,widgetConstructor:n,widgetProperties:{...s,key:o,children:r}};return{vnodeSelector:n.vnodeSelector,properties:a,children:void 0,text:void 0,domNode:null}}return t}function c(e,t,r,{parentWidget:o,widgetConstructor:i,widgetProperties:l}){const c=new i(l);c.container=e,a.set(e,c),c.afterCreate?.(c,e),o.addHandles((0,n.hA)((()=>h(e)))),queueMicrotask((()=>{c[s.D].projector.renderNow()}))}function d(e,t,r,{widgetProperties:n}){const s=a.get(e);s&&(s.set(n),s.afterUpdate?.(s,e))}function h(e){const t=a.get(e);t&&(t.afterRemoved?.(t,e),t.destroy(),a.delete(e))}function u(e){return"function"==typeof e&&e[s.x]}},50074:function(e,t,r){"use strict";r.d(t,{D:function(){return s},x:function(){return n}});const n=Symbol("widget"),s=Symbol("widget-test-data")},15351:function(e,t,r){"use strict";r.d(t,{$U:function(){return i},Qw:function(){return a},Sh:function(){return s},rE:function(){return o}});const n=new Map;function s(){n.clear()}function o(e){return n.get(e)}function i(e,t){n.set(e,t)}function a(e){n.delete(e)}},10362:function(e,t,r){"use strict";r.d(t,{Ly:function(){return he},N_:function(){return pe},OU:function(){return $e},V8:function(){return ue},W5:function(){return ve},Z6:function(){return ye},cA:function(){return fe}});var n=function(){return n=Object.assign||function(e){for(var t,r=1,n=arguments.length;r<n;r++)for(var s in t=arguments[r])Object.prototype.hasOwnProperty.call(t,s)&&(e[s]=t[s]);return e},n.apply(this,arguments)},s={exports:{}},o={},i={exports:{}},a={};function l(){return{"align-content":!1,"align-items":!1,"align-self":!1,"alignment-adjust":!1,"alignment-baseline":!1,all:!1,"anchor-point":!1,animation:!1,"animation-delay":!1,"animation-direction":!1,"animation-duration":!1,"animation-fill-mode":!1,"animation-iteration-count":!1,"animation-name":!1,"animation-play-state":!1,"animation-timing-function":!1,azimuth:!1,"backface-visibility":!1,background:!0,"background-attachment":!0,"background-clip":!0,"background-color":!0,"background-image":!0,"background-origin":!0,"background-position":!0,"background-repeat":!0,"background-size":!0,"baseline-shift":!1,binding:!1,bleed:!1,"bookmark-label":!1,"bookmark-level":!1,"bookmark-state":!1,border:!0,"border-bottom":!0,"border-bottom-color":!0,"border-bottom-left-radius":!0,"border-bottom-right-radius":!0,"border-bottom-style":!0,"border-bottom-width":!0,"border-collapse":!0,"border-color":!0,"border-image":!0,"border-image-outset":!0,"border-image-repeat":!0,"border-image-slice":!0,"border-image-source":!0,"border-image-width":!0,"border-left":!0,"border-left-color":!0,"border-left-style":!0,"border-left-width":!0,"border-radius":!0,"border-right":!0,"border-right-color":!0,"border-right-style":!0,"border-right-width":!0,"border-spacing":!0,"border-style":!0,"border-top":!0,"border-top-color":!0,"border-top-left-radius":!0,"border-top-right-radius":!0,"border-top-style":!0,"border-top-width":!0,"border-width":!0,bottom:!1,"box-decoration-break":!0,"box-shadow":!0,"box-sizing":!0,"box-snap":!0,"box-suppress":!0,"break-after":!0,"break-before":!0,"break-inside":!0,"caption-side":!1,chains:!1,clear:!0,clip:!1,"clip-path":!1,"clip-rule":!1,color:!0,"color-interpolation-filters":!0,"column-count":!1,"column-fill":!1,"column-gap":!1,"column-rule":!1,"column-rule-color":!1,"column-rule-style":!1,"column-rule-width":!1,"column-span":!1,"column-width":!1,columns:!1,contain:!1,content:!1,"counter-increment":!1,"counter-reset":!1,"counter-set":!1,crop:!1,cue:!1,"cue-after":!1,"cue-before":!1,cursor:!1,direction:!1,display:!0,"display-inside":!0,"display-list":!0,"display-outside":!0,"dominant-baseline":!1,elevation:!1,"empty-cells":!1,filter:!1,flex:!1,"flex-basis":!1,"flex-direction":!1,"flex-flow":!1,"flex-grow":!1,"flex-shrink":!1,"flex-wrap":!1,float:!1,"float-offset":!1,"flood-color":!1,"flood-opacity":!1,"flow-from":!1,"flow-into":!1,font:!0,"font-family":!0,"font-feature-settings":!0,"font-kerning":!0,"font-language-override":!0,"font-size":!0,"font-size-adjust":!0,"font-stretch":!0,"font-style":!0,"font-synthesis":!0,"font-variant":!0,"font-variant-alternates":!0,"font-variant-caps":!0,"font-variant-east-asian":!0,"font-variant-ligatures":!0,"font-variant-numeric":!0,"font-variant-position":!0,"font-weight":!0,grid:!1,"grid-area":!1,"grid-auto-columns":!1,"grid-auto-flow":!1,"grid-auto-rows":!1,"grid-column":!1,"grid-column-end":!1,"grid-column-start":!1,"grid-row":!1,"grid-row-end":!1,"grid-row-start":!1,"grid-template":!1,"grid-template-areas":!1,"grid-template-columns":!1,"grid-template-rows":!1,"hanging-punctuation":!1,height:!0,hyphens:!1,icon:!1,"image-orientation":!1,"image-resolution":!1,"ime-mode":!1,"initial-letters":!1,"inline-box-align":!1,"justify-content":!1,"justify-items":!1,"justify-self":!1,left:!1,"letter-spacing":!0,"lighting-color":!0,"line-box-contain":!1,"line-break":!1,"line-grid":!1,"line-height":!1,"line-snap":!1,"line-stacking":!1,"line-stacking-ruby":!1,"line-stacking-shift":!1,"line-stacking-strategy":!1,"list-style":!0,"list-style-image":!0,"list-style-position":!0,"list-style-type":!0,margin:!0,"margin-bottom":!0,"margin-left":!0,"margin-right":!0,"margin-top":!0,"marker-offset":!1,"marker-side":!1,marks:!1,mask:!1,"mask-box":!1,"mask-box-outset":!1,"mask-box-repeat":!1,"mask-box-slice":!1,"mask-box-source":!1,"mask-box-width":!1,"mask-clip":!1,"mask-image":!1,"mask-origin":!1,"mask-position":!1,"mask-repeat":!1,"mask-size":!1,"mask-source-type":!1,"mask-type":!1,"max-height":!0,"max-lines":!1,"max-width":!0,"min-height":!0,"min-width":!0,"move-to":!1,"nav-down":!1,"nav-index":!1,"nav-left":!1,"nav-right":!1,"nav-up":!1,"object-fit":!1,"object-position":!1,opacity:!1,order:!1,orphans:!1,outline:!1,"outline-color":!1,"outline-offset":!1,"outline-style":!1,"outline-width":!1,overflow:!1,"overflow-wrap":!1,"overflow-x":!1,"overflow-y":!1,padding:!0,"padding-bottom":!0,"padding-left":!0,"padding-right":!0,"padding-top":!0,page:!1,"page-break-after":!1,"page-break-before":!1,"page-break-inside":!1,"page-policy":!1,pause:!1,"pause-after":!1,"pause-before":!1,perspective:!1,"perspective-origin":!1,pitch:!1,"pitch-range":!1,"play-during":!1,position:!1,"presentation-level":!1,quotes:!1,"region-fragment":!1,resize:!1,rest:!1,"rest-after":!1,"rest-before":!1,richness:!1,right:!1,rotation:!1,"rotation-point":!1,"ruby-align":!1,"ruby-merge":!1,"ruby-position":!1,"shape-image-threshold":!1,"shape-outside":!1,"shape-margin":!1,size:!1,speak:!1,"speak-as":!1,"speak-header":!1,"speak-numeral":!1,"speak-punctuation":!1,"speech-rate":!1,stress:!1,"string-set":!1,"tab-size":!1,"table-layout":!1,"text-align":!0,"text-align-last":!0,"text-combine-upright":!0,"text-decoration":!0,"text-decoration-color":!0,"text-decoration-line":!0,"text-decoration-skip":!0,"text-decoration-style":!0,"text-emphasis":!0,"text-emphasis-color":!0,"text-emphasis-position":!0,"text-emphasis-style":!0,"text-height":!0,"text-indent":!0,"text-justify":!0,"text-orientation":!0,"text-overflow":!0,"text-shadow":!0,"text-space-collapse":!0,"text-transform":!0,"text-underline-position":!0,"text-wrap":!0,top:!1,transform:!1,"transform-origin":!1,"transform-style":!1,transition:!1,"transition-delay":!1,"transition-duration":!1,"transition-property":!1,"transition-timing-function":!1,"unicode-bidi":!1,"vertical-align":!1,visibility:!1,"voice-balance":!1,"voice-duration":!1,"voice-family":!1,"voice-pitch":!1,"voice-range":!1,"voice-rate":!1,"voice-stress":!1,"voice-volume":!1,volume:!1,"white-space":!1,widows:!1,width:!0,"will-change":!1,"word-break":!0,"word-spacing":!0,"word-wrap":!0,"wrap-flow":!1,"wrap-through":!1,"writing-mode":!1,"z-index":!1}}var c=/javascript\s*\:/gim;a.whiteList={"align-content":!1,"align-items":!1,"align-self":!1,"alignment-adjust":!1,"alignment-baseline":!1,all:!1,"anchor-point":!1,animation:!1,"animation-delay":!1,"animation-direction":!1,"animation-duration":!1,"animation-fill-mode":!1,"animation-iteration-count":!1,"animation-name":!1,"animation-play-state":!1,"animation-timing-function":!1,azimuth:!1,"backface-visibility":!1,background:!0,"background-attachment":!0,"background-clip":!0,"background-color":!0,"background-image":!0,"background-origin":!0,"background-position":!0,"background-repeat":!0,"background-size":!0,"baseline-shift":!1,binding:!1,bleed:!1,"bookmark-label":!1,"bookmark-level":!1,"bookmark-state":!1,border:!0,"border-bottom":!0,"border-bottom-color":!0,"border-bottom-left-radius":!0,"border-bottom-right-radius":!0,"border-bottom-style":!0,"border-bottom-width":!0,"border-collapse":!0,"border-color":!0,"border-image":!0,"border-image-outset":!0,"border-image-repeat":!0,"border-image-slice":!0,"border-image-source":!0,"border-image-width":!0,"border-left":!0,"border-left-color":!0,"border-left-style":!0,"border-left-width":!0,"border-radius":!0,"border-right":!0,"border-right-color":!0,"border-right-style":!0,"border-right-width":!0,"border-spacing":!0,"border-style":!0,"border-top":!0,"border-top-color":!0,"border-top-left-radius":!0,"border-top-right-radius":!0,"border-top-style":!0,"border-top-width":!0,"border-width":!0,bottom:!1,"box-decoration-break":!0,"box-shadow":!0,"box-sizing":!0,"box-snap":!0,"box-suppress":!0,"break-after":!0,"break-before":!0,"break-inside":!0,"caption-side":!1,chains:!1,clear:!0,clip:!1,"clip-path":!1,"clip-rule":!1,color:!0,"color-interpolation-filters":!0,"column-count":!1,"column-fill":!1,"column-gap":!1,"column-rule":!1,"column-rule-color":!1,"column-rule-style":!1,"column-rule-width":!1,"column-span":!1,"column-width":!1,columns:!1,contain:!1,content:!1,"counter-increment":!1,"counter-reset":!1,"counter-set":!1,crop:!1,cue:!1,"cue-after":!1,"cue-before":!1,cursor:!1,direction:!1,display:!0,"display-inside":!0,"display-list":!0,"display-outside":!0,"dominant-baseline":!1,elevation:!1,"empty-cells":!1,filter:!1,flex:!1,"flex-basis":!1,"flex-direction":!1,"flex-flow":!1,"flex-grow":!1,"flex-shrink":!1,"flex-wrap":!1,float:!1,"float-offset":!1,"flood-color":!1,"flood-opacity":!1,"flow-from":!1,"flow-into":!1,font:!0,"font-family":!0,"font-feature-settings":!0,"font-kerning":!0,"font-language-override":!0,"font-size":!0,"font-size-adjust":!0,"font-stretch":!0,"font-style":!0,"font-synthesis":!0,"font-variant":!0,"font-variant-alternates":!0,"font-variant-caps":!0,"font-variant-east-asian":!0,"font-variant-ligatures":!0,"font-variant-numeric":!0,"font-variant-position":!0,"font-weight":!0,grid:!1,"grid-area":!1,"grid-auto-columns":!1,"grid-auto-flow":!1,"grid-auto-rows":!1,"grid-column":!1,"grid-column-end":!1,"grid-column-start":!1,"grid-row":!1,"grid-row-end":!1,"grid-row-start":!1,"grid-template":!1,"grid-template-areas":!1,"grid-template-columns":!1,"grid-template-rows":!1,"hanging-punctuation":!1,height:!0,hyphens:!1,icon:!1,"image-orientation":!1,"image-resolution":!1,"ime-mode":!1,"initial-letters":!1,"inline-box-align":!1,"justify-content":!1,"justify-items":!1,"justify-self":!1,left:!1,"letter-spacing":!0,"lighting-color":!0,"line-box-contain":!1,"line-break":!1,"line-grid":!1,"line-height":!1,"line-snap":!1,"line-stacking":!1,"line-stacking-ruby":!1,"line-stacking-shift":!1,"line-stacking-strategy":!1,"list-style":!0,"list-style-image":!0,"list-style-position":!0,"list-style-type":!0,margin:!0,"margin-bottom":!0,"margin-left":!0,"margin-right":!0,"margin-top":!0,"marker-offset":!1,"marker-side":!1,marks:!1,mask:!1,"mask-box":!1,"mask-box-outset":!1,"mask-box-repeat":!1,"mask-box-slice":!1,"mask-box-source":!1,"mask-box-width":!1,"mask-clip":!1,"mask-image":!1,"mask-origin":!1,"mask-position":!1,"mask-repeat":!1,"mask-size":!1,"mask-source-type":!1,"mask-type":!1,"max-height":!0,"max-lines":!1,"max-width":!0,"min-height":!0,"min-width":!0,"move-to":!1,"nav-down":!1,"nav-index":!1,"nav-left":!1,"nav-right":!1,"nav-up":!1,"object-fit":!1,"object-position":!1,opacity:!1,order:!1,orphans:!1,outline:!1,"outline-color":!1,"outline-offset":!1,"outline-style":!1,"outline-width":!1,overflow:!1,"overflow-wrap":!1,"overflow-x":!1,"overflow-y":!1,padding:!0,"padding-bottom":!0,"padding-left":!0,"padding-right":!0,"padding-top":!0,page:!1,"page-break-after":!1,"page-break-before":!1,"page-break-inside":!1,"page-policy":!1,pause:!1,"pause-after":!1,"pause-before":!1,perspective:!1,"perspective-origin":!1,pitch:!1,"pitch-range":!1,"play-during":!1,position:!1,"presentation-level":!1,quotes:!1,"region-fragment":!1,resize:!1,rest:!1,"rest-after":!1,"rest-before":!1,richness:!1,right:!1,rotation:!1,"rotation-point":!1,"ruby-align":!1,"ruby-merge":!1,"ruby-position":!1,"shape-image-threshold":!1,"shape-outside":!1,"shape-margin":!1,size:!1,speak:!1,"speak-as":!1,"speak-header":!1,"speak-numeral":!1,"speak-punctuation":!1,"speech-rate":!1,stress:!1,"string-set":!1,"tab-size":!1,"table-layout":!1,"text-align":!0,"text-align-last":!0,"text-combine-upright":!0,"text-decoration":!0,"text-decoration-color":!0,"text-decoration-line":!0,"text-decoration-skip":!0,"text-decoration-style":!0,"text-emphasis":!0,"text-emphasis-color":!0,"text-emphasis-position":!0,"text-emphasis-style":!0,"text-height":!0,"text-indent":!0,"text-justify":!0,"text-orientation":!0,"text-overflow":!0,"text-shadow":!0,"text-space-collapse":!0,"text-transform":!0,"text-underline-position":!0,"text-wrap":!0,top:!1,transform:!1,"transform-origin":!1,"transform-style":!1,transition:!1,"transition-delay":!1,"transition-duration":!1,"transition-property":!1,"transition-timing-function":!1,"unicode-bidi":!1,"vertical-align":!1,visibility:!1,"voice-balance":!1,"voice-duration":!1,"voice-family":!1,"voice-pitch":!1,"voice-range":!1,"voice-rate":!1,"voice-stress":!1,"voice-volume":!1,volume:!1,"white-space":!1,widows:!1,width:!0,"will-change":!1,"word-break":!0,"word-spacing":!0,"word-wrap":!0,"wrap-flow":!1,"wrap-through":!1,"writing-mode":!1,"z-index":!1},a.getDefaultWhiteList=l,a.onAttr=function(e,t,r){},a.onIgnoreAttr=function(e,t,r){},a.safeAttrValue=function(e,t){return c.test(t)?"":t};var d=function(e){return String.prototype.trim?e.trim():e.replace(/(^\s*)|(\s*$)/g,"")},h=function(e){return String.prototype.trimRight?e.trimRight():e.replace(/(\s*$)/g,"")},u=a,p=function(e,t){";"!==(e=h(e))[e.length-1]&&(e+=";");var r=e.length,n=!1,s=0,o=0,i="";function a(){if(!n){var r=d(e.slice(s,o)),a=r.indexOf(":");if(-1!==a){var l=d(r.slice(0,a)),c=d(r.slice(a+1));if(l){var h=t(s,i.length,l,c,r);h&&(i+=h+"; ")}}}s=o+1}for(;o<r;o++){var l=e[o];if("/"===l&&"*"===e[o+1]){var c=e.indexOf("*/",o+2);if(-1===c)break;s=(o=c+1)+1,n=!1}else"("===l?n=!0:")"===l?n=!1:";"===l?n||a():"\n"===l&&a()}return d(i)};function f(e){return null==e}function m(e){(e=function(e){var t={};for(var r in e)t[r]=e[r];return t}(e||{})).whiteList=e.whiteList||u.whiteList,e.onAttr=e.onAttr||u.onAttr,e.onIgnoreAttr=e.onIgnoreAttr||u.onIgnoreAttr,e.safeAttrValue=e.safeAttrValue||u.safeAttrValue,this.options=e}m.prototype.process=function(e){if(!(e=(e=e||"").toString()))return"";var t=this.options,r=t.whiteList,n=t.onAttr,s=t.onIgnoreAttr,o=t.safeAttrValue;return p(e,(function(e,t,i,a,l){var c=r[i],d=!1;if(!0===c?d=c:"function"==typeof c?d=c(a):c instanceof RegExp&&(d=c.test(a)),!0!==d&&(d=!1),a=o(i,a)){var h,u={position:t,sourcePosition:e,source:l,isWhite:d};return d?f(h=n(i,a,u))?i+":"+a:h:f(h=s(i,a,u))?void 0:h}}))};var g=m;!function(e,t){var r=a,n=g;for(var s in(t=e.exports=function(e,t){return new n(t).process(e)}).FilterCSS=n,r)t[s]=r[s]}(i,i.exports);var v=i.exports,$={indexOf:function(e,t){var r,n;if(Array.prototype.indexOf)return e.indexOf(t);for(r=0,n=e.length;r<n;r++)if(e[r]===t)return r;return-1},forEach:function(e,t,r){var n,s;if(Array.prototype.forEach)return e.forEach(t,r);for(n=0,s=e.length;n<s;n++)t.call(r,e[n],n,e)},trim:function(e){return String.prototype.trim?e.trim():e.replace(/(^\s*)|(\s*$)/g,"")},spaceIndex:function(e){var t=/\s|\n|\t/.exec(e);return t?t.index:-1}},y=v.FilterCSS,w=v.getDefaultWhiteList,_=$;var b=new y;function S(e){return e.replace(k,"&lt;").replace(x,"&gt;")}var k=/</g,x=/>/g,A=/"/g,I=/&quot;/g,T=/&#([a-zA-Z0-9]*);?/gim,C=/&colon;?/gim,N=/&newline;?/gim,R=/((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi,O=/e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi,U=/u\s*r\s*l\s*\(.*/gi;function L(e){return e.replace(A,"&quot;")}function P(e){return e.replace(I,'"')}function D(e){return e.replace(T,(function(e,t){return"x"===t[0]||"X"===t[0]?String.fromCharCode(parseInt(t.substr(1),16)):String.fromCharCode(parseInt(t,10))}))}function j(e){return e.replace(C,":").replace(N," ")}function E(e){for(var t="",r=0,n=e.length;r<n;r++)t+=e.charCodeAt(r)<32?" ":e.charAt(r);return _.trim(t)}function M(e){return E(e=j(e=D(e=P(e))))}function z(e){return S(e=L(e))}o.whiteList={a:["target","href","title"],abbr:["title"],address:[],area:["shape","coords","href","alt"],article:[],aside:[],audio:["autoplay","controls","crossorigin","loop","muted","preload","src"],b:[],bdi:["dir"],bdo:["dir"],big:[],blockquote:["cite"],br:[],caption:[],center:[],cite:[],code:[],col:["align","valign","span","width"],colgroup:["align","valign","span","width"],dd:[],del:["datetime"],details:["open"],div:[],dl:[],dt:[],em:[],figcaption:[],figure:[],font:["color","size","face"],footer:[],h1:[],h2:[],h3:[],h4:[],h5:[],h6:[],header:[],hr:[],i:[],img:["src","alt","title","width","height"],ins:["datetime"],li:[],mark:[],nav:[],ol:[],p:[],pre:[],s:[],section:[],small:[],span:[],sub:[],summary:[],sup:[],strong:[],strike:[],table:["width","border","align","valign"],tbody:["align","valign"],td:["width","rowspan","colspan","align","valign"],tfoot:["align","valign"],th:["width","rowspan","colspan","align","valign"],thead:["align","valign"],tr:["rowspan","align","valign"],tt:[],u:[],ul:[],video:["autoplay","controls","crossorigin","loop","muted","playsinline","poster","preload","src","height","width"]},o.getDefaultWhiteList=function(){return{a:["target","href","title"],abbr:["title"],address:[],area:["shape","coords","href","alt"],article:[],aside:[],audio:["autoplay","controls","crossorigin","loop","muted","preload","src"],b:[],bdi:["dir"],bdo:["dir"],big:[],blockquote:["cite"],br:[],caption:[],center:[],cite:[],code:[],col:["align","valign","span","width"],colgroup:["align","valign","span","width"],dd:[],del:["datetime"],details:["open"],div:[],dl:[],dt:[],em:[],figcaption:[],figure:[],font:["color","size","face"],footer:[],h1:[],h2:[],h3:[],h4:[],h5:[],h6:[],header:[],hr:[],i:[],img:["src","alt","title","width","height"],ins:["datetime"],li:[],mark:[],nav:[],ol:[],p:[],pre:[],s:[],section:[],small:[],span:[],sub:[],summary:[],sup:[],strong:[],strike:[],table:["width","border","align","valign"],tbody:["align","valign"],td:["width","rowspan","colspan","align","valign"],tfoot:["align","valign"],th:["width","rowspan","colspan","align","valign"],thead:["align","valign"],tr:["rowspan","align","valign"],tt:[],u:[],ul:[],video:["autoplay","controls","crossorigin","loop","muted","playsinline","poster","preload","src","height","width"]}},o.onTag=function(e,t,r){},o.onIgnoreTag=function(e,t,r){},o.onTagAttr=function(e,t,r){},o.onIgnoreTagAttr=function(e,t,r){},o.safeAttrValue=function(e,t,r,n){if(r=M(r),"href"===t||"src"===t){if("#"===(r=_.trim(r)))return"#";if("http://"!==r.substr(0,7)&&"https://"!==r.substr(0,8)&&"mailto:"!==r.substr(0,7)&&"tel:"!==r.substr(0,4)&&"data:image/"!==r.substr(0,11)&&"ftp://"!==r.substr(0,6)&&"./"!==r.substr(0,2)&&"../"!==r.substr(0,3)&&"#"!==r[0]&&"/"!==r[0])return""}else if("background"===t){if(R.lastIndex=0,R.test(r))return""}else if("style"===t){if(O.lastIndex=0,O.test(r))return"";if(U.lastIndex=0,U.test(r)&&(R.lastIndex=0,R.test(r)))return"";!1!==n&&(r=(n=n||b).process(r))}return z(r)},o.escapeHtml=S,o.escapeQuote=L,o.unescapeQuote=P,o.escapeHtmlEntities=D,o.escapeDangerHtml5Entities=j,o.clearNonPrintableCharacter=E,o.friendlyAttrValue=M,o.escapeAttrValue=z,o.onIgnoreTagStripAll=function(){return""},o.StripTagBody=function(e,t){"function"!=typeof t&&(t=function(){});var r=!Array.isArray(e),n=[],s=!1;return{onIgnoreTag:function(o,i,a){if(function(t){return!!r||-1!==_.indexOf(e,t)}(o)){if(a.isClosing){var l=a.position+10;return n.push([!1!==s?s:a.position,l]),s=!1,"[/removed]"}return s||(s=a.position),"[removed]"}return t(o,i,a)},remove:function(e){var t="",r=0;return _.forEach(n,(function(n){t+=e.slice(r,n[0]),r=n[1]})),t+=e.slice(r)}}},o.stripCommentTag=function(e){for(var t="",r=0;r<e.length;){var n=e.indexOf("\x3c!--",r);if(-1===n){t+=e.slice(r);break}t+=e.slice(r,n);var s=e.indexOf("--\x3e",n);if(-1===s)break;r=s+3}return t},o.stripBlankChar=function(e){var t=e.split("");return(t=t.filter((function(e){var t=e.charCodeAt(0);return!(127===t||t<=31&&10!==t&&13!==t)}))).join("")},o.cssFilter=b,o.getDefaultCSSWhiteList=w;var F={},q=$;function V(e){var t,r=q.spaceIndex(e);return t=-1===r?e.slice(1,-1):e.slice(1,r+1),"/"===(t=q.trim(t).toLowerCase()).slice(0,1)&&(t=t.slice(1)),"/"===t.slice(-1)&&(t=t.slice(0,-1)),t}function H(e){return"</"===e.slice(0,2)}var B=/[^a-zA-Z0-9\\_:.-]/gim;function W(e,t){for(;t<e.length;t++){var r=e[t];if(" "!==r)return"="===r?t:-1}}function Z(e,t){for(;t<e.length;t++){var r=e[t];if(" "!==r)return"'"===r||'"'===r?t:-1}}function X(e,t){for(;t>0;t--){var r=e[t];if(" "!==r)return"="===r?t:-1}}function G(e){return function(e){return'"'===e[0]&&'"'===e[e.length-1]||"'"===e[0]&&"'"===e[e.length-1]}(e)?e.substr(1,e.length-2):e}F.parseTag=function(e,t,r){var n="",s=0,o=!1,i=!1,a=0,l=e.length,c="",d="";e:for(a=0;a<l;a++){var h=e.charAt(a);if(!1===o){if("<"===h){o=a;continue}}else if(!1===i){if("<"===h){n+=r(e.slice(s,a)),o=a,s=a;continue}if(">"===h){n+=r(e.slice(s,o)),c=V(d=e.slice(o,a+1)),n+=t(o,n.length,c,d,H(d)),s=a+1,o=!1;continue}if('"'===h||"'"===h)for(var u=1,p=e.charAt(a-u);""===p.trim()||"="===p;){if("="===p){i=h;continue e}p=e.charAt(a-++u)}}else if(h===i){i=!1;continue}}return s<e.length&&(n+=r(e.substr(s))),n},F.parseAttr=function(e,t){var r=0,n=0,s=[],o=!1,i=e.length;function a(e,r){if(!((e=(e=q.trim(e)).replace(B,"").toLowerCase()).length<1)){var n=t(e,r||"");n&&s.push(n)}}for(var l=0;l<i;l++){var c,d=e.charAt(l);if(!1!==o||"="!==d)if(!1===o||l!==n){if(/\s|\n|\t/.test(d)){if(e=e.replace(/\s|\n|\t/g," "),!1===o){if(-1===(c=W(e,l))){a(q.trim(e.slice(r,l))),o=!1,r=l+1;continue}l=c-1;continue}if(-1===(c=X(e,l-1))){a(o,G(q.trim(e.slice(r,l)))),o=!1,r=l+1;continue}}}else{if(-1===(c=e.indexOf(d,l+1)))break;a(o,q.trim(e.slice(n+1,c))),o=!1,r=(l=c)+1}else o=e.slice(r,l),r=l+1,n='"'===e.charAt(r)||"'"===e.charAt(r)?r:Z(e,l+1)}return r<e.length&&(!1===o?a(e.slice(r)):a(o,G(q.trim(e.slice(r))))),q.trim(s.join(" "))};var J=v.FilterCSS,K=o,Q=F,Y=Q.parseTag,ee=Q.parseAttr,te=$;function re(e){return null==e}function ne(e){(e=function(e){var t={};for(var r in e)t[r]=e[r];return t}(e||{})).stripIgnoreTag&&(e.onIgnoreTag&&console.error('Notes: cannot use these two options "stripIgnoreTag" and "onIgnoreTag" at the same time'),e.onIgnoreTag=K.onIgnoreTagStripAll),e.whiteList||e.allowList?e.whiteList=function(e){var t={};for(var r in e)Array.isArray(e[r])?t[r.toLowerCase()]=e[r].map((function(e){return e.toLowerCase()})):t[r.toLowerCase()]=e[r];return t}(e.whiteList||e.allowList):e.whiteList=K.whiteList,e.onTag=e.onTag||K.onTag,e.onTagAttr=e.onTagAttr||K.onTagAttr,e.onIgnoreTag=e.onIgnoreTag||K.onIgnoreTag,e.onIgnoreTagAttr=e.onIgnoreTagAttr||K.onIgnoreTagAttr,e.safeAttrValue=e.safeAttrValue||K.safeAttrValue,e.escapeHtml=e.escapeHtml||K.escapeHtml,this.options=e,!1===e.css?this.cssFilter=!1:(e.css=e.css||{},this.cssFilter=new J(e.css))}ne.prototype.process=function(e){if(!(e=(e=e||"").toString()))return"";var t=this.options,r=t.whiteList,n=t.onTag,s=t.onIgnoreTag,o=t.onTagAttr,i=t.onIgnoreTagAttr,a=t.safeAttrValue,l=t.escapeHtml,c=this.cssFilter;t.stripBlankChar&&(e=K.stripBlankChar(e)),t.allowCommentTag||(e=K.stripCommentTag(e));var d=!1;t.stripIgnoreTagBody&&(d=K.StripTagBody(t.stripIgnoreTagBody,s),s=d.onIgnoreTag);var h=Y(e,(function(e,t,d,h,u){var p={sourcePosition:e,position:t,isClosing:u,isWhite:Object.prototype.hasOwnProperty.call(r,d)},f=n(d,h,p);if(!re(f))return f;if(p.isWhite){if(p.isClosing)return"</"+d+">";var m=function(e){var t=te.spaceIndex(e);if(-1===t)return{html:"",closing:"/"===e[e.length-2]};var r="/"===(e=te.trim(e.slice(t+1,-1)))[e.length-1];return r&&(e=te.trim(e.slice(0,-1))),{html:e,closing:r}}(h),g=r[d],v=ee(m.html,(function(e,t){var r=-1!==te.indexOf(g,e),n=o(d,e,t,r);return re(n)?r?(t=a(d,e,t,c))?e+'="'+t+'"':e:re(n=i(d,e,t,r))?void 0:n:n}));return h="<"+d,v&&(h+=" "+v),m.closing&&(h+=" /"),h+">"}return re(f=s(d,h,p))?l(h):f}),l);return d&&(h=d.remove(h)),h};var se=ne;!function(e,t){var r=o,n=F,s=se;function i(e,t){return new s(t).process(e)}(t=e.exports=i).filterXSS=i,t.FilterXSS=s,function(){for(var e in r)t[e]=r[e];for(var s in n)t[s]=n[s]}(),"undefined"!=typeof self&&"undefined"!=typeof DedicatedWorkerGlobalScope&&self instanceof DedicatedWorkerGlobalScope&&(self.filterXSS=e.exports)}(s,s.exports);var oe=s.exports,ie=function(){function e(e,t){var r,s=this;this.arcgisWhiteList={a:["href","style","target"],abbr:["title"],article:["style"],aside:["style"],audio:["autoplay","controls","loop","muted","preload"],b:[],blockquote:["style"],br:[],code:["style"],dd:["style"],del:["style"],details:["open","style"],div:["align","aria-hidden","aria-label","style"],dl:["style"],dt:["style"],em:[],figcaption:["style"],figure:["style"],font:["color","face","size","style"],footer:["style"],h1:["style"],h2:["style"],h3:["style"],h4:["style"],h5:["style"],h6:["style"],header:["style"],hr:[],i:[],img:["alt","border","height","src","style","width"],li:[],main:["style"],mark:["style"],nav:["style"],ol:[],p:["style"],pre:["style"],section:["style"],source:["media","src","type"],span:["aria-hidden","aria-label","style"],strong:[],sub:["style"],summary:["style"],sup:["style"],table:["border","cellpadding","cellspacing","height","style","width"],tbody:[],tr:["align","height","style","valign"],td:["align","colspan","height","nowrap","rowspan","style","valign","width"],th:["align","colspan","height","nowrap","rowspan","style","valign","width"],time:["style"],u:[],ul:[],video:["autoplay","controls","height","loop","muted","poster","preload","width"]},this.arcgisCSSWhiteList=n(n({},oe.getDefaultCSSWhiteList()),{"align-items":!0,"align-self":!0,flex:!0,"flex-basis":!0,"flex-direction":!0,"flex-flow":!0,"flex-grow":!0,"flex-shrink":!0,"flex-wrap":!0,float:!0,gap:!0,grid:!0,"grid-area":!0,"grid-auto-columns":!0,"grid-auto-flow":!0,"grid-auto-rows":!0,"grid-column":!0,"grid-column-end":!0,"grid-column-start":!0,"grid-row":!0,"grid-row-end":!0,"grid-row-start":!0,"grid-template":!0,"grid-template-areas":!0,"grid-template-columns":!0,"grid-template-rows":!0,"justify-content":!0,"justify-items":!0,"justify-self":!0,"line-height":!0,overflow:!0}),this.allowedProtocols=["http","https","mailto","iform","tel","flow","lfmobile","arcgis-navigator","arcgis-appstudio-player","arcgis-survey123","arcgis-collector","arcgis-workforce","arcgis-explorer","arcgis-trek2there","arcgis-quickcapture","mspbi","comgooglemaps","pdfefile","pdfehttp","pdfehttps","boxapp","boxemm","awb","awbs","gropen","radarscope"],this.arcgisFilterOptions={allowCommentTag:!0,safeAttrValue:function(e,t,r,n){return"a"===e&&"href"===t||("img"===e||"source"===e)&&"src"===t?s.sanitizeUrl(r):oe.safeAttrValue(e,t,r,n)}},this._entityMap={"&":"&#x38;","<":"&#x3C;",">":"&#x3E;",'"':"&#x22;","'":"&#x27;","/":"&#x2F;"},e&&!t?r=e:e&&t?((r=Object.create(this.arcgisFilterOptions)).css={whiteList:this.arcgisCSSWhiteList},Object.keys(e).forEach((function(t){if("whiteList"===t)r.whiteList=s._extendObjectOfArrays([s.arcgisWhiteList,e.whiteList||{}]);else if("css"===t){var n=e.css.whiteList;null!=n&&e.css instanceof Object&&Object.keys(n).forEach((function(e){return r.css.whiteList[e]=n[e]}))}else r[t]=e[t]}))):((r=Object.create(this.arcgisFilterOptions)).whiteList=this.arcgisWhiteList,r.css={whiteList:this.arcgisCSSWhiteList}),this.xssFilterOptions=r,this._xssFilter=new oe.FilterXSS(r)}return e.prototype.sanitize=function(e,t){switch(void 0===t&&(t={}),typeof e){case"number":return isNaN(e)||!isFinite(e)?null:e;case"boolean":return e;case"string":return this._xssFilter.process(e);case"object":return this._iterateOverObject(e,t);default:if(t.allowUndefined&&void 0===e)return;return null}},e.prototype.sanitizeUrl=function(e,t){var r=(null!=t?t:{}).isProtocolRequired,n=void 0===r||r,s=this._trim(e.substring(0,e.indexOf(":"))),o="/"===e,i=/^#/.test(e),a=s&&this.allowedProtocols.indexOf(s.toLowerCase())>-1;return o||i||a?oe.escapeAttrValue(e):s||n?"":oe.escapeAttrValue("https://".concat(e))},e.prototype.sanitizeHTMLAttribute=function(e,t,r,n){return"function"==typeof this.xssFilterOptions.safeAttrValue?this.xssFilterOptions.safeAttrValue(e,t,r,n):oe.safeAttrValue(e,t,r,n)},e.prototype.validate=function(e,t){void 0===t&&(t={});var r=this.sanitize(e,t);return{isValid:e===r,sanitized:r}},e.prototype.encodeHTML=function(e){var t=this;return String(e).replace(/[&<>"'\/]/g,(function(e){return t._entityMap[e]}))},e.prototype.encodeAttrValue=function(e){var t=/^[a-zA-Z0-9]$/;return String(e).replace(/[\x00-\xFF]/g,(function(r,n){return t.test(r)?r:"&#x".concat(Number(e.charCodeAt(n)).toString(16),";")}))},e.prototype._extendObjectOfArrays=function(e){var t={};return e.forEach((function(e){Object.keys(e).forEach((function(r){Array.isArray(e[r])&&Array.isArray(t[r])?t[r]=t[r].concat(e[r]):t[r]=e[r]}))})),t},e.prototype._iterateOverObject=function(e,t){var r=this;void 0===t&&(t={});try{var n=!1,s=void 0;if(Array.isArray(e))s=e.reduce((function(e,s){var o=r.validate(s,t);return o.isValid?e.concat([s]):(n=!0,e.concat([o.sanitized]))}),[]);else{if(!function(e){if("object"!=typeof e||null===e)return!1;if("[object Object]"!==Object.prototype.toString.call(e))return!1;var t=Object.getPrototypeOf(e);if(null===t)return!0;for(;null!==Object.getPrototypeOf(t);)t=Object.getPrototypeOf(t);return Object.getPrototypeOf(e)===t}(e)){if(t.allowUndefined&&void 0===e)return;return null}s=Object.keys(e).reduce((function(s,o){var i=e[o],a=r.validate(i,t);return a.isValid?s[o]=i:(n=!0,s[o]=a.sanitized),s}),{})}return n?s:e}catch(e){return null}},e.prototype._trim=function(e){return String.prototype.trim?e.trim():e.replace(/(^\s*)|(\s*$)/g,"")},e}(),ae=r(14130),le=(r(61226),r(58941),r(40633),r(60539)),ce=(r(28181),r(74087)),de=r(15351);function he(...e){const t=ae.A.acquire();for(let r=0;r<e.length;r++){const n=e[r],s=typeof n;if("string"===s)t.push(n);else if(Array.isArray(n))t.push.apply(t,n);else if("object"===s)for(const e in n)n[e]&&t.push(e)}const r=t.join(" ");return ae.A.release(t),r}function ue(e){const t=e?.closest("[dir]");return null!==t&&t instanceof HTMLElement&&"rtl"===t.dir||"rtl"===document.dir}function pe(e){this[e.getAttribute("data-node-ref")]=null}function fe(e){this[e.getAttribute("data-node-ref")]=e}(()=>{const e=new Map;new ResizeObserver((t=>{(0,de.Sh)();for(const r of t)e.get(r.target)?.(r)}))})();const me=["dd","dl","dt","h1","h2","h3","h4","h5","h6","sub","sup","animate","animatetransform","circle","clippath","defs","ellipse","g","image","line","lineargradient","marker","mask","path","pattern","polygon","polyline","radialgradient","rect","stop","svg","switch","symbol","text","textpath","tspan","use"].reduce(((e,t)=>(e[t]=[],e)),{}),ge=["align","alink","alt","bgcolor","border","cellpadding","cellspacing","class","color","cols","colspan","coords","d","dir","face","height","hspace","ismap","lang","marginheight","marginwidth","multiple","nohref","noresize","noshade","nowrap","ref","rel","rev","rows","rowspan","scrolling","shape","span","summary","tabindex","title","usemap","valign","value","vlink","vspace","width"],ve=new ie({whiteList:me,onTagAttr:(e,t,r)=>{const n=`${t}="${r}"`;if(ge.includes(t))return n},stripIgnoreTag:!0,stripIgnoreTagBody:["script","style"]},!0);function $e(e){return"Enter"===e||" "===e}async function ye(e,t){await(0,ce.$m)((0,le.Mq)(t));const r="function"==typeof e?e():e;r&&("setFocus"in r&&"function"==typeof r.setFocus?await r.setFocus():r instanceof HTMLElement&&r.focus())}}}]);
+(self["webpackChunkdefra"] = self["webpackChunkdefra"] || []).push([["identity-IdentityManager"],{
+
+/***/ "./node_modules/@stencil/core/internal/client lazy recursive ^\\.\\/.*\\.entry\\.js.*$ include: \\.entry\\.js$ exclude: \\.system\\.entry\\.js$":
+/*!************************************************************************************************************************************************************!*\
+  !*** ./node_modules/@stencil/core/internal/client/ lazy ^\.\/.*\.entry\.js.*$ include: \.entry\.js$ exclude: \.system\.entry\.js$ strict namespace object ***!
+  \************************************************************************************************************************************************************/
+/***/ (function(module) {
+
+function webpackEmptyAsyncContext(req) {
+	// Here Promise.resolve().then() is used instead of new Promise() to prevent
+	// uncaught exception popping up in devtools
+	return Promise.resolve().then(function() {
+		var e = new Error("Cannot find module '" + req + "'");
+		e.code = 'MODULE_NOT_FOUND';
+		throw e;
+	});
+}
+webpackEmptyAsyncContext.keys = function() { return []; };
+webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
+webpackEmptyAsyncContext.id = "./node_modules/@stencil/core/internal/client lazy recursive ^\\.\\/.*\\.entry\\.js.*$ include: \\.entry\\.js$ exclude: \\.system\\.entry\\.js$";
+module.exports = webpackEmptyAsyncContext;
+
+/***/ }),
+
+/***/ "./node_modules/@esri/arcgis-html-sanitizer/dist/esm/index.js":
+/*!********************************************************************!*\
+  !*** ./node_modules/@esri/arcgis-html-sanitizer/dist/esm/index.js ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Sanitizer: function() { return /* binding */ Sanitizer; },
+/* harmony export */   "default": function() { return /* binding */ Sanitizer; }
+/* harmony export */ });
+/*!
+ * @esri/arcgis-html-sanitizer - v4.1.0 - Tue Dec 03 2024 09:13:28 GMT-0500 (Eastern Standard Time)
+ * Copyright (c) 2024 - Environmental Systems Research Institute, Inc.
+ * Apache-2.0
+ * 
+ * js-xss
+ * Copyright (c) 2012-2018 Zongmin Lei(雷宗民) <leizongmin@gmail.com>
+ * http://ucdok.com
+ * MIT License, see https://github.com/leizongmin/js-xss/blob/master/LICENSE for details
+ */
+/*! *****************************************************************************
+Copyright (c) Microsoft Corporation.
+
+Permission to use, copy, modify, and/or distribute this software for any
+purpose with or without fee is hereby granted.
+
+THE SOFTWARE IS PROVIDED "AS IS" AND THE AUTHOR DISCLAIMS ALL WARRANTIES WITH
+REGARD TO THIS SOFTWARE INCLUDING ALL IMPLIED WARRANTIES OF MERCHANTABILITY
+AND FITNESS. IN NO EVENT SHALL THE AUTHOR BE LIABLE FOR ANY SPECIAL, DIRECT,
+INDIRECT, OR CONSEQUENTIAL DAMAGES OR ANY DAMAGES WHATSOEVER RESULTING FROM
+LOSS OF USE, DATA OR PROFITS, WHETHER IN AN ACTION OF CONTRACT, NEGLIGENCE OR
+OTHER TORTIOUS ACTION, ARISING OUT OF OR IN CONNECTION WITH THE USE OR
+PERFORMANCE OF THIS SOFTWARE.
+***************************************************************************** */
+/* global Reflect, Promise */
+
+
+var __assign = function() {
+    __assign = Object.assign || function __assign(t) {
+        for (var s, i = 1, n = arguments.length; i < n; i++) {
+            s = arguments[i];
+            for (var p in s) if (Object.prototype.hasOwnProperty.call(s, p)) t[p] = s[p];
+        }
+        return t;
+    };
+    return __assign.apply(this, arguments);
+};
+
+var lib$1 = {exports: {}};
+
+var _default$1 = {};
+
+var lib = {exports: {}};
+
+var _default = {};
+
+/**
+ * cssfilter
+ *
+ * @author 老雷<leizongmin@gmail.com>
+ */
+
+function getDefaultWhiteList$1 () {
+  // 白名单值说明：
+  // true: 允许该属性
+  // Function: function (val) { } 返回true表示允许该属性，其他值均表示不允许
+  // RegExp: regexp.test(val) 返回true表示允许该属性，其他值均表示不允许
+  // 除上面列出的值外均表示不允许
+  var whiteList = {};
+
+  whiteList['align-content'] = false; // default: auto
+  whiteList['align-items'] = false; // default: auto
+  whiteList['align-self'] = false; // default: auto
+  whiteList['alignment-adjust'] = false; // default: auto
+  whiteList['alignment-baseline'] = false; // default: baseline
+  whiteList['all'] = false; // default: depending on individual properties
+  whiteList['anchor-point'] = false; // default: none
+  whiteList['animation'] = false; // default: depending on individual properties
+  whiteList['animation-delay'] = false; // default: 0
+  whiteList['animation-direction'] = false; // default: normal
+  whiteList['animation-duration'] = false; // default: 0
+  whiteList['animation-fill-mode'] = false; // default: none
+  whiteList['animation-iteration-count'] = false; // default: 1
+  whiteList['animation-name'] = false; // default: none
+  whiteList['animation-play-state'] = false; // default: running
+  whiteList['animation-timing-function'] = false; // default: ease
+  whiteList['azimuth'] = false; // default: center
+  whiteList['backface-visibility'] = false; // default: visible
+  whiteList['background'] = true; // default: depending on individual properties
+  whiteList['background-attachment'] = true; // default: scroll
+  whiteList['background-clip'] = true; // default: border-box
+  whiteList['background-color'] = true; // default: transparent
+  whiteList['background-image'] = true; // default: none
+  whiteList['background-origin'] = true; // default: padding-box
+  whiteList['background-position'] = true; // default: 0% 0%
+  whiteList['background-repeat'] = true; // default: repeat
+  whiteList['background-size'] = true; // default: auto
+  whiteList['baseline-shift'] = false; // default: baseline
+  whiteList['binding'] = false; // default: none
+  whiteList['bleed'] = false; // default: 6pt
+  whiteList['bookmark-label'] = false; // default: content()
+  whiteList['bookmark-level'] = false; // default: none
+  whiteList['bookmark-state'] = false; // default: open
+  whiteList['border'] = true; // default: depending on individual properties
+  whiteList['border-bottom'] = true; // default: depending on individual properties
+  whiteList['border-bottom-color'] = true; // default: current color
+  whiteList['border-bottom-left-radius'] = true; // default: 0
+  whiteList['border-bottom-right-radius'] = true; // default: 0
+  whiteList['border-bottom-style'] = true; // default: none
+  whiteList['border-bottom-width'] = true; // default: medium
+  whiteList['border-collapse'] = true; // default: separate
+  whiteList['border-color'] = true; // default: depending on individual properties
+  whiteList['border-image'] = true; // default: none
+  whiteList['border-image-outset'] = true; // default: 0
+  whiteList['border-image-repeat'] = true; // default: stretch
+  whiteList['border-image-slice'] = true; // default: 100%
+  whiteList['border-image-source'] = true; // default: none
+  whiteList['border-image-width'] = true; // default: 1
+  whiteList['border-left'] = true; // default: depending on individual properties
+  whiteList['border-left-color'] = true; // default: current color
+  whiteList['border-left-style'] = true; // default: none
+  whiteList['border-left-width'] = true; // default: medium
+  whiteList['border-radius'] = true; // default: 0
+  whiteList['border-right'] = true; // default: depending on individual properties
+  whiteList['border-right-color'] = true; // default: current color
+  whiteList['border-right-style'] = true; // default: none
+  whiteList['border-right-width'] = true; // default: medium
+  whiteList['border-spacing'] = true; // default: 0
+  whiteList['border-style'] = true; // default: depending on individual properties
+  whiteList['border-top'] = true; // default: depending on individual properties
+  whiteList['border-top-color'] = true; // default: current color
+  whiteList['border-top-left-radius'] = true; // default: 0
+  whiteList['border-top-right-radius'] = true; // default: 0
+  whiteList['border-top-style'] = true; // default: none
+  whiteList['border-top-width'] = true; // default: medium
+  whiteList['border-width'] = true; // default: depending on individual properties
+  whiteList['bottom'] = false; // default: auto
+  whiteList['box-decoration-break'] = true; // default: slice
+  whiteList['box-shadow'] = true; // default: none
+  whiteList['box-sizing'] = true; // default: content-box
+  whiteList['box-snap'] = true; // default: none
+  whiteList['box-suppress'] = true; // default: show
+  whiteList['break-after'] = true; // default: auto
+  whiteList['break-before'] = true; // default: auto
+  whiteList['break-inside'] = true; // default: auto
+  whiteList['caption-side'] = false; // default: top
+  whiteList['chains'] = false; // default: none
+  whiteList['clear'] = true; // default: none
+  whiteList['clip'] = false; // default: auto
+  whiteList['clip-path'] = false; // default: none
+  whiteList['clip-rule'] = false; // default: nonzero
+  whiteList['color'] = true; // default: implementation dependent
+  whiteList['color-interpolation-filters'] = true; // default: auto
+  whiteList['column-count'] = false; // default: auto
+  whiteList['column-fill'] = false; // default: balance
+  whiteList['column-gap'] = false; // default: normal
+  whiteList['column-rule'] = false; // default: depending on individual properties
+  whiteList['column-rule-color'] = false; // default: current color
+  whiteList['column-rule-style'] = false; // default: medium
+  whiteList['column-rule-width'] = false; // default: medium
+  whiteList['column-span'] = false; // default: none
+  whiteList['column-width'] = false; // default: auto
+  whiteList['columns'] = false; // default: depending on individual properties
+  whiteList['contain'] = false; // default: none
+  whiteList['content'] = false; // default: normal
+  whiteList['counter-increment'] = false; // default: none
+  whiteList['counter-reset'] = false; // default: none
+  whiteList['counter-set'] = false; // default: none
+  whiteList['crop'] = false; // default: auto
+  whiteList['cue'] = false; // default: depending on individual properties
+  whiteList['cue-after'] = false; // default: none
+  whiteList['cue-before'] = false; // default: none
+  whiteList['cursor'] = false; // default: auto
+  whiteList['direction'] = false; // default: ltr
+  whiteList['display'] = true; // default: depending on individual properties
+  whiteList['display-inside'] = true; // default: auto
+  whiteList['display-list'] = true; // default: none
+  whiteList['display-outside'] = true; // default: inline-level
+  whiteList['dominant-baseline'] = false; // default: auto
+  whiteList['elevation'] = false; // default: level
+  whiteList['empty-cells'] = false; // default: show
+  whiteList['filter'] = false; // default: none
+  whiteList['flex'] = false; // default: depending on individual properties
+  whiteList['flex-basis'] = false; // default: auto
+  whiteList['flex-direction'] = false; // default: row
+  whiteList['flex-flow'] = false; // default: depending on individual properties
+  whiteList['flex-grow'] = false; // default: 0
+  whiteList['flex-shrink'] = false; // default: 1
+  whiteList['flex-wrap'] = false; // default: nowrap
+  whiteList['float'] = false; // default: none
+  whiteList['float-offset'] = false; // default: 0 0
+  whiteList['flood-color'] = false; // default: black
+  whiteList['flood-opacity'] = false; // default: 1
+  whiteList['flow-from'] = false; // default: none
+  whiteList['flow-into'] = false; // default: none
+  whiteList['font'] = true; // default: depending on individual properties
+  whiteList['font-family'] = true; // default: implementation dependent
+  whiteList['font-feature-settings'] = true; // default: normal
+  whiteList['font-kerning'] = true; // default: auto
+  whiteList['font-language-override'] = true; // default: normal
+  whiteList['font-size'] = true; // default: medium
+  whiteList['font-size-adjust'] = true; // default: none
+  whiteList['font-stretch'] = true; // default: normal
+  whiteList['font-style'] = true; // default: normal
+  whiteList['font-synthesis'] = true; // default: weight style
+  whiteList['font-variant'] = true; // default: normal
+  whiteList['font-variant-alternates'] = true; // default: normal
+  whiteList['font-variant-caps'] = true; // default: normal
+  whiteList['font-variant-east-asian'] = true; // default: normal
+  whiteList['font-variant-ligatures'] = true; // default: normal
+  whiteList['font-variant-numeric'] = true; // default: normal
+  whiteList['font-variant-position'] = true; // default: normal
+  whiteList['font-weight'] = true; // default: normal
+  whiteList['grid'] = false; // default: depending on individual properties
+  whiteList['grid-area'] = false; // default: depending on individual properties
+  whiteList['grid-auto-columns'] = false; // default: auto
+  whiteList['grid-auto-flow'] = false; // default: none
+  whiteList['grid-auto-rows'] = false; // default: auto
+  whiteList['grid-column'] = false; // default: depending on individual properties
+  whiteList['grid-column-end'] = false; // default: auto
+  whiteList['grid-column-start'] = false; // default: auto
+  whiteList['grid-row'] = false; // default: depending on individual properties
+  whiteList['grid-row-end'] = false; // default: auto
+  whiteList['grid-row-start'] = false; // default: auto
+  whiteList['grid-template'] = false; // default: depending on individual properties
+  whiteList['grid-template-areas'] = false; // default: none
+  whiteList['grid-template-columns'] = false; // default: none
+  whiteList['grid-template-rows'] = false; // default: none
+  whiteList['hanging-punctuation'] = false; // default: none
+  whiteList['height'] = true; // default: auto
+  whiteList['hyphens'] = false; // default: manual
+  whiteList['icon'] = false; // default: auto
+  whiteList['image-orientation'] = false; // default: auto
+  whiteList['image-resolution'] = false; // default: normal
+  whiteList['ime-mode'] = false; // default: auto
+  whiteList['initial-letters'] = false; // default: normal
+  whiteList['inline-box-align'] = false; // default: last
+  whiteList['justify-content'] = false; // default: auto
+  whiteList['justify-items'] = false; // default: auto
+  whiteList['justify-self'] = false; // default: auto
+  whiteList['left'] = false; // default: auto
+  whiteList['letter-spacing'] = true; // default: normal
+  whiteList['lighting-color'] = true; // default: white
+  whiteList['line-box-contain'] = false; // default: block inline replaced
+  whiteList['line-break'] = false; // default: auto
+  whiteList['line-grid'] = false; // default: match-parent
+  whiteList['line-height'] = false; // default: normal
+  whiteList['line-snap'] = false; // default: none
+  whiteList['line-stacking'] = false; // default: depending on individual properties
+  whiteList['line-stacking-ruby'] = false; // default: exclude-ruby
+  whiteList['line-stacking-shift'] = false; // default: consider-shifts
+  whiteList['line-stacking-strategy'] = false; // default: inline-line-height
+  whiteList['list-style'] = true; // default: depending on individual properties
+  whiteList['list-style-image'] = true; // default: none
+  whiteList['list-style-position'] = true; // default: outside
+  whiteList['list-style-type'] = true; // default: disc
+  whiteList['margin'] = true; // default: depending on individual properties
+  whiteList['margin-bottom'] = true; // default: 0
+  whiteList['margin-left'] = true; // default: 0
+  whiteList['margin-right'] = true; // default: 0
+  whiteList['margin-top'] = true; // default: 0
+  whiteList['marker-offset'] = false; // default: auto
+  whiteList['marker-side'] = false; // default: list-item
+  whiteList['marks'] = false; // default: none
+  whiteList['mask'] = false; // default: border-box
+  whiteList['mask-box'] = false; // default: see individual properties
+  whiteList['mask-box-outset'] = false; // default: 0
+  whiteList['mask-box-repeat'] = false; // default: stretch
+  whiteList['mask-box-slice'] = false; // default: 0 fill
+  whiteList['mask-box-source'] = false; // default: none
+  whiteList['mask-box-width'] = false; // default: auto
+  whiteList['mask-clip'] = false; // default: border-box
+  whiteList['mask-image'] = false; // default: none
+  whiteList['mask-origin'] = false; // default: border-box
+  whiteList['mask-position'] = false; // default: center
+  whiteList['mask-repeat'] = false; // default: no-repeat
+  whiteList['mask-size'] = false; // default: border-box
+  whiteList['mask-source-type'] = false; // default: auto
+  whiteList['mask-type'] = false; // default: luminance
+  whiteList['max-height'] = true; // default: none
+  whiteList['max-lines'] = false; // default: none
+  whiteList['max-width'] = true; // default: none
+  whiteList['min-height'] = true; // default: 0
+  whiteList['min-width'] = true; // default: 0
+  whiteList['move-to'] = false; // default: normal
+  whiteList['nav-down'] = false; // default: auto
+  whiteList['nav-index'] = false; // default: auto
+  whiteList['nav-left'] = false; // default: auto
+  whiteList['nav-right'] = false; // default: auto
+  whiteList['nav-up'] = false; // default: auto
+  whiteList['object-fit'] = false; // default: fill
+  whiteList['object-position'] = false; // default: 50% 50%
+  whiteList['opacity'] = false; // default: 1
+  whiteList['order'] = false; // default: 0
+  whiteList['orphans'] = false; // default: 2
+  whiteList['outline'] = false; // default: depending on individual properties
+  whiteList['outline-color'] = false; // default: invert
+  whiteList['outline-offset'] = false; // default: 0
+  whiteList['outline-style'] = false; // default: none
+  whiteList['outline-width'] = false; // default: medium
+  whiteList['overflow'] = false; // default: depending on individual properties
+  whiteList['overflow-wrap'] = false; // default: normal
+  whiteList['overflow-x'] = false; // default: visible
+  whiteList['overflow-y'] = false; // default: visible
+  whiteList['padding'] = true; // default: depending on individual properties
+  whiteList['padding-bottom'] = true; // default: 0
+  whiteList['padding-left'] = true; // default: 0
+  whiteList['padding-right'] = true; // default: 0
+  whiteList['padding-top'] = true; // default: 0
+  whiteList['page'] = false; // default: auto
+  whiteList['page-break-after'] = false; // default: auto
+  whiteList['page-break-before'] = false; // default: auto
+  whiteList['page-break-inside'] = false; // default: auto
+  whiteList['page-policy'] = false; // default: start
+  whiteList['pause'] = false; // default: implementation dependent
+  whiteList['pause-after'] = false; // default: implementation dependent
+  whiteList['pause-before'] = false; // default: implementation dependent
+  whiteList['perspective'] = false; // default: none
+  whiteList['perspective-origin'] = false; // default: 50% 50%
+  whiteList['pitch'] = false; // default: medium
+  whiteList['pitch-range'] = false; // default: 50
+  whiteList['play-during'] = false; // default: auto
+  whiteList['position'] = false; // default: static
+  whiteList['presentation-level'] = false; // default: 0
+  whiteList['quotes'] = false; // default: text
+  whiteList['region-fragment'] = false; // default: auto
+  whiteList['resize'] = false; // default: none
+  whiteList['rest'] = false; // default: depending on individual properties
+  whiteList['rest-after'] = false; // default: none
+  whiteList['rest-before'] = false; // default: none
+  whiteList['richness'] = false; // default: 50
+  whiteList['right'] = false; // default: auto
+  whiteList['rotation'] = false; // default: 0
+  whiteList['rotation-point'] = false; // default: 50% 50%
+  whiteList['ruby-align'] = false; // default: auto
+  whiteList['ruby-merge'] = false; // default: separate
+  whiteList['ruby-position'] = false; // default: before
+  whiteList['shape-image-threshold'] = false; // default: 0.0
+  whiteList['shape-outside'] = false; // default: none
+  whiteList['shape-margin'] = false; // default: 0
+  whiteList['size'] = false; // default: auto
+  whiteList['speak'] = false; // default: auto
+  whiteList['speak-as'] = false; // default: normal
+  whiteList['speak-header'] = false; // default: once
+  whiteList['speak-numeral'] = false; // default: continuous
+  whiteList['speak-punctuation'] = false; // default: none
+  whiteList['speech-rate'] = false; // default: medium
+  whiteList['stress'] = false; // default: 50
+  whiteList['string-set'] = false; // default: none
+  whiteList['tab-size'] = false; // default: 8
+  whiteList['table-layout'] = false; // default: auto
+  whiteList['text-align'] = true; // default: start
+  whiteList['text-align-last'] = true; // default: auto
+  whiteList['text-combine-upright'] = true; // default: none
+  whiteList['text-decoration'] = true; // default: none
+  whiteList['text-decoration-color'] = true; // default: currentColor
+  whiteList['text-decoration-line'] = true; // default: none
+  whiteList['text-decoration-skip'] = true; // default: objects
+  whiteList['text-decoration-style'] = true; // default: solid
+  whiteList['text-emphasis'] = true; // default: depending on individual properties
+  whiteList['text-emphasis-color'] = true; // default: currentColor
+  whiteList['text-emphasis-position'] = true; // default: over right
+  whiteList['text-emphasis-style'] = true; // default: none
+  whiteList['text-height'] = true; // default: auto
+  whiteList['text-indent'] = true; // default: 0
+  whiteList['text-justify'] = true; // default: auto
+  whiteList['text-orientation'] = true; // default: mixed
+  whiteList['text-overflow'] = true; // default: clip
+  whiteList['text-shadow'] = true; // default: none
+  whiteList['text-space-collapse'] = true; // default: collapse
+  whiteList['text-transform'] = true; // default: none
+  whiteList['text-underline-position'] = true; // default: auto
+  whiteList['text-wrap'] = true; // default: normal
+  whiteList['top'] = false; // default: auto
+  whiteList['transform'] = false; // default: none
+  whiteList['transform-origin'] = false; // default: 50% 50% 0
+  whiteList['transform-style'] = false; // default: flat
+  whiteList['transition'] = false; // default: depending on individual properties
+  whiteList['transition-delay'] = false; // default: 0s
+  whiteList['transition-duration'] = false; // default: 0s
+  whiteList['transition-property'] = false; // default: all
+  whiteList['transition-timing-function'] = false; // default: ease
+  whiteList['unicode-bidi'] = false; // default: normal
+  whiteList['vertical-align'] = false; // default: baseline
+  whiteList['visibility'] = false; // default: visible
+  whiteList['voice-balance'] = false; // default: center
+  whiteList['voice-duration'] = false; // default: auto
+  whiteList['voice-family'] = false; // default: implementation dependent
+  whiteList['voice-pitch'] = false; // default: medium
+  whiteList['voice-range'] = false; // default: medium
+  whiteList['voice-rate'] = false; // default: normal
+  whiteList['voice-stress'] = false; // default: normal
+  whiteList['voice-volume'] = false; // default: medium
+  whiteList['volume'] = false; // default: medium
+  whiteList['white-space'] = false; // default: normal
+  whiteList['widows'] = false; // default: 2
+  whiteList['width'] = true; // default: auto
+  whiteList['will-change'] = false; // default: auto
+  whiteList['word-break'] = true; // default: normal
+  whiteList['word-spacing'] = true; // default: normal
+  whiteList['word-wrap'] = true; // default: normal
+  whiteList['wrap-flow'] = false; // default: auto
+  whiteList['wrap-through'] = false; // default: wrap
+  whiteList['writing-mode'] = false; // default: horizontal-tb
+  whiteList['z-index'] = false; // default: auto
+
+  return whiteList;
+}
+
+
+/**
+ * 匹配到白名单上的一个属性时
+ *
+ * @param {String} name
+ * @param {String} value
+ * @param {Object} options
+ * @return {String}
+ */
+function onAttr (name, value, options) {
+  // do nothing
+}
+
+/**
+ * 匹配到不在白名单上的一个属性时
+ *
+ * @param {String} name
+ * @param {String} value
+ * @param {Object} options
+ * @return {String}
+ */
+function onIgnoreAttr (name, value, options) {
+  // do nothing
+}
+
+var REGEXP_URL_JAVASCRIPT = /javascript\s*\:/img;
+
+/**
+ * 过滤属性值
+ *
+ * @param {String} name
+ * @param {String} value
+ * @return {String}
+ */
+function safeAttrValue$1(name, value) {
+  if (REGEXP_URL_JAVASCRIPT.test(value)) return '';
+  return value;
+}
+
+
+_default.whiteList = getDefaultWhiteList$1();
+_default.getDefaultWhiteList = getDefaultWhiteList$1;
+_default.onAttr = onAttr;
+_default.onIgnoreAttr = onIgnoreAttr;
+_default.safeAttrValue = safeAttrValue$1;
+
+var util$1 = {
+  indexOf: function (arr, item) {
+    var i, j;
+    if (Array.prototype.indexOf) {
+      return arr.indexOf(item);
+    }
+    for (i = 0, j = arr.length; i < j; i++) {
+      if (arr[i] === item) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  forEach: function (arr, fn, scope) {
+    var i, j;
+    if (Array.prototype.forEach) {
+      return arr.forEach(fn, scope);
+    }
+    for (i = 0, j = arr.length; i < j; i++) {
+      fn.call(scope, arr[i], i, arr);
+    }
+  },
+  trim: function (str) {
+    if (String.prototype.trim) {
+      return str.trim();
+    }
+    return str.replace(/(^\s*)|(\s*$)/g, '');
+  },
+  trimRight: function (str) {
+    if (String.prototype.trimRight) {
+      return str.trimRight();
+    }
+    return str.replace(/(\s*$)/g, '');
+  }
+};
+
+/**
+ * cssfilter
+ *
+ * @author 老雷<leizongmin@gmail.com>
+ */
+
+var _$3 = util$1;
+
+
+/**
+ * 解析style
+ *
+ * @param {String} css
+ * @param {Function} onAttr 处理属性的函数
+ *   参数格式： function (sourcePosition, position, name, value, source)
+ * @return {String}
+ */
+function parseStyle$1 (css, onAttr) {
+  css = _$3.trimRight(css);
+  if (css[css.length - 1] !== ';') css += ';';
+  var cssLength = css.length;
+  var isParenthesisOpen = false;
+  var lastPos = 0;
+  var i = 0;
+  var retCSS = '';
+
+  function addNewAttr () {
+    // 如果没有正常的闭合圆括号，则直接忽略当前属性
+    if (!isParenthesisOpen) {
+      var source = _$3.trim(css.slice(lastPos, i));
+      var j = source.indexOf(':');
+      if (j !== -1) {
+        var name = _$3.trim(source.slice(0, j));
+        var value = _$3.trim(source.slice(j + 1));
+        // 必须有属性名称
+        if (name) {
+          var ret = onAttr(lastPos, retCSS.length, name, value, source);
+          if (ret) retCSS += ret + '; ';
+        }
+      }
+    }
+    lastPos = i + 1;
+  }
+
+  for (; i < cssLength; i++) {
+    var c = css[i];
+    if (c === '/' && css[i + 1] === '*') {
+      // 备注开始
+      var j = css.indexOf('*/', i + 2);
+      // 如果没有正常的备注结束，则后面的部分全部跳过
+      if (j === -1) break;
+      // 直接将当前位置调到备注结尾，并且初始化状态
+      i = j + 1;
+      lastPos = i + 1;
+      isParenthesisOpen = false;
+    } else if (c === '(') {
+      isParenthesisOpen = true;
+    } else if (c === ')') {
+      isParenthesisOpen = false;
+    } else if (c === ';') {
+      if (isParenthesisOpen) ; else {
+        addNewAttr();
+      }
+    } else if (c === '\n') {
+      addNewAttr();
+    }
+  }
+
+  return _$3.trim(retCSS);
+}
+
+var parser$2 = parseStyle$1;
+
+/**
+ * cssfilter
+ *
+ * @author 老雷<leizongmin@gmail.com>
+ */
+
+var DEFAULT$1 = _default;
+var parseStyle = parser$2;
+
+
+/**
+ * 返回值是否为空
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ */
+function isNull$1 (obj) {
+  return (obj === undefined || obj === null);
+}
+
+/**
+ * 浅拷贝对象
+ *
+ * @param {Object} obj
+ * @return {Object}
+ */
+function shallowCopyObject$1 (obj) {
+  var ret = {};
+  for (var i in obj) {
+    ret[i] = obj[i];
+  }
+  return ret;
+}
+
+/**
+ * 创建CSS过滤器
+ *
+ * @param {Object} options
+ *   - {Object} whiteList
+ *   - {Function} onAttr
+ *   - {Function} onIgnoreAttr
+ *   - {Function} safeAttrValue
+ */
+function FilterCSS$2 (options) {
+  options = shallowCopyObject$1(options || {});
+  options.whiteList = options.whiteList || DEFAULT$1.whiteList;
+  options.onAttr = options.onAttr || DEFAULT$1.onAttr;
+  options.onIgnoreAttr = options.onIgnoreAttr || DEFAULT$1.onIgnoreAttr;
+  options.safeAttrValue = options.safeAttrValue || DEFAULT$1.safeAttrValue;
+  this.options = options;
+}
+
+FilterCSS$2.prototype.process = function (css) {
+  // 兼容各种奇葩输入
+  css = css || '';
+  css = css.toString();
+  if (!css) return '';
+
+  var me = this;
+  var options = me.options;
+  var whiteList = options.whiteList;
+  var onAttr = options.onAttr;
+  var onIgnoreAttr = options.onIgnoreAttr;
+  var safeAttrValue = options.safeAttrValue;
+
+  var retCSS = parseStyle(css, function (sourcePosition, position, name, value, source) {
+
+    var check = whiteList[name];
+    var isWhite = false;
+    if (check === true) isWhite = check;
+    else if (typeof check === 'function') isWhite = check(value);
+    else if (check instanceof RegExp) isWhite = check.test(value);
+    if (isWhite !== true) isWhite = false;
+
+    // 如果过滤后 value 为空则直接忽略
+    value = safeAttrValue(name, value);
+    if (!value) return;
+
+    var opts = {
+      position: position,
+      sourcePosition: sourcePosition,
+      source: source,
+      isWhite: isWhite
+    };
+
+    if (isWhite) {
+
+      var ret = onAttr(name, value, opts);
+      if (isNull$1(ret)) {
+        return name + ':' + value;
+      } else {
+        return ret;
+      }
+
+    } else {
+
+      var ret = onIgnoreAttr(name, value, opts);
+      if (!isNull$1(ret)) {
+        return ret;
+      }
+
+    }
+  });
+
+  return retCSS;
+};
+
+
+var css = FilterCSS$2;
+
+/**
+ * cssfilter
+ *
+ * @author 老雷<leizongmin@gmail.com>
+ */
+
+(function (module, exports) {
+	var DEFAULT = _default;
+	var FilterCSS = css;
+
+
+	/**
+	 * XSS过滤
+	 *
+	 * @param {String} css 要过滤的CSS代码
+	 * @param {Object} options 选项：whiteList, onAttr, onIgnoreAttr
+	 * @return {String}
+	 */
+	function filterCSS (html, options) {
+	  var xss = new FilterCSS(options);
+	  return xss.process(html);
+	}
+
+
+	// 输出
+	exports = module.exports = filterCSS;
+	exports.FilterCSS = FilterCSS;
+	for (var i in DEFAULT) exports[i] = DEFAULT[i];
+} (lib, lib.exports));
+
+var libExports$1 = lib.exports;
+
+var util = {
+  indexOf: function (arr, item) {
+    var i, j;
+    if (Array.prototype.indexOf) {
+      return arr.indexOf(item);
+    }
+    for (i = 0, j = arr.length; i < j; i++) {
+      if (arr[i] === item) {
+        return i;
+      }
+    }
+    return -1;
+  },
+  forEach: function (arr, fn, scope) {
+    var i, j;
+    if (Array.prototype.forEach) {
+      return arr.forEach(fn, scope);
+    }
+    for (i = 0, j = arr.length; i < j; i++) {
+      fn.call(scope, arr[i], i, arr);
+    }
+  },
+  trim: function (str) {
+    if (String.prototype.trim) {
+      return str.trim();
+    }
+    return str.replace(/(^\s*)|(\s*$)/g, "");
+  },
+  spaceIndex: function (str) {
+    var reg = /\s|\n|\t/;
+    var match = reg.exec(str);
+    return match ? match.index : -1;
+  },
+};
+
+/**
+ * default settings
+ *
+ * @author Zongmin Lei<leizongmin@gmail.com>
+ */
+
+var FilterCSS$1 = libExports$1.FilterCSS;
+var getDefaultCSSWhiteList = libExports$1.getDefaultWhiteList;
+var _$2 = util;
+
+function getDefaultWhiteList() {
+  return {
+    a: ["target", "href", "title"],
+    abbr: ["title"],
+    address: [],
+    area: ["shape", "coords", "href", "alt"],
+    article: [],
+    aside: [],
+    audio: [
+      "autoplay",
+      "controls",
+      "crossorigin",
+      "loop",
+      "muted",
+      "preload",
+      "src",
+    ],
+    b: [],
+    bdi: ["dir"],
+    bdo: ["dir"],
+    big: [],
+    blockquote: ["cite"],
+    br: [],
+    caption: [],
+    center: [],
+    cite: [],
+    code: [],
+    col: ["align", "valign", "span", "width"],
+    colgroup: ["align", "valign", "span", "width"],
+    dd: [],
+    del: ["datetime"],
+    details: ["open"],
+    div: [],
+    dl: [],
+    dt: [],
+    em: [],
+    figcaption: [],
+    figure: [],
+    font: ["color", "size", "face"],
+    footer: [],
+    h1: [],
+    h2: [],
+    h3: [],
+    h4: [],
+    h5: [],
+    h6: [],
+    header: [],
+    hr: [],
+    i: [],
+    img: ["src", "alt", "title", "width", "height"],
+    ins: ["datetime"],
+    li: [],
+    mark: [],
+    nav: [],
+    ol: [],
+    p: [],
+    pre: [],
+    s: [],
+    section: [],
+    small: [],
+    span: [],
+    sub: [],
+    summary: [],
+    sup: [],
+    strong: [],
+    strike: [],
+    table: ["width", "border", "align", "valign"],
+    tbody: ["align", "valign"],
+    td: ["width", "rowspan", "colspan", "align", "valign"],
+    tfoot: ["align", "valign"],
+    th: ["width", "rowspan", "colspan", "align", "valign"],
+    thead: ["align", "valign"],
+    tr: ["rowspan", "align", "valign"],
+    tt: [],
+    u: [],
+    ul: [],
+    video: [
+      "autoplay",
+      "controls",
+      "crossorigin",
+      "loop",
+      "muted",
+      "playsinline",
+      "poster",
+      "preload",
+      "src",
+      "height",
+      "width",
+    ],
+  };
+}
+
+var defaultCSSFilter = new FilterCSS$1();
+
+/**
+ * default onTag function
+ *
+ * @param {String} tag
+ * @param {String} html
+ * @param {Object} options
+ * @return {String}
+ */
+function onTag(tag, html, options) {
+  // do nothing
+}
+
+/**
+ * default onIgnoreTag function
+ *
+ * @param {String} tag
+ * @param {String} html
+ * @param {Object} options
+ * @return {String}
+ */
+function onIgnoreTag(tag, html, options) {
+  // do nothing
+}
+
+/**
+ * default onTagAttr function
+ *
+ * @param {String} tag
+ * @param {String} name
+ * @param {String} value
+ * @return {String}
+ */
+function onTagAttr(tag, name, value) {
+  // do nothing
+}
+
+/**
+ * default onIgnoreTagAttr function
+ *
+ * @param {String} tag
+ * @param {String} name
+ * @param {String} value
+ * @return {String}
+ */
+function onIgnoreTagAttr(tag, name, value) {
+  // do nothing
+}
+
+/**
+ * default escapeHtml function
+ *
+ * @param {String} html
+ */
+function escapeHtml(html) {
+  return html.replace(REGEXP_LT, "&lt;").replace(REGEXP_GT, "&gt;");
+}
+
+/**
+ * default safeAttrValue function
+ *
+ * @param {String} tag
+ * @param {String} name
+ * @param {String} value
+ * @param {Object} cssFilter
+ * @return {String}
+ */
+function safeAttrValue(tag, name, value, cssFilter) {
+  // unescape attribute value firstly
+  value = friendlyAttrValue(value);
+
+  if (name === "href" || name === "src") {
+    // filter `href` and `src` attribute
+    // only allow the value that starts with `http://` | `https://` | `mailto:` | `/` | `#`
+    value = _$2.trim(value);
+    if (value === "#") return "#";
+    if (
+      !(
+        value.substr(0, 7) === "http://" ||
+        value.substr(0, 8) === "https://" ||
+        value.substr(0, 7) === "mailto:" ||
+        value.substr(0, 4) === "tel:" ||
+        value.substr(0, 11) === "data:image/" ||
+        value.substr(0, 6) === "ftp://" ||
+        value.substr(0, 2) === "./" ||
+        value.substr(0, 3) === "../" ||
+        value[0] === "#" ||
+        value[0] === "/"
+      )
+    ) {
+      return "";
+    }
+  } else if (name === "background") {
+    // filter `background` attribute (maybe no use)
+    // `javascript:`
+    REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
+      return "";
+    }
+  } else if (name === "style") {
+    // `expression()`
+    REGEXP_DEFAULT_ON_TAG_ATTR_7.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_7.test(value)) {
+      return "";
+    }
+    // `url()`
+    REGEXP_DEFAULT_ON_TAG_ATTR_8.lastIndex = 0;
+    if (REGEXP_DEFAULT_ON_TAG_ATTR_8.test(value)) {
+      REGEXP_DEFAULT_ON_TAG_ATTR_4.lastIndex = 0;
+      if (REGEXP_DEFAULT_ON_TAG_ATTR_4.test(value)) {
+        return "";
+      }
+    }
+    if (cssFilter !== false) {
+      cssFilter = cssFilter || defaultCSSFilter;
+      value = cssFilter.process(value);
+    }
+  }
+
+  // escape `<>"` before returns
+  value = escapeAttrValue(value);
+  return value;
+}
+
+// RegExp list
+var REGEXP_LT = /</g;
+var REGEXP_GT = />/g;
+var REGEXP_QUOTE = /"/g;
+var REGEXP_QUOTE_2 = /&quot;/g;
+var REGEXP_ATTR_VALUE_1 = /&#([a-zA-Z0-9]*);?/gim;
+var REGEXP_ATTR_VALUE_COLON = /&colon;?/gim;
+var REGEXP_ATTR_VALUE_NEWLINE = /&newline;?/gim;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_3 = /\/\*|\*\//gm;
+var REGEXP_DEFAULT_ON_TAG_ATTR_4 =
+  /((j\s*a\s*v\s*a|v\s*b|l\s*i\s*v\s*e)\s*s\s*c\s*r\s*i\s*p\s*t\s*|m\s*o\s*c\s*h\s*a):/gi;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_5 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:/gi;
+// var REGEXP_DEFAULT_ON_TAG_ATTR_6 = /^[\s"'`]*(d\s*a\s*t\s*a\s*)\:\s*image\//gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_7 =
+  /e\s*x\s*p\s*r\s*e\s*s\s*s\s*i\s*o\s*n\s*\(.*/gi;
+var REGEXP_DEFAULT_ON_TAG_ATTR_8 = /u\s*r\s*l\s*\(.*/gi;
+
+/**
+ * escape double quote
+ *
+ * @param {String} str
+ * @return {String} str
+ */
+function escapeQuote(str) {
+  return str.replace(REGEXP_QUOTE, "&quot;");
+}
+
+/**
+ * unescape double quote
+ *
+ * @param {String} str
+ * @return {String} str
+ */
+function unescapeQuote(str) {
+  return str.replace(REGEXP_QUOTE_2, '"');
+}
+
+/**
+ * escape html entities
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function escapeHtmlEntities(str) {
+  return str.replace(REGEXP_ATTR_VALUE_1, function replaceUnicode(str, code) {
+    return code[0] === "x" || code[0] === "X"
+      ? String.fromCharCode(parseInt(code.substr(1), 16))
+      : String.fromCharCode(parseInt(code, 10));
+  });
+}
+
+/**
+ * escape html5 new danger entities
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function escapeDangerHtml5Entities(str) {
+  return str
+    .replace(REGEXP_ATTR_VALUE_COLON, ":")
+    .replace(REGEXP_ATTR_VALUE_NEWLINE, " ");
+}
+
+/**
+ * clear nonprintable characters
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function clearNonPrintableCharacter(str) {
+  var str2 = "";
+  for (var i = 0, len = str.length; i < len; i++) {
+    str2 += str.charCodeAt(i) < 32 ? " " : str.charAt(i);
+  }
+  return _$2.trim(str2);
+}
+
+/**
+ * get friendly attribute value
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function friendlyAttrValue(str) {
+  str = unescapeQuote(str);
+  str = escapeHtmlEntities(str);
+  str = escapeDangerHtml5Entities(str);
+  str = clearNonPrintableCharacter(str);
+  return str;
+}
+
+/**
+ * unescape attribute value
+ *
+ * @param {String} str
+ * @return {String}
+ */
+function escapeAttrValue(str) {
+  str = escapeQuote(str);
+  str = escapeHtml(str);
+  return str;
+}
+
+/**
+ * `onIgnoreTag` function for removing all the tags that are not in whitelist
+ */
+function onIgnoreTagStripAll() {
+  return "";
+}
+
+/**
+ * remove tag body
+ * specify a `tags` list, if the tag is not in the `tags` list then process by the specify function (optional)
+ *
+ * @param {array} tags
+ * @param {function} next
+ */
+function StripTagBody(tags, next) {
+  if (typeof next !== "function") {
+    next = function () {};
+  }
+
+  var isRemoveAllTag = !Array.isArray(tags);
+  function isRemoveTag(tag) {
+    if (isRemoveAllTag) return true;
+    return _$2.indexOf(tags, tag) !== -1;
+  }
+
+  var removeList = [];
+  var posStart = false;
+
+  return {
+    onIgnoreTag: function (tag, html, options) {
+      if (isRemoveTag(tag)) {
+        if (options.isClosing) {
+          var ret = "[/removed]";
+          var end = options.position + ret.length;
+          removeList.push([
+            posStart !== false ? posStart : options.position,
+            end,
+          ]);
+          posStart = false;
+          return ret;
+        } else {
+          if (!posStart) {
+            posStart = options.position;
+          }
+          return "[removed]";
+        }
+      } else {
+        return next(tag, html, options);
+      }
+    },
+    remove: function (html) {
+      var rethtml = "";
+      var lastPos = 0;
+      _$2.forEach(removeList, function (pos) {
+        rethtml += html.slice(lastPos, pos[0]);
+        lastPos = pos[1];
+      });
+      rethtml += html.slice(lastPos);
+      return rethtml;
+    },
+  };
+}
+
+/**
+ * remove html comments
+ *
+ * @param {String} html
+ * @return {String}
+ */
+function stripCommentTag(html) {
+  var retHtml = "";
+  var lastPos = 0;
+  while (lastPos < html.length) {
+    var i = html.indexOf("<!--", lastPos);
+    if (i === -1) {
+      retHtml += html.slice(lastPos);
+      break;
+    }
+    retHtml += html.slice(lastPos, i);
+    var j = html.indexOf("-->", i);
+    if (j === -1) {
+      break;
+    }
+    lastPos = j + 3;
+  }
+  return retHtml;
+}
+
+/**
+ * remove invisible characters
+ *
+ * @param {String} html
+ * @return {String}
+ */
+function stripBlankChar(html) {
+  var chars = html.split("");
+  chars = chars.filter(function (char) {
+    var c = char.charCodeAt(0);
+    if (c === 127) return false;
+    if (c <= 31) {
+      if (c === 10 || c === 13) return true;
+      return false;
+    }
+    return true;
+  });
+  return chars.join("");
+}
+
+_default$1.whiteList = getDefaultWhiteList();
+_default$1.getDefaultWhiteList = getDefaultWhiteList;
+_default$1.onTag = onTag;
+_default$1.onIgnoreTag = onIgnoreTag;
+_default$1.onTagAttr = onTagAttr;
+_default$1.onIgnoreTagAttr = onIgnoreTagAttr;
+_default$1.safeAttrValue = safeAttrValue;
+_default$1.escapeHtml = escapeHtml;
+_default$1.escapeQuote = escapeQuote;
+_default$1.unescapeQuote = unescapeQuote;
+_default$1.escapeHtmlEntities = escapeHtmlEntities;
+_default$1.escapeDangerHtml5Entities = escapeDangerHtml5Entities;
+_default$1.clearNonPrintableCharacter = clearNonPrintableCharacter;
+_default$1.friendlyAttrValue = friendlyAttrValue;
+_default$1.escapeAttrValue = escapeAttrValue;
+_default$1.onIgnoreTagStripAll = onIgnoreTagStripAll;
+_default$1.StripTagBody = StripTagBody;
+_default$1.stripCommentTag = stripCommentTag;
+_default$1.stripBlankChar = stripBlankChar;
+_default$1.cssFilter = defaultCSSFilter;
+_default$1.getDefaultCSSWhiteList = getDefaultCSSWhiteList;
+
+var parser$1 = {};
+
+/**
+ * Simple HTML Parser
+ *
+ * @author Zongmin Lei<leizongmin@gmail.com>
+ */
+
+var _$1 = util;
+
+/**
+ * get tag name
+ *
+ * @param {String} html e.g. '<a hef="#">'
+ * @return {String}
+ */
+function getTagName(html) {
+  var i = _$1.spaceIndex(html);
+  var tagName;
+  if (i === -1) {
+    tagName = html.slice(1, -1);
+  } else {
+    tagName = html.slice(1, i + 1);
+  }
+  tagName = _$1.trim(tagName).toLowerCase();
+  if (tagName.slice(0, 1) === "/") tagName = tagName.slice(1);
+  if (tagName.slice(-1) === "/") tagName = tagName.slice(0, -1);
+  return tagName;
+}
+
+/**
+ * is close tag?
+ *
+ * @param {String} html 如：'<a hef="#">'
+ * @return {Boolean}
+ */
+function isClosing(html) {
+  return html.slice(0, 2) === "</";
+}
+
+/**
+ * parse input html and returns processed html
+ *
+ * @param {String} html
+ * @param {Function} onTag e.g. function (sourcePosition, position, tag, html, isClosing)
+ * @param {Function} escapeHtml
+ * @return {String}
+ */
+function parseTag$1(html, onTag, escapeHtml) {
+
+  var rethtml = "";
+  var lastPos = 0;
+  var tagStart = false;
+  var quoteStart = false;
+  var currentPos = 0;
+  var len = html.length;
+  var currentTagName = "";
+  var currentHtml = "";
+
+  chariterator: for (currentPos = 0; currentPos < len; currentPos++) {
+    var c = html.charAt(currentPos);
+    if (tagStart === false) {
+      if (c === "<") {
+        tagStart = currentPos;
+        continue;
+      }
+    } else {
+      if (quoteStart === false) {
+        if (c === "<") {
+          rethtml += escapeHtml(html.slice(lastPos, currentPos));
+          tagStart = currentPos;
+          lastPos = currentPos;
+          continue;
+        }
+        if (c === ">") {
+          rethtml += escapeHtml(html.slice(lastPos, tagStart));
+          currentHtml = html.slice(tagStart, currentPos + 1);
+          currentTagName = getTagName(currentHtml);
+          rethtml += onTag(
+            tagStart,
+            rethtml.length,
+            currentTagName,
+            currentHtml,
+            isClosing(currentHtml)
+          );
+          lastPos = currentPos + 1;
+          tagStart = false;
+          continue;
+        }
+        if (c === '"' || c === "'") {
+          var i = 1;
+          var ic = html.charAt(currentPos - i);
+
+          while (ic.trim() === "" || ic === "=") {
+            if (ic === "=") {
+              quoteStart = c;
+              continue chariterator;
+            }
+            ic = html.charAt(currentPos - ++i);
+          }
+        }
+      } else {
+        if (c === quoteStart) {
+          quoteStart = false;
+          continue;
+        }
+      }
+    }
+  }
+  if (lastPos < html.length) {
+    rethtml += escapeHtml(html.substr(lastPos));
+  }
+
+  return rethtml;
+}
+
+var REGEXP_ILLEGAL_ATTR_NAME = /[^a-zA-Z0-9\\_:.-]/gim;
+
+/**
+ * parse input attributes and returns processed attributes
+ *
+ * @param {String} html e.g. `href="#" target="_blank"`
+ * @param {Function} onAttr e.g. `function (name, value)`
+ * @return {String}
+ */
+function parseAttr$1(html, onAttr) {
+
+  var lastPos = 0;
+  var lastMarkPos = 0;
+  var retAttrs = [];
+  var tmpName = false;
+  var len = html.length;
+
+  function addAttr(name, value) {
+    name = _$1.trim(name);
+    name = name.replace(REGEXP_ILLEGAL_ATTR_NAME, "").toLowerCase();
+    if (name.length < 1) return;
+    var ret = onAttr(name, value || "");
+    if (ret) retAttrs.push(ret);
+  }
+
+  // 逐个分析字符
+  for (var i = 0; i < len; i++) {
+    var c = html.charAt(i);
+    var v, j;
+    if (tmpName === false && c === "=") {
+      tmpName = html.slice(lastPos, i);
+      lastPos = i + 1;
+      lastMarkPos = html.charAt(lastPos) === '"' || html.charAt(lastPos) === "'" ? lastPos : findNextQuotationMark(html, i + 1);
+      continue;
+    }
+    if (tmpName !== false) {
+      if (
+        i === lastMarkPos
+      ) {
+        j = html.indexOf(c, i + 1);
+        if (j === -1) {
+          break;
+        } else {
+          v = _$1.trim(html.slice(lastMarkPos + 1, j));
+          addAttr(tmpName, v);
+          tmpName = false;
+          i = j;
+          lastPos = i + 1;
+          continue;
+        }
+      }
+    }
+    if (/\s|\n|\t/.test(c)) {
+      html = html.replace(/\s|\n|\t/g, " ");
+      if (tmpName === false) {
+        j = findNextEqual(html, i);
+        if (j === -1) {
+          v = _$1.trim(html.slice(lastPos, i));
+          addAttr(v);
+          tmpName = false;
+          lastPos = i + 1;
+          continue;
+        } else {
+          i = j - 1;
+          continue;
+        }
+      } else {
+        j = findBeforeEqual(html, i - 1);
+        if (j === -1) {
+          v = _$1.trim(html.slice(lastPos, i));
+          v = stripQuoteWrap(v);
+          addAttr(tmpName, v);
+          tmpName = false;
+          lastPos = i + 1;
+          continue;
+        } else {
+          continue;
+        }
+      }
+    }
+  }
+
+  if (lastPos < html.length) {
+    if (tmpName === false) {
+      addAttr(html.slice(lastPos));
+    } else {
+      addAttr(tmpName, stripQuoteWrap(_$1.trim(html.slice(lastPos))));
+    }
+  }
+
+  return _$1.trim(retAttrs.join(" "));
+}
+
+function findNextEqual(str, i) {
+  for (; i < str.length; i++) {
+    var c = str[i];
+    if (c === " ") continue;
+    if (c === "=") return i;
+    return -1;
+  }
+}
+
+function findNextQuotationMark(str, i) {
+  for (; i < str.length; i++) {
+    var c = str[i];
+    if (c === " ") continue;
+    if (c === "'" || c === '"') return i;
+    return -1;
+  }
+}
+
+function findBeforeEqual(str, i) {
+  for (; i > 0; i--) {
+    var c = str[i];
+    if (c === " ") continue;
+    if (c === "=") return i;
+    return -1;
+  }
+}
+
+function isQuoteWrapString(text) {
+  if (
+    (text[0] === '"' && text[text.length - 1] === '"') ||
+    (text[0] === "'" && text[text.length - 1] === "'")
+  ) {
+    return true;
+  } else {
+    return false;
+  }
+}
+
+function stripQuoteWrap(text) {
+  if (isQuoteWrapString(text)) {
+    return text.substr(1, text.length - 2);
+  } else {
+    return text;
+  }
+}
+
+parser$1.parseTag = parseTag$1;
+parser$1.parseAttr = parseAttr$1;
+
+/**
+ * filter xss
+ *
+ * @author Zongmin Lei<leizongmin@gmail.com>
+ */
+
+var FilterCSS = libExports$1.FilterCSS;
+var DEFAULT = _default$1;
+var parser = parser$1;
+var parseTag = parser.parseTag;
+var parseAttr = parser.parseAttr;
+var _ = util;
+
+/**
+ * returns `true` if the input value is `undefined` or `null`
+ *
+ * @param {Object} obj
+ * @return {Boolean}
+ */
+function isNull(obj) {
+  return obj === undefined || obj === null;
+}
+
+/**
+ * get attributes for a tag
+ *
+ * @param {String} html
+ * @return {Object}
+ *   - {String} html
+ *   - {Boolean} closing
+ */
+function getAttrs(html) {
+  var i = _.spaceIndex(html);
+  if (i === -1) {
+    return {
+      html: "",
+      closing: html[html.length - 2] === "/",
+    };
+  }
+  html = _.trim(html.slice(i + 1, -1));
+  var isClosing = html[html.length - 1] === "/";
+  if (isClosing) html = _.trim(html.slice(0, -1));
+  return {
+    html: html,
+    closing: isClosing,
+  };
+}
+
+/**
+ * shallow copy
+ *
+ * @param {Object} obj
+ * @return {Object}
+ */
+function shallowCopyObject(obj) {
+  var ret = {};
+  for (var i in obj) {
+    ret[i] = obj[i];
+  }
+  return ret;
+}
+
+function keysToLowerCase(obj) {
+  var ret = {};
+  for (var i in obj) {
+    if (Array.isArray(obj[i])) {
+      ret[i.toLowerCase()] = obj[i].map(function (item) {
+        return item.toLowerCase();
+      });
+    } else {
+      ret[i.toLowerCase()] = obj[i];
+    }
+  }
+  return ret;
+}
+
+/**
+ * FilterXSS class
+ *
+ * @param {Object} options
+ *        whiteList (or allowList), onTag, onTagAttr, onIgnoreTag,
+ *        onIgnoreTagAttr, safeAttrValue, escapeHtml
+ *        stripIgnoreTagBody, allowCommentTag, stripBlankChar
+ *        css{whiteList, onAttr, onIgnoreAttr} `css=false` means don't use `cssfilter`
+ */
+function FilterXSS(options) {
+  options = shallowCopyObject(options || {});
+
+  if (options.stripIgnoreTag) {
+    if (options.onIgnoreTag) {
+      console.error(
+        'Notes: cannot use these two options "stripIgnoreTag" and "onIgnoreTag" at the same time'
+      );
+    }
+    options.onIgnoreTag = DEFAULT.onIgnoreTagStripAll;
+  }
+  if (options.whiteList || options.allowList) {
+    options.whiteList = keysToLowerCase(options.whiteList || options.allowList);
+  } else {
+    options.whiteList = DEFAULT.whiteList;
+  }
+
+  options.onTag = options.onTag || DEFAULT.onTag;
+  options.onTagAttr = options.onTagAttr || DEFAULT.onTagAttr;
+  options.onIgnoreTag = options.onIgnoreTag || DEFAULT.onIgnoreTag;
+  options.onIgnoreTagAttr = options.onIgnoreTagAttr || DEFAULT.onIgnoreTagAttr;
+  options.safeAttrValue = options.safeAttrValue || DEFAULT.safeAttrValue;
+  options.escapeHtml = options.escapeHtml || DEFAULT.escapeHtml;
+  this.options = options;
+
+  if (options.css === false) {
+    this.cssFilter = false;
+  } else {
+    options.css = options.css || {};
+    this.cssFilter = new FilterCSS(options.css);
+  }
+}
+
+/**
+ * start process and returns result
+ *
+ * @param {String} html
+ * @return {String}
+ */
+FilterXSS.prototype.process = function (html) {
+  // compatible with the input
+  html = html || "";
+  html = html.toString();
+  if (!html) return "";
+
+  var me = this;
+  var options = me.options;
+  var whiteList = options.whiteList;
+  var onTag = options.onTag;
+  var onIgnoreTag = options.onIgnoreTag;
+  var onTagAttr = options.onTagAttr;
+  var onIgnoreTagAttr = options.onIgnoreTagAttr;
+  var safeAttrValue = options.safeAttrValue;
+  var escapeHtml = options.escapeHtml;
+  var cssFilter = me.cssFilter;
+
+  // remove invisible characters
+  if (options.stripBlankChar) {
+    html = DEFAULT.stripBlankChar(html);
+  }
+
+  // remove html comments
+  if (!options.allowCommentTag) {
+    html = DEFAULT.stripCommentTag(html);
+  }
+
+  // if enable stripIgnoreTagBody
+  var stripIgnoreTagBody = false;
+  if (options.stripIgnoreTagBody) {
+    stripIgnoreTagBody = DEFAULT.StripTagBody(
+      options.stripIgnoreTagBody,
+      onIgnoreTag
+    );
+    onIgnoreTag = stripIgnoreTagBody.onIgnoreTag;
+  }
+
+  var retHtml = parseTag(
+    html,
+    function (sourcePosition, position, tag, html, isClosing) {
+      var info = {
+        sourcePosition: sourcePosition,
+        position: position,
+        isClosing: isClosing,
+        isWhite: Object.prototype.hasOwnProperty.call(whiteList, tag),
+      };
+
+      // call `onTag()`
+      var ret = onTag(tag, html, info);
+      if (!isNull(ret)) return ret;
+
+      if (info.isWhite) {
+        if (info.isClosing) {
+          return "</" + tag + ">";
+        }
+
+        var attrs = getAttrs(html);
+        var whiteAttrList = whiteList[tag];
+        var attrsHtml = parseAttr(attrs.html, function (name, value) {
+          // call `onTagAttr()`
+          var isWhiteAttr = _.indexOf(whiteAttrList, name) !== -1;
+          var ret = onTagAttr(tag, name, value, isWhiteAttr);
+          if (!isNull(ret)) return ret;
+
+          if (isWhiteAttr) {
+            // call `safeAttrValue()`
+            value = safeAttrValue(tag, name, value, cssFilter);
+            if (value) {
+              return name + '="' + value + '"';
+            } else {
+              return name;
+            }
+          } else {
+            // call `onIgnoreTagAttr()`
+            ret = onIgnoreTagAttr(tag, name, value, isWhiteAttr);
+            if (!isNull(ret)) return ret;
+            return;
+          }
+        });
+
+        // build new tag html
+        html = "<" + tag;
+        if (attrsHtml) html += " " + attrsHtml;
+        if (attrs.closing) html += " /";
+        html += ">";
+        return html;
+      } else {
+        // call `onIgnoreTag()`
+        ret = onIgnoreTag(tag, html, info);
+        if (!isNull(ret)) return ret;
+        return escapeHtml(html);
+      }
+    },
+    escapeHtml
+  );
+
+  // if enable stripIgnoreTagBody
+  if (stripIgnoreTagBody) {
+    retHtml = stripIgnoreTagBody.remove(retHtml);
+  }
+
+  return retHtml;
+};
+
+var xss = FilterXSS;
+
+/**
+ * xss
+ *
+ * @author Zongmin Lei<leizongmin@gmail.com>
+ */
+
+(function (module, exports) {
+	var DEFAULT = _default$1;
+	var parser = parser$1;
+	var FilterXSS = xss;
+
+	/**
+	 * filter xss function
+	 *
+	 * @param {String} html
+	 * @param {Object} options { whiteList, onTag, onTagAttr, onIgnoreTag, onIgnoreTagAttr, safeAttrValue, escapeHtml }
+	 * @return {String}
+	 */
+	function filterXSS(html, options) {
+	  var xss = new FilterXSS(options);
+	  return xss.process(html);
+	}
+
+	exports = module.exports = filterXSS;
+	exports.filterXSS = filterXSS;
+	exports.FilterXSS = FilterXSS;
+
+	(function () {
+	  for (var i in DEFAULT) {
+	    exports[i] = DEFAULT[i];
+	  }
+	  for (var j in parser) {
+	    exports[j] = parser[j];
+	  }
+	})();
+
+	// using `xss` on the WebWorker, output `filterXSS` to the globals
+	function isWorkerEnv() {
+	  return (
+	    typeof self !== "undefined" &&
+	    typeof DedicatedWorkerGlobalScope !== "undefined" &&
+	    self instanceof DedicatedWorkerGlobalScope
+	  );
+	}
+	if (isWorkerEnv()) {
+	  self.filterXSS = module.exports;
+	} 
+} (lib$1, lib$1.exports));
+
+var libExports = lib$1.exports;
+
+/**
+ * Determine if the value is a plain object.
+ * @param {*} value The value to check.
+ * @returns {boolean} Returns `true` if `value` is a plain object, else `false`.
+ */
+var isPlainObject = function (value) {
+    if (typeof value !== "object" || value === null) {
+        return false;
+    }
+    if (Object.prototype.toString.call(value) !== "[object Object]") {
+        return false;
+    }
+    var proto = Object.getPrototypeOf(value);
+    if (proto === null) {
+        return true;
+    }
+    while (Object.getPrototypeOf(proto) !== null) {
+        proto = Object.getPrototypeOf(proto);
+    }
+    return Object.getPrototypeOf(value) === proto;
+};
+
+/**
+ * The Sanitizer Class
+ *
+ * @export
+ * @class Sanitizer
+ */
+var Sanitizer = /** @class */ (function () {
+    function Sanitizer(filterOptions, extendDefaults) {
+        var _this = this;
+        // Supported HTML Spec: https://doc.arcgis.com/en/arcgis-online/reference/supported-html.htm
+        this.arcgisWhiteList = {
+            a: ["href", "style", "target"],
+            abbr: ["title"],
+            article: ["style"],
+            aside: ["style"],
+            audio: ["autoplay", "controls", "loop", "muted", "preload"],
+            b: [],
+            blockquote: ["style"],
+            br: [],
+            code: ["style"],
+            dd: ["style"],
+            del: ["style"],
+            details: ["open", "style"],
+            div: ["align", "aria-hidden", "aria-label", "style"],
+            dl: ["style"],
+            dt: ["style"],
+            em: [],
+            figcaption: ["style"],
+            figure: ["style"],
+            font: ["color", "face", "size", "style"],
+            footer: ["style"],
+            h1: ["style"],
+            h2: ["style"],
+            h3: ["style"],
+            h4: ["style"],
+            h5: ["style"],
+            h6: ["style"],
+            header: ["style"],
+            hr: [],
+            i: [],
+            img: ["alt", "border", "height", "src", "style", "width"],
+            li: [],
+            main: ["style"],
+            mark: ["style"],
+            nav: ["style"],
+            ol: [],
+            p: ["style"],
+            pre: ["style"],
+            section: ["style"],
+            source: ["media", "src", "type"],
+            span: ["aria-hidden", "aria-label", "style"],
+            strong: [],
+            sub: ["style"],
+            summary: ["style"],
+            sup: ["style"],
+            table: ["border", "cellpadding", "cellspacing", "height", "style", "width"],
+            tbody: [],
+            tr: ["align", "height", "style", "valign"],
+            td: [
+                "align",
+                "colspan",
+                "height",
+                "nowrap",
+                "rowspan",
+                "style",
+                "valign",
+                "width",
+            ],
+            th: [
+                "align",
+                "colspan",
+                "height",
+                "nowrap",
+                "rowspan",
+                "style",
+                "valign",
+                "width",
+            ],
+            time: ["style"],
+            u: [],
+            ul: [],
+            video: [
+                "autoplay",
+                "controls",
+                "height",
+                "loop",
+                "muted",
+                "poster",
+                "preload",
+                "width",
+            ],
+        };
+        this.arcgisCSSWhiteList = __assign(__assign({}, libExports.getDefaultCSSWhiteList()), { "align-items": true, "align-self": true, "flex": true, "flex-basis": true, "flex-direction": true, "flex-flow": true, "flex-grow": true, "flex-shrink": true, "flex-wrap": true, "float": true, "gap": true, "grid": true, "grid-area": true, "grid-auto-columns": true, "grid-auto-flow": true, "grid-auto-rows": true, "grid-column": true, "grid-column-end": true, "grid-column-start": true, "grid-row": true, "grid-row-end": true, "grid-row-start": true, "grid-template": true, "grid-template-areas": true, "grid-template-columns": true, "grid-template-rows": true, "justify-content": true, "justify-items": true, "justify-self": true, "line-height": true, "overflow": true });
+        this.allowedProtocols = [
+            "http",
+            "https",
+            "mailto",
+            "iform",
+            "tel",
+            "flow",
+            "lfmobile",
+            "arcgis-navigator",
+            "arcgis-appstudio-player",
+            "arcgis-survey123",
+            "arcgis-collector",
+            "arcgis-workforce",
+            "arcgis-explorer",
+            "arcgis-trek2there",
+            "arcgis-quickcapture",
+            "mspbi",
+            "comgooglemaps",
+            "pdfefile",
+            "pdfehttp",
+            "pdfehttps",
+            "boxapp",
+            "boxemm",
+            "awb",
+            "awbs",
+            "gropen",
+            "radarscope",
+        ];
+        this.arcgisFilterOptions = {
+            allowCommentTag: true,
+            safeAttrValue: function (tag, name, value, cssFilter) {
+                // Take over safe attribute filtering for `a` `href`, `img` `src`,
+                // and `source` `src` attributes, otherwise pass onto the
+                // default `XSS.safeAttrValue` method.
+                if ((tag === "a" && name === "href") ||
+                    ((tag === "img" || tag === "source") && name === "src")) {
+                    return _this.sanitizeUrl(value);
+                }
+                return libExports.safeAttrValue(tag, name, value, cssFilter);
+            },
+        };
+        this._entityMap = {
+            "&": "&#x38;",
+            "<": "&#x3C;",
+            ">": "&#x3E;",
+            '"': "&#x22;",
+            "'": "&#x27;",
+            "/": "&#x2F;",
+        };
+        var xssFilterOptions;
+        if (filterOptions && !extendDefaults) {
+            // Override the defaults
+            xssFilterOptions = filterOptions;
+        }
+        else if (filterOptions && extendDefaults) {
+            // Extend the defaults
+            xssFilterOptions = Object.create(this.arcgisFilterOptions);
+            xssFilterOptions.css = { whiteList: this.arcgisCSSWhiteList };
+            Object.keys(filterOptions).forEach(function (key) {
+                if (key === "whiteList") {
+                    // Extend the whitelist by concatenating arrays
+                    xssFilterOptions.whiteList = _this._extendObjectOfArrays([
+                        _this.arcgisWhiteList,
+                        filterOptions.whiteList || {},
+                    ]);
+                }
+                else if (key === "css") {
+                    var cssExtensions_1 = filterOptions.css.whiteList;
+                    if (cssExtensions_1 != null && filterOptions.css instanceof Object) {
+                        Object.keys(cssExtensions_1).forEach(function (attr) {
+                            return (xssFilterOptions.css.whiteList[attr] =
+                                cssExtensions_1[attr]);
+                        });
+                    }
+                }
+                else {
+                    xssFilterOptions[key] = filterOptions[key];
+                }
+            });
+        }
+        else {
+            // Only use the defaults
+            xssFilterOptions = Object.create(this.arcgisFilterOptions);
+            xssFilterOptions.whiteList = this.arcgisWhiteList;
+            xssFilterOptions.css = { whiteList: this.arcgisCSSWhiteList };
+        }
+        this.xssFilterOptions = xssFilterOptions;
+        // Make this readable to tests
+        this._xssFilter = new libExports.FilterXSS(xssFilterOptions);
+    }
+    /**
+     * Sanitizes value to remove invalid HTML tags.
+     *
+     * Note: If the value passed does not contain a valid JSON data type (String,
+     * Number, JSON Object, Array, Boolean, or null), the value will be nullified.
+     *
+     * @param {any} value The value to sanitize.
+     * @returns {any} The sanitized value.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype.sanitize = function (value, options) {
+        if (options === void 0) { options = {}; }
+        switch (typeof value) {
+            case "number":
+                if (isNaN(value) || !isFinite(value)) {
+                    return null;
+                }
+                return value;
+            case "boolean":
+                return value;
+            case "string":
+                return this._xssFilter.process(value);
+            case "object":
+                return this._iterateOverObject(value, options);
+            default:
+                if (options.allowUndefined && typeof value === "undefined") {
+                    return;
+                }
+                return null;
+        }
+    };
+    /**
+     * Sanitizes a URL string following the allowed protocols and sanitization rules.
+     *
+     * @param {string} value The URL to sanitize.
+     * @param {{ isProtocolRequired: boolean }} options Configuration options for URL checking.
+     * @returns {string} The sanitized URL if it's valid, or an empty string if the URL is invalid.
+     */
+    Sanitizer.prototype.sanitizeUrl = function (value, options) {
+        var _a = (options !== null && options !== void 0 ? options : {}).isProtocolRequired, isProtocolRequired = _a === void 0 ? true : _a;
+        var protocol = this._trim(value.substring(0, value.indexOf(":")));
+        var isRootUrl = value === "/";
+        var isUrlFragment = /^#/.test(value);
+        var isValidProtocol = protocol && this.allowedProtocols.indexOf(protocol.toLowerCase()) > -1;
+        if (isRootUrl || isUrlFragment || isValidProtocol) {
+            return libExports.escapeAttrValue(value);
+        }
+        if (!protocol && !isProtocolRequired) {
+            return libExports.escapeAttrValue("https://".concat(value));
+        }
+        return "";
+    };
+    /**
+     * Sanitizes an HTML attribute value.
+     *
+     * @param {string} tag The tagname of the HTML element.
+     * @param {string} attribute The attribute name of the HTML element.
+     * @param {string} value The raw value to be used for the HTML attribute value.
+     * @param {XSS.ICSSFilter} [cssFilter] The CSS filter to be used.
+     * @returns {string} The sanitized attribute value.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype.sanitizeHTMLAttribute = function (tag, attribute, value, cssFilter) {
+        // use the custom safeAttrValue function if provided
+        if (typeof this.xssFilterOptions.safeAttrValue === "function") {
+            return this.xssFilterOptions.safeAttrValue(tag, attribute, value, 
+            // @ts-expect-error safeAttrValue does handle undefined cssFilter
+            cssFilter);
+        }
+        // otherwise use the default
+        // @ts-ignore safeAttrValue does handle undefined cssFilter
+        return libExports.safeAttrValue(tag, attribute, value, cssFilter);
+    };
+    /**
+     * Checks if a value only contains valid HTML.
+     *
+     * @param {any} value The value to validate.
+     * @returns {boolean}
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype.validate = function (value, options) {
+        if (options === void 0) { options = {}; }
+        var sanitized = this.sanitize(value, options);
+        return {
+            isValid: value === sanitized,
+            sanitized: sanitized,
+        };
+    };
+    /**
+     * Encodes the following characters, `& < > \" ' /` to their hexadecimal HTML entity code.
+     * Example: "&middot;" => "&#x38;middot;"
+     *
+     * @param {string} value The value to encode.
+     * @returns {string} The encoded string value.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype.encodeHTML = function (value) {
+        var _this = this;
+        return String(value).replace(/[&<>"'\/]/g, function (s) {
+            return _this._entityMap[s];
+        });
+    };
+    /**
+     * Encodes all non-alphanumeric ASCII characters to their hexadecimal HTML entity codes.
+     * Example: "alert(document.cookie)" => "alert&#x28;document&#x2e;cookie&#x29;"
+     *
+     * @param {string} value The value to encode.
+     * @returns {string} The encoded string value.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype.encodeAttrValue = function (value) {
+        var alphanumericRE = /^[a-zA-Z0-9]$/;
+        return String(value).replace(/[\x00-\xFF]/g, function (c, idx) {
+            return !alphanumericRE.test(c)
+                ? "&#x".concat(Number(value.charCodeAt(idx)).toString(16), ";")
+                : c;
+        });
+    };
+    /**
+     * Extends an object of arrays by by concatenating arrays of the same object
+     * keys. If the if the previous key's value is not an array, the next key's
+     * value will replace the previous key. This method is used for extending the
+     * whiteList in the XSS filter options.
+     *
+     * @private
+     * @param {Array<{}>} objects An array of objects.
+     * @returns {{}} The extended object.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype._extendObjectOfArrays = function (objects) {
+        var finalObj = {};
+        objects.forEach(function (obj) {
+            Object.keys(obj).forEach(function (key) {
+                if (Array.isArray(obj[key]) && Array.isArray(finalObj[key])) {
+                    finalObj[key] = finalObj[key].concat(obj[key]);
+                }
+                else {
+                    finalObj[key] = obj[key];
+                }
+            });
+        });
+        return finalObj;
+    };
+    /**
+     * Iterate over a plain object or array to deeply sanitize each value.
+     *
+     * @private
+     * @param {object} obj The object to iterate over.
+     * @returns {(object | null)} The sanitized object.
+     * @memberof Sanitizer
+     */
+    Sanitizer.prototype._iterateOverObject = function (obj, options) {
+        var _this = this;
+        if (options === void 0) { options = {}; }
+        try {
+            var hasChanged_1 = false;
+            var changedObj = void 0;
+            if (Array.isArray(obj)) {
+                changedObj = obj.reduce(function (prev, value) {
+                    var validation = _this.validate(value, options);
+                    if (validation.isValid) {
+                        return prev.concat([value]);
+                    }
+                    else {
+                        hasChanged_1 = true;
+                        return prev.concat([validation.sanitized]);
+                    }
+                }, []);
+            }
+            else if (!isPlainObject(obj)) {
+                if (options.allowUndefined && typeof obj === "undefined") {
+                    return;
+                }
+                return null;
+            }
+            else {
+                var keys = Object.keys(obj);
+                changedObj = keys.reduce(function (prev, key) {
+                    var value = obj[key];
+                    var validation = _this.validate(value, options);
+                    if (validation.isValid) {
+                        prev[key] = value;
+                    }
+                    else {
+                        hasChanged_1 = true;
+                        prev[key] = validation.sanitized;
+                    }
+                    return prev;
+                }, {});
+            }
+            if (hasChanged_1) {
+                return changedObj;
+            }
+            return obj;
+        }
+        catch (err) {
+            return null;
+        }
+    };
+    /**
+     * Trim whitespace from the start and ends of a string.
+     * @param {string} val The string to trim.
+     * @returns {string} The trimmed string.
+     */
+    Sanitizer.prototype._trim = function (val) {
+        // @ts-ignore This is used by Jest,
+        // but TypeScript errors since it assumes `trim` is always available.
+        return String.prototype.trim
+            ? val.trim()
+            : val.replace(/(^\s*)|(\s*$)/g, "");
+    };
+    return Sanitizer;
+}());
+
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/browser.js":
+/*!**************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/browser.js ***!
+  \**************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   g: function() { return /* binding */ getUserAgentString; },
+/* harmony export */   i: function() { return /* binding */ isBrowser; }
+/* harmony export */ });
+/* harmony import */ var _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @stencil/core/internal/client */ "./node_modules/@stencil/core/internal/client/index.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+const isBrowser = () => _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_0__.Build.isBrowser &&
+    typeof navigator !== "undefined" &&
+    typeof window !== "undefined" &&
+    typeof location !== "undefined" &&
+    typeof document !== "undefined" &&
+    window.location === location &&
+    window.document === document;
+function getUserAgentData() {
+    return navigator.userAgentData;
+}
+function getUserAgentString() {
+    if (!isBrowser()) {
+        return "";
+    }
+    const uaData = getUserAgentData();
+    return uaData?.brands
+        ? uaData.brands.map(({ brand, version }) => `${brand}/${version}`).join(" ")
+        : navigator.userAgent;
+}
+
+
+
+//# sourceMappingURL=browser.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/config.js":
+/*!*************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/config.js ***!
+  \*************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   f: function() { return /* binding */ focusTrapStack; },
+/* harmony export */   l: function() { return /* binding */ logLevel; },
+/* harmony export */   s: function() { return /* binding */ stampVersion; }
+/* harmony export */ });
+/* harmony import */ var _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @stencil/core/internal/client */ "./node_modules/@stencil/core/internal/client/index.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+/**
+ * This module allows custom configuration for components.
+ */
+const existingConfig = globalThis["calciteConfig"];
+const focusTrapStack = existingConfig?.focusTrapStack || [];
+const runningInE2ETest = _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_0__.Build.isTesting && _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_0__.Build.isBrowser;
+const logLevel = existingConfig?.logLevel || (runningInE2ETest ? "error" : "info");
+// the following placeholders are replaced by the build
+const version = "2.13.2";
+const buildDate = "2024-10-24";
+const revision = "e38e2977d";
+/**
+ * Stamp the version onto the global config.
+ */
+function stampVersion() {
+    if (existingConfig && existingConfig.version) {
+        return;
+    }
+    console.info(`Using Calcite Components ${version} [Date: ${buildDate}, Revision: ${revision}]`);
+    const target = existingConfig || globalThis["calciteConfig"] || {};
+    Object.defineProperty(target, "version", {
+        value: version,
+        writable: false,
+    });
+    globalThis["calciteConfig"] = target;
+}
+
+
+
+//# sourceMappingURL=config.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/index.js":
+/*!************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/index.js ***!
+  \************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getAssetPath: function() { return /* reexport safe */ _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_3__.getAssetPath; },
+/* harmony export */   setAssetPath: function() { return /* reexport safe */ _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_3__.setAssetPath; },
+/* harmony export */   setNonce: function() { return /* reexport safe */ _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_3__.setNonce; },
+/* harmony export */   setPlatformOptions: function() { return /* reexport safe */ _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_3__.setPlatformOptions; }
+/* harmony export */ });
+/* harmony import */ var _resources_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./resources.js */ "./node_modules/@esri/calcite-components/dist/components/resources.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./config.js */ "./node_modules/@esri/calcite-components/dist/components/config.js");
+/* harmony import */ var _browser_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./browser.js */ "./node_modules/@esri/calcite-components/dist/components/browser.js");
+/* harmony import */ var _stencil_core_internal_client__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! @stencil/core/internal/client */ "./node_modules/@stencil/core/internal/client/index.js");
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+
+
+
+
+
+/**
+ * Emits when the mode is dynamically toggled between light and dark on <body> or in OS preferences.
+ */
+function initModeChangeEvent() {
+    const { classList } = document.body;
+    const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+    const getMode = () => classList.contains(_resources_js__WEBPACK_IMPORTED_MODULE_0__.d) || (classList.contains(_resources_js__WEBPACK_IMPORTED_MODULE_0__.a) && prefersDark) ? "dark" : "light";
+    const emitModeChange = (mode) => document.body.dispatchEvent(new CustomEvent("calciteModeChange", { bubbles: true, detail: { mode } }));
+    const modeChangeHandler = (newMode) => {
+        currentMode !== newMode && emitModeChange(newMode);
+        currentMode = newMode;
+    };
+    let currentMode = getMode();
+    // emits event on page load
+    emitModeChange(currentMode);
+    // emits event when changing OS mode preferences
+    window
+        .matchMedia("(prefers-color-scheme: dark)")
+        .addEventListener("change", (event) => modeChangeHandler(event.matches ? "dark" : "light"));
+    // emits event when toggling between mode classes on <body>
+    new MutationObserver(() => modeChangeHandler(getMode())).observe(document.body, {
+        attributes: true,
+        attributeFilter: ["class"],
+    });
+}
+
+/**
+ * This file is imported in Stencil's `globalScript` config option.
+ *
+ * @see {@link https://stenciljs.com/docs/config#globalscript}
+ */
+function appGlobalScript () {
+    if ((0,_browser_js__WEBPACK_IMPORTED_MODULE_2__.i)()) {
+        if (document.readyState === "interactive") {
+            initModeChangeEvent();
+        }
+        else {
+            document.addEventListener("DOMContentLoaded", () => initModeChangeEvent(), { once: true });
+        }
+    }
+    (0,_config_js__WEBPACK_IMPORTED_MODULE_1__.s)();
+}
+
+const globalScripts = appGlobalScript;
+
+globalScripts();
+
+//# sourceMappingURL=index.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@esri/calcite-components/dist/components/resources.js":
+/*!****************************************************************************!*\
+  !*** ./node_modules/@esri/calcite-components/dist/components/resources.js ***!
+  \****************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   C: function() { return /* binding */ CSS_UTILITY; },
+/* harmony export */   D: function() { return /* binding */ DEBOUNCE; },
+/* harmony export */   a: function() { return /* binding */ autoMode; },
+/* harmony export */   d: function() { return /* binding */ darkMode; }
+/* harmony export */ });
+/*!
+ * All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+ * See https://github.com/Esri/calcite-design-system/blob/dev/LICENSE.md for details.
+ * v2.13.2
+ */
+const autoMode = "calcite-mode-auto";
+const darkMode = "calcite-mode-dark";
+const lightMode = "calcite-mode-light";
+const CSS_UTILITY = {
+    autoMode,
+    darkMode,
+    lightMode,
+    rtl: "calcite--rtl",
+    calciteAnimate: "calcite-animate",
+    calciteAnimateIn: "calcite-animate__in",
+    calciteAnimateInUp: "calcite-animate__in-up",
+    calciteAnimateInDown: "calcite-animate__in-down",
+    calciteAnimateInRight: "calcite-animate__in-right",
+    calciteAnimateInLeft: "calcite-animate__in-left",
+    calciteAnimateInScale: "calcite-animate__in-scale",
+};
+const DEBOUNCE = {
+    filter: 250,
+    nextTick: 0,
+    resize: 150,
+    reposition: 100,
+};
+
+
+
+//# sourceMappingURL=resources.js.map
+
+/***/ }),
+
+/***/ "./node_modules/@stencil/core/internal/app-data/index.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@stencil/core/internal/app-data/index.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BUILD: function() { return /* binding */ BUILD; },
+/* harmony export */   Env: function() { return /* binding */ Env; },
+/* harmony export */   NAMESPACE: function() { return /* binding */ NAMESPACE; }
+/* harmony export */ });
+// src/app-data/index.ts
+var BUILD = {
+  allRenderFn: false,
+  cmpDidLoad: true,
+  cmpDidUnload: false,
+  cmpDidUpdate: true,
+  cmpDidRender: true,
+  cmpWillLoad: true,
+  cmpWillUpdate: true,
+  cmpWillRender: true,
+  connectedCallback: true,
+  disconnectedCallback: true,
+  element: true,
+  event: true,
+  hasRenderFn: true,
+  lifecycle: true,
+  hostListener: true,
+  hostListenerTargetWindow: true,
+  hostListenerTargetDocument: true,
+  hostListenerTargetBody: true,
+  hostListenerTargetParent: false,
+  hostListenerTarget: true,
+  member: true,
+  method: true,
+  mode: true,
+  observeAttribute: true,
+  prop: true,
+  propMutable: true,
+  reflect: true,
+  scoped: true,
+  shadowDom: true,
+  slot: true,
+  cssAnnotations: true,
+  state: true,
+  style: true,
+  formAssociated: false,
+  svg: true,
+  updatable: true,
+  vdomAttribute: true,
+  vdomXlink: true,
+  vdomClass: true,
+  vdomFunctional: true,
+  vdomKey: true,
+  vdomListener: true,
+  vdomRef: true,
+  vdomPropOrAttr: true,
+  vdomRender: true,
+  vdomStyle: true,
+  vdomText: true,
+  watchCallback: true,
+  taskQueue: true,
+  hotModuleReplacement: false,
+  isDebug: false,
+  isDev: false,
+  isTesting: false,
+  hydrateServerSide: false,
+  hydrateClientSide: false,
+  lifecycleDOMEvents: false,
+  lazyLoad: false,
+  profile: false,
+  slotRelocation: true,
+  // TODO(STENCIL-914): remove this option when `experimentalSlotFixes` is the default behavior
+  appendChildSlotFix: false,
+  // TODO(STENCIL-914): remove this option when `experimentalSlotFixes` is the default behavior
+  cloneNodeFix: false,
+  hydratedAttribute: false,
+  hydratedClass: true,
+  // TODO(STENCIL-1305): remove this option
+  scriptDataOpts: false,
+  // TODO(STENCIL-914): remove this option when `experimentalSlotFixes` is the default behavior
+  scopedSlotTextContentFix: false,
+  // TODO(STENCIL-854): Remove code related to legacy shadowDomShim field
+  shadowDomShim: false,
+  // TODO(STENCIL-914): remove this option when `experimentalSlotFixes` is the default behavior
+  slotChildNodesFix: false,
+  invisiblePrehydration: true,
+  propBoolean: true,
+  propNumber: true,
+  propString: true,
+  constructableCSS: true,
+  cmpShouldUpdate: true,
+  devTools: false,
+  shadowDelegatesFocus: true,
+  initializeNextTick: false,
+  asyncLoading: false,
+  asyncQueue: false,
+  transformTagName: false,
+  attachStyles: true,
+  // TODO(STENCIL-914): remove this option when `experimentalSlotFixes` is the default behavior
+  experimentalSlotFixes: false
+};
+var Env = {};
+var NAMESPACE = (
+  /* default */
+  "app"
+);
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@stencil/core/internal/client/index.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@stencil/core/internal/client/index.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   BUILD: function() { return /* reexport safe */ _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD; },
+/* harmony export */   Build: function() { return /* binding */ Build; },
+/* harmony export */   Env: function() { return /* reexport safe */ _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.Env; },
+/* harmony export */   Fragment: function() { return /* binding */ Fragment; },
+/* harmony export */   H: function() { return /* binding */ H; },
+/* harmony export */   HTMLElement: function() { return /* binding */ H; },
+/* harmony export */   Host: function() { return /* binding */ Host; },
+/* harmony export */   NAMESPACE: function() { return /* reexport safe */ _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.NAMESPACE; },
+/* harmony export */   STENCIL_DEV_MODE: function() { return /* binding */ STENCIL_DEV_MODE; },
+/* harmony export */   addHostEventListeners: function() { return /* binding */ addHostEventListeners; },
+/* harmony export */   bootstrapLazy: function() { return /* binding */ bootstrapLazy; },
+/* harmony export */   cmpModules: function() { return /* binding */ cmpModules; },
+/* harmony export */   connectedCallback: function() { return /* binding */ connectedCallback; },
+/* harmony export */   consoleDevError: function() { return /* binding */ consoleDevError; },
+/* harmony export */   consoleDevInfo: function() { return /* binding */ consoleDevInfo; },
+/* harmony export */   consoleDevWarn: function() { return /* binding */ consoleDevWarn; },
+/* harmony export */   consoleError: function() { return /* binding */ consoleError; },
+/* harmony export */   createEvent: function() { return /* binding */ createEvent; },
+/* harmony export */   defineCustomElement: function() { return /* binding */ defineCustomElement; },
+/* harmony export */   disconnectedCallback: function() { return /* binding */ disconnectedCallback; },
+/* harmony export */   doc: function() { return /* binding */ doc; },
+/* harmony export */   forceModeUpdate: function() { return /* binding */ forceModeUpdate; },
+/* harmony export */   forceUpdate: function() { return /* binding */ forceUpdate; },
+/* harmony export */   getAssetPath: function() { return /* binding */ getAssetPath; },
+/* harmony export */   getElement: function() { return /* binding */ getElement; },
+/* harmony export */   getHostRef: function() { return /* binding */ getHostRef; },
+/* harmony export */   getMode: function() { return /* binding */ getMode; },
+/* harmony export */   getRenderingRef: function() { return /* binding */ getRenderingRef; },
+/* harmony export */   getValue: function() { return /* binding */ getValue; },
+/* harmony export */   h: function() { return /* binding */ h; },
+/* harmony export */   insertVdomAnnotations: function() { return /* binding */ insertVdomAnnotations; },
+/* harmony export */   isMemberInElement: function() { return /* binding */ isMemberInElement; },
+/* harmony export */   loadModule: function() { return /* binding */ loadModule; },
+/* harmony export */   modeResolutionChain: function() { return /* binding */ modeResolutionChain; },
+/* harmony export */   nextTick: function() { return /* binding */ nextTick; },
+/* harmony export */   parsePropertyValue: function() { return /* binding */ parsePropertyValue; },
+/* harmony export */   plt: function() { return /* binding */ plt; },
+/* harmony export */   postUpdateComponent: function() { return /* binding */ postUpdateComponent; },
+/* harmony export */   promiseResolve: function() { return /* binding */ promiseResolve; },
+/* harmony export */   proxyComponent: function() { return /* binding */ proxyComponent; },
+/* harmony export */   proxyCustomElement: function() { return /* binding */ proxyCustomElement; },
+/* harmony export */   readTask: function() { return /* binding */ readTask; },
+/* harmony export */   registerHost: function() { return /* binding */ registerHost; },
+/* harmony export */   registerInstance: function() { return /* binding */ registerInstance; },
+/* harmony export */   renderVdom: function() { return /* binding */ renderVdom; },
+/* harmony export */   setAssetPath: function() { return /* binding */ setAssetPath; },
+/* harmony export */   setErrorHandler: function() { return /* binding */ setErrorHandler; },
+/* harmony export */   setMode: function() { return /* binding */ setMode; },
+/* harmony export */   setNonce: function() { return /* binding */ setNonce; },
+/* harmony export */   setPlatformHelpers: function() { return /* binding */ setPlatformHelpers; },
+/* harmony export */   setPlatformOptions: function() { return /* binding */ setPlatformOptions; },
+/* harmony export */   setValue: function() { return /* binding */ setValue; },
+/* harmony export */   styles: function() { return /* binding */ styles; },
+/* harmony export */   supportsConstructableStylesheets: function() { return /* binding */ supportsConstructableStylesheets; },
+/* harmony export */   supportsListenerOptions: function() { return /* binding */ supportsListenerOptions; },
+/* harmony export */   supportsShadow: function() { return /* binding */ supportsShadow; },
+/* harmony export */   win: function() { return /* binding */ win; },
+/* harmony export */   writeTask: function() { return /* binding */ writeTask; }
+/* harmony export */ });
+/* harmony import */ var _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @stencil/core/internal/app-data */ "./node_modules/@stencil/core/internal/app-data/index.js");
+/*
+ Stencil Client Platform v4.20.0 | MIT Licensed | https://stenciljs.com
+ */
+var __defProp = Object.defineProperty;
+var __export = (target, all) => {
+  for (var name in all)
+    __defProp(target, name, { get: all[name], enumerable: true });
+};
+
+// src/client/client-build.ts
+
+var Build = {
+  isDev: _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev ? true : false,
+  isBrowser: true,
+  isServer: false,
+  isTesting: _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isTesting ? true : false
+};
+
+// src/client/client-host-ref.ts
+
+var hostRefs = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement ? window.__STENCIL_HOSTREFS__ || (window.__STENCIL_HOSTREFS__ = /* @__PURE__ */ new WeakMap()) : /* @__PURE__ */ new WeakMap();
+var getHostRef = (ref) => hostRefs.get(ref);
+var registerInstance = (lazyInstance, hostRef) => hostRefs.set(hostRef.$lazyInstance$ = lazyInstance, hostRef);
+var registerHost = (hostElement, cmpMeta) => {
+  const hostRef = {
+    $flags$: 0,
+    $hostElement$: hostElement,
+    $cmpMeta$: cmpMeta,
+    $instanceValues$: /* @__PURE__ */ new Map()
+  };
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+    hostRef.$renderCount$ = 0;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.method && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad) {
+    hostRef.$onInstancePromise$ = new Promise((r) => hostRef.$onInstanceResolve$ = r);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading) {
+    hostRef.$onReadyPromise$ = new Promise((r) => hostRef.$onReadyResolve$ = r);
+    hostElement["s-p"] = [];
+    hostElement["s-rc"] = [];
+  }
+  return hostRefs.set(hostElement, hostRef);
+};
+var isMemberInElement = (elm, memberName) => memberName in elm;
+
+// src/client/client-load-module.ts
+
+
+// src/client/client-log.ts
+
+var customError;
+var consoleError = (e, el) => (customError || console.error)(e, el);
+var STENCIL_DEV_MODE = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isTesting ? ["STENCIL:"] : [
+  "%cstencil",
+  "color: white;background:#4c47ff;font-weight: bold; font-size:10px; padding:2px 6px; border-radius: 5px"
+];
+var consoleDevError = (...m) => console.error(...STENCIL_DEV_MODE, ...m);
+var consoleDevWarn = (...m) => console.warn(...STENCIL_DEV_MODE, ...m);
+var consoleDevInfo = (...m) => console.info(...STENCIL_DEV_MODE, ...m);
+var setErrorHandler = (handler) => customError = handler;
+
+// src/client/client-load-module.ts
+var cmpModules = /* @__PURE__ */ new Map();
+var MODULE_IMPORT_PREFIX = "./";
+var loadModule = (cmpMeta, hostRef, hmrVersionId) => {
+  const exportName = cmpMeta.$tagName$.replace(/-/g, "_");
+  const bundleId = cmpMeta.$lazyBundleId$;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && typeof bundleId !== "string") {
+    consoleDevError(
+      `Trying to lazily load component <${cmpMeta.$tagName$}> with style mode "${hostRef.$modeName$}", but it does not exist.`
+    );
+    return void 0;
+  } else if (!bundleId) {
+    return void 0;
+  }
+  const module = !_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement ? cmpModules.get(bundleId) : false;
+  if (module) {
+    return module[exportName];
+  }
+  /*!__STENCIL_STATIC_IMPORT_SWITCH__*/
+  return __webpack_require__("./node_modules/@stencil/core/internal/client lazy recursive ^\\.\\/.*\\.entry\\.js.*$ include: \\.entry\\.js$ exclude: \\.system\\.entry\\.js$")(`./${bundleId}.entry.js${_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement && hmrVersionId ? "?s-hmr=" + hmrVersionId : ""}`).then((importedModule) => {
+    if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement) {
+      cmpModules.set(bundleId, importedModule);
+    }
+    return importedModule[exportName];
+  }, consoleError);
+};
+
+// src/client/client-style.ts
+var styles = /* @__PURE__ */ new Map();
+var modeResolutionChain = [];
+
+// src/client/client-task-queue.ts
+
+
+// src/runtime/runtime-constants.ts
+var CONTENT_REF_ID = "r";
+var ORG_LOCATION_ID = "o";
+var SLOT_NODE_ID = "s";
+var TEXT_NODE_ID = "t";
+var HYDRATE_ID = "s-id";
+var HYDRATED_STYLE_ID = "sty-id";
+var HYDRATE_CHILD_ID = "c-id";
+var HYDRATED_CSS = "{visibility:hidden}.hydrated{visibility:inherit}";
+var SLOT_FB_CSS = "slot-fb{display:contents}slot-fb[hidden]{display:none}";
+var XLINK_NS = "http://www.w3.org/1999/xlink";
+var FORM_ASSOCIATED_CUSTOM_ELEMENT_CALLBACKS = [
+  "formAssociatedCallback",
+  "formResetCallback",
+  "formDisabledCallback",
+  "formStateRestoreCallback"
+];
+
+// src/client/client-window.ts
+
+var win = typeof window !== "undefined" ? window : {};
+var doc = win.document || { head: {} };
+var H = win.HTMLElement || class {
+};
+var plt = {
+  $flags$: 0,
+  $resourcesUrl$: "",
+  jmp: (h2) => h2(),
+  raf: (h2) => requestAnimationFrame(h2),
+  ael: (el, eventName, listener, opts) => el.addEventListener(eventName, listener, opts),
+  rel: (el, eventName, listener, opts) => el.removeEventListener(eventName, listener, opts),
+  ce: (eventName, opts) => new CustomEvent(eventName, opts)
+};
+var setPlatformHelpers = (helpers) => {
+  Object.assign(plt, helpers);
+};
+var supportsShadow = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom;
+var supportsListenerOptions = /* @__PURE__ */ (() => {
+  let supportsListenerOptions2 = false;
+  try {
+    doc.addEventListener(
+      "e",
+      null,
+      Object.defineProperty({}, "passive", {
+        get() {
+          supportsListenerOptions2 = true;
+        }
+      })
+    );
+  } catch (e) {
+  }
+  return supportsListenerOptions2;
+})();
+var promiseResolve = (v) => Promise.resolve(v);
+var supportsConstructableStylesheets = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.constructableCSS ? /* @__PURE__ */ (() => {
+  try {
+    new CSSStyleSheet();
+    return typeof new CSSStyleSheet().replaceSync === "function";
+  } catch (e) {
+  }
+  return false;
+})() : false;
+
+// src/client/client-task-queue.ts
+var queueCongestion = 0;
+var queuePending = false;
+var queueDomReads = [];
+var queueDomWrites = [];
+var queueDomWritesLow = [];
+var queueTask = (queue, write) => (cb) => {
+  queue.push(cb);
+  if (!queuePending) {
+    queuePending = true;
+    if (write && plt.$flags$ & 4 /* queueSync */) {
+      nextTick(flush);
+    } else {
+      plt.raf(flush);
+    }
+  }
+};
+var consume = (queue) => {
+  for (let i2 = 0; i2 < queue.length; i2++) {
+    try {
+      queue[i2](performance.now());
+    } catch (e) {
+      consoleError(e);
+    }
+  }
+  queue.length = 0;
+};
+var consumeTimeout = (queue, timeout) => {
+  let i2 = 0;
+  let ts = 0;
+  while (i2 < queue.length && (ts = performance.now()) < timeout) {
+    try {
+      queue[i2++](ts);
+    } catch (e) {
+      consoleError(e);
+    }
+  }
+  if (i2 === queue.length) {
+    queue.length = 0;
+  } else if (i2 !== 0) {
+    queue.splice(0, i2);
+  }
+};
+var flush = () => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncQueue) {
+    queueCongestion++;
+  }
+  consume(queueDomReads);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncQueue) {
+    const timeout = (plt.$flags$ & 6 /* queueMask */) === 2 /* appLoaded */ ? performance.now() + 14 * Math.ceil(queueCongestion * (1 / 10)) : Infinity;
+    consumeTimeout(queueDomWrites, timeout);
+    consumeTimeout(queueDomWritesLow, timeout);
+    if (queueDomWrites.length > 0) {
+      queueDomWritesLow.push(...queueDomWrites);
+      queueDomWrites.length = 0;
+    }
+    if (queuePending = queueDomReads.length + queueDomWrites.length + queueDomWritesLow.length > 0) {
+      plt.raf(flush);
+    } else {
+      queueCongestion = 0;
+    }
+  } else {
+    consume(queueDomWrites);
+    if (queuePending = queueDomReads.length > 0) {
+      plt.raf(flush);
+    }
+  }
+};
+var nextTick = (cb) => promiseResolve().then(cb);
+var readTask = /* @__PURE__ */ queueTask(queueDomReads, false);
+var writeTask = /* @__PURE__ */ queueTask(queueDomWrites, true);
+
+// src/client/index.ts
+
+
+// src/runtime/asset-path.ts
+var getAssetPath = (path) => {
+  const assetUrl = new URL(path, plt.$resourcesUrl$);
+  return assetUrl.origin !== win.location.origin ? assetUrl.href : assetUrl.pathname;
+};
+var setAssetPath = (path) => plt.$resourcesUrl$ = path;
+
+// src/runtime/bootstrap-custom-element.ts
+
+
+// src/utils/constants.ts
+var EMPTY_OBJ = {};
+var SVG_NS = "http://www.w3.org/2000/svg";
+var HTML_NS = "http://www.w3.org/1999/xhtml";
+
+// src/utils/helpers.ts
+var isDef = (v) => v != null;
+var isComplexType = (o) => {
+  o = typeof o;
+  return o === "object" || o === "function";
+};
+
+// src/utils/query-nonce-meta-tag-content.ts
+function queryNonceMetaTagContent(doc2) {
+  var _a, _b, _c;
+  return (_c = (_b = (_a = doc2.head) == null ? void 0 : _a.querySelector('meta[name="csp-nonce"]')) == null ? void 0 : _b.getAttribute("content")) != null ? _c : void 0;
+}
+
+// src/utils/result.ts
+var result_exports = {};
+__export(result_exports, {
+  err: () => err,
+  map: () => map,
+  ok: () => ok,
+  unwrap: () => unwrap,
+  unwrapErr: () => unwrapErr
+});
+var ok = (value) => ({
+  isOk: true,
+  isErr: false,
+  value
+});
+var err = (value) => ({
+  isOk: false,
+  isErr: true,
+  value
+});
+function map(result, fn) {
+  if (result.isOk) {
+    const val = fn(result.value);
+    if (val instanceof Promise) {
+      return val.then((newVal) => ok(newVal));
+    } else {
+      return ok(val);
+    }
+  }
+  if (result.isErr) {
+    const value = result.value;
+    return err(value);
+  }
+  throw "should never get here";
+}
+var unwrap = (result) => {
+  if (result.isOk) {
+    return result.value;
+  } else {
+    throw result.value;
+  }
+};
+var unwrapErr = (result) => {
+  if (result.isErr) {
+    return result.value;
+  } else {
+    throw result.value;
+  }
+};
+
+// src/runtime/connected-callback.ts
+
+
+// src/runtime/client-hydrate.ts
+
+
+// src/runtime/profile.ts
+
+var i = 0;
+var createTime = (fnName, tagName = "") => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.profile && performance.mark) {
+    const key = `st:${fnName}:${tagName}:${i++}`;
+    performance.mark(key);
+    return () => performance.measure(`[Stencil] ${fnName}() <${tagName}>`, key);
+  } else {
+    return () => {
+      return;
+    };
+  }
+};
+var uniqueTime = (key, measureText) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.profile && performance.mark) {
+    if (performance.getEntriesByName(key, "mark").length === 0) {
+      performance.mark(key);
+    }
+    return () => {
+      if (performance.getEntriesByName(measureText, "measure").length === 0) {
+        performance.measure(measureText, key);
+      }
+    };
+  } else {
+    return () => {
+      return;
+    };
+  }
+};
+var inspect = (ref) => {
+  const hostRef = getHostRef(ref);
+  if (!hostRef) {
+    return void 0;
+  }
+  const flags = hostRef.$flags$;
+  const hostElement = hostRef.$hostElement$;
+  return {
+    renderCount: hostRef.$renderCount$,
+    flags: {
+      hasRendered: !!(flags & 2 /* hasRendered */),
+      hasConnected: !!(flags & 1 /* hasConnected */),
+      isWaitingForChildren: !!(flags & 4 /* isWaitingForChildren */),
+      isConstructingInstance: !!(flags & 8 /* isConstructingInstance */),
+      isQueuedForUpdate: !!(flags & 16 /* isQueuedForUpdate */),
+      hasInitializedComponent: !!(flags & 32 /* hasInitializedComponent */),
+      hasLoadedComponent: !!(flags & 64 /* hasLoadedComponent */),
+      isWatchReady: !!(flags & 128 /* isWatchReady */),
+      isListenReady: !!(flags & 256 /* isListenReady */),
+      needsRerender: !!(flags & 512 /* needsRerender */)
+    },
+    instanceValues: hostRef.$instanceValues$,
+    ancestorComponent: hostRef.$ancestorComponent$,
+    hostElement,
+    lazyInstance: hostRef.$lazyInstance$,
+    vnode: hostRef.$vnode$,
+    modeName: hostRef.$modeName$,
+    onReadyPromise: hostRef.$onReadyPromise$,
+    onReadyResolve: hostRef.$onReadyResolve$,
+    onInstancePromise: hostRef.$onInstancePromise$,
+    onInstanceResolve: hostRef.$onInstanceResolve$,
+    onRenderResolve: hostRef.$onRenderResolve$,
+    queuedListeners: hostRef.$queuedListeners$,
+    rmListeners: hostRef.$rmListeners$,
+    ["s-id"]: hostElement["s-id"],
+    ["s-cr"]: hostElement["s-cr"],
+    ["s-lr"]: hostElement["s-lr"],
+    ["s-p"]: hostElement["s-p"],
+    ["s-rc"]: hostElement["s-rc"],
+    ["s-sc"]: hostElement["s-sc"]
+  };
+};
+var installDevTools = () => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.devTools) {
+    const stencil = win.stencil = win.stencil || {};
+    const originalInspect = stencil.inspect;
+    stencil.inspect = (ref) => {
+      let result = inspect(ref);
+      if (!result && typeof originalInspect === "function") {
+        result = originalInspect(ref);
+      }
+      return result;
+    };
+  }
+};
+
+// src/runtime/vdom/h.ts
+
+var h = (nodeName, vnodeData, ...children) => {
+  let child = null;
+  let key = null;
+  let slotName = null;
+  let simple = false;
+  let lastSimple = false;
+  const vNodeChildren = [];
+  const walk = (c) => {
+    for (let i2 = 0; i2 < c.length; i2++) {
+      child = c[i2];
+      if (Array.isArray(child)) {
+        walk(child);
+      } else if (child != null && typeof child !== "boolean") {
+        if (simple = typeof nodeName !== "function" && !isComplexType(child)) {
+          child = String(child);
+        } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && typeof nodeName !== "function" && child.$flags$ === void 0) {
+          consoleDevError(`vNode passed as children has unexpected type.
+Make sure it's using the correct h() function.
+Empty objects can also be the cause, look for JSX comments that became objects.`);
+        }
+        if (simple && lastSimple) {
+          vNodeChildren[vNodeChildren.length - 1].$text$ += child;
+        } else {
+          vNodeChildren.push(simple ? newVNode(null, child) : child);
+        }
+        lastSimple = simple;
+      }
+    }
+  };
+  walk(children);
+  if (vnodeData) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && nodeName === "input") {
+      validateInputProperties(vnodeData);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey && vnodeData.key) {
+      key = vnodeData.key;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && vnodeData.name) {
+      slotName = vnodeData.name;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomClass) {
+      const classData = vnodeData.className || vnodeData.class;
+      if (classData) {
+        vnodeData.class = typeof classData !== "object" ? classData : Object.keys(classData).filter((k) => classData[k]).join(" ");
+      }
+    }
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && vNodeChildren.some(isHost)) {
+    consoleDevError(`The <Host> must be the single root component. Make sure:
+- You are NOT using hostData() and <Host> in the same component.
+- <Host> is used once, and it's the single root component of the render() function.`);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomFunctional && typeof nodeName === "function") {
+    return nodeName(
+      vnodeData === null ? {} : vnodeData,
+      vNodeChildren,
+      vdomFnUtils
+    );
+  }
+  const vnode = newVNode(nodeName, null);
+  vnode.$attrs$ = vnodeData;
+  if (vNodeChildren.length > 0) {
+    vnode.$children$ = vNodeChildren;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey) {
+    vnode.$key$ = key;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+    vnode.$name$ = slotName;
+  }
+  return vnode;
+};
+var newVNode = (tag, text) => {
+  const vnode = {
+    $flags$: 0,
+    $tag$: tag,
+    $text$: text,
+    $elm$: null,
+    $children$: null
+  };
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomAttribute) {
+    vnode.$attrs$ = null;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey) {
+    vnode.$key$ = null;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+    vnode.$name$ = null;
+  }
+  return vnode;
+};
+var Host = {};
+var isHost = (node) => node && node.$tag$ === Host;
+var vdomFnUtils = {
+  forEach: (children, cb) => children.map(convertToPublic).forEach(cb),
+  map: (children, cb) => children.map(convertToPublic).map(cb).map(convertToPrivate)
+};
+var convertToPublic = (node) => ({
+  vattrs: node.$attrs$,
+  vchildren: node.$children$,
+  vkey: node.$key$,
+  vname: node.$name$,
+  vtag: node.$tag$,
+  vtext: node.$text$
+});
+var convertToPrivate = (node) => {
+  if (typeof node.vtag === "function") {
+    const vnodeData = { ...node.vattrs };
+    if (node.vkey) {
+      vnodeData.key = node.vkey;
+    }
+    if (node.vname) {
+      vnodeData.name = node.vname;
+    }
+    return h(node.vtag, vnodeData, ...node.vchildren || []);
+  }
+  const vnode = newVNode(node.vtag, node.vtext);
+  vnode.$attrs$ = node.vattrs;
+  vnode.$children$ = node.vchildren;
+  vnode.$key$ = node.vkey;
+  vnode.$name$ = node.vname;
+  return vnode;
+};
+var validateInputProperties = (inputElm) => {
+  const props = Object.keys(inputElm);
+  const value = props.indexOf("value");
+  if (value === -1) {
+    return;
+  }
+  const typeIndex = props.indexOf("type");
+  const minIndex = props.indexOf("min");
+  const maxIndex = props.indexOf("max");
+  const stepIndex = props.indexOf("step");
+  if (value < typeIndex || value < minIndex || value < maxIndex || value < stepIndex) {
+    consoleDevWarn(`The "value" prop of <input> should be set after "min", "max", "type" and "step"`);
+  }
+};
+
+// src/runtime/client-hydrate.ts
+var initializeClientHydrate = (hostElm, tagName, hostId, hostRef) => {
+  const endHydrate = createTime("hydrateClient", tagName);
+  const shadowRoot = hostElm.shadowRoot;
+  const childRenderNodes = [];
+  const slotNodes = [];
+  const shadowRootNodes = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && shadowRoot ? [] : null;
+  const vnode = hostRef.$vnode$ = newVNode(tagName, null);
+  if (!plt.$orgLocNodes$) {
+    initializeDocumentHydrate(doc.body, plt.$orgLocNodes$ = /* @__PURE__ */ new Map());
+  }
+  hostElm[HYDRATE_ID] = hostId;
+  hostElm.removeAttribute(HYDRATE_ID);
+  clientHydrate(vnode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, hostElm, hostId);
+  childRenderNodes.map((c) => {
+    const orgLocationId = c.$hostId$ + "." + c.$nodeId$;
+    const orgLocationNode = plt.$orgLocNodes$.get(orgLocationId);
+    const node = c.$elm$;
+    if (orgLocationNode && supportsShadow && orgLocationNode["s-en"] === "") {
+      orgLocationNode.parentNode.insertBefore(node, orgLocationNode.nextSibling);
+    }
+    if (!shadowRoot) {
+      node["s-hn"] = tagName;
+      if (orgLocationNode) {
+        node["s-ol"] = orgLocationNode;
+        node["s-ol"]["s-nr"] = node;
+      }
+    }
+    plt.$orgLocNodes$.delete(orgLocationId);
+  });
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && shadowRoot) {
+    shadowRootNodes.map((shadowRootNode) => {
+      if (shadowRootNode) {
+        shadowRoot.appendChild(shadowRootNode);
+      }
+    });
+  }
+  endHydrate();
+};
+var clientHydrate = (parentVNode, childRenderNodes, slotNodes, shadowRootNodes, hostElm, node, hostId) => {
+  let childNodeType;
+  let childIdSplt;
+  let childVNode;
+  let i2;
+  if (node.nodeType === 1 /* ElementNode */) {
+    childNodeType = node.getAttribute(HYDRATE_CHILD_ID);
+    if (childNodeType) {
+      childIdSplt = childNodeType.split(".");
+      if (childIdSplt[0] === hostId || childIdSplt[0] === "0") {
+        childVNode = {
+          $flags$: 0,
+          $hostId$: childIdSplt[0],
+          $nodeId$: childIdSplt[1],
+          $depth$: childIdSplt[2],
+          $index$: childIdSplt[3],
+          $tag$: node.tagName.toLowerCase(),
+          $elm$: node,
+          $attrs$: null,
+          $children$: null,
+          $key$: null,
+          $name$: null,
+          $text$: null
+        };
+        childRenderNodes.push(childVNode);
+        node.removeAttribute(HYDRATE_CHILD_ID);
+        if (!parentVNode.$children$) {
+          parentVNode.$children$ = [];
+        }
+        parentVNode.$children$[childVNode.$index$] = childVNode;
+        parentVNode = childVNode;
+        if (shadowRootNodes && childVNode.$depth$ === "0") {
+          shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+        }
+      }
+    }
+    if (node.shadowRoot) {
+      for (i2 = node.shadowRoot.childNodes.length - 1; i2 >= 0; i2--) {
+        clientHydrate(
+          parentVNode,
+          childRenderNodes,
+          slotNodes,
+          shadowRootNodes,
+          hostElm,
+          node.shadowRoot.childNodes[i2],
+          hostId
+        );
+      }
+    }
+    for (i2 = node.childNodes.length - 1; i2 >= 0; i2--) {
+      clientHydrate(
+        parentVNode,
+        childRenderNodes,
+        slotNodes,
+        shadowRootNodes,
+        hostElm,
+        node.childNodes[i2],
+        hostId
+      );
+    }
+  } else if (node.nodeType === 8 /* CommentNode */) {
+    childIdSplt = node.nodeValue.split(".");
+    if (childIdSplt[1] === hostId || childIdSplt[1] === "0") {
+      childNodeType = childIdSplt[0];
+      childVNode = {
+        $flags$: 0,
+        $hostId$: childIdSplt[1],
+        $nodeId$: childIdSplt[2],
+        $depth$: childIdSplt[3],
+        $index$: childIdSplt[4],
+        $elm$: node,
+        $attrs$: null,
+        $children$: null,
+        $key$: null,
+        $name$: null,
+        $tag$: null,
+        $text$: null
+      };
+      if (childNodeType === TEXT_NODE_ID) {
+        childVNode.$elm$ = node.nextSibling;
+        if (childVNode.$elm$ && childVNode.$elm$.nodeType === 3 /* TextNode */) {
+          childVNode.$text$ = childVNode.$elm$.textContent;
+          childRenderNodes.push(childVNode);
+          node.remove();
+          if (!parentVNode.$children$) {
+            parentVNode.$children$ = [];
+          }
+          parentVNode.$children$[childVNode.$index$] = childVNode;
+          if (shadowRootNodes && childVNode.$depth$ === "0") {
+            shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+          }
+        }
+      } else if (childVNode.$hostId$ === hostId) {
+        if (childNodeType === SLOT_NODE_ID) {
+          childVNode.$tag$ = "slot";
+          if (childIdSplt[5]) {
+            node["s-sn"] = childVNode.$name$ = childIdSplt[5];
+          } else {
+            node["s-sn"] = "";
+          }
+          node["s-sr"] = true;
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && shadowRootNodes) {
+            childVNode.$elm$ = doc.createElement(childVNode.$tag$);
+            if (childVNode.$name$) {
+              childVNode.$elm$.setAttribute("name", childVNode.$name$);
+            }
+            node.parentNode.insertBefore(childVNode.$elm$, node);
+            node.remove();
+            if (childVNode.$depth$ === "0") {
+              shadowRootNodes[childVNode.$index$] = childVNode.$elm$;
+            }
+          }
+          slotNodes.push(childVNode);
+          if (!parentVNode.$children$) {
+            parentVNode.$children$ = [];
+          }
+          parentVNode.$children$[childVNode.$index$] = childVNode;
+        } else if (childNodeType === CONTENT_REF_ID) {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && shadowRootNodes) {
+            node.remove();
+          } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+            hostElm["s-cr"] = node;
+            node["s-cn"] = true;
+          }
+        }
+      }
+    }
+  } else if (parentVNode && parentVNode.$tag$ === "style") {
+    const vnode = newVNode(null, node.textContent);
+    vnode.$elm$ = node;
+    vnode.$index$ = "0";
+    parentVNode.$children$ = [vnode];
+  }
+};
+var initializeDocumentHydrate = (node, orgLocNodes) => {
+  if (node.nodeType === 1 /* ElementNode */) {
+    let i2 = 0;
+    if (node.shadowRoot) {
+      for (; i2 < node.shadowRoot.childNodes.length; i2++) {
+        initializeDocumentHydrate(node.shadowRoot.childNodes[i2], orgLocNodes);
+      }
+    }
+    for (i2 = 0; i2 < node.childNodes.length; i2++) {
+      initializeDocumentHydrate(node.childNodes[i2], orgLocNodes);
+    }
+  } else if (node.nodeType === 8 /* CommentNode */) {
+    const childIdSplt = node.nodeValue.split(".");
+    if (childIdSplt[0] === ORG_LOCATION_ID) {
+      orgLocNodes.set(childIdSplt[1] + "." + childIdSplt[2], node);
+      node.nodeValue = "";
+      node["s-en"] = childIdSplt[3];
+    }
+  }
+};
+
+// src/runtime/initialize-component.ts
+
+
+// src/runtime/mode.ts
+var computeMode = (elm) => modeResolutionChain.map((h2) => h2(elm)).find((m) => !!m);
+var setMode = (handler) => modeResolutionChain.push(handler);
+var getMode = (ref) => getHostRef(ref).$modeName$;
+
+// src/runtime/proxy-component.ts
+
+
+// src/runtime/set-value.ts
+
+
+// src/runtime/parse-property-value.ts
+
+var parsePropertyValue = (propValue, propType) => {
+  if (propValue != null && !isComplexType(propValue)) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.propBoolean && propType & 4 /* Boolean */) {
+      return propValue === "false" ? false : propValue === "" || !!propValue;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.propNumber && propType & 2 /* Number */) {
+      return parseFloat(propValue);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.propString && propType & 1 /* String */) {
+      return String(propValue);
+    }
+    return propValue;
+  }
+  return propValue;
+};
+
+// src/runtime/update-component.ts
+
+
+// src/runtime/event-emitter.ts
+
+
+// src/runtime/element.ts
+
+var getElement = (ref) => _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? getHostRef(ref).$hostElement$ : ref;
+
+// src/runtime/event-emitter.ts
+var createEvent = (ref, name, flags) => {
+  const elm = getElement(ref);
+  return {
+    emit: (detail) => {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && !elm.isConnected) {
+        consoleDevWarn(`The "${name}" event was emitted, but the dispatcher node is no longer connected to the dom.`);
+      }
+      return emitEvent(elm, name, {
+        bubbles: !!(flags & 4 /* Bubbles */),
+        composed: !!(flags & 2 /* Composed */),
+        cancelable: !!(flags & 1 /* Cancellable */),
+        detail
+      });
+    }
+  };
+};
+var emitEvent = (elm, name, opts) => {
+  const ev = plt.ce(name, opts);
+  elm.dispatchEvent(ev);
+  return ev;
+};
+
+// src/runtime/styles.ts
+
+var rootAppliedStyles = /* @__PURE__ */ new WeakMap();
+var registerStyle = (scopeId2, cssText, allowCS) => {
+  let style = styles.get(scopeId2);
+  if (supportsConstructableStylesheets && allowCS) {
+    style = style || new CSSStyleSheet();
+    if (typeof style === "string") {
+      style = cssText;
+    } else {
+      style.replaceSync(cssText);
+    }
+  } else {
+    style = cssText;
+  }
+  styles.set(scopeId2, style);
+};
+var addStyle = (styleContainerNode, cmpMeta, mode) => {
+  var _a;
+  const scopeId2 = getScopeId(cmpMeta, mode);
+  const style = styles.get(scopeId2);
+  if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.attachStyles) {
+    return scopeId2;
+  }
+  styleContainerNode = styleContainerNode.nodeType === 11 /* DocumentFragment */ ? styleContainerNode : doc;
+  if (style) {
+    if (typeof style === "string") {
+      styleContainerNode = styleContainerNode.head || styleContainerNode;
+      let appliedStyles = rootAppliedStyles.get(styleContainerNode);
+      let styleElm;
+      if (!appliedStyles) {
+        rootAppliedStyles.set(styleContainerNode, appliedStyles = /* @__PURE__ */ new Set());
+      }
+      if (!appliedStyles.has(scopeId2)) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateClientSide && styleContainerNode.host && (styleElm = styleContainerNode.querySelector(`[${HYDRATED_STYLE_ID}="${scopeId2}"]`))) {
+          styleElm.innerHTML = style;
+        } else {
+          styleElm = doc.createElement("style");
+          styleElm.innerHTML = style;
+          const nonce = (_a = plt.$nonce$) != null ? _a : queryNonceMetaTagContent(doc);
+          if (nonce != null) {
+            styleElm.setAttribute("nonce", nonce);
+          }
+          if ((_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement) && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+            styleElm.setAttribute(HYDRATED_STYLE_ID, scopeId2);
+          }
+          const injectStyle = (
+            /**
+             * we render a scoped component
+             */
+            !(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) || /**
+             * we are using shadow dom and render the style tag within the shadowRoot
+             */
+            cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */ && styleContainerNode.nodeName !== "HEAD"
+          );
+          if (injectStyle) {
+            styleContainerNode.insertBefore(styleElm, styleContainerNode.querySelector("link"));
+          }
+        }
+        if (cmpMeta.$flags$ & 4 /* hasSlotRelocation */) {
+          styleElm.innerHTML += SLOT_FB_CSS;
+        }
+        if (appliedStyles) {
+          appliedStyles.add(scopeId2);
+        }
+      }
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.constructableCSS && !styleContainerNode.adoptedStyleSheets.includes(style)) {
+      styleContainerNode.adoptedStyleSheets = [...styleContainerNode.adoptedStyleSheets, style];
+    }
+  }
+  return scopeId2;
+};
+var attachStyles = (hostRef) => {
+  const cmpMeta = hostRef.$cmpMeta$;
+  const elm = hostRef.$hostElement$;
+  const flags = cmpMeta.$flags$;
+  const endAttachStyles = createTime("attachStyles", cmpMeta.$tagName$);
+  const scopeId2 = addStyle(
+    _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && supportsShadow && elm.shadowRoot ? elm.shadowRoot : elm.getRootNode(),
+    cmpMeta,
+    hostRef.$modeName$
+  );
+  if ((_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped) && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cssAnnotations && flags & 10 /* needsScopedEncapsulation */ && flags & 2 /* scopedCssEncapsulation */) {
+    elm["s-sc"] = scopeId2;
+    elm.classList.add(scopeId2 + "-h");
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped && flags & 2 /* scopedCssEncapsulation */) {
+      elm.classList.add(scopeId2 + "-s");
+    }
+  }
+  endAttachStyles();
+};
+var getScopeId = (cmp, mode) => "sc-" + (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.mode && mode && cmp.$flags$ & 32 /* hasMode */ ? cmp.$tagName$ + "-" + mode : cmp.$tagName$);
+
+// src/runtime/vdom/vdom-render.ts
+
+
+// src/runtime/vdom/update-element.ts
+
+
+// src/runtime/vdom/set-accessor.ts
+
+var setAccessor = (elm, memberName, oldValue, newValue, isSvg, flags) => {
+  if (oldValue !== newValue) {
+    let isProp = isMemberInElement(elm, memberName);
+    let ln = memberName.toLowerCase();
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomClass && memberName === "class") {
+      const classList = elm.classList;
+      const oldClasses = parseClassList(oldValue);
+      const newClasses = parseClassList(newValue);
+      classList.remove(...oldClasses.filter((c) => c && !newClasses.includes(c)));
+      classList.add(...newClasses.filter((c) => c && !oldClasses.includes(c)));
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomStyle && memberName === "style") {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable) {
+        for (const prop in oldValue) {
+          if (!newValue || newValue[prop] == null) {
+            if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && prop.includes("-")) {
+              elm.style.removeProperty(prop);
+            } else {
+              elm.style[prop] = "";
+            }
+          }
+        }
+      }
+      for (const prop in newValue) {
+        if (!oldValue || newValue[prop] !== oldValue[prop]) {
+          if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && prop.includes("-")) {
+            elm.style.setProperty(prop, newValue[prop]);
+          } else {
+            elm.style[prop] = newValue[prop];
+          }
+        }
+      }
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey && memberName === "key") {
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomRef && memberName === "ref") {
+      if (newValue) {
+        newValue(elm);
+      }
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomListener && (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? !isProp : !elm.__lookupSetter__(memberName)) && memberName[0] === "o" && memberName[1] === "n") {
+      if (memberName[2] === "-") {
+        memberName = memberName.slice(3);
+      } else if (isMemberInElement(win, ln)) {
+        memberName = ln.slice(2);
+      } else {
+        memberName = ln[2] + memberName.slice(3);
+      }
+      if (oldValue || newValue) {
+        const capture = memberName.endsWith(CAPTURE_EVENT_SUFFIX);
+        memberName = memberName.replace(CAPTURE_EVENT_REGEX, "");
+        if (oldValue) {
+          plt.rel(elm, memberName, oldValue, capture);
+        }
+        if (newValue) {
+          plt.ael(elm, memberName, newValue, capture);
+        }
+      }
+    } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomPropOrAttr) {
+      const isComplex = isComplexType(newValue);
+      if ((isProp || isComplex && newValue !== null) && !isSvg) {
+        try {
+          if (!elm.tagName.includes("-")) {
+            const n = newValue == null ? "" : newValue;
+            if (memberName === "list") {
+              isProp = false;
+            } else if (oldValue == null || elm[memberName] != n) {
+              elm[memberName] = n;
+            }
+          } else {
+            elm[memberName] = newValue;
+          }
+        } catch (e) {
+        }
+      }
+      let xlink = false;
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomXlink) {
+        if (ln !== (ln = ln.replace(/^xlink\:?/, ""))) {
+          memberName = ln;
+          xlink = true;
+        }
+      }
+      if (newValue == null || newValue === false) {
+        if (newValue !== false || elm.getAttribute(memberName) === "") {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomXlink && xlink) {
+            elm.removeAttributeNS(XLINK_NS, memberName);
+          } else {
+            elm.removeAttribute(memberName);
+          }
+        }
+      } else if ((!isProp || flags & 4 /* isHost */ || isSvg) && !isComplex) {
+        newValue = newValue === true ? "" : newValue;
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomXlink && xlink) {
+          elm.setAttributeNS(XLINK_NS, memberName, newValue);
+        } else {
+          elm.setAttribute(memberName, newValue);
+        }
+      }
+    }
+  }
+};
+var parseClassListRegex = /\s/;
+var parseClassList = (value) => !value ? [] : value.split(parseClassListRegex);
+var CAPTURE_EVENT_SUFFIX = "Capture";
+var CAPTURE_EVENT_REGEX = new RegExp(CAPTURE_EVENT_SUFFIX + "$");
+
+// src/runtime/vdom/update-element.ts
+var updateElement = (oldVnode, newVnode, isSvgMode2) => {
+  const elm = newVnode.$elm$.nodeType === 11 /* DocumentFragment */ && newVnode.$elm$.host ? newVnode.$elm$.host : newVnode.$elm$;
+  const oldVnodeAttrs = oldVnode && oldVnode.$attrs$ || EMPTY_OBJ;
+  const newVnodeAttrs = newVnode.$attrs$ || EMPTY_OBJ;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable) {
+    for (const memberName of sortedAttrNames(Object.keys(oldVnodeAttrs))) {
+      if (!(memberName in newVnodeAttrs)) {
+        setAccessor(elm, memberName, oldVnodeAttrs[memberName], void 0, isSvgMode2, newVnode.$flags$);
+      }
+    }
+  }
+  for (const memberName of sortedAttrNames(Object.keys(newVnodeAttrs))) {
+    setAccessor(elm, memberName, oldVnodeAttrs[memberName], newVnodeAttrs[memberName], isSvgMode2, newVnode.$flags$);
+  }
+};
+function sortedAttrNames(attrNames) {
+  return attrNames.includes("ref") ? (
+    // we need to sort these to ensure that `'ref'` is the last attr
+    [...attrNames.filter((attr) => attr !== "ref"), "ref"]
+  ) : (
+    // no need to sort, return the original array
+    attrNames
+  );
+}
+
+// src/runtime/vdom/vdom-render.ts
+var scopeId;
+var contentRef;
+var hostTagName;
+var useNativeShadowDom = false;
+var checkSlotFallbackVisibility = false;
+var checkSlotRelocate = false;
+var isSvgMode = false;
+var createElm = (oldParentVNode, newParentVNode, childIndex, parentElm) => {
+  var _a;
+  const newVNode2 = newParentVNode.$children$[childIndex];
+  let i2 = 0;
+  let elm;
+  let childNode;
+  let oldVNode;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && !useNativeShadowDom) {
+    checkSlotRelocate = true;
+    if (newVNode2.$tag$ === "slot") {
+      if (scopeId) {
+        parentElm.classList.add(scopeId + "-s");
+      }
+      newVNode2.$flags$ |= newVNode2.$children$ ? (
+        // slot element has fallback content
+        // still create an element that "mocks" the slot element
+        2 /* isSlotFallback */
+      ) : (
+        // slot element does not have fallback content
+        // create an html comment we'll use to always reference
+        // where actual slot content should sit next to
+        1 /* isSlotReference */
+      );
+    }
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && newVNode2.$elm$) {
+    consoleDevError(
+      `The JSX ${newVNode2.$text$ !== null ? `"${newVNode2.$text$}" text` : `"${newVNode2.$tag$}" element`} node should not be shared within the same renderer. The renderer caches element lookups in order to improve performance. However, a side effect from this is that the exact same JSX node should not be reused. For more information please see https://stenciljs.com/docs/templating-jsx#avoid-shared-jsx-nodes`
+    );
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomText && newVNode2.$text$ !== null) {
+    elm = newVNode2.$elm$ = doc.createTextNode(newVNode2.$text$);
+  } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && newVNode2.$flags$ & 1 /* isSlotReference */) {
+    elm = newVNode2.$elm$ = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDebug || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide ? slotReferenceDebugNode(newVNode2) : doc.createTextNode("");
+  } else {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg && !isSvgMode) {
+      isSvgMode = newVNode2.$tag$ === "svg";
+    }
+    elm = newVNode2.$elm$ = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg ? doc.createElementNS(
+      isSvgMode ? SVG_NS : HTML_NS,
+      !useNativeShadowDom && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && newVNode2.$flags$ & 2 /* isSlotFallback */ ? "slot-fb" : newVNode2.$tag$
+    ) : doc.createElement(
+      !useNativeShadowDom && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && newVNode2.$flags$ & 2 /* isSlotFallback */ ? "slot-fb" : newVNode2.$tag$
+    );
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg && isSvgMode && newVNode2.$tag$ === "foreignObject") {
+      isSvgMode = false;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomAttribute) {
+      updateElement(null, newVNode2, isSvgMode);
+    }
+    const rootNode = elm.getRootNode();
+    const isElementWithinShadowRoot = !rootNode.querySelector("body");
+    if (!isElementWithinShadowRoot && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped && isDef(scopeId) && elm["s-si"] !== scopeId) {
+      elm.classList.add(elm["s-si"] = scopeId);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped) {
+      updateElementScopeIds(elm, parentElm);
+    }
+    if (newVNode2.$children$) {
+      for (i2 = 0; i2 < newVNode2.$children$.length; ++i2) {
+        childNode = createElm(oldParentVNode, newVNode2, i2, elm);
+        if (childNode) {
+          elm.appendChild(childNode);
+        }
+      }
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg) {
+      if (newVNode2.$tag$ === "svg") {
+        isSvgMode = false;
+      } else if (elm.tagName === "foreignObject") {
+        isSvgMode = true;
+      }
+    }
+  }
+  elm["s-hn"] = hostTagName;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+    if (newVNode2.$flags$ & (2 /* isSlotFallback */ | 1 /* isSlotReference */)) {
+      elm["s-sr"] = true;
+      elm["s-cr"] = contentRef;
+      elm["s-sn"] = newVNode2.$name$ || "";
+      elm["s-rf"] = (_a = newVNode2.$attrs$) == null ? void 0 : _a.ref;
+      oldVNode = oldParentVNode && oldParentVNode.$children$ && oldParentVNode.$children$[childIndex];
+      if (oldVNode && oldVNode.$tag$ === newVNode2.$tag$ && oldParentVNode.$elm$) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes) {
+          relocateToHostRoot(oldParentVNode.$elm$);
+        } else {
+          putBackInOriginalLocation(oldParentVNode.$elm$, false);
+        }
+      }
+    }
+  }
+  return elm;
+};
+var relocateToHostRoot = (parentElm) => {
+  plt.$flags$ |= 1 /* isTmpDisconnected */;
+  const host = parentElm.closest(hostTagName.toLowerCase());
+  if (host != null) {
+    const contentRefNode = Array.from(host.childNodes).find((ref) => ref["s-cr"]);
+    const childNodeArray = Array.from(parentElm.childNodes);
+    for (const childNode of contentRefNode ? childNodeArray.reverse() : childNodeArray) {
+      if (childNode["s-sh"] != null) {
+        insertBefore(host, childNode, contentRefNode != null ? contentRefNode : null);
+        childNode["s-sh"] = void 0;
+        checkSlotRelocate = true;
+      }
+    }
+  }
+  plt.$flags$ &= ~1 /* isTmpDisconnected */;
+};
+var putBackInOriginalLocation = (parentElm, recursive) => {
+  plt.$flags$ |= 1 /* isTmpDisconnected */;
+  const oldSlotChildNodes = Array.from(parentElm.childNodes);
+  if (parentElm["s-sr"] && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes) {
+    let node = parentElm;
+    while (node = node.nextSibling) {
+      if (node && node["s-sn"] === parentElm["s-sn"] && node["s-sh"] === hostTagName) {
+        oldSlotChildNodes.push(node);
+      }
+    }
+  }
+  for (let i2 = oldSlotChildNodes.length - 1; i2 >= 0; i2--) {
+    const childNode = oldSlotChildNodes[i2];
+    if (childNode["s-hn"] !== hostTagName && childNode["s-ol"]) {
+      insertBefore(parentReferenceNode(childNode), childNode, referenceNode(childNode));
+      childNode["s-ol"].remove();
+      childNode["s-ol"] = void 0;
+      childNode["s-sh"] = void 0;
+      checkSlotRelocate = true;
+    }
+    if (recursive) {
+      putBackInOriginalLocation(childNode, recursive);
+    }
+  }
+  plt.$flags$ &= ~1 /* isTmpDisconnected */;
+};
+var addVnodes = (parentElm, before, parentVNode, vnodes, startIdx, endIdx) => {
+  let containerElm = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && parentElm["s-cr"] && parentElm["s-cr"].parentNode || parentElm;
+  let childNode;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && containerElm.shadowRoot && containerElm.tagName === hostTagName) {
+    containerElm = containerElm.shadowRoot;
+  }
+  for (; startIdx <= endIdx; ++startIdx) {
+    if (vnodes[startIdx]) {
+      childNode = createElm(null, parentVNode, startIdx, parentElm);
+      if (childNode) {
+        vnodes[startIdx].$elm$ = childNode;
+        insertBefore(containerElm, childNode, _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation ? referenceNode(before) : before);
+      }
+    }
+  }
+};
+var removeVnodes = (vnodes, startIdx, endIdx) => {
+  for (let index = startIdx; index <= endIdx; ++index) {
+    const vnode = vnodes[index];
+    if (vnode) {
+      const elm = vnode.$elm$;
+      nullifyVNodeRefs(vnode);
+      if (elm) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+          checkSlotFallbackVisibility = true;
+          if (elm["s-ol"]) {
+            elm["s-ol"].remove();
+          } else {
+            putBackInOriginalLocation(elm, true);
+          }
+        }
+        elm.remove();
+      }
+    }
+  }
+};
+var updateChildren = (parentElm, oldCh, newVNode2, newCh, isInitialRender = false) => {
+  let oldStartIdx = 0;
+  let newStartIdx = 0;
+  let idxInOld = 0;
+  let i2 = 0;
+  let oldEndIdx = oldCh.length - 1;
+  let oldStartVnode = oldCh[0];
+  let oldEndVnode = oldCh[oldEndIdx];
+  let newEndIdx = newCh.length - 1;
+  let newStartVnode = newCh[0];
+  let newEndVnode = newCh[newEndIdx];
+  let node;
+  let elmToMove;
+  while (oldStartIdx <= oldEndIdx && newStartIdx <= newEndIdx) {
+    if (oldStartVnode == null) {
+      oldStartVnode = oldCh[++oldStartIdx];
+    } else if (oldEndVnode == null) {
+      oldEndVnode = oldCh[--oldEndIdx];
+    } else if (newStartVnode == null) {
+      newStartVnode = newCh[++newStartIdx];
+    } else if (newEndVnode == null) {
+      newEndVnode = newCh[--newEndIdx];
+    } else if (isSameVnode(oldStartVnode, newStartVnode, isInitialRender)) {
+      patch(oldStartVnode, newStartVnode, isInitialRender);
+      oldStartVnode = oldCh[++oldStartIdx];
+      newStartVnode = newCh[++newStartIdx];
+    } else if (isSameVnode(oldEndVnode, newEndVnode, isInitialRender)) {
+      patch(oldEndVnode, newEndVnode, isInitialRender);
+      oldEndVnode = oldCh[--oldEndIdx];
+      newEndVnode = newCh[--newEndIdx];
+    } else if (isSameVnode(oldStartVnode, newEndVnode, isInitialRender)) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && (oldStartVnode.$tag$ === "slot" || newEndVnode.$tag$ === "slot")) {
+        putBackInOriginalLocation(oldStartVnode.$elm$.parentNode, false);
+      }
+      patch(oldStartVnode, newEndVnode, isInitialRender);
+      insertBefore(parentElm, oldStartVnode.$elm$, oldEndVnode.$elm$.nextSibling);
+      oldStartVnode = oldCh[++oldStartIdx];
+      newEndVnode = newCh[--newEndIdx];
+    } else if (isSameVnode(oldEndVnode, newStartVnode, isInitialRender)) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && (oldStartVnode.$tag$ === "slot" || newEndVnode.$tag$ === "slot")) {
+        putBackInOriginalLocation(oldEndVnode.$elm$.parentNode, false);
+      }
+      patch(oldEndVnode, newStartVnode, isInitialRender);
+      insertBefore(parentElm, oldEndVnode.$elm$, oldStartVnode.$elm$);
+      oldEndVnode = oldCh[--oldEndIdx];
+      newStartVnode = newCh[++newStartIdx];
+    } else {
+      idxInOld = -1;
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey) {
+        for (i2 = oldStartIdx; i2 <= oldEndIdx; ++i2) {
+          if (oldCh[i2] && oldCh[i2].$key$ !== null && oldCh[i2].$key$ === newStartVnode.$key$) {
+            idxInOld = i2;
+            break;
+          }
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey && idxInOld >= 0) {
+        elmToMove = oldCh[idxInOld];
+        if (elmToMove.$tag$ !== newStartVnode.$tag$) {
+          node = createElm(oldCh && oldCh[newStartIdx], newVNode2, idxInOld, parentElm);
+        } else {
+          patch(elmToMove, newStartVnode, isInitialRender);
+          oldCh[idxInOld] = void 0;
+          node = elmToMove.$elm$;
+        }
+        newStartVnode = newCh[++newStartIdx];
+      } else {
+        node = createElm(oldCh && oldCh[newStartIdx], newVNode2, newStartIdx, parentElm);
+        newStartVnode = newCh[++newStartIdx];
+      }
+      if (node) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+          insertBefore(parentReferenceNode(oldStartVnode.$elm$), node, referenceNode(oldStartVnode.$elm$));
+        } else {
+          insertBefore(oldStartVnode.$elm$.parentNode, node, oldStartVnode.$elm$);
+        }
+      }
+    }
+  }
+  if (oldStartIdx > oldEndIdx) {
+    addVnodes(
+      parentElm,
+      newCh[newEndIdx + 1] == null ? null : newCh[newEndIdx + 1].$elm$,
+      newVNode2,
+      newCh,
+      newStartIdx,
+      newEndIdx
+    );
+  } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && newStartIdx > newEndIdx) {
+    removeVnodes(oldCh, oldStartIdx, oldEndIdx);
+  }
+};
+var isSameVnode = (leftVNode, rightVNode, isInitialRender = false) => {
+  if (leftVNode.$tag$ === rightVNode.$tag$) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && leftVNode.$tag$ === "slot") {
+      if (
+        // The component gets hydrated and no VDOM has been initialized.
+        // Here the comparison can't happen as $name$ property is not set for `leftNode`.
+        "$nodeId$" in leftVNode && isInitialRender && // `leftNode` is not from type HTMLComment which would cause many
+        // hydration comments to be removed
+        leftVNode.$elm$.nodeType !== 8
+      ) {
+        return false;
+      }
+      return leftVNode.$name$ === rightVNode.$name$;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomKey && !isInitialRender) {
+      return leftVNode.$key$ === rightVNode.$key$;
+    }
+    return true;
+  }
+  return false;
+};
+var referenceNode = (node) => {
+  return node && node["s-ol"] || node;
+};
+var parentReferenceNode = (node) => (node["s-ol"] ? node["s-ol"] : node).parentNode;
+var patch = (oldVNode, newVNode2, isInitialRender = false) => {
+  const elm = newVNode2.$elm$ = oldVNode.$elm$;
+  const oldChildren = oldVNode.$children$;
+  const newChildren = newVNode2.$children$;
+  const tag = newVNode2.$tag$;
+  const text = newVNode2.$text$;
+  let defaultHolder;
+  if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomText || text === null) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg) {
+      isSvgMode = tag === "svg" ? true : tag === "foreignObject" ? false : isSvgMode;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomAttribute || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slot && tag === "slot" && !useNativeShadowDom) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes && oldVNode.$name$ !== newVNode2.$name$) {
+          newVNode2.$elm$["s-sn"] = newVNode2.$name$ || "";
+          relocateToHostRoot(newVNode2.$elm$.parentElement);
+        }
+      } else {
+        updateElement(oldVNode, newVNode2, isSvgMode);
+      }
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && oldChildren !== null && newChildren !== null) {
+      updateChildren(elm, oldChildren, newVNode2, newChildren, isInitialRender);
+    } else if (newChildren !== null) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomText && oldVNode.$text$ !== null) {
+        elm.textContent = "";
+      }
+      addVnodes(elm, null, newVNode2, newChildren, 0, newChildren.length - 1);
+    } else if (
+      // don't do this on initial render as it can cause non-hydrated content to be removed
+      !isInitialRender && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && oldChildren !== null
+    ) {
+      removeVnodes(oldChildren, 0, oldChildren.length - 1);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.svg && isSvgMode && tag === "svg") {
+      isSvgMode = false;
+    }
+  } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomText && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && (defaultHolder = elm["s-cr"])) {
+    defaultHolder.parentNode.textContent = text;
+  } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomText && oldVNode.$text$ !== text) {
+    elm.data = text;
+  }
+};
+var updateFallbackSlotVisibility = (elm) => {
+  const childNodes = elm.childNodes;
+  for (const childNode of childNodes) {
+    if (childNode.nodeType === 1 /* ElementNode */) {
+      if (childNode["s-sr"]) {
+        const slotName = childNode["s-sn"];
+        childNode.hidden = false;
+        for (const siblingNode of childNodes) {
+          if (siblingNode !== childNode) {
+            if (siblingNode["s-hn"] !== childNode["s-hn"] || slotName !== "") {
+              if (siblingNode.nodeType === 1 /* ElementNode */ && (slotName === siblingNode.getAttribute("slot") || slotName === siblingNode["s-sn"]) || siblingNode.nodeType === 3 /* TextNode */ && slotName === siblingNode["s-sn"]) {
+                childNode.hidden = true;
+                break;
+              }
+            } else {
+              if (siblingNode.nodeType === 1 /* ElementNode */ || siblingNode.nodeType === 3 /* TextNode */ && siblingNode.textContent.trim() !== "") {
+                childNode.hidden = true;
+                break;
+              }
+            }
+          }
+        }
+      }
+      updateFallbackSlotVisibility(childNode);
+    }
+  }
+};
+var relocateNodes = [];
+var markSlotContentForRelocation = (elm) => {
+  let node;
+  let hostContentNodes;
+  let j;
+  for (const childNode of elm.childNodes) {
+    if (childNode["s-sr"] && (node = childNode["s-cr"]) && node.parentNode) {
+      hostContentNodes = node.parentNode.childNodes;
+      const slotName = childNode["s-sn"];
+      for (j = hostContentNodes.length - 1; j >= 0; j--) {
+        node = hostContentNodes[j];
+        if (!node["s-cn"] && !node["s-nr"] && node["s-hn"] !== childNode["s-hn"] && (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes || !node["s-sh"] || node["s-sh"] !== childNode["s-hn"])) {
+          if (isNodeLocatedInSlot(node, slotName)) {
+            let relocateNodeData = relocateNodes.find((r) => r.$nodeToRelocate$ === node);
+            checkSlotFallbackVisibility = true;
+            node["s-sn"] = node["s-sn"] || slotName;
+            if (relocateNodeData) {
+              relocateNodeData.$nodeToRelocate$["s-sh"] = childNode["s-hn"];
+              relocateNodeData.$slotRefNode$ = childNode;
+            } else {
+              node["s-sh"] = childNode["s-hn"];
+              relocateNodes.push({
+                $slotRefNode$: childNode,
+                $nodeToRelocate$: node
+              });
+            }
+            if (node["s-sr"]) {
+              relocateNodes.map((relocateNode) => {
+                if (isNodeLocatedInSlot(relocateNode.$nodeToRelocate$, node["s-sn"])) {
+                  relocateNodeData = relocateNodes.find((r) => r.$nodeToRelocate$ === node);
+                  if (relocateNodeData && !relocateNode.$slotRefNode$) {
+                    relocateNode.$slotRefNode$ = relocateNodeData.$slotRefNode$;
+                  }
+                }
+              });
+            }
+          } else if (!relocateNodes.some((r) => r.$nodeToRelocate$ === node)) {
+            relocateNodes.push({
+              $nodeToRelocate$: node
+            });
+          }
+        }
+      }
+    }
+    if (childNode.nodeType === 1 /* ElementNode */) {
+      markSlotContentForRelocation(childNode);
+    }
+  }
+};
+var isNodeLocatedInSlot = (nodeToRelocate, slotName) => {
+  if (nodeToRelocate.nodeType === 1 /* ElementNode */) {
+    if (nodeToRelocate.getAttribute("slot") === null && slotName === "") {
+      return true;
+    }
+    if (nodeToRelocate.getAttribute("slot") === slotName) {
+      return true;
+    }
+    return false;
+  }
+  if (nodeToRelocate["s-sn"] === slotName) {
+    return true;
+  }
+  return slotName === "";
+};
+var nullifyVNodeRefs = (vNode) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomRef) {
+    vNode.$attrs$ && vNode.$attrs$.ref && vNode.$attrs$.ref(null);
+    vNode.$children$ && vNode.$children$.map(nullifyVNodeRefs);
+  }
+};
+var insertBefore = (parent, newNode, reference) => {
+  const inserted = parent == null ? void 0 : parent.insertBefore(newNode, reference);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped) {
+    updateElementScopeIds(newNode, parent);
+  }
+  return inserted;
+};
+var findScopeIds = (element) => {
+  const scopeIds = [];
+  if (element) {
+    scopeIds.push(
+      ...element["s-scs"] || [],
+      element["s-si"],
+      element["s-sc"],
+      ...findScopeIds(element.parentElement)
+    );
+  }
+  return scopeIds;
+};
+var updateElementScopeIds = (element, parent, iterateChildNodes = false) => {
+  var _a;
+  if (element && parent && element.nodeType === 1 /* ElementNode */) {
+    const scopeIds = new Set(findScopeIds(parent).filter(Boolean));
+    if (scopeIds.size) {
+      (_a = element.classList) == null ? void 0 : _a.add(...element["s-scs"] = [...scopeIds]);
+      if (element["s-ol"] || iterateChildNodes) {
+        for (const childNode of Array.from(element.childNodes)) {
+          updateElementScopeIds(childNode, element, true);
+        }
+      }
+    }
+  }
+};
+var renderVdom = (hostRef, renderFnResults, isInitialLoad = false) => {
+  var _a, _b, _c, _d, _e;
+  const hostElm = hostRef.$hostElement$;
+  const cmpMeta = hostRef.$cmpMeta$;
+  const oldVNode = hostRef.$vnode$ || newVNode(null, null);
+  const rootVnode = isHost(renderFnResults) ? renderFnResults : h(null, null, renderFnResults);
+  hostTagName = hostElm.tagName;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev && Array.isArray(renderFnResults) && renderFnResults.some(isHost)) {
+    throw new Error(`The <Host> must be the single root component.
+Looks like the render() function of "${hostTagName.toLowerCase()}" is returning an array that contains the <Host>.
+
+The render() function should look like this instead:
+
+render() {
+  // Do not return an array
+  return (
+    <Host>{content}</Host>
+  );
+}
+  `);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect && cmpMeta.$attrsToReflect$) {
+    rootVnode.$attrs$ = rootVnode.$attrs$ || {};
+    cmpMeta.$attrsToReflect$.map(
+      ([propName, attribute]) => rootVnode.$attrs$[attribute] = hostElm[propName]
+    );
+  }
+  if (isInitialLoad && rootVnode.$attrs$) {
+    for (const key of Object.keys(rootVnode.$attrs$)) {
+      if (hostElm.hasAttribute(key) && !["key", "ref", "style", "class"].includes(key)) {
+        rootVnode.$attrs$[key] = hostElm[key];
+      }
+    }
+  }
+  rootVnode.$tag$ = null;
+  rootVnode.$flags$ |= 4 /* isHost */;
+  hostRef.$vnode$ = rootVnode;
+  rootVnode.$elm$ = oldVNode.$elm$ = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom ? hostElm.shadowRoot || hostElm : hostElm;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom) {
+    scopeId = hostElm["s-sc"];
+  }
+  useNativeShadowDom = supportsShadow && (cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) !== 0;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+    contentRef = hostElm["s-cr"];
+    checkSlotFallbackVisibility = false;
+  }
+  patch(oldVNode, rootVnode, isInitialLoad);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation) {
+    plt.$flags$ |= 1 /* isTmpDisconnected */;
+    if (checkSlotRelocate) {
+      markSlotContentForRelocation(rootVnode.$elm$);
+      for (const relocateData of relocateNodes) {
+        const nodeToRelocate = relocateData.$nodeToRelocate$;
+        if (!nodeToRelocate["s-ol"]) {
+          const orgLocationNode = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDebug || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide ? originalLocationDebugNode(nodeToRelocate) : doc.createTextNode("");
+          orgLocationNode["s-nr"] = nodeToRelocate;
+          insertBefore(nodeToRelocate.parentNode, nodeToRelocate["s-ol"] = orgLocationNode, nodeToRelocate);
+        }
+      }
+      for (const relocateData of relocateNodes) {
+        const nodeToRelocate = relocateData.$nodeToRelocate$;
+        const slotRefNode = relocateData.$slotRefNode$;
+        if (slotRefNode) {
+          const parentNodeRef = slotRefNode.parentNode;
+          let insertBeforeNode = slotRefNode.nextSibling;
+          if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes || insertBeforeNode && insertBeforeNode.nodeType === 1 /* ElementNode */) {
+            let orgLocationNode = (_a = nodeToRelocate["s-ol"]) == null ? void 0 : _a.previousSibling;
+            while (orgLocationNode) {
+              let refNode = (_b = orgLocationNode["s-nr"]) != null ? _b : null;
+              if (refNode && refNode["s-sn"] === nodeToRelocate["s-sn"] && parentNodeRef === refNode.parentNode) {
+                refNode = refNode.nextSibling;
+                while (refNode === nodeToRelocate || (refNode == null ? void 0 : refNode["s-sr"])) {
+                  refNode = refNode == null ? void 0 : refNode.nextSibling;
+                }
+                if (!refNode || !refNode["s-nr"]) {
+                  insertBeforeNode = refNode;
+                  break;
+                }
+              }
+              orgLocationNode = orgLocationNode.previousSibling;
+            }
+          }
+          if (!insertBeforeNode && parentNodeRef !== nodeToRelocate.parentNode || nodeToRelocate.nextSibling !== insertBeforeNode) {
+            if (nodeToRelocate !== insertBeforeNode) {
+              if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes && !nodeToRelocate["s-hn"] && nodeToRelocate["s-ol"]) {
+                nodeToRelocate["s-hn"] = nodeToRelocate["s-ol"].parentNode.nodeName;
+              }
+              insertBefore(parentNodeRef, nodeToRelocate, insertBeforeNode);
+              if (nodeToRelocate.nodeType === 1 /* ElementNode */) {
+                nodeToRelocate.hidden = (_c = nodeToRelocate["s-ih"]) != null ? _c : false;
+              }
+            }
+          }
+          nodeToRelocate && typeof slotRefNode["s-rf"] === "function" && slotRefNode["s-rf"](nodeToRelocate);
+        } else {
+          if (nodeToRelocate.nodeType === 1 /* ElementNode */) {
+            if (isInitialLoad) {
+              nodeToRelocate["s-ih"] = (_d = nodeToRelocate.hidden) != null ? _d : false;
+            }
+            nodeToRelocate.hidden = true;
+          }
+        }
+      }
+    }
+    if (checkSlotFallbackVisibility) {
+      updateFallbackSlotVisibility(rootVnode.$elm$);
+    }
+    plt.$flags$ &= ~1 /* isTmpDisconnected */;
+    relocateNodes.length = 0;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalScopedSlotChanges && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+    for (const childNode of rootVnode.$elm$.childNodes) {
+      if (childNode["s-hn"] !== hostTagName && !childNode["s-sh"]) {
+        if (isInitialLoad && childNode["s-ih"] == null) {
+          childNode["s-ih"] = (_e = childNode.hidden) != null ? _e : false;
+        }
+        childNode.hidden = true;
+      }
+    }
+  }
+  contentRef = void 0;
+};
+var slotReferenceDebugNode = (slotVNode) => doc.createComment(
+  `<slot${slotVNode.$name$ ? ' name="' + slotVNode.$name$ + '"' : ""}> (host=${hostTagName.toLowerCase()})`
+);
+var originalLocationDebugNode = (nodeToRelocate) => doc.createComment(
+  `org-location for ` + (nodeToRelocate.localName ? `<${nodeToRelocate.localName}> (host=${nodeToRelocate["s-hn"]})` : `[${nodeToRelocate.textContent}]`)
+);
+
+// src/runtime/update-component.ts
+var attachToAncestor = (hostRef, ancestorComponent) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading && ancestorComponent && !hostRef.$onRenderResolve$ && ancestorComponent["s-p"]) {
+    ancestorComponent["s-p"].push(new Promise((r) => hostRef.$onRenderResolve$ = r));
+  }
+};
+var scheduleUpdate = (hostRef, isInitialLoad) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.taskQueue && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable) {
+    hostRef.$flags$ |= 16 /* isQueuedForUpdate */;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading && hostRef.$flags$ & 4 /* isWaitingForChildren */) {
+    hostRef.$flags$ |= 512 /* needsRerender */;
+    return;
+  }
+  attachToAncestor(hostRef, hostRef.$ancestorComponent$);
+  const dispatch = () => dispatchHooks(hostRef, isInitialLoad);
+  return _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.taskQueue ? writeTask(dispatch) : dispatch();
+};
+var dispatchHooks = (hostRef, isInitialLoad) => {
+  const elm = hostRef.$hostElement$;
+  const endSchedule = createTime("scheduleUpdate", hostRef.$cmpMeta$.$tagName$);
+  const instance = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+  if (!instance) {
+    throw new Error(
+      `Can't render component <${elm.tagName.toLowerCase()} /> with invalid Stencil runtime! Make sure this imported component is compiled with a \`externalRuntime: true\` flag. For more information, please refer to https://stenciljs.com/docs/custom-elements#externalruntime`
+    );
+  }
+  let maybePromise;
+  if (isInitialLoad) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListener) {
+      hostRef.$flags$ |= 256 /* isListenReady */;
+      if (hostRef.$queuedListeners$) {
+        hostRef.$queuedListeners$.map(([methodName, event]) => safeCall(instance, methodName, event));
+        hostRef.$queuedListeners$ = void 0;
+      }
+    }
+    emitLifecycleEvent(elm, "componentWillLoad");
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpWillLoad) {
+      maybePromise = safeCall(instance, "componentWillLoad");
+    }
+  } else {
+    emitLifecycleEvent(elm, "componentWillUpdate");
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpWillUpdate) {
+      maybePromise = safeCall(instance, "componentWillUpdate");
+    }
+  }
+  emitLifecycleEvent(elm, "componentWillRender");
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpWillRender) {
+    maybePromise = enqueue(maybePromise, () => safeCall(instance, "componentWillRender"));
+  }
+  endSchedule();
+  return enqueue(maybePromise, () => updateComponent(hostRef, instance, isInitialLoad));
+};
+var enqueue = (maybePromise, fn) => isPromisey(maybePromise) ? maybePromise.then(fn).catch((err2) => {
+  console.error(err2);
+  fn();
+}) : fn();
+var isPromisey = (maybePromise) => maybePromise instanceof Promise || maybePromise && maybePromise.then && typeof maybePromise.then === "function";
+var updateComponent = async (hostRef, instance, isInitialLoad) => {
+  var _a;
+  const elm = hostRef.$hostElement$;
+  const endUpdate = createTime("update", hostRef.$cmpMeta$.$tagName$);
+  const rc = elm["s-rc"];
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.style && isInitialLoad) {
+    attachStyles(hostRef);
+  }
+  const endRender = createTime("render", hostRef.$cmpMeta$.$tagName$);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+    hostRef.$flags$ |= 1024 /* devOnRender */;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide) {
+    await callRender(hostRef, instance, elm, isInitialLoad);
+  } else {
+    callRender(hostRef, instance, elm, isInitialLoad);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+    hostRef.$renderCount$ = hostRef.$renderCount$ === void 0 ? 1 : hostRef.$renderCount$ + 1;
+    hostRef.$flags$ &= ~1024 /* devOnRender */;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide) {
+    try {
+      serverSideConnected(elm);
+      if (isInitialLoad) {
+        if (hostRef.$cmpMeta$.$flags$ & 1 /* shadowDomEncapsulation */) {
+          elm["s-en"] = "";
+        } else if (hostRef.$cmpMeta$.$flags$ & 2 /* scopedCssEncapsulation */) {
+          elm["s-en"] = "c";
+        }
+      }
+    } catch (e) {
+      consoleError(e, elm);
+    }
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading && rc) {
+    rc.map((cb) => cb());
+    elm["s-rc"] = void 0;
+  }
+  endRender();
+  endUpdate();
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading) {
+    const childrenPromises = (_a = elm["s-p"]) != null ? _a : [];
+    const postUpdate = () => postUpdateComponent(hostRef);
+    if (childrenPromises.length === 0) {
+      postUpdate();
+    } else {
+      Promise.all(childrenPromises).then(postUpdate);
+      hostRef.$flags$ |= 4 /* isWaitingForChildren */;
+      childrenPromises.length = 0;
+    }
+  } else {
+    postUpdateComponent(hostRef);
+  }
+};
+var renderingRef = null;
+var callRender = (hostRef, instance, elm, isInitialLoad) => {
+  const allRenderFn = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.allRenderFn ? true : false;
+  const lazyLoad = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? true : false;
+  const taskQueue = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.taskQueue ? true : false;
+  const updatable = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable ? true : false;
+  try {
+    renderingRef = instance;
+    instance = allRenderFn ? instance.render() : instance.render && instance.render();
+    if (updatable && taskQueue) {
+      hostRef.$flags$ &= ~16 /* isQueuedForUpdate */;
+    }
+    if (updatable || lazyLoad) {
+      hostRef.$flags$ |= 2 /* hasRendered */;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hasRenderFn || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.vdomRender || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide) {
+          return Promise.resolve(instance).then((value) => renderVdom(hostRef, value, isInitialLoad));
+        } else {
+          renderVdom(hostRef, instance, isInitialLoad);
+        }
+      } else {
+        const shadowRoot = elm.shadowRoot;
+        if (hostRef.$cmpMeta$.$flags$ & 1 /* shadowDomEncapsulation */) {
+          shadowRoot.textContent = instance;
+        } else {
+          elm.textContent = instance;
+        }
+      }
+    }
+  } catch (e) {
+    consoleError(e, hostRef.$hostElement$);
+  }
+  renderingRef = null;
+  return null;
+};
+var getRenderingRef = () => renderingRef;
+var postUpdateComponent = (hostRef) => {
+  const tagName = hostRef.$cmpMeta$.$tagName$;
+  const elm = hostRef.$hostElement$;
+  const endPostUpdate = createTime("postUpdate", tagName);
+  const instance = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+  const ancestorComponent = hostRef.$ancestorComponent$;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpDidRender) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+      hostRef.$flags$ |= 1024 /* devOnRender */;
+    }
+    safeCall(instance, "componentDidRender");
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+      hostRef.$flags$ &= ~1024 /* devOnRender */;
+    }
+  }
+  emitLifecycleEvent(elm, "componentDidRender");
+  if (!(hostRef.$flags$ & 64 /* hasLoadedComponent */)) {
+    hostRef.$flags$ |= 64 /* hasLoadedComponent */;
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cssAnnotations) {
+      addHydratedFlag(elm);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpDidLoad) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+        hostRef.$flags$ |= 2048 /* devOnDidLoad */;
+      }
+      safeCall(instance, "componentDidLoad");
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+        hostRef.$flags$ &= ~2048 /* devOnDidLoad */;
+      }
+    }
+    emitLifecycleEvent(elm, "componentDidLoad");
+    endPostUpdate();
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading) {
+      hostRef.$onReadyResolve$(elm);
+      if (!ancestorComponent) {
+        appDidLoad(tagName);
+      }
+    }
+  } else {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpDidUpdate) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+        hostRef.$flags$ |= 1024 /* devOnRender */;
+      }
+      safeCall(instance, "componentDidUpdate");
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+        hostRef.$flags$ &= ~1024 /* devOnRender */;
+      }
+    }
+    emitLifecycleEvent(elm, "componentDidUpdate");
+    endPostUpdate();
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.method && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad) {
+    hostRef.$onInstanceResolve$(elm);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading) {
+    if (hostRef.$onRenderResolve$) {
+      hostRef.$onRenderResolve$();
+      hostRef.$onRenderResolve$ = void 0;
+    }
+    if (hostRef.$flags$ & 512 /* needsRerender */) {
+      nextTick(() => scheduleUpdate(hostRef, false));
+    }
+    hostRef.$flags$ &= ~(4 /* isWaitingForChildren */ | 512 /* needsRerender */);
+  }
+};
+var forceUpdate = (ref) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && (Build.isBrowser || Build.isTesting)) {
+    const hostRef = getHostRef(ref);
+    const isConnected = hostRef.$hostElement$.isConnected;
+    if (isConnected && (hostRef.$flags$ & (2 /* hasRendered */ | 16 /* isQueuedForUpdate */)) === 2 /* hasRendered */) {
+      scheduleUpdate(hostRef, false);
+    }
+    return isConnected;
+  }
+  return false;
+};
+var appDidLoad = (who) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cssAnnotations) {
+    addHydratedFlag(doc.documentElement);
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncQueue) {
+    plt.$flags$ |= 2 /* appLoaded */;
+  }
+  nextTick(() => emitEvent(win, "appload", { detail: { namespace: _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.NAMESPACE } }));
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.profile && performance.measure) {
+    performance.measure(`[Stencil] ${_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.NAMESPACE} initial load (by ${who})`, "st:app:start");
+  }
+};
+var safeCall = (instance, method, arg) => {
+  if (instance && instance[method]) {
+    try {
+      return instance[method](arg);
+    } catch (e) {
+      consoleError(e);
+    }
+  }
+  return void 0;
+};
+var emitLifecycleEvent = (elm, lifecycleName) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lifecycleDOMEvents) {
+    emitEvent(elm, "stencil_" + lifecycleName, {
+      bubbles: true,
+      composed: true,
+      detail: {
+        namespace: _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.NAMESPACE
+      }
+    });
+  }
+};
+var addHydratedFlag = (elm) => {
+  var _a, _b;
+  return _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedClass ? elm.classList.add((_a = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedSelectorName) != null ? _a : "hydrated") : _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedAttribute ? elm.setAttribute((_b = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedSelectorName) != null ? _b : "hydrated", "") : void 0;
+};
+var serverSideConnected = (elm) => {
+  const children = elm.children;
+  if (children != null) {
+    for (let i2 = 0, ii = children.length; i2 < ii; i2++) {
+      const childElm = children[i2];
+      if (typeof childElm.connectedCallback === "function") {
+        childElm.connectedCallback();
+      }
+      serverSideConnected(childElm);
+    }
+  }
+};
+
+// src/runtime/set-value.ts
+var getValue = (ref, propName) => getHostRef(ref).$instanceValues$.get(propName);
+var setValue = (ref, propName, newVal, cmpMeta) => {
+  const hostRef = getHostRef(ref);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad && !hostRef) {
+    throw new Error(
+      `Couldn't find host element for "${cmpMeta.$tagName$}" as it is unknown to this Stencil runtime. This usually happens when integrating a 3rd party Stencil component with another Stencil component or application. Please reach out to the maintainers of the 3rd party Stencil component or report this on the Stencil Discord server (https://chat.stenciljs.com) or comment on this similar [GitHub issue](https://github.com/ionic-team/stencil/issues/5457).`
+    );
+  }
+  const elm = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$hostElement$ : ref;
+  const oldVal = hostRef.$instanceValues$.get(propName);
+  const flags = hostRef.$flags$;
+  const instance = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+  newVal = parsePropertyValue(newVal, cmpMeta.$members$[propName][0]);
+  const areBothNaN = Number.isNaN(oldVal) && Number.isNaN(newVal);
+  const didValueChange = newVal !== oldVal && !areBothNaN;
+  if ((!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad || !(flags & 8 /* isConstructingInstance */) || oldVal === void 0) && didValueChange) {
+    hostRef.$instanceValues$.set(propName, newVal);
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+      if (hostRef.$flags$ & 1024 /* devOnRender */) {
+        consoleDevWarn(
+          `The state/prop "${propName}" changed during rendering. This can potentially lead to infinite-loops and other bugs.`,
+          "\nElement",
+          elm,
+          "\nNew value",
+          newVal,
+          "\nOld value",
+          oldVal
+        );
+      } else if (hostRef.$flags$ & 2048 /* devOnDidLoad */) {
+        consoleDevWarn(
+          `The state/prop "${propName}" changed during "componentDidLoad()", this triggers extra re-renders, try to setup on "componentWillLoad()"`,
+          "\nElement",
+          elm,
+          "\nNew value",
+          newVal,
+          "\nOld value",
+          oldVal
+        );
+      }
+    }
+    if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad || instance) {
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback && cmpMeta.$watchers$ && flags & 128 /* isWatchReady */) {
+        const watchMethods = cmpMeta.$watchers$[propName];
+        if (watchMethods) {
+          watchMethods.map((watchMethodName) => {
+            try {
+              instance[watchMethodName](newVal, oldVal, propName);
+            } catch (e) {
+              consoleError(e, elm);
+            }
+          });
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.updatable && (flags & (2 /* hasRendered */ | 16 /* isQueuedForUpdate */)) === 2 /* hasRendered */) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpShouldUpdate && instance.componentShouldUpdate) {
+          if (instance.componentShouldUpdate(newVal, oldVal, propName) === false) {
+            return;
+          }
+        }
+        scheduleUpdate(hostRef, false);
+      }
+    }
+  }
+};
+
+// src/runtime/proxy-component.ts
+var proxyComponent = (Cstr, cmpMeta, flags) => {
+  var _a, _b;
+  const prototype = Cstr.prototype;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.formAssociated && cmpMeta.$flags$ & 64 /* formAssociated */ && flags & 1 /* isElementConstructor */) {
+    FORM_ASSOCIATED_CUSTOM_ELEMENT_CALLBACKS.forEach(
+      (cbName) => Object.defineProperty(prototype, cbName, {
+        value(...args) {
+          const hostRef = getHostRef(this);
+          const elm = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$hostElement$ : this;
+          const instance = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+          if (!instance) {
+            hostRef.$onReadyPromise$.then((instance2) => {
+              const cb = instance2[cbName];
+              typeof cb === "function" && cb.call(instance2, ...args);
+            });
+          } else {
+            const cb = instance[cbName];
+            typeof cb === "function" && cb.call(instance, ...args);
+          }
+        }
+      })
+    );
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member && cmpMeta.$members$ || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback && (cmpMeta.$watchers$ || Cstr.watchers)) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback && Cstr.watchers && !cmpMeta.$watchers$) {
+      cmpMeta.$watchers$ = Cstr.watchers;
+    }
+    const members = Object.entries((_a = cmpMeta.$members$) != null ? _a : {});
+    members.map(([memberName, [memberFlags]]) => {
+      if ((_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.prop || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.state) && (memberFlags & 31 /* Prop */ || (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad || flags & 2 /* proxyState */) && memberFlags & 32 /* State */)) {
+        Object.defineProperty(prototype, memberName, {
+          get() {
+            return getValue(this, memberName);
+          },
+          set(newValue) {
+            if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDev) {
+              const ref = getHostRef(this);
+              if (
+                // we are proxying the instance (not element)
+                (flags & 1 /* isElementConstructor */) === 0 && // the element is not constructing
+                (ref && ref.$flags$ & 8 /* isConstructingInstance */) === 0 && // the member is a prop
+                (memberFlags & 31 /* Prop */) !== 0 && // the member is not mutable
+                (memberFlags & 1024 /* Mutable */) === 0
+              ) {
+                consoleDevWarn(
+                  `@Prop() "${memberName}" on <${cmpMeta.$tagName$}> is immutable but was modified from within the component.
+More information: https://stenciljs.com/docs/properties#prop-mutability`
+                );
+              }
+            }
+            setValue(this, memberName, newValue, cmpMeta);
+          },
+          configurable: true,
+          enumerable: true
+        });
+      } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.method && flags & 1 /* isElementConstructor */ && memberFlags & 64 /* Method */) {
+        Object.defineProperty(prototype, memberName, {
+          value(...args) {
+            var _a2;
+            const ref = getHostRef(this);
+            return (_a2 = ref == null ? void 0 : ref.$onInstancePromise$) == null ? void 0 : _a2.then(() => {
+              var _a3;
+              return (_a3 = ref.$lazyInstance$) == null ? void 0 : _a3[memberName](...args);
+            });
+          }
+        });
+      }
+    });
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.observeAttribute && (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad || flags & 1 /* isElementConstructor */)) {
+      const attrNameToPropName = /* @__PURE__ */ new Map();
+      prototype.attributeChangedCallback = function(attrName, oldValue, newValue) {
+        plt.jmp(() => {
+          var _a2;
+          const propName = attrNameToPropName.get(attrName);
+          if (this.hasOwnProperty(propName)) {
+            newValue = this[propName];
+            delete this[propName];
+          } else if (prototype.hasOwnProperty(propName) && typeof this[propName] === "number" && // cast type to number to avoid TS compiler issues
+          this[propName] == newValue) {
+            return;
+          } else if (propName == null) {
+            const hostRef = getHostRef(this);
+            const flags2 = hostRef == null ? void 0 : hostRef.$flags$;
+            if (flags2 && !(flags2 & 8 /* isConstructingInstance */) && flags2 & 128 /* isWatchReady */ && newValue !== oldValue) {
+              const elm = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$hostElement$ : this;
+              const instance = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad ? hostRef.$lazyInstance$ : elm;
+              const entry = (_a2 = cmpMeta.$watchers$) == null ? void 0 : _a2[attrName];
+              entry == null ? void 0 : entry.forEach((callbackName) => {
+                if (instance[callbackName] != null) {
+                  instance[callbackName].call(instance, newValue, oldValue, attrName);
+                }
+              });
+            }
+            return;
+          }
+          this[propName] = newValue === null && typeof this[propName] === "boolean" ? false : newValue;
+        });
+      };
+      Cstr.observedAttributes = Array.from(
+        /* @__PURE__ */ new Set([
+          ...Object.keys((_b = cmpMeta.$watchers$) != null ? _b : {}),
+          ...members.filter(([_, m]) => m[0] & 15 /* HasAttribute */).map(([propName, m]) => {
+            var _a2;
+            const attrName = m[1] || propName;
+            attrNameToPropName.set(attrName, propName);
+            if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect && m[0] & 512 /* ReflectAttr */) {
+              (_a2 = cmpMeta.$attrsToReflect$) == null ? void 0 : _a2.push([propName, attrName]);
+            }
+            return attrName;
+          })
+        ])
+      );
+    }
+  }
+  return Cstr;
+};
+
+// src/runtime/initialize-component.ts
+var initializeComponent = async (elm, hostRef, cmpMeta, hmrVersionId) => {
+  let Cstr;
+  if ((hostRef.$flags$ & 32 /* hasInitializedComponent */) === 0) {
+    hostRef.$flags$ |= 32 /* hasInitializedComponent */;
+    const bundleId = cmpMeta.$lazyBundleId$;
+    if ((_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateClientSide) && bundleId) {
+      const CstrImport = loadModule(cmpMeta, hostRef, hmrVersionId);
+      if (CstrImport && "then" in CstrImport) {
+        const endLoad = uniqueTime(
+          `st:load:${cmpMeta.$tagName$}:${hostRef.$modeName$}`,
+          `[Stencil] Load module for <${cmpMeta.$tagName$}>`
+        );
+        Cstr = await CstrImport;
+        endLoad();
+      } else {
+        Cstr = CstrImport;
+      }
+      if (!Cstr) {
+        throw new Error(`Constructor for "${cmpMeta.$tagName$}#${hostRef.$modeName$}" was not found`);
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member && !Cstr.isProxied) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback) {
+          cmpMeta.$watchers$ = Cstr.watchers;
+        }
+        proxyComponent(Cstr, cmpMeta, 2 /* proxyState */);
+        Cstr.isProxied = true;
+      }
+      const endNewInstance = createTime("createInstance", cmpMeta.$tagName$);
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member) {
+        hostRef.$flags$ |= 8 /* isConstructingInstance */;
+      }
+      try {
+        new Cstr(hostRef);
+      } catch (e) {
+        consoleError(e);
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member) {
+        hostRef.$flags$ &= ~8 /* isConstructingInstance */;
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback) {
+        hostRef.$flags$ |= 128 /* isWatchReady */;
+      }
+      endNewInstance();
+      fireConnectedCallback(hostRef.$lazyInstance$);
+    } else {
+      Cstr = elm.constructor;
+      const cmpTag = elm.localName;
+      customElements.whenDefined(cmpTag).then(() => hostRef.$flags$ |= 128 /* isWatchReady */);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.style && Cstr && Cstr.style) {
+      let style;
+      if (typeof Cstr.style === "string") {
+        style = Cstr.style;
+      } else if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.mode && typeof Cstr.style !== "string") {
+        hostRef.$modeName$ = computeMode(elm);
+        if (hostRef.$modeName$) {
+          style = Cstr.style[hostRef.$modeName$];
+        }
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && hostRef.$modeName$) {
+          elm.setAttribute("s-mode", hostRef.$modeName$);
+        }
+      }
+      const scopeId2 = getScopeId(cmpMeta, hostRef.$modeName$);
+      if (!styles.has(scopeId2)) {
+        const endRegisterStyles = createTime("registerStyles", cmpMeta.$tagName$);
+        if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && // TODO(STENCIL-854): Remove code related to legacy shadowDomShim field
+        _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDomShim && cmpMeta.$flags$ & 8 /* needsShadowDomShim */) {
+          style = await __webpack_require__.e(/*! import() */ "node_modules_stencil_core_internal_client_shadow-css_js").then(__webpack_require__.bind(__webpack_require__, /*! ./shadow-css.js */ "./node_modules/@stencil/core/internal/client/shadow-css.js")).then((m) => m.scopeCss(style, scopeId2));
+        }
+        registerStyle(scopeId2, style, !!(cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */));
+        endRegisterStyles();
+      }
+    }
+  }
+  const ancestorComponent = hostRef.$ancestorComponent$;
+  const schedule = () => scheduleUpdate(hostRef, true);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading && ancestorComponent && ancestorComponent["s-rc"]) {
+    ancestorComponent["s-rc"].push(schedule);
+  } else {
+    schedule();
+  }
+};
+var fireConnectedCallback = (instance) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.connectedCallback) {
+    safeCall(instance, "connectedCallback");
+  }
+};
+
+// src/runtime/connected-callback.ts
+var connectedCallback = (elm) => {
+  if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
+    const hostRef = getHostRef(elm);
+    const cmpMeta = hostRef.$cmpMeta$;
+    const endConnected = createTime("connectedCallback", cmpMeta.$tagName$);
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetParent) {
+      addHostEventListeners(elm, hostRef, cmpMeta.$listeners$, true);
+    }
+    if (!(hostRef.$flags$ & 1 /* hasConnected */)) {
+      hostRef.$flags$ |= 1 /* hasConnected */;
+      let hostId;
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateClientSide) {
+        hostId = elm.getAttribute(HYDRATE_ID);
+        if (hostId) {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && supportsShadow && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+            const scopeId2 = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.mode ? addStyle(elm.shadowRoot, cmpMeta, elm.getAttribute("s-mode")) : addStyle(elm.shadowRoot, cmpMeta);
+            elm.classList.remove(scopeId2 + "-h", scopeId2 + "-s");
+          }
+          initializeClientHydrate(elm, cmpMeta.$tagName$, hostId, hostRef);
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotRelocation && !hostId) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide || (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slot || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom) && // TODO(STENCIL-854): Remove code related to legacy shadowDomShim field
+        cmpMeta.$flags$ & (4 /* hasSlotRelocation */ | 8 /* needsShadowDomShim */)) {
+          setContentReference(elm);
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncLoading) {
+        let ancestorComponent = elm;
+        while (ancestorComponent = ancestorComponent.parentNode || ancestorComponent.host) {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateClientSide && ancestorComponent.nodeType === 1 /* ElementNode */ && ancestorComponent.hasAttribute("s-id") && ancestorComponent["s-p"] || ancestorComponent["s-p"]) {
+            attachToAncestor(hostRef, hostRef.$ancestorComponent$ = ancestorComponent);
+            break;
+          }
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.prop && !_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && cmpMeta.$members$) {
+        Object.entries(cmpMeta.$members$).map(([memberName, [memberFlags]]) => {
+          if (memberFlags & 31 /* Prop */ && elm.hasOwnProperty(memberName)) {
+            const value = elm[memberName];
+            delete elm[memberName];
+            elm[memberName] = value;
+          }
+        });
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.initializeNextTick) {
+        nextTick(() => initializeComponent(elm, hostRef, cmpMeta));
+      } else {
+        initializeComponent(elm, hostRef, cmpMeta);
+      }
+    } else {
+      addHostEventListeners(elm, hostRef, cmpMeta.$listeners$, false);
+      if (hostRef == null ? void 0 : hostRef.$lazyInstance$) {
+        fireConnectedCallback(hostRef.$lazyInstance$);
+      } else if (hostRef == null ? void 0 : hostRef.$onReadyPromise$) {
+        hostRef.$onReadyPromise$.then(() => fireConnectedCallback(hostRef.$lazyInstance$));
+      }
+    }
+    endConnected();
+  }
+};
+var setContentReference = (elm) => {
+  const contentRefElm = elm["s-cr"] = doc.createComment(
+    _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.isDebug ? `content-ref (host=${elm.localName})` : ""
+  );
+  contentRefElm["s-cn"] = true;
+  insertBefore(elm, contentRefElm, elm.firstChild);
+};
+
+// src/runtime/disconnected-callback.ts
+
+var disconnectInstance = (instance) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.disconnectedCallback) {
+    safeCall(instance, "disconnectedCallback");
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cmpDidUnload) {
+    safeCall(instance, "componentDidUnload");
+  }
+};
+var disconnectedCallback = async (elm) => {
+  if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0) {
+    const hostRef = getHostRef(elm);
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListener) {
+      if (hostRef.$rmListeners$) {
+        hostRef.$rmListeners$.map((rmListener) => rmListener());
+        hostRef.$rmListeners$ = void 0;
+      }
+    }
+    if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad) {
+      disconnectInstance(elm);
+    } else if (hostRef == null ? void 0 : hostRef.$lazyInstance$) {
+      disconnectInstance(hostRef.$lazyInstance$);
+    } else if (hostRef == null ? void 0 : hostRef.$onReadyPromise$) {
+      hostRef.$onReadyPromise$.then(() => disconnectInstance(hostRef.$lazyInstance$));
+    }
+  }
+};
+
+// src/runtime/dom-extras.ts
+
+var patchPseudoShadowDom = (hostElementPrototype, descriptorPrototype) => {
+  patchCloneNode(hostElementPrototype);
+  patchSlotAppendChild(hostElementPrototype);
+  patchSlotAppend(hostElementPrototype);
+  patchSlotPrepend(hostElementPrototype);
+  patchSlotInsertAdjacentElement(hostElementPrototype);
+  patchSlotInsertAdjacentHTML(hostElementPrototype);
+  patchSlotInsertAdjacentText(hostElementPrototype);
+  patchTextContent(hostElementPrototype);
+  patchChildSlotNodes(hostElementPrototype, descriptorPrototype);
+  patchSlotRemoveChild(hostElementPrototype);
+};
+var patchCloneNode = (HostElementPrototype) => {
+  const orgCloneNode = HostElementPrototype.cloneNode;
+  HostElementPrototype.cloneNode = function(deep) {
+    const srcNode = this;
+    const isShadowDom = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom ? srcNode.shadowRoot && supportsShadow : false;
+    const clonedNode = orgCloneNode.call(srcNode, isShadowDom ? deep : false);
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slot && !isShadowDom && deep) {
+      let i2 = 0;
+      let slotted, nonStencilNode;
+      const stencilPrivates = [
+        "s-id",
+        "s-cr",
+        "s-lr",
+        "s-rc",
+        "s-sc",
+        "s-p",
+        "s-cn",
+        "s-sr",
+        "s-sn",
+        "s-hn",
+        "s-ol",
+        "s-nr",
+        "s-si",
+        "s-rf",
+        "s-scs"
+      ];
+      for (; i2 < srcNode.childNodes.length; i2++) {
+        slotted = srcNode.childNodes[i2]["s-nr"];
+        nonStencilNode = stencilPrivates.every((privateField) => !srcNode.childNodes[i2][privateField]);
+        if (slotted) {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.appendChildSlotFix && clonedNode.__appendChild) {
+            clonedNode.__appendChild(slotted.cloneNode(true));
+          } else {
+            clonedNode.appendChild(slotted.cloneNode(true));
+          }
+        }
+        if (nonStencilNode) {
+          clonedNode.appendChild(srcNode.childNodes[i2].cloneNode(true));
+        }
+      }
+    }
+    return clonedNode;
+  };
+};
+var patchSlotAppendChild = (HostElementPrototype) => {
+  HostElementPrototype.__appendChild = HostElementPrototype.appendChild;
+  HostElementPrototype.appendChild = function(newChild) {
+    const slotName = newChild["s-sn"] = getSlotName(newChild);
+    const slotNode = getHostSlotNode(this.childNodes, slotName, this.tagName);
+    if (slotNode) {
+      const slotChildNodes = getHostSlotChildNodes(slotNode, slotName);
+      const appendAfter = slotChildNodes[slotChildNodes.length - 1];
+      const insertedNode = insertBefore(appendAfter.parentNode, newChild, appendAfter.nextSibling);
+      updateFallbackSlotVisibility(this);
+      return insertedNode;
+    }
+    return this.__appendChild(newChild);
+  };
+};
+var patchSlotRemoveChild = (ElementPrototype) => {
+  ElementPrototype.__removeChild = ElementPrototype.removeChild;
+  ElementPrototype.removeChild = function(toRemove) {
+    if (toRemove && typeof toRemove["s-sn"] !== "undefined") {
+      const slotNode = getHostSlotNode(this.childNodes, toRemove["s-sn"], this.tagName);
+      if (slotNode) {
+        const slotChildNodes = getHostSlotChildNodes(slotNode, toRemove["s-sn"]);
+        const existingNode = slotChildNodes.find((n) => n === toRemove);
+        if (existingNode) {
+          existingNode.remove();
+          updateFallbackSlotVisibility(this);
+          return;
+        }
+      }
+    }
+    return this.__removeChild(toRemove);
+  };
+};
+var patchSlotPrepend = (HostElementPrototype) => {
+  const originalPrepend = HostElementPrototype.prepend;
+  HostElementPrototype.prepend = function(...newChildren) {
+    newChildren.forEach((newChild) => {
+      if (typeof newChild === "string") {
+        newChild = this.ownerDocument.createTextNode(newChild);
+      }
+      const slotName = newChild["s-sn"] = getSlotName(newChild);
+      const slotNode = getHostSlotNode(this.childNodes, slotName, this.tagName);
+      if (slotNode) {
+        const slotPlaceholder = document.createTextNode("");
+        slotPlaceholder["s-nr"] = newChild;
+        slotNode["s-cr"].parentNode.__appendChild(slotPlaceholder);
+        newChild["s-ol"] = slotPlaceholder;
+        const slotChildNodes = getHostSlotChildNodes(slotNode, slotName);
+        const appendAfter = slotChildNodes[0];
+        return insertBefore(appendAfter.parentNode, newChild, appendAfter.nextSibling);
+      }
+      if (newChild.nodeType === 1 && !!newChild.getAttribute("slot")) {
+        newChild.hidden = true;
+      }
+      return originalPrepend.call(this, newChild);
+    });
+  };
+};
+var patchSlotAppend = (HostElementPrototype) => {
+  HostElementPrototype.append = function(...newChildren) {
+    newChildren.forEach((newChild) => {
+      if (typeof newChild === "string") {
+        newChild = this.ownerDocument.createTextNode(newChild);
+      }
+      this.appendChild(newChild);
+    });
+  };
+};
+var patchSlotInsertAdjacentHTML = (HostElementPrototype) => {
+  const originalInsertAdjacentHtml = HostElementPrototype.insertAdjacentHTML;
+  HostElementPrototype.insertAdjacentHTML = function(position, text) {
+    if (position !== "afterbegin" && position !== "beforeend") {
+      return originalInsertAdjacentHtml.call(this, position, text);
+    }
+    const container = this.ownerDocument.createElement("_");
+    let node;
+    container.innerHTML = text;
+    if (position === "afterbegin") {
+      while (node = container.firstChild) {
+        this.prepend(node);
+      }
+    } else if (position === "beforeend") {
+      while (node = container.firstChild) {
+        this.append(node);
+      }
+    }
+  };
+};
+var patchSlotInsertAdjacentText = (HostElementPrototype) => {
+  HostElementPrototype.insertAdjacentText = function(position, text) {
+    this.insertAdjacentHTML(position, text);
+  };
+};
+var patchSlotInsertAdjacentElement = (HostElementPrototype) => {
+  const originalInsertAdjacentElement = HostElementPrototype.insertAdjacentElement;
+  HostElementPrototype.insertAdjacentElement = function(position, element) {
+    if (position !== "afterbegin" && position !== "beforeend") {
+      return originalInsertAdjacentElement.call(this, position, element);
+    }
+    if (position === "afterbegin") {
+      this.prepend(element);
+      return element;
+    } else if (position === "beforeend") {
+      this.append(element);
+      return element;
+    }
+    return element;
+  };
+};
+var patchTextContent = (hostElementPrototype) => {
+  const descriptor = Object.getOwnPropertyDescriptor(Node.prototype, "textContent");
+  Object.defineProperty(hostElementPrototype, "__textContent", descriptor);
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalScopedSlotChanges) {
+    Object.defineProperty(hostElementPrototype, "textContent", {
+      // To mimic shadow root behavior, we need to return the text content of all
+      // nodes in a slot reference node
+      get() {
+        const slotRefNodes = getAllChildSlotNodes(this.childNodes);
+        const textContent = slotRefNodes.map((node) => {
+          var _a, _b;
+          const text = [];
+          let slotContent = node.nextSibling;
+          while (slotContent && slotContent["s-sn"] === node["s-sn"]) {
+            if (slotContent.nodeType === 3 /* TEXT_NODE */ || slotContent.nodeType === 1 /* ELEMENT_NODE */) {
+              text.push((_b = (_a = slotContent.textContent) == null ? void 0 : _a.trim()) != null ? _b : "");
+            }
+            slotContent = slotContent.nextSibling;
+          }
+          return text.filter((ref) => ref !== "").join(" ");
+        }).filter((text) => text !== "").join(" ");
+        return " " + textContent + " ";
+      },
+      // To mimic shadow root behavior, we need to overwrite all nodes in a slot
+      // reference node. If a default slot reference node exists, the text content will be
+      // placed there. Otherwise, the new text node will be hidden
+      set(value) {
+        const slotRefNodes = getAllChildSlotNodes(this.childNodes);
+        slotRefNodes.forEach((node) => {
+          let slotContent = node.nextSibling;
+          while (slotContent && slotContent["s-sn"] === node["s-sn"]) {
+            const tmp = slotContent;
+            slotContent = slotContent.nextSibling;
+            tmp.remove();
+          }
+          if (node["s-sn"] === "") {
+            const textNode = this.ownerDocument.createTextNode(value);
+            textNode["s-sn"] = "";
+            insertBefore(node.parentElement, textNode, node.nextSibling);
+          } else {
+            node.remove();
+          }
+        });
+      }
+    });
+  } else {
+    Object.defineProperty(hostElementPrototype, "textContent", {
+      get() {
+        var _a;
+        const slotNode = getHostSlotNode(this.childNodes, "", this.tagName);
+        if (((_a = slotNode == null ? void 0 : slotNode.nextSibling) == null ? void 0 : _a.nodeType) === 3 /* TEXT_NODE */) {
+          return slotNode.nextSibling.textContent;
+        } else if (slotNode) {
+          return slotNode.textContent;
+        } else {
+          return this.__textContent;
+        }
+      },
+      set(value) {
+        var _a;
+        const slotNode = getHostSlotNode(this.childNodes, "", this.tagName);
+        if (((_a = slotNode == null ? void 0 : slotNode.nextSibling) == null ? void 0 : _a.nodeType) === 3 /* TEXT_NODE */) {
+          slotNode.nextSibling.textContent = value;
+        } else if (slotNode) {
+          slotNode.textContent = value;
+        } else {
+          this.__textContent = value;
+          const contentRefElm = this["s-cr"];
+          if (contentRefElm) {
+            insertBefore(this, contentRefElm, this.firstChild);
+          }
+        }
+      }
+    });
+  }
+};
+var patchChildSlotNodes = (elm, cmpMeta) => {
+  class FakeNodeList extends Array {
+    item(n) {
+      return this[n];
+    }
+  }
+  if (cmpMeta.$flags$ & 8 /* needsShadowDomShim */) {
+    const childNodesFn = elm.__lookupGetter__("childNodes");
+    Object.defineProperty(elm, "children", {
+      get() {
+        return this.childNodes.map((n) => n.nodeType === 1);
+      }
+    });
+    Object.defineProperty(elm, "childElementCount", {
+      get() {
+        return elm.children.length;
+      }
+    });
+    Object.defineProperty(elm, "childNodes", {
+      get() {
+        const childNodes = childNodesFn.call(this);
+        if ((plt.$flags$ & 1 /* isTmpDisconnected */) === 0 && getHostRef(this).$flags$ & 2 /* hasRendered */) {
+          const result = new FakeNodeList();
+          for (let i2 = 0; i2 < childNodes.length; i2++) {
+            const slot = childNodes[i2]["s-nr"];
+            if (slot) {
+              result.push(slot);
+            }
+          }
+          return result;
+        }
+        return FakeNodeList.from(childNodes);
+      }
+    });
+  }
+};
+var getAllChildSlotNodes = (childNodes) => {
+  const slotRefNodes = [];
+  for (const childNode of Array.from(childNodes)) {
+    if (childNode["s-sr"]) {
+      slotRefNodes.push(childNode);
+    }
+    slotRefNodes.push(...getAllChildSlotNodes(childNode.childNodes));
+  }
+  return slotRefNodes;
+};
+var getSlotName = (node) => node["s-sn"] || node.nodeType === 1 && node.getAttribute("slot") || "";
+var getHostSlotNode = (childNodes, slotName, hostName) => {
+  let i2 = 0;
+  let childNode;
+  for (; i2 < childNodes.length; i2++) {
+    childNode = childNodes[i2];
+    if (childNode["s-sr"] && childNode["s-sn"] === slotName && childNode["s-hn"] === hostName) {
+      return childNode;
+    }
+    childNode = getHostSlotNode(childNode.childNodes, slotName, hostName);
+    if (childNode) {
+      return childNode;
+    }
+  }
+  return null;
+};
+var getHostSlotChildNodes = (n, slotName) => {
+  const childNodes = [n];
+  while ((n = n.nextSibling) && n["s-sn"] === slotName) {
+    childNodes.push(n);
+  }
+  return childNodes;
+};
+
+// src/runtime/bootstrap-custom-element.ts
+var defineCustomElement = (Cstr, compactMeta) => {
+  customElements.define(compactMeta[1], proxyCustomElement(Cstr, compactMeta));
+};
+var proxyCustomElement = (Cstr, compactMeta) => {
+  const cmpMeta = {
+    $flags$: compactMeta[0],
+    $tagName$: compactMeta[1]
+  };
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member) {
+    cmpMeta.$members$ = compactMeta[2];
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListener) {
+    cmpMeta.$listeners$ = compactMeta[3];
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback) {
+    cmpMeta.$watchers$ = Cstr.$watchers$;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect) {
+    cmpMeta.$attrsToReflect$ = [];
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && !supportsShadow && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+    cmpMeta.$flags$ |= 8 /* needsShadowDomShim */;
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+      patchPseudoShadowDom(Cstr.prototype, cmpMeta);
+    }
+  } else {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotChildNodesFix) {
+      patchChildSlotNodes(Cstr.prototype, cmpMeta);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cloneNodeFix) {
+      patchCloneNode(Cstr.prototype);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.appendChildSlotFix) {
+      patchSlotAppendChild(Cstr.prototype);
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scopedSlotTextContentFix && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+      patchTextContent(Cstr.prototype);
+    }
+  }
+  const originalConnectedCallback = Cstr.prototype.connectedCallback;
+  const originalDisconnectedCallback = Cstr.prototype.disconnectedCallback;
+  Object.assign(Cstr.prototype, {
+    __registerHost() {
+      registerHost(this, cmpMeta);
+    },
+    connectedCallback() {
+      const hostRef = getHostRef(this);
+      addHostEventListeners(this, hostRef, cmpMeta.$listeners$, false);
+      connectedCallback(this);
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.connectedCallback && originalConnectedCallback) {
+        originalConnectedCallback.call(this);
+      }
+    },
+    disconnectedCallback() {
+      disconnectedCallback(this);
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.disconnectedCallback && originalDisconnectedCallback) {
+        originalDisconnectedCallback.call(this);
+      }
+    },
+    __attachShadow() {
+      if (supportsShadow) {
+        if (!this.shadowRoot) {
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDelegatesFocus) {
+            this.attachShadow({
+              mode: "open",
+              delegatesFocus: !!(cmpMeta.$flags$ & 16 /* shadowDelegatesFocus */)
+            });
+          } else {
+            this.attachShadow({ mode: "open" });
+          }
+        } else {
+          if (this.shadowRoot.mode !== "open") {
+            throw new Error(
+              `Unable to re-use existing shadow root for ${cmpMeta.$tagName$}! Mode is set to ${this.shadowRoot.mode} but Stencil only supports open shadow roots.`
+            );
+          }
+        }
+      } else {
+        this.shadowRoot = this;
+      }
+    }
+  });
+  Cstr.is = cmpMeta.$tagName$;
+  return proxyComponent(Cstr, cmpMeta, 1 /* isElementConstructor */ | 2 /* proxyState */);
+};
+var forceModeUpdate = (elm) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.style && _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.mode && !_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad) {
+    const mode = computeMode(elm);
+    const hostRef = getHostRef(elm);
+    if (hostRef.$modeName$ !== mode) {
+      const cmpMeta = hostRef.$cmpMeta$;
+      const oldScopeId = elm["s-sc"];
+      const scopeId2 = getScopeId(cmpMeta, mode);
+      const style = elm.constructor.style[mode];
+      const flags = cmpMeta.$flags$;
+      if (style) {
+        if (!styles.has(scopeId2)) {
+          registerStyle(scopeId2, style, !!(flags & 1 /* shadowDomEncapsulation */));
+        }
+        hostRef.$modeName$ = mode;
+        elm.classList.remove(oldScopeId + "-h", oldScopeId + "-s");
+        attachStyles(hostRef);
+        forceUpdate(elm);
+      }
+    }
+  }
+};
+
+// src/runtime/bootstrap-lazy.ts
+
+
+// src/runtime/hmr-component.ts
+var hmrStart = (hostElement, cmpMeta, hmrVersionId) => {
+  const hostRef = getHostRef(hostElement);
+  hostRef.$flags$ = 1 /* hasConnected */;
+  initializeComponent(hostElement, hostRef, cmpMeta, hmrVersionId);
+};
+
+// src/runtime/bootstrap-lazy.ts
+var bootstrapLazy = (lazyBundles, options = {}) => {
+  var _a;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.profile && performance.mark) {
+    performance.mark("st:app:start");
+  }
+  installDevTools();
+  const endBootstrap = createTime("bootstrapLazy");
+  const cmpTags = [];
+  const exclude = options.exclude || [];
+  const customElements2 = win.customElements;
+  const head = doc.head;
+  const metaCharset = /* @__PURE__ */ head.querySelector("meta[charset]");
+  const dataStyles = /* @__PURE__ */ doc.createElement("style");
+  const deferredConnectedCallbacks = [];
+  let appLoadFallback;
+  let isBootstrapping = true;
+  Object.assign(plt, options);
+  plt.$resourcesUrl$ = new URL(options.resourcesUrl || "./", doc.baseURI).href;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.asyncQueue) {
+    if (options.syncQueue) {
+      plt.$flags$ |= 4 /* queueSync */;
+    }
+  }
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateClientSide) {
+    plt.$flags$ |= 2 /* appLoaded */;
+  }
+  let hasSlotRelocation = false;
+  lazyBundles.map((lazyBundle) => {
+    lazyBundle[1].map((compactMeta) => {
+      var _a2;
+      const cmpMeta = {
+        $flags$: compactMeta[0],
+        $tagName$: compactMeta[1],
+        $members$: compactMeta[2],
+        $listeners$: compactMeta[3]
+      };
+      if (cmpMeta.$flags$ & 4 /* hasSlotRelocation */) {
+        hasSlotRelocation = true;
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.member) {
+        cmpMeta.$members$ = compactMeta[2];
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListener) {
+        cmpMeta.$listeners$ = compactMeta[3];
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.reflect) {
+        cmpMeta.$attrsToReflect$ = [];
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.watchCallback) {
+        cmpMeta.$watchers$ = (_a2 = compactMeta[4]) != null ? _a2 : {};
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && !supportsShadow && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+        cmpMeta.$flags$ |= 8 /* needsShadowDomShim */;
+      }
+      const tagName = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.transformTagName && options.transformTagName ? options.transformTagName(cmpMeta.$tagName$) : cmpMeta.$tagName$;
+      const HostElement = class extends HTMLElement {
+        // StencilLazyHost
+        constructor(self) {
+          super(self);
+          this.hasRegisteredEventListeners = false;
+          self = this;
+          registerHost(self, cmpMeta);
+          if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDom && cmpMeta.$flags$ & 1 /* shadowDomEncapsulation */) {
+            if (supportsShadow) {
+              if (!self.shadowRoot) {
+                if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.shadowDelegatesFocus) {
+                  self.attachShadow({
+                    mode: "open",
+                    delegatesFocus: !!(cmpMeta.$flags$ & 16 /* shadowDelegatesFocus */)
+                  });
+                } else {
+                  self.attachShadow({ mode: "open" });
+                }
+              } else {
+                if (self.shadowRoot.mode !== "open") {
+                  throw new Error(
+                    `Unable to re-use existing shadow root for ${cmpMeta.$tagName$}! Mode is set to ${self.shadowRoot.mode} but Stencil only supports open shadow roots.`
+                  );
+                }
+              }
+            } else if (!_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydrateServerSide && !("shadowRoot" in self)) {
+              self.shadowRoot = self;
+            }
+          }
+        }
+        connectedCallback() {
+          const hostRef = getHostRef(this);
+          if (!this.hasRegisteredEventListeners) {
+            this.hasRegisteredEventListeners = true;
+            addHostEventListeners(this, hostRef, cmpMeta.$listeners$, false);
+          }
+          if (appLoadFallback) {
+            clearTimeout(appLoadFallback);
+            appLoadFallback = null;
+          }
+          if (isBootstrapping) {
+            deferredConnectedCallbacks.push(this);
+          } else {
+            plt.jmp(() => connectedCallback(this));
+          }
+        }
+        disconnectedCallback() {
+          plt.jmp(() => disconnectedCallback(this));
+        }
+        componentOnReady() {
+          return getHostRef(this).$onReadyPromise$;
+        }
+      };
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.experimentalSlotFixes) {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scoped && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+          patchPseudoShadowDom(HostElement.prototype, cmpMeta);
+        }
+      } else {
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.slotChildNodesFix) {
+          patchChildSlotNodes(HostElement.prototype, cmpMeta);
+        }
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.cloneNodeFix) {
+          patchCloneNode(HostElement.prototype);
+        }
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.appendChildSlotFix) {
+          patchSlotAppendChild(HostElement.prototype);
+        }
+        if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.scopedSlotTextContentFix && cmpMeta.$flags$ & 2 /* scopedCssEncapsulation */) {
+          patchTextContent(HostElement.prototype);
+        }
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.formAssociated && cmpMeta.$flags$ & 64 /* formAssociated */) {
+        HostElement.formAssociated = true;
+      }
+      if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hotModuleReplacement) {
+        HostElement.prototype["s-hmr"] = function(hmrVersionId) {
+          hmrStart(this, cmpMeta, hmrVersionId);
+        };
+      }
+      cmpMeta.$lazyBundleId$ = lazyBundle[0];
+      if (!exclude.includes(tagName) && !customElements2.get(tagName)) {
+        cmpTags.push(tagName);
+        customElements2.define(
+          tagName,
+          proxyComponent(HostElement, cmpMeta, 1 /* isElementConstructor */)
+        );
+      }
+    });
+  });
+  if (cmpTags.length > 0) {
+    if (hasSlotRelocation) {
+      dataStyles.textContent += SLOT_FB_CSS;
+    }
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.invisiblePrehydration && (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedClass || _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hydratedAttribute)) {
+      dataStyles.textContent += cmpTags.sort() + HYDRATED_CSS;
+    }
+    if (dataStyles.innerHTML.length) {
+      dataStyles.setAttribute("data-styles", "");
+      const nonce = (_a = plt.$nonce$) != null ? _a : queryNonceMetaTagContent(doc);
+      if (nonce != null) {
+        dataStyles.setAttribute("nonce", nonce);
+      }
+      head.insertBefore(dataStyles, metaCharset ? metaCharset.nextSibling : head.firstChild);
+    }
+  }
+  isBootstrapping = false;
+  if (deferredConnectedCallbacks.length) {
+    deferredConnectedCallbacks.map((host) => host.connectedCallback());
+  } else {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.profile) {
+      plt.jmp(() => appLoadFallback = setTimeout(appDidLoad, 30, "timeout"));
+    } else {
+      plt.jmp(() => appLoadFallback = setTimeout(appDidLoad, 30));
+    }
+  }
+  endBootstrap();
+};
+
+// src/runtime/fragment.ts
+var Fragment = (_, children) => children;
+
+// src/runtime/host-listener.ts
+
+var addHostEventListeners = (elm, hostRef, listeners, attachParentListeners) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListener && listeners) {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetParent) {
+      if (attachParentListeners) {
+        listeners = listeners.filter(([flags]) => flags & 32 /* TargetParent */);
+      } else {
+        listeners = listeners.filter(([flags]) => !(flags & 32 /* TargetParent */));
+      }
+    }
+    listeners.map(([flags, name, method]) => {
+      const target = _stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTarget ? getHostListenerTarget(elm, flags) : elm;
+      const handler = hostListenerProxy(hostRef, method);
+      const opts = hostListenerOpts(flags);
+      plt.ael(target, name, handler, opts);
+      (hostRef.$rmListeners$ = hostRef.$rmListeners$ || []).push(() => plt.rel(target, name, handler, opts));
+    });
+  }
+};
+var hostListenerProxy = (hostRef, methodName) => (ev) => {
+  var _a;
+  try {
+    if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.lazyLoad) {
+      if (hostRef.$flags$ & 256 /* isListenReady */) {
+        (_a = hostRef.$lazyInstance$) == null ? void 0 : _a[methodName](ev);
+      } else {
+        (hostRef.$queuedListeners$ = hostRef.$queuedListeners$ || []).push([methodName, ev]);
+      }
+    } else {
+      hostRef.$hostElement$[methodName](ev);
+    }
+  } catch (e) {
+    consoleError(e);
+  }
+};
+var getHostListenerTarget = (elm, flags) => {
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetDocument && flags & 4 /* TargetDocument */) return doc;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetWindow && flags & 8 /* TargetWindow */) return win;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetBody && flags & 16 /* TargetBody */) return doc.body;
+  if (_stencil_core_internal_app_data__WEBPACK_IMPORTED_MODULE_0__.BUILD.hostListenerTargetParent && flags & 32 /* TargetParent */ && elm.parentElement)
+    return elm.parentElement;
+  return elm;
+};
+var hostListenerOpts = (flags) => supportsListenerOptions ? {
+  passive: (flags & 1 /* Passive */) !== 0,
+  capture: (flags & 2 /* Capture */) !== 0
+} : (flags & 2 /* Capture */) !== 0;
+
+// src/runtime/nonce.ts
+var setNonce = (nonce) => plt.$nonce$ = nonce;
+
+// src/runtime/platform-options.ts
+var setPlatformOptions = (opts) => Object.assign(plt, opts);
+
+// src/runtime/vdom/vdom-annotations.ts
+var insertVdomAnnotations = (doc2, staticComponents) => {
+  if (doc2 != null) {
+    const docData = {
+      hostIds: 0,
+      rootLevelIds: 0,
+      staticComponents: new Set(staticComponents)
+    };
+    const orgLocationNodes = [];
+    parseVNodeAnnotations(doc2, doc2.body, docData, orgLocationNodes);
+    orgLocationNodes.forEach((orgLocationNode) => {
+      var _a;
+      if (orgLocationNode != null && orgLocationNode["s-nr"]) {
+        const nodeRef = orgLocationNode["s-nr"];
+        let hostId = nodeRef["s-host-id"];
+        let nodeId = nodeRef["s-node-id"];
+        let childId = `${hostId}.${nodeId}`;
+        if (hostId == null) {
+          hostId = 0;
+          docData.rootLevelIds++;
+          nodeId = docData.rootLevelIds;
+          childId = `${hostId}.${nodeId}`;
+          if (nodeRef.nodeType === 1 /* ElementNode */) {
+            nodeRef.setAttribute(HYDRATE_CHILD_ID, childId);
+          } else if (nodeRef.nodeType === 3 /* TextNode */) {
+            if (hostId === 0) {
+              const textContent = (_a = nodeRef.nodeValue) == null ? void 0 : _a.trim();
+              if (textContent === "") {
+                orgLocationNode.remove();
+                return;
+              }
+            }
+            const commentBeforeTextNode = doc2.createComment(childId);
+            commentBeforeTextNode.nodeValue = `${TEXT_NODE_ID}.${childId}`;
+            insertBefore(nodeRef.parentNode, commentBeforeTextNode, nodeRef);
+          }
+        }
+        let orgLocationNodeId = `${ORG_LOCATION_ID}.${childId}`;
+        const orgLocationParentNode = orgLocationNode.parentElement;
+        if (orgLocationParentNode) {
+          if (orgLocationParentNode["s-en"] === "") {
+            orgLocationNodeId += `.`;
+          } else if (orgLocationParentNode["s-en"] === "c") {
+            orgLocationNodeId += `.c`;
+          }
+        }
+        orgLocationNode.nodeValue = orgLocationNodeId;
+      }
+    });
+  }
+};
+var parseVNodeAnnotations = (doc2, node, docData, orgLocationNodes) => {
+  var _a;
+  if (node == null) {
+    return;
+  }
+  if (node["s-nr"] != null) {
+    orgLocationNodes.push(node);
+  }
+  if (node.nodeType === 1 /* ElementNode */) {
+    const childNodes = [...Array.from(node.childNodes), ...Array.from(((_a = node.shadowRoot) == null ? void 0 : _a.childNodes) || [])];
+    childNodes.forEach((childNode) => {
+      const hostRef = getHostRef(childNode);
+      if (hostRef != null && !docData.staticComponents.has(childNode.nodeName.toLowerCase())) {
+        const cmpData = {
+          nodeIds: 0
+        };
+        insertVNodeAnnotations(doc2, childNode, hostRef.$vnode$, docData, cmpData);
+      }
+      parseVNodeAnnotations(doc2, childNode, docData, orgLocationNodes);
+    });
+  }
+};
+var insertVNodeAnnotations = (doc2, hostElm, vnode, docData, cmpData) => {
+  if (vnode != null) {
+    const hostId = ++docData.hostIds;
+    hostElm.setAttribute(HYDRATE_ID, hostId);
+    if (hostElm["s-cr"] != null) {
+      hostElm["s-cr"].nodeValue = `${CONTENT_REF_ID}.${hostId}`;
+    }
+    if (vnode.$children$ != null) {
+      const depth = 0;
+      vnode.$children$.forEach((vnodeChild, index) => {
+        insertChildVNodeAnnotations(doc2, vnodeChild, cmpData, hostId, depth, index);
+      });
+    }
+    if (hostElm && vnode && vnode.$elm$ && !hostElm.hasAttribute(HYDRATE_CHILD_ID)) {
+      const parent = hostElm.parentElement;
+      if (parent && parent.childNodes) {
+        const parentChildNodes = Array.from(parent.childNodes);
+        const comment = parentChildNodes.find(
+          (node) => node.nodeType === 8 /* CommentNode */ && node["s-sr"]
+        );
+        if (comment) {
+          const index = parentChildNodes.indexOf(hostElm) - 1;
+          vnode.$elm$.setAttribute(
+            HYDRATE_CHILD_ID,
+            `${comment["s-host-id"]}.${comment["s-node-id"]}.0.${index}`
+          );
+        }
+      }
+    }
+  }
+};
+var insertChildVNodeAnnotations = (doc2, vnodeChild, cmpData, hostId, depth, index) => {
+  const childElm = vnodeChild.$elm$;
+  if (childElm == null) {
+    return;
+  }
+  const nodeId = cmpData.nodeIds++;
+  const childId = `${hostId}.${nodeId}.${depth}.${index}`;
+  childElm["s-host-id"] = hostId;
+  childElm["s-node-id"] = nodeId;
+  if (childElm.nodeType === 1 /* ElementNode */) {
+    childElm.setAttribute(HYDRATE_CHILD_ID, childId);
+  } else if (childElm.nodeType === 3 /* TextNode */) {
+    const parentNode = childElm.parentNode;
+    const nodeName = parentNode == null ? void 0 : parentNode.nodeName;
+    if (nodeName !== "STYLE" && nodeName !== "SCRIPT") {
+      const textNodeId = `${TEXT_NODE_ID}.${childId}`;
+      const commentBeforeTextNode = doc2.createComment(textNodeId);
+      insertBefore(parentNode, commentBeforeTextNode, childElm);
+    }
+  } else if (childElm.nodeType === 8 /* CommentNode */) {
+    if (childElm["s-sr"]) {
+      const slotName = childElm["s-sn"] || "";
+      const slotNodeId = `${SLOT_NODE_ID}.${childId}.${slotName}`;
+      childElm.nodeValue = slotNodeId;
+    }
+  }
+  if (vnodeChild.$children$ != null) {
+    const childDepth = depth + 1;
+    vnodeChild.$children$.forEach((vnode, index2) => {
+      insertChildVNodeAnnotations(doc2, vnode, cmpData, hostId, childDepth, index2);
+    });
+  }
+};
+
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/domUtils.js":
+/*!****************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/domUtils.js ***!
+  \****************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   byId: function() { return /* binding */ n; },
+/* harmony export */   reparent: function() { return /* binding */ t; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function n(n){return"string"==typeof n?document.getElementById(n):n??null}function t(n,t){for(;;){const e=n.firstChild;if(!e)break;t.appendChild(e)}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/core/uuid.js":
+/*!************************************************!*\
+  !*** ./node_modules/@arcgis/core/core/uuid.js ***!
+  \************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   generateBracedUUID: function() { return /* binding */ r; },
+/* harmony export */   generateLowercaseBracedUUID: function() { return /* binding */ o; },
+/* harmony export */   generateUUID: function() { return /* binding */ n; },
+/* harmony export */   normalizeGlobalID: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t="randomUUID"in crypto;function n(){if(t)return crypto.randomUUID();const n=crypto.getRandomValues(new Uint16Array(8));n[3]=4095&n[3]|16384,n[4]=16383&n[4]|32768;const r=t=>n[t].toString(16).padStart(4,"0");return r(0)+r(1)+"-"+r(2)+"-"+r(3)+"-"+r(4)+"-"+r(5)+r(6)+r(7)}function r(){return`{${n().toUpperCase()}}`}function o(){return`{${n()}}`}function e(t){const n=t.toUpperCase();return"{"!==t[0]?`{${n}}`:n}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/IdentityManager.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/IdentityManager.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ s; }
+/* harmony export */ });
+/* harmony import */ var _kernel_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../kernel.js */ "./node_modules/@arcgis/core/kernel.js");
+/* harmony import */ var _IdentityManagerBase_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./IdentityManagerBase.js */ "./node_modules/@arcgis/core/identity/IdentityManagerBase.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+class r extends _IdentityManagerBase_js__WEBPACK_IMPORTED_MODULE_1__.IdentityManagerBase{}r.prototype.declaredClass="esri.identity.IdentityManager";const s=new r;(0,_kernel_js__WEBPACK_IMPORTED_MODULE_0__.setId)(s);
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/IdentityManagerBase.js":
+/*!*******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/IdentityManagerBase.js ***!
+  \*******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   Credential: function() { return /* binding */ E; },
+/* harmony export */   IdentityManagerBase: function() { return /* binding */ j; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _config_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../config.js */ "./node_modules/@arcgis/core/config.js");
+/* harmony import */ var _kernel_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../kernel.js */ "./node_modules/@arcgis/core/kernel.js");
+/* harmony import */ var _request_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../request.js */ "./node_modules/@arcgis/core/request.js");
+/* harmony import */ var _core_Error_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Error.js */ "./node_modules/@arcgis/core/core/Error.js");
+/* harmony import */ var _core_Evented_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/Evented.js */ "./node_modules/@arcgis/core/core/Evented.js");
+/* harmony import */ var _core_events_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/events.js */ "./node_modules/@arcgis/core/core/events.js");
+/* harmony import */ var _core_lang_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/lang.js */ "./node_modules/@arcgis/core/core/lang.js");
+/* harmony import */ var _core_object_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/object.js */ "./node_modules/@arcgis/core/core/object.js");
+/* harmony import */ var _core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/promiseUtils.js */ "./node_modules/@arcgis/core/core/promiseUtils.js");
+/* harmony import */ var _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/urlUtils.js */ "./node_modules/@arcgis/core/core/urlUtils.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _IdentityModal_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ./IdentityModal.js */ "./node_modules/@arcgis/core/identity/IdentityModal.js");
+/* harmony import */ var _OAuthCredential_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ./OAuthCredential.js */ "./node_modules/@arcgis/core/identity/OAuthCredential.js");
+/* harmony import */ var _OAuthInfo_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ./OAuthInfo.js */ "./node_modules/@arcgis/core/identity/OAuthInfo.js");
+/* harmony import */ var _ServerInfo_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ./ServerInfo.js */ "./node_modules/@arcgis/core/identity/ServerInfo.js");
+/* harmony import */ var _portal_support_urlUtils_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../portal/support/urlUtils.js */ "./node_modules/@arcgis/core/portal/support/urlUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const R={},C=e=>{const t=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(e.owningSystemUrl).host,r=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(e.server).host,s=/.+\.arcgis\.com$/i;return s.test(t)&&s.test(r)},D=(e,t)=>!!(C(e)&&t&&t.some((t=>t.test(e.server))));let b=null,q=null;try{b=window.localStorage,q=window.sessionStorage}catch{}class j extends _core_Evented_js__WEBPACK_IMPORTED_MODULE_5__["default"]{constructor(){super(),this._portalConfig=globalThis.esriGeowConfig,this.serverInfos=[],this.oAuthInfos=[],this.credentials=[],this._soReqs=[],this._xoReqs=[],this._portals=[],this._defaultOAuthInfo=null,this._defaultTokenValidity=60,this.dialog=null,this.tokenValidity=null,this.normalizeWebTierAuth=!1,this._appOrigin="null"!==window.origin?window.origin:window.location.origin,this._appUrlObj=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.urlToObject)(window.location.href),this._busy=null,this._rejectOnPersistedPageShow=!1,this._oAuthLocationParams=null,this._gwTokenUrl="/sharing/rest/generateToken",this._agsRest="/rest/services",this._agsPortal=/\/sharing(\/|$)/i,this._agsAdmin=/(https?:\/\/[^/]+\/[^/]+)\/admin\/?(\/.*)?$/i,this._adminSvcs=/\/rest\/admin\/services(\/|$)/i,this._gwDomains=[{regex:/^https?:\/\/www\.arcgis\.com/i,customBaseUrl:"maps.arcgis.com",tokenServiceUrl:"https://www.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:dev|[a-z\d-]+\.mapsdev)\.arcgis\.com/i,customBaseUrl:"mapsdev.arcgis.com",tokenServiceUrl:"https://dev.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:devext|[a-z\d-]+\.mapsdevext)\.arcgis\.com/i,customBaseUrl:"mapsdevext.arcgis.com",tokenServiceUrl:"https://devext.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/(?:qaext|[a-z\d-]+\.mapsqa)\.arcgis\.com/i,customBaseUrl:"mapsqa.arcgis.com",tokenServiceUrl:"https://qaext.arcgis.com/sharing/rest/generateToken"},{regex:/^https?:\/\/[a-z\d-]+\.maps\.arcgis\.com/i,customBaseUrl:"maps.arcgis.com",tokenServiceUrl:"https://www.arcgis.com/sharing/rest/generateToken"}],this._legacyFed=[],this._regexSDirUrl=/http.+\/rest\/services\/?/gi,this._regexServerType=/(\/(FeatureServer|GPServer|GeoDataServer|GeocodeServer|GeoenrichmentServer|GeometryServer|GlobeServer|ImageServer|KnowledgeGraphServer|MapServer|MissionServer|MobileServer|NAServer|NetworkDiagramServer|OGCFeatureServer|ParcelFabricServer|RelationalCatalogServer|SceneServer|StreamServer|UtilityNetworkServer|ValidationServer|VectorTileServer|VersionManagementServer|VideoServer)).*/gi,this._gwUser=/http.+\/users\/([^/]+).*/i,this._gwItem=/http.+\/items\/([^/]+).*/i,this._gwGroup=/http.+\/groups\/([^/]+).*/i,this._rePortalTokenSvc=/\/sharing(\/rest)?\/generatetoken/i,this._createDefaultOAuthInfo=!0,this._hasTestedIfAppIsOnPortal=!1,this._getPlatformSelfError=null,this._getOAuthLocationParams(),window.addEventListener("pageshow",(e=>{this._pageShowHandler(e)}))}registerServers(e){const t=this.serverInfos;t?(e=e.filter((e=>!this.findServerInfo(e.server))),this.serverInfos=t.concat(e)):this.serverInfos=e,e.forEach((e=>{e.owningSystemUrl&&this._portals.push(e.owningSystemUrl),e.hasPortal&&this._portals.push(e.server)}))}registerOAuthInfos(e){const t=this.oAuthInfos;if(t){for(const r of e){const e=this.findOAuthInfo(r.portalUrl);e&&t.splice(t.indexOf(e),1)}this.oAuthInfos=t.concat(e)}else this.oAuthInfos=e}registerToken(e){e={...e};const t=this._sanitizeUrl(e.server),r=this._isServerRsrc(t);let s,i=this.findServerInfo(t),o=!0;i||(i=new _ServerInfo_js__WEBPACK_IMPORTED_MODULE_18__["default"],i.server=this._getServerInstanceRoot(t),r?i.hasServer=!0:(i.tokenServiceUrl=this._getTokenSvcUrl(t),i.hasPortal=!0),this.registerServers([i])),s=this._findCredential(t),s?(delete e.server,Object.assign(s,e),o=!1):(s=new E({userId:e.userId,server:i.server??void 0,token:e.token,expires:e.expires,ssl:e.ssl,scope:r?"server":"portal"}),s.resources=[t],this.credentials.push(s)),s.emitTokenChange(!1),o||s.refreshServerTokens()}toJSON(){return (0,_core_lang_js__WEBPACK_IMPORTED_MODULE_7__.fixJson)({serverInfos:this.serverInfos.map((e=>e.toJSON())),oAuthInfos:this.oAuthInfos.map((e=>e.toJSON())),credentials:this.credentials.map((e=>e.toJSON()))})}initialize(e){if(!e)return;"string"==typeof e&&(e=JSON.parse(e));const t=e.serverInfos,r=e.oAuthInfos,s=e.credentials;if(t){const e=[];t.forEach((t=>{t.server&&t.tokenServiceUrl&&e.push(t.declaredClass?t:new _ServerInfo_js__WEBPACK_IMPORTED_MODULE_18__["default"](t))})),e.length&&this.registerServers(e)}if(r){const e=[];r.forEach((t=>{t.appId&&e.push(t.declaredClass?t:new _OAuthInfo_js__WEBPACK_IMPORTED_MODULE_17__["default"](t))})),e.length&&this.registerOAuthInfos(e)}s&&s.forEach((e=>{e.server&&e.token&&e.expires&&e.expires>Date.now()&&((e=e.declaredClass?e:new E(e)).emitTokenChange(),this.credentials.push(e))}))}findServerInfo(e){let t;e=this._sanitizeUrl(e);for(const r of this.serverInfos)if(this._hasSameServerInstance(r.server,e)){t=r;break}return t}findOAuthInfo(e){let t;e=this._sanitizeUrl(e);for(const r of this.oAuthInfos)if(this._hasSameServerInstance(r.portalUrl,e)){t=r;break}return t}findCredential(e,t){if(!e)return;let r;e=this._sanitizeUrl(e);const s=this._isServerRsrc(e)?"server":"portal";if(t){for(const i of this.credentials)if(this._hasSameServerInstance(i.server,e)&&t===i.userId&&i.scope===s){r=i;break}}else for(const i of this.credentials)if(this._hasSameServerInstance(i.server,e)&&-1!==this._getIdenticalSvcIdx(e,i)&&i.scope===s){r=i;break}return r}getCredential(e,t){let r,s,o=!0;t&&(r=!!t.token,s=t.error,o=!1!==t.prompt),t={...t},e=this._sanitizeUrl(e);const n=new AbortController,a=(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.createResolver)();if(t.signal&&(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.onAbort)(t.signal,(()=>{n.abort()})),(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.onAbort)(n,(()=>{a.reject(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:user-aborted","ABORTED"))})),(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.isAborted)(n))return a.promise;t.signal=n.signal;const h=this._isAdminResource(e),u=r?this.findCredential(e):null;let _;if(u&&s&&s.details&&498===s.details.httpStatus)u.destroy();else if(u)return _=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:not-authorized","You are currently signed in as: '"+u.userId+"'. You do not have access to this resource: "+e,{error:s}),a.reject(_),a.promise;const f=this._findCredential(e,t);if(f)return a.resolve(f),a.promise;let g=this.findServerInfo(e);if(g)!g.hasPortal&&g.server&&g.owningSystemUrl&&this._hasSameServerInstance(g.server,g.owningSystemUrl)&&(g.hasPortal=!0),!g.hasServer&&this._isServerRsrc(e)&&(g._restInfoPms=this._getTokenSvcUrl(e),g.hasServer=!0);else{const t=this._getTokenSvcUrl(e);if(!t)return _=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:unknown-resource","Unknown resource - could not find token service endpoint."),a.reject(_),a.promise;g=new _ServerInfo_js__WEBPACK_IMPORTED_MODULE_18__["default"],g.server=this._getServerInstanceRoot(e),"string"==typeof t?(g.tokenServiceUrl=t,g.hasPortal=!0):(g._restInfoPms=t,g.hasServer=!0),this.registerServers([g])}return g.hasPortal&&void 0===g._selfReq&&(o||(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(g.tokenServiceUrl,this._appOrigin)||this._gwDomains.some((e=>e.tokenServiceUrl===g.tokenServiceUrl)))&&(g._selfReq={owningTenant:t?.owningTenant,selfDfd:this._getPortalSelf(g.tokenServiceUrl.replace(this._rePortalTokenSvc,"/sharing/rest/portals/self"),e)}),this._enqueue(e,g,t,a,h)}getResourceName(e){return this._isRESTService(e)?e.replace(this._regexSDirUrl,"").replace(this._regexServerType,"")||"":this._gwUser.test(e)&&e.replace(this._gwUser,"$1")||this._gwItem.test(e)&&e.replace(this._gwItem,"$1")||this._gwGroup.test(e)&&e.replace(this._gwGroup,"$1")||""}generateToken(e,t,r){const o=this._rePortalTokenSvc.test(e.tokenServiceUrl),n=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(this._appOrigin),a=e.shortLivedTokenValidity;let h,l,c,d,u,f,g,m;t&&(m=this.tokenValidity||a||this._defaultTokenValidity,m>a&&a>0&&(m=a)),r&&(h=r.isAdmin,l=r.serverUrl,c=r.token,f=r.signal,g=r.ssl,e.customParameters=r.customParameters),h?d=e.adminTokenServiceUrl:(d=e.tokenServiceUrl,u=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(d.toLowerCase()),e.webTierAuth&&r?.serverUrl&&!g&&"http"===n.scheme&&((0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(n.uri,d,!0)||"https"===u.scheme&&n.host===u.host&&"7080"===n.port&&"7443"===u.port)&&(d=d.replace(/^https:/i,"http:").replace(/:7443/i,":7080")));const v={query:{request:"getToken",username:t?.username,password:t?.password,serverUrl:l,token:c,expiration:m,referer:h||o?this._appOrigin:null,client:h?"referer":null,f:"json",...e.customParameters},method:"post",authMode:"anonymous",useProxy:this._useProxy(e,r),signal:f,...r?.ioArgs};o||(v.withCredentials=!1);return (0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(d,v).then((r=>{const s=r.data;if(!s?.token)return new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:authentication-failed","Unable to generate token");const o=e.server;return R[o]||(R[o]={}),t&&(R[o][t.username]=t.password),s.validity=m,s}))}isBusy(){return!!this._busy}async checkSignInStatus(e){return(await this.checkAppAccess(e,"")).credential}checkAppAccess(e,t,r){let o=!1;return this.getCredential(e,{prompt:!1}).then((n=>{let a;const h={f:"json"};if("portal"===n.scope)if(t&&(this._doPortalSignIn(e)||r?.force))a=n.server+"/sharing/rest/oauth2/validateAppAccess",h.client_id=t;else{if(!n.token)return{credential:n};a=n.server+"/sharing/rest"}else{if(!n.token)return{credential:n};a=n.server+"/rest/services"}return n.token&&(h.token=n.token),(0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(a,{query:h,authMode:"anonymous"}).then((e=>{if(!1===e.data.valid)throw new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:not-authorized",`You are currently signed in as: '${n.userId}'.`,e.data);return o=!!e.data.viewOnlyUserTypeApp,{credential:n}})).catch((e=>{if("identity-manager:not-authorized"===e.name)throw e;const t=e.details?.httpStatus;if(498===t)throw n.destroy(),new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:not-authenticated","User is not signed in.");if(400===t)throw new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:invalid-request");return{credential:n}}))})).then((e=>({credential:e.credential,viewOnly:o})))}setOAuthResponseHash(e){e&&("#"===e.charAt(0)&&(e=e.slice(1)),this._processOAuthPopupParams((0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.queryToObject)(e)))}setOAuthRedirectionHandler(e){this._oAuthRedirectFunc=e}setProtocolErrorHandler(e){this._protocolFunc=e}signIn(e,t,r={}){const s=(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.createResolver)(),o=()=>{h?.remove(),d?.remove(),this.dialog?.destroy(),this.dialog=h=d=null},n=()=>{o(),this._oAuthDfd=null,s.reject(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:user-aborted","ABORTED"))};r.signal&&(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.onAbort)(r.signal,(()=>{n()}));const a=new _IdentityModal_js__WEBPACK_IMPORTED_MODULE_15__["default"]({open:!0,resource:this.getResourceName(e),server:t.server});this.dialog=a,this.emit("dialog-create");let h=a.on("cancel",n),d=a.on("submit",(e=>{this.generateToken(t,e,{isAdmin:r.isAdmin,signal:r.signal}).then((i=>{o();const n=new E({userId:e.username,server:t.server??void 0,token:i.token,expires:null!=i.expires?Number(i.expires):null,ssl:!!i.ssl,isAdmin:r.isAdmin,validity:i.validity});s.resolve(n)})).catch((e=>{a.error=e,a.signingIn=!1}))}));return s.promise}oAuthSignIn(e,t,r,s){this._oAuthDfd=(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.createResolver)();const o=this._oAuthDfd;let n;s?.signal&&(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.onAbort)(s.signal,(()=>{const e=this._oAuthDfd&&this._oAuthDfd.oAuthWin_;e&&!e.closed?e.close():this.dialog&&u()})),o.resUrl_=e,o.sinfo_=t,o.oinfo_=r;const a=r._oAuthCred;if(a.storage&&("authorization-code"===r.flowType||"auto"===r.flowType&&t.currentVersion>=8.4)){let e=crypto.getRandomValues(new Uint8Array(32));n=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.base64UrlEncode)(e),a.codeVerifier=n,e=crypto.getRandomValues(new Uint8Array(32)),a.stateUID=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.base64UrlEncode)(e),a.save()||(a.codeVerifier=n=null)}else a.codeVerifier=null;let h,d;this._getCodeChallenge(n).then((i=>{const o=!s||!1!==s.oAuthPopupConfirmation;if(!r.popup||!o)return void this._doOAuthSignIn(e,t,r,i);const n=new _IdentityModal_js__WEBPACK_IMPORTED_MODULE_15__["default"]({oAuthPrompt:!0,server:t.server,open:!0});this.dialog=n,this.emit("dialog-create"),h=n.on("cancel",u),d=n.on("submit",(()=>{p(),this._doOAuthSignIn(e,t,r,i)}))}));const u=()=>{p(),this._oAuthDfd=null,o.reject(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:user-aborted","ABORTED"))},p=()=>{h?.remove(),d?.remove(),this.dialog?.destroy(),this.dialog=null};return o.promise}destroyCredentials(){if(this.credentials){this.credentials.slice().forEach((e=>{e.destroy()}))}this.emit("credentials-destroy")}enablePostMessageAuth(e="https://www.arcgis.com/sharing/rest"){this._postMessageAuthHandle&&this._postMessageAuthHandle.remove(),this._postMessageAuthHandle=(0,_core_events_js__WEBPACK_IMPORTED_MODULE_6__.on)(window,"message",(t=>{if((t.origin===this._appOrigin||t.origin.endsWith(".arcgis.com"))&&"arcgis:auth:requestCredential"===t.data?.type){const r=t.source;this.getCredential(e).then((e=>{r.postMessage({type:"arcgis:auth:credential",credential:{expires:e.expires,server:e.server,ssl:e.ssl,token:e.token,userId:e.userId}},t.origin)})).catch((e=>{r.postMessage({type:"arcgis:auth:error",error:{name:e.name,message:e.message}},t.origin)}))}}))}disablePostMessageAuth(){this._postMessageAuthHandle&&(this._postMessageAuthHandle.remove(),this._postMessageAuthHandle=null)}_getOAuthLocationParams(){let e=window.location.hash;if(e){"#"===e.charAt(0)&&(e=e.slice(1));const t=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.queryToObject)(e);let r=!1;if(t.access_token&&t.expires_in&&t.state&&t.hasOwnProperty("username"))try{t.state=JSON.parse(t.state),t.state.portalUrl&&(this._oAuthLocationParams=t,r=!0)}catch{}else if(t.error&&t.error_description&&(console.log("IdentityManager OAuth Error: ",t.error," - ",t.error_description),"access_denied"===t.error&&(r=!0,t.state)))try{t.state=JSON.parse(t.state)}catch{}r&&(window.location.hash=t.state?.hash||"")}let t=window.location.search;if(t){"?"===t.charAt(0)&&(t=t.slice(1));const e=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.queryToObject)(t);let r=!1;if(e.code&&e.state)try{e.state=JSON.parse(e.state),e.state.portalUrl&&e.state.uid&&(this._oAuthLocationParams=e,r=!0)}catch{}else if(e.error&&e.error_description&&(console.log("IdentityManager OAuth Error: ",e.error," - ",e.error_description),"access_denied"===e.error&&(r=!0,e.state)))try{e.state=JSON.parse(e.state)}catch{}if(r){const t={...e};["code","error","error_description","message_code","persist","state"].forEach((e=>{delete t[e]}));const r=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.objectToQuery)(t),s=window.location.pathname+(r?`?${r}`:"")+(e.state?.hash||"");window.history.replaceState(window.history.state,"",s)}}}_getOAuthToken(e,t,r,i,o){return e=e.replace(/^http:/i,"https:"),(0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(`${e}/sharing/rest/oauth2/token`,{authMode:"anonymous",method:"post",query:i&&o?{grant_type:"authorization_code",code:t,redirect_uri:i,client_id:r,code_verifier:o}:{grant_type:"refresh_token",refresh_token:t,client_id:r}}).then((e=>e.data))}async _getCodeChallenge(e){if(e&&globalThis.isSecureContext){const t=(new TextEncoder).encode(e),r=await crypto.subtle.digest("SHA-256",t);return (0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.base64UrlEncode)(new Uint8Array(r))}return null}_pageShowHandler(e){if(e.persisted&&this.isBusy()&&this._rejectOnPersistedPageShow){const e=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:user-aborted","ABORTED");this._errbackFunc(e)}}_findCredential(e,t){let r,s,i,o,n=-1;const a=t?.token,h=t?.resource,l=this._isServerRsrc(e)?"server":"portal",c=this.credentials.filter((t=>this._hasSameServerInstance(t.server,e)&&t.scope===l));if(e=h||e,c.length)if(1===c.length){if(r=c[0],i=this.findServerInfo(r.server),s=i?.owningSystemUrl,o=s?this.findCredential(s,r.userId):void 0,n=this._getIdenticalSvcIdx(e,r),!a)return-1===n&&r.resources.push(e),this._addResource(e,o),r;-1!==n&&(r.resources.splice(n,1),this._removeResource(e,o))}else{let t,r;if(c.some((a=>(r=this._getIdenticalSvcIdx(e,a),-1!==r&&(t=a,i=this.findServerInfo(t.server),s=i?.owningSystemUrl,o=s?this.findCredential(s,t.userId):void 0,n=r,!0)))),a)t&&(t.resources.splice(n,1),this._removeResource(e,o));else if(t)return this._addResource(e,o),t}}_findOAuthInfo(e){let t=this.findOAuthInfo(e);if(!t)for(const r of this.oAuthInfos)if(this._isIdProvider(r.portalUrl,e)){t=r;break}return t}_addResource(e,t){t&&-1===this._getIdenticalSvcIdx(e,t)&&t.resources.push(e)}_removeResource(e,t){let r=-1;t&&(r=this._getIdenticalSvcIdx(e,t),r>-1&&t.resources.splice(r,1))}_useProxy(e,t){return t?.isAdmin&&!(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(e.adminTokenServiceUrl,this._appOrigin)||!this._isPortalDomain(e.tokenServiceUrl)&&"10.1"===String(e.currentVersion)&&!(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(e.tokenServiceUrl,this._appOrigin)}_getOrigin(e){const t=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(e);return t.scheme+"://"+t.host+(null!=t.port?":"+t.port:"")}_getServerInstanceRoot(e){const t=e.toLowerCase();let r=t.indexOf(this._agsRest);return-1===r&&this._isAdminResource(e)&&(r=this._agsAdmin.test(e)?e.replace(this._agsAdmin,"$1").length:e.search(this._adminSvcs)),-1!==r||(0,_portal_support_urlUtils_js__WEBPACK_IMPORTED_MODULE_19__.isSecureProxyService)(t)||(r=t.indexOf("/sharing")),-1===r&&t.endsWith("/")&&(r=t.length-1),r>-1?e.slice(0,r):e}_hasSameServerInstance(e,t){return e.endsWith("/")&&(e=e.slice(0,-1)),e=e.toLowerCase(),t=this._getServerInstanceRoot(t).toLowerCase(),e=(0,_portal_support_urlUtils_js__WEBPACK_IMPORTED_MODULE_19__.normalizeArcGISOnlineOrgDomain)(e),t=(0,_portal_support_urlUtils_js__WEBPACK_IMPORTED_MODULE_19__.normalizeArcGISOnlineOrgDomain)(t),(e=e.slice(Math.max(0,e.indexOf(":"))))===(t=t.slice(Math.max(0,t.indexOf(":"))))}_sanitizeUrl(e){const r=(_config_js__WEBPACK_IMPORTED_MODULE_1__["default"].request.proxyUrl||"").toLowerCase(),s=r?e.toLowerCase().indexOf(r+"?"):-1;return-1!==s&&(e=e.slice(s+r.length+1)),e=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.normalize)(e),(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.urlToObject)(e).path}_isRESTService(e){return e.includes(this._agsRest)}_isAdminResource(e){return this._agsAdmin.test(e)||this._adminSvcs.test(e)}_isServerRsrc(e){return this._isRESTService(e)||this._isAdminResource(e)}_isIdenticalService(e,t){let r=!1;if(this._isRESTService(e)&&this._isRESTService(t)){const s=this._getSuffix(e).toLowerCase(),i=this._getSuffix(t).toLowerCase();if(r=s===i,!r){const e=/(.*)\/(MapServer|FeatureServer|UtilityNetworkServer).*/gi;r=s.replaceAll(e,"$1")===i.replaceAll(e,"$1")}}else this._isAdminResource(e)&&this._isAdminResource(t)?r=!0:this._isServerRsrc(e)||this._isServerRsrc(t)||!this._isPortalDomain(e)||(r=!0);return r}_isPortalDomain(e){const r=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(e.toLowerCase()),s=this._portalConfig;let i=this._gwDomains.some((e=>e.regex.test(r.uri)));return!i&&s&&(i=this._hasSameServerInstance(this._getServerInstanceRoot(s.restBaseUrl),r.uri)),i||_config_js__WEBPACK_IMPORTED_MODULE_1__["default"].portalUrl&&(i=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(r,_config_js__WEBPACK_IMPORTED_MODULE_1__["default"].portalUrl,!0)),i||(i=this._portals.some((e=>this._hasSameServerInstance(e,r.uri)))),i=i||this._agsPortal.test(r.path),i}_isIdProvider(e,t){let r=-1,s=-1;this._gwDomains.forEach(((i,o)=>{-1===r&&i.regex.test(e)&&(r=o),-1===s&&i.regex.test(t)&&(s=o)}));let i=!1;if(r>-1&&s>-1&&(0===r||4===r?0!==s&&4!==s||(i=!0):1===r?1!==s&&2!==s||(i=!0):2===r?2===s&&(i=!0):3===r&&3===s&&(i=!0)),!i){const r=this.findServerInfo(t),s=r?.owningSystemUrl;s&&C(r)&&this._isPortalDomain(s)&&this._isIdProvider(e,s)&&(i=!0)}return i}_getIdenticalSvcIdx(e,t){let r=-1;for(let s=0;s<t.resources.length;s++){const i=t.resources[s];if(this._isIdenticalService(e,i)){r=s;break}}return r}_getSuffix(e){return e.replace(this._regexSDirUrl,"").replace(this._regexServerType,"$1")}_getTokenSvcUrl(e){let t,r,i;if(this._isRESTService(e)||this._isAdminResource(e)){const i=this._getServerInstanceRoot(e);return t=i+"/admin/generateToken",r=(0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(e=i+"/rest/info",{query:{f:"json"}}).then((e=>e.data)),{adminUrl:t,promise:r}}if(this._isPortalDomain(e)){let t="";if(this._gwDomains.some((r=>(r.regex.test(e)&&(t=r.tokenServiceUrl),!!t))),t||this._portals.some((r=>(this._hasSameServerInstance(r,e)&&(t=r+this._gwTokenUrl),!!t))),t||(i=e.toLowerCase().indexOf("/sharing"),-1!==i&&(t=e.slice(0,i)+this._gwTokenUrl)),t||(t=this._getOrigin(e)+this._gwTokenUrl),t){const r=new _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.Url(e).port;/^http:\/\//i.test(e)&&"7080"===r&&(t=t.replace(/:7080/i,":7443")),t=t.replace(/http:/i,"https:")}return t}}_processOAuthResponseParams(e,t,r){const s=t._oAuthCred;if(e.code){const i=s.codeVerifier;return s.codeVerifier=null,s.stateUID=null,s.save(),this._getOAuthToken(r.server,e.code,t.appId,this._getRedirectURI(t,!0),i).then((i=>{const o=new E({userId:i.username,server:r.server??void 0,token:i.access_token,expires:Date.now()+1e3*i.expires_in,ssl:i.ssl,oAuthState:e.state,_oAuthCred:s});return t.userId=o.userId,s.storage=i.persist?b:q,s.refreshToken=i.refresh_token,s.token=null,s.expires=i.refresh_token_expires_in?Date.now()+1e3*i.refresh_token_expires_in:null,s.userId=o.userId,s.ssl=o.ssl,s.save(),o}))}const i=new E({userId:e.username,server:r.server??void 0,token:e.access_token,expires:Date.now()+1e3*Number(e.expires_in),ssl:"true"===e.ssl,oAuthState:e.state,_oAuthCred:s});return t.userId=i.userId,s.storage=e.persist?b:q,s.refreshToken=null,s.token=i.token,s.expires=i.expires,s.userId=i.userId,s.ssl=i.ssl,s.save(),Promise.resolve(i)}_processOAuthPopupParams(e){const t=this._oAuthDfd;if(this._oAuthDfd=null,t)if(clearInterval(this._oAuthIntervalId),this._oAuthOnPopupHandle?.remove(),e.error){const r="access_denied"===e.error,s=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"](r?"identity-manager:user-aborted":"identity-manager:authentication-failed",r?"ABORTED":"OAuth: "+e.error+" - "+e.error_description);t.reject(s)}else this._processOAuthResponseParams(e,t.oinfo_,t.sinfo_).then((e=>{t.resolve(e)})).catch((e=>{t.reject(e)}))}_setOAuthResponseQueryString(e){e&&("?"===e.charAt(0)&&(e=e.slice(1)),this._processOAuthPopupParams((0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.queryToObject)(e)))}async _exchangeToken(e,t,r){return(await (0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(`${e}/sharing/rest/oauth2/exchangeToken`,{authMode:"anonymous",method:"post",query:{f:"json",client_id:t,token:r}})).data.token}async _getPlatformSelf(e,t){if(this._getPlatformSelfError&&Date.now()-this._getPlatformSelfError[1]<1e3)throw this._getPlatformSelfError[0];e=e.replace(/^http:/i,"https:");try{const r=await (0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(`${e}/sharing/rest/oauth2/platformSelf`,{authMode:"anonymous",headers:{"X-Esri-Auth-Client-Id":t,"X-Esri-Auth-Redirect-Uri":window.location.href.replace(/#.*$/,"")},method:"post",query:{f:"json",expiration:30},withCredentials:!0});return this._getPlatformSelfError=null,r.data}catch(r){throw"OAUTH_0066"===r.details?.messageCode&&(this._getPlatformSelfError=[r,Date.now()]),r}}_getPortalSelf(e,t){let r;if(this._gwDomains.some((t=>(t.regex.test(e)&&(r=t.customBaseUrl),!!r))),r)return Promise.resolve({allSSL:!0,currentVersion:"8.4",customBaseUrl:r,portalMode:"multitenant",supportsOAuth:!0});this._appOrigin.startsWith("https:")?e=e.replace(/^http:/i,"https:").replace(/:7080/i,":7443"):/^http:/i.test(t)&&(e=e.replace(/^https:/i,"http:").replace(/:7443/i,":7080"));return (0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(e,{query:{f:"json"},authMode:"anonymous",withCredentials:!0}).then((e=>e.data))}_doPortalSignIn(e){const t=this._portalConfig,r=window.location.href,s=this.findServerInfo(e);return!(!t&&!this._isPortalDomain(r)||!(s?s.hasPortal||s.owningSystemUrl&&this._isPortalDomain(s.owningSystemUrl):this._isPortalDomain(e))||!(this._isIdProvider(r,e)||t&&(this._hasSameServerInstance(this._getServerInstanceRoot(t.restBaseUrl),e)||this._isIdProvider(t.restBaseUrl,e))||(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(r,e,!0)))}_checkProtocol(e,t,r,s){let o=!0;const n=s?t.adminTokenServiceUrl:t.tokenServiceUrl;if(n.trim().toLowerCase().startsWith("https:")&&!this._appOrigin.startsWith("https:")&&(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.getProxyRule)(n)&&(o=!!this._protocolFunc&&!!this._protocolFunc({resourceUrl:e,serverInfo:t}),!o)){r(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:aborted","Aborted the Sign-In process to avoid sending password over insecure connection."))}return o}_enqueue(e,t,r,s,i,o){return s||(s=(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.createResolver)()),s.resUrl_=e,s.sinfo_=t,s.options_=r,s.admin_=i,s.refresh_=o,this._busy?this._hasSameServerInstance(this._getServerInstanceRoot(e),this._busy.resUrl_)?(this._oAuthDfd&&this._oAuthDfd.oAuthWin_&&this._oAuthDfd.oAuthWin_.focus(),this._soReqs.push(s)):this._xoReqs.push(s):this._doSignIn(s),s.promise}_doSignIn(e){this._busy=e,this._rejectOnPersistedPageShow=!1;const t=t=>{const r=e.options_?.resource,s=e.resUrl_,i=e.refresh_;let o=!1;this.credentials.includes(t)||(i&&this.credentials.includes(i)?(i.userId=t.userId,i.token=t.token,i.expires=t.expires,i.validity=t.validity,i.ssl=t.ssl,i.creationTime=t.creationTime,o=!0,t=i):this.credentials.push(t)),t.resources||(t.resources=[]),t.resources.includes(r||s)||t.resources.push(r||s),t.scope=this._isServerRsrc(s)?"server":"portal",t.emitTokenChange();const n=this._soReqs,a={};this._soReqs=[],n.forEach((e=>{if(!this._isIdenticalService(s,e.resUrl_)){const r=this._getSuffix(e.resUrl_);a[r]||(a[r]=!0,t.resources.push(e.resUrl_))}})),e.resolve(t),n.forEach((e=>{this._hasSameServerInstance(this._getServerInstanceRoot(s),e.resUrl_)?e.resolve(t):this._soReqs.push(e)})),this._busy=e.resUrl_=e.sinfo_=e.refresh_=null,o||this.emit("credential-create",{credential:t}),this._soReqs.length?this._doSignIn(this._soReqs.shift()):this._xoReqs.length&&this._doSignIn(this._xoReqs.shift())},r=t=>{e.reject(t),this._busy=e.resUrl_=e.sinfo_=e.refresh_=null,this._soReqs.length?this._doSignIn(this._soReqs.shift()):this._xoReqs.length&&this._doSignIn(this._xoReqs.shift())},s=(o,a,h,l)=>{const d=e.sinfo_,u=!e.options_||!1!==e.options_.prompt,_=d.hasPortal&&this._findOAuthInfo(e.resUrl_);let f,g;if(o)t(new E({userId:o,server:d.server??void 0,token:h??void 0,expires:null!=l?Number(l):null,ssl:!!a}));else if(window!==window.parent&&this._appUrlObj.query?.["arcgis-auth-origin"]&&this._appUrlObj.query?.["arcgis-auth-portal"]&&this._hasSameServerInstance(this._getServerInstanceRoot(this._appUrlObj.query["arcgis-auth-portal"]),e.resUrl_)){window.parent.postMessage({type:"arcgis:auth:requestCredential"},this._appUrlObj.query["arcgis-auth-origin"]);const s=(0,_core_events_js__WEBPACK_IMPORTED_MODULE_6__.on)(window,"message",(e=>{e.source===window.parent&&e.data&&("arcgis:auth:credential"===e.data.type?(s.remove(),e.data.credential.expires<Date.now()?r(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:credential-request-failed","Parent application's token has expired.")):t(new E(e.data.credential))):"arcgis:auth:error"===e.data.type&&(s.remove(),"tokenExpiredError"===e.data.error.name?r(new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:credential-request-failed","Parent application's token has expired.")):r(_core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"].fromJSON(e.data.error))))}));(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_9__.onAbort)(e.options_?.signal,(()=>{s.remove()}))}else if(_){let o=_._oAuthCred;if(!o){const e=new _OAuthCredential_js__WEBPACK_IMPORTED_MODULE_16__["default"](_,b),t=new _OAuthCredential_js__WEBPACK_IMPORTED_MODULE_16__["default"](_,q);e.isValid()&&t.isValid()?e.expires>t.expires?(o=e,t.destroy()):(o=t,e.destroy()):o=e.isValid()?e:t,_._oAuthCred=o}if(o.isValid()){f=new E({userId:o.userId??void 0,server:d.server??void 0,token:o.token??void 0,expires:o.expires,ssl:o.ssl??void 0,_oAuthCred:o});const i=_.appId!==o.appId&&this._doPortalSignIn(e.resUrl_);i||o.refreshToken?(e._pendingDfd=o.refreshToken?this._getOAuthToken(d.server,o.refreshToken,o.appId).then((e=>(f.expires=Date.now()+1e3*e.expires_in,f.token=e.access_token,f))):Promise.resolve(f),e._pendingDfd.then((e=>i?this._exchangeToken(e.server,_.appId,e.token).then((t=>(e.token=t,e))).catch((()=>e)):e)).then((e=>{t(e)})).catch((e=>{const t=e.details?.httpStatus;t>0&&404!==t?(o.destroy(),s()):r(e)}))):t(f)}else if(this._oAuthLocationParams&&this._hasSameServerInstance(_.portalUrl,this._oAuthLocationParams.state.portalUrl)&&(this._oAuthLocationParams.access_token||this._oAuthLocationParams.code&&this._oAuthLocationParams.state.uid===o.stateUID&&o.codeVerifier)){const s=this._oAuthLocationParams;this._oAuthLocationParams=null,e._pendingDfd=this._processOAuthResponseParams(s,_,d).then((e=>{t(e)})).catch(r)}else{const s=()=>{u?e._pendingDfd=this.oAuthSignIn(e.resUrl_,d,_,e.options_).then(t,r):(g=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:not-authenticated","User is not signed in."),r(g))};this._doPortalSignIn(e.resUrl_)?e._pendingDfd=this._getPlatformSelf(d.server,_.appId).then((e=>{(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(e.portalUrl,this._appOrigin,!0)?(f=new E({userId:e.username,server:d.server??void 0,expires:Date.now()+1e3*e.expires_in,token:e.token}),t(f)):s()})).catch(s):s()}}else if(u){if(this._checkProtocol(e.resUrl_,d,r,e.admin_)){let s=e.options_;e.admin_&&(s=s||{},s.isAdmin=!0),e._pendingDfd=this.signIn(e.resUrl_,d,s).then(t,r)}}else g=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:not-authenticated","User is not signed in."),r(g)},o=()=>{const s=e.sinfo_,i=s.owningSystemUrl,o=e.options_;let n,a,h,l;if(o&&(n=o.token,a=o.error,h=o.prompt),l=this._findCredential(i,{token:n,resource:e.resUrl_}),!l)for(const e of this.credentials)if(this._isIdProvider(i,e.server)){l=e;break}if(l){const i=this.findCredential(e.resUrl_,l.userId);if(i)t(i);else if(D(s,this._legacyFed)){const e=l.toJSON();e.server=s.server,e.resources=null,t(new E(e))}else{(e._pendingDfd=this.generateToken(this.findServerInfo(l.server),null,{serverUrl:e.resUrl_,token:l.token,signal:e.options_.signal,ssl:l.ssl})).then((r=>{t(new E({userId:l?.userId,server:s.server??void 0,token:r.token,expires:null!=r.expires?Number(r.expires):null,ssl:!!r.ssl,isAdmin:e.admin_,validity:r.validity}))}),r)}}else{this._busy=null,n&&(e.options_.token=null);(e._pendingDfd=this.getCredential(i.replace(/\/?$/,"/sharing"),{resource:e.resUrl_,owningTenant:s.owningTenant,signal:e.options_.signal,token:n,error:a,prompt:h})).then((()=>{this._enqueue(e.resUrl_,e.sinfo_,e.options_,e,e.admin_)}),(t=>{e.resUrl_=e.sinfo_=e.refresh_=null,e.reject(t)}))}};this._errbackFunc=r;const a=e.sinfo_.owningSystemUrl,l=this._isServerRsrc(e.resUrl_),d=e.sinfo_._restInfoPms;d?d.promise.then((t=>{const r=e.sinfo_;if(r._restInfoPms){r.adminTokenServiceUrl=r._restInfoPms.adminUrl,r._restInfoPms=null,r.tokenServiceUrl=((0,_core_object_js__WEBPACK_IMPORTED_MODULE_8__.getDeepValue)("authInfo.tokenServicesUrl",t)||(0,_core_object_js__WEBPACK_IMPORTED_MODULE_8__.getDeepValue)("authInfo.tokenServiceUrl",t)||(0,_core_object_js__WEBPACK_IMPORTED_MODULE_8__.getDeepValue)("tokenServiceUrl",t))??null,r.shortLivedTokenValidity=(0,_core_object_js__WEBPACK_IMPORTED_MODULE_8__.getDeepValue)("authInfo.shortLivedTokenValidity",t)??null,r.currentVersion=t.currentVersion,r.owningTenant=t.owningTenant;const e=r.owningSystemUrl=t.owningSystemUrl;e&&this._portals.push(e)}l&&r.owningSystemUrl?o():s()}),(()=>{e.sinfo_._restInfoPms=null;const t=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:server-identification-failed","Unknown resource - could not find token service endpoint.");r(t)})):l&&a?o():e.sinfo_._selfReq?e.sinfo_._selfReq.selfDfd.then((t=>{const r={};let s,i,o,n;return t&&(s=t.user?.username,r.username=s,r.allSSL=t.allSSL,i=t.supportsOAuth,n=parseFloat(t.currentVersion),"multitenant"===t.portalMode&&(o=t.customBaseUrl),e.sinfo_.currentVersion=n),e.sinfo_.webTierAuth=!!s,s&&this.normalizeWebTierAuth?this.generateToken(e.sinfo_,null,{ssl:r.allSSL}).catch((()=>null)).then((e=>(r.portalToken=e?.token,r.tokenExpiration=e?.expires,r))):!s&&i&&n>=4.4&&!this._findOAuthInfo(e.resUrl_)?this._generateOAuthInfo({portalUrl:e.sinfo_.server,customBaseUrl:o,owningTenant:e.sinfo_._selfReq.owningTenant}).catch((()=>null)).then((()=>r)):r})).catch((()=>null)).then((t=>{e.sinfo_._selfReq=null,t?s(t.username,t.allSSL,t.portalToken,t.tokenExpiration):s()})):s()}_generateOAuthInfo(e){let t,r=null,i=e.portalUrl;const o=e.customBaseUrl,n=e.owningTenant,a=!this._defaultOAuthInfo&&this._createDefaultOAuthInfo&&!this._hasTestedIfAppIsOnPortal;if(a){r=window.location.href;let e=r.indexOf("?");e>-1&&(r=r.slice(0,e)),e=r.search(/\/(apps|home)\//),r=e>-1?r.slice(0,e):null}return a&&r?(this._hasTestedIfAppIsOnPortal=!0,t=(0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(r+"/sharing/rest",{query:{f:"json"}}).then((()=>{this._defaultOAuthInfo=new _OAuthInfo_js__WEBPACK_IMPORTED_MODULE_17__["default"]({appId:"arcgisonline",popupCallbackUrl:r+"/home/oauth-callback.html"})}))):t=Promise.resolve(),t.then((()=>{if(this._defaultOAuthInfo)return i=i.replace(/^http:/i,"https:"),(0,_request_js__WEBPACK_IMPORTED_MODULE_3__["default"])(i+"/sharing/rest/oauth2/validateRedirectUri",{query:{accountId:n,client_id:this._defaultOAuthInfo.appId,redirect_uri:(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.makeAbsolute)(this._defaultOAuthInfo.popupCallbackUrl),f:"json"}}).then((e=>{if(e.data.valid){const t=this._defaultOAuthInfo.clone();e.data.urlKey&&o?t.portalUrl="https://"+e.data.urlKey.toLowerCase()+"."+o:t.portalUrl=i,t.popup=window!==window.top||!((0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.hasSameOrigin)(i,this._appOrigin)||this._gwDomains.some((e=>e.regex.test(i)&&e.regex.test(this._appOrigin)))),this.oAuthInfos.push(t)}}))}))}_doOAuthSignIn(e,t,r,s){const o=r._oAuthCred,a={portalUrl:r.portalUrl};!r.popup&&r.preserveUrlHash&&window.location.hash&&(a.hash=window.location.hash),o.stateUID&&(a.uid=o.stateUID);const h={client_id:r.appId,response_type:o.codeVerifier?"code":"token",state:JSON.stringify(a),expiration:r.expiration,locale:r.locale,redirect_uri:this._getRedirectURI(r,!!o.codeVerifier)};r.forceLogin&&(h.force_login=!0),r.forceUserId&&r.userId&&(h.prepopulatedusername=r.userId),!r.popup&&this._doPortalSignIn(e)&&(h.redirectToUserOrgUrl=!0),o.codeVerifier&&(h.code_challenge=s||o.codeVerifier,h.code_challenge_method=s?"S256":"plain");const l=r.portalUrl.replace(/^http:/i,"https:")+"/sharing/oauth2/authorize",c=l+"?"+(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.objectToQuery)(h);if(r.popup){const e=window.open(c,"esriJSAPIOAuth",r.popupWindowFeatures);if(e)e.focus(),this._oAuthDfd.oAuthWin_=e,this._oAuthIntervalId=setInterval((()=>{if(e.closed){clearInterval(this._oAuthIntervalId),this._oAuthOnPopupHandle.remove();const e=this._oAuthDfd;if(e){const t=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:user-aborted","ABORTED");e.reject(t)}}}),500),this._oAuthOnPopupHandle=(0,_core_events_js__WEBPACK_IMPORTED_MODULE_6__.on)(window,["arcgis:auth:hash","arcgis:auth:location:search"],(e=>{"arcgis:auth:hash"===e.type?this.setOAuthResponseHash(e.detail):this._setOAuthResponseQueryString(e.detail)}));else{const e=new _core_Error_js__WEBPACK_IMPORTED_MODULE_4__["default"]("identity-manager:popup-blocked","ABORTED");this._oAuthDfd.reject(e)}}else this._rejectOnPersistedPageShow=!0,this._oAuthRedirectFunc?this._oAuthRedirectFunc({authorizeParams:h,authorizeUrl:l,resourceUrl:e,serverInfo:t,oAuthInfo:r}):window.location.href=c}_getRedirectURI(e,t){const r=window.location.href.replace(/#.*$/,"");if(e.popup)return (0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.makeAbsolute)(e.popupCallbackUrl);if(t){const e=(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.urlToObject)(r);return e.query&&["code","error","error_description","message_code","persist","state"].forEach((t=>{delete e.query[t]})),(0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_10__.addQueryParameters)(e.path,e.query)}return r}}j.prototype.declaredClass="esri.identity.IdentityManagerBase";let E=class extends _core_Evented_js__WEBPACK_IMPORTED_MODULE_5__["default"].EventedAccessor{constructor(e){super(e),this._oAuthCred=null,this.tokenRefreshBuffer=2,e?._oAuthCred&&(this._oAuthCred=e._oAuthCred)}initialize(){this.resources=this.resources||[],null==this.creationTime&&(this.creationTime=Date.now())}refreshToken(){const e=_kernel_js__WEBPACK_IMPORTED_MODULE_2__.id,t=e.findServerInfo(this.server),s=t?.owningSystemUrl,i=!!s&&"server"===this.scope,o=i&&D(t,e._legacyFed),n=t.webTierAuth,a=n&&e.normalizeWebTierAuth,h=R[this.server],l=h?.[this.userId];let c,d=this.resources&&this.resources[0],u=i?e.findServerInfo(s):null,p={username:this.userId,password:l};if(n&&!a)return;i&&!u&&e.serverInfos.some((t=>(e._isIdProvider(s,t.server)&&(u=t),!!u)));const _=u?e.findCredential(u.server,this.userId):null;if(!i||_){if(!o){if(i)c={serverUrl:d,token:_?.token,ssl:_?.ssl};else if(a)p=null,c={ssl:this.ssl};else{if(!l){let r;return d&&(d=e._sanitizeUrl(d),this._enqueued=1,r=e._enqueue(d,t,null,null,this.isAdmin,this),r.then((()=>{this._enqueued=0,this.refreshServerTokens()})).catch((()=>{this._enqueued=0}))),r}this.isAdmin&&(c={isAdmin:!0})}return e.generateToken(i?u:t,i?null:p,c).then((e=>{this.token=e.token,this.expires=null!=e.expires?Number(e.expires):null,this.creationTime=Date.now(),this.validity=e.validity,this.emitTokenChange(),this.refreshServerTokens()})).catch((()=>{}))}_?.refreshToken()}}refreshServerTokens(){if("portal"===this.scope){const e=_kernel_js__WEBPACK_IMPORTED_MODULE_2__.id;e.credentials.forEach((t=>{const r=e.findServerInfo(t.server),s=r?.owningSystemUrl;t!==this&&t.userId===this.userId&&s&&"server"===t.scope&&(e._hasSameServerInstance(this.server,s)||e._isIdProvider(s,this.server))&&(D(r,e._legacyFed)?(t.token=this.token,t.expires=this.expires,t.creationTime=this.creationTime,t.validity=this.validity,t.emitTokenChange()):t.refreshToken())}))}}emitTokenChange(e){clearTimeout(this._refreshTimer);const t=_kernel_js__WEBPACK_IMPORTED_MODULE_2__.id,s=this.server?t.findServerInfo(this.server):null,i=s?.owningSystemUrl,o=i?t.findServerInfo(i):null;!1===e||i&&"portal"!==this.scope&&(!o?.webTierAuth||t.normalizeWebTierAuth)||null==this.expires&&null==this.validity||this._startRefreshTimer(),this.emit("token-change")}destroy(){this.userId=this.server=this.token=this.expires=this.validity=this.resources=this.creationTime=null,this._oAuthCred&&(this._oAuthCred.destroy(),this._oAuthCred=null);const e=_kernel_js__WEBPACK_IMPORTED_MODULE_2__.id,t=e.credentials.indexOf(this);t>-1&&e.credentials.splice(t,1),this.emitTokenChange(),this.emit("destroy")}toJSON(){const e=(0,_core_lang_js__WEBPACK_IMPORTED_MODULE_7__.fixJson)({userId:this.userId,server:this.server,token:this.token,expires:this.expires,validity:this.validity,ssl:this.ssl,isAdmin:this.isAdmin,creationTime:this.creationTime,scope:this.scope}),t=this.resources;return t&&t.length>0&&(e.resources=t.slice()),e}_startRefreshTimer(){clearTimeout(this._refreshTimer);const e=6e4*this.tokenRefreshBuffer,t=2**31-1;let r=(this.validity?this.creationTime+6e4*this.validity:this.expires)-Date.now();r<0?r=0:r>t&&(r=t),this._refreshTimer=setTimeout(this.refreshToken.bind(this),r>e?r-e:r)}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"creationTime",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"expires",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"isAdmin",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"oAuthState",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"resources",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"scope",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"server",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"ssl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"token",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"tokenRefreshBuffer",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"userId",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_11__.property)()],E.prototype,"validity",void 0),E=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_14__.subclass)("esri.identity.Credential")],E);
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/IdentityModal.js":
+/*!*************************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/IdentityModal.js ***!
+  \*************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ h; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _intl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../intl.js */ "./node_modules/@arcgis/core/intl.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _widgets_Widget_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../widgets/Widget.js */ "./node_modules/@arcgis/core/widgets/Widget.js");
+/* harmony import */ var _widgets_support_componentsUtils_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../widgets/support/componentsUtils.js */ "./node_modules/@arcgis/core/widgets/support/componentsUtils.js");
+/* harmony import */ var _widgets_support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../widgets/support/widgetUtils.js */ "./node_modules/@arcgis/core/widgets/support/widgetUtils.js");
+/* harmony import */ var _widgets_support_decorators_messageBundle_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../widgets/support/decorators/messageBundle.js */ "./node_modules/@arcgis/core/widgets/support/decorators/messageBundle.js");
+/* harmony import */ var _widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../widgets/support/jsxFactory.js */ "./node_modules/@arcgis/core/widgets/support/jsxFactory.js");
+/* harmony import */ var _support_themeUtils_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../support/themeUtils.js */ "./node_modules/@arcgis/core/support/themeUtils.js");
+/* harmony import */ var _intl_substitute_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../intl/substitute.js */ "./node_modules/@arcgis/core/intl/substitute.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const p="esri-identity-modal",u={base:p,info:`${p}__info`,notice:`${p}__notice`},d="ArcGIS Online";let m=class extends _widgets_Widget_js__WEBPACK_IMPORTED_MODULE_7__["default"]{constructor(t,e){super(t,e),this.container=document.createElement("div"),this.error=null,this.oAuthPrompt=!1,this.open=!1,this.signingIn=!1,this.server=null,this.resource=null,this._usernameInputNode=null,this._passwordInputNode=null,document.body.appendChild(this.container)}loadDependencies(){return (0,_widgets_support_componentsUtils_js__WEBPACK_IMPORTED_MODULE_8__.loadCalciteComponents)({button:()=>__webpack_require__.e(/*! import() | @esri-calcite-components-dist-components-calcite-button */ "@esri-calcite-components-dist-components-calcite-button").then(__webpack_require__.bind(__webpack_require__, /*! @esri/calcite-components/dist/components/calcite-button.js */ "./node_modules/@esri/calcite-components/dist/components/calcite-button.js")),dialog:()=>__webpack_require__.e(/*! import() | @esri-calcite-components-dist-components-calcite-dialog */ "@esri-calcite-components-dist-components-calcite-dialog").then(__webpack_require__.bind(__webpack_require__, /*! @esri/calcite-components/dist/components/calcite-dialog.js */ "./node_modules/@esri/calcite-components/dist/components/calcite-dialog.js")),input:()=>__webpack_require__.e(/*! import() | @esri-calcite-components-dist-components-calcite-input */ "@esri-calcite-components-dist-components-calcite-input").then(__webpack_require__.bind(__webpack_require__, /*! @esri/calcite-components/dist/components/calcite-input.js */ "./node_modules/@esri/calcite-components/dist/components/calcite-input.js")),label:()=>__webpack_require__.e(/*! import() | @esri-calcite-components-dist-components-calcite-label */ "@esri-calcite-components-dist-components-calcite-label").then(__webpack_require__.bind(__webpack_require__, /*! @esri/calcite-components/dist/components/calcite-label.js */ "./node_modules/@esri/calcite-components/dist/components/calcite-label.js")),notice:()=>__webpack_require__.e(/*! import() | @esri-calcite-components-dist-components-calcite-notice */ "@esri-calcite-components-dist-components-calcite-notice").then(__webpack_require__.bind(__webpack_require__, /*! @esri/calcite-components/dist/components/calcite-notice.js */ "./node_modules/@esri/calcite-components/dist/components/calcite-notice.js"))})}get title(){return this.commonMessages?.auth.signIn}render(){const{open:t,title:e,messages:s,signingIn:o,oAuthPrompt:i,server:n,resource:r,error:p}=this,{info:m,oAuthInfo:h,lblItem:g,invalidUser:b,noAuthService:f,lblUser:v,lblPwd:_,lblCancel:y,lblSigning:I,lblOk:j}=s;return (0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("div",{class:this.classes(u.base,(0,_support_themeUtils_js__WEBPACK_IMPORTED_MODULE_12__.getCalciteThemeClass)())},(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("form",{bind:this,onsubmit:this._submit},(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-dialog",{bind:this,heading:e,modal:!0,open:t,outsideCloseDisabled:!0,scale:"s",widthScale:"s",onCalciteDialogClose:this._cancel,onCalciteDialogOpen:this._focusUsernameInput},(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("div",{class:u.info},(0,_intl_substitute_js__WEBPACK_IMPORTED_MODULE_13__.substitute)(i?h:m,{server:n&&/\.arcgis\.com/i.test(n)?d:n,resource:`(${r||g})`})),p?(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-notice",{class:u.notice,icon:"exclamation-mark-triangle",kind:"danger",open:!0},(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("div",{slot:"message"},p.details?.httpStatus?b:f)):null,i?null:[(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-label",null,v,(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-input",{afterCreate:t=>this._usernameInputNode=t,autocomplete:"off",bind:this,name:"username",required:!0,spellcheck:!1,type:"text",value:""})),(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-label",null,_,(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-input",{afterCreate:t=>this._passwordInputNode=t,bind:this,name:"password",required:!0,type:"password",value:""}))],(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-button",{appearance:"outline",bind:this,onclick:this._cancel,slot:"footer-end",type:"button"},y),(0,_widgets_support_jsxFactory_js__WEBPACK_IMPORTED_MODULE_11__.tsx)("calcite-button",{loading:!!o,slot:"footer-end",type:"submit"},o?I:j))))}_focusUsernameInput(){return (0,_widgets_support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_9__.setFocus)((()=>this._usernameInputNode))}_cancel(){this._set("signingIn",!1),this.open=!1,this._usernameInputNode&&(this._usernameInputNode.value=""),this._passwordInputNode&&(this._passwordInputNode.value=""),this.emit("cancel")}_submit(t){t.preventDefault(),this._set("signingIn",!0);const e=this.oAuthPrompt?{}:{username:this._usernameInputNode?.value,password:this._passwordInputNode?.value};this.emit("submit",e)}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({readOnly:!0})],m.prototype,"container",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)(),(0,_widgets_support_decorators_messageBundle_js__WEBPACK_IMPORTED_MODULE_10__.messageBundle)("esri/t9n/common")],m.prototype,"commonMessages",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"error",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)(),(0,_widgets_support_decorators_messageBundle_js__WEBPACK_IMPORTED_MODULE_10__.messageBundle)("esri/identity/t9n/identity")],m.prototype,"messages",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"oAuthPrompt",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"open",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"signingIn",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"server",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({readOnly:!0})],m.prototype,"title",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)()],m.prototype,"resource",void 0),m=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__.subclass)("esri.identity.IdentityModal")],m);const h=m;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/OAuthCredential.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/OAuthCredential.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t="esriJSAPIOAuth";class e{constructor(t,e){this.oAuthInfo=null,this.storage=null,this.appId=null,this.codeVerifier=null,this.expires=null,this.refreshToken=null,this.ssl=null,this.stateUID=null,this.token=null,this.userId=null,this.oAuthInfo=t,this.storage=e,this._init()}isValid(){let t=!1;if(this.oAuthInfo&&this.userId&&(this.refreshToken||this.token))if(null==this.expires&&this.refreshToken)t=!0;else if(this.expires){const e=Date.now();if(this.expires>e){(this.expires-e)/1e3>60*this.oAuthInfo.minTimeUntilExpiration&&(t=!0)}}return t}save(){if(!this.storage)return!1;const e=this._load(),s=this.oAuthInfo;if(s?.authNamespace&&s.portalUrl){let r=e[s.authNamespace];r||(r=e[s.authNamespace]={}),this.appId||(this.appId=s.appId),r[s.portalUrl]={appId:this.appId,codeVerifier:this.codeVerifier,expires:this.expires,refreshToken:this.refreshToken,ssl:this.ssl,stateUID:this.stateUID,token:this.token,userId:this.userId};try{this.storage.setItem(t,JSON.stringify(e))}catch(i){return console.warn(i),!1}return!0}return!1}destroy(){const e=this._load(),s=this.oAuthInfo;if(s?.appId&&s?.portalUrl&&(null==this.expires||this.expires>Date.now())&&(this.refreshToken||this.token)){const t=s.portalUrl.replace(/^http:/i,"https:")+"/sharing/rest/oauth2/revokeToken",e=new FormData;if(e.append("f","json"),e.append("auth_token",this.refreshToken||this.token),e.append("client_id",s.appId),e.append("token_type_hint",this.refreshToken?"refresh_token":"access_token"),"function"==typeof navigator.sendBeacon)navigator.sendBeacon(t,e);else{const s=new XMLHttpRequest;s.open("POST",t),s.send(e)}}if(s?.authNamespace&&s.portalUrl&&this.storage){const r=e[s.authNamespace];if(r){delete r[s.portalUrl];try{this.storage.setItem(t,JSON.stringify(e))}catch(i){console.log(i)}}}s&&(s._oAuthCred=null,this.oAuthInfo=null)}_init(){const t=this._load(),e=this.oAuthInfo;if(e?.authNamespace&&e.portalUrl){let s=t[e.authNamespace];s&&(s=s[e.portalUrl],s&&(this.appId=s.appId,this.codeVerifier=s.codeVerifier,this.expires=s.expires,this.refreshToken=s.refreshToken,this.ssl=s.ssl,this.stateUID=s.stateUID,this.token=s.token,this.userId=s.userId))}}_load(){let e={};if(this.storage){const i=this.storage.getItem(t);if(i)try{e=JSON.parse(i)}catch(s){console.warn(s)}}return e}}e.prototype.declaredClass="esri.identity.OAuthCredential";
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/OAuthInfo.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/OAuthInfo.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ i; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var p;let s=p=class extends _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__.JSONSupport{constructor(o){super(o),this._oAuthCred=null,this.appId=null,this.authNamespace="/",this.expiration=20160,this.flowType="auto",this.forceLogin=!1,this.forceUserId=!1,this.locale=null,this.minTimeUntilExpiration=30,this.popup=!1,this.popupCallbackUrl="oauth-callback.html",this.popupWindowFeatures="height=490,width=800,resizable,scrollbars,status",this.portalUrl="https://www.arcgis.com",this.preserveUrlHash=!1,this.userId=null}clone(){return p.fromJSON(this.toJSON())}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"appId",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"authNamespace",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"expiration",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"flowType",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"forceLogin",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"forceUserId",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"locale",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"minTimeUntilExpiration",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"popup",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"popupCallbackUrl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"popupWindowFeatures",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"portalUrl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"preserveUrlHash",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],s.prototype,"userId",void 0),s=p=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__.subclass)("esri.identity.OAuthInfo")],s);const i=s;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/identity/ServerInfo.js":
+/*!**********************************************************!*\
+  !*** ./node_modules/@arcgis/core/identity/ServerInfo.js ***!
+  \**********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ s; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../core/JSONSupport.js */ "./node_modules/@arcgis/core/core/JSONSupport.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_RandomLCG_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/RandomLCG.js */ "./node_modules/@arcgis/core/core/RandomLCG.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let i=class extends _core_JSONSupport_js__WEBPACK_IMPORTED_MODULE_1__.JSONSupport{constructor(o){super(o),this.adminTokenServiceUrl=null,this.currentVersion=null,this.hasPortal=null,this.hasServer=null,this.owningSystemUrl=null,this.owningTenant=null,this.server=null,this.shortLivedTokenValidity=null,this.tokenServiceUrl=null,this.webTierAuth=null}};(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"adminTokenServiceUrl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"currentVersion",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"hasPortal",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"hasServer",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"owningSystemUrl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"owningTenant",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"server",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"shortLivedTokenValidity",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"tokenServiceUrl",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_2__.property)({json:{write:!0}})],i.prototype,"webTierAuth",void 0),i=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_6__.subclass)("esri.identity.ServerInfo")],i);const s=i;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/advanced-projector-options.js":
+/*!**************************************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette-advanced-projector/advanced-projector-options.js ***!
+  \**************************************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   defaultAdvancedProjectorOptions: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const e={handleInterceptedEvent:(e,p,t,n)=>(e.scheduleRender(),p.properties[`on${n.type}`].apply(p.properties.bind||t,[n]))};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/projector.js":
+/*!*********************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette-advanced-projector/projector.js ***!
+  \*********************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createAdvancedProjector: function() { return /* binding */ s; }
+/* harmony export */ });
+/* harmony import */ var _maquette_dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../maquette/dom.js */ "./node_modules/@arcgis/core/libs/maquette/dom.js");
+/* harmony import */ var _maquette_projector_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../maquette/projector.js */ "./node_modules/@arcgis/core/libs/maquette/projector.js");
+/* harmony import */ var _advanced_projector_options_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./advanced-projector-options.js */ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/advanced-projector-options.js");
+/* harmony import */ var _utils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./utils.js */ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/utils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const o=(e,r)=>{const t=[];for(;e&&e!==r;)t.push(e),e=e.parentNode;return t},n=(e,r)=>e.find(r),d=(e,r,t=!1)=>{let o=e;return r.forEach(((e,d)=>{const s=o?.children?n(o.children,(r=>r.domNode===e)):void 0;t&&!s&&d!==r.length-1||(o=s)})),o},s=n=>{let s;const c={..._advanced_projector_options_js__WEBPACK_IMPORTED_MODULE_2__.defaultAdvancedProjectorOptions,...n},i=(0,_utils_js__WEBPACK_IMPORTED_MODULE_3__.applyDefaultProjectionOptions)(c),a=i.performanceLogger;let m,p=!0,l=!1;const f=[],u=[],h=(e,r,t)=>{let n;i.eventHandlerInterceptor=(e,r,t,i)=>function(e){let r;a("domEvent",e);const t=o(e.currentTarget,n.domNode),i=t.some((e=>customElements.get(e?.tagName?.toLowerCase())));if(e.eventPhase===Event.CAPTURING_PHASE||!i)t.reverse(),r=d(n.getLastRender(),t);else{const t=e.composedPath(),o=t.slice(t.indexOf(e.currentTarget),t.indexOf(n.domNode)).reverse();r=d(n.getLastRender(),o,!0)}let m;return r&&(m=c.handleInterceptedEvent(s,r,this,e)),a("domEventProcessed",e),m},c.postProcessProjectionOptions?.(i);const m=t();n=e(r,m,i),i.eventHandlerInterceptor=void 0,f.push(n),u.push(t),c.afterFirstVNodeRendered&&c.afterFirstVNodeRendered(n,m)};let v=()=>{if(m=void 0,p){p=!1,a("renderStart",void 0);for(let r=0;r<f.length;r++){const t=u[r]();a("rendered",void 0);try{f[r].update(t)}catch(e){console.error(e)}a("patched",void 0)}a("renderDone",void 0),p=!0}};return c.modifyDoRenderImplementation&&(v=c.modifyDoRenderImplementation(v,f,u)),s={renderNow:v,scheduleRender:()=>{m||l||(m=requestAnimationFrame(v))},stop:()=>{m&&(cancelAnimationFrame(m),m=void 0),l=!0},resume:()=>{l=!1,p=!0,s.scheduleRender()},append:(r,t)=>{h(_maquette_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.append,r,t)},insertBefore:(r,t)=>{h(_maquette_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.insertBefore,r,t)},merge:(r,t)=>{h(_maquette_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.merge,r,t)},replace:(r,t)=>{h(_maquette_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.replace,r,t)},detach:e=>{for(let r=0;r<u.length;r++)if(u[r]===e)return u.splice(r,1),f.splice(r,1)[0];throw new Error("renderFunction was not found")}},s};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/utils.js":
+/*!*****************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette-advanced-projector/utils.js ***!
+  \*****************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   applyDefaultProjectionOptions: function() { return /* binding */ r; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const e={namespace:void 0,performanceLogger:()=>{},eventHandlerInterceptor:void 0,styleApplyer:(e,r,t)=>{"-"===r.charAt(0)?e.style.setProperty(r,t):e.style[r]=t}},r=r=>({...e,...r});
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette/dom.js":
+/*!********************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette/dom.js ***!
+  \********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   applyDefaultProjectionOptions: function() { return /* binding */ d; },
+/* harmony export */   dom: function() { return /* binding */ n; }
+/* harmony export */ });
+/* harmony import */ var _projection_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./projection.js */ "./node_modules/@arcgis/core/libs/maquette/projection.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const p={namespace:void 0,performanceLogger:()=>{},eventHandlerInterceptor:void 0,styleApplyer:(e,r,o)=>{"-"===r.charAt(0)?e.style.setProperty(r,o):e.style[r]=o}};let d=r=>(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.extend)(p,r),n={create:(e,t)=>(t=d(t),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createDom)(e,document.createElement("div"),void 0,t),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createProjection)(e,t)),append:(e,t,p)=>(p=d(p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createDom)(t,e,void 0,p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createProjection)(t,p)),insertBefore:(e,t,p)=>(p=d(p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createDom)(t,e.parentNode,e,p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createProjection)(t,p)),merge:(e,r,p)=>(p=d(p),r.domNode=e,(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.initPropertiesAndChildren)(e,r,p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createProjection)(r,p)),replace:(e,t,p)=>(p=d(p),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createDom)(t,e.parentNode,e,p),e.parentNode.removeChild(e),(0,_projection_js__WEBPACK_IMPORTED_MODULE_0__.createProjection)(t,p))};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette/projection.js":
+/*!***************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette/projection.js ***!
+  \***************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createDom: function() { return /* binding */ x; },
+/* harmony export */   createProjection: function() { return /* binding */ C; },
+/* harmony export */   extend: function() { return /* binding */ n; },
+/* harmony export */   initPropertiesAndChildren: function() { return /* binding */ w; }
+/* harmony export */ });
+/* harmony import */ var _widgets_support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../widgets/support/widgetUtils.js */ "./node_modules/@arcgis/core/widgets/support/widgetUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t="http://www.w3.org/",r=`${t}2000/svg`,o=`${t}1999/xlink`;let i=[],n=(e,t)=>{let r={};return Object.keys(e).forEach((t=>{r[t]=e[t]})),t&&Object.keys(t).forEach((e=>{r[e]=t[e]})),r},s=(e,t)=>e.vnodeSelector===t.vnodeSelector&&(e.properties&&t.properties?e.properties.key===t.properties.key&&e.properties.bind===t.properties.bind:!e.properties&&!t.properties),l=e=>{if("string"!=typeof e)throw new Error("Style values must be strings")},p=(e,t,r)=>{if(""!==t.vnodeSelector)for(let o=r;o<e.length;o++)if(s(e[o],t))return o;return-1},d=(e,t,r,o)=>{let i=e[t];if(""===i.vnodeSelector)return;let n=i.properties;if(!(n?void 0===n.key?n.bind:n.key:void 0))for(let l=0;l<e.length;l++)if(l!==t){let t=e[l];if(s(t,i))throw new Error(`${r.vnodeSelector} had a ${i.vnodeSelector} child ${"added"===o?o:"removed"}, but there is now more than one. You must add unique key properties to make them distinguishable.`)}},a=e=>{if(e.properties){let t=e.properties.enterAnimation;t&&t(e.domNode,e.properties)}},f=[],c=!1,u=e=>{(e.children||[]).forEach(u),e.properties&&e.properties.afterRemoved&&e.properties.afterRemoved.apply(e.properties.bind||e.properties,[e.domNode])},m=()=>{c=!1,f.forEach(u),f.length=0},h=e=>{f.push(e),c||(c=!0,"undefined"!=typeof window&&"requestIdleCallback"in window?window.requestIdleCallback(m,{timeout:16}):setTimeout(m,16))},v=e=>{let t=e.domNode;if(e.properties){let r=e.properties.exitAnimation;if(r){t.style.pointerEvents="none";let o=()=>{t.parentNode&&(t.parentNode.removeChild(t),h(e))};return void r(t,o,e.properties)}}t.parentNode&&(t.parentNode.removeChild(t),h(e))},y=(t,i,n)=>{if(!i)return;let s=n.eventHandlerInterceptor,p=Object.keys(i),d=p.length;for(let a=0;a<d;a++){let d=p[a],f=i[d];if("className"===d)throw new Error('Property "className" is not supported, use "class".');if("class"===d)k(t,f,!0);else if("classes"===d){let e=Object.keys(f),r=e.length;for(let o=0;o<r;o++){let r=e[o];f[r]&&t.classList.add(r)}}else if("styles"===d){let e=Object.keys(f),r=e.length;for(let o=0;o<r;o++){let r=e[o],i=f[r];i&&(l(i),n.styleApplyer(t,r,i))}}else if("key"!==d&&null!=f){let l=typeof f;"function"===l?(0===d.lastIndexOf("on",0)&&(s&&(f=s(d,f,t,i)),"oninput"===d&&function(){let e=f;f=function(t){e.apply(this,[t]),t.target["oninput-value"]=t.target.value}}()),t[d]=f):n.namespace===r?"href"===d?t.setAttributeNS(o,d,f):t.setAttribute(d,f):"string"===l&&"value"!==d?"innerHTML"===d?t[d]=_widgets_support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_0__.renderingSanitizer.sanitize(f):g(t)&&d in t?t[d]=f:t.setAttribute(d,f):t[d]=f}}};function g(e){if(!(e instanceof Element&&e.tagName.includes("-")))return!1;const t=window.customElements.get(e.tagName.toLowerCase());return!!t&&e instanceof t}let N,b=(e,t,r)=>{if(t)for(let o of t)x(o,e,void 0,r)},w=(e,t,r)=>{b(e,t.children,r),t.text&&(e.textContent=t.text),y(e,t.properties,r),t.properties&&t.properties.afterCreate&&t.properties.afterCreate.apply(t.properties.bind||t.properties,[e,r,t.vnodeSelector,t.properties,t.children])},x=(e,t,o,i)=>{let s,l=0,p=e.vnodeSelector,d=t.ownerDocument;if(""===p)s=e.domNode=d.createTextNode(e.text),void 0!==o?t.insertBefore(s,o):t.appendChild(s);else{for(let a=0;a<=p.length;++a){let f=p.charAt(a);if(a===p.length||"."===f||"#"===f){let f=p.charAt(l-1),c=p.slice(l,a);"."===f?s.classList.add(c):"#"===f?s.id=c:("svg"===c&&(i=n(i,{namespace:r})),void 0!==i.namespace?s=e.domNode=d.createElementNS(i.namespace,c):(s=e.domNode=e.domNode||d.createElement(c),"input"===c&&e.properties&&void 0!==e.properties.type&&s.setAttribute("type",e.properties.type)),void 0!==o?t.insertBefore(s,o):s.parentNode!==t&&t.appendChild(s)),l=a+1}}w(s,e,i)}},k=(e,t,r)=>{t&&t.split(" ").forEach((t=>{t&&e.classList.toggle(t,r)}))},A=(t,i,n,s)=>{if(!n)return;let p=!1,d=Object.keys(n),a=d.length;for(let f=0;f<a;f++){let a=d[f],c=n[a],u=i[a];if("class"===a)u!==c&&(k(t,u,!1),k(t,c,!0));else if("classes"===a){let e=t.classList,r=Object.keys(c),o=r.length;for(let t=0;t<o;t++){let o=r[t],i=!!c[o];i!==!!u[o]&&(p=!0,i?e.add(o):e.remove(o))}}else if("styles"===a){let e=Object.keys(c),r=e.length;for(let o=0;o<r;o++){let r=e[o],i=c[r];i!==u[r]&&(p=!0,i?(l(i),s.styleApplyer(t,r,i)):s.styleApplyer(t,r,""))}}else if(c||"string"!=typeof u||(c=""),"value"!==a||g(t)){if(c!==u){let i=typeof c;"function"===i&&s.eventHandlerInterceptor||(s.namespace===r?"href"===a?t.setAttributeNS(o,a,c):t.setAttribute(a,c):"string"===i?"innerHTML"===a?t[a]=_widgets_support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_0__.renderingSanitizer.sanitize(c):"role"===a&&""===c?t.removeAttribute(a):g(t)&&a in t?t[a]=c:t.setAttribute(a,c):t[a]!==c&&(t[a]=c),p=!0)}}else{let e=t[a];e!==c&&(t["oninput-value"]?e===t["oninput-value"]:c!==u)&&(t[a]=c,t["oninput-value"]=void 0),c!==u&&(p=!0)}}return p},S=(e,t,r,o,n)=>{if(r===o)return!1;o=o||i;let l,f=(r=r||i).length,c=o.length,u=0,m=0,h=!1;for(;m<c;){let i=u<f?r[u]:void 0,c=o[m];if(void 0!==i&&s(i,c))h=N(i,c,n)||h,u++;else{let i=p(r,c,u+1);if(i>=0){for(l=u;l<i;l++)v(r[l]),d(r,l,e,"removed");h=N(r[i],c,n)||h,u=i+1}else x(c,t,u<f?r[u].domNode:void 0,n),a(c),d(o,m,e,"added")}m++}if(f>u)for(l=u;l<f;l++)v(r[l]),d(r,l,e,"removed");return h};N=(e,t,o)=>{let i=e.domNode,s=!1;if(e===t)return!1;let l=!1;if(""===t.vnodeSelector){if(t.text!==e.text){let e=i.ownerDocument.createTextNode(t.text);return i.parentNode.replaceChild(e,i),t.domNode=e,s=!0,s}t.domNode=i}else 0===t.vnodeSelector.lastIndexOf("svg",0)&&(o=n(o,{namespace:r})),e.text!==t.text&&(l=!0,void 0===t.text?i.removeChild(i.firstChild):i.textContent=t.text),t.domNode=i,l=S(t,i,e.children,t.children,o)||l,l=A(i,e.properties,t.properties,o)||l,t.properties&&t.properties.afterUpdate&&t.properties.afterUpdate.apply(t.properties.bind||t.properties,[i,o,t.vnodeSelector,t.properties,t.children]);return l&&t.properties&&t.properties.updateAnimation&&t.properties.updateAnimation(i,t.properties,e.properties),s};let C=(e,t)=>({getLastRender:()=>e,update:r=>{if(e.vnodeSelector!==r.vnodeSelector)throw new Error("The selector for the root VNode may not be changed. (consider using dom.merge and add one extra level to the virtual DOM)");let o=e;e=r,N(o,r,t)},domNode:e.domNode});
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/libs/maquette/projector.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@arcgis/core/libs/maquette/projector.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   createProjector: function() { return /* binding */ i; }
+/* harmony export */ });
+/* harmony import */ var _dom_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./dom.js */ "./node_modules/@arcgis/core/libs/maquette/dom.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let t,n=(e,r)=>{let t=[];for(;e&&e!==r;)t.push(e),e=e.parentNode;return t};t=Array.prototype.find?(e,r)=>e.find(r):(e,r)=>e.filter(r)[0];let o=(e,r)=>{let n=e;return r.forEach((e=>{n=n&&n.children?t(n.children,(r=>r.domNode===e)):void 0})),n},d=(e,r,t)=>{let d=function(d){t("domEvent",d);let i=r(),p=n(d.currentTarget,i.domNode);p.reverse();let l,a=o(i.getLastRender(),p);return e.scheduleRender(),a&&(l=a.properties[`on${d.type}`].apply(a.properties.bind||this,arguments)),t("domEventProcessed",d),l};return(e,r,t,n)=>d},i=t=>{let n,o,i=(0,_dom_js__WEBPACK_IMPORTED_MODULE_0__.applyDefaultProjectionOptions)(t),p=i.performanceLogger,l=!0,a=!1,s=[],c=[],u=(e,r,t)=>{let o,l=()=>o;i.eventHandlerInterceptor=d(n,l,p),o=e(r,t(),i),s.push(o),c.push(t)},f=()=>{if(o=void 0,l){l=!1,p("renderStart",void 0);for(let e=0;e<s.length;e++){let r=c[e]();p("rendered",void 0),s[e].update(r),p("patched",void 0)}p("renderDone",void 0),l=!0}};return n={renderNow:f,scheduleRender:()=>{o||a||(o=requestAnimationFrame(f))},stop:()=>{o&&(cancelAnimationFrame(o),o=void 0),a=!0},resume:()=>{a=!1,l=!0,n.scheduleRender()},append:(e,t)=>{u(_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.append,e,t)},insertBefore:(e,t)=>{u(_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.insertBefore,e,t)},merge:(e,t)=>{u(_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.merge,e,t)},replace:(e,t)=>{u(_dom_js__WEBPACK_IMPORTED_MODULE_0__.dom.replace,e,t)},detach:e=>{for(let r=0;r<c.length;r++)if(c[r]===e)return c.splice(r,1),s.splice(r,1)[0];throw new Error("renderFunction was not found")}},n};
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/support/themeUtils.js":
+/*!*********************************************************!*\
+  !*** ./node_modules/@arcgis/core/support/themeUtils.js ***!
+  \*********************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   getCalciteThemeClass: function() { return /* binding */ c; },
+/* harmony export */   isDarkTheme: function() { return /* binding */ r; },
+/* harmony export */   setCalciteThemeClass: function() { return /* binding */ n; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t="calcite-mode-";function e(){return getComputedStyle(document.body).getPropertyValue("--esri-calcite-mode-name").replaceAll(/\s|'|"/g,"")}function r(){return e().startsWith("dark")}function c(){return`${t}${r()?"dark":"light"}`}function n(t){o(t),t.classList.add(c())}function o(e){Array.from(e.classList).forEach((r=>{r.startsWith(t)&&e.classList.remove(r)}))}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/Widget.js":
+/*!*****************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/Widget.js ***!
+  \*****************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ B; }
+/* harmony export */ });
+/* harmony import */ var _chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../chunks/tslib.es6.js */ "./node_modules/@arcgis/core/chunks/tslib.es6.js");
+/* harmony import */ var _intl_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../intl.js */ "./node_modules/@arcgis/core/intl.js");
+/* harmony import */ var _core_deprecate_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../core/deprecate.js */ "./node_modules/@arcgis/core/core/deprecate.js");
+/* harmony import */ var _core_domUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../core/domUtils.js */ "./node_modules/@arcgis/core/core/domUtils.js");
+/* harmony import */ var _core_Evented_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../core/Evented.js */ "./node_modules/@arcgis/core/core/Evented.js");
+/* harmony import */ var _core_events_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../core/events.js */ "./node_modules/@arcgis/core/core/events.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_lang_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../core/lang.js */ "./node_modules/@arcgis/core/core/lang.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_maybe_js__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ../core/maybe.js */ "./node_modules/@arcgis/core/core/maybe.js");
+/* harmony import */ var _core_Promise_js__WEBPACK_IMPORTED_MODULE_10__ = __webpack_require__(/*! ../core/Promise.js */ "./node_modules/@arcgis/core/core/Promise.js");
+/* harmony import */ var _core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_11__ = __webpack_require__(/*! ../core/promiseUtils.js */ "./node_modules/@arcgis/core/core/promiseUtils.js");
+/* harmony import */ var _core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_12__ = __webpack_require__(/*! ../core/reactiveUtils.js */ "./node_modules/@arcgis/core/core/reactiveUtils.js");
+/* harmony import */ var _core_uuid_js__WEBPACK_IMPORTED_MODULE_13__ = __webpack_require__(/*! ../core/uuid.js */ "./node_modules/@arcgis/core/core/uuid.js");
+/* harmony import */ var _core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__ = __webpack_require__(/*! ../core/accessorSupport/decorators/property.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/property.js");
+/* harmony import */ var _core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_15__ = __webpack_require__(/*! ../core/accessorSupport/decorators/cast.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/cast.js");
+/* harmony import */ var _core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_16__ = __webpack_require__(/*! ../core/accessorSupport/decorators/subclass.js */ "./node_modules/@arcgis/core/core/accessorSupport/decorators/subclass.js");
+/* harmony import */ var _core_accessorSupport_tracking_js__WEBPACK_IMPORTED_MODULE_17__ = __webpack_require__(/*! ../core/accessorSupport/tracking.js */ "./node_modules/@arcgis/core/core/accessorSupport/tracking.js");
+/* harmony import */ var _core_accessorSupport_tracking_SimpleTrackingTarget_js__WEBPACK_IMPORTED_MODULE_18__ = __webpack_require__(/*! ../core/accessorSupport/tracking/SimpleTrackingTarget.js */ "./node_modules/@arcgis/core/core/accessorSupport/tracking/SimpleTrackingTarget.js");
+/* harmony import */ var _libs_maquette_advanced_projector_projector_js__WEBPACK_IMPORTED_MODULE_19__ = __webpack_require__(/*! ../libs/maquette-advanced-projector/projector.js */ "./node_modules/@arcgis/core/libs/maquette-advanced-projector/projector.js");
+/* harmony import */ var _support_componentsUtils_js__WEBPACK_IMPORTED_MODULE_20__ = __webpack_require__(/*! ./support/componentsUtils.js */ "./node_modules/@arcgis/core/widgets/support/componentsUtils.js");
+/* harmony import */ var _support_jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_21__ = __webpack_require__(/*! ./support/jsxWidgetSupport.js */ "./node_modules/@arcgis/core/widgets/support/jsxWidgetSupport.js");
+/* harmony import */ var _support_symbols_js__WEBPACK_IMPORTED_MODULE_22__ = __webpack_require__(/*! ./support/symbols.js */ "./node_modules/@arcgis/core/widgets/support/symbols.js");
+/* harmony import */ var _support_tests_js__WEBPACK_IMPORTED_MODULE_23__ = __webpack_require__(/*! ./support/tests.js */ "./node_modules/@arcgis/core/widgets/support/tests.js");
+/* harmony import */ var _support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__ = __webpack_require__(/*! ./support/vnodeCache.js */ "./node_modules/@arcgis/core/widgets/support/vnodeCache.js");
+/* harmony import */ var _support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_25__ = __webpack_require__(/*! ./support/widgetUtils.js */ "./node_modules/@arcgis/core/widgets/support/widgetUtils.js");
+/* harmony import */ var _intl_locale_js__WEBPACK_IMPORTED_MODULE_26__ = __webpack_require__(/*! ../intl/locale.js */ "./node_modules/@arcgis/core/intl/locale.js");
+/* harmony import */ var _intl_messages_js__WEBPACK_IMPORTED_MODULE_27__ = __webpack_require__(/*! ../intl/messages.js */ "./node_modules/@arcgis/core/intl/messages.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var $;const U="esri.widgets.Widget";let z=0;function W(e,t){const r=Object.prototype.hasOwnProperty;for(const s in t)r.call(t,s)&&r.call(e,s)&&(null!=e[s]&&null!=t[s]&&"object"==typeof e[s]&&"object"==typeof t[s]?W(e[s],t[s]):e[s]=t[s]);return e}const x=(0,_libs_maquette_advanced_projector_projector_js__WEBPACK_IMPORTED_MODULE_19__.createAdvancedProjector)({postProcessProjectionOptions(e){const t=e.eventHandlerInterceptor,r=/capture$/i;e.eventHandlerInterceptor=(e,s,o,i)=>{const n=t?.(e,s,o,i),a=r.test(e);if(!((e=e.replace(r,"")).toLowerCase()in o)||a){const t=e[2].toLowerCase()+e.slice(3),r=e=>n?.call(o,e);o.addEventListener(t,r,a);const s=()=>o.removeEventListener(t,r,a),d=i.afterRemoved;i.afterRemoved=e=>{d?.(e),s()}}return n}},handleInterceptedEvent(e,t,r,s){const{eventPhase:o,type:i}=s,n=o===Event.CAPTURING_PHASE;let a=`on${i}${n?"capture":""}`;const d=t.properties;(d&&a in d||(a=`on${i[0].toUpperCase()}${i.slice(1)}${n?"Capture":""}`,d&&a in d))&&((0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.clearVNodeCache)(),e.scheduleRender(),d[a].call(d.bind||r,s))}});let A=!1,O=class extends((0,_core_Promise_js__WEBPACK_IMPORTED_MODULE_10__.EsriPromiseMixin)(_core_Evented_js__WEBPACK_IMPORTED_MODULE_4__["default"].EventedAccessor)){constructor(e,t){super(e,t),this._attached=!1,this._projector=x,this._readyForTrueRender=!1,this.key=this,this.autoRenderingEnabled=!0,this._loadLocale=(0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_11__.debounce)((async()=>{if(this._messageBundleProps?.length){const e=await Promise.allSettled(this._messageBundleProps.map((async({bundlePath:e,propertyName:t})=>{if(this.destroyed)return;let r=await (0,_intl_messages_js__WEBPACK_IMPORTED_MODULE_27__.fetchMessageBundle)(e);this.uiStrings&&Object.keys(this.uiStrings)&&(r=W((0,_core_lang_js__WEBPACK_IMPORTED_MODULE_7__.clone)(r),this.uiStrings)),this[t]=r})));if(this.destroyed)return;for(const t of e)"rejected"===t.status&&_core_Logger_js__WEBPACK_IMPORTED_MODULE_8__["default"].getLogger(this).error("widget-intl:locale-error",this.declaredClass,t.reason)}await this.loadLocale()})),(0,_support_componentsUtils_js__WEBPACK_IMPORTED_MODULE_20__.commitAssetPath)();const r="esri-widget-uid-"+(0,_core_uuid_js__WEBPACK_IMPORTED_MODULE_13__.generateUUID)(),s=this.render.bind(this);this._trackingTarget=new _core_accessorSupport_tracking_SimpleTrackingTarget_js__WEBPACK_IMPORTED_MODULE_18__.SimpleTrackingTarget((()=>{this.autoRenderingEnabled&&this.scheduleRender()}));const o=()=>({vnodeSelector:"div",properties:{key:`${r}-hidden`,class:"",styles:{display:"none"}},domNode:null,children:void 0,text:void 0}),i=()=>{if(!this._readyForTrueRender||this.destroyed)return null;const e=s()??o(),t=e.properties??={};if(t.key??=r,(0,_support_jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_21__.isWidgetConstructor)(e.vnodeSelector)){if(!this.visible)return o()}else this.visible?t.styles||(t.styles={}):(t.class="",t.styles={display:"none"}),t.styles.display??="";let i=0;return e.children?.forEach((e=>{(0,_support_jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_21__.isWidgetConstructor)(e.vnodeSelector)||(e.properties??={},e.properties.key??=`${this.id}--${i++}`)})),(0,_support_jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_21__.processWidgets)(this,e)};this.render=()=>{if(A)return i();let e=(0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.getVNodeCache)(this)??null;if(e)return e;this._trackingTarget.clear(),A=!0;try{e=(0,_core_accessorSupport_tracking_js__WEBPACK_IMPORTED_MODULE_17__.runTracked)(this._trackingTarget,i)}catch(t){throw _core_Logger_js__WEBPACK_IMPORTED_MODULE_8__["default"].getLogger(this).error(t),t}finally{A=!1}return e&&(0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.setVNodeCache)(this,e),e};const d=this.beforeFirstRender();d?this._resourcesFetch=d.then((()=>{this._readyForTrueRender=!0,this._postInitialize()})):(this._resourcesFetch=Promise.resolve().then((()=>{this._postInitialize()})),this._readyForTrueRender=!0),this.addResolvingPromise(this._resourcesFetch),(0,_support_tests_js__WEBPACK_IMPORTED_MODULE_23__.registerLoading)(this._resourcesFetch)}normalizeCtorArgs(e,t){const r={...e};return t&&(r.container=t),r}postInitialize(){}beforeFirstRender(){const e=this.loadDependencies();return this._messageBundleProps?.length||e?Promise.all([e,this._loadLocale()]).then((()=>{})).catch(_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_11__.throwIfNotAbortError):null}loadDependencies(){return null}loadLocale(){return null}destroy(){this.destroyed||((0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_9__.destroyMaybe)(this._trackingTarget),(0,_core_maybe_js__WEBPACK_IMPORTED_MODULE_9__.destroyMaybe)(this.viewModel),this._detach(this.container),this._set("container",null),this._emitter.clear(),this.render=()=>null,this._projector=null,(0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.deleteVNodeCache)(this))}set container(e){this._get("container")||this._set("container",e)}castContainer(e){return (0,_core_domUtils_js__WEBPACK_IMPORTED_MODULE_3__.byId)(e)}get domNode(){return this.container}set domNode(e){this.container=e}get icon(){return null}set icon(e){this._overrideIfSome("icon",e)}get id(){return this._get("id")||this.container?.id||Date.now().toString(16)+"-widget-"+z++}set id(e){e&&this._set("id",e)}get label(){return this.declaredClass.split(".").pop()}set label(e){this._overrideIfSome("label",e)}get renderable(){return this._resourcesFetch}get visible(){return this._get("visible")}set visible(e){this._set("visible",e)}get[($=_support_symbols_js__WEBPACK_IMPORTED_MODULE_22__.widgetSymbol,_support_symbols_js__WEBPACK_IMPORTED_MODULE_22__.widgetTestDataSymbol)](){return{projector:this._projector}}render(){throw new Error("not implemented")}scheduleRender(){this.destroyed||((0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.deleteVNodeCache)(this),this._projector.scheduleRender())}own(e){(0,_core_deprecate_js__WEBPACK_IMPORTED_MODULE_2__.deprecatedFunction)(_core_Logger_js__WEBPACK_IMPORTED_MODULE_8__["default"].getLogger(this),"`Widget.own()` is deprecated in favor of 'Widget.addHandles()'",{replacement:"Widget.addHandles()",version:"4.28"}),this.addHandles(e)}classes(...e){return _support_widgetUtils_js__WEBPACK_IMPORTED_MODULE_25__.classes.apply(this,e)}renderNow(){(0,_support_vnodeCache_js__WEBPACK_IMPORTED_MODULE_24__.deleteVNodeCache)(this),this._projector.renderNow()}_postInitialize(){if(this.destroyed)return;this.scheduleRender(),this._delegatedEventNames?.length&&this.addHandles((0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_12__.watch)((()=>this.viewModel),((e,t)=>{t&&this.removeHandles("delegated-events"),e&&(0,_core_events_js__WEBPACK_IMPORTED_MODULE_5__.isEventedOrEventTarget)(e)&&this.addHandles(this._delegatedEventNames.map((t=>(0,_core_events_js__WEBPACK_IMPORTED_MODULE_5__.on)(e,t,(e=>{this.emit(t,e)})))),"delegated-events")}),_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_12__.syncAndInitial)),this.postInitialize();const e=async()=>{await this._loadLocale().catch(_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_11__.throwIfNotAbortError),this.scheduleRender()};this.addHandles([(0,_intl_locale_js__WEBPACK_IMPORTED_MODULE_26__.onLocaleChange)(e),(0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_12__.watch)((()=>this.uiStrings),e),(0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_12__.when)((()=>this.container),(e=>{this.destroyed||this._attach(e)}),{initial:!0,once:!0})])}_attach(e){e&&(this._projector.merge(e,this.render),this._attached=!0)}_detach(e){this._attached&&(this._projector.detach(this.render),this._attached=!1),e?.parentNode?.removeChild(e)}};O[$]=!0,O.vnodeSelector="div",(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"_readyForTrueRender",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)({value:null})],O.prototype,"container",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_cast_js__WEBPACK_IMPORTED_MODULE_15__.cast)("container")],O.prototype,"castContainer",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"icon",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"id",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"label",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"renderable",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"uiStrings",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"viewModel",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)({value:!0})],O.prototype,"visible",null),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"key",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"children",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"afterCreate",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"afterUpdate",void 0),(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_property_js__WEBPACK_IMPORTED_MODULE_14__.property)()],O.prototype,"afterRemoved",void 0),O=(0,_chunks_tslib_es6_js__WEBPACK_IMPORTED_MODULE_0__._)([(0,_core_accessorSupport_decorators_subclass_js__WEBPACK_IMPORTED_MODULE_16__.subclass)(U)],O);const B=O;
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/componentsUtils.js":
+/*!**********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/componentsUtils.js ***!
+  \**********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   commitAssetPath: function() { return /* binding */ n; },
+/* harmony export */   loadCalciteComponents: function() { return /* binding */ r; }
+/* harmony export */ });
+/* harmony import */ var _esri_calcite_components_dist_components_index_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @esri/calcite-components/dist/components/index.js */ "./node_modules/@esri/calcite-components/dist/components/index.js");
+/* harmony import */ var _assets_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../assets.js */ "./node_modules/@arcgis/core/assets.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/urlUtils.js */ "./node_modules/@arcgis/core/core/urlUtils.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+let c;function n(){try{(0,_esri_calcite_components_dist_components_index_js__WEBPACK_IMPORTED_MODULE_0__.getAssetPath)(".")}catch{(0,_esri_calcite_components_dist_components_index_js__WEBPACK_IMPORTED_MODULE_0__.setAssetPath)((0,_core_urlUtils_js__WEBPACK_IMPORTED_MODULE_3__.makeAbsolute)((0,_assets_js__WEBPACK_IMPORTED_MODULE_1__.getAssetUrl)(c)))}}function r(t){const o=[];for(const s of Object.keys(t))customElements.get(`calcite-${s}`)||o.push(t[s]?.());return o.length>0?Promise.all(o):null}c="components/assets";
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/decorators/messageBundle.js":
+/*!*******************************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/decorators/messageBundle.js ***!
+  \*******************************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   messageBundle: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function e(e){return(s,r)=>{s.hasOwnProperty("_messageBundleProps")||(s._messageBundleProps=s._messageBundleProps?s._messageBundleProps.slice():[]);s._messageBundleProps.push({bundlePath:e,propertyName:r})}}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/jsxFactory.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/jsxFactory.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   tsx: function() { return /* binding */ n; },
+/* harmony export */   tsxFragment: function() { return /* binding */ i; }
+/* harmony export */ });
+/* harmony import */ var _jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./jsxWidgetSupport.js */ "./node_modules/@arcgis/core/widgets/support/jsxWidgetSupport.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+var e=function(r){return{vnodeSelector:"",properties:void 0,children:void 0,text:r.toString(),domNode:null}},o=function(r,t){for(var n=0,i=r.length;n<i;n++){var d=r[n];Array.isArray(d)?o(d,t):null!=d&&!1!==d&&(d.hasOwnProperty("vnodeSelector")||(d=e(d)),t.push(d))}},t=function(r,e){for(var t=[],n=2;n<arguments.length;n++)t[n-2]=arguments[n];if(1===t.length&&"string"==typeof t[0])return{vnodeSelector:r,properties:e||void 0,children:void 0,text:t[0],domNode:null};var i=[];return o(t,i),{vnodeSelector:r,properties:e||void 0,children:i,text:void 0,domNode:null}};function n(e,o,...n){return"function"!=typeof e||(0,_jsxWidgetSupport_js__WEBPACK_IMPORTED_MODULE_0__.isWidgetConstructor)(e)?t(e,o,...n):e(o,...n)}function i(...r){return r}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/jsxWidgetSupport.js":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/jsxWidgetSupport.js ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   isWidgetConstructor: function() { return /* binding */ f; },
+/* harmony export */   processWidgets: function() { return /* binding */ d; }
+/* harmony export */ });
+/* harmony import */ var _core_handleUtils_js__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../../core/handleUtils.js */ "./node_modules/@arcgis/core/core/handleUtils.js");
+/* harmony import */ var _symbols_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./symbols.js */ "./node_modules/@arcgis/core/widgets/support/symbols.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const o=[],n={},i=new WeakMap;function d(e,t){let r=t.children;if(r?.length)for(let o=0;o<r.length;++o)r[o]=d(e,r[o]);else r=o;const i=t.vnodeSelector;if(f(i)){const o=t.properties||n,d=o.key||i,f={key:d,afterCreate:c,afterUpdate:s,afterRemoved:a,parentWidget:e,widgetConstructor:i,widgetProperties:{...o,key:d,children:r}};return{vnodeSelector:i.vnodeSelector,properties:f,children:void 0,text:void 0,domNode:null}}return t}function c(r,o,n,{parentWidget:d,widgetConstructor:c,widgetProperties:s}){const f=new c(s);f.container=r,i.set(r,f),f.afterCreate?.(f,r),d.addHandles((0,_core_handleUtils_js__WEBPACK_IMPORTED_MODULE_0__.makeHandle)((()=>a(r)))),queueMicrotask((()=>{f[_symbols_js__WEBPACK_IMPORTED_MODULE_1__.widgetTestDataSymbol].projector.renderNow()}))}function s(e,t,r,{widgetProperties:o}){const n=i.get(e);n&&(n.set(o),n.afterUpdate?.(n,e))}function a(e){const t=i.get(e);t&&(t.afterRemoved?.(t,e),t.destroy(),i.delete(e))}function f(e){return"function"==typeof e&&e[_symbols_js__WEBPACK_IMPORTED_MODULE_1__.widgetSymbol]}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/symbols.js":
+/*!**************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/symbols.js ***!
+  \**************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   widgetSymbol: function() { return /* binding */ t; },
+/* harmony export */   widgetTestDataSymbol: function() { return /* binding */ e; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const t=Symbol("widget"),e=Symbol("widget-test-data");
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/tests.js":
+/*!************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/tests.js ***!
+  \************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   hasPendingLoading: function() { return /* binding */ t; },
+/* harmony export */   registerLoading: function() { return /* binding */ n; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const e=new Set;function n(n){e.add(n),n.finally((()=>e.delete(n)))}function t(){return e.size>0}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/vnodeCache.js":
+/*!*****************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/vnodeCache.js ***!
+  \*****************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   clearVNodeCache: function() { return /* binding */ t; },
+/* harmony export */   deleteVNodeCache: function() { return /* binding */ o; },
+/* harmony export */   getVNodeCache: function() { return /* binding */ e; },
+/* harmony export */   setVNodeCache: function() { return /* binding */ c; }
+/* harmony export */ });
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+const n=new Map;function t(){n.clear()}function e(t){return n.get(t)}function c(t,e){n.set(t,e)}function o(t){n.delete(t)}
+
+
+/***/ }),
+
+/***/ "./node_modules/@arcgis/core/widgets/support/widgetUtils.js":
+/*!******************************************************************!*\
+  !*** ./node_modules/@arcgis/core/widgets/support/widgetUtils.js ***!
+  \******************************************************************/
+/***/ (function(__unused_webpack___webpack_module__, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   additionalAllowedTags: function() { return /* binding */ d; },
+/* harmony export */   classes: function() { return /* binding */ l; },
+/* harmony export */   discardNode: function() { return /* binding */ f; },
+/* harmony export */   isActivationKey: function() { return /* binding */ v; },
+/* harmony export */   isRTL: function() { return /* binding */ u; },
+/* harmony export */   onResize: function() { return /* binding */ p; },
+/* harmony export */   renderingSanitizer: function() { return /* binding */ y; },
+/* harmony export */   safeAttrs: function() { return /* binding */ h; },
+/* harmony export */   setFocus: function() { return /* binding */ w; },
+/* harmony export */   storeNode: function() { return /* binding */ m; }
+/* harmony export */ });
+/* harmony import */ var _esri_arcgis_html_sanitizer__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @esri/arcgis-html-sanitizer */ "./node_modules/@esri/arcgis-html-sanitizer/dist/esm/index.js");
+/* harmony import */ var _core_ArrayPool_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../../core/ArrayPool.js */ "./node_modules/@arcgis/core/core/ArrayPool.js");
+/* harmony import */ var _core_handleUtils_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../core/handleUtils.js */ "./node_modules/@arcgis/core/core/handleUtils.js");
+/* harmony import */ var _core_has_js__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../../core/has.js */ "./node_modules/@arcgis/core/core/has.js");
+/* harmony import */ var _core_Logger_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ../../core/Logger.js */ "./node_modules/@arcgis/core/core/Logger.js");
+/* harmony import */ var _core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../../core/promiseUtils.js */ "./node_modules/@arcgis/core/core/promiseUtils.js");
+/* harmony import */ var _core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ../../core/reactiveUtils.js */ "./node_modules/@arcgis/core/core/reactiveUtils.js");
+/* harmony import */ var _core_scheduling_js__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ../../core/scheduling.js */ "./node_modules/@arcgis/core/core/scheduling.js");
+/* harmony import */ var _vnodeCache_js__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./vnodeCache.js */ "./node_modules/@arcgis/core/widgets/support/vnodeCache.js");
+/*
+All material copyright ESRI, All Rights Reserved, unless otherwise specified.
+See https://js.arcgis.com/4.31/esri/copyright.txt for details.
+*/
+function l(...e){const r=_core_ArrayPool_js__WEBPACK_IMPORTED_MODULE_1__["default"].acquire();for(let t=0;t<e.length;t++){const o=e[t],n=typeof o;if("string"===n)r.push(o);else if(Array.isArray(o))r.push.apply(r,o);else if("object"===n)for(const e in o)o[e]&&r.push(e)}const o=r.join(" ");return _core_ArrayPool_js__WEBPACK_IMPORTED_MODULE_1__["default"].release(r),o}const p=(()=>{const e=new Map,t=new ResizeObserver((t=>{(0,_vnodeCache_js__WEBPACK_IMPORTED_MODULE_8__.clearVNodeCache)();for(const r of t)e.get(r.target)?.(r)})),n=(r,n,s)=>(e.set(r,n),t.observe(r,s),(0,_core_handleUtils_js__WEBPACK_IMPORTED_MODULE_2__.makeHandle)((()=>{t.unobserve(r),e.delete(r)})));return(e,t,a)=>{let c=null;return (0,_core_handleUtils_js__WEBPACK_IMPORTED_MODULE_2__.handlesGroup)([(0,_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__.watch)((()=>"function"==typeof e?e():e),(e=>{c?.remove(),e&&(c=n(e,t,a))}),_core_reactiveUtils_js__WEBPACK_IMPORTED_MODULE_6__.syncAndInitial),(0,_core_handleUtils_js__WEBPACK_IMPORTED_MODULE_2__.makeHandle)((()=>c?.remove()))])}})();function u(e){const t=e?.closest("[dir]");return null!==t&&t instanceof HTMLElement&&"rtl"===t.dir||"rtl"===document.dir}function f(e){const t="data-node-ref";this[e.getAttribute(t)]=null}function m(e){const t="data-node-ref";this[e.getAttribute(t)]=e}const d=["dd","dl","dt","h1","h2","h3","h4","h5","h6","sub","sup",...["animate","animatetransform","circle","clippath","defs","ellipse","g","image","line","lineargradient","marker","mask","path","pattern","polygon","polyline","radialgradient","rect","stop","svg","switch","symbol","text","textpath","tspan","use"]],g=d.reduce(((e,t)=>(e[t]=[],e)),{}),h=["align","alink","alt","bgcolor","border","cellpadding","cellspacing","class","color","cols","colspan","coords","d","dir","face","height","hspace","ismap","lang","marginheight","marginwidth","multiple","nohref","noresize","noshade","nowrap","ref","rel","rev","rows","rowspan","scrolling","shape","span","summary","tabindex","title","usemap","valign","value","vlink","vspace","width"],y=new _esri_arcgis_html_sanitizer__WEBPACK_IMPORTED_MODULE_0__["default"]({whiteList:g,onTagAttr:(e,t,r)=>{const o=`${t}="${r}"`;if(h.includes(t))return o},stripIgnoreTag:!0,stripIgnoreTagBody:["script","style"]},!0);function v(e){return"Enter"===e||" "===e}async function w(e,t){await (0,_core_scheduling_js__WEBPACK_IMPORTED_MODULE_7__.waitAnimationFrame)((0,_core_promiseUtils_js__WEBPACK_IMPORTED_MODULE_5__.signalFromSignalOrOptions)(t));const r="function"==typeof e?e():e;r&&("setFocus"in r&&"function"==typeof r.setFocus?await r.setFocus():r instanceof HTMLElement&&r.focus())}
+
+
+/***/ })
+
+}]);
 //# sourceMappingURL=identity-IdentityManager.js.map
