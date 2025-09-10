@@ -12,8 +12,8 @@ const path = require('path')
 // Add your routes here
 
 // all routes for FMFP with defra componant
-router.use('/v1', require('./routes_v1'))
-router.use('/v2', require('./routes_v2'))
+router.use('/v3-3-0', require('./routes_v3-3-0'))
+router.use('/v3-4-0', require('./routes_v3-4-0'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {
@@ -120,13 +120,13 @@ router.get([
 //V1 with full summary page (including climate change)
 router.get('/v1-ccpd', function (req, res) {
 	req.session.data = { mapType: 'v1PdCC' }
-	res.redirect(`/v1/start`)
+	res.redirect(`/v3-3-0/start`)
 })
 
 //V2 with full summary page (including climate change)
 router.get('/v2-ccpd', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v2/start`)
+	res.redirect(`/v3-4-0/start`)
 })
 
 module.exports = router
