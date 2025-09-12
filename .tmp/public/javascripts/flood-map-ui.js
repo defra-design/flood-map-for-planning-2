@@ -464,6 +464,90 @@ function Autocomplete(_ref) {
 
 /***/ }),
 
+/***/ "./node_modules/@defra/flood-map/src/js/components/banner.jsx":
+/*!********************************************************************!*\
+  !*** ./node_modules/@defra/flood-map/src/js/components/banner.jsx ***!
+  \********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ Banner; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_use_app_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/use-app.js */ "./node_modules/@defra/flood-map/src/js/store/use-app.js");
+function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
+
+function Banner() {
+  var _useApp = (0,_store_use_app_js__WEBPACK_IMPORTED_MODULE_1__.useApp)(),
+    banner = _useApp.banner,
+    activePanel = _useApp.activePanel,
+    isMobile = _useApp.isMobile,
+    dispatch = _useApp.dispatch,
+    viewportRef = _useApp.viewportRef;
+  var html = "<span class=\"fm-u-visually-hidden\">Alert:</span> ".concat(banner === null || banner === void 0 ? void 0 : banner.message);
+  var handleClose = function handleClose() {
+    var _viewportRef$current;
+    dispatch({
+      type: 'SET_BANNER',
+      payload: null
+    });
+    (_viewportRef$current = viewportRef.current) === null || _viewportRef$current === void 0 || _viewportRef$current.focus();
+  };
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fm-c-banner"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", _extends({
+    className: "fm-c-banner__inner"
+  }, !banner || activePanel === 'SEARCH' && isMobile ? {
+    style: {
+      display: 'none'
+    }
+  } : {}), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    role: "status",
+    className: "fm-c-banner__content"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    width: "20",
+    height: "20",
+    viewBox: "0 0 20 20",
+    "aria-hidden": true
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("circle", {
+    cx: "10",
+    cy: "10",
+    r: "8.5",
+    fill: "none",
+    stroke: "currentColor",
+    strokeWidth: "1.5"
+  }), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M8.584 5.228h2.832v2.174L10.869 11H9.118l-.534-3.598V5.228zm.098 7.207h2.643v2.337H8.682v-2.337z",
+    fill: "currentColor"
+  })), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    dangerouslySetInnerHTML: {
+      __html: html
+    }
+  })), (banner === null || banner === void 0 ? void 0 : banner.isDismissable) && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("button", {
+    onClick: handleClose,
+    className: "fm-c-btn",
+    "aria-label": "Close panel"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("svg", {
+    "aria-hidden": "true",
+    focusable: "false",
+    width: "20",
+    height: "20",
+    viewBox: "0 0 20 20"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("path", {
+    d: "M10,8.6L15.6,3L17,4.4L11.4,10L17,15.6L15.6,17L10,11.4L4.4,17L3,15.6L8.6,10L3,4.4L4.4,3L10,8.6Z",
+    style: {
+      fill: 'currentColor',
+      stroke: 'currentColor',
+      strokeWidth: 0.1
+    }
+  })))));
+}
+
+/***/ }),
+
 /***/ "./node_modules/@defra/flood-map/src/js/components/container.jsx":
 /*!***********************************************************************!*\
   !*** ./node_modules/@defra/flood-map/src/js/components/container.jsx ***!
@@ -506,7 +590,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _edit_button_jsx__WEBPACK_IMPORTED_MODULE_28__ = __webpack_require__(/*! ./edit-button.jsx */ "./node_modules/@defra/flood-map/src/js/components/edit-button.jsx");
 /* harmony import */ var _inspector_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./inspector.jsx */ "./node_modules/@defra/flood-map/src/js/components/inspector.jsx");
 /* harmony import */ var _warningPanel_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./warningPanel.jsx */ "./node_modules/@defra/flood-map/src/js/components/warningPanel.jsx");
+/* harmony import */ var _banner_jsx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./banner.jsx */ "./node_modules/@defra/flood-map/src/js/components/banner.jsx");
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
 
 
 
@@ -549,7 +635,7 @@ function Container() {
     options = _useApp.options,
     parent = _useApp.parent,
     info = _useApp.info,
-    search = _useApp.search,
+    modal = _useApp.modal,
     queryArea = _useApp.queryArea,
     mode = _useApp.mode,
     activePanel = _useApp.activePanel,
@@ -574,15 +660,15 @@ function Container() {
 
   // Template properties
   var device = isMobile && 'mobile' || isDesktop && 'desktop' || 'tablet';
-  var behaviour = _store_constants__WEBPACK_IMPORTED_MODULE_3__.settings.container[options.behaviour || _store_constants__WEBPACK_IMPORTED_MODULE_3__.defaults.CONTAINER_TYPE].CLASS;
+  var behaviour = _store_constants__WEBPACK_IMPORTED_MODULE_3__.settings.container[options.behaviour].CLASS;
   var height = isPage || options.container ? '100%' : options.height || _store_constants__WEBPACK_IMPORTED_MODULE_3__.settings.container[options.behaviour].HEIGHT;
   var legend = options.legend;
   var isLegendInset = (legend === null || legend === void 0 ? void 0 : legend.display) === 'inset';
   var isLegendFixed = isDesktop && !isLegendInset;
   var isLegendModal = !isLegendFixed && (!isLegendInset || isLegendInset && isKeyExpanded);
-  var hasLengedHeading = !(legend.display === 'inset' || isLegendFixed && isPage);
-  var isQueryMode = ['frame', 'vertex'].includes(mode);
-  var hasButtons = !(isMobile && (activePanel === 'SEARCH' || isDesktop && search !== null && search !== void 0 && search.isExpanded));
+  var hasLegendHeading = !(legend.display === 'inset' || isLegendFixed && isPage);
+  var isQueryMode = ['frame', 'draw'].includes(mode);
+  var hasButtons = !(isMobile && activePanel === 'SEARCH');
   var hasInspector = activePanel === 'INSPECTOR' || activePanel === 'STYLE' && previousPanel === 'INSPECTOR';
   var handleColorSchemeMQ = function handleColorSchemeMQ() {
     var _window;
@@ -608,6 +694,18 @@ function Container() {
         payload: {
           featureId: data
         }
+      });
+    });
+    _lib_eventbus__WEBPACK_IMPORTED_MODULE_5__["default"].on(parent, _store_constants__WEBPACK_IMPORTED_MODULE_3__.events.SET_BANNER, function (data) {
+      dispatch({
+        type: 'SET_BANNER',
+        payload: data
+      });
+    });
+    _lib_eventbus__WEBPACK_IMPORTED_MODULE_5__["default"].on(parent, _store_constants__WEBPACK_IMPORTED_MODULE_3__.events.SET_MODAL, function (data) {
+      dispatch({
+        type: 'SET_MODAL',
+        payload: data
       });
     });
 
@@ -654,8 +752,10 @@ function Container() {
     className: "legend",
     label: legend.title,
     width: legend.width,
+    html: legend.html,
+    htmlAfter: legend.htmlAfter,
     isFixed: isLegendFixed,
-    isHideHeading: !hasLengedHeading
+    isHideHeading: !hasLegendHeading
   }, queryArea && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_draw_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_segments_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_layers_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
     hasSymbols: !!legend.display,
     hasInputs: true
@@ -674,6 +774,8 @@ function Container() {
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-warning"
   }, isMobile && warningPosition === 'top' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_warningPanel_jsx__WEBPACK_IMPORTED_MODULE_30__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fm-o-banner"
+  }, !isDesktop && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_banner_jsx__WEBPACK_IMPORTED_MODULE_31__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-top"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-top__column"
@@ -710,16 +812,17 @@ function Container() {
     isNotObscure: false,
     label: legend.title,
     width: legend.width,
+    htmlAfter: legend.htmlAfter,
     instigatorRef: legendBtnRef,
     isInset: isLegendInset,
     isModal: isLegendModal,
-    isHideHeading: !hasLengedHeading
+    isHideHeading: !hasLegendHeading
   }, queryArea && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_draw_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_segments_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_layers_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
     hasSymbols: !!legend.display,
     hasInputs: true
   }))), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-top__column"
-  }, !isMobile && warningPosition === 'top' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_warningPanel_jsx__WEBPACK_IMPORTED_MODULE_30__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_viewport_label_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }, !isMobile && warningPosition === 'top' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_warningPanel_jsx__WEBPACK_IMPORTED_MODULE_30__["default"], null), isDesktop && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_banner_jsx__WEBPACK_IMPORTED_MODULE_31__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_viewport_label_jsx__WEBPACK_IMPORTED_MODULE_24__["default"], null)), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-top__column"
   }, isMobile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_search_button_jsx__WEBPACK_IMPORTED_MODULE_18__["default"], {
     searchBtnRef: searchBtnRef,
@@ -739,10 +842,12 @@ function Container() {
     isNotObscure: false,
     label: legend.title,
     width: legend.width,
+    html: legend.html,
+    htmlAfter: legend.htmlAfter,
     instigatorRef: legendBtnRef,
     isInset: isLegendInset,
     isModal: isLegendModal,
-    isHideHeading: !hasLengedHeading
+    isHideHeading: !hasLegendHeading
   }, queryArea && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_draw_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_segments_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_layers_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
     hasSymbols: !!legend.display,
     hasInputs: true
@@ -767,7 +872,16 @@ function Container() {
     instigatorRef: viewportRef,
     isModal: true,
     isInset: true
-  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_keyboard_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)), activePanel === 'ERROR' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_panel_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_keyboard_jsx__WEBPACK_IMPORTED_MODULE_15__["default"], null)), activePanel === 'MODAL' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_panel_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+    className: "modal",
+    label: modal.label,
+    width: modal.width,
+    html: modal.html,
+    instigatorRef: viewportRef,
+    isModal: true,
+    isInset: true,
+    isNotObscure: true
+  }), activePanel === 'ERROR' && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_panel_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "error",
     maxWidth: "300px",
     label: error.label,
@@ -807,11 +921,13 @@ function Container() {
     isNotObscure: true,
     label: legend.title,
     width: legend.width,
+    html: legend.html,
+    htmlAfter: legend.htmlAfter,
     instigatorRef: legendBtnRef,
     isInset: isLegendInset,
     isFixed: isLegendFixed,
     isModal: isLegendModal,
-    isHideHeading: !hasLengedHeading
+    isHideHeading: !hasLegendHeading
   }, queryArea && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_draw_jsx__WEBPACK_IMPORTED_MODULE_13__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_segments_jsx__WEBPACK_IMPORTED_MODULE_10__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_layers_jsx__WEBPACK_IMPORTED_MODULE_11__["default"], {
     hasSymbols: true,
     hasInputs: true
@@ -2189,6 +2305,7 @@ function Panel(_ref) {
     width = _ref.width,
     maxWidth = _ref.maxWidth,
     html = _ref.html,
+    htmlAfter = _ref.htmlAfter,
     children = _ref.children;
   var _useApp = (0,_store_use_app__WEBPACK_IMPORTED_MODULE_2__.useApp)(),
     options = _useApp.options,
@@ -2314,7 +2431,11 @@ function Panel(_ref) {
     dangerouslySetInnerHTML: {
       __html: html
     }
-  }), children)), isModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+  }), children, htmlAfter && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    dangerouslySetInnerHTML: {
+      __html: htmlAfter
+    }
+  }))), isModal && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-c-panel-mask"
   }));
 }
@@ -6631,6 +6752,11 @@ var setSelected = function setSelected(state, payload) {
     hash: Date.now()
   });
 };
+var setBanner = function setBanner(state, payload) {
+  return _objectSpread(_objectSpread({}, state), {}, {
+    banner: payload
+  });
+};
 var setNextSelected = function setNextSelected(state, payload) {
   var featureId = state.featureId;
   var key = payload.key,
@@ -6644,7 +6770,6 @@ var setNextSelected = function setNextSelected(state, payload) {
     var down = current === total - 1 ? 0 : current + 1;
     var up = current > 0 ? current - 1 : total - 1;
     var nextIndex = key === 'PageDown' ? down : up;
-    nextIndex = nextIndex < features.length ? nextIndex : 0;
     featureId = ((_features$nextIndex = features[nextIndex]) === null || _features$nextIndex === void 0 ? void 0 : _features$nextIndex.id) || ((_features$ = features[0]) === null || _features$ === void 0 ? void 0 : _features$.id);
   }
   return _objectSpread(_objectSpread({}, state), {}, {
@@ -6670,7 +6795,8 @@ var open = function open(state, payload) {
     hasViewportLabel: false,
     targetMarker: payload === 'SEARCH' && null,
     featureId: payload === 'INFO' ? state.featureId : '',
-    hash: Date.now()
+    hash: Date.now(),
+    banner: null
   });
 };
 var close = function close(state) {
@@ -6694,6 +6820,17 @@ var setMode = function setMode(state, payload) {
     featureId: null,
     targetMarker: null,
     warningText: null
+  });
+};
+var setModal = function setModal(state, payload) {
+  return _objectSpread(_objectSpread({}, state), {}, {
+    activePanel: payload ? 'MODAL' : state.previousPanel,
+    activePanelHasFocus: true,
+    modal: payload ? {
+      width: payload.width,
+      label: payload.label,
+      html: payload.html
+    } : null
   });
 };
 var setIsDarkMode = function setIsDarkMode(state, payload) {
@@ -6754,6 +6891,7 @@ var actionsMap = {
   CLOSE: close,
   SET_MODE: setMode,
   SET_SELECTED: setSelected,
+  SET_BANNER: setBanner,
   SET_NEXT_SELECTED: setNextSelected,
   SET_IS_DARK_MODE: setIsDarkMode,
   SET_IS_TARGET_VISIBLE: setIsTargetVisible,
@@ -6762,7 +6900,8 @@ var actionsMap = {
   TOGGLE_KEY_EXPANDED: toggleKeyExpanded,
   TOGGLE_DRAW_EXPANDED: toggleDrawExpanded,
   TOGGLE_VIEWPORT_LABEL: toggleViewportLabel,
-  SET_WARNING_TEXT: setWarningText
+  SET_WARNING_TEXT: setWarningText,
+  SET_MODAL: setModal
 };
 
 /***/ }),
@@ -6833,10 +6972,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _lib_viewport__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../lib/viewport */ "./node_modules/@defra/flood-map/src/js/lib/viewport.js");
 /* harmony import */ var _store_constants__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ../store/constants */ "./node_modules/@defra/flood-map/src/js/store/constants.js");
 var _this = undefined;
-function _typeof(o) { "@babel/helpers - typeof"; return _typeof = "function" == typeof Symbol && "symbol" == typeof Symbol.iterator ? function (o) { return typeof o; } : function (o) { return o && "function" == typeof Symbol && o.constructor === Symbol && o !== Symbol.prototype ? "symbol" : typeof o; }, _typeof(o); }
-function _defineProperty(e, r, t) { return (r = _toPropertyKey(r)) in e ? Object.defineProperty(e, r, { value: t, enumerable: !0, configurable: !0, writable: !0 }) : e[r] = t, e; }
-function _toPropertyKey(t) { var i = _toPrimitive(t, "string"); return "symbol" == _typeof(i) ? i : i + ""; }
-function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e = t[Symbol.toPrimitive]; if (void 0 !== e) { var i = e.call(t, r || "default"); if ("object" != _typeof(i)) return i; throw new TypeError("@@toPrimitive must return a primitive value."); } return ("string" === r ? String : Number)(t); }
 
 
 
@@ -6868,11 +7003,11 @@ var parseDrawTools = function parseDrawTools(tools, defaultTools) {
   return validTools;
 };
 var initialState = function initialState(options) {
-  var _ref;
   var styles = options.styles,
     legend = options.legend,
     search = options.search,
     info = options.info,
+    banner = options.banner,
     queryArea = options.queryArea,
     hasAutoMode = options.hasAutoMode,
     feature = options.feature,
@@ -6887,11 +7022,13 @@ var initialState = function initialState(options) {
   var activePanel = getActivePanel(info, featureId, targetMarker, legend);
   var featureShape = (0,_lib_viewport__WEBPACK_IMPORTED_MODULE_2__.getFeatureShape)(feature);
   var shape = featureShape;
-  return _ref = {
+  return {
     isContainerReady: false,
     search: search,
     legend: legend,
     info: info,
+    banner: banner,
+    modal: null,
     queryArea: queryArea,
     segments: legend && (0,_lib_query__WEBPACK_IMPORTED_MODULE_0__.parseSegments)(legend.segments),
     layers: (legend === null || legend === void 0 ? void 0 : legend.key) && (0,_lib_query__WEBPACK_IMPORTED_MODULE_0__.parseLayers)(legend.key),
@@ -6904,8 +7041,18 @@ var initialState = function initialState(options) {
     pointerQuery: null,
     previousPanel: null,
     activePanel: activePanel,
-    activePanelHasFocus: false
-  }, _defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_defineProperty(_ref, "previousPanel", null), "hasViewportLabel", false), "mode", 'default'), "drawTools", parseDrawTools(drawTools, _store_constants__WEBPACK_IMPORTED_MODULE_3__.drawTools)), "shape", shape), "isFrameVisible", false), "isTargetVisible", false), "query", queryArea === null || queryArea === void 0 ? void 0 : queryArea.feature), "warningText", null), "warningPosition", warningPosition), _defineProperty(_ref, "hash", null);
+    activePanelHasFocus: false,
+    hasViewportLabel: false,
+    mode: 'default',
+    drawTools: parseDrawTools(drawTools, _store_constants__WEBPACK_IMPORTED_MODULE_3__.drawTools),
+    shape: shape,
+    isFrameVisible: false,
+    isTargetVisible: false,
+    query: queryArea === null || queryArea === void 0 ? void 0 : queryArea.feature,
+    warningText: null,
+    warningPosition: warningPosition,
+    hash: null
+  };
 };
 var reducer = function reducer(state, action) {
   var type = action.type,

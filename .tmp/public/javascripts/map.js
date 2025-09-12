@@ -447,6 +447,7 @@ var events = {
   SET_SEARCH: 'setsearch',
   SET_INFO: 'setinfo',
   SET_SELECTED: 'setselected',
+  SET_BANNER: 'setbanner',
   SET_INTERFACE_TYPE: 'setinterfacetype',
   MAP_QUERY: 'mapquery',
   MAP_CLICK: 'mapclick',
@@ -464,7 +465,7 @@ var defaults = {
 var settings = {
   breakpoints: {
     MAX_MOBILE: '640px',
-    MIN_DESKTOP: '835px'
+    MIN_DESKTOP: '1024px'
   },
   container: {
     buttonFirst: {
@@ -863,6 +864,7 @@ var FloodMap = /*#__PURE__*/function (_EventTarget) {
     _defineProperty(_this, "_search", void 0);
     _defineProperty(_this, "_info", void 0);
     _defineProperty(_this, "_selected", void 0);
+    _defineProperty(_this, "_banner", void 0);
     _this.el = document.getElementById(id);
 
     // Check capabilities
@@ -973,6 +975,9 @@ var FloodMap = /*#__PURE__*/function (_EventTarget) {
       }
       if (_this._selected) {
         _js_lib_eventbus_js__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(_this.props.parent, _js_store_constants_js__WEBPACK_IMPORTED_MODULE_0__.events.SET_SELECTED, _this._selected);
+      }
+      if (_this._banner) {
+        _js_lib_eventbus_js__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(_this.props.parent, _js_store_constants_js__WEBPACK_IMPORTED_MODULE_0__.events.SET_BANNER, _this._banner);
       }
     });
 
@@ -1132,6 +1137,7 @@ var FloodMap = /*#__PURE__*/function (_EventTarget) {
       this.root = null;
       this._selected = null;
       this._info = null;
+      this._banner = null;
       (0,_js_lib_dom_js__WEBPACK_IMPORTED_MODULE_3__.updateTitle)();
       (0,_js_lib_dom_js__WEBPACK_IMPORTED_MODULE_3__.toggleInert)();
     }
@@ -1154,6 +1160,15 @@ var FloodMap = /*#__PURE__*/function (_EventTarget) {
         return;
       }
       _js_lib_eventbus_js__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(this.props.parent, _js_store_constants_js__WEBPACK_IMPORTED_MODULE_0__.events.SET_SELECTED, this._selected);
+    }
+  }, {
+    key: "setBanner",
+    value: function setBanner(value) {
+      this._banner = value;
+      if (!this.isReady) {
+        return;
+      }
+      _js_lib_eventbus_js__WEBPACK_IMPORTED_MODULE_4__["default"].dispatch(this.props.parent, _js_store_constants_js__WEBPACK_IMPORTED_MODULE_0__.events.SET_BANNER, this._banner);
     }
   }, {
     key: "setModal",
