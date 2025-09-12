@@ -290,6 +290,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       country: 'england'
     },
     legend: {
+      htmlAfter: 'Injected HTML & a <a href="">hyperlink</a>',
       width: '280px',
       isVisible: false,
       //    title: 'Menu',
@@ -535,6 +536,16 @@ getDefraMapConfig().then((defraMapConfig) => {
         <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
       </div>`
     })
+    floodMap.setBanner({
+      message: 'Test message',
+      isDismissable: true
+    })
+    floodMap.setModal({
+      width: '500px',
+      label: 'Test',
+      html: 'Some html and a <a href="">hyperlink</a>'
+    })
+
   })
 
   document.addEventListener('click', e => {
