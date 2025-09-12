@@ -6,6 +6,11 @@
   Map – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
+{% block head %}
+<link href="/public/css/map.css" rel="stylesheet" type="text/css">
+<link href="/public/stylesheets/application.css" rel="stylesheet" type="text/css">
+{% endblock %}
+
 {% block bodyStart %}
 <script>
   document.body.classList.add('fm-js-hidden')
