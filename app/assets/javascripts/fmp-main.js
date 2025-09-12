@@ -519,7 +519,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       width: '360px',
       label: 'Map hints',
       html: `<div> 
-        <p class="govuk-body-s"><strong>How to query the map</p class="govuk-body-s"></strong>
+        </br><p class="govuk-body-s"><strong>How to query the map</p class="govuk-body-s"></strong>
         <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
         <p class="govuk-body">If using a keyboard, navigate to the point, centering the crosshair at the location, then press enter.</p>
         <p class="govuk-body-s"><strong>Keyboard map controls</p class="govuk-body-s"></strong>
