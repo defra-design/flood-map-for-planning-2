@@ -474,6 +474,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       helpLabel: 'How to draw a shape',
       keyLabel: 'Report area',
       html: '<h3 class="govuk-heading-m govuk-!-font-size-16">For an approximate site boundary</h3> <ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>use the red square to define the boundary of your site</li><li>zoom and move the map to position the square</li><li>click the ‘add boundary’ button to finish</li></ul></p></br><h3 class="govuk-heading-m govuk-!-font-size-16">For a more detailed site boundary:</h3><ul class="govuk-list govuk-list--bullet govuk-!-font-size-16"><li>click ‘edit shape’ and dots will appear on the square</li><li>move the dots to change the shape of the square until it matches your boundary</li><li>click the ‘add boundary’ button to finish</li></ul>',
+      drawTools: ['square'],
       minZoom: 21,
       // min zoom update to edit boundary zoom restriction
       maxZoom: 17,
