@@ -1,0 +1,10 @@
+#!/bin/bash
+git diff --name-status | grep v3.3.0.1 > /dev/null
+if [ $? -eq 0 ]
+then 
+  echo
+  echo "*** Commit not allowed - a change to a v3.3.0.1 file was detected *** "
+  echo
+  git diff --name-status
+  exit 1
+fi
