@@ -532,7 +532,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   // event to fire for 'Get site report' button to non dynamic results page
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
-      window.location = '/v1/results'
+      window.location = '/v3-3-0-1/results'
     }
   })
 

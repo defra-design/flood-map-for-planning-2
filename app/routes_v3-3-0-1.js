@@ -36,7 +36,7 @@ router.post('/location/catigories', function (req, res) {
 // dirceting to regions
 router.post('/options-radio-check', function (req, res) {
   if (req.body['triage']=="planning") {
-    res.redirect("/v1/location")
+    res.redirect("/v3-3-0-1/location")
 } else if (req.body['triage']=="buySell"){
     res.redirect("https://www.gov.uk/check-long-term-flood-risk")
 } else if (req.body['triage']=="pastFlood"){

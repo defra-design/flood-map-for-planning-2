@@ -118,13 +118,13 @@ router.get([
 
 
 //V1 with full summary page (including climate change)
-router.get('/v1-ccpd', function (req, res) {
+router.get('/v3-3-0-1', function (req, res) {
 	req.session.data = { mapType: 'v1PdCC' }
 	res.redirect(`/v3-3-0-1/start`)
 })
 
 //V2 with full summary page (including climate change)
-router.get('/v2-ccpd', function (req, res) {
+router.get('/v3-4-0-1', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
 	res.redirect(`/v3-4-0-1/start`)
 })
