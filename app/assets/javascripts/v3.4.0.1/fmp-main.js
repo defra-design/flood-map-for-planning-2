@@ -525,26 +525,26 @@ getDefraMapConfig().then((defraMapConfig) => {
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
 
-    floodMap.setInfo({
-      width: '360px',
-      label: 'Map hints',
-      html: `<div> 
-        </br><p class="govuk-body-s"><strong>How to query the map</p class="govuk-body-s"></strong>
-        <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
-        <p class="govuk-body">If using a keyboard, navigate to the point, centering the crosshair at the location, then press enter.</p>
-        <p class="govuk-body-s"><strong>Keyboard map controls</p class="govuk-body-s"></strong>
-        <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
-      </div>`
-    })
+    // floodMap.setInfo({
+    //   width: '360px',
+    //   label: 'Map hints',
+    //   html: `<div> 
+    //     </br><p class="govuk-body-s"><strong>How to query the map</p class="govuk-body-s"></strong>
+    //     <p class="govuk-body">If using a mouse click on a point to find out more about the flood data held on that location.</p>
+    //     <p class="govuk-body">If using a keyboard, navigate to the point, centering the crosshair at the location, then press enter.</p>
+    //     <p class="govuk-body-s"><strong>Keyboard map controls</p class="govuk-body-s"></strong>
+    //     <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
+    //   </div>`
+    // })
     floodMap.setBanner({
-      message: 'Test message',
+      message: 'Click on the map for information',
       isDismissable: true
     })
-    floodMap.setModal({
-      width: '500px',
-      label: 'Test',
-      html: 'Some html and a <a href="">hyperlink</a>'
-    })
+    // floodMap.setModal({
+    //   width: '500px',
+    //   label: 'Test',
+    //   html: 'Some html and a <a href="">hyperlink</a>'
+    // })
 
   })
 
