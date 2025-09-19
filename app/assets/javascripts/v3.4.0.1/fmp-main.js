@@ -233,7 +233,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   }
 
   const toggleVisibility = (type, mode, segments, layers, map, isDark) => {
-    const isDrawMode = ['frame', 'draw'].includes(mode)
+    const isDrawMode = ['frame', 'draw', 'drawMode'].includes(type)
     vtLayers.forEach((vtLayer, i) => {
       if (!vtLayer.q) {
         return
@@ -483,6 +483,10 @@ getDefraMapConfig().then((defraMapConfig) => {
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
         const isValid = area <= 1000000
+        console.log({
+          warningText: !isValid ? 'Area too big' : null,
+          allowShape: false
+        })
         return {
           warningText: !isValid ? 'Area too big' : null,
           allowShape: false
@@ -536,10 +540,10 @@ getDefraMapConfig().then((defraMapConfig) => {
     //     <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
     //   </div>`
     // })
-    floodMap.setBanner({
-      message: 'Click on the map for information',
-      isDismissable: true
-    })
+    // floodMap.setBanner({
+    //   message: 'Click on the map for information',
+    //   isDismissable: true
+    // })
     // floodMap.setModal({
     //   width: '500px',
     //   label: 'Test',
@@ -773,6 +777,7 @@ getDefraMapConfig().then((defraMapConfig) => {
 
     const title = getTitle(floodZone)
 
+    // floodMap.setBanner(null)
     floodMap.setInfo(
       renderInfo(renderList(listContents),
         getQueryExtraContent(vtLayer, floodZone),

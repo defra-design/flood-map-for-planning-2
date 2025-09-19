@@ -4,22 +4,8 @@ The flood map for planning service provides flood risk information for planning 
 
 This prototype is used for the user research of new designs and concepts. The prototype is versioned to track changes to the journey and design over time. Design notes against our design versions can be found within the  [Flood map for planning design history](https://flood-map-fp-design-history-cd4ad1ba07fa.herokuapp.com/).
 
+<!-- 
 
-
-For example:
-
-```
-whitehall is a Ruby on Rails app built on a MySQL database. It’s deployed in 2 modes: 
-'admin' for publishers to create and manage content
-'frontend' for rendering some content under https://www.gov.uk/government and https://www.gov.uk/world
-```
-
-Include any limitations up front so the user can evaluate whether the project meets all their needs. This includes any version information. 
-
-You can also add a table of contents to the start of your README to help users jump to the information they need. 
-
-## Share examples
-If applicable, consider adding screenshots or links to live examples of your project so users can see how other people use your project. The [GOV.UK Rummager README](https://github.com/alphagov/rummager) provides a screenshot of the public search API using the project. 
 
 ## Explain any prerequisites
 If applicable, list the items a user needs to be able to use your project, such as a certain version of a programming language. It can be useful to link to documentation on how to install these items. This could be under a heading such as `Before you start`.
@@ -28,22 +14,20 @@ If your project depends on other systems or projects, you should list these tech
 
 ```
 - [alphagov/other-repo]() - provides some downstream service
-- [redis]() - provides a backing service for work queues
+- [redis]() - provides a backing service for work queues -->
 ```
 
-## Explain how to get started
-Next tell the user how to get started with your project. This is often a numbered list on how to install the project and run it locally. List one action per step.
-
-Follow each step with example code if possible as some users will want to copy and paste directly from your README. 
-
-For example:
-
+## How to get started
 ```
-1. Install middleman.
+1. Install the project.
 
-`gem install middleman`
+`npm i`
 ```
+```
+2. Run.
 
+`npm run dev`
+```
 These instructions should help your users get to “hello world” or be able to run the project locally. If you want to provide more advanced documentation, you could:
 
 - add a configuration section to help the user amend the project for their own use 
