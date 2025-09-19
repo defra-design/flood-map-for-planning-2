@@ -282,6 +282,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
     tokenCallback: getEsriToken,
+    warningPosition: 'top',
     scaleBar: 'metric',
     styles: baseMapStyles,
     search: {
@@ -481,6 +482,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       // min zoom update to edit boundary zoom restriction
       maxZoom: 22,
       styles: digitisingMapStyles,
+      drawTools: ['square', 'polygon'],
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
         const isValid = area <= 1000000
