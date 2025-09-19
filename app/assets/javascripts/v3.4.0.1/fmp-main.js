@@ -293,7 +293,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       country: 'england'
     },
     legend: {
-      htmlAfter: 'Injected HTML & a <a href="">hyperlink</a>',
+      //htmlAfter: 'Injected HTML & a <a href="">hyperlink</a>',
       width: '280px',
       isVisible: false,
       //    title: 'Menu',
@@ -470,7 +470,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       ]
     },
     queryArea: {
-      collapse: 'collapse',
+      //collapse: 'collapse',
       heading: 'Get a boundary report',
       submitLabel: 'Get summary report',
       keyLabel: 'Report area',
