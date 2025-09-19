@@ -282,6 +282,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
     tokenCallback: getEsriToken,
+    scaleBar: 'metric',
     styles: baseMapStyles,
     search: {
       label: 'Search for a place',
