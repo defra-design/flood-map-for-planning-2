@@ -591,7 +591,9 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _inspector_jsx__WEBPACK_IMPORTED_MODULE_29__ = __webpack_require__(/*! ./inspector.jsx */ "./node_modules/@defra/flood-map/src/js/components/inspector.jsx");
 /* harmony import */ var _warningPanel_jsx__WEBPACK_IMPORTED_MODULE_30__ = __webpack_require__(/*! ./warningPanel.jsx */ "./node_modules/@defra/flood-map/src/js/components/warningPanel.jsx");
 /* harmony import */ var _banner_jsx__WEBPACK_IMPORTED_MODULE_31__ = __webpack_require__(/*! ./banner.jsx */ "./node_modules/@defra/flood-map/src/js/components/banner.jsx");
+/* harmony import */ var _scale_bar_jsx__WEBPACK_IMPORTED_MODULE_32__ = __webpack_require__(/*! ./scale-bar.jsx */ "./node_modules/@defra/flood-map/src/js/components/scale-bar.jsx");
 function _extends() { return _extends = Object.assign ? Object.assign.bind() : function (n) { for (var e = 1; e < arguments.length; e++) { var t = arguments[e]; for (var r in t) ({}).hasOwnProperty.call(t, r) && (n[r] = t[r]); } return n; }, _extends.apply(null, arguments); }
+
 
 
 
@@ -898,7 +900,7 @@ function Container() {
     className: "fm-o-logo"
   }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_logo_jsx__WEBPACK_IMPORTED_MODULE_12__["default"], null)), !isMobile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_actions_jsx__WEBPACK_IMPORTED_MODULE_25__["default"], null), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-o-scale"
-  })), info && activePanel === 'INFO' && isMobile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_panel_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_scale_bar_jsx__WEBPACK_IMPORTED_MODULE_32__["default"], null))), info && activePanel === 'INFO' && isMobile && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement(_panel_jsx__WEBPACK_IMPORTED_MODULE_9__["default"], {
     className: "info",
     label: info.label,
     html: info.html,
@@ -2517,6 +2519,179 @@ function Reset() {
     stroke: "currentColor",
     strokeWidth: "2"
   })));
+}
+
+/***/ }),
+
+/***/ "./node_modules/@defra/flood-map/src/js/components/scale-bar.jsx":
+/*!***********************************************************************!*\
+  !*** ./node_modules/@defra/flood-map/src/js/components/scale-bar.jsx ***!
+  \***********************************************************************/
+/***/ (function(__unused_webpack_module, __webpack_exports__, __webpack_require__) {
+
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": function() { return /* binding */ ScaleBar; }
+/* harmony export */ });
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var _store_use_app_js__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../store/use-app.js */ "./node_modules/@defra/flood-map/src/js/store/use-app.js");
+/* harmony import */ var _store_use_viewport_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../store/use-viewport.js */ "./node_modules/@defra/flood-map/src/js/store/use-viewport.js");
+function _createForOfIteratorHelper(r, e) { var t = "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (!t) { if (Array.isArray(r) || (t = _unsupportedIterableToArray(r)) || e && r && "number" == typeof r.length) { t && (r = t); var _n = 0, F = function F() {}; return { s: F, n: function n() { return _n >= r.length ? { done: !0 } : { done: !1, value: r[_n++] }; }, e: function e(r) { throw r; }, f: F }; } throw new TypeError("Invalid attempt to iterate non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); } var o, a = !0, u = !1; return { s: function s() { t = t.call(r); }, n: function n() { var r = t.next(); return a = r.done, r; }, e: function e(r) { u = !0, o = r; }, f: function f() { try { a || null == t.return || t.return(); } finally { if (u) throw o; } } }; }
+function _slicedToArray(r, e) { return _arrayWithHoles(r) || _iterableToArrayLimit(r, e) || _unsupportedIterableToArray(r, e) || _nonIterableRest(); }
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+function _unsupportedIterableToArray(r, a) { if (r) { if ("string" == typeof r) return _arrayLikeToArray(r, a); var t = {}.toString.call(r).slice(8, -1); return "Object" === t && r.constructor && (t = r.constructor.name), "Map" === t || "Set" === t ? Array.from(r) : "Arguments" === t || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(t) ? _arrayLikeToArray(r, a) : void 0; } }
+function _arrayLikeToArray(r, a) { (null == a || a > r.length) && (a = r.length); for (var e = 0, n = Array(a); e < a; e++) n[e] = r[e]; return n; }
+function _iterableToArrayLimit(r, l) { var t = null == r ? null : "undefined" != typeof Symbol && r[Symbol.iterator] || r["@@iterator"]; if (null != t) { var e, n, i, u, a = [], f = !0, o = !1; try { if (i = (t = t.call(r)).next, 0 === l) { if (Object(t) !== t) return; f = !1; } else for (; !(f = (e = i.call(t)).done) && (a.push(e.value), a.length !== l); f = !0); } catch (r) { o = !0, n = r; } finally { try { if (!f && null != t.return && (u = t.return(), Object(u) !== u)) return; } finally { if (o) throw n; } } return a; } }
+function _arrayWithHoles(r) { if (Array.isArray(r)) return r; }
+
+
+
+function ScaleBar() {
+  var _useViewport = (0,_store_use_viewport_js__WEBPACK_IMPORTED_MODULE_2__.useViewport)(),
+    resolution = _useViewport.resolution,
+    style = _useViewport.style,
+    isReady = _useViewport.isReady;
+  var _useApp = (0,_store_use_app_js__WEBPACK_IMPORTED_MODULE_1__.useApp)(),
+    options = _useApp.options;
+  var hasScaleBar = ['imperial', 'metric'].includes(options === null || options === void 0 ? void 0 : options.scaleBar);
+  var elRef = (0,react__WEBPACK_IMPORTED_MODULE_0__.useRef)(null);
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_0__.useState)({
+      width: 0,
+      label: ''
+    }),
+    _useState2 = _slicedToArray(_useState, 2),
+    scale = _useState2[0],
+    setScale = _useState2[1];
+  var MAX_WIDTH = 120;
+  var CSS_SCALE = 1;
+  var isVisible = scale.width >= 0;
+  var units = {
+    metric: [{
+      threshold: 1,
+      symbol: 'm',
+      unit: 'metre',
+      plural: 'metres',
+      factor: 1
+    }, {
+      threshold: 1000,
+      symbol: 'km',
+      unit: 'kilometre',
+      plural: 'kilometres',
+      factor: 0.001
+    }],
+    imperial: [{
+      threshold: 1609.344,
+      symbol: 'mi',
+      unit: 'mile',
+      plural: 'miles',
+      factor: 1 / 1609.344
+    }, {
+      threshold: 0.9144,
+      symbol: 'yd',
+      unit: 'yard',
+      plural: 'yards',
+      factor: 1 / 0.9144
+    }, {
+      threshold: 0.3048,
+      symbol: 'ft',
+      unit: 'foot',
+      plural: 'feet',
+      factor: 1 / 0.3048
+    }]
+  };
+  var getBestScale = function getBestScale(metersPerPx, maxWidthPx, unitSystem) {
+    var maxMeters = metersPerPx * maxWidthPx;
+    var options = units[unitSystem];
+
+    // Loop over options from *largest to smallest*
+    var _iterator = _createForOfIteratorHelper(options),
+      _step;
+    try {
+      for (_iterator.s(); !(_step = _iterator.n()).done;) {
+        var _step$value = _step.value,
+          symbol = _step$value.symbol,
+          unit = _step$value.unit,
+          plural = _step$value.plural,
+          factor = _step$value.factor;
+        var scaled = maxMeters * factor;
+        var rounded = getRounded(scaled);
+
+        // We want a label like "50 km", not "50000 m"
+        if (rounded >= 1 && rounded < 1000) {
+          var width = rounded / factor / metersPerPx;
+          if (width <= maxWidthPx) {
+            return {
+              label: rounded,
+              symbol: symbol,
+              width: width,
+              unit: rounded > 1 ? plural : unit
+            };
+          }
+        }
+      }
+
+      // Fallback: pick smallest unit
+    } catch (err) {
+      _iterator.e(err);
+    } finally {
+      _iterator.f();
+    }
+    var fallback = options[options.length - 1];
+    var fallbackScaled = maxMeters * fallback.factor;
+    var fallbackRounded = getRounded(fallbackScaled);
+    var fallbackUnit = fallbackRounded > 1 ? fallback.plural : fallback.unit;
+    return {
+      label: fallbackRounded,
+      symbol: fallback.symbol,
+      width: fallbackRounded / fallback.factor / metersPerPx,
+      unit: fallbackUnit
+    };
+  };
+  var getRounded = function getRounded(num) {
+    // Round to nice numbers: 1, 2, 5, 10, 20, 50, 100...
+    var pow10 = Math.pow(10, Math.floor(Math.log10(num)));
+    var d = num / pow10;
+    var rounded;
+    if (d >= 10) {
+      rounded = 10;
+    } else if (d >= 5) {
+      rounded = 5;
+    } else if (d >= 3) {
+      rounded = 3;
+    } else if (d >= 2) {
+      rounded = 2;
+    } else {
+      rounded = 1;
+    }
+    return rounded * pow10;
+  };
+  (0,react__WEBPACK_IMPORTED_MODULE_0__.useEffect)(function () {
+    if (hasScaleBar && resolution) {
+      var metersPerPx = resolution / CSS_SCALE;
+      var best = getBestScale(metersPerPx, MAX_WIDTH, options.scaleBar);
+      setScale(best);
+    }
+  }, [resolution]);
+  if (!hasScaleBar) {
+    return;
+  }
+  console.log(style);
+  return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, isVisible && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
+    className: "fm-c-scale".concat(!isReady ? ' fm-u-hidden' : '', " fm-c-scale--").concat(style === null || style === void 0 ? void 0 : style.name),
+    ref: elRef,
+    style: {
+      width: "".concat(scale.width, "px")
+    }
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fm-c-scale__label"
+  }, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fm-u-visually-hidden"
+  }, "Scale bar: "), scale.label, /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    "aria-hidden": true
+  }, " ", scale.symbol), /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("span", {
+    className: "fm-u-visually-hidden"
+  }, scale.unit))));
 }
 
 /***/ }),
@@ -5587,11 +5762,11 @@ var handleStyleChange = /*#__PURE__*/function () {
 }();
 var handleStationary = /*#__PURE__*/function () {
   var _ref2 = _asyncToGenerator(/*#__PURE__*/_regeneratorRuntime().mark(function _callee2(provider) {
-    var paddingBox, offsetTop, offsetLeft, offsetWidth, offsetHeight, _paddingBox$parentNod, parentOffsetTop, parentOffsetLeft, point, detail, dimensions;
+    var paddingBox, view, offsetTop, offsetLeft, offsetWidth, offsetHeight, _paddingBox$parentNod, parentOffsetTop, parentOffsetLeft, point, detail, dimensions, resolution;
     return _regeneratorRuntime().wrap(function _callee2$(_context2) {
       while (1) switch (_context2.prev = _context2.next) {
         case 0:
-          paddingBox = provider.paddingBox;
+          paddingBox = provider.paddingBox, view = provider.view;
           offsetTop = paddingBox.offsetTop, offsetLeft = paddingBox.offsetLeft, offsetWidth = paddingBox.offsetWidth, offsetHeight = paddingBox.offsetHeight;
           _paddingBox$parentNod = paddingBox.parentNode, parentOffsetTop = _paddingBox$parentNod.offsetTop, parentOffsetLeft = _paddingBox$parentNod.offsetLeft;
           point = [offsetLeft + parentOffsetLeft + offsetWidth / 2, offsetTop + parentOffsetTop + offsetHeight / 2];
@@ -5601,12 +5776,14 @@ var handleStationary = /*#__PURE__*/function () {
         case 7:
           detail = _context2.sent;
           dimensions = (0,_query__WEBPACK_IMPORTED_MODULE_0__.getDimensions)(provider);
+          resolution = view.resolution;
           provider.dispatchEvent(new CustomEvent('update', {
             detail: _objectSpread(_objectSpread({}, detail), {}, {
-              dimensions: dimensions
+              dimensions: dimensions,
+              resolution: resolution
             })
           }));
-        case 10:
+        case 11:
         case "end":
           return _context2.stop();
       }
@@ -5624,10 +5801,13 @@ var handleMoveStart = function handleMoveStart(provider) {
   }));
 };
 var handleMove = function handleMove(provider) {
+  var view = provider.view;
   var dimensions = (0,_query__WEBPACK_IMPORTED_MODULE_0__.getDimensions)(provider);
+  var resolution = view.resolution;
   provider === null || provider === void 0 || provider.dispatchEvent(new CustomEvent('move', {
     detail: {
-      dimensions: dimensions
+      dimensions: dimensions,
+      resolution: resolution
     }
   }));
 };
@@ -7316,6 +7496,14 @@ function _toPrimitive(t, r) { if ("object" != _typeof(t) || !t) return t; var e 
 
 
 
+var ready = function ready(state, payload) {
+  var _state$style;
+  var zoom = payload.zoom;
+  return _objectSpread(_objectSpread({}, state), {}, {
+    zoom: zoom,
+    isReady: !((_state$style = state.style) !== null && _state$style !== void 0 && _state$style.url) || zoom
+  });
+};
 var update = function update(state, payload) {
   var oPlace = state.oPlace,
     originalZoom = state.originalZoom,
@@ -7337,6 +7525,7 @@ var update = function update(state, payload) {
   var isUpdate = ['GEOLOC', 'DATA'].includes(action) || isPanZoom;
   var dimensions = payload.dimensions ? (0,_lib_viewport__WEBPACK_IMPORTED_MODULE_0__.parseDimensions)(payload.dimensions, payload === null || payload === void 0 ? void 0 : payload.units) : {};
   var status = (0,_lib_viewport__WEBPACK_IMPORTED_MODULE_0__.getStatus)(action, isPanZoom, place, state, payload);
+  var resolution = payload.resolution;
   return _objectSpread(_objectSpread(_objectSpread({}, state), ['INIT', 'GEOLOC'].includes(action) && original), {}, {
     place: place,
     bounds: bounds,
@@ -7347,7 +7536,8 @@ var update = function update(state, payload) {
     isUpdate: isUpdate,
     isMoving: false,
     action: null,
-    dimensions: dimensions
+    dimensions: dimensions,
+    resolution: resolution
   });
 };
 var updatePlace = function updatePlace(state, payload) {
@@ -7373,9 +7563,11 @@ var moveStart = function moveStart(state, payload) {
   });
 };
 var move = function move(state, payload) {
-  var dimensions = payload.dimensions ? (0,_lib_viewport__WEBPACK_IMPORTED_MODULE_0__.parseDimensions)(payload.dimensions) : {};
+  var dimensions = payload.dimensions,
+    resolution = payload.resolution;
   return _objectSpread(_objectSpread({}, state), {}, {
-    dimensions: dimensions
+    dimensions: dimensions ? (0,_lib_viewport__WEBPACK_IMPORTED_MODULE_0__.parseDimensions)(dimensions) : {},
+    resolution: resolution
   });
 };
 var reset = function reset(state) {
@@ -7516,6 +7708,7 @@ var toggleShortcuts = function toggleShortcuts(state, payload) {
   });
 };
 var actionsMap = {
+  READY: ready,
   UPDATE: update,
   UPDATE_PLACE: updatePlace,
   MOVE_START: moveStart,
@@ -7640,6 +7833,7 @@ var initialState = function initialState(_ref) {
     bounds: bounds,
     center: center,
     zoom: zoom,
+    resolution: null,
     originalMinZoom: minZoom,
     originalMaxZoom: maxZoom,
     minZoom: minZoom,
@@ -7663,7 +7857,8 @@ var initialState = function initialState(_ref) {
     isUserInitiated: false,
     hasShortcuts: true,
     padding: null,
-    timestamp: Date.now()
+    timestamp: Date.now(),
+    isReady: false
   };
 };
 var reducer = function reducer(state, action) {
