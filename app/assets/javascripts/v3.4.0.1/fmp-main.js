@@ -541,10 +541,10 @@ getDefraMapConfig().then((defraMapConfig) => {
     //     <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
     //   </div>`
     // })
-    // floodMap.setBanner({
-    //   message: 'Click on the map for information',
-    //   isDismissable: true
-    // })
+    floodMap.setBanner({
+      message: 'Click on the map for information',
+      isDismissable: true
+    })
     // floodMap.setModal({
     //   width: '500px',
     //   label: 'Test',
