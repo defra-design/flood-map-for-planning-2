@@ -669,7 +669,7 @@ function Container() {
   var isLegendFixed = isDesktop && !isLegendInset;
   var isLegendModal = !isLegendFixed && (!isLegendInset || isLegendInset && isKeyExpanded);
   var hasLegendHeading = !(legend.display === 'inset' || isLegendFixed && isPage);
-  var isQueryMode = ['frame', 'draw'].includes(mode);
+  var isQueryMode = ['frame', 'vertex'].includes(mode);
   var hasButtons = !(isMobile && activePanel === 'SEARCH');
   var hasInspector = activePanel === 'INSPECTOR' || activePanel === 'STYLE' && previousPanel === 'INSPECTOR';
   var handleColorSchemeMQ = function handleColorSchemeMQ() {
