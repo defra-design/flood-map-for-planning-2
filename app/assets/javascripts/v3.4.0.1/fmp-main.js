@@ -483,17 +483,24 @@ getDefraMapConfig().then((defraMapConfig) => {
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
         const isValid = area <= 1000000
+        const rings = geometry.rings[0]
+        const isSquare = rings.length === 5
+          && rings[0][1] == rings[1][1] 
+          && rings[2][1] == rings[3][1]
+          && rings[1][0] == rings[2][0] 
+          && rings[3][0] == rings[4][0]
+        const warningText = isSquare ? 'Shape is too large. Zoom in to make smaller' : 'The shape is too big'
         console.log({
           geometry,
-          warningText: !isValid ? 'Area too big' : null,
+          warningText: !isValid ? warningText : null,
           allowShape: false
         })
         return {
-          warningText: !isValid ? 'Area too big' : null,
+          warningText: !isValid ? warningText : null,
           allowShape: false
         }
       }
-    },
+     },
     queryLocation: {
       layers: vtLayers.map(vtLayer => vtLayer.name)
     }
