@@ -278,7 +278,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     height: '100%',
     hasGeoLocation: false,
     framework: 'esri',
-    helpURL: 'https://google.com',
+    helpURL: '#',
     symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers, symbols.noData],
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
@@ -542,7 +542,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     //   </div>`
     // })
     floodMap.setBanner({
-      message: 'Click on the map for information',
+      message: 'Click on the map for more information',
       isDismissable: true
     })
     // floodMap.setModal({
