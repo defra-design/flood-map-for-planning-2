@@ -482,6 +482,10 @@ getDefraMapConfig().then((defraMapConfig) => {
       drawTools: ['square', 'polygon'],
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
+        // We seem to be getting this when we are not editing a shape = one to ask Dan about.
+        if (!area || !geometry) {
+          return {}
+        }
         const isValid = area <= 3000000
         const rings = geometry?.rings?.[0]
         const isSquare = rings && rings.length === 5
@@ -495,6 +499,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           warningText: !isValid ? warningText : null,
           allowShape: false
         })
+        mapState.shapeIsValid = isValid
         return {
           warningText: !isValid ? warningText : null,
           allowShape: true
@@ -552,28 +557,32 @@ getDefraMapConfig().then((defraMapConfig) => {
       message: 'Click the map for more information',
       isDismissable: true
     })
-    floodMap.setModal({
-      width: '500px',
-      label: 'Boundary area is too large for a data request',
-      html: `
-    <p>
-      Edit the boundary area to under 300 hectares to get a more accurate flood risk summary, 
-      and to be able to request a Product 4 for further flood data.
-    </p>
-    <div class="govuk-button-group">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Edit boundary
-      </button>
-      <a class="govuk-link" href="results">Continue to limited data</a>
-    </div>
-  `
-    })
-
   })
 
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
-      window.location = '/' + window.APP_FOLDER + '/results'
+      if (!mapState.shapeIsValid) {
+        floodMap.setModal({
+        width: '500px',
+        label: 'Boundary area is too large for a data request',
+        html: `
+          <p>
+            Edit the boundary area to under 300 hectares to get a more accurate flood risk summary, 
+            and to be able to request a Product 4 for further flood data.
+          </p>
+          <div class="govuk-button-group">
+            <button id="edit-shape-clicker" type="submit" class="govuk-button" data-module="govuk-button">
+              Edit boundary
+            </button>
+            <a class="govuk-link" href="results">Continue to limited data</a>
+          </div>
+        `})
+      } else {
+        window.location = '/' + window.APP_FOLDER + '/results'
+      }
+    } else if (e.target.id === 'edit-shape-clicker') {
+      // Ideally we want a hook from the MC here that lets us call the action directly
+      Array.from(document.querySelectorAll('.fm-c-menu__item button')).filter((button) => button.innerText === 'Edit shape')[0].click()
     }
   })
 
