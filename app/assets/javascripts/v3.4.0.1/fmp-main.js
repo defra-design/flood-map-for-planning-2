@@ -497,7 +497,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         })
         return {
           warningText: !isValid ? warningText : null,
-          allowShape: false
+          allowShape: true
         }
       }
      },
