@@ -27,7 +27,7 @@ If your project depends on other systems or projects, you should list these tech
 2. Run.
 
 `npm run dev`
-```
+<!-- ```
 These instructions should help your users get to “hello world” or be able to run the project locally. If you want to provide more advanced documentation, you could:
 
 - add a configuration section to help the user amend the project for their own use 
@@ -65,4 +65,4 @@ All open repositories [must have a copyright licence](https://gds-way.cloudapps.
 
 Use the [MIT License](https://opensource.org/licenses/MIT) if your repository contains software code. This license also covers documentation in the repository about that code.
 
-Use ©Crown copyright and the [Open Government Licence (OGL)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3) if documentation is displayed to users using the software code in your repository. An example of this is technical documentation.
+Use ©Crown copyright and the [Open Government Licence (OGL)](http://www.nationalarchives.gov.uk/doc/open-government-licence/version/3) if documentation is displayed to users using the software code in your repository. An example of this is technical documentation. -->

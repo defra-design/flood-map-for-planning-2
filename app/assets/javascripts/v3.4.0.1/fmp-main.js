@@ -482,14 +482,14 @@ getDefraMapConfig().then((defraMapConfig) => {
       drawTools: ['square', 'polygon'],
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
-        const isValid = area <= 1000000
-        const rings = geometry.rings[0]
-        const isSquare = rings.length === 5
+        const isValid = area <= 3000000
+        const rings = geometry?.rings?.[0]
+        const isSquare = rings && rings.length === 5
           && rings[0][1] == rings[1][1] 
           && rings[2][1] == rings[3][1]
           && rings[1][0] == rings[2][0] 
           && rings[3][0] == rings[4][0]
-        const warningText = isSquare ? 'Shape is too large. Zoom in to make smaller' : 'The shape is too big'
+        const warningText = isSquare ? 'The square is too big. 300 ha max' : 'The area is too big. 300 ha max'
         console.log({
           geometry,
           warningText: !isValid ? warningText : null,
@@ -549,14 +549,25 @@ getDefraMapConfig().then((defraMapConfig) => {
     //   </div>`
     // })
     floodMap.setBanner({
-      message: 'Click on the map for more information',
+      message: 'Click the map for more information',
       isDismissable: true
     })
-    // floodMap.setModal({
-    //   width: '500px',
-    //   label: 'Test',
-    //   html: 'Some html and a <a href="">hyperlink</a>'
-    // })
+    floodMap.setModal({
+      width: '500px',
+      label: 'Boundary area is too large for a data request',
+      html: `
+    <p>
+      Edit the boundary area to under 300 hectares to get a more accurate flood risk summary, 
+      and to be able to request a Product 4 for further flood data.
+    </p>
+    <div class="govuk-button-group">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Edit boundary
+      </button>
+      <a class="govuk-link" href="results">Continue to limited data</a>
+    </div>
+  `
+    })
 
   })
 
