@@ -562,22 +562,8 @@ getDefraMapConfig().then((defraMapConfig) => {
 console.log(document.referrer)
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
-      if (!mapState.shapeIsValid) {
-        floodMap.setModal({
-        width: '500px',
-        label: 'Your boundary is too big to order flood risk data',
-        html: `
-
-        <p class="govuk-body" style="font-size:1.1rem">The boundary must be under 300 hectares to order detailed flood risk information (product 4)</p>
-
-
-          <div class="govuk-button-group">
-            <button id="edit-shape-clicker" type="submit" shapeType="valid" class="govuk-button" data-module="govuk-button">
-              Edit boundary
-            </button>
-            <a class="govuk-link" href="300ha">Continue to limited data</a>
-          </div>
-        `})
+      if (!mapState.shapeIsValid) { 
+        window.location = '/300ha'
       } else {
         window.location = '/shapeValid'
       }
