@@ -8,6 +8,18 @@ var servicename = "Flood map for planning";
 var backlink = '<a href="javascript:history.back()" class="govuk-back-link">Back</a>'
 
 // Add your routes here
+
+// set up route variable results page option
+router.get('/300ha', function (req, res) {
+	req.session.data = { shapeType: '300ha' }
+	res.redirect("/" + folder + "/results")
+})
+// set up route variable results page option
+router.get('/shapeValid', function (req, res) {
+	req.session.data = { shapeType: 'valid' }
+	res.redirect("/" + folder + "/results")
+})
+
 router.use(function (req, res, next) {
   res.locals.folder = folder
   res.locals.backlink = backlink

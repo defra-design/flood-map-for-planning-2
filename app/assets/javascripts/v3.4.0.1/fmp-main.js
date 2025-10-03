@@ -493,7 +493,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           && rings[2][1] == rings[3][1]
           && rings[1][0] == rings[2][0] 
           && rings[3][0] == rings[4][0]
-        const warningText = isSquare ? 'The square is too big. 300 ha max' : 'The area is too big. 300 ha max'
+        const warningText = isSquare ? 'Boundary is too big. 300 hectares max.' : 'Boundary is too big. 300 hectares max.'
         console.log({
           geometry,
           warningText: !isValid ? warningText : null,
@@ -558,27 +558,29 @@ getDefraMapConfig().then((defraMapConfig) => {
       isDismissable: true
     })
   })
-
+// if (document.referrer)
+console.log(document.referrer)
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
       if (!mapState.shapeIsValid) {
         floodMap.setModal({
         width: '500px',
-        label: 'Boundary area is too large for a data request',
+        label: 'Your boundary is too big to order flood risk data',
         html: `
-          <p>
-            Edit the boundary area to under 300 hectares to get a more accurate flood risk summary, 
-            and to be able to request a Product 4 for further flood data.
-          </p>
+         <p class="govuk-body" style="font-size:1.1rem">Zoom in to make the boundary smaller.</p>
+
+        <p class="govuk-body" style="font-size:1.1rem">The boundary must be under 300 hectares to order detailed flood risk information (product 4)</p>
+
+
           <div class="govuk-button-group">
-            <button id="edit-shape-clicker" type="submit" class="govuk-button" data-module="govuk-button">
+            <button id="edit-shape-clicker" type="submit" shapeType="valid" class="govuk-button" data-module="govuk-button">
               Edit boundary
             </button>
-            <a class="govuk-link" href="results">Continue to limited data</a>
+            <a class="govuk-link" href="300ha">Continue to limited data</a>
           </div>
         `})
       } else {
-        window.location = '/' + window.APP_FOLDER + '/results'
+        window.location = '/shapeValid'
       }
     } else if (e.target.id === 'edit-shape-clicker') {
       // Ideally we want a hook from the MC here that lets us call the action directly
