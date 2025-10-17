@@ -17,7 +17,7 @@ class ColorViewerSliders {
 
     this.sliders = {};
 
-    this.svgWidth = 235 //310;
+    this.svgWidth = 250 //310;
     this.svgHeight = 50;
     this.borderWidth = 2;
 
@@ -25,7 +25,7 @@ class ColorViewerSliders {
 
     this.railX = 15;
     this.railY = 26;
-    this.railWidth = 200 // 275;
+    this.railWidth = 230 // 275;
     this.railHeight = 14;
 
     this.thumbHeight = this.railHeight;
@@ -215,7 +215,18 @@ class ColorViewerSliders {
     pos = this.railX + offsetX - (this.focusWidth - this.thumbWidth) / 2;
     slider.focusNode.setAttribute('x', pos);
 
-    this.updateColorBox();
+    // this.updateColorBox();
+    if (this.onUpdateCallback) {
+      this.onUpdateCallback()
+    }
+  }
+
+  onUpdate(onUpdateCallback) {
+    this.onUpdateCallback = () => {
+      const opacity = this.sliders.opacity.sliderNode.getAttribute('aria-valuenow')
+
+      onUpdateCallback(opacity / 100)
+    }
   }
 
   onSliderKeyDown(event) {

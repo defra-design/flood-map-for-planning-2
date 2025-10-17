@@ -14,6 +14,8 @@ let VectorTileLayer, FeatureLayer
 const GroupLayer = undefined // Add in when we can work out how to import it
 
 let visibleVtLayer
+let opacitySlider
+let opacity = 0.75
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
@@ -181,7 +183,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       q: 'mainr'
     }
   ]
-  const opacity = 0.75
+  
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
     vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
@@ -253,6 +255,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       const allLayers = layer.allLayers || [layer]
       allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
       visibleVtLayer = isVisible ? layer : visibleVtLayer
+      layer.vtLayer = vtLayer
     })
     fLayers.forEach(fLayer => {
       const layer = map.findLayerById(fLayer.name)
@@ -553,7 +556,19 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    initialiseSlider()
+    opacitySlider = initialiseSlider()
+    opacitySlider.onUpdate((newOpacity) => {
+      opacity = newOpacity
+      // toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark)
+      console.log('opacity:', newOpacity)
+      console.log('visibleVtLayer:', visibleVtLayer)
+      if (visibleVtLayer) {
+        // const id = visibleVtLayer.name
+        // const layer = floodMap.map.findLayerById(id)
+        const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
+        allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, false))
+      }
+    })
 
     // floodMap.setInfo({
     //   width: '360px',
@@ -571,8 +586,8 @@ getDefraMapConfig().then((defraMapConfig) => {
       isDismissable: true
     })
   })
-// if (document.referrer)
-console.log(document.referrer)
+
+  console.log('document.referrer', document.referrer)
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
       if (!mapState.shapeIsValid) { 
