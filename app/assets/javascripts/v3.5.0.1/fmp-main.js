@@ -181,7 +181,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       q: 'mainr'
     }
   ]
-  const opacity = 0.1
+  const opacity = 0.75
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
     vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
@@ -268,6 +268,13 @@ getDefraMapConfig().then((defraMapConfig) => {
   const osAccountNumber = 'AC0000807064' // FCRM-5609 is raised to add this to a constants file
   const { baseMapStyles, digitisingMapStyles } = setUpBaseMaps(defraMapConfig, osAccountNumber)
 
+  // set to 'none' to globally turn these off
+  const collapseFeatures = 'collapse'
+  const collapseBoundary = 'collapse'
+  const collapseDataSets = 'collapse'
+  const collapseClimateChange = 'collapse'
+  const collapseAEP = 'collapse'
+
   const floodMap = new FloodMap('map', {
     behaviour: 'inline',
     place: 'England',
@@ -302,7 +309,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       keyDisplay: 'min',
       segments: [{
         heading: 'Datasets',
-        //      collapse: 'collapse',
+        collapse: collapseDataSets,
         items: [
           {
             id: window.FMP_MAP_VERSION === 1 ? 'fz' : 'fzpd',
@@ -338,6 +345,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'tf',
         heading: terms.labels.climateChange,
+        collapse: collapseClimateChange,
         parentIds: window.FMP_MAP_VERSION === 1 ? ['fz'] : ['DONT_SHOW'],
         items: [
           {
@@ -353,6 +361,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'tf',
         heading: terms.labels.climateChange,
+        collapse: collapseClimateChange,
         parentIds: ['rsd', 'rsu'],
         items: [
           {
@@ -368,7 +377,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af1',
         heading: terms.labels.annualLikelihood,
-        //      collapse: 'collapse',
+        collapse: collapseAEP,
         parentIds: ['rsd'],
         items: [
           {
@@ -388,7 +397,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'sw1',
         heading: terms.labels.annualLikelihood,
-        //      collapse: 'collapse',
+        collapse: collapseAEP,
         parentIds: ['sw'],
         items: [
           {
@@ -408,7 +417,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       {
         id: 'af2',
         heading: terms.labels.annualLikelihood,
-        //      collapse: 'collapse',
+        collapse: collapseAEP,
         parentIds: ['rsu'],
         items: [
           {
@@ -425,6 +434,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       key: [
         {
           heading: terms.labels.mapFeatures,
+          collapse: collapseFeatures,
           parentIds: ['fzpd'],
           items: [
             keyItemDefinitions.floodZone2,
@@ -436,6 +446,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         },
         {
           heading: terms.labels.mapFeatures,
+          collapse: collapseFeatures,
           parentIds: ['fzcl'],
           items: [
             keyItemDefinitions.floodZone2PresentDay,
@@ -449,8 +460,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         },
         {
           heading: terms.labels.mapFeatures,
+          collapse: collapseFeatures,
           parentIds: ['rsd', 'rsu', 'sw'],
-          //        collapse: 'collapse',
           items: [
             keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
@@ -460,8 +471,8 @@ getDefraMapConfig().then((defraMapConfig) => {
         },
         {
           heading: terms.labels.mapFeatures,
+          collapse: collapseFeatures,
           parentIds: ['mo'],
-          //      collapse: 'collapse',
           items: [
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
@@ -471,7 +482,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       ]
     },
     queryArea: {
-      //collapse: 'collapse',
+      collapse: collapseBoundary,
       heading: 'Get a boundary report',
       submitLabel: 'Get summary report',
       keyLabel: 'Report area',
