@@ -16,7 +16,7 @@ const observer = new window.MutationObserver((mutations) => {
     return sliderNode
   }, null)
   if (sliderElement) {
-    createOpacitySlider(sliderElement)
+    createOpacitySlider(sliderElement, initialOpacity)
   }
 })
 
@@ -26,13 +26,18 @@ const createOpacitySlider = (sliderElement, opacity) => {
   opacitySlider.onUpdate(onUpdateOpacity)
 }
 
-const initialiseSlider =  (callback, opacity) => {
-  onUpdateOpacity = callback
+const initialiseSlider =  (mapComponentCallback, opacity) => {
+  onUpdateOpacity = mapComponentCallback
   initialOpacity = opacity
   const sliderElement = document.getElementById(id)
   if (sliderElement) { // desktop element should exist
     createOpacitySlider(sliderElement, initialOpacity)
   } else { // mobile requires an observer
+    const mobileOnUpdateOpacity = (capacity) => {
+      initialOpacity = capacity
+      mapComponentCallback(capacity)
+    }
+    onUpdateOpacity = mobileOnUpdateOpacity
     const mapMiddleElement = document.querySelector('.fm-o-middle')
     observer.observe(mapMiddleElement, { attributes: false, childList: true, characterData: false, subtree: false })
   }

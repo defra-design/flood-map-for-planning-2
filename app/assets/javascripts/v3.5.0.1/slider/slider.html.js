@@ -6,9 +6,9 @@ export default `
         Layer opacity
       </span>
     </span>
-    <div class="color-slider opacity" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="75" aria-valuemax="100" aria-labelledby="opacity-control">
+    <div class="color-slider opacity" role="slider" tabindex="0" aria-valuemin="0" aria-valuenow="50" aria-valuemax="100" aria-labelledby="opacity-control">
       <svg width="0" height="0" aria-hidden="true">
-        <text class="value" x="0" y="0">75</text>
+        <text class="value" x="0" y="0">50</text>
         <rect class="rail" x="0" y="0" rx="0" width="0" height="0"></rect>
         <rect class="fill" x="0" y="0" rx="0" width="0" height="0"></rect>
         <rect class="thumb" x="0" y="0" rx="0" width="0" height="0"></rect>
