@@ -6,6 +6,7 @@ import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
+import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 const FloodMap = window.defra.FloodMap
 
 let VectorTileLayer, FeatureLayer
@@ -180,14 +181,14 @@ getDefraMapConfig().then((defraMapConfig) => {
       q: 'mainr'
     }
   ]
-
+  const opacity = 0.1
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
     vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         const fillColour = paintProperties[isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
-        // layerPaintProperties['fill-opacity'] = 0.75
+        layerPaintProperties['fill-opacity'] = opacity
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
@@ -293,7 +294,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       country: 'england'
     },
     legend: {
-      //htmlAfter: 'Injected HTML & a <a href="">hyperlink</a>',
+      htmlAfter: sliderMarkUp,
       width: '280px',
       isVisible: false,
       //    title: 'Menu',
@@ -541,6 +542,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
+    initialiseSlider()
 
     // floodMap.setInfo({
     //   width: '360px',
