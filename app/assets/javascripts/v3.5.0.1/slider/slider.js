@@ -17,7 +17,7 @@ class ColorViewerSliders {
 
     this.sliders = {};
 
-    this.svgWidth = 310;
+    this.svgWidth = 235 //310;
     this.svgHeight = 50;
     this.borderWidth = 2;
 
@@ -25,7 +25,7 @@ class ColorViewerSliders {
 
     this.railX = 15;
     this.railY = 26;
-    this.railWidth = 275;
+    this.railWidth = 200 // 275;
     this.railHeight = 14;
 
     this.thumbHeight = this.railHeight;
@@ -36,9 +36,10 @@ class ColorViewerSliders {
     this.focusWidth = 36;
     this.focusHeight = 48;
 
-    this.initSliderRefs(this.sliders, 'red');
-    this.initSliderRefs(this.sliders, 'green');
-    this.initSliderRefs(this.sliders, 'blue');
+    this.initSliderRefs(this.sliders, 'opacity');
+    // this.initSliderRefs(this.sliders, 'red');
+    // this.initSliderRefs(this.sliders, 'green');
+    // this.initSliderRefs(this.sliders, 'blue');
 
     document.body.addEventListener(
       'pointerup',
@@ -156,6 +157,10 @@ class ColorViewerSliders {
       } else {
         domNode = domNode.parentNode.querySelector('.color-slider');
       }
+    }
+
+    if (this.sliders.opacity.sliderNode === domNode) {
+      return this.sliders.opacity;
     }
 
     if (this.sliders.red.sliderNode === domNode) {
@@ -318,30 +323,6 @@ class ColorViewerSliders {
     slider.sliderNode.focus();
   }
 
-  getColorHex() {
-    var r = parseInt(
-      this.sliders.red.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-    var g = parseInt(
-      this.sliders.green.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-    var b = parseInt(
-      this.sliders.blue.sliderNode.getAttribute('aria-valuenow')
-    ).toString(16);
-
-    if (r.length === 1) {
-      r = '0' + r;
-    }
-    if (g.length === 1) {
-      g = '0' + g;
-    }
-    if (b.length === 1) {
-      b = '0' + b;
-    }
-
-    return '#' + r + g + b;
-  }
-
   getColorRGB() {
     var r = this.sliders.red.sliderNode.getAttribute('aria-valuenow');
     var g = this.sliders.green.sliderNode.getAttribute('aria-valuenow');
@@ -351,27 +332,10 @@ class ColorViewerSliders {
   }
 
   updateColorBox() {
-    if (this.colorBoxNode) {
-      this.colorBoxNode.style.backgroundColor = this.getColorHex();
-    }
-
-    if (this.colorValueHexNode) {
-      this.colorValueHexNode.value = this.getColorHex();
-    }
-
     if (this.colorValueRGBNode) {
       this.colorValueRGBNode.value = this.getColorRGB();
     }
   }
 }
-
-// // Initialize ColorViewerSliders on the page
-// window.addEventListener('load', function () {
-//   var cps = document.querySelectorAll('.color-viewer-sliders');
-//   for (let i = 0; i < cps.length; i++) {
-//     let s = new ColorViewerSliders(cps[i]);
-//     s.init();
-//   }
-// });
 
 export { ColorViewerSliders }
