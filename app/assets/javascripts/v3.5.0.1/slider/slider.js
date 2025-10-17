@@ -3,13 +3,13 @@
  *   This content is licensed according to the W3C Software License at
  *   https://www.w3.org/Consortium/Legal/2015/copyright-software-and-document
  *
- *   File:   slider-color-viewer.js
+ *   File:   slider-opacity-viewer.js
  *
- *   Desc:   ColorViewerSliders widget that implements ARIA Authoring Practices
+ *   Desc:   OpacitySlider widget that implements ARIA Authoring Practices
  */
 
-// Create ColorViewerSliders that contains value, valuemin, valuemax, and valuenow
-class ColorViewerSliders {
+// Create OpacitySlider that contains value, valuemin, valuemax, and valuenow
+class OpacitySlider {
   constructor(domNode, initialValue) {
     this.domNode = domNode
     this.initialValue = initialValue * 100
@@ -44,7 +44,7 @@ class ColorViewerSliders {
 
   initSliderRefs(sliderRef, name) {
     sliderRef[name] = {}
-    var n = this.domNode.querySelector('.color-slider.' + name)
+    var n = this.domNode.querySelector('.opacity-slider.' + name)
     sliderRef[name].sliderNode = n
 
     sliderRef[name].svgNode = n.querySelector('svg')
@@ -67,14 +67,14 @@ class ColorViewerSliders {
     sliderRef[name].focusNode.setAttribute('y', this.focusY)
     sliderRef[name].focusNode.setAttribute('rx', this.rectRadius)
 
-    sliderRef[name].railNode = n.querySelector('.color-slider .rail')
+    sliderRef[name].railNode = n.querySelector('.opacity-slider .rail')
     sliderRef[name].railNode.setAttribute('x', this.railX)
     sliderRef[name].railNode.setAttribute('y', this.railY)
     sliderRef[name].railNode.setAttribute('width', this.railWidth)
     sliderRef[name].railNode.setAttribute('height', this.railHeight)
     sliderRef[name].railNode.setAttribute('rx', this.rectRadius)
 
-    sliderRef[name].fillNode = n.querySelector('.color-slider .fill')
+    sliderRef[name].fillNode = n.querySelector('.opacity-slider .fill')
     sliderRef[name].fillNode.setAttribute('x', this.railX)
     sliderRef[name].fillNode.setAttribute('y', this.railY)
     sliderRef[name].fillNode.setAttribute('width', this.railWidth)
@@ -111,11 +111,11 @@ class ColorViewerSliders {
   }
 
   getSlider(domNode) {
-    if (!domNode.classList.contains('color-slider')) {
+    if (!domNode.classList.contains('opacity-slider')) {
       if (domNode.tagName.toLowerCase() === 'rect') {
         domNode = domNode.parentNode.parentNode
       } else {
-        domNode = domNode.parentNode.querySelector('.color-slider')
+        domNode = domNode.parentNode.querySelector('.opacity-slider')
       }
     }
 
@@ -284,4 +284,4 @@ class ColorViewerSliders {
   }
 }
 
-export { ColorViewerSliders }
+export { OpacitySlider }

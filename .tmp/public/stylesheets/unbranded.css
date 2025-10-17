@@ -8780,11 +8780,11 @@ p + .govuk-heading-s,
   display: none;
 }
 
-.color-viewer-sliders label {
+.opacity-viewer-sliders label {
   display: block;
 }
 
-.color-viewer-sliders .color-box {
+.opacity-viewer-sliders .opacity-box {
   width: 200px;
   height: 200px;
   border: black solid medium;
@@ -8793,16 +8793,16 @@ p + .govuk-heading-s,
   forced-color-adjust: none;
 }
 
-.color-viewer-sliders .color-info {
+.opacity-viewer-sliders .opacity-info {
   padding-top: 5px;
 }
 
-.color-viewer-sliders .color-info label {
+.opacity-viewer-sliders .opacity-info label {
   margin-top: 0.25em;
   display: block;
 }
 
-.color-slider {
+.opacity-slider {
   margin: 0 0 0 -12px;
   margin-bottom: 1em;
   padding: 2px 0;
@@ -8811,91 +8811,79 @@ p + .govuk-heading-s,
   outline: none;
 }
 
-.color-slider div,
-.color-slider svg {
+.opacity-slider div,
+.opacity-slider svg {
   display: block;
   width: 250px;
 }
 
-.color-slider-label {
+.opacity-slider-label {
   margin: 0;
   padding: 0;
   font-weight: bold;
 }
 
-.color-slider .value {
+.opacity-slider .value {
   color: currentcolor;
   fill: currentcolor;
 }
 
-.color-slider .valueBackground {
+.opacity-slider .valueBackground {
   fill: white;
   stroke-width: 0;
 }
 
-.color-slider .rail {
+.opacity-slider .rail {
   fill: #bbb;
   stroke: currentcolor;
   stroke-width: 2px;
   opacity: 0.8;
 }
 
-.color-slider .fill {
+.opacity-slider .fill {
   stroke-width: 0;
   opacity: 0.5;
   pointer-events: none;
 }
 
-.color-slider.red .fill {
-  fill: red;
-}
-
-.color-slider.green .fill {
-  fill: green;
-}
-
-.color-slider.blue .fill {
-  fill: blue;
-}
-
-.color-slider .thumb {
+.opacity-slider .thumb {
   fill: #666;
   stroke: currentcolor;
   stroke-width: 2px;
 }
 
-.color-slider .focus {
+.opacity-slider .focus {
   fill: transparent;
   stroke: transparent;
   stroke-width: 2px;
 }
 
-.color-slider:focus .value,
-.color-slider:hover .value {
+.opacity-slider:focus .value,
+.opacity-slider:hover .value {
   font-weight: bold;
 }
 
-.color-slider:focus .fill,
-.color-slider:hover .fill {
+.opacity-slider:focus .fill,
+.opacity-slider:hover .fill {
   opacity: 1;
 }
 
-.color-slider:focus .rail,
-.color-slider:hover .rail {
+.opacity-slider:focus .rail,
+.opacity-slider:hover .rail {
   fill: transparent;
   stroke: currentcolor;
   opacity: 1;
 }
 
-.color-slider:focus .thumb,
-.color-slider:hover .thumb {
+.opacity-slider:focus .thumb,
+.opacity-slider:hover .thumb {
   fill: #ddd;
   stroke: currentcolor;
   opacity: 1;
 }
 
-.color-slider:focus .focus,
-.color-slider:hover .focus {
+.opacity-slider:focus .focus,
+.opacity-slider:hover .focus {
   stroke: currentcolor;
 }
 

@@ -1,5 +1,5 @@
 import sliderMarkUp from './slider.html.js'
-import { ColorViewerSliders } from './slider.js'
+import { OpacitySlider } from './slider.js'
 const id = 'opacity-control'
 let opacitySlider
 let onUpdateOpacity
@@ -21,7 +21,7 @@ const observer = new window.MutationObserver((mutations) => {
 })
 
 const createOpacitySlider = (sliderElement, opacity) => {
-  opacitySlider = new ColorViewerSliders(sliderElement, opacity)
+  opacitySlider = new OpacitySlider(sliderElement, opacity)
   opacitySlider.init()
   opacitySlider.onUpdate(onUpdateOpacity)
 }
