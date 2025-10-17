@@ -545,6 +545,14 @@ getDefraMapConfig().then((defraMapConfig) => {
     console.log('mapState: ', mapState)
   }
 
+  const onUpdateOpacity = (newOpacity) => {
+    opacity = newOpacity
+    if (visibleVtLayer) {
+      const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
+      allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, false))
+    }
+  }
+
   // Component is ready and we have access to map
   // We can listen for map events now, such as 'loaded'
   floodMap.addEventListener('ready', async e => {
@@ -556,19 +564,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    opacitySlider = initialiseSlider()
-    opacitySlider.onUpdate((newOpacity) => {
-      opacity = newOpacity
-      // toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark)
-      console.log('opacity:', newOpacity)
-      console.log('visibleVtLayer:', visibleVtLayer)
-      if (visibleVtLayer) {
-        // const id = visibleVtLayer.name
-        // const layer = floodMap.map.findLayerById(id)
-        const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
-        allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, false))
-      }
-    })
+    opacitySlider = initialiseSlider(onUpdateOpacity, opacity)
 
     // floodMap.setInfo({
     //   width: '360px',
