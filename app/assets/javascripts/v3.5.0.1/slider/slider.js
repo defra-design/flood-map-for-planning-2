@@ -50,37 +50,37 @@ class OpacitySlider {
 
   initSliderRefs(sliderRef, name) {
     sliderRef[name] = {}
-    var n = this.domNode.querySelector('.opacity-slider.' + name)
-    sliderRef[name].sliderNode = n
+    const node = this.domNode.querySelector('.opacity-slider.' + name)
+    sliderRef[name].sliderNode = node
 
-    sliderRef[name].svgNode = n.querySelector('svg')
+    sliderRef[name].svgNode = node.querySelector('svg')
     sliderRef[name].svgNode.setAttribute('width', this.svgWidth)
     sliderRef[name].svgNode.setAttribute('height', this.svgHeight)
     sliderRef[name].svgPoint = sliderRef[name].svgNode.createSVGPoint()
 
-    sliderRef[name].valueNode = n.querySelector('.value')
+    sliderRef[name].valueNode = node.querySelector('.value')
     sliderRef[name].valueNode.setAttribute('y', this.valueY)
 
-    sliderRef[name].thumbNode = n.querySelector('.thumb')
+    sliderRef[name].thumbNode = node.querySelector('.thumb')
     sliderRef[name].thumbNode.setAttribute('width', this.thumbWidth)
     sliderRef[name].thumbNode.setAttribute('height', this.thumbHeight)
     sliderRef[name].thumbNode.setAttribute('y', this.railY)
     sliderRef[name].thumbNode.setAttribute('rx', this.rectRadius)
 
-    sliderRef[name].focusNode = n.querySelector('.focus')
+    sliderRef[name].focusNode = node.querySelector('.focus')
     sliderRef[name].focusNode.setAttribute('width', this.focusWidth - this.borderWidth)
     sliderRef[name].focusNode.setAttribute('height', this.focusHeight - this.borderWidth)
     sliderRef[name].focusNode.setAttribute('y', this.focusY)
     sliderRef[name].focusNode.setAttribute('rx', this.rectRadius)
 
-    sliderRef[name].railNode = n.querySelector('.opacity-slider .rail')
+    sliderRef[name].railNode = node.querySelector('.opacity-slider .rail')
     sliderRef[name].railNode.setAttribute('x', this.railX)
     sliderRef[name].railNode.setAttribute('y', this.railY)
     sliderRef[name].railNode.setAttribute('width', this.railWidth)
     sliderRef[name].railNode.setAttribute('height', this.railHeight)
     sliderRef[name].railNode.setAttribute('rx', this.rectRadius)
 
-    sliderRef[name].fillNode = n.querySelector('.opacity-slider .fill')
+    sliderRef[name].fillNode = node.querySelector('.opacity-slider .fill')
     sliderRef[name].fillNode.setAttribute('x', this.railX)
     sliderRef[name].fillNode.setAttribute('y', this.railY)
     sliderRef[name].fillNode.setAttribute('width', this.railWidth)
@@ -90,7 +90,7 @@ class OpacitySlider {
 
   // Initialize slider
   init() {
-    for (var slider in this.sliders) {
+    for (let slider in this.sliders) {
       if (this.sliders[slider].sliderNode.tabIndex != 0) {
         this.sliders[slider].sliderNode.tabIndex = 0
       }
@@ -142,27 +142,23 @@ class OpacitySlider {
   }
 
   moveSliderTo(slider, value) {
-    var pos, offsetX, valueWidth
-    var valueMin = this.getValueMin(slider)
-    var valueNow = this.getValueNow(slider)
-    var valueMax = this.getValueMax(slider)
+    const valueMin = this.getValueMin(slider)
+    const valueMax = this.getValueMax(slider)
+    const valueNow = Math.min(Math.max(value, valueMin), valueMax)
 
-    value = Math.min(Math.max(value, valueMin), valueMax)
+    slider.sliderNode.setAttribute('aria-valuenow', valueNow)
 
-    valueNow = value
-    slider.sliderNode.setAttribute('aria-valuenow', value)
-
-    offsetX = Math.round(
+    const offsetX = Math.round(
       (valueNow * (this.railWidth - this.thumbWidth)) / (valueMax - valueMin)
     )
 
-    pos = this.railX + offsetX
+    let pos = this.railX + offsetX
 
     slider.thumbNode.setAttribute('x', pos)
     slider.fillNode.setAttribute('width', offsetX + this.rectRadius)
 
     slider.valueNode.textContent = valueNow
-    valueWidth = slider.valueNode.getBBox().width
+    const valueWidth = slider.valueNode.getBBox().width
 
     pos = this.railX + offsetX - (valueWidth - this.thumbWidth) / 2
     slider.valueNode.setAttribute('x', pos)
@@ -184,13 +180,12 @@ class OpacitySlider {
   }
 
   onSliderKeyDown(event) {
-    var flag = false
+    let flag = false
 
-    var slider = this.getSlider(event.currentTarget)
-
-    var valueMin = this.getValueMin(slider)
-    var valueNow = this.getValueNow(slider)
-    var valueMax = this.getValueMax(slider)
+    const slider = this.getSlider(event.currentTarget)
+    const valueMin = this.getValueMin(slider)
+    const valueNow = this.getValueNow(slider)
+    const valueMax = this.getValueMax(slider)
 
     switch (event.key) {
       case 'Left':
@@ -272,13 +267,13 @@ class OpacitySlider {
 
   // handle click event on the rail
   onRailClick(event) {
-    var slider = this.getSlider(event.currentTarget)
+    const slider = this.getSlider(event.currentTarget)
 
-    var x = this.getSVGPoint(slider, event).x
-    var min = this.getValueMin(slider)
-    var max = this.getValueMax(slider)
-    var diffX = x - this.railX
-    var value = snap(Math.round((diffX * (max - min)) / this.railWidth))
+    const x = this.getSVGPoint(slider, event).x
+    const min = this.getValueMin(slider)
+    const max = this.getValueMax(slider)
+    const diffX = x - this.railX
+    const value = snap(Math.round((diffX * (max - min)) / this.railWidth))
     this.moveSliderTo(slider, value)
 
     event.preventDefault()
