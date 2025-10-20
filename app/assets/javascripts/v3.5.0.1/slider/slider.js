@@ -9,6 +9,12 @@
  */
 
 // Create OpacitySlider that contains value, valuemin, valuemax, and valuenow
+
+const SNAP_VALUE = 5
+const PAGE_DOWN_VALUE = 10
+
+const snap = (value) => Math.round(value / SNAP_VALUE) * SNAP_VALUE
+
 class OpacitySlider {
   constructor(domNode, initialValue) {
     this.domNode = domNode
@@ -96,7 +102,6 @@ class OpacitySlider {
       this.sliders[slider].valueNode.addEventListener('pointerdown', this.onThumbPointerDown.bind(this))
       this.sliders[slider].sliderNode.addEventListener('pointermove', this.onThumbPointerMove.bind(this))
 
-      // this.moveSliderTo(this.sliders[slider], this.getValueNow(this.sliders[slider]))
       this.moveSliderTo(this.sliders[slider], this.initialValue)
     }
   }
@@ -192,7 +197,7 @@ class OpacitySlider {
       case 'ArrowLeft':
       case 'Down':
       case 'ArrowDown':
-        this.moveSliderTo(slider, valueNow - 1)
+        this.moveSliderTo(slider, valueNow - SNAP_VALUE)
         flag = true
         break
 
@@ -200,17 +205,17 @@ class OpacitySlider {
       case 'ArrowRight':
       case 'Up':
       case 'ArrowUp':
-        this.moveSliderTo(slider, valueNow + 1)
+        this.moveSliderTo(slider, valueNow + SNAP_VALUE)
         flag = true
         break
 
       case 'PageDown':
-        this.moveSliderTo(slider, valueNow - 10)
+        this.moveSliderTo(slider, valueNow - PAGE_DOWN_VALUE)
         flag = true
         break
 
       case 'PageUp':
-        this.moveSliderTo(slider, valueNow + 10)
+        this.moveSliderTo(slider, valueNow + PAGE_DOWN_VALUE)
         flag = true
         break
 
@@ -257,7 +262,7 @@ class OpacitySlider {
       let min = this.getValueMin(this.pointerSlider)
       let max = this.getValueMax(this.pointerSlider)
       let diffX = x - this.railX
-      let value = Math.round((diffX * (max - min)) / this.railWidth)
+      let value = snap(Math.round((diffX * (max - min)) / this.railWidth))
       this.moveSliderTo(this.pointerSlider, value)
 
       event.preventDefault()
@@ -273,7 +278,7 @@ class OpacitySlider {
     var min = this.getValueMin(slider)
     var max = this.getValueMax(slider)
     var diffX = x - this.railX
-    var value = Math.round((diffX * (max - min)) / this.railWidth)
+    var value = snap(Math.round((diffX * (max - min)) / this.railWidth))
     this.moveSliderTo(slider, value)
 
     event.preventDefault()
