@@ -8902,6 +8902,13 @@ p + .govuk-heading-s,
   stroke: currentcolor;
 }
 
+#help-banner {
+  position: fixed;
+  top: 75px;
+  width: 430px;
+  left: calc(50vw - 75px);
+}
+
 .flood-map-target .govuk-body-s {
   margin-bottom: 0;
 }

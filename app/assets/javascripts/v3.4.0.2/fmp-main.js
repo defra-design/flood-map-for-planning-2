@@ -6,6 +6,8 @@ import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers } from './vtLayers.js'
+import { renderBanner } from '../common/banner.js'
+
 const FloodMap = window.defra.FloodMap
 
 let VectorTileLayer, FeatureLayer
@@ -295,7 +297,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     legend: {
       //htmlAfter: 'Injected HTML & a <a href="">hyperlink</a>',
       width: '280px',
-      isVisible: false,
+      isVisible: true,
       //    title: 'Menu',
       keyWidth: '360px',
       keyDisplay: 'min',
@@ -553,10 +555,9 @@ getDefraMapConfig().then((defraMapConfig) => {
     //     <p class="govuk-body">Tab to the map and press Alt+K to view keyboard controls</p>
     //   </div>`
     // })
-    floodMap.setBanner({
-      message: 'Click on the map for more information',
-      isDismissable: true
-    })
+    // A quick way to permanently hide the banner is to change this line to renderBanner(false) 
+    renderBanner(mapState) 
+    // floodMap.setBanner({ message: 'Click on the map for more information', isDismissable: true })
   })
 // if (document.referrer)
 console.log(document.referrer)
@@ -582,6 +583,8 @@ console.log(document.referrer)
     }
     const map = floodMap.map
     toggleVisibility(type, mode, segments, layers, map, mapState.isDark)
+
+    renderBanner({...mapState, type, mode})
   })
 
   const initPointerMove = () => {
