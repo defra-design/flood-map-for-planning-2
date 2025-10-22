@@ -128,7 +128,7 @@ router.get('/v3-3-0-1', function (req, res) {
 //V2 with full summary page (including climate change)
 router.get('/v3-4-0-1', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-4-0-1/start`)
+	res.redirect(`/v3-4-0-1/map?cz=539418.1,285892,15.895717`)
 })
 
 //V2 with full summary page (including climate change)

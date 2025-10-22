@@ -13,20 +13,20 @@ const addLocationPageRoutes = (router, folder) => {
 
     if (type === 'placePost') {
       const query = req.body.locationPlacePost
-      res.redirect('/' + folder + '/map')
+      res.redirect('/' + folder + '/map?cz=504621.1,118518,15.912013')
 
     } else if (type === 'ngr') {
       const query = req.body.locationNGR
-      res.redirect('/' + folder + '/map')
+      res.redirect('/' + folder + '/map?cz=504621.1,118518,15.912013')
 
     } else if (type === 'eastNorth') {
       const e = req.body.easting
       const n = req.body.northing
-      res.redirect('/' + folder + '/map')
+      res.redirect('/' + folder + '/map?cz=504621.1,118518,15.912013')
 
     } else {
       // fallback if no selection
-      res.redirect('/' + folder + '/map')
+      res.redirect('/' + folder + '/map?cz=504621.1,118518,15.912013')
     }
   })
 }
