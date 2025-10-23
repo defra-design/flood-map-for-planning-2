@@ -72,7 +72,35 @@ const keyItemDefinitions = {
   floodExtents: {
     label: 'Flood extent',
     fill: getKeyItemFill(colours.floodExtents)
-  }
+  },
+  surfaceWater0: {
+    label: '>2300mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[0])
+  },
+  surfaceWater1: {
+    label: '1200-2300mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[1])
+  },
+  surfaceWater2: {
+    label: '900-1200mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[2])
+  },
+  surfaceWater3: {
+    label: '600-900mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[3])
+  },
+  surfaceWater4: {
+    label: '300-600mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[4])
+  },
+  surfaceWater5: {
+    label: '150-300mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[5])
+  },
+  surfaceWater6: {
+    label: '<150mm',
+    fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
+  },
 }
 
 // floodZoneSymbolIndex is used to infer the _symbol value sent to the query feature when a layer is clicked
@@ -197,7 +225,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       }
     })
     if (vtLayer.setStyleProperties) {
-      vtLayer.setStyleProperties(vectorTileLayer, isDark)
+      vtLayer.setStyleProperties(vectorTileLayer, isDark, opacity)
     }
 
     // Un comment this section to infer the styleLayers for each vector layer
@@ -221,7 +249,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         const vectorTileLayer = new VectorTileLayer({
           id: vtLayer.name,
           url: getVectorTileUrl(vtLayer.name),
-          opacity: 0.75,
+          opacity: 1,
           visible: false
         })
         floodMap.map.add(vectorTileLayer)
@@ -471,7 +499,14 @@ getDefraMapConfig().then((defraMapConfig) => {
             keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
-            keyItemDefinitions.mainRivers
+            keyItemDefinitions.mainRivers,
+            keyItemDefinitions.surfaceWater0,
+            keyItemDefinitions.surfaceWater1,
+            keyItemDefinitions.surfaceWater2,
+            keyItemDefinitions.surfaceWater3,
+            keyItemDefinitions.surfaceWater4,
+            keyItemDefinitions.surfaceWater5,
+            keyItemDefinitions.surfaceWater6,
           ]
         },
         {
@@ -551,7 +586,13 @@ getDefraMapConfig().then((defraMapConfig) => {
     opacity = newOpacity
     if (visibleVtLayer) {
       const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
-      allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, false))
+      allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, mapState.isDark))
+      if (visibleVtLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
+        const ccpLayers = floodMap.map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
+        ccpLayers.forEach((ccpLayer) => {
+          setStylePaintProperties(visibleVtLayer.vtLayer, ccpLayer, mapState.isDark)
+        })
+      }
     }
   }
 

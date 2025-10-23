@@ -7,14 +7,43 @@ const surfaceWaterStyleLayers = [
   ['Risk of Flooding from Surface Water Depth > 300mm/1', colours.nonFloodZone],
   ['Risk of Flooding from Surface Water Depth > 600mm/1', colours.nonFloodZone],
   ['Risk of Flooding from Surface Water Depth > 900mm/1', colours.nonFloodZone],
-  ['Risk of Flooding from Surface Water Depth > 1200mm/1', colours.nonFloodZone]
+  ['Risk of Flooding from Surface Water Depth > 1200mm/1', colours.nonFloodZone],
+]
+const surfaceWaterWithDepthStyleLayersLow = [
+  ['Surface Water Spatial Planning 1 in 1000 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+]
+
+const surfaceWaterWithDepthStyleLayersMedium = [
+  ['Surface Water Spatial Planning 1 in 100 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+]
+
+const surfaceWaterWithDepthStyleLayersHigh = [
+  ['Surface Water Spatial Planning 1 in 30 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
 ]
 
 const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer) => {
   const floodZonesLayer = new VectorTileLayer({
     id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
     url: getVectorTileUrl('Flood_Zones_2_and_3_Rivers_and_Sea'),
-    opacity: 0.75,
+    opacity: 1,
     visible: false
     // visible: true // Add IN When GroupLayer can be made available
   })
@@ -22,7 +51,7 @@ const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer
   const floodZonesCCLayer = new VectorTileLayer({
     id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
     url: getVectorTileUrl('Flood_Zones_2_and_3_Rivers_and_Sea_CCP1'),
-    opacity: 0.75,
+    opacity: 1,
     visible: false
     // visible: true // Add IN When GroupLayer can be made available
   })
@@ -38,7 +67,7 @@ const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer
   return [floodZonesCCLayer, floodZonesLayer]
 }
 
-const setFloodZoneCCGroupLayerStyles = (vectorTileLayer, isDark) => {
+const setFloodZoneCCGroupLayerStyles = (vectorTileLayer, isDark, opacity) => {
   // Show / Hide the image layer for Flood_Zones_2_and_3_Rivers_and_Sea_CCP1
   vectorTileLayer.setStyleLayerVisibility('Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/1', isDark ? 'none' : 'visible')
   vectorTileLayer.setStyleLayerVisibility('Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/2', isDark ? 'visible' : 'none')
@@ -47,6 +76,7 @@ const setFloodZoneCCGroupLayerStyles = (vectorTileLayer, isDark) => {
   if (lineLayerPaintProperties) {
     const lineColour = colours.floodZoneNoData[isDark ? 1 : 0]
     lineLayerPaintProperties['line-color'] = lineColour
+    lineLayerPaintProperties['line-opacity'] = opacity
     vectorTileLayer.setPaintProperties(lineStyleLayerName, lineLayerPaintProperties)
   }
 }
@@ -158,21 +188,21 @@ const vtLayers = [
   //   additionalInfo: terms.additionalInfo.rsLow
   // },
   {
-    name: 'Risk_of_Flooding_from_Surface_Water_Low',
+    name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
     q: 'swlr',
-    styleLayers: surfaceWaterStyleLayers,
+    styleLayers: surfaceWaterWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   },
   {
-    name: 'Risk_of_Flooding_from_Surface_Water_Medium',
+    name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
     q: 'swmr',
-    styleLayers: surfaceWaterStyleLayers,
+    styleLayers: surfaceWaterWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   },
   {
-    name: 'Risk_of_Flooding_from_Surface_Water_High',
+    name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
     q: 'swhr',
-    styleLayers: surfaceWaterStyleLayers,
+    styleLayers: surfaceWaterWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }
 ]
