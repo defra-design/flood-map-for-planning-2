@@ -496,7 +496,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       // min zoom update to edit boundary zoom restriction
       maxZoom: 22,
       styles: digitisingMapStyles,
-      drawTools: ['square', 'polygon'],
+      drawTools: ['polygon', 'square'],
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
         // We seem to be getting this when we are not editing a shape = one to ask Dan about.
