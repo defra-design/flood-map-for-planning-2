@@ -237,19 +237,19 @@ const vtLayers = [
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
-    q: 'swcclr',
+    q: 'swcllr',
     styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
-    q: 'swccmr',
+    q: 'swclmr',
     styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
-    q: 'swcchr',
+    q: 'swclhr',
     styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }
