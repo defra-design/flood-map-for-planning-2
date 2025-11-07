@@ -74,31 +74,31 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.floodExtents)
   },
   surfaceWater0: {
-    label: '>2300mm',
+    label: '>2.3',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[0])
   },
   surfaceWater1: {
-    label: '1200-2300mm',
+    label: '1.2',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[1])
   },
   surfaceWater2: {
-    label: '900-1200mm',
+    label: '0.9',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[2])
   },
   surfaceWater3: {
-    label: '600-900mm',
+    label: '0.6',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[3])
   },
   surfaceWater4: {
-    label: '300-600mm',
+    label: '0.3',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[4])
   },
   surfaceWater5: {
-    label: '150-300mm',
+    label: '0.15',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[5])
   },
   surfaceWater6: {
-    label: '<150mm',
+    label: '<0.15',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
   },
 }
@@ -502,7 +502,7 @@ getDefraMapConfig().then((defraMapConfig) => {
             {
                 label: 'Maximum depth in metres',
                 display: 'ramp',
-                numLabels: 3,
+                numLabels: 1,
                 items: [
                   keyItemDefinitions.surfaceWater0,
                   keyItemDefinitions.surfaceWater1,
