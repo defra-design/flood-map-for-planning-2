@@ -464,6 +464,47 @@ getDefraMapConfig().then((defraMapConfig) => {
         ]
       },
       {
+        id: 'sw2',
+        heading: terms.labels.depth,
+        collapse: collapseAEP,
+        parentIds: ['XX'],
+        items: [
+          { 
+            id: 'depthAll',
+            label: terms.depth.depthAll 
+          },
+          { 
+            id: 'depth150',
+            label: terms.depth.depth150 
+          },
+          { 
+            id: 'depth300',
+            label: terms.depth.depth300 
+          },
+          { 
+            id: 'depth600',
+            label: terms.depth.depth600 
+          },
+          { 
+            id: 'depth900',
+            label: terms.depth.depth900 
+          },
+          { 
+            id: 'depth1200',
+            label: terms.depth.depth1200 
+          },
+          { 
+            id: 'depth2300',
+            label: terms.depth.depth2300 
+          },
+          { 
+            id: 'depthOver2300',
+            label: terms.depth.depthOver2300
+          }
+         
+        ]
+      },
+      {
         id: 'af2',
         heading: terms.labels.annualLikelihood,
         collapse: collapseAEP,
