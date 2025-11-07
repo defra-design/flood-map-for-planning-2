@@ -408,6 +408,22 @@ getDefraMapConfig().then((defraMapConfig) => {
         ]
       },
       {
+        id: 'tf',
+        heading: terms.labels.climateChange,
+        collapse: collapseClimateChange,
+        parentIds: ['sw'],
+        items: [
+          {
+            id: 'pd',
+            label: terms.labels.presentDay
+          },
+          {
+            id: 'cl',
+            label: 'Years ? to ?'
+          }
+        ]
+      },
+      {
         id: 'af1',
         heading: terms.labels.annualLikelihood,
         collapse: collapseAEP,

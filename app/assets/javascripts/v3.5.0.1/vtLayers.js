@@ -39,6 +39,36 @@ const surfaceWaterWithDepthStyleLayersHigh = [
   ['Surface Water Spatial Planning 1 in 30 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
 ]
 
+const surfaceWaterCCWithDepthStyleLayersLow = [
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+]
+
+const surfaceWaterCCWithDepthStyleLayersMedium = [
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+]
+
+const surfaceWaterCCWithDepthStyleLayersHigh = [
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+]
+
 const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer) => {
   const floodZonesLayer = new VectorTileLayer({
     id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
@@ -189,20 +219,38 @@ const vtLayers = [
   // },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
-    q: 'swlr',
+    q: 'swpdlr',
     styleLayers: surfaceWaterWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
-    q: 'swmr',
+    q: 'swpdmr',
     styleLayers: surfaceWaterWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
-    q: 'swhr',
+    q: 'swpdhr',
     styleLayers: surfaceWaterWithDepthStyleLayersHigh,
+    likelihoodchanceLabel: terms.likelihoodchance.swHigh
+  },
+  {
+    name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
+    q: 'swcclr',
+    styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
+    likelihoodchanceLabel: terms.likelihoodchance.swLow
+  },
+  {
+    name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
+    q: 'swccmr',
+    styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
+    likelihoodchanceLabel: terms.likelihoodchance.swMedium
+  },
+  {
+    name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
+    q: 'swcchr',
+    styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }
 ]
