@@ -220,39 +220,52 @@ const vtLayers = [
   {
     name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
     q: 'swpdlr',
+    layerVisibilityFilter: ['sw', 'pd', 'lr'],
     styleLayers: surfaceWaterWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
     q: 'swpdmr',
+    layerVisibilityFilter: ['sw', 'pd', 'mr'],
     styleLayers: surfaceWaterWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
     q: 'swpdhr',
+    layerVisibilityFilter: ['sw', 'pd', 'hr'],
     styleLayers: surfaceWaterWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
     q: 'swcllr',
+    layerVisibilityFilter: ['sw', 'cl', 'lr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
     q: 'swclmr',
+    layerVisibilityFilter: ['sw', 'cl', 'mr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   },
   {
     name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
     q: 'swclhr',
+    layerVisibilityFilter: ['sw', 'cl', 'hr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }
 ]
+const isLayerVisible = (segments, vtLayer) => {
+  const segmentsToMatch = vtLayer.layerVisibilityFilter
+  if (segmentsToMatch) {
+    return segmentsToMatch.every(segment => segments.includes(segment))
+  }
+  return segments.join('') === vtLayer.q
+}
 
-export { vtLayers }
+export { vtLayers, isLayerVisible }

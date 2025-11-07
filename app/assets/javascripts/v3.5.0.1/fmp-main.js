@@ -5,7 +5,7 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
-import { vtLayers } from './vtLayers.js'
+import { vtLayers, isLayerVisible } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
 
@@ -273,7 +273,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       }
       const id = vtLayer.name
       const layer = map.findLayerById(id)
-      const isVisible = !isDrawMode && segments.join('') === vtLayer.q
+      const isVisible = !isDrawMode && isLayerVisible(segments, vtLayer)
       layer.visible = isVisible
       if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
         const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
@@ -467,7 +467,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         id: 'sw2',
         heading: terms.labels.depth,
         collapse: collapseAEP,
-        parentIds: ['XX'],
+        parentIds: ['sw'],
         items: [
           { 
             id: 'depthAll',
@@ -501,7 +501,6 @@ getDefraMapConfig().then((defraMapConfig) => {
             id: 'depthOver2300',
             label: terms.depth.depthOver2300
           }
-         
         ]
       },
       {
