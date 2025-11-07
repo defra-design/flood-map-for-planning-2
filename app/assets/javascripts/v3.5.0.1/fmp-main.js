@@ -496,17 +496,23 @@ getDefraMapConfig().then((defraMapConfig) => {
           collapse: collapseFeatures,
           parentIds: ['rsd', 'rsu', 'sw'],
           items: [
-            keyItemDefinitions.floodExtents,
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
             keyItemDefinitions.mainRivers,
-            keyItemDefinitions.surfaceWater0,
-            keyItemDefinitions.surfaceWater1,
-            keyItemDefinitions.surfaceWater2,
-            keyItemDefinitions.surfaceWater3,
-            keyItemDefinitions.surfaceWater4,
-            keyItemDefinitions.surfaceWater5,
-            keyItemDefinitions.surfaceWater6,
+            {
+                label: 'Maximum depth in metres',
+                display: 'ramp',
+                numLabels: 3,
+                items: [
+                  keyItemDefinitions.surfaceWater0,
+                  keyItemDefinitions.surfaceWater1,
+                  keyItemDefinitions.surfaceWater2,
+                  keyItemDefinitions.surfaceWater3,
+                  keyItemDefinitions.surfaceWater4,
+                  keyItemDefinitions.surfaceWater5,
+                  keyItemDefinitions.surfaceWater6,
+                ]
+            }
           ]
         },
         {
