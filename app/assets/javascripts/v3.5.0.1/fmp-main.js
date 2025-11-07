@@ -5,7 +5,7 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
-import { vtLayers, isLayerVisible } from './vtLayers.js'
+import { vtLayers, isLayerVisible, isStyleLayerVisible } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
 
@@ -215,12 +215,12 @@ getDefraMapConfig().then((defraMapConfig) => {
   ]
   
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
-    vtLayer.styleLayers.forEach(([styleLayerName, paintProperties]) => {
+    vtLayer.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
       const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         const fillColour = paintProperties[isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
-        layerPaintProperties['fill-opacity'] = opacity
+        layerPaintProperties['fill-opacity'] = isStyleLayerVisible(mapState.segments, styleLayerFilters) ? opacity : 0
         vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })

@@ -9,64 +9,77 @@ const surfaceWaterStyleLayers = [
   ['Risk of Flooding from Surface Water Depth > 900mm/1', colours.nonFloodZone],
   ['Risk of Flooding from Surface Water Depth > 1200mm/1', colours.nonFloodZone],
 ]
+
+
+
+const surfaceWaterStyleLayerFilters = [
+  ['depthAll','depth150','depth300','depth600','depth900','depth1200','depth2300','depthOver2300'],
+  ['depthAll','depth150','depth300','depth600','depth900','depth1200','depth2300',],
+  ['depthAll','depth150','depth300','depth600','depth900','depth1200'],
+  ['depthAll','depth150','depth300','depth600','depth900'],
+  ['depthAll','depth150','depth300','depth600'],
+  ['depthAll','depth150','depth300'],
+  ['depthAll','depth150'],
+]
+
 const surfaceWaterWithDepthStyleLayersLow = [
-  ['Surface Water Spatial Planning 1 in 1000 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 1000 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 1000 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 1000 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const surfaceWaterWithDepthStyleLayersMedium = [
-  ['Surface Water Spatial Planning 1 in 100 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 100 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 100 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 100 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const surfaceWaterWithDepthStyleLayersHigh = [
-  ['Surface Water Spatial Planning 1 in 30 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 30 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 30 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 30 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const surfaceWaterCCWithDepthStyleLayersLow = [
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 1000 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const surfaceWaterCCWithDepthStyleLayersMedium = [
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 100 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const surfaceWaterCCWithDepthStyleLayersHigh = [
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5]],
-  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6]]
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/>2300mm/1', colours.nonFloodZoneDepthBands[0], surfaceWaterStyleLayerFilters[0]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/1200-2300mm/1', colours.nonFloodZoneDepthBands[1], surfaceWaterStyleLayerFilters[1]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/900-1200mm/1', colours.nonFloodZoneDepthBands[2], surfaceWaterStyleLayerFilters[2]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/600-900mm/1', colours.nonFloodZoneDepthBands[3], surfaceWaterStyleLayerFilters[3]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/300-600mm/1', colours.nonFloodZoneDepthBands[4], surfaceWaterStyleLayerFilters[4]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/150-300mm/1', colours.nonFloodZoneDepthBands[5], surfaceWaterStyleLayerFilters[5]],
+  ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
 const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer) => {
@@ -260,6 +273,7 @@ const vtLayers = [
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }
 ]
+
 const isLayerVisible = (segments, vtLayer) => {
   const segmentsToMatch = vtLayer.layerVisibilityFilter
   if (segmentsToMatch) {
@@ -268,4 +282,11 @@ const isLayerVisible = (segments, vtLayer) => {
   return segments.join('') === vtLayer.q
 }
 
-export { vtLayers, isLayerVisible }
+const isStyleLayerVisible = (segments, segmentsToMatch) => {
+  if (segmentsToMatch) {
+    return segmentsToMatch.find(segment => segments.includes(segment)) !== undefined
+  }
+  return true
+}
+
+export { vtLayers, isLayerVisible, isStyleLayerVisible }
