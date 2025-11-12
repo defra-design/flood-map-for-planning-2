@@ -69,11 +69,16 @@ class FloodMapLayer {
     return segments.join('') === this.q
   }
 
-  isStyleLayerVisible (segments, segmentsToMatch) {
+  isStyleLayerVisible (segmentsToMatch) {
+    const { segments } = this.mapState
     if (segmentsToMatch) {
       return segmentsToMatch.find(segment => segments.includes(segment)) !== undefined
     }
     return true
+  }
+
+  getFillColour (paintProperties) {
+    return paintProperties[this.isDark ? 1 : 0]
   }
 
   setStyleProperties (opacity) {
@@ -83,9 +88,8 @@ class FloodMapLayer {
     this.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
       const layerPaintProperties = this.vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
-        const fillColour = paintProperties[this.isDark ? 1 : 0]
-        layerPaintProperties['fill-color'] = fillColour
-        layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(this.mapState.segments, styleLayerFilters) ? opacity : 0
+        layerPaintProperties['fill-color'] = this.getFillColour(paintProperties)
+        layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(styleLayerFilters) ? opacity : 0
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
