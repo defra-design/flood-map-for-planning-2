@@ -216,14 +216,14 @@ getDefraMapConfig().then((defraMapConfig) => {
   // const setStylePaintProperties = (vtLayer) => {
   //   vtLayer.setStyleProperties(opacity)
 
-  //   // Un comment this section to infer the styleLayers for each vector layer
-  //   // They don't seem to be defined anywhere server side, so Paul is anxious that
-  //   // they may change when new layers are published.
-  //   // const { styleRepository = {} } = vectorTileLayer
-  //   // const { layers: styleLayers = [] } = styleRepository
-  //   // styleLayers.forEach((styleLayer) => {
-  //   //   console.log(styleLayer.id)
-  //   // })
+  // Un comment this section to infer the styleLayers for each vector layer
+  // They don't seem to be defined anywhere server side, so Paul is anxious that
+  // they may change when new layers are published.
+  // const { styleRepository = {} } = vectorTileLayer
+  // const { layers: styleLayers = [] } = styleRepository
+  // styleLayers.forEach((styleLayer) => {
+  //   console.log(styleLayer.id)
+  // })
   // }
   const addLayers = async () => {
     vtLayers.forEach((vtLayer) => {

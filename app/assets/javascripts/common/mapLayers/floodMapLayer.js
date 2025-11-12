@@ -1,19 +1,13 @@
 class FloodMapLayer {
-  constructor ({ name, q, styleLayers, layerVisibilityFilter, likelihoodchanceLabel, getVtLayer, setStyleProperties }) {
+  constructor ({ name, q, styleLayers, layerVisibilityFilter, likelihoodchanceLabel }) {
     this.name = name
     this.q = q
     this.styleLayers = styleLayers
     this.layerVisibilityFilter = layerVisibilityFilter
     this.likelihoodchanceLabel = likelihoodchanceLabel
-    this.getVtLayer = getVtLayer
-    // this.setStyleProperties = setStyleProperties
   }
 
   static injectedModules = {}
-
-  // static set modules ({VectorTileLayer, FeatureLayer}) {
-  //   FloodMapLayer.injectedModules = { ...FloodMapLayer.injectedModules, VectorTileLayer, FeatureLayer }
-  // }
 
   static get modules () {
     return FloodMapLayer.injectedModules
