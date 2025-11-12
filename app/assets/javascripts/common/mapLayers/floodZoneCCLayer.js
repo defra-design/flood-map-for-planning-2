@@ -10,7 +10,8 @@ class FloodZoneCCLayer extends FloodMapLayer {
         ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
         ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3],
         ['Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zones plus climate change/1', colours.floodZoneCC]
-      ]
+      ],
+      logStyles: false
     })
     this.floodZonesCCNodDataStandardLayerName = 'Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/1'
     this.floodZonesCCNodDataDarkLayerName = 'Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/2'
@@ -100,6 +101,14 @@ class FloodZoneCCLayer extends FloodMapLayer {
 
   get visible () {
     return this.floodZonesCCLayer.visible && this.vectorTileLayer.visible
+  }
+
+  logStyleLayers () {
+    console.log('\nFloodZones styles:')
+    this.logStyleLayer(this.vectorTileLayer)
+    console.log('\nFloodZonesCCLayer styles:')
+    this.logStyleLayer(this.floodZonesCCLayer)
+    this.logStyles = false
   }
 }
 export { FloodZoneCCLayer }

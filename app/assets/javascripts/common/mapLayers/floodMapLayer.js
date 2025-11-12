@@ -1,10 +1,11 @@
 class FloodMapLayer {
-  constructor ({ name, q, styleLayers, layerVisibilityFilter, likelihoodchanceLabel }) {
+  constructor ({ name, q, styleLayers, layerVisibilityFilter, likelihoodchanceLabel, logStyles }) {
     this.name = name
     this.q = q
     this.styleLayers = styleLayers
     this.layerVisibilityFilter = layerVisibilityFilter
     this.likelihoodchanceLabel = likelihoodchanceLabel
+    this.logStyles = logStyles
   }
 
   static injectedModules = {}
@@ -76,6 +77,9 @@ class FloodMapLayer {
   }
 
   setStyleProperties (opacity) {
+    if (this.logStyles) {
+      this.logStyleLayers()
+    }
     this.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
       const layerPaintProperties = this.vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
@@ -85,6 +89,23 @@ class FloodMapLayer {
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
+  }
+
+  // Set this.logStyles to true to dump the styleLayers for each vector layer
+  // They don't seem to be defined anywhere server side, so Paul is anxious that
+  // they may change when new layers are published.
+  logStyleLayer (vectorTileLayer) {
+    const { styleRepository = {} } = vectorTileLayer
+    const { layers: styleLayers = [] } = styleRepository
+    styleLayers.forEach((styleLayer) => {
+      console.log(styleLayer.id)
+    })
+  }
+
+  logStyleLayers () {
+    console.log('\n', this.name, 'styles:')
+    this.logStyleLayer(this.vectorTileLayer)
+    this.logStyles = false // stop it happening lots of times
   }
 }
 
