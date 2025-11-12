@@ -5,7 +5,7 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
-import { vtLayers, isLayerVisible, isStyleLayerVisible } from './vtLayers.js'
+import { vtLayers, isLayerVisible } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
 import { FloodMapLayer } from '../common/mapLayers/index.js'
@@ -17,7 +17,6 @@ let VectorTileLayer, FeatureLayer
 const GroupLayer = undefined // Add in when we can work out how to import it
 
 let visibleVtLayer
-let opacitySlider
 let opacity = 0.75
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
@@ -125,7 +124,6 @@ const getFloodZoneFromFeature = (feature, mapState) => {
 }
 
 getDefraMapConfig().then((defraMapConfig) => {
-  const getVectorTileUrl = (layerName) => `${defraMapConfig.agolVectorTileUrl}/${layerName + defraMapConfig.layerNameSuffix}/VectorTileServer`
   const getFeatureLayerUrl = (urlLayerName) => `${defraMapConfig.agolServiceUrl}/${urlLayerName}/FeatureServer`
 
   const mapFeatureRenderers = {
@@ -215,48 +213,24 @@ getDefraMapConfig().then((defraMapConfig) => {
     }
   ]
 
-  const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
-    vtLayer.setStyleProperties(isDark, opacity)
-    // vtLayer.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
-    //   const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
-    //   if (layerPaintProperties) {
-    //     const fillColour = paintProperties[isDark ? 1 : 0]
-    //     layerPaintProperties['fill-color'] = fillColour
-    //     layerPaintProperties['fill-opacity'] = isStyleLayerVisible(mapState.segments, styleLayerFilters) ? opacity : 0
-    //     vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
-    //   }
-    // })
-    // if (vtLayer.setStyleProperties) {
-    //   vtLayer.setStyleProperties(vectorTileLayer, isDark, opacity)
-    // }
+  // const setStylePaintProperties = (vtLayer) => {
+  //   vtLayer.setStyleProperties(opacity)
 
-    // Un comment this section to infer the styleLayers for each vector layer
-    // They don't seem to be defined anywhere server side, so Paul is anxious that
-    // they may change when new layers are published.
-    // const { styleRepository = {} } = vectorTileLayer
-    // const { layers: styleLayers = [] } = styleRepository
-    // styleLayers.forEach((styleLayer) => {
-    //   console.log(styleLayer.id)
-    // })
-  }
+  //   // Un comment this section to infer the styleLayers for each vector layer
+  //   // They don't seem to be defined anywhere server side, so Paul is anxious that
+  //   // they may change when new layers are published.
+  //   // const { styleRepository = {} } = vectorTileLayer
+  //   // const { layers: styleLayers = [] } = styleRepository
+  //   // styleLayers.forEach((styleLayer) => {
+  //   //   console.log(styleLayer.id)
+  //   // })
+  // }
   const addLayers = async () => {
     vtLayers.forEach((vtLayer) => {
       if (!vtLayer.q) {
         return
       }
-      // if (vtLayer.getVtLayer) {
-      //   vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer, GroupLayer)
-      //     .forEach((groupLayer) => floodMap.map.add(groupLayer))
-      // } else {
       vtLayer.addToMap(floodMap.map)
-      // const vectorTileLayer = new VectorTileLayer({
-      //   id: vtLayer.name,
-      //   url: getVectorTileUrl(vtLayer.name),
-      //   opacity: 1,
-      //   visible: false
-      // })
-      // floodMap.map.add(vectorTileLayer)
-      // }
     })
     fLayers.forEach(fLayer => {
       floodMap.map.add(new FeatureLayer({
@@ -274,24 +248,10 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      const id = vtLayer.name
-      const layer = map.findLayerById(id)
       const isVisible = !isDrawMode && isLayerVisible(segments, vtLayer)
       vtLayer.visible = isVisible
-      // vtLayer.setStylePaintProperties(isDark, opacity)
-      vtLayer.setStyleProperties(isDark, opacity)
-      // layer.visible = isVisible
-      // if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-      //   const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
-      //   ccpLayers.forEach((ccpLayer) => {
-      //     ccpLayer.visible = isVisible
-      //     setStylePaintProperties(vtLayer, ccpLayer, isDark)
-      //   })
-      // }
-      // const allLayers = layer.allLayers || [layer]
-      // allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
-      visibleVtLayer = isVisible ? layer : visibleVtLayer
-      layer.vtLayer = vtLayer
+      vtLayer.setStyleProperties(opacity)
+      visibleVtLayer = isVisible ? vtLayer : visibleVtLayer
     })
     fLayers.forEach(fLayer => {
       const layer = map.findLayerById(fLayer.name)
@@ -653,14 +613,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const onUpdateOpacity = (newOpacity) => {
     opacity = newOpacity
     if (visibleVtLayer) {
-      const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
-      allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, mapState.isDark))
-      if (visibleVtLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-        const ccpLayers = floodMap.map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
-        ccpLayers.forEach((ccpLayer) => {
-          setStylePaintProperties(visibleVtLayer.vtLayer, ccpLayer, mapState.isDark)
-        })
-      }
+      visibleVtLayer.setStyleProperties(opacity)
     }
   }
 
@@ -674,14 +627,13 @@ getDefraMapConfig().then((defraMapConfig) => {
       modules: floodMap.modules,
       config: defraMapConfig
     })
-    // FloodMapLayer.modules = floodMap.modules
 
     const { mode, segments, layers, style } = e.detail
     updateMapState(segments, layers, style)
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    opacitySlider = initialiseSlider(onUpdateOpacity, opacity)
+    initialiseSlider(onUpdateOpacity, opacity)
 
     // A quick way to permanently hide the banner is to change this line to renderBanner(false)
     renderBanner(mapState)
@@ -725,7 +677,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         return
       }
       lastHit = now
-      const layersToTest = visibleVtLayer.allLayers || [visibleVtLayer]
+      const layersToTest = visibleVtLayer.vectorTileLayer.allLayers || [visibleVtLayer.vectorTileLayer]
       floodMap.view.hitTest(e, { include: layersToTest }).then((response) => {
         document.body.style.cursor = response?.results?.length > 0 ? 'pointer' : 'default'
       })

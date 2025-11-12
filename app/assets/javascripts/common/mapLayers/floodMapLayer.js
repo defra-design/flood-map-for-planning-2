@@ -35,6 +35,10 @@ class FloodMapLayer {
     return FloodMapLayer.mapState
   }
 
+  get isDark () {
+    return FloodMapLayer.mapState?.isDark
+  }
+
   getVectorTileUrl (name) {
     return `${FloodMapLayer.config.agolVectorTileUrl}/${name + FloodMapLayer.config.layerNameSuffix}/VectorTileServer`
   }
@@ -69,11 +73,11 @@ class FloodMapLayer {
     return true
   }
 
-  setStyleProperties (isDark, opacity) {
+  setStyleProperties (opacity) {
     this.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
       const layerPaintProperties = this.vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
-        const fillColour = paintProperties[isDark ? 1 : 0]
+        const fillColour = paintProperties[this.isDark ? 1 : 0]
         layerPaintProperties['fill-color'] = fillColour
         layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(this.mapState.segments, styleLayerFilters) ? opacity : 0
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
