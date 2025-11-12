@@ -8,6 +8,7 @@ import { setUpBaseMaps } from './baseMaps.js'
 import { vtLayers, isLayerVisible, isStyleLayerVisible } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
+import { FloodMapLayer } from '../common/mapLayers/index.js'
 
 const FloodMap = window.defra.FloodMap
 
@@ -215,18 +216,19 @@ getDefraMapConfig().then((defraMapConfig) => {
   ]
   
   const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
-    vtLayer.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
-      const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
-      if (layerPaintProperties) {
-        const fillColour = paintProperties[isDark ? 1 : 0]
-        layerPaintProperties['fill-color'] = fillColour
-        layerPaintProperties['fill-opacity'] = isStyleLayerVisible(mapState.segments, styleLayerFilters) ? opacity : 0
-        vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
-      }
-    })
-    if (vtLayer.setStyleProperties) {
-      vtLayer.setStyleProperties(vectorTileLayer, isDark, opacity)
-    }
+    vtLayer.setStyleProperties(isDark, opacity)
+    // vtLayer.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
+    //   const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
+    //   if (layerPaintProperties) {
+    //     const fillColour = paintProperties[isDark ? 1 : 0]
+    //     layerPaintProperties['fill-color'] = fillColour
+    //     layerPaintProperties['fill-opacity'] = isStyleLayerVisible(mapState.segments, styleLayerFilters) ? opacity : 0
+    //     vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
+    //   }
+    // })
+    // if (vtLayer.setStyleProperties) {
+    //   vtLayer.setStyleProperties(vectorTileLayer, isDark, opacity)
+    // }
 
     // Un comment this section to infer the styleLayers for each vector layer
     // They don't seem to be defined anywhere server side, so Paul is anxious that
@@ -242,18 +244,19 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      if (vtLayer.getVtLayer) {
-        vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer, GroupLayer)
-          .forEach((groupLayer) => floodMap.map.add(groupLayer))
-      } else {
-        const vectorTileLayer = new VectorTileLayer({
-          id: vtLayer.name,
-          url: getVectorTileUrl(vtLayer.name),
-          opacity: 1,
-          visible: false
-        })
-        floodMap.map.add(vectorTileLayer)
-      }
+      // if (vtLayer.getVtLayer) {
+      //   vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer, GroupLayer)
+      //     .forEach((groupLayer) => floodMap.map.add(groupLayer))
+      // } else {
+        vtLayer.addToMap(floodMap.map)
+        // const vectorTileLayer = new VectorTileLayer({
+        //   id: vtLayer.name,
+        //   url: getVectorTileUrl(vtLayer.name),
+        //   opacity: 1,
+        //   visible: false
+        // })
+        // floodMap.map.add(vectorTileLayer)
+      // }
     })
     fLayers.forEach(fLayer => {
       floodMap.map.add(new FeatureLayer({
@@ -274,16 +277,19 @@ getDefraMapConfig().then((defraMapConfig) => {
       const id = vtLayer.name
       const layer = map.findLayerById(id)
       const isVisible = !isDrawMode && isLayerVisible(segments, vtLayer)
-      layer.visible = isVisible
-      if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-        const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
-        ccpLayers.forEach((ccpLayer) => {
-          ccpLayer.visible = isVisible
-          setStylePaintProperties(vtLayer, ccpLayer, isDark)
-        })
-      }
-      const allLayers = layer.allLayers || [layer]
-      allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
+      vtLayer.visible = isVisible
+      // vtLayer.setStylePaintProperties(isDark, opacity)
+      vtLayer.setStyleProperties(isDark, opacity)
+      // layer.visible = isVisible
+      // if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
+      //   const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
+      //   ccpLayers.forEach((ccpLayer) => {
+      //     ccpLayer.visible = isVisible
+      //     setStylePaintProperties(vtLayer, ccpLayer, isDark)
+      //   })
+      // }
+      // const allLayers = layer.allLayers || [layer]
+      // allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
       visibleVtLayer = isVisible ? layer : visibleVtLayer
       layer.vtLayer = vtLayer
     })
@@ -663,6 +669,12 @@ getDefraMapConfig().then((defraMapConfig) => {
   floodMap.addEventListener('ready', async e => {
     VectorTileLayer = floodMap.modules.VectorTileLayer
     FeatureLayer = floodMap.modules.FeatureLayer
+    FloodMapLayer.initialise({
+      mapState,
+      modules: floodMap.modules,
+      config: defraMapConfig
+    })
+    // FloodMapLayer.modules = floodMap.modules
 
     const { mode, segments, layers, style } = e.detail
     updateMapState(segments, layers, style)

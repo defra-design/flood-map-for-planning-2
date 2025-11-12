@@ -1,5 +1,6 @@
 import { terms } from './terms.js'
 import { colours } from './colours.js'
+import { FloodMapLayer, FloodZoneCCLayer } from '../common/mapLayers/index.js'
 
 const surfaceWaterStyleLayers = [
   ['Risk of Flooding from Surface Water Depth > 0mm/1', colours.nonFloodZone],
@@ -107,6 +108,7 @@ const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer
   // floodZoneCCGroupLayer.add(floodZonesCCLayer)
   // floodZoneCCGroupLayer.add(floodZonesLayer)
   // return floodZoneCCGroupLayer
+  
   return [floodZonesCCLayer, floodZonesLayer]
 }
 
@@ -125,25 +127,26 @@ const setFloodZoneCCGroupLayerStyles = (vectorTileLayer, isDark, opacity) => {
 }
 
 const vtLayers = [
-  {
-    name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-    q: window.FMP_MAP_VERSION === 1 ? 'fzfzcl' : 'fzcl',
-    getVtLayer: getFloodZoneCCGroupLayer,
-    setStyleProperties: setFloodZoneCCGroupLayerStyles, // add in when GroupLayers
-    styleLayers: [
-      ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
-      ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3],
-      ['Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zones plus climate change/1', colours.floodZoneCC]
-    ]
-  },
-  {
+  // new FloodZoneCCLayer(),
+  // new FloodMapLayer({
+  //   name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
+  //   q: window.FMP_MAP_VERSION === 1 ? 'fzfzcl' : 'fzcl',
+  //   getVtLayer: getFloodZoneCCGroupLayer,
+  //   setStyleProperties: setFloodZoneCCGroupLayerStyles, // add in when GroupLayers
+  //   styleLayers: [
+  //     ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
+  //     ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3],
+  //     ['Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zones plus climate change/1', colours.floodZoneCC]
+  //   ]
+  // }),
+  new FloodMapLayer({
     name: 'Flood_Zones_2_and_3_Rivers_and_Sea',
     q: window.FMP_MAP_VERSION === 1 ? 'fzfzpd' : 'fzpd',
     styleLayers: [
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3]
     ]
-  },
+  }),
   // Retaining this commented out, as will inevitably be reinstated and
   // want to keep it in mind during any refactors
   // {
@@ -230,48 +233,48 @@ const vtLayers = [
   //   likelihoodchanceLabel: terms.likelihoodchance.rsLow,
   //   additionalInfo: terms.additionalInfo.rsLow
   // },
-  {
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
     q: 'swpdlr',
     layerVisibilityFilter: ['sw', 'pd', 'lr'],
     styleLayers: surfaceWaterWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
-  },
-  {
+  }),
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
     q: 'swpdmr',
     layerVisibilityFilter: ['sw', 'pd', 'mr'],
     styleLayers: surfaceWaterWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
-  },
-  {
+  }),
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
     q: 'swpdhr',
     layerVisibilityFilter: ['sw', 'pd', 'hr'],
     styleLayers: surfaceWaterWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
-  },
-  {
+  }),
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
     q: 'swcllr',
     layerVisibilityFilter: ['sw', 'cl', 'lr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
-  },
-  {
+  }),
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
     q: 'swclmr',
     layerVisibilityFilter: ['sw', 'cl', 'mr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
-  },
-  {
+  }),
+  new FloodMapLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
     q: 'swclhr',
     layerVisibilityFilter: ['sw', 'cl', 'hr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
-  }
+  })
 ]
 
 const isLayerVisible = (segments, vtLayer) => {
