@@ -8,19 +8,17 @@ const surfaceWaterStyleLayers = [
   ['Risk of Flooding from Surface Water Depth > 300mm/1', colours.nonFloodZone],
   ['Risk of Flooding from Surface Water Depth > 600mm/1', colours.nonFloodZone],
   ['Risk of Flooding from Surface Water Depth > 900mm/1', colours.nonFloodZone],
-  ['Risk of Flooding from Surface Water Depth > 1200mm/1', colours.nonFloodZone],
+  ['Risk of Flooding from Surface Water Depth > 1200mm/1', colours.nonFloodZone]
 ]
 
-
-
 const surfaceWaterStyleLayerFilters = [
-  ['depthAll','depth150','depth300','depth600','depth900','depth1200','depth2300','depthOver2300'],
-  ['depthAll','depth150','depth300','depth600','depth900','depth1200','depth2300',],
-  ['depthAll','depth150','depth300','depth600','depth900','depth1200'],
-  ['depthAll','depth150','depth300','depth600','depth900'],
-  ['depthAll','depth150','depth300','depth600'],
-  ['depthAll','depth150','depth300'],
-  ['depthAll','depth150'],
+  ['depthAll', 'depth150', 'depth300', 'depth600', 'depth900', 'depth1200', 'depth2300', 'depthOver2300'],
+  ['depthAll', 'depth150', 'depth300', 'depth600', 'depth900', 'depth1200', 'depth2300'],
+  ['depthAll', 'depth150', 'depth300', 'depth600', 'depth900', 'depth1200'],
+  ['depthAll', 'depth150', 'depth300', 'depth600', 'depth900'],
+  ['depthAll', 'depth150', 'depth300', 'depth600'],
+  ['depthAll', 'depth150', 'depth300'],
+  ['depthAll', 'depth150']
 ]
 
 const surfaceWaterWithDepthStyleLayersLow = [
@@ -83,70 +81,58 @@ const surfaceWaterCCWithDepthStyleLayersHigh = [
   ['Surface Water Spatial Planning 1 in 30 CCP1 Depths/<150mm/1', colours.nonFloodZoneDepthBands[6], surfaceWaterStyleLayerFilters[6]]
 ]
 
-const getFloodZoneCCGroupLayer = (getVectorTileUrl, VectorTileLayer, _GroupLayer) => {
-  const floodZonesLayer = new VectorTileLayer({
-    id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-    url: getVectorTileUrl('Flood_Zones_2_and_3_Rivers_and_Sea'),
-    opacity: 1,
-    visible: false
-    // visible: true // Add IN When GroupLayer can be made available
-  })
-
-  const floodZonesCCLayer = new VectorTileLayer({
-    id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-    url: getVectorTileUrl('Flood_Zones_2_and_3_Rivers_and_Sea_CCP1'),
-    opacity: 1,
-    visible: false
-    // visible: true // Add IN When GroupLayer can be made available
-  })
-
-  // const floodZoneCCGroupLayer = new GroupLayer({
-  //   id: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-  //   opacity: 0.75,
-  //   visible: false
-  // })
-  // floodZoneCCGroupLayer.add(floodZonesCCLayer)
-  // floodZoneCCGroupLayer.add(floodZonesLayer)
-  // return floodZoneCCGroupLayer
-  
-  return [floodZonesCCLayer, floodZonesLayer]
-}
-
-const setFloodZoneCCGroupLayerStyles = (vectorTileLayer, isDark, opacity) => {
-  // Show / Hide the image layer for Flood_Zones_2_and_3_Rivers_and_Sea_CCP1
-  vectorTileLayer.setStyleLayerVisibility('Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/1', isDark ? 'none' : 'visible')
-  vectorTileLayer.setStyleLayerVisibility('Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/2', isDark ? 'visible' : 'none')
-  const lineStyleLayerName = 'Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/0'
-  const lineLayerPaintProperties = vectorTileLayer.getPaintProperties(lineStyleLayerName)
-  if (lineLayerPaintProperties) {
-    const lineColour = colours.floodZoneNoData[isDark ? 1 : 0]
-    lineLayerPaintProperties['line-color'] = lineColour
-    lineLayerPaintProperties['line-opacity'] = opacity
-    vectorTileLayer.setPaintProperties(lineStyleLayerName, lineLayerPaintProperties)
-  }
-}
-
 const vtLayers = [
-  // new FloodZoneCCLayer(),
-  // new FloodMapLayer({
-  //   name: 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1',
-  //   q: window.FMP_MAP_VERSION === 1 ? 'fzfzcl' : 'fzcl',
-  //   getVtLayer: getFloodZoneCCGroupLayer,
-  //   setStyleProperties: setFloodZoneCCGroupLayerStyles, // add in when GroupLayers
-  //   styleLayers: [
-  //     ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
-  //     ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3],
-  //     ['Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zones plus climate change/1', colours.floodZoneCC]
-  //   ]
-  // }),
+  new FloodZoneCCLayer(),
   new FloodMapLayer({
     name: 'Flood_Zones_2_and_3_Rivers_and_Sea',
-    q: window.FMP_MAP_VERSION === 1 ? 'fzfzpd' : 'fzpd',
+    q: 'fzfzpd',
     styleLayers: [
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 2/1', colours.floodZone2],
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3]
     ]
   }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
+    q: 'swpdlr',
+    layerVisibilityFilter: ['sw', 'pd', 'lr'],
+    styleLayers: surfaceWaterWithDepthStyleLayersLow,
+    likelihoodchanceLabel: terms.likelihoodchance.swLow
+  }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
+    q: 'swpdmr',
+    layerVisibilityFilter: ['sw', 'pd', 'mr'],
+    styleLayers: surfaceWaterWithDepthStyleLayersMedium,
+    likelihoodchanceLabel: terms.likelihoodchance.swMedium
+  }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
+    q: 'swpdhr',
+    layerVisibilityFilter: ['sw', 'pd', 'hr'],
+    styleLayers: surfaceWaterWithDepthStyleLayersHigh,
+    likelihoodchanceLabel: terms.likelihoodchance.swHigh
+  }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
+    q: 'swcllr',
+    layerVisibilityFilter: ['sw', 'cl', 'lr'],
+    styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
+    likelihoodchanceLabel: terms.likelihoodchance.swLow
+  }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
+    q: 'swclmr',
+    layerVisibilityFilter: ['sw', 'cl', 'mr'],
+    styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
+    likelihoodchanceLabel: terms.likelihoodchance.swMedium
+  }),
+  new FloodMapLayer({
+    name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
+    q: 'swclhr',
+    layerVisibilityFilter: ['sw', 'cl', 'hr'],
+    styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
+    likelihoodchanceLabel: terms.likelihoodchance.swHigh
+  })
   // Retaining this commented out, as will inevitably be reinstated and
   // want to keep it in mind during any refactors
   // {
@@ -233,48 +219,6 @@ const vtLayers = [
   //   likelihoodchanceLabel: terms.likelihoodchance.rsLow,
   //   additionalInfo: terms.additionalInfo.rsLow
   // },
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
-    q: 'swpdlr',
-    layerVisibilityFilter: ['sw', 'pd', 'lr'],
-    styleLayers: surfaceWaterWithDepthStyleLayersLow,
-    likelihoodchanceLabel: terms.likelihoodchance.swLow
-  }),
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
-    q: 'swpdmr',
-    layerVisibilityFilter: ['sw', 'pd', 'mr'],
-    styleLayers: surfaceWaterWithDepthStyleLayersMedium,
-    likelihoodchanceLabel: terms.likelihoodchance.swMedium
-  }),
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
-    q: 'swpdhr',
-    layerVisibilityFilter: ['sw', 'pd', 'hr'],
-    styleLayers: surfaceWaterWithDepthStyleLayersHigh,
-    likelihoodchanceLabel: terms.likelihoodchance.swHigh
-  }),
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
-    q: 'swcllr',
-    layerVisibilityFilter: ['sw', 'cl', 'lr'],
-    styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
-    likelihoodchanceLabel: terms.likelihoodchance.swLow
-  }),
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
-    q: 'swclmr',
-    layerVisibilityFilter: ['sw', 'cl', 'mr'],
-    styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
-    likelihoodchanceLabel: terms.likelihoodchance.swMedium
-  }),
-  new FloodMapLayer({
-    name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
-    q: 'swclhr',
-    layerVisibilityFilter: ['sw', 'cl', 'hr'],
-    styleLayers: surfaceWaterCCWithDepthStyleLayersHigh,
-    likelihoodchanceLabel: terms.likelihoodchance.swHigh
-  })
 ]
 
 const isLayerVisible = (segments, vtLayer) => {
