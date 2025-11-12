@@ -66,6 +66,14 @@ class FloodMapLayer {
     map.add(this.vectorTileLayer)
   }
 
+  isLayerVisible (segments) {
+    const segmentsToMatch = this.layerVisibilityFilter
+    if (segmentsToMatch) {
+      return segmentsToMatch.every(segment => segments.includes(segment))
+    }
+    return segments.join('') === this.q
+  }
+
   isStyleLayerVisible (segments, segmentsToMatch) {
     if (segmentsToMatch) {
       return segmentsToMatch.find(segment => segments.includes(segment)) !== undefined

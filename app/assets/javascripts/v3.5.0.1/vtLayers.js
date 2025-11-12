@@ -220,20 +220,4 @@ const vtLayers = [
   //   additionalInfo: terms.additionalInfo.rsLow
   // },
 ]
-
-const isLayerVisible = (segments, vtLayer) => {
-  const segmentsToMatch = vtLayer.layerVisibilityFilter
-  if (segmentsToMatch) {
-    return segmentsToMatch.every(segment => segments.includes(segment))
-  }
-  return segments.join('') === vtLayer.q
-}
-
-const isStyleLayerVisible = (segments, segmentsToMatch) => {
-  if (segmentsToMatch) {
-    return segmentsToMatch.find(segment => segments.includes(segment)) !== undefined
-  }
-  return true
-}
-
-export { vtLayers, isLayerVisible, isStyleLayerVisible }
+export { vtLayers }

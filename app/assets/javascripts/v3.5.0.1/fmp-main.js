@@ -5,7 +5,7 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
-import { vtLayers, isLayerVisible } from './vtLayers.js'
+import { vtLayers } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
 import { FloodMapLayer } from '../common/mapLayers/index.js'
@@ -248,7 +248,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      const isVisible = !isDrawMode && isLayerVisible(segments, vtLayer)
+      const isVisible = !isDrawMode && vtLayer.isLayerVisible(segments)
       vtLayer.visible = isVisible
       vtLayer.setStyleProperties(opacity)
       visibleVtLayer = isVisible ? vtLayer : visibleVtLayer
