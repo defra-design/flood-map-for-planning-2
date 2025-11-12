@@ -273,7 +273,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     height: '100%',
     hasGeoLocation: false,
     framework: 'esri',
-    helpURL: '#',
+    helpURL: 'help',
     symbols: [symbols.waterStorageAreas, symbols.floodDefences, symbols.mainRivers, symbols.noData],
     transformSearchRequest: getRequest,
     interceptorsCallback: getInterceptors,
@@ -373,7 +373,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           },
           {
             id: 'cl',
-            label: 'Years ? to ?'
+            label: '2061 to 2125'
           }
         ]
       },
