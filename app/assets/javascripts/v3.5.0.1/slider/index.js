@@ -26,7 +26,7 @@ const createOpacitySlider = (sliderElement, opacity) => {
   opacitySlider.onUpdate(onUpdateOpacity)
 }
 
-const initialiseSlider =  (mapComponentCallback, opacity) => {
+const initialiseSlider = (mapComponentCallback, opacity) => {
   onUpdateOpacity = mapComponentCallback
   initialOpacity = opacity
   const sliderElement = document.getElementById(id)

@@ -5,9 +5,10 @@ import { renderInfo, renderList } from './infoRenderer.js'
 import { terms } from './terms.js'
 import { colours, getKeyItemFill, LIGHT_INDEX, DARK_INDEX } from './colours.js'
 import { setUpBaseMaps } from './baseMaps.js'
-import { vtLayers, isLayerVisible, isStyleLayerVisible } from './vtLayers.js'
+import { vtLayers } from './vtLayers.js'
 import { sliderMarkUp, initialiseSlider } from './slider/index.js'
 import { renderBanner } from '../common/banner.js'
+import { FloodMapLayer } from '../common/mapLayers/index.js'
 
 const FloodMap = window.defra.FloodMap
 
@@ -16,7 +17,6 @@ let VectorTileLayer, FeatureLayer
 const GroupLayer = undefined // Add in when we can work out how to import it
 
 let visibleVtLayer
-let opacitySlider
 let opacity = 0.75
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
@@ -100,7 +100,7 @@ const keyItemDefinitions = {
   surfaceWater6: {
     label: '<0.15',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
-  },
+  }
 }
 
 // floodZoneSymbolIndex is used to infer the _symbol value sent to the query feature when a layer is clicked
@@ -124,7 +124,6 @@ const getFloodZoneFromFeature = (feature, mapState) => {
 }
 
 getDefraMapConfig().then((defraMapConfig) => {
-  const getVectorTileUrl = (layerName) => `${defraMapConfig.agolVectorTileUrl}/${layerName + defraMapConfig.layerNameSuffix}/VectorTileServer`
   const getFeatureLayerUrl = (urlLayerName) => `${defraMapConfig.agolServiceUrl}/${urlLayerName}/FeatureServer`
 
   const mapFeatureRenderers = {
@@ -213,47 +212,13 @@ getDefraMapConfig().then((defraMapConfig) => {
       q: 'mainr'
     }
   ]
-  
-  const setStylePaintProperties = (vtLayer, vectorTileLayer, isDark) => {
-    vtLayer.styleLayers.forEach(([styleLayerName, paintProperties, styleLayerFilters]) => {
-      const layerPaintProperties = vectorTileLayer.getPaintProperties(styleLayerName)
-      if (layerPaintProperties) {
-        const fillColour = paintProperties[isDark ? 1 : 0]
-        layerPaintProperties['fill-color'] = fillColour
-        layerPaintProperties['fill-opacity'] = isStyleLayerVisible(mapState.segments, styleLayerFilters) ? opacity : 0
-        vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
-      }
-    })
-    if (vtLayer.setStyleProperties) {
-      vtLayer.setStyleProperties(vectorTileLayer, isDark, opacity)
-    }
 
-    // Un comment this section to infer the styleLayers for each vector layer
-    // They don't seem to be defined anywhere server side, so Paul is anxious that
-    // they may change when new layers are published.
-    // const { styleRepository = {} } = vectorTileLayer
-    // const { layers: styleLayers = [] } = styleRepository
-    // styleLayers.forEach((styleLayer) => {
-    //   console.log(styleLayer.id)
-    // })
-  }
   const addLayers = async () => {
     vtLayers.forEach((vtLayer) => {
       if (!vtLayer.q) {
         return
       }
-      if (vtLayer.getVtLayer) {
-        vtLayer.getVtLayer(getVectorTileUrl, VectorTileLayer, GroupLayer)
-          .forEach((groupLayer) => floodMap.map.add(groupLayer))
-      } else {
-        const vectorTileLayer = new VectorTileLayer({
-          id: vtLayer.name,
-          url: getVectorTileUrl(vtLayer.name),
-          opacity: 1,
-          visible: false
-        })
-        floodMap.map.add(vectorTileLayer)
-      }
+      vtLayer.addToMap(floodMap.map)
     })
     fLayers.forEach(fLayer => {
       floodMap.map.add(new FeatureLayer({
@@ -271,21 +236,10 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      const id = vtLayer.name
-      const layer = map.findLayerById(id)
-      const isVisible = !isDrawMode && isLayerVisible(segments, vtLayer)
-      layer.visible = isVisible
-      if (id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-        const ccpLayers = map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
-        ccpLayers.forEach((ccpLayer) => {
-          ccpLayer.visible = isVisible
-          setStylePaintProperties(vtLayer, ccpLayer, isDark)
-        })
-      }
-      const allLayers = layer.allLayers || [layer]
-      allLayers.forEach((childLayer) => setStylePaintProperties(vtLayer, childLayer, isDark))
-      visibleVtLayer = isVisible ? layer : visibleVtLayer
-      layer.vtLayer = vtLayer
+      const isVisible = !isDrawMode && vtLayer.isLayerVisible(segments)
+      vtLayer.visible = isVisible
+      vtLayer.setStyleProperties(opacity)
+      visibleVtLayer = isVisible ? vtLayer : visibleVtLayer
     })
     fLayers.forEach(fLayer => {
       const layer = map.findLayerById(fLayer.name)
@@ -469,35 +423,35 @@ getDefraMapConfig().then((defraMapConfig) => {
         collapse: collapseAEP,
         parentIds: ['sw'],
         items: [
-          { 
+          {
             id: 'depthAll',
-            label: terms.depth.depthAll 
+            label: terms.depth.depthAll
           },
-          { 
+          {
             id: 'depth150',
-            label: terms.depth.depth150 
+            label: terms.depth.depth150
           },
-          { 
+          {
             id: 'depth300',
-            label: terms.depth.depth300 
+            label: terms.depth.depth300
           },
-          { 
+          {
             id: 'depth600',
-            label: terms.depth.depth600 
+            label: terms.depth.depth600
           },
-          { 
+          {
             id: 'depth900',
-            label: terms.depth.depth900 
+            label: terms.depth.depth900
           },
-          { 
+          {
             id: 'depth1200',
-            label: terms.depth.depth1200 
+            label: terms.depth.depth1200
           },
-          { 
+          {
             id: 'depth2300',
-            label: terms.depth.depth2300 
+            label: terms.depth.depth2300
           },
-          { 
+          {
             id: 'depthOver2300',
             label: terms.depth.depthOver2300
           }
@@ -556,18 +510,18 @@ getDefraMapConfig().then((defraMapConfig) => {
             keyItemDefinitions.floodDefences,
             keyItemDefinitions.mainRivers,
             {
-                label: 'Maximum depth in metres',
-                display: 'ramp',
-                numLabels: 1,
-                items: [
-                  keyItemDefinitions.surfaceWater0,
-                  keyItemDefinitions.surfaceWater1,
-                  keyItemDefinitions.surfaceWater2,
-                  keyItemDefinitions.surfaceWater3,
-                  keyItemDefinitions.surfaceWater4,
-                  keyItemDefinitions.surfaceWater5,
-                  keyItemDefinitions.surfaceWater6,
-                ]
+              label: 'Maximum depth in metres',
+              display: 'ramp',
+              numLabels: 1,
+              items: [
+                keyItemDefinitions.surfaceWater0,
+                keyItemDefinitions.surfaceWater1,
+                keyItemDefinitions.surfaceWater2,
+                keyItemDefinitions.surfaceWater3,
+                keyItemDefinitions.surfaceWater4,
+                keyItemDefinitions.surfaceWater5,
+                keyItemDefinitions.surfaceWater6
+              ]
             }
           ]
         },
@@ -602,11 +556,11 @@ getDefraMapConfig().then((defraMapConfig) => {
         }
         const isValid = area <= 3000000
         const rings = geometry?.rings?.[0]
-        const isSquare = rings && rings.length === 5
-          && rings[0][1] == rings[1][1] 
-          && rings[2][1] == rings[3][1]
-          && rings[1][0] == rings[2][0] 
-          && rings[3][0] == rings[4][0]
+        const isSquare = rings && rings.length === 5 &&
+          rings[0][1] === rings[1][1] &&
+          rings[2][1] === rings[3][1] &&
+          rings[1][0] === rings[2][0] &&
+          rings[3][0] === rings[4][0]
         const warningText = isSquare ? 'Boundary is too big. 300 hectares max.' : 'Boundary is too big. 300 hectares max.'
         console.log({
           geometry,
@@ -619,7 +573,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           allowShape: true
         }
       }
-     },
+    },
     queryLocation: {
       layers: vtLayers.map(vtLayer => vtLayer.name)
     }
@@ -647,14 +601,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   const onUpdateOpacity = (newOpacity) => {
     opacity = newOpacity
     if (visibleVtLayer) {
-      const allLayers = visibleVtLayer.allLayers || [visibleVtLayer]
-      allLayers.forEach((childLayer) => setStylePaintProperties(visibleVtLayer.vtLayer, childLayer, mapState.isDark))
-      if (visibleVtLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1') {
-        const ccpLayers = floodMap.map.allLayers.items.filter((ccpLayer) => ccpLayer.id === 'Flood_Zones_2_and_3_Rivers_and_Sea_CCP1')
-        ccpLayers.forEach((ccpLayer) => {
-          setStylePaintProperties(visibleVtLayer.vtLayer, ccpLayer, mapState.isDark)
-        })
-      }
+      visibleVtLayer.setStyleProperties(opacity)
     }
   }
 
@@ -663,23 +610,28 @@ getDefraMapConfig().then((defraMapConfig) => {
   floodMap.addEventListener('ready', async e => {
     VectorTileLayer = floodMap.modules.VectorTileLayer
     FeatureLayer = floodMap.modules.FeatureLayer
+    FloodMapLayer.initialise({
+      mapState,
+      modules: floodMap.modules,
+      config: defraMapConfig
+    })
 
     const { mode, segments, layers, style } = e.detail
     updateMapState(segments, layers, style)
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    opacitySlider = initialiseSlider(onUpdateOpacity, opacity)
+    initialiseSlider(onUpdateOpacity, opacity)
 
-    // A quick way to permanently hide the banner is to change this line to renderBanner(false) 
-    renderBanner(mapState) 
+    // A quick way to permanently hide the banner is to change this line to renderBanner(false)
+    renderBanner(mapState)
     // floodMap.setBanner({ message: 'Click on the map for more information', isDismissable: true })
   })
 
   console.log('document.referrer', document.referrer)
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
-      if (!mapState.shapeIsValid) { 
+      if (!mapState.shapeIsValid) {
         window.location = '/300ha'
       } else {
         window.location = '/shapeValid'
@@ -700,7 +652,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     const map = floodMap.map
     toggleVisibility(type, mode, segments, layers, map, mapState.isDark)
 
-    renderBanner({...mapState, type, mode})
+    renderBanner({ ...mapState, type, mode })
   })
 
   const initPointerMove = () => {
@@ -713,7 +665,7 @@ getDefraMapConfig().then((defraMapConfig) => {
         return
       }
       lastHit = now
-      const layersToTest = visibleVtLayer.allLayers || [visibleVtLayer]
+      const layersToTest = visibleVtLayer.vectorTileLayer.allLayers || [visibleVtLayer.vectorTileLayer]
       floodMap.view.hitTest(e, { include: layersToTest }).then((response) => {
         document.body.style.cursor = response?.results?.length > 0 ? 'pointer' : 'default'
       })
