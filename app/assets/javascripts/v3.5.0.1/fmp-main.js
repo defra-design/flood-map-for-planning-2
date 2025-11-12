@@ -852,6 +852,12 @@ getDefraMapConfig().then((defraMapConfig) => {
   // Listen to map queries
   floodMap.addEventListener('query', e => {
     const { listContents, vtLayer, feature } = getQueryContentHeader(e)
+    /* TODO
+      When SW layer - do a hitTest on the point queried,
+      and then examine this value: response.results[0].graphic.origin.layerId
+      to determine what the style layer clicked on is.
+      This should tell us what depth we have clicked
+    */
     if (!listContents || !feature) {
       floodMap.setInfo(null)
       return
