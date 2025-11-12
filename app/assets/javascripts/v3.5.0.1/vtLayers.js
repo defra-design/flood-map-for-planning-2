@@ -1,6 +1,6 @@
 import { terms } from './terms.js'
 import { colours } from './colours.js'
-import { FloodMapLayer, FloodZoneCCLayer } from '../common/mapLayers/index.js'
+import { FloodMapLayer, FloodZoneCCLayer, SurfaceWaterLayer } from '../common/mapLayers/index.js'
 
 const surfaceWaterStyleLayers = [
   ['Risk of Flooding from Surface Water Depth > 0mm/1', colours.nonFloodZone],
@@ -91,42 +91,42 @@ const vtLayers = [
       ['Flood Zones 2 and 3 Rivers and Sea/Flood Zone 3/1', colours.floodZone3]
     ]
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_1000_Depths',
     q: 'swpdlr',
     layerVisibilityFilter: ['sw', 'pd', 'lr'],
     styleLayers: surfaceWaterWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_100_Depths',
     q: 'swpdmr',
     layerVisibilityFilter: ['sw', 'pd', 'mr'],
     styleLayers: surfaceWaterWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_30_Depths',
     q: 'swpdhr',
     layerVisibilityFilter: ['sw', 'pd', 'hr'],
     styleLayers: surfaceWaterWithDepthStyleLayersHigh,
     likelihoodchanceLabel: terms.likelihoodchance.swHigh
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_1000_CCP1_Depths',
     q: 'swcllr',
     layerVisibilityFilter: ['sw', 'cl', 'lr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersLow,
     likelihoodchanceLabel: terms.likelihoodchance.swLow
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_100_CCP1_Depths',
     q: 'swclmr',
     layerVisibilityFilter: ['sw', 'cl', 'mr'],
     styleLayers: surfaceWaterCCWithDepthStyleLayersMedium,
     likelihoodchanceLabel: terms.likelihoodchance.swMedium
   }),
-  new FloodMapLayer({
+  new SurfaceWaterLayer({
     name: 'Surface_Water_Spatial_Planning_1_in_30_CCP1_Depths',
     q: 'swclhr',
     layerVisibilityFilter: ['sw', 'cl', 'hr'],
