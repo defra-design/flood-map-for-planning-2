@@ -809,6 +809,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     </a>
   </p>`
 
+    const $climateChangeAllowances = `<p class="govuk-body-s"> 
+      <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">
+      Flood risk assessment: climate change allowances
+      </a>
+    </p>`
+    
   const getFloodZonesExtraContent = (floodZone) => {
     if (!mapState.isFloodZone) {
       return ''
@@ -839,11 +845,18 @@ getDefraMapConfig().then((defraMapConfig) => {
       extraContent += getFloodZonesExtraContent(floodZone)
       extraContent += getClimateChangeExtraContent(floodZone)
     } else if (mapState.isClimateChange) {
-      extraContent += `<h2 class="govuk-heading-s">How to use surface plus climate change</h2>
+      extraContent += `<h2 class="govuk-heading-s">Climate change allowances</h2>
         <p class="govuk-body-s">
-          The surface plus plus climate change dataset shows how the combined extent of surface plus could increase with climate change over the next century, ignoring the benefits of any existing flood defences.
+        Surface water with climate change uses the ‘upper end’ allowance for the 2070s epoch (2061 to 2125). 
         </p>
-        ${$findOutMoreLink}`
+  
+        <p class="govuk-body-s">
+        This has been taken from the Environment Agency’s
+        ${$climateChangeAllowances}
+        </p>        
+        <p class="govuk-body-s">
+        ${$findOutMoreLink}
+        </p>`
     }
     return extraContent
   }
