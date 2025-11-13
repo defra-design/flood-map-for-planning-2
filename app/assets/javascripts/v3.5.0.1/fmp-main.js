@@ -74,31 +74,31 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.floodExtents)
   },
   surfaceWater0: {
-    label: '>2.3',
+    label: '>2300',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[0])
   },
   surfaceWater1: {
-    label: '1.2',
+    label: '1200',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[1])
   },
   surfaceWater2: {
-    label: '0.9',
+    label: '900',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[2])
   },
   surfaceWater3: {
-    label: '0.6',
+    label: '600',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[3])
   },
   surfaceWater4: {
-    label: '0.3',
+    label: '300',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[4])
   },
   surfaceWater5: {
-    label: '0.15',
+    label: '150',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[5])
   },
   surfaceWater6: {
-    label: '<0.15',
+    label: '<150',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
   }
 }
