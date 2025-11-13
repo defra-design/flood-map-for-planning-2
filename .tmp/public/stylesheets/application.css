@@ -9015,3 +9015,14 @@ p + .govuk-heading-s,
 .govuk-details__text {
   color: var(--foreground-colour);
 }
+
+.fm-o-top__column:first-child {
+  position: static;
+}
+
+.fm-o-top__column:first-child > .fm-c-panel {
+  position: absolute;
+  left: 15px;
+  top: 70px;
+  max-height: calc(100% - 125px);
+}
