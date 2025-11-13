@@ -290,7 +290,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     legend: {
       htmlAfter: sliderMarkUp,
       width: '280px',
-      isVisible: false,
+      isVisible: true,
       //    title: 'Menu',
       keyWidth: '360px',
       keyDisplay: 'min',
