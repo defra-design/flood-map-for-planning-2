@@ -25,13 +25,13 @@ const terms = {
   },
   depth: {    
     depthAll: 'All depths',
-    depth150: '<0.15m',
-    depth300: '<0.3m',
-    depth600: '<0.6m',
-    depth900: '<0.9m',
-    depth1200: '<1.2m',
-    depth2300: '<2.3m',
-    depthOver2300: '>2.3m'
+    depth150: 'Extent of flooding',
+    depth300: 'More than 150mm',
+    depth600: 'More than 300mm',
+    depth900: 'More than 600mm',
+    depth1200: 'More than 900mm',
+    depth2300: 'More than 1200mm',
+    depthOver2300: 'More than 2300mm'
   },
   likelihoodchance: {
     rsHigh: '<p class="govuk-body-s">3.3% (1 in 30)</br>chance of flooding each year</p>',
