@@ -803,15 +803,16 @@ getDefraMapConfig().then((defraMapConfig) => {
     `
     : ''
 
+  const $findOutMoreLink = `<p class="govuk-body-s"> 
+    <a href="how-to-use-flood-map-for-planning-data">
+      Find out more about flood map for planning data and how it should be used
+    </a>
+  </p>`
+
   const getFloodZonesExtraContent = (floodZone) => {
     if (!mapState.isFloodZone) {
       return ''
     }
-    const $findOutMoreLink = `<p class="govuk-body-s"> 
-      <a href="how-to-use-flood-map-for-planning-data">
-        Find out more about flood map for planning data and how it should be used
-      </a>
-    </p>`
     if (floodZone === terms.keys.fzNoData) {
       return `<h2 class="govuk-heading-s">Climate change data unavailable</h2>
         <p class="govuk-body-s">
@@ -834,8 +835,16 @@ getDefraMapConfig().then((defraMapConfig) => {
 
   const getQueryExtraContent = (vtLayer, floodZone) => {
     let extraContent = ''
-    extraContent += getFloodZonesExtraContent(floodZone)
-    extraContent += getClimateChangeExtraContent(floodZone)
+    if (floodZone) {
+      extraContent += getFloodZonesExtraContent(floodZone)
+      extraContent += getClimateChangeExtraContent(floodZone)
+    } else if (mapState.isClimateChange) {
+      extraContent += `<h2 class="govuk-heading-s">How to use surface plus climate change</h2>
+        <p class="govuk-body-s">
+          The surface plus plus climate change dataset shows how the combined extent of surface plus could increase with climate change over the next century, ignoring the benefits of any existing flood defences.
+        </p>
+        ${$findOutMoreLink}`
+    }
     return extraContent
   }
 
