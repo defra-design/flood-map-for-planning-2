@@ -23,6 +23,13 @@ const symbols = {
   noData: '/public/images/no-data.svg'
 }
 
+// set to 'none' to globally turn these off
+const collapseFeatures = 'collapse'
+const collapseBoundary = 'collapse'
+const collapseDataSets = 'collapse'
+const collapseClimateChange = 'collapse'
+const collapseAEP = 'collapse'
+
 const keyItemDefinitions = {
   floodZone2: {
     label: 'Flood zone 2',
@@ -98,7 +105,24 @@ const keyItemDefinitions = {
   surfaceWater6: {
     label: '<150',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
-  }
+  },
+  surfaceWaterDepth150: { label: terms.depth.depth150, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepth300: { label: terms.depth.depth300, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepth600: { label: terms.depth.depth600, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepth900: { label: terms.depth.depth900, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepth1200: { label: terms.depth.depth1200, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepth2300: { label: terms.depth.depth2300, fill: getKeyItemFill(colours.nonFloodZone) },
+  surfaceWaterDepthOver2300: { label: terms.depth.depthOver2300, fill: getKeyItemFill(colours.nonFloodZone) }
+}
+
+keyItemDefinitions.common = {
+  heading: terms.labels.mapFeatures,
+  collapse: collapseFeatures,
+  items: [
+    keyItemDefinitions.waterStorageAreas,
+    keyItemDefinitions.floodDefences,
+    keyItemDefinitions.mainRivers
+  ]
 }
 
 // floodZoneSymbolIndex is used to infer the _symbol value sent to the query feature when a layer is clicked
@@ -251,13 +275,6 @@ getDefraMapConfig().then((defraMapConfig) => {
   // const depthMap = ['over 2.3', '2.3', '1.2', '0.9', '0.6', '0.3', '0.15']
   const osAccountNumber = 'AC0000807064' // FCRM-5609 is raised to add this to a constants file
   const { baseMapStyles, digitisingMapStyles } = setUpBaseMaps(defraMapConfig, osAccountNumber)
-
-  // set to 'none' to globally turn these off
-  const collapseFeatures = 'collapse'
-  const collapseBoundary = 'collapse'
-  const collapseDataSets = 'collapse'
-  const collapseClimateChange = 'collapse'
-  const collapseAEP = 'collapse'
 
   const floodMap = new FloodMap('map', {
     behaviour: 'inline',
@@ -498,10 +515,10 @@ getDefraMapConfig().then((defraMapConfig) => {
             keyItemDefinitions.mainRivers
           ]
         },
-        {
+        { // Surface Water DepthAll
           heading: terms.labels.mapFeatures,
           collapse: collapseFeatures,
-          parentIds: ['rsd', 'rsu', 'sw'],
+          parentIds: ['rsd', 'rsu', 'depthAll'],
           items: [
             keyItemDefinitions.waterStorageAreas,
             keyItemDefinitions.floodDefences,
@@ -521,6 +538,42 @@ getDefraMapConfig().then((defraMapConfig) => {
               ]
             }
           ]
+        },
+        // Surface Water Extents:
+        {
+          parentIds: ['depth150'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth150]
+        },
+        {
+          parentIds: ['depth300'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth300]
+        },
+        {
+          parentIds: ['depth600'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth600]
+        },
+        {
+          parentIds: ['depth900'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth900]
+        },
+        {
+          parentIds: ['depth1200'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth1200]
+        },
+        {
+          parentIds: ['depth2300'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepth2300]
+        },
+        {
+          parentIds: ['depthOver2300'],
+          ...keyItemDefinitions.common,
+          items: [...keyItemDefinitions.common.items, keyItemDefinitions.surfaceWaterDepthOver2300]
         },
         {
           heading: terms.labels.mapFeatures,

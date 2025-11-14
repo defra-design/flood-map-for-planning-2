@@ -23,7 +23,7 @@ const terms = {
     swMedium: '1 in 100',
     swLow: '1 in 1000'
   },
-  depth: {    
+  depth: {
     depthAll: 'All depths',
     depth150: 'Full extent of flooding',
     depth300: 'Extent over 150mm',
