@@ -49,49 +49,49 @@ class FloodZoneCCLayer extends FloodMapLayer {
     this.floodZonesCCLayer = floodZonesCCLayer
   }
 
-  setNoDataBorderOpacity (opacity) {
+  setNoDataBorderOpacity () {
     const lineStyleLayerName = 'Flood Zones 2 and 3 Rivers and Sea CCP1/Unavailable/0'
     const lineLayerPaintProperties = this.floodZonesCCLayer.getPaintProperties(lineStyleLayerName)
     if (lineLayerPaintProperties) {
       const lineColour = colours.floodZoneNoData[this.isDark ? 1 : 0]
       lineLayerPaintProperties['line-color'] = lineColour
-      lineLayerPaintProperties['line-opacity'] = opacity
+      lineLayerPaintProperties['line-opacity'] = FloodMapLayer.opacity
       this.floodZonesCCLayer.setPaintProperties(lineStyleLayerName, lineLayerPaintProperties)
     }
   }
 
-  setFloodZoneCCStyleProperties (opacity) {
+  setFloodZoneCCStyleProperties () {
     const styleLayerName = 'Flood Zones 2 and 3 Rivers and Sea CCP1/Flood Zones plus climate change/1'
     const layerPaintProperties = this.floodZonesCCLayer.getPaintProperties(styleLayerName)
     const paintProperties = colours.floodZoneCC
     if (layerPaintProperties) {
       const fillColour = paintProperties[this.isDark ? 1 : 0]
       layerPaintProperties['fill-color'] = fillColour
-      layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(this.mapState.segments) ? opacity : 0
+      layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(this.mapState.segments) ? FloodMapLayer.opacity : 0
       this.floodZonesCCLayer.setPaintProperties(styleLayerName, layerPaintProperties)
     }
   }
 
-  setNoDataFillOpacity (layerName, opacity) {
+  setNoDataFillOpacity (layerName) {
     const paintProperties = this.floodZonesCCLayer.getPaintProperties(layerName)
-    paintProperties['fill-opacity'] = opacity
+    paintProperties['fill-opacity'] = FloodMapLayer.opacity
     this.floodZonesCCLayer.setPaintProperties(layerName, paintProperties)
   }
 
-  setStyleProperties (opacity) {
+  setStyleProperties () {
     // Set style properties of the standard flood zone layer using the parent class
-    super.setStyleProperties(opacity)
+    super.setStyleProperties()
     // Show and hide the floodZonesCCLayer "no data" standard/dark mode style layers as applicable
     this.floodZonesCCLayer.setStyleLayerVisibility(this.floodZonesCCNodDataStandardLayerName, this.isDark ? 'none' : 'visible')
     this.floodZonesCCLayer.setStyleLayerVisibility(this.floodZonesCCNodDataDarkLayerName, this.isDark ? 'visible' : 'none')
 
-    this.setNoDataFillOpacity(this.floodZonesCCNodDataStandardLayerName, opacity)
-    this.setNoDataFillOpacity(this.floodZonesCCNodDataDarkLayerName, opacity)
+    this.setNoDataFillOpacity(this.floodZonesCCNodDataStandardLayerName)
+    this.setNoDataFillOpacity(this.floodZonesCCNodDataDarkLayerName)
 
     // Set the style properties for the floodZonesCCLayer "no data" border
-    this.setNoDataBorderOpacity(opacity)
+    this.setNoDataBorderOpacity()
     // Now set the style for the FZ Climate Change Layer
-    this.setFloodZoneCCStyleProperties(opacity)
+    this.setFloodZoneCCStyleProperties()
   }
 
   set visible (visible) {

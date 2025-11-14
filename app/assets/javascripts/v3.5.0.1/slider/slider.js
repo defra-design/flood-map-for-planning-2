@@ -9,6 +9,7 @@
  */
 
 // Create OpacitySlider that contains value, valuemin, valuemax, and valuenow
+import { FloodMapLayer } from '../../common/mapLayers/index.js'
 
 const SNAP_VALUE = 5
 const PAGE_DOWN_VALUE = 10
@@ -16,15 +17,14 @@ const PAGE_DOWN_VALUE = 10
 const snap = (value) => Math.round(value / SNAP_VALUE) * SNAP_VALUE
 
 class OpacitySlider {
-  constructor(domNode, initialValue) {
+  constructor (domNode) {
     this.domNode = domNode
-    this.initialValue = initialValue * 100
 
     this.pointerSlider = false
 
     this.sliders = {}
 
-    this.svgWidth = 250 //310
+    this.svgWidth = 250 // 310
     this.svgHeight = 50
     this.borderWidth = 2
 
@@ -48,7 +48,7 @@ class OpacitySlider {
     document.body.addEventListener('pointerup', this.onThumbPointerUp.bind(this))
   }
 
-  initSliderRefs(sliderRef, name) {
+  initSliderRefs (sliderRef, name) {
     sliderRef[name] = {}
     const node = this.domNode.querySelector('.opacity-slider.' + name)
     sliderRef[name].sliderNode = node
@@ -89,8 +89,8 @@ class OpacitySlider {
   }
 
   // Initialize slider
-  init() {
-    for (let slider in this.sliders) {
+  init () {
+    for (const slider in this.sliders) {
       if (this.sliders[slider].sliderNode.tabIndex != 0) {
         this.sliders[slider].sliderNode.tabIndex = 0
       }
@@ -102,12 +102,12 @@ class OpacitySlider {
       this.sliders[slider].valueNode.addEventListener('pointerdown', this.onThumbPointerDown.bind(this))
       this.sliders[slider].sliderNode.addEventListener('pointermove', this.onThumbPointerMove.bind(this))
 
-      this.moveSliderTo(this.sliders[slider], this.initialValue)
+      this.moveSliderTo(this.sliders[slider], FloodMapLayer.opacity * 100)
     }
   }
 
   // Get point in global SVG space
-  getSVGPoint(slider, event) {
+  getSVGPoint (slider, event) {
     slider.svgPoint.x = event.clientX
     slider.svgPoint.y = event.clientY
     return slider.svgPoint.matrixTransform(
@@ -115,7 +115,7 @@ class OpacitySlider {
     )
   }
 
-  getSlider(domNode) {
+  getSlider (domNode) {
     if (!domNode.classList.contains('opacity-slider')) {
       if (domNode.tagName.toLowerCase() === 'rect') {
         domNode = domNode.parentNode.parentNode
@@ -129,19 +129,19 @@ class OpacitySlider {
     }
   }
 
-  getValueMin(slider) {
+  getValueMin (slider) {
     return parseInt(slider.sliderNode.getAttribute('aria-valuemin'))
   }
 
-  getValueNow(slider) {
+  getValueNow (slider) {
     return parseInt(slider.sliderNode.getAttribute('aria-valuenow'))
   }
 
-  getValueMax(slider) {
+  getValueMax (slider) {
     return parseInt(slider.sliderNode.getAttribute('aria-valuemax'))
   }
 
-  moveSliderTo(slider, value) {
+  moveSliderTo (slider, value) {
     const valueMin = this.getValueMin(slider)
     const valueMax = this.getValueMax(slider)
     const valueNow = Math.min(Math.max(value, valueMin), valueMax)
@@ -171,15 +171,15 @@ class OpacitySlider {
     }
   }
 
-  onUpdate(onUpdateCallback) {
+  onUpdate (onUpdateCallback) {
     this.onUpdateCallback = () => {
       const opacity = this.sliders.opacity.sliderNode.getAttribute('aria-valuenow')
-
-      onUpdateCallback(opacity / 100)
+      FloodMapLayer.opacity = opacity / 100
+      onUpdateCallback()
     }
   }
 
-  onSliderKeyDown(event) {
+  onSliderKeyDown (event) {
     let flag = false
 
     const slider = this.getSlider(event.currentTarget)
@@ -234,7 +234,7 @@ class OpacitySlider {
     }
   }
 
-  onThumbPointerDown(event) {
+  onThumbPointerDown (event) {
     this.pointerSlider = this.getSlider(event.currentTarget)
 
     // Set focus to the clicked on
@@ -244,20 +244,20 @@ class OpacitySlider {
     event.stopPropagation()
   }
 
-  onThumbPointerUp() {
+  onThumbPointerUp () {
     this.pointerSlider = false
   }
 
-  onThumbPointerMove(event) {
+  onThumbPointerMove (event) {
     if (
       this.pointerSlider &&
       this.pointerSlider.sliderNode.contains(event.target)
     ) {
-      let x = this.getSVGPoint(this.pointerSlider, event).x
-      let min = this.getValueMin(this.pointerSlider)
-      let max = this.getValueMax(this.pointerSlider)
-      let diffX = x - this.railX
-      let value = snap(Math.round((diffX * (max - min)) / this.railWidth))
+      const x = this.getSVGPoint(this.pointerSlider, event).x
+      const min = this.getValueMin(this.pointerSlider)
+      const max = this.getValueMax(this.pointerSlider)
+      const diffX = x - this.railX
+      const value = snap(Math.round((diffX * (max - min)) / this.railWidth))
       this.moveSliderTo(this.pointerSlider, value)
 
       event.preventDefault()
@@ -266,7 +266,7 @@ class OpacitySlider {
   }
 
   // handle click event on the rail
-  onRailClick(event) {
+  onRailClick (event) {
     const slider = this.getSlider(event.currentTarget)
 
     const x = this.getSVGPoint(slider, event).x

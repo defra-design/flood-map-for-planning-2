@@ -8,6 +8,8 @@ class FloodMapLayer {
     this.logStyles = logStyles
   }
 
+  static opacity = 0.75
+
   static injectedModules = {}
 
   static get modules () {
@@ -81,7 +83,7 @@ class FloodMapLayer {
     return paintProperties[this.isDark ? 1 : 0]
   }
 
-  setStyleProperties (opacity) {
+  setStyleProperties () {
     if (this.logStyles) {
       this.logStyleLayers()
     }
@@ -89,7 +91,7 @@ class FloodMapLayer {
       const layerPaintProperties = this.vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         layerPaintProperties['fill-color'] = this.getFillColour(paintProperties)
-        layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(styleLayerFilters) ? opacity : 0
+        layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(styleLayerFilters) ? FloodMapLayer.opacity : 0
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })

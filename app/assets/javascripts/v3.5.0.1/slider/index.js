@@ -27,20 +27,22 @@ const createOpacitySlider = (sliderElement, opacity) => {
 }
 
 const initialiseSlider = (mapComponentCallback, opacity) => {
-  onUpdateOpacity = mapComponentCallback
   initialOpacity = opacity
+  onUpdateOpacity = (opacity) => {
+    initialOpacity = opacity
+    mapComponentCallback(opacity)
+  }
   const sliderElement = document.getElementById(id)
+
+  let opacityContainer = '.fm-o-side' // On non-mobile sliderElement is in the fm-o-side element
   if (sliderElement) { // desktop element should exist
     createOpacitySlider(sliderElement, initialOpacity)
-  } else { // mobile requires an observer
-    const mobileOnUpdateOpacity = (capacity) => {
-      initialOpacity = capacity
-      mapComponentCallback(capacity)
-    }
-    onUpdateOpacity = mobileOnUpdateOpacity
-    const mapMiddleElement = document.querySelector('.fm-o-middle')
-    observer.observe(mapMiddleElement, { attributes: false, childList: true, characterData: false, subtree: false })
+  } else { // On mobile sliderElement is in the fm-o-middle element
+    opacityContainer = '.fm-o-middle'
   }
+  // Now create an observer that will re-create the slider every time it goes.
+  const mapOpacityContainer = document.querySelector(opacityContainer)
+  observer.observe(mapOpacityContainer, { attributes: false, childList: true, characterData: false, subtree: false })
 }
 
 export { sliderMarkUp, initialiseSlider }

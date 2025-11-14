@@ -17,7 +17,6 @@ let VectorTileLayer, FeatureLayer
 const GroupLayer = undefined // Add in when we can work out how to import it
 
 let visibleVtLayer
-let opacity = 0.75
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
@@ -238,7 +237,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       }
       const isVisible = !isDrawMode && vtLayer.isLayerVisible(segments)
       vtLayer.visible = isVisible
-      vtLayer.setStyleProperties(opacity)
+      vtLayer.setStyleProperties()
       visibleVtLayer = isVisible ? vtLayer : visibleVtLayer
     })
     fLayers.forEach(fLayer => {
@@ -597,10 +596,9 @@ getDefraMapConfig().then((defraMapConfig) => {
     mapState.isFloodZone = segments.includes('fz') || segments.includes('fzcl') || segments.includes('fzpd')
   }
 
-  const onUpdateOpacity = (newOpacity) => {
-    opacity = newOpacity
+  const onUpdateOpacity = () => {
     if (visibleVtLayer) {
-      visibleVtLayer.setStyleProperties(opacity)
+      visibleVtLayer.setStyleProperties()
     }
   }
 
@@ -620,7 +618,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    initialiseSlider(onUpdateOpacity, opacity)
+    initialiseSlider(onUpdateOpacity)
 
     // A quick way to permanently hide the banner is to change this line to renderBanner(false)
     renderBanner(mapState)
@@ -644,6 +642,7 @@ getDefraMapConfig().then((defraMapConfig) => {
   // Listen for mode, segments, layers or style changes
   floodMap.addEventListener('change', e => {
     const { type, mode, segments, layers, style } = e.detail
+    console.log('change event: ', { type, mode, segments, layers, style })
     updateMapState(segments, layers, style)
     if (['layer', 'segment'].includes(type)) {
       floodMap.setInfo(null)
