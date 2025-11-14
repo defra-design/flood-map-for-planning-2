@@ -94,9 +94,13 @@ class FloodZoneCCLayer extends FloodMapLayer {
     this.setFloodZoneCCStyleProperties()
   }
 
+  get allLayers () {
+    return [...super.allLayers, this.floodZonesCCLayer]
+  }
+
   set visible (visible) {
     this.floodZonesCCLayer.visible = visible
-    this.vectorTileLayer.visible = visible
+    super.visible = visible
   }
 
   get visible () {

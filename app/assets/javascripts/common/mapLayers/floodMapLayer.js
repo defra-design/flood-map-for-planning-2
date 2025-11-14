@@ -8,7 +8,19 @@ class FloodMapLayer {
     this.logStyles = logStyles
   }
 
-  static opacity = 0.75
+  static visibleLayer
+  static _opacity = 0.75
+
+  static set opacity (opacity) {
+    FloodMapLayer._opacity = opacity
+    if (FloodMapLayer.visibleLayer) {
+      FloodMapLayer.visibleLayer?.setStyleProperties()
+    }
+  }
+
+  static get opacity () {
+    return FloodMapLayer._opacity
+  }
 
   static injectedModules = {}
 
@@ -44,8 +56,18 @@ class FloodMapLayer {
     return this.getVectorTileUrl(this.name)
   }
 
+  get allLayers () {
+    return this.vectorTileLayer.allLayers || [this.vectorTileLayer]
+  }
+
   set visible (visible) {
     this.vectorTileLayer.visible = visible
+    if (visible) {
+      FloodMapLayer.visibleLayer = this
+    }
+    if (visible) {
+      this.setStyleProperties()
+    }
   }
 
   get visible () {
@@ -63,7 +85,8 @@ class FloodMapLayer {
     map.add(this.vectorTileLayer)
   }
 
-  isLayerVisible (segments) {
+  checkLayerVisibility (_segments) {
+    const { segments } = this.mapState
     const segmentsToMatch = this.layerVisibilityFilter
     if (segmentsToMatch) {
       return segmentsToMatch.every(segment => segments.includes(segment))

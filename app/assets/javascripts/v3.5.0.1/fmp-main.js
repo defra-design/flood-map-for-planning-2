@@ -16,7 +16,6 @@ let VectorTileLayer, FeatureLayer
 // const GroupLayer = await $arcgis.import("@arcgis/core/layers/GroupLayer.js")
 const GroupLayer = undefined // Add in when we can work out how to import it
 
-let visibleVtLayer
 const symbols = {
   waterStorageAreas: '/public/images/water-storage.svg',
   floodDefences: '/public/images/flood-defence.svg',
@@ -235,10 +234,9 @@ getDefraMapConfig().then((defraMapConfig) => {
       if (!vtLayer.q) {
         return
       }
-      const isVisible = !isDrawMode && vtLayer.isLayerVisible(segments)
+      const isVisible = !isDrawMode && vtLayer.checkLayerVisibility() // segments)
       vtLayer.visible = isVisible
-      vtLayer.setStyleProperties()
-      visibleVtLayer = isVisible ? vtLayer : visibleVtLayer
+      // vtLayer.setStyleProperties()
     })
     fLayers.forEach(fLayer => {
       const layer = map.findLayerById(fLayer.name)
@@ -596,12 +594,6 @@ getDefraMapConfig().then((defraMapConfig) => {
     mapState.isFloodZone = segments.includes('fz') || segments.includes('fzcl') || segments.includes('fzpd')
   }
 
-  const onUpdateOpacity = () => {
-    if (visibleVtLayer) {
-      visibleVtLayer.setStyleProperties()
-    }
-  }
-
   // Component is ready and we have access to map
   // We can listen for map events now, such as 'loaded'
   floodMap.addEventListener('ready', async e => {
@@ -618,7 +610,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     await addLayers()
     setTimeout(() => toggleVisibility(null, mode, segments, layers, floodMap.map, mapState.isDark), 1000)
     initPointerMove()
-    initialiseSlider(onUpdateOpacity)
+    initialiseSlider()
 
     // A quick way to permanently hide the banner is to change this line to renderBanner(false)
     renderBanner(mapState)
@@ -642,7 +634,6 @@ getDefraMapConfig().then((defraMapConfig) => {
   // Listen for mode, segments, layers or style changes
   floodMap.addEventListener('change', e => {
     const { type, mode, segments, layers, style } = e.detail
-    console.log('change event: ', { type, mode, segments, layers, style })
     updateMapState(segments, layers, style)
     if (['layer', 'segment'].includes(type)) {
       floodMap.setInfo(null)
@@ -659,11 +650,11 @@ getDefraMapConfig().then((defraMapConfig) => {
     const minScale = 250000 // vector tile layers use minScale value from arcgis online config for visibility
     floodMap.view.on('pointer-move', e => {
       const now = Date.now()
-      if (!visibleVtLayer || now - lastHit < throttleMs || floodMap.view.scale > minScale) {
+      if (!FloodMapLayer.visibleLayer || now - lastHit < throttleMs || floodMap.view.scale > minScale) {
         return
       }
       lastHit = now
-      const layersToTest = visibleVtLayer.vectorTileLayer.allLayers || [visibleVtLayer.vectorTileLayer]
+      const layersToTest = FloodMapLayer.visibleLayer.allLayers
       floodMap.view.hitTest(e, { include: layersToTest }).then((response) => {
         document.body.style.cursor = response?.results?.length > 0 ? 'pointer' : 'default'
       })

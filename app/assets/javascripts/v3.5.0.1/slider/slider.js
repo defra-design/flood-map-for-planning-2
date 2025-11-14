@@ -166,17 +166,9 @@ class OpacitySlider {
     pos = this.railX + offsetX - (this.focusWidth - this.thumbWidth) / 2
     slider.focusNode.setAttribute('x', pos)
 
-    if (this.onUpdateCallback) {
-      this.onUpdateCallback()
-    }
-  }
-
-  onUpdate (onUpdateCallback) {
-    this.onUpdateCallback = () => {
-      const opacity = this.sliders.opacity.sliderNode.getAttribute('aria-valuenow')
-      FloodMapLayer.opacity = opacity / 100
-      onUpdateCallback()
-    }
+    const opacity = this.sliders.opacity.sliderNode.getAttribute('aria-valuenow')
+    // Change the opacity on the FloodMapLayer - which triggers a redraw
+    FloodMapLayer.opacity = opacity / 100
   }
 
   onSliderKeyDown (event) {
