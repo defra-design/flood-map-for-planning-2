@@ -562,11 +562,11 @@ getDefraMapConfig().then((defraMapConfig) => {
           rings[1][0] === rings[2][0] &&
           rings[3][0] === rings[4][0]
         const warningText = isSquare ? 'Boundary is too big. 300 hectares max.' : 'Boundary is too big. 300 hectares max.'
-        console.log({
-          geometry,
-          warningText: !isValid ? warningText : null,
-          allowShape: false
-        })
+        // console.log({
+        //   geometry,
+        //   warningText: !isValid ? warningText : null,
+        //   allowShape: false
+        // })
         mapState.shapeIsValid = isValid
         return {
           warningText: !isValid ? warningText : null,
@@ -595,7 +595,6 @@ getDefraMapConfig().then((defraMapConfig) => {
     mapState.isRamp = layers.includes('md')
     mapState.isClimateChange = segments.includes('cl') || segments.includes('fzcl')
     mapState.isFloodZone = segments.includes('fz') || segments.includes('fzcl') || segments.includes('fzpd')
-    console.log('mapState: ', mapState)
   }
 
   const onUpdateOpacity = (newOpacity) => {
@@ -628,7 +627,7 @@ getDefraMapConfig().then((defraMapConfig) => {
     // floodMap.setBanner({ message: 'Click on the map for more information', isDismissable: true })
   })
 
-  console.log('document.referrer', document.referrer)
+  // console.log('document.referrer', document.referrer)
   document.addEventListener('click', e => {
     if (e.target.innerText === 'Get summary report') {
       if (!mapState.shapeIsValid) {
@@ -809,12 +808,12 @@ getDefraMapConfig().then((defraMapConfig) => {
     </a>
   </p>`
 
-    const $climateChangeAllowances = `<p class="govuk-body-s"> 
+  const $climateChangeAllowances = `<p class="govuk-body-s"> 
       <a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">
       Flood risk assessment: climate change allowances
       </a>
     </p>`
-    
+
   const getFloodZonesExtraContent = (floodZone) => {
     if (!mapState.isFloodZone) {
       return ''
