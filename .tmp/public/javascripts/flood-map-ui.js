@@ -2676,7 +2676,8 @@ function ScaleBar() {
   if (!hasScaleBar) {
     return;
   }
-  console.log(style);
+
+  // console.log(style)
   return /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement((react__WEBPACK_IMPORTED_MODULE_0___default().Fragment), null, isVisible && /*#__PURE__*/react__WEBPACK_IMPORTED_MODULE_0___default().createElement("div", {
     className: "fm-c-scale".concat(!isReady ? ' fm-u-hidden' : '', " fm-c-scale--").concat(style === null || style === void 0 ? void 0 : style.name),
     ref: elRef,
