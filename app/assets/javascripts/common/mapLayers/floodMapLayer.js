@@ -14,7 +14,7 @@ class FloodMapLayer {
   static set opacity (opacity) {
     FloodMapLayer._opacity = opacity
     if (FloodMapLayer.visibleLayer) {
-      FloodMapLayer.visibleLayer?.setStyleProperties()
+      FloodMapLayer.visibleLayer?.updateOpacity()
     }
   }
 
@@ -66,6 +66,7 @@ class FloodMapLayer {
       FloodMapLayer.visibleLayer = this
     }
     if (visible) {
+      this.updateOpacity()
       this.setStyleProperties()
     }
   }
@@ -106,6 +107,10 @@ class FloodMapLayer {
     return paintProperties[this.isDark ? 1 : 0]
   }
 
+  updateOpacity () {
+    this.vectorTileLayer.opacity = FloodMapLayer.opacity
+  }
+
   setStyleProperties () {
     if (this.logStyles) {
       this.logStyleLayers()
@@ -114,7 +119,6 @@ class FloodMapLayer {
       const layerPaintProperties = this.vectorTileLayer.getPaintProperties(styleLayerName)
       if (layerPaintProperties) {
         layerPaintProperties['fill-color'] = this.getFillColour(paintProperties)
-        layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(styleLayerFilters) ? FloodMapLayer.opacity : 0
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
       }
     })
