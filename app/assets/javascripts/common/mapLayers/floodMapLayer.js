@@ -120,6 +120,9 @@ class FloodMapLayer {
       if (layerPaintProperties) {
         layerPaintProperties['fill-color'] = this.getFillColour(paintProperties)
         this.vectorTileLayer.setPaintProperties(styleLayerName, layerPaintProperties)
+        if (styleLayerFilters) {
+          layerPaintProperties['fill-opacity'] = this.isStyleLayerVisible(styleLayerFilters) ? FloodMapLayer.opacity : 0
+        }
       }
     })
   }
