@@ -11,7 +11,7 @@ const terms = {
     fzClimateChange: '2070 to 2125',
     presentDay: 'Present day',
     mapFeatures: 'Map features',
-    depth: 'Depth in metres',
+    depth: 'Depth in millimetres',
     annualLikelihood: 'Annual likelihood of flooding',
     aep: 'Annual exceedance probability (AEP)'
   },
