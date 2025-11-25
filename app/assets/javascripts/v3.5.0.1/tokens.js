@@ -21,7 +21,7 @@ export const getRequest = async (url) => {
   // OS Open Names
   if (url.startsWith('https://api.os.uk')) {
     const token = (await getOsToken()).token
-    options = {headers: { Authorization: 'Bearer ' + token }}
+    options = { headers: { Authorization: 'Bearer ' + token } }
   }
 
   // ESRI World Geocoder
@@ -34,20 +34,20 @@ export const getRequest = async (url) => {
 }
 
 export const getEsriToken = async () => {
-    // *ESRI manages this somehow?
-    const hasToken = esriAuth.token
-  
-    if (!hasToken) {
-      try {
-        const response = await fetch('/esri-token')
-        const json = await response.json()
-        esriAuth.token = json.token
-      } catch (err) {
-        console.log('Error getting ESRI access token: ', err)
-      }
+  // *ESRI manages this somehow?
+  const hasToken = esriAuth.token
+
+  if (!hasToken) {
+    try {
+      const response = await fetch('/esri-token')
+      const json = await response.json()
+      esriAuth.token = json.token
+    } catch (err) {
+      console.log('Error getting ESRI access token: ', err)
     }
-  
-    return esriAuth
+  }
+
+  return esriAuth
 }
 
 const getOsToken = async () => {
@@ -75,11 +75,11 @@ const getOsToken = async () => {
 }
 
 export const getDefraMapConfig = async () => ({
-  layerNameSuffix: "_NON_PRODUCTION",
-  agolServiceUrl: "https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
-  agolVectorTileUrl: "https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services",
-  mapStyleUrl: '/styles/OS_VTS_27700_Open_Outdoor.json',
-  darkMapStyleUrl: '/styles/OS_VTS_27700_Open_Dark.json',
+  layerNameSuffix: '_NON_PRODUCTION',
+  agolServiceUrl: 'https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services',
+  agolVectorTileUrl: 'https://tiles.arcgis.com/tiles/JZM7qJpmv7vJ0Hzx/arcgis/rest/services',
+  mapStyleUrl: '/styles/OS_VTS_27700_Outdoor.json',
+  darkMapStyleUrl: '/styles/OS_VTS_27700_Dark.json',
   masterMapUrl: '/styles/polygon-default.json',
   masterMapDarkUrl: '/styles/polygon-dark.json',
   blackAndWhiteMapStyleUrl: '/styles/OS_VTS_27700_Open_Black_and_White.json',
