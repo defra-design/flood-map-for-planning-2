@@ -528,13 +528,13 @@ getDefraMapConfig().then((defraMapConfig) => {
               display: 'ramp',
               numLabels: 1,
               items: [
-                keyItemDefinitions.surfaceWater0,
-                keyItemDefinitions.surfaceWater1,
-                keyItemDefinitions.surfaceWater2,
-                keyItemDefinitions.surfaceWater3,
-                keyItemDefinitions.surfaceWater4,
+                keyItemDefinitions.surfaceWater6,
                 keyItemDefinitions.surfaceWater5,
-                keyItemDefinitions.surfaceWater6
+                keyItemDefinitions.surfaceWater4,
+                keyItemDefinitions.surfaceWater3,
+                keyItemDefinitions.surfaceWater2,
+                keyItemDefinitions.surfaceWater1,
+                keyItemDefinitions.surfaceWater0
               ]
             }
           ]
