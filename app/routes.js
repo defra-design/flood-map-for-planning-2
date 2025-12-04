@@ -15,7 +15,7 @@ const path = require('path')
 router.use('/v3-3-0-1', require('./routes_v3-3-0-1'))
 router.use('/v3-4-0-1', require('./routes_v3-4-0-1'))
 router.use('/v3-4-0-2', require('./routes_v3-4-0-2'))
-router.use('/v3-5-0-1', require('./routes_v3-5-0-1'))
+router.use('/v3-6-0-0', require('./routes_v3-6-0-0'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {
@@ -138,9 +138,9 @@ router.get('/v3-4-0-2', function (req, res) {
 })
 
 //V3.5 with opacity slider
-router.get('/v3-5-0-1', function (req, res) {
+router.get('/v3-6-0-0', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-5-0-1/start`)
+	res.redirect(`/v3-6-0-0/start`)
 })
 
 module.exports = router

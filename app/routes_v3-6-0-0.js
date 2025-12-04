@@ -1,7 +1,7 @@
 const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 
-const folder = "v3-5-0-1"
+const folder = "v3-6-0-0"
 
 // Add your routes here
 

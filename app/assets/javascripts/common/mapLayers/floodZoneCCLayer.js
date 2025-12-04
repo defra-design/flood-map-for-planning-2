@@ -1,5 +1,5 @@
 import { FloodMapLayer } from './floodMapLayer.js'
-import { colours } from '../../v3.5.0.1/colours.js'
+import { colours } from '../../v3.6.0.0/colours.js'
 
 class FloodZoneCCLayer extends FloodMapLayer {
   constructor () {
