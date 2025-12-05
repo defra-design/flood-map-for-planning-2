@@ -1,0 +1,88 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Request flood risk assessment data - GOV.UK
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+{% block content %}
+
+<div class="govuk-width-container">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-two-thirds">
+
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--xl">
+          <h1 class="govuk-fieldset__heading">
+            Order your flood risk data 
+          </h1>
+        </legend>
+
+
+        <p id="event-name-hint" class="govuk-body">
+          Order detailed flood risk information to be used for a flood risk assessment as part of a planning application. This data is also known as a product 4. 
+        </p>
+        <p>The flood risk data usually includes:</p>
+
+      </br>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li>detailed flood data</li>
+          <li>past floods event data</li>
+          <li>modelled flood levels and extents</li>
+          <li>flood defence locations and attributes</li>
+        </ul>
+
+        <p>We will send your flood risk data in an email.</p>
+      </br>
+        <p>You should receive your data within 20 working days. </p>
+
+      </br>
+        <div class="govuk-form-group">
+
+          <form action="summary-fz3" method="post">
+
+            {{ govukInput({
+              id: "full-name",
+              name: "full-name",
+              value: data['full-name'],
+              autocomplete: 'off',
+              label: {
+                text: "Full name",
+                classes: "govuk-label--m"
+              }
+            }) }}
+
+            {{ govukInput({
+              id: "email",
+              name: "email",
+              value: data['email'],
+              autocomplete: 'off',
+              label: {
+                text: "Email address",
+                classes: "govuk-label--m"
+              }
+            }) }}
+
+            {{ govukButton({
+              text: "Continue",
+              classes: "govuk-!-margin-top-9"
+            }) }}
+
+          </form>
+
+        </div>
+
+
+    </div>
+
+  </div>
+
+</div>
+
+{% endblock %}

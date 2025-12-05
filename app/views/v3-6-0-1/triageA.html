@@ -1,0 +1,125 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form class="form" action="map" method="post">
+
+        
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {% set placeHtml %}
+        {{ govukInput({
+          id: "place",
+          name: "place",
+          type: "text",
+          spellcheck: false,
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Place or postcode",
+            classes: "govuk-visually-hidden"
+          },
+          hint: {
+            text: "For example, Bakewell or WA4 1AB"
+          }
+        }) }}
+        {% endset -%}
+
+        {% set ngrHtml %}
+        {{ govukInput({
+          id: "ngr",
+          name: "ngr",
+          type: "text",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "National Grid Reference (NGR)",
+            classes: "govuk-visually-hidden"
+          },
+          hint: {
+            text: "For example, SJ8632197947 (10 or 12 digits)"
+          }
+        }) }}
+        {% endset -%}
+
+        {% set eastingHtml %}
+        <div id="eastings-northings-hint" class="govuk-hint">
+          Eastings and northings should only include numbers.  For example: 123456
+        </div>
+        {{ govukInput({
+          id: "easting",
+          name: "easting",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Easting"
+          }
+        }) }}
+        {{ govukInput({
+          id: "northing",
+          name: "northing",
+          classes: "govuk-!-width-one-third",
+          label: {
+            text: "Northing"
+          }
+        }) }}
+        {% endset -%}
+
+        
+        {{ govukRadios({
+          name: "contact",
+          fieldset: {
+            legend: {
+              text: "What is your interest in flood risk?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "Place or postcode",
+              text: "I'm a flood professional interested in a planning application",
+              conditional: {
+                html: placeHtml
+              }
+            },
+            {
+              value: "National Grid Reference (NGR)",
+              text: "I'm a citizen interested in a planning application",
+              conditional: {
+                html: ngrHtml
+              }
+            },
+            {
+              value: "Easting and northing",
+              text: "I'm a citizen interested in my flood risk",
+              conditional: {
+                html: eastingHtml
+              }
+            }
+          ]
+        }) }}
+
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+
+    
+
+{% endblock %}

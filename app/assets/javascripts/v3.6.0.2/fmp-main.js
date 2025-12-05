@@ -525,7 +525,7 @@ getDefraMapConfig().then((defraMapConfig) => {
             keyItemDefinitions.floodDefences,
             keyItemDefinitions.mainRivers,
             {
-              label: 'Maximum depth in millimetres',
+              label: 'Depth in millimetres',
               display: 'ramp',
               numLabels: 1,
               items: [
