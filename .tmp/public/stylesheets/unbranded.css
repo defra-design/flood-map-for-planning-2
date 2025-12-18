@@ -8898,6 +8898,21 @@ p + .govuk-heading-s,
   margin-bottom: 0;
 }
 
+.fm-c-layers__group--custom-labels .fm-c-layers__columns .fm-c-layers__text {
+  text-align: right;
+  padding-right: 2.7em;
+}
+
+.fm-c-layers__group--custom-labels .fm-c-layers__columns .fm-c-layers__item:last-child .fm-c-layers__text {
+  text-align: right;
+  padding-right: 2.7em;
+  position: relative;
+  bottom: 0;
+  right: 0;
+  width: auto;
+  white-space: nowrap;
+}
+
 @media (max-width: 40.0525em) {
   .govuk-cookie-banner, .govuk-header {
     display: none;

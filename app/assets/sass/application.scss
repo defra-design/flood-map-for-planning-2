@@ -18,7 +18,20 @@
     margin-bottom: 0;
 }
 
+.fm-c-layers__group--custom-labels .fm-c-layers__columns .fm-c-layers__text{
+    text-align: right;
+    padding-right: 2.70em;
+}
 
+.fm-c-layers__group--custom-labels .fm-c-layers__columns .fm-c-layers__item:last-child .fm-c-layers__text{
+    text-align: right;
+    padding-right: 2.70em;  
+    position: relative;
+    bottom: 0;
+    right: 0;
+    width: auto;
+    white-space: nowrap;
+}
 .govuk-cookie-banner, .govuk-header {
     @include mq ($until: tablet) {
         display:none;

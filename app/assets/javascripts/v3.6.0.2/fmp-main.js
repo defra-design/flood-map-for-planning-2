@@ -79,7 +79,7 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.floodExtents)
   },
   surfaceWater0: {
-    label: '>2300',
+    label: '2300',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[0])
   },
   surfaceWater1: {
@@ -103,7 +103,7 @@ const keyItemDefinitions = {
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[5])
   },
   surfaceWater6: {
-    label: '<150',
+    label: '',
     fill: getKeyItemFill(colours.nonFloodZoneDepthBands[6])
   },
   surfaceWaterDepth150: { label: terms.depth.depth150, fill: getKeyItemFill(colours.nonFloodZone) },
@@ -525,7 +525,7 @@ getDefraMapConfig().then((defraMapConfig) => {
             keyItemDefinitions.floodDefences,
             keyItemDefinitions.mainRivers,
             {
-              label: 'Depth in millimetres',
+              label: 'Surface water depth in millimetres',
               display: 'ramp',
               numLabels: 1,
               items: [
