@@ -590,10 +590,10 @@ getDefraMapConfig().then((defraMapConfig) => {
     },
     queryArea: {
       collapse: collapseBoundary,
-      heading: 'Get a boundary report',
+      heading: 'Get data for your location',
       submitLabel: 'Get summary report',
-      keyLabel: 'Report area',
-      summary: 'Add or edit site boundary',
+      keyLabel: 'Site boundary',
+      summary: 'Add or edit location boundary',
       // minZoom: 21,
       // min zoom update to edit boundary zoom restriction
       maxZoom: 22,
@@ -612,7 +612,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           rings[2][1] === rings[3][1] &&
           rings[1][0] === rings[2][0] &&
           rings[3][0] === rings[4][0]
-        const warningText = isSquare ? 'Boundary is too big. 300 hectares max.' : 'Boundary is too big. 300 hectares max.'
+        const warningText = isSquare ? 'Boundary must be under 300ha to order data. You can still download a flood map.' : 'Boundary must be under 300ha to order data. You can still download a flood map.'
         // console.log({
         //   geometry,
         //   warningText: !isValid ? warningText : null,
@@ -809,9 +809,6 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (dataset) {
       listContents.push(['Dataset', dataset])
     }
-    if (feature?.Depth_band) {
-      listContents.push(['Depth band', feature?.Depth_band])
-    }
     if (vtLayer?.likelihoodLabel) {
       listContents.push([terms.labels.aep, vtLayer.likelihoodLabel])
     }
@@ -820,6 +817,9 @@ getDefraMapConfig().then((defraMapConfig) => {
     }
     if (vtLayer?.likelihoodchanceLabel) {
       listContents.push([terms.labels.aep, vtLayer.likelihoodchanceLabel])
+    }
+    if (feature?.Depth_band) {
+      listContents.push(['Depth band', feature?.Depth_band])
     }
   }
 
@@ -887,7 +887,8 @@ getDefraMapConfig().then((defraMapConfig) => {
     if (floodZone) {
       extraContent += getFloodZonesExtraContent(floodZone)
       extraContent += getClimateChangeExtraContent(floodZone)
-    } else if (mapState.isClimateChange) {
+    } 
+    else if (mapState.isClimateChange) {
       extraContent += `<h2 class="govuk-heading-s">Climate change allowances</h2>
         <p class="govuk-body-s">
         Surface water with climate change uses the ‘upper end’ allowance for the 2070s epoch (2061 to 2125). 
