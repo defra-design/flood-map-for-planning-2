@@ -593,7 +593,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       heading: 'Get data for your location',
       submitLabel: 'Get summary report',
       keyLabel: 'Site boundary',
-      summary: 'Add or edit location boundary',
+      summary: 'Add or edit a location boundary',
       // minZoom: 21,
       // min zoom update to edit boundary zoom restriction
       maxZoom: 22,
@@ -612,7 +612,7 @@ getDefraMapConfig().then((defraMapConfig) => {
           rings[2][1] === rings[3][1] &&
           rings[1][0] === rings[2][0] &&
           rings[3][0] === rings[4][0]
-        const warningText = isSquare ? 'Boundary must be under 300ha to order data. You can still download a flood map.' : 'Boundary must be under 300ha to order data. You can still download a flood map.'
+        const warningText = isSquare ? 'Boundary must be under 300 hectares to order data. You can still download a flood map.' : 'Boundary must be under 300ha to order data. You can still download a flood map.'
         // console.log({
         //   geometry,
         //   warningText: !isValid ? warningText : null,
