@@ -9016,7 +9016,7 @@ p + .govuk-heading-s,
   color: var(--foreground-colour);
 }
 
-.fm-o-top__column:first-child {
+.fm-o-top__column:first-child:not(:has(.fm-c-search)) {
   position: static;
 }
 
