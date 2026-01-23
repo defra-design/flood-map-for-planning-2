@@ -142,21 +142,35 @@
       <h3 class="govuk-heading-m">
         Order detailed flood risk data        
       </h3>
-<p>The flood risk data usually includes:  </p>
-</br>
 
-<ul class="govuk-list govuk-list--bullet">
-<li>detailed flood data  </li>
-<li>past flood event data  </li>
-<li>modelled flood levels and extents  </li>
-<li>flood defence locations and attributes  </li>
-</ul>
-    <p>You should receive your data within 20 working days. </p>
+{% if data['shapeType'] == '300ha' %}
+    
+    
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
 
+<div class="govuk-inset-text">
+        <p class="govuk-body">The boundary is too big to order detailed flood risk information (product 4). Reduce the boundary size to under 300 hectares.</p>
+
+      <a href="map" class="govuk-button" data-module="govuk-button">
+        Edit boundary
+      </a>
+
+    </div>
+    <p class="govuk-body">
+      If your boundary needs to be bigger than 300 hectares, contact <a href="#">area-team@environment-agency.gov.uk</a>         </p>
+    </br>
+
+{% else %}
+
+
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
 </br>
-    <a href="contact" class="govuk-button" data-module="govuk-button">
-      Order flood risk data
-    </a>
+      <a href="contact" class="govuk-button" data-module="govuk-button">
+        Order flood risk data
+      </a>
+{% endif %}
 
       <p>If you need to order other products, email the Environment Agency team in Greater Manchester, Merseyside and Cheshire at <a href="mailto:communications_EAN@environment-agency.gov.uk">communications_EAN@environment-agency.gov.uk</a></p>
      
