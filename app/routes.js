@@ -17,6 +17,7 @@ router.use('/v3-4-0-1', require('./routes_v3-4-0-1'))
 router.use('/v3-4-0-2', require('./routes_v3-4-0-2'))
 router.use('/v3-6-0-1', require('./routes_v3-6-0-1'))
 router.use('/v3-6-0-2', require('./routes_v3-6-0-2'))
+router.use('/v3-7-0-1', require('./routes_v3-7-0-1'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {
@@ -142,11 +143,18 @@ router.get('/v3-4-0-2', function (req, res) {
 router.get('/v3-6-0-1', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
 	res.redirect(`/v3-6-0-1/start`)
+})
 
-})//V3.5 with opacity slider
+//V3.5 with opacity slider
 router.get('/v3-6-0-2', function (req, res) {
 	req.session.data = { mapType: 'v2PdCC' }
 	res.redirect(`/v3-6-0-2/start`)
+})
+
+//V3.5 with opacity slider
+router.get('/v3-7-0-1', function (req, res) {
+	req.session.data = { mapType: 'v2PdCC' }
+	res.redirect(`/v3-7-0-1/start`)
 })
 
 module.exports = router

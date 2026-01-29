@@ -1,0 +1,187 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Next steps – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+
+{% block beforeContent %}
+  
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-width-container">
+
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-grid-row">
+
+      <div class="govuk-grid-column-three-quarters">
+
+        <h1 class="govuk-heading-xl">
+          Next steps for your planning application 
+        </h1>
+        <h3 class="govuk-heading-m">
+          Decide what you need for your planning application  
+        </h3>
+        <p>Contact your local planning authority to check their requirements.</p>
+        </br>
+        <p>Your local planning authority is Bristol City Council. </p>
+        </br>
+        <p>Get a flood risk assessment (FRA). You will normally need to pay a flood risk specialist to carry it out. </p>
+        </br>
+        <p>For developments in flood zone 3 your FRA should include an assessment of all sources of flooding and <a href="">take into account climate change allowances</a>. </p>
+        </br>
+        <p>Find out <a href="#">how to do an assessment</a>. </p>
+        </br>
+        <p>Find out more about <a href="flood-zones">flood zones and what they mean</a>. </p>   
+       <p>
+          To find out about other factors that might affect the flood risk of this location, you should also check:  
+        </p>
+        </br>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a href="https://www.gov.uk/check-long-term-flood-risk">reservoir flood risk</a>  </li>
+          <li>
+            groundwater flood risk – you could use the <a href="https://www.bgs.ac.uk/datasets/groundwater-flooding/">British Geological Survey groundwater flooding data</a>, <a href="https://www.gov.uk/government/collections/groundwater-current-status-and-flood-risk">groundwater: current status and flood risk</a> and the guide on <a href="https://www.gov.uk/guidance/mining-and-groundwater-constraints-for-development">mining and groundwater constraints for development</a> – further information may be available from the lead local flood authority (LLFA) 
+          </li>
+          <li>
+            your local planning authority’s strategic flood risk assessment (SFRA), which includes future flood risk. 
+          </li>
+        </ul>
+
+        <h3 class="govuk-heading-m">
+          Other data you may need   
+        </h3>
+
+      <p>You will also need to assess <a href="https://www.gov.uk/guidance/flood-risk-and-coastal-change#para41">residual risk</a> from flood defence breach in this location. If available, we will provide breach hazard mapping data to help you do this. </p>
+
+       </br>
+
+      <h3 class="govuk-heading-m">
+        Get help    
+      </h3>
+
+    <p>
+      For help deciding what flood risk information you need, email the Environment Agency team in Greater Manchester, Merseyside and Cheshire at <a href="#">Inforequests.GMMC@environment-agency.gov.uk</a>.
+    </p>
+
+  </br>
+  <h3 class="govuk-heading-m">
+    Get flood risk data  
+  </h3>
+      <h4 class="govuk-heading-s">
+        Download the flood map for this location      
+      </h4>
+
+      <p>The flood map is suitable for a local planning authority to use when checking a planning application to see if a development is:   </p>
+
+      <p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>in flood zone 1, 2 or 3</li>
+          <li>within 20 metres of a main river or a flood defence</li>
+          <li>in a water storage area (also likely to be flood zone 3b in the strategic flood risk assessment)</li>
+        </ul>
+      </p>
+
+        <details class="govuk-details govuk-!-margin-bottom-1" data-module="govuk-details" data-journey-click="Flood-Zone-Results:DETAIL-CLICK:Add-A-Reference">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Add a reference to the flood map and set the scale
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <form class="form" id="product-1-form" method="POST" action="pdf">
+              <input name="id" type="hidden">
+              <input name="zone" type="hidden" value="FZ1">
+              <input name="polygon" type="hidden" value="[[362191,174450],[362281,174351],[362010,174333],[362191,174450]]">
+              <input name="center" type="hidden" value="[362145,174391]">
+              <input name="holdingComments" type="hidden" value="false">
+    
+              <div class="govuk-form-group">
+                <h3 class="govuk-label-wrapper">
+                  <label class="govuk-label--m" for="reference">
+                    Add a reference
+                  </label>
+                  <span class="govuk-hint govuk-hint--block">
+                    Optional. This is chosen by you to help you find the report
+                    later and should be less than 25 characters.
+                  </span>
+                </h3>
+                <input class="govuk-input form-control govuk-input--width-20" id="reference" name="reference" type="text" maxlength="13">
+              </div>
+    
+              <div class="govuk-form-group">
+                <h3 class="govuk-label-wrapper">
+                  <label class="govuk-label--m" for="scale"> Scale </label>
+                  <span class="govuk-hint govuk-hint--block">
+                    Select the scale of the map shown in the report
+                  </span>
+                </h3>
+                <select class="govuk-select" id="scale" name="scale">
+                  <option value="2500">1:2500</option>
+                  <option value="10000">1:10000</option>
+                  <option value="25000">1:25000</option>
+                  <option value="50000">1:50000</option>
+                </select>
+              </div>
+            </form>
+          </div>
+        </details>
+</br>
+     <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Download flood map for this location (PDF)
+    </button>
+      </br>
+    </br>
+      <h3 class="govuk-heading-m">
+        Order detailed flood risk data        
+      </h3>
+
+{% if data['shapeType'] == '300ha' %}
+    
+    
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
+
+<div class="govuk-inset-text">
+        <p class="govuk-body">The boundary is too big to order detailed flood risk information (product 4). Reduce the boundary size to under 300 hectares.</p>
+
+      <a href="map" class="govuk-button" data-module="govuk-button">
+        Edit boundary
+      </a>
+
+    </div>
+    <p class="govuk-body">
+      If your boundary needs to be bigger than 300 hectares, contact <a href="#">area-team@environment-agency.gov.uk</a>         </p>
+    </br>
+
+{% else %}
+
+
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
+</br>
+      <a href="contact" class="govuk-button" data-module="govuk-button">
+        Order flood risk data
+      </a>
+{% endif %}
+
+      <p>If you need to order other products, email the Environment Agency team in Greater Manchester, Merseyside and Cheshire at <a href="mailto:communications_EAN@environment-agency.gov.uk">communications_EAN@environment-agency.gov.uk</a></p>
+     
+      <p><a href="https://www.gov.uk/guidance/flood-risk-assessment-for-planning-applications#get-information-about-flood-risk-from-rivers-and-the-sea-to-help-you-to-complete-afra">Find out what products are available</a>
+      </p>
+    </div>
+
+    </div>
+
+  </main>
+  
+</div>
+
+{% endblock %}

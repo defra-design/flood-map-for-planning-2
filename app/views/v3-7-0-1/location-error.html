@@ -1,0 +1,39 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Location error - GOV.UK
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "map"
+}) }}
+{% endblock %}
+{% block content %}
+
+ 
+    <h1 class="govuk-heading-xl">
+      This service is for locations in England only 
+    </h1>
+ 
+    <p>There are different services to get information in the following locations: </p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li>
+          <a href="http://www.sepa.org.uk/environment/water/flooding">flood risk in Scotland</a>
+        </li>
+        <li>
+          <a href="https://naturalresources.wales">flood risk in Wales</a>
+        </li>
+        <li>
+          <a href="https://www.nidirect.gov.uk/articles/check-the-risk-of-flooding-in-your-area">flood risk in Northern Ireland</a>
+        </li>
+    </ul>
+
+        
+    <p class="govuk-body">
+      If you want to search for a different location in England, <a href="https://flood-map-for-planning.service.gov.uk/map">return to flood map for planning</a>.
+    </p>
+
+   
+{% endblock %}

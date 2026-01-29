@@ -9026,3 +9026,7 @@ p + .govuk-heading-s,
   top: 70px;
   max-height: calc(100% - 125px);
 }
+
+.fm-c-panel__body {
+  padding: 20px;
+}

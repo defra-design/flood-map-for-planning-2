@@ -6,4 +6,42 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 
 {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
 
-
+{#
+    For guidance on how to use layouts see:
+    https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
+    #}
+    {% from "govuk/components/phase-banner/macro.njk" import govukPhaseBanner %}
+    
+    {% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
+    
+    {% block header %}
+    {# Orginal header with stripped out service name and full blue border #}
+    {{ 
+        govukHeader({
+            homepageUrl: "/",
+            serviceUrl: "/",
+            classes: "govuk-header--full-width-border"
+        })
+    }}
+    {# new service navigation component with selected menu #}
+    {{ 
+        govukServiceNavigation({
+            serviceName: serviceName,
+            serviceUrl: "/"
+            })
+    }}
+    
+    {# example of phase banner and back links before the content #}
+    <div class="govuk-width-container">
+    {{ 
+        govukPhaseBanner({
+            tag: {
+                text: "Beta"
+            },
+            html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback by email</a>.'
+            })
+    }}
+    </div>
+    
+    {% endblock %}
+    
