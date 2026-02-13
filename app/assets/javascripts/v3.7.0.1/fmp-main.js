@@ -12,6 +12,40 @@ import { FloodMapLayer } from '../common/mapLayers/index.js'
 
 const FloodMap = window.defra.FloodMap
 
+// Get the polygon from the url
+const roundPolygon = (polygon) => {
+  return polygon.map(([x, y]) => [Math.round(x * 100) / 100, Math.round(y * 100) / 100])
+}
+
+const queryParams = new URLSearchParams(window.location.search)
+const polygon  = queryParams.get('polygon')
+const featureQuery = polygon ? {
+    type: 'feature',
+    geometry: {
+      type: 'polygon',
+      coordinates: roundPolygon(JSON.parse(polygon))
+    }
+} : undefined
+
+const mapDiv = document.getElementById('map')
+mapDiv.addEventListener('appaction', e => {
+  const { type } = e.detail
+  if (type === 'confirmPolygon' || type === 'updatePolygon') {
+    const url = new URL(window.location)
+    const polygon = e.detail?.query?.geometry?.coordinates?.[0]
+    url.searchParams.set('polygon', JSON.stringify(roundPolygon(polygon)))
+    url.search = decodeURIComponent(url.search)
+    window.history.replaceState(null, '', url)
+  }
+  if (type === 'deletePolygon') {
+    const url = new URL(window.location)
+    url.searchParams.delete('polygon')
+    url.search = decodeURIComponent(url.search)
+    window.history.replaceState(null, '', url)
+  }
+})
+// End of get the polygon from the url
+
 let VectorTileLayer, FeatureLayer
 // const GroupLayer = await $arcgis.import("@arcgis/core/layers/GroupLayer.js")
 const GroupLayer = undefined // Add in when we can work out how to import it
@@ -600,6 +634,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       styles: digitisingMapStyles,
       drawTools: ['polygon', 'square', 'file'],
       areaUnits: 'hectares',
+      feature: featureQuery,
       onShapeUpdate: ({ area, geometry }) => {
         // We seem to be getting this when we are not editing a shape = one to ask Dan about.
         if (!area || !geometry) {
