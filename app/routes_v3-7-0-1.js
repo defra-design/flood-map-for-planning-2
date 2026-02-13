@@ -10,5 +10,6 @@ require('./router/addLocalsMiddleware')(router, folder)
 require('./router/addResultsPageRoutes')(router, folder)
 require('./router/addLocationPageRoutes')(router, folder)
 require('./router/addTriagePageRoutes')(router, folder)
+require('./router/addCheckBoundaryPageRoutes')(router, folder)
 
 module.exports = router

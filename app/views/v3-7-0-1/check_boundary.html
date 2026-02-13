@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Location page - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backlink | safe }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="{{ formAction }}" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Check your upload
+            </h1>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">
+<p class="govuk-body"><strong>File name</strong> Proposed_new_building.GEOjson</p>
+       
+        
+
+
+          <img src="/public/images/boundary_img_10m.png" style="max-width: 70%; margin-bottom: 10px; height: auto;border-width: 1px;border-style: solid;border-color: rgb(160, 148, 148);" alt="map">
+          
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                See boundary at a larger scale
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <img src="/public/images/boundary_img_200m.png" style="max-width: 70%;height: auto;border-width: 1px;border-style: solid;border-color: rgb(160, 148, 148);" alt="map">
+            </div>
+          </details>
+        </div>
+
+          <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
+              <h3 class="govuk-fieldset__heading">
+                Is this file correct?
+              </h3>
+            </legend>
+  
+            <div class="govuk-radios" data-module="govuk-radios">
+  
+              <!-- Option 1: Place or postcode -->
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="location-1" name="locationType" type="radio" value="placePost" data-aria-controls="conditional-location-1">
+                <label class="govuk-label govuk-radios__label" for="location-1">Yes, add this file and review shape on the map</label>
+              </div>
+  
+              <!-- Option 2: NGR -->
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="location-2" name="locationType" type="radio" value="ngr" data-aria-controls="conditional-location-2">
+                <label class="govuk-label govuk-radios__label" for="location-2">Yes, add this file and go to results summary</label>
+              </div>
+  
+              <!-- Option 3: Easting/Northing -->
+              <div class="govuk-radios__item">
+                <input class="govuk-radios__input" id="location-3" name="locationType" type="radio" value="eastNorth" data-aria-controls="conditional-location-3">
+                <label class="govuk-label govuk-radios__label" for="location-3">No, I want to choose again</label>
+              </div>
+  
+            </div>
+          </fieldset>
+
+      </div>
+      <button type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+
+  </div>
+</div>
+
+{% endblock %}

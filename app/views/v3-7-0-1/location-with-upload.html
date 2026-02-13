@@ -1,0 +1,87 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Location page - GOV.UK
+{% endblock %}
+
+{% block beforeContent %}
+  {{ backlink | safe }}
+{% endblock %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <form action="{{ formAction }}" method="post">
+
+      <div class="govuk-form-group">
+        <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+          <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+            <h1 class="govuk-fieldset__heading">
+              Find the location
+            </h1>
+          </legend>
+          <div id="contact-hint" class="govuk-hint">
+            Choose an option to search for a location or skip straight to the map
+          </div>
+
+          <div class="govuk-radios" data-module="govuk-radios">
+
+            <!-- Option 1: Place or postcode -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-1" name="locationType" type="radio" value="placePost" data-aria-controls="conditional-location-1">
+              <label class="govuk-label govuk-radios__label" for="location-1">Place or postcode</label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-1">
+              <div class="govuk-form-group">
+                <div class="govuk-hint">For example, Bakewell or WA4 1AB</div>
+                <input class="govuk-input govuk-!-width-one-third" id="location-place-post" name="locationPlacePost" type="text">
+              </div>
+            </div>
+
+            <!-- Option 2: NGR -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-2" name="locationType" type="radio" value="ngr" data-aria-controls="conditional-location-2">
+              <label class="govuk-label govuk-radios__label" for="location-2">National Grid Reference (NGR)</label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-2">
+              <div class="govuk-form-group">
+                <div class="govuk-hint">For example, SJ8632197947 (10 or 12 digits)</div>
+                <input class="govuk-input govuk-!-width-one-third" id="location-ngr" name="locationNGR" type="text">
+              </div>
+            </div>
+
+            <!-- Option 3: Easting/Northing -->
+            <div class="govuk-radios__item">
+              <input class="govuk-radios__input" id="location-3" name="locationType" type="radio" value="eastNorth" data-aria-controls="conditional-location-3">
+              <label class="govuk-label govuk-radios__label" for="location-3">Easting and northing</label>
+            </div>
+            <div class="govuk-radios__conditional govuk-radios__conditional--hidden" id="conditional-location-3">
+              <div class="govuk-hint">Eastings and northings should only include numbers. For example: 123456</div>
+
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="easting">Easting</label>
+                <input class="govuk-input govuk-!-width-one-third" id="easting" name="easting" type="number">
+              </div>
+              <div class="govuk-form-group">
+                <label class="govuk-label" for="northing">Northing</label>
+                <input class="govuk-input govuk-!-width-one-third" id="northing" name="northing" type="number">
+              </div>
+            </div>
+
+          </div>
+        </fieldset>
+      </div>
+
+      <button type="submit" class="govuk-button govuk-!-margin-top-2 govuk-!-margin-bottom-8" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+
+    <p class="govuk-body"><a href="map">Skip to map</a> or <a href="upload">upload a boundary</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

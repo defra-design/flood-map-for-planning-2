@@ -70,7 +70,7 @@ const keyItemDefinitions = {
   },
   mainRivers: {
     id: 'mainr',
-    label: 'Main Rivers',
+    label: 'Main rivers',
     icon: symbols.mainRivers,
     fill: getKeyItemFill(colours.mainRivers)
   },
@@ -598,7 +598,7 @@ getDefraMapConfig().then((defraMapConfig) => {
       // min zoom update to edit boundary zoom restriction
       maxZoom: 22,
       styles: digitisingMapStyles,
-      drawTools: ['polygon', 'square'],
+      drawTools: ['polygon', 'square', 'file'],
       areaUnits: 'hectares',
       onShapeUpdate: ({ area, geometry }) => {
         // We seem to be getting this when we are not editing a shape = one to ask Dan about.
