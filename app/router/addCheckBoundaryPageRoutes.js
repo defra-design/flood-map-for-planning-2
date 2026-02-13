@@ -9,19 +9,18 @@ const addCheckBoundaryPageRoutes = (router, folder) => {
   })
 
   router.post('/check_boundary-check', function (req, res) {
-    const type = req.body.locationType
+    const type = req.body.selectionType
 
-    if (type === 'placePost') {
-      const query = req.body.locationPlacePost
+    if (type === 'reviewShape') {
+      const query = req.body.selectionReviewShape
       res.redirect('/' + folder + '/map?cz=504621.1,118518,15.912013')
 
-    } else if (type === 'ngr') {
-      const query = req.body.locationNGR
+    } else if (type === 'results') {
+      const query = req.body.selectionResults
       res.redirect('/' + folder + '/results')
 
-    } else if (type === 'eastNorth') {
-      const e = req.body.easting
-      const n = req.body.northing
+    } else if (type === 'chooseAgain') {
+      const query = req.body.selectionChooseAgain
       res.redirect('/' + folder + '/upload')
     }
   })

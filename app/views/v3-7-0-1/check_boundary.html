@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-  Location page - GOV.UK
+  upload check page - GOV.UK
 {% endblock %}
 
 {% block beforeContent %}
@@ -16,7 +16,7 @@
     <form action="{{ formAction }}" method="post">
 
       <div class="govuk-form-group">
-        <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+        <fieldset class="govuk-fieldset" aria-describedby="selection-hint">
           <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
             <h1 class="govuk-fieldset__heading">
               Check your upload
@@ -42,7 +42,7 @@
           </details>
         </div>
 
-          <fieldset class="govuk-fieldset" aria-describedby="location-hint">
+          <fieldset class="govuk-fieldset" aria-describedby="selection-hint">
             <legend class="govuk-fieldset__legend govuk-fieldset__legend--m">
               <h3 class="govuk-fieldset__heading">
                 Is this file correct?
@@ -53,20 +53,20 @@
   
               <!-- Option 1: Place or postcode -->
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="location-1" name="locationType" type="radio" value="placePost" data-aria-controls="conditional-location-1">
-                <label class="govuk-label govuk-radios__label" for="location-1">Yes, add this file and review shape on the map</label>
+                <input class="govuk-radios__input" id="selection-1" name="selectionType" type="radio" value="reviewShape" data-aria-controls="conditional-selection-1">
+                <label class="govuk-label govuk-radios__label" for="selection-1">Yes, add this file and review shape on the map</label>
               </div>
   
               <!-- Option 2: NGR -->
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="location-2" name="locationType" type="radio" value="ngr" data-aria-controls="conditional-location-2">
-                <label class="govuk-label govuk-radios__label" for="location-2">Yes, add this file and go to results summary</label>
+                <input class="govuk-radios__input" id="selection-2" name="selectionType" type="radio" value="results" data-aria-controls="conditional-selection-2">
+                <label class="govuk-label govuk-radios__label" for="selection-2">Yes, add this file and go to results summary</label>
               </div>
   
               <!-- Option 3: Easting/Northing -->
               <div class="govuk-radios__item">
-                <input class="govuk-radios__input" id="location-3" name="locationType" type="radio" value="eastNorth" data-aria-controls="conditional-location-3">
-                <label class="govuk-label govuk-radios__label" for="location-3">No, I want to choose again</label>
+                <input class="govuk-radios__input" id="selection-3" name="selectionType" type="radio" value="chooseAgain" data-aria-controls="conditional-selection-3">
+                <label class="govuk-label govuk-radios__label" for="selection-3">No, I want to choose again</label>
               </div>
   
             </div>
