@@ -1,0 +1,114 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+What flood information do you need?  {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <form action="{{formAction}}" method="post">
+        
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {% set placeHtml %}
+        {{ govukInput({
+          id: "place",
+          name: "place",
+          type: "text",
+          spellcheck: false,
+          classes: "govuk-!-width-two-thirds",
+          label: {
+            text: "Search for a location",
+            classes: "govuk-visually-hidden"
+          }
+        }) }}
+        {% endset -%}
+
+    
+        <h1 class="govuk-heading-xl">
+          What flood information do you need?
+        </h1>
+        
+        {{ govukRadios({
+          name: "triage",
+          fieldset: {
+            legend: {
+              text: "",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          items: [
+            {
+              value: "planning",
+              text: "For planning purposes or scoping a site",
+              hint: {
+                text: "You will be taken to the flood map for planning service"
+              
+              }
+            },
+            {
+              value: "buySell",
+              text: "For buying, selling or valuing a property",
+              hint: {
+                text: "You will be taken to the check your long term flood risk service"
+              
+              }
+            },
+            {
+              value: "pastFlood",
+              text: "To find out if your property is in an area that has flooded",
+              hint: {
+                text: "You will be taken to information on how to request a flood history report"
+              
+              }
+            },
+            {
+              value: "insurance",
+              text: "For insurance purposes, to find out if I am at risk of flooding",
+              hint: {
+                text: "You will be taken to the check your long term flood risk service"
+              
+              }
+            },
+            {
+              value: "notListed",
+              text: "My reason is not listed here",
+              hint: {
+                text: "Find other flood information on GOV.UK"
+              
+              }
+            }
+            
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+
+    <!-- <div class="govuk-grid-column-one-third">
+      <p class="govuk-heading-m">
+        This service is for planning applications
+      </p>
+      <p>
+        If you are not doing a planning application, you can <a href="https://www.gov.uk/check-long-term-flood-risk">check your long term flood risk</a>
+      </p>
+    </div>
+  </div> -->
+
+{% endblock %}
