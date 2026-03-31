@@ -8894,6 +8894,62 @@ p + .govuk-heading-s,
   left: calc(50vw - 75px);
 }
 
+.hmrc-user-research-banner {
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background-color: var(--govuk-brand-colour, #1d70b8);
+  box-sizing: border-box;
+  color: #fff;
+  display: block;
+  font-family: GDS Transport, arial, sans-serif;
+  font-size: 1.1875rem;
+  font-weight: 400;
+  line-height: 1.3157894737;
+  padding-bottom: 20px;
+  padding-top: 20px;
+  position: relative;
+}
+
+.hmrc-user-research-banner:after {
+  clear: both;
+  content: "";
+  display: block;
+}
+
+@media (min-width: 40.0625em) {
+  .hmrc-user-research-banner {
+    padding-bottom: 30px;
+    padding-top: 30px;
+  }
+}
+.hmrc-user-research-banner__container {
+  display: flex;
+  align-items: left;
+  justify-content: left;
+  padding-left: 30px;
+}
+
+.hmrc-user-research-banner__text {
+  text-align: left;
+}
+
+.hmrc-user-research-banner .hmrc-user-research-banner__title {
+  color: #ffffff;
+  margin-bottom: 5px;
+  font-weight: 700;
+}
+
+.hmrc-user-research-banner .hmrc-user-research-banner__link {
+  color: #ffffff;
+  text-decoration: none;
+  border-bottom: 1px solid #ffffff;
+}
+
+.hmrc-user-research-banner .hmrc-user-research-banner__link:hover {
+  color: #ffffff;
+  border-bottom: 3px solid #ffffff;
+}
+
 .flood-map-target .govuk-body-s {
   margin-bottom: 0;
 }
