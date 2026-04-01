@@ -125,7 +125,7 @@ router.get([
 
 //V1 with full summary page (including climate change)
 router.get('/v3-7-0-2', function (req, res) {
-	req.session.data = { mapType: 'v1PdCC' }
+	req.session.data = { shapeType: 'valid' }
 	res.redirect(`/v3-7-0-2/start`)
 })  
 
