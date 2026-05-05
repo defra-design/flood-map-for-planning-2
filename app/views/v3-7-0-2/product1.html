@@ -1,0 +1,674 @@
+{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+
+{% set imgpath="/public/images/email/" %}
+
+{% block page_title %}
+  Gmail | Flood risk activity exemption application
+{% endblock %}
+
+{% block proposition_header %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block header_class %}
+  <!-- blank to remove the proposition header -->
+{% endblock %}
+
+{% block content %}
+
+
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex">
+  <title>
+    Product 1 - Flood map for planning - GOV.UK
+  </title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="theme-color" content="#1d70b8">
+  <link rel="icon" sizes="48x48" href="/assets/images/favicon.ico">
+  <link rel="icon" sizes="any" href="/assets/images/favicon.svg" type="image/svg+xml">
+  <link rel="mask-icon" href="/assets/images/govuk-icon-mask.svg" color="#1d70b8">
+  <link rel="apple-touch-icon" href="/assets/images/govuk-icon-180.png">
+  <link rel="manifest" href="/assets/manifest.json">
+  <link href="/assets/application.css" rel="stylesheet">
+  <link href="/assets/check-your-details.css" rel="stylesheet"/>
+</head>
+
+<body class="govuk-template__body js-enabled govuk-frontend-supported">
+
+  <div class="govuk-width-container">
+    <div class="govuk-main-wrapper govuk-main-wrapper--l print-page">
+      <!-- HEADING -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <h1 class="govuk-heading-l">
+            Flood map for planning
+          </h1>
+          <input type="button" role="button" value="Print this page" onClick="window.print()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
+          <input type="button" role="button" value="Download PDF" onClick="window.getPdf()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
+        </div>
+      </div>
+      <!-- Parameters -->
+      <div class="govuk-grid-row">
+        <!-- REFERENCE -->
+        <div class="govuk-grid-column-one-third">
+          <h3 class="govuk-heading-s"> Your reference </h3>
+          <p class="govuk-body"> Mark </p>
+        </div>
+        <!-- LOCATION -->
+        <div class="govuk-grid-column-one-third">
+          <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+          <p class="govuk-body"> 395360/340050 </p>
+        </div>
+        <!-- Date -->
+        <div class="govuk-grid-column-one-third">
+          <h3 class="govuk-heading-s"> Created </h3>
+          <p class="govuk-body"> 05/05/2026 10:29 </p>
+        </div>
+      </div>
+      <!-- Flood Zone Heading -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+
+      <!-- Flood Zone 3 -->
+       {% if data['product1'] == 'FZ3' %}
+         <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+            data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__content">
+              Your selected location is in flood zone 3, an area with a high probability of flooding.
+            </div>
+          </div>
+        {% else %}
+        <!-- Flood Zone 1 -->                 
+          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+            data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__content">
+            Your selected location is in flood zone 1, an area with a low probability of flooding.
+          </div>
+          </div>
+        {% endif %}
+
+        </div>
+      </div>
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+
+          <!-- Flood Zones 2 and 3 -->
+       {% if data['product1'] == 'FZ3' %}
+
+          <h3 class="govuk-heading-s"> This means</h3>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              you must complete a flood risk assessment for development in this area
+            </li>
+            <li>
+              you should follow the Environment Agency's standing advice for carrying
+              out a flood risk assessment (see <a class="govuk-link"
+                href="https://www.gov.uk/guidance/flood-risk-assessment-standing-advice">
+                https://www.gov.uk/guidance/flood-risk-assessment-standing-advice </a>)
+            </li>
+          </ul>
+
+            {% else %}
+
+          <!-- Flood Zone 1 -->
+          <h3 class="govuk-heading-s"> This means</h3>
+
+          <p>You will need to do a flood risk assessment if your site is any of the following:</p>
+          </br>
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              bigger than 1 hectare (ha)
+            </li>
+             <li>
+              in an area with critical drainage problems as notified by the Environment Agency
+            </li>
+             <li>
+              identified as being at increased flood risk in future by the local authority's strategic flood risk assessment
+            </li>
+             <li>
+              at risk from other sources of flooding (such as surface water or reservoirs)
+              and its development would increase the vulnerability of its use (such as
+              constructing an
+            </li>
+          </ul>
+          {% endif %}
+        </div>
+      </div>
+
+      <!-- Notes -->
+      <div class="govuk-grid-row">
+        <div class="govuk-grid-column-full">
+          <h3 class="govuk-heading-s"> Notes </h3>
+          <p class="govuk-body">
+            The flood map for planning shows river and sea flooding data only. It doesn't
+            include other sources of flooding. It is for use in development planning and flood
+            risk assessments.
+          </p>
+          <p class="govuk-body">
+            This information relates to the selected location and is not specific to any property
+            within it. The map is updated regularly and is correct at the time of printing.
+          </p>
+          <p class="govuk-body">
+            Flood risk data is covered by the Open Government Licence which sets out the
+            terms and conditions for using government data.
+            <a class="govuk-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">
+              https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
+            </a>
+          </p>
+          <p class="govuk-body">
+            Use of the address and mapping data is subject to Ordnance Survey public
+            viewing terms under Crown copyright and database rights 2026 AC0000807064.
+            <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/os-terms">
+              https://flood-map-for-planning.service.gov.uk/os-terms
+            </a>
+          </p>
+        </div>
+      </div>
+    </div>
+    <div id="map-page" class="govuk-main-wrapper govuk-main-wrapper--l print-page">
+      <!-- MAP -->
+      <div  class="govuk-grid-row ">
+        <div class="govuk-grid-column-full">
+          <!-- Flood zones map -->
+          <figure id="map-container" style="height: 850px;" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" style="height: 791px;" class="screenshot-image" src="/public/images/product1Map.png" alt="Flood map for planning">
+            <div class="map-legend"style="height: 791px">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+
+                <!-- Scale-->
+                  <div class="parameter">
+                    <h3 class="govuk-heading-s"> Scale </h3>
+                    <p class="govuk-body"> 1:2,500 </p>
+                  </div>
+
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#003078"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood zone 3</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#1d70b8"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood zone 2</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#F4A582"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Climate change</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#000000"><path d="M32 32H8V8h24v24zm-.983-23h-22v22h22V9zM12 9.996c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 13.106 9.996 12 10.894 9.996 12 9.996zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 21.106 9.996 20s.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 29.106 9.996 28s.898-2.004 2.004-2.004zm8-16c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm8-16c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">No data</div>
+              </div>
+              
+                <img id="ea-logo-image" style="width: 60%; padding-top: 1.2em; padding-bottom: 1em" src="/public/images/scaleBar.png" alt="Scale bar">
+
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water full extent -->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water 150mm -->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 150mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water 300mm -->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 300mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water over 600mm-->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 600mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water over 900mm-->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 900mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water over 1200mm-->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 1200mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+          <!-- surface water over 2300mm-->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" class="screenshot-image" src="/public/images/product1FullExtentMap.png" alt="Flood map for planning">
+            <div class="map-legend">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">Extent over 2300mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+          </figure>
+
+
+          <!-- surface water all depths-->
+          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6"  style="height: 810px;" >
+            <img id="screenshot-image" class="screenshot-image"  style="height: 730px;" src="/public/images/product1AllDepthsMap.png" alt="Flood map for planning">
+            <div class="map-legend" style="height: 730px;">
+              <div class="map-legend-logo">
+                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>
+              <div class="map-legend-parameters">
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Your reference </h3>
+                  <p class="govuk-body"> Mark </p>
+                </div>
+                <!-- LOCATION -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <p class="govuk-body"> 395360/340050 </p>
+                </div>
+                <!-- Date -->
+                <div class="parameter">
+                  <h3 class="govuk-heading-s"> Created </h3>
+                  <p class="govuk-body"> 05/05/2026 10:29 </p>
+                </div>
+              </div>
+              <div class="map-legend-values">
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fdd0a2"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;"><150mm</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fdae6b"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">150-300mm</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fd8d3c"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">300-600mm</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#d94801"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">600-900mm</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#a63603"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">900-1200mm</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#7f2704"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em;">>2300mm</div>
+                </div>
+
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#2B8CBE"><path d="M8 17h24v6H8z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
+                </div>
+                <div class="value">
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path></svg></div></div>
+                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
+                </div>
+                <div class="value">
+                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
+                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
+                </div>
+              </div>
+            </div>
+            <div class="map-footer">
+              © Environment Agency copyright and/or database rights 2026. All rights reserved. © Crown copyright and database rights 2026 Ordnance Survey licence number AC0000807064
+            </div>
+          </figure>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/assets/product-1-client.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      showMapAsImage([[394376.18,340516.37],[396306.22,340525.93],[396345.63,339583.6],[394410.82,339575.24],[394376.18,340516.37]])
+    })
+  </script>
+</body>
+
+</html>
+
+{% endblock %}
