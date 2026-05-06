@@ -9202,7 +9202,7 @@ p + .govuk-heading-s,
 #map-page .map-container .map-legend .map-legend-values .value {
   display: flex;
   flex-direction: row;
-  margin-bottom: -1em;
+  margin-bottom: -0.5em;
 }
 #map-page .map-container .map-legend .map-legend-values .value .img {
   width: 10mm;
