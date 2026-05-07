@@ -9061,6 +9061,11 @@ p + .govuk-heading-s,
   }
 }
 
+.ea-logo-image {
+  width: 150px;
+  height: auto;
+}
+
 .fm-mobile.fm-inline.fm-o-container {
   position: fixed;
   box-sizing: border-box;
@@ -9101,11 +9106,6 @@ p + .govuk-heading-s,
 
 .fm-c-panel__body {
   padding: 20px;
-}
-
-.map-container, #map {
-  width: 300px;
-  height: 240px;
 }
 
 .map-container.product-1-map, .map-container.product-1-map #map {
@@ -9159,7 +9159,6 @@ p + .govuk-heading-s,
   height: 730px;
 }
 #map-page .map-container .screenshot-image {
-  border: 1px solid black;
   width: 720px;
   height: 640px;
   position: absolute;
@@ -9181,7 +9180,6 @@ p + .govuk-heading-s,
   line-height: 8mm;
 }
 #map-page .map-container .map-legend {
-  border: 1px solid black;
   border-left-width: 0;
   width: 236px;
   height: 640px;
@@ -9192,8 +9190,7 @@ p + .govuk-heading-s,
   flex-direction: column;
 }
 #map-page .map-container .map-legend > div {
-  padding: 2px 8px;
-  border: 1px solid black;
+  padding: 2px 6px;
   display: flex;
   flex-direction: column;
 }
@@ -9206,6 +9203,7 @@ p + .govuk-heading-s,
 }
 #map-page .map-container .map-legend .map-legend-parameters .parameter .govuk-heading-s {
   margin-bottom: 8px;
+  margin-left: 8px;
 }
 #map-page .map-container .map-legend .map-legend-parameters .parameter .govuk-body {
   margin-bottom: 8px;
@@ -9221,6 +9219,7 @@ p + .govuk-heading-s,
 }
 #map-page .map-container .map-legend .map-legend-values .value .img {
   width: 10mm;
+  padding-right: 2.8em;
 }
 @media print {
   #map-page {
