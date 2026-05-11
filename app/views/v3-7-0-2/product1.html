@@ -80,28 +80,37 @@
           </div>
 
         {% else %}
-        <!-- Flood Zone 1 -->                 
-          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+        <!-- Flood Zone 1 -->     
+             <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
+                <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
+                  Our understanding of flood risk from rivers and the sea has changed
+                  since this information was published.
+
+                  Contact
+                  <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
+                  for further information.
+                </h3>
+              </div>     
+          <h2 class="govuk-heading-m"> 
+            Your selected location is in flood zone 1</h2>
+            <p class="govuk-body">The area has a low probability of flooding</p>
+
+
+          <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
             data-module="govuk-notification-banner">
           <div class="govuk-notification-banner__content">
             Your selected location is in flood zone 1, an area with a low probability of flooding.
-          </div>
-          </div>
+         -->
+          </br>
+
+          
+          <!-- </div>
+          </div> -->
           
         {% endif %}
 
-            <div class="govuk-warning-text">
-      <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
-      <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
-        Our understanding of flood risk from rivers and the sea has changed
-        since this information was published.
-      </h3>
-      <p class="govuk-body">
-        Contact
-        <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
-        for further information.
-      </p>
-    </div>  
+
 
 
 
