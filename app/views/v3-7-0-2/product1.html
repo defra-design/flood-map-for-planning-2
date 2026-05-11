@@ -50,7 +50,17 @@
           <h1 class="govuk-heading-l">
             Flood map for planning
           </h1>
+             <div class="govuk-warning-text">
+                <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
+                <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
+                  Our understanding of flood risk from rivers and the sea has changed
+                  since this information was published.
 
+                  Contact
+                  <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
+                  for further information.
+                </h3>
+              </div>    
           <!-- Parameters -->
       <div class="govuk-grid-row">
         <!-- REFERENCE -->
@@ -81,17 +91,7 @@
 
         {% else %}
         <!-- Flood Zone 1 -->     
-             <div class="govuk-warning-text">
-                <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
-                <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
-                  Our understanding of flood risk from rivers and the sea has changed
-                  since this information was published.
-
-                  Contact
-                  <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
-                  for further information.
-                </h3>
-              </div>     
+ 
           <h2 class="govuk-heading-m"> 
             Your selected location is in flood zone 1</h2>
             <p class="govuk-body">The area has a low probability of flooding</p>
