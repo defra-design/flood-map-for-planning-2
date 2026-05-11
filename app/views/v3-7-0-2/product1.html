@@ -35,22 +35,54 @@
   <link href="/assets/application.css" rel="stylesheet">
   <link href="/assets/check-your-details.css" rel="stylesheet"/>
 </head>
-
+<header>
+        <!-- HEADING -->
+    <input type="button" role="button" value="Print this page" onClick="window.print()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
+    <input type="button" role="button" value="Download PDF" onClick="window.getPdf()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
+</header>
 <body class="govuk-template__body js-enabled govuk-frontend-supported">
 
   <div class="govuk-width-container">
     <div class="govuk-main-wrapper govuk-main-wrapper--l print-page">
-      <!-- HEADING -->
-      <div class="govuk-grid-row">
+
+    <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
           <h1 class="govuk-heading-l">
             Flood map for planning
           </h1>
-          <input type="button" role="button" value="Print this page" onClick="window.print()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
-          <input type="button" role="button" value="Download PDF" onClick="window.getPdf()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
-        </div>
-      </div>
-      <!-- Parameters -->
+
+                <!-- Flood Zone 3 -->
+       {% if data['product1'] == 'FZ3' %}
+         <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+            data-module="govuk-notification-banner">
+            <div class="govuk-notification-banner__content">
+              Your selected location is in flood zone 3, an area with a high probability of flooding.
+            </div>
+          </div>
+        {% else %}
+        <!-- Flood Zone 1 -->                 
+          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
+            data-module="govuk-notification-banner">
+          <div class="govuk-notification-banner__content">
+            Your selected location is in flood zone 1, an area with a low probability of flooding.
+          </div>
+          </div>
+        {% endif %}
+
+            <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
+      <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
+        Our understanding of flood risk from rivers and the sea has changed
+        since this information was published.
+      </h3>
+      <p class="govuk-warning-text__text">
+        Contact
+        <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
+        for further information.
+      </p>
+    </div>  
+
+<!-- Parameters -->
       <div class="govuk-grid-row">
         <!-- REFERENCE -->
         <div class="govuk-grid-column-one-third">
@@ -68,28 +100,15 @@
           <p class="govuk-body"> 05/05/2026 10:29 </p>
         </div>
       </div>
+
+        </div>
+      </div>
+      
       <!-- Flood Zone Heading -->
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
 
-
-      <!-- Flood Zone 3 -->
-       {% if data['product1'] == 'FZ3' %}
-         <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
-            data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__content">
-              Your selected location is in flood zone 3, an area with a high probability of flooding.
-            </div>
-          </div>
-        {% else %}
-        <!-- Flood Zone 1 -->                 
-          <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
-            data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__content">
-            Your selected location is in flood zone 1, an area with a low probability of flooding.
-          </div>
-          </div>
-        {% endif %}
+        
 
         </div>
       </div>
@@ -192,8 +211,12 @@
     </div>
     <div id="map-page" class="govuk-main-wrapper govuk-main-wrapper--l print-page">
       <!-- MAP -->
+       </br></br>
       <div  class="govuk-grid-row ">
         <div class="govuk-grid-column-full">
+          <h2 class="govuk-heading-m">
+            Flood zones
+          </h2>
           <!-- Flood zones map -->
           <figure id="map-container" style="height: 900px;" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 870px;" class="screenshot-image" src="/public/images/tempProduct1Map.png" alt="Flood map for planning">
@@ -264,8 +287,13 @@
               </div>
             </div>
           </figure>
+</br></br>
+
 
           <!-- surface water full extent -->
+          <h2 class="govuk-heading-m">
+            Surface water present day
+          </h2>
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
@@ -317,7 +345,10 @@
             </div>
           </figure>
 
-          <!-- surface water 150mm -->
+          <!-- surface water climate change -->
+          <h2 class="govuk-heading-m">
+            Surface water climate change
+          </h2>
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
@@ -345,7 +376,7 @@
                 </div>
                 <div class="value">
                   <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 150mm</div>
+                  <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
                 </div>
                 <div class="value">
                   <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path></svg></div>
@@ -368,7 +399,7 @@
             </div>
           </figure>
 
-          <!-- surface water 300mm -->
+          <!-- surface water 300mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
@@ -378,12 +409,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+               Date
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -417,9 +448,9 @@
 
               </div>
             </div>
-          </figure>
+          </figure> -->
 
-          <!-- surface water over 600mm-->
+          <!-- surface water over 600mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
@@ -429,12 +460,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                 LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+                 Date 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -468,9 +499,9 @@
 
               </div>
             </div>
-          </figure>
+          </figure> -->
 
-          <!-- surface water over 900mm-->
+          <!-- surface water over 900mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
@@ -480,12 +511,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                 LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+                 Date 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -521,7 +552,7 @@
             </div>
           </figure>
 
-          <!-- surface water over 1200mm-->
+          <!-- surface water over 1200mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
@@ -531,12 +562,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                 LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+                 Date 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -572,7 +603,7 @@
             </div>
           </figure>
 
-          <!-- surface water over 2300mm-->
+           surface water over 2300mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
             <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
@@ -581,12 +612,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                 LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+                 Date 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -622,7 +653,7 @@
           </figure>
 
 
-          <!-- surface water all depths-->
+           surface water all depths
           <figure id="map-container" style="height: 1030px;" class="map-container product-1-map govuk-!-margin-bottom-6"  style="height: 810px;" >
             <img id="screenshot-image" style="height: 906px;" class="screenshot-image"  style="height: 730px;" src="/public/images/tempProduct1AllDepthsMap.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 930px;">
@@ -633,12 +664,12 @@
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
-                <!-- LOCATION -->
+                 LOCATION 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
-                <!-- Date -->
+                 Date 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Created </h3>
                   <p class="govuk-body"> 05/05/2026 10:29 </p>
@@ -696,11 +727,11 @@
               </div>
 
               </div>
-            </div>
+            </div>-->
             <div class="map-footer">
               © Environment Agency copyright and/or database rights 2026. All rights reserved. © Crown copyright and database rights 2026 Ordnance Survey licence number AC0000807064
             </div>
-          </figure>
+          </figure> 
         </div>
       </div>
     </div>
