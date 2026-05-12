@@ -269,14 +269,17 @@
         .parameter {
           display: flex;
           flex-direction: column;
+          margin-bottom: -8px;
           .govuk-heading-s {
-            margin-bottom: 8px;
+            margin-top: 12px;
+            margin-bottom: 5px;
             margin-left: 8px;
 
           }
           .govuk-body {
-            margin-bottom: 8px;
+            margin-bottom: 2px;
             margin-left: 8px;
+            
           }
         }
       }
@@ -285,7 +288,7 @@
         .value {
           display: flex;
           flex-direction: row;
-        margin-bottom: -0.5em;
+        margin-bottom: -0.95em;
           .img {
             width: 10mm;
             padding-right: 2.8em;

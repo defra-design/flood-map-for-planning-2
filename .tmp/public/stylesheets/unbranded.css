@@ -9185,13 +9185,15 @@ p + .govuk-heading-s,
 #map-page .map-container .map-legend .map-legend-parameters .parameter {
   display: flex;
   flex-direction: column;
+  margin-bottom: -8px;
 }
 #map-page .map-container .map-legend .map-legend-parameters .parameter .govuk-heading-s {
-  margin-bottom: 8px;
+  margin-top: 12px;
+  margin-bottom: 5px;
   margin-left: 8px;
 }
 #map-page .map-container .map-legend .map-legend-parameters .parameter .govuk-body {
-  margin-bottom: 8px;
+  margin-bottom: 2px;
   margin-left: 8px;
 }
 #map-page .map-container .map-legend .map-legend-values {
@@ -9200,7 +9202,7 @@ p + .govuk-heading-s,
 #map-page .map-container .map-legend .map-legend-values .value {
   display: flex;
   flex-direction: row;
-  margin-bottom: -0.5em;
+  margin-bottom: -0.95em;
 }
 #map-page .map-container .map-legend .map-legend-values .value .img {
   width: 10mm;

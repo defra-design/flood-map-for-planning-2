@@ -39,7 +39,11 @@
         <!-- HEADING -->
     <input type="button" role="button" value="Print this page" onClick="window.print()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
     <input type="button" role="button" value="Download PDF" onClick="window.getPdf()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
-</header>
+              <div class="map-legend-logo" style="margin-top: 0em; margin-bottom: 0em;">
+                <img id="ea-logo-image" class="ea-logo-image" style="width: 200px; height: auto; margin-left: 750px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div> 
+
+  </header>
 <body class="govuk-template__body js-enabled govuk-frontend-supported">
 
   <div class="govuk-width-container">
@@ -229,8 +233,8 @@
         <div class="govuk-grid-column-full">
 
           <!-- Flood zones map -->
-          <figure id="map-container" style="height: 925px;" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 895px;" class="screenshot-image" src="/public/images/blackwhitemap.png" alt="Flood map for planning">
+          <figure id="map-container" style="height: 810px;" class="map-container product-1-map govuk-!-margin-bottom-6">
+            <img id="screenshot-image" style="height: 790px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/blackwhitemap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend"style="height: 876px">
               <div class="map-legend-parameters">
 
@@ -239,7 +243,7 @@
                   <p class="govuk-body">Present day, and climate change</p>
                 </div>
 
-            <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin-bottom: 0px;">
 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Your reference </h3>
@@ -247,7 +251,7 @@
                 </div>
                 <!-- LOCATION -->
                 <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <h3 class="govuk-heading-s"> Easting/northing </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
 
@@ -269,16 +273,16 @@
                   <div class="govuk-body" style="line-height: 2em;">Selected area</div>
                 </div>
                 <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#003078"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#1C48DF"><path d="M8 8h24v24H8z"></path></svg></div></div>
                   <div class="govuk-body" style="line-height: 2em;">Flood zone 3</div>
                 </div>
                 <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#1d70b8"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#3584FF"><path d="M8 8h24v24H8z"></path></svg></div></div>
                   <div class="govuk-body" style="line-height: 2em;">Flood zone 2</div>
                 </div>
 
                 <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#F4A582"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#FEBF95"><path d="M8 8h24v24H8z"></path></svg></div></div>
                   <div class="govuk-body" style="line-height: 2em;">With climate change</div>
                 </div>
 
@@ -299,9 +303,9 @@
                   <div class="govuk-body" style="line-height: 2em;">No data</div>
               </div>
 
-              <div class="map-legend-logo" style="margin-top: 0.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>              
+              <!-- <div class="map-legend-logo" style="margin-top: 2em;">
+                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>               -->
 
               </div>
             </div>
@@ -311,7 +315,7 @@
 
           <!-- surface water full extent -->
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
 
     
@@ -321,7 +325,7 @@
                   <p class="govuk-body">1 in 100, present day</p>
                 </div>
 
-<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin-bottom: 0px;">
 
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Your reference </h3>
@@ -329,7 +333,7 @@
                 </div>
                 <!-- LOCATION -->
                 <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <h3 class="govuk-heading-s"> Easting/northing </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
                 <!-- Date -->
@@ -344,7 +348,7 @@
                   <div class="govuk-body" style="line-height: 2em;">Selected area</div>
                 </div>
                 <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#48A1DB"><path d="M8 8h24v24H8z"></path></svg></div></div>
                   <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
                 </div>
                 <div class="value">
@@ -360,9 +364,9 @@
                   <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
                 </div>
                 
-              <div class="map-legend-logo" style="margin-top: 0.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
+              <!-- <div class="map-legend-logo" style="margin-top: 7.1em;">
+                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>               -->
 
               </div>
             </div>
@@ -371,7 +375,7 @@
           <!-- surface water climate change -->
 
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
 
               <div class="map-legend-parameters">
@@ -380,14 +384,14 @@
                   <p class="govuk-body">1 in 100, climate change</p>
                 </div>
 
-          <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible">
+<hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin-bottom: 0px;">
                 <div class="parameter">
                   <h3 class="govuk-heading-s"> Your reference </h3>
                   <p class="govuk-body"> Residential site </p>
                 </div>
                 <!-- LOCATION -->
                 <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
+                  <h3 class="govuk-heading-s"> Easting/northing </h3>
                   <p class="govuk-body"> 395360/340050 </p>
                 </div>
                 <!-- Date -->
@@ -402,7 +406,7 @@
                   <div class="govuk-body" style="line-height: 2em;">Selected area</div>
                 </div>
                 <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
+                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#48A1DB"><path d="M8 8h24v24H8z"></path></svg></div></div>
                   <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
                 </div>
                 <div class="value">
@@ -417,10 +421,10 @@
                   <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
                   <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
                 </div>
-
-              <div class="map-legend-logo" style="margin-top: 0.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
+<!-- 
+              <div class="map-legend-logo" style="margin-top: 7.1em;">
+                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
+              </div>  -->
 
               </div>
             </div>
@@ -428,7 +432,7 @@
 
           <!-- surface water 300mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
 
               <div class="map-legend-parameters">
@@ -479,7 +483,7 @@
 
           <!-- surface water over 600mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
 
               <div class="map-legend-parameters">
@@ -530,7 +534,7 @@
 
           <!-- surface water over 900mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
 
               <div class="map-legend-parameters">
@@ -581,7 +585,7 @@
 
           <!-- surface water over 1200mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;">
 
               <div class="map-legend-parameters">
@@ -632,7 +636,7 @@
 
            surface water over 2300mm
           <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 656px;" >
               <div class="map-legend-parameters">
                 <div class="parameter">
@@ -682,7 +686,7 @@
 
            surface water all depths
           <figure id="map-container" style="height: 1030px;" class="map-container product-1-map govuk-!-margin-bottom-6"  style="height: 810px;" >
-            <img id="screenshot-image" style="height: 906px;" class="screenshot-image"  style="height: 730px;" src="/public/images/tempProduct1AllDepthsMap.png" alt="Flood map for planning">
+            <img id="screenshot-image" style="height: 906px;" class="screenshot-image"  style="height: 730px;" src="/public/images/tempProduct1AllDepthsMap-highcontrast.png" alt="Flood map for planning">
             <div class="map-legend" style="height: 930px;">
 
               
