@@ -101,8 +101,8 @@
         <!-- Flood Zone 1 -->     
  
           <h2 class="govuk-heading-m"> 
-            Your selected location is in flood zone 1</h2>
-            <p class="govuk-body">The area has a low probability of flooding</p>
+            This location is in flood zone 1</h2>
+            <p class="govuk-body">Land within flood zone 1 has a low probability of flooding from rivers or the sea.</p>
 
 
           <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
@@ -155,24 +155,21 @@
             {% else %}
 
           <!-- Flood Zone 1 -->
-          <h3 class="govuk-heading-s"> This means</h3>
+          <h3 class="govuk-heading-s">Flood risk assessments</h3>
 
-          <p>You will need to do a flood risk assessment if your site is any of the following:</p>
-          </br>
+          <p class="govuk-body">You will need to do a flood risk assessment if:</p>
           <ul class="govuk-list govuk-list--bullet">
             <li>
-              bigger than 1 hectare (ha)
+              your site is more than 1 hectare
             </li>
-             <li>
-              in an area with critical drainage problems as notified by the Environment Agency
+            <li>
+              your location has been identified as having critical drainage problems
             </li>
-             <li>
-              identified as being at increased flood risk in future by the local authority's strategic flood risk assessment
+            <li>
+              your location is identified in the local planning authority's (LPA) strategic flood risk assessment (SFRA) as being at increased flood risk in future
             </li>
-             <li>
-              at risk from other sources of flooding (such as surface water or reservoirs)
-              and its development would increase the vulnerability of its use (such as
-              constructing an
+            <li>
+              development would increase the vulnerability classification and land may be subject to sources of flooding other than rivers or sea
             </li>
           </ul>
           {% endif %}
@@ -182,57 +179,64 @@
       <!-- Notes -->
       <div class="govuk-grid-row">
         <div class="govuk-grid-column-full">
-          <h3 class="govuk-heading-s"> Notes </h3>
+          <h3 class="govuk-heading-s">Notes</h3>
           <p class="govuk-body">
-            The flood map for planning shows river and sea flooding data only. It doesn't
-            include other sources of flooding. It is for use in development planning and flood
-            risk assessments.
+            The data shown on the flood map for planning should be used alongside strategic flood risk assessments (SFRAs).
           </p>
           <p class="govuk-body">
-            This information relates to the selected location and is not specific to any property
-            within it. The map is updated regularly and is correct at the time of printing.
+            Users of these datasets should always check they are suitable for the intended use.
           </p>
           <p class="govuk-body">
-            Flood risk data is covered by the Open Government Licence which sets out the
-            terms and conditions for using government data.
+            This information tells you the flood risk of the land around a building and cannot tell you if individual buildings are at risk.
+          </p>
+          <p class="govuk-body">
+            Flood risk data is covered by the Open Government Licence, which sets out the terms and conditions for using government data:
             <a class="govuk-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">
               https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
             </a>
           </p>
           <p class="govuk-body">
-            Use of the address and mapping data is subject to Ordnance Survey public
-            viewing terms under Crown copyright and database rights 2026 AC0000807064.
+            Use of the address and mapping data is subject to Ordnance Survey public viewing terms under Crown copyright and database rights 2026 AC0000807064:
             <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/os-terms">
               https://flood-map-for-planning.service.gov.uk/os-terms
             </a>
           </p>
-
-          <p>
-            Find shoreline information with the Shoreline Management Plan (SMP) Explorer 
-            <a class="govuk-link" href="https://www.gov.uk/government/news/smp-explorer-digital-shoreline-management-tool-launched" target="_blank">
-              https://www.gov.uk/government/news/smp-explorer-digital-shoreline-management-tool-launched
-            </a>
+          <p class="govuk-body">
+            Find further flood risk information:
           </p>
-        </br>
-          <p>
-            Find coastal erosion information at
-                        <a class="govuk-link" href="https://www.gov.uk/check-coastal-erosion-management-in-your-area" target="_blank">
-              https://www.gov.uk/check-coastal-erosion-management-in-your-area
+          <ul class="govuk-list govuk-list--bullet">
+            <li>
+              shoreline management plans:
+              <a class="govuk-link" href="https://environment.data.gov.uk/shoreline-planning">
+                https://environment.data.gov.uk/shoreline-planning
+              </a>
+            </li>
+            <li>
+              coastal erosion:
+              <a class="govuk-link" href="https://www.gov.uk/check-coastal-erosion-management-in-your-area">
+                https://www.gov.uk/check-coastal-erosion-management-in-your-area
+              </a>
+            </li>
+            <li>
+              reservoir flooding:
+              <a class="govuk-link" href="https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them">
+                https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them
+              </a>
+            </li>
+          </ul>
+          <p class="govuk-body">
+            The material displayed, including maps and risk data, is provided without any guarantees, conditions or warranties as to its accuracy. See our terms and conditions for more information:
+            <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/terms-and-conditions">
+              https://flood-map-for-planning.service.gov.uk/terms-and-conditions
             </a>
-          </p>
-        </br>
-          <p>
-            Find reservoir flooding information at
-            <a class="govuk-link" href="https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them" target="_blank">
-              https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them
-            </a>    
           </p>
         </div>
       </div>
     </div>
     <div id="map-page" class="govuk-main-wrapper govuk-main-wrapper--l print-page">
       <!-- MAP -->
-       </br></br>
+                 <h3 class="govuk-heading-s">Flood maps for your location</h3>
+
       <div  class="govuk-grid-row ">
         <div class="govuk-grid-column-full">
 
