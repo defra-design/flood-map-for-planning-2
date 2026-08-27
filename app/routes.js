@@ -8,7 +8,6 @@ const router = govukPrototypeKit.requests.setupRouter()
 const fs = require('fs')
 const path = require('path')
 
-
 // Add your routes here
 
 // all routes for FMFP with defra componant
@@ -20,24 +19,24 @@ router.use('/v3-6-0-2', require('./routes_v3-6-0-2'))
 router.use('/v3-7-0-1', require('./routes_v3-7-0-1'))
 router.use('/v3-7-0-2', require('./routes_v3-7-0-2'))
 router.use('/v3-7-0-3', require('./routes_v3-7-0-3'))
-
+router.use('/v3-8-0-8', require('./routes_v3-8-0-0'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {
-	req.session.data = { resultsType: 'resultsA' }
-	res.redirect("/" + folder + "/results")
+  req.session.data = { resultsType: 'resultsA' }
+  res.redirect('/' + folder + '/results')
 })
 
 // set up route variable about map page option
 router.get('/about-map-b', function (req, res) {
-	req.session.data = { floodZone: 'fz3', resultsType: 'resultsA', aboutMap: 'optionB' }
-	res.redirect("/" + folder + "/start")
+  req.session.data = { floodZone: 'fz3', resultsType: 'resultsA', aboutMap: 'optionB' }
+  res.redirect('/' + folder + '/start')
 })
 
 // set up route variable results page option
 router.get('/results-b', function (req, res) {
-	req.session.data = { resultsType: 'resultsB' }
-	res.redirect("/" + folder + "/results")
+  req.session.data = { resultsType: 'resultsB' }
+  res.redirect('/' + folder + '/results')
 })
 
 // // set up route variable e2e fz1
@@ -78,91 +77,96 @@ router.get('/results-b', function (req, res) {
 // 	res.redirect(`/start`)
 // })
 
-
 const authESRI = require('./esri-auth')
 const authOS = require('./os-auth')
 
 router.use((req, res, next) => {
-    res.locals.env = process.env
-    next()
+  res.locals.env = process.env
+  next()
 })
 
 router.get('/esri-token', async (req, res, next) => {
-    const response = await authESRI({
-        clientId: process.env.ESRI_CLIENT_ID,
-        clientSecret: process.env.ESRI_CLIENT_SECRET
-    })
-    res.json({ token: response })
+  const response = await authESRI({
+    clientId: process.env.ESRI_CLIENT_ID,
+    clientSecret: process.env.ESRI_CLIENT_SECRET
+  })
+  res.json({ token: response })
 })
 
 router.get('/os-token', async (req, res, next) => {
-    const response = await authOS({
-        clientId: process.env.OS_CLIENT_ID,
-        clientSecret: process.env.OS_CLIENT_SECRET
-    })
-    res.send(response)
+  const response = await authOS({
+    clientId: process.env.OS_CLIENT_ID,
+    clientSecret: process.env.OS_CLIENT_SECRET
+  })
+  res.send(response)
 })
 
 router.get([
-    '/styles/vts-tile.json',
-    '/styles/open-tile.json',
-    '/styles/OS_VTS_27700_Outdoor.json',
-    '/styles/OS_VTS_27700_Open_Outdoor.json',
-    '/styles/OS_VTS_27700_Dark.json',
-    '/styles/OS_VTS_27700_Open_Dark.json',
-    '/styles/polygon-default.json',
-    '/styles/polygon-dark.json',
-    '/styles/OS_VTS_27700_Open_Black_and_White.json',
-    '/styles/OS_VTS_27700_Black_and_White.json'
-  ], async (req, res, next) => {
-    fs.readFile(path.resolve(__dirname, req.originalUrl.substring(1).split('?')[0]), (err, result) => {
-      if (err) throw err
-      const jsonData = JSON.parse(result)
-      res.setHeader('Content-Type', 'application/json')
-      res.json(jsonData)
-    })
+  '/styles/vts-tile.json',
+  '/styles/open-tile.json',
+  '/styles/OS_VTS_27700_Outdoor.json',
+  '/styles/OS_VTS_27700_Open_Outdoor.json',
+  '/styles/OS_VTS_27700_Dark.json',
+  '/styles/OS_VTS_27700_Open_Dark.json',
+  '/styles/polygon-default.json',
+  '/styles/polygon-dark.json',
+  '/styles/OS_VTS_27700_Open_Black_and_White.json',
+  '/styles/OS_VTS_27700_Black_and_White.json'
+], async (req, res, next) => {
+  fs.readFile(path.resolve(__dirname, req.originalUrl.substring(1).split('?')[0]), (err, result) => {
+    if (err) throw err
+    const jsonData = JSON.parse(result)
+    res.setHeader('Content-Type', 'application/json')
+    res.json(jsonData)
   })
+})
 
-//V1 with full summary page (including climate change)
+// V1 with full summary page (including climate change)
 router.get('/v3-7-0-2', function (req, res) {
-	req.session.data = { shapeType: 'valid' }
-	res.redirect(`/v3-7-0-2/start`)
-})  
+  req.session.data = { shapeType: 'valid' }
+  res.redirect('/v3-7-0-2/start')
+})
 
-//V1 with full summary page (including climate change)
+// V1 with full summary page (including climate change)
 router.get('/v3-3-0-1', function (req, res) {
-	req.session.data = { mapType: 'v1PdCC' }
-	res.redirect(`/v3-3-0-1/start`)
+  req.session.data = { mapType: 'v1PdCC' }
+  res.redirect('/v3-3-0-1/start')
 })
 
-//V2 with full summary page (including climate change)
+// V2 with full summary page (including climate change)
 router.get('/v3-4-0-1', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-4-0-1/map?cz=539418.1,285892,15.895717`)
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-4-0-1/map?cz=539418.1,285892,15.895717')
 })
 
-//V2 with full summary page (including climate change)
+// V2 with full summary page (including climate change)
 router.get('/v3-4-0-2', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-4-0-2/start`)
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-4-0-2/start')
 })
 
-//V3.5 with opacity slider
+// V3.5 with opacity slider
 router.get('/v3-6-0-1', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-6-0-1/start`)
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-6-0-1/start')
 })
 
-//V3.5 with opacity slider
+// V3.5 with opacity slider
 router.get('/v3-6-0-2', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-6-0-2/start`)
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-6-0-2/start')
 })
 
-//V3.5 with opacity slider
+// V3.5 with opacity slider
 router.get('/v3-7-0-3', function (req, res) {
-	req.session.data = { mapType: 'v2PdCC' }
-	res.redirect(`/v3-7-0-3/start`)
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-7-0-3/start')
+})
+
+// V8.0 with opacity slider
+router.get('/v3-8-0-0', function (req, res) {
+  req.session.data = { mapType: 'v2PdCC' }
+  res.redirect('/v3-8-0-0/start')
 })
 
 module.exports = router
