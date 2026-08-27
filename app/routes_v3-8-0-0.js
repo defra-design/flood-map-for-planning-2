@@ -33,4 +33,9 @@ router.get('/map/styles/black-and-white-map', (req, res) => res.json(blackAndWhi
 router.get('/map/styles/master-map', (req, res) => res.json(masterMap))
 router.get('/map/styles/master-map-dark', (req, res) => res.json(masterMapDark))
 
+router.get('/defra-map/info-panel', async (req, res) => {
+  const params = req.query
+  res.render(`${folder}/info-panel`, { ...params, gaId: '12345' })
+})
+
 module.exports = router
