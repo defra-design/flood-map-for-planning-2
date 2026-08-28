@@ -38,4 +38,8 @@ router.get('/defra-map/info-panel', async (req, res) => {
   res.render(`${folder}/info-panel`, { ...params, gaId: '12345' })
 })
 
+router.get('/map-help', (req, res) => res.redirect('/v3-8-0-0/help'))
+router.get('/results', (req, res) => res.redirect('/v3-8-0-0/results'))
+router.get('/product-one', (req, res) => res.redirect('v3-7-0-3/product1-3'))
+
 module.exports = router
