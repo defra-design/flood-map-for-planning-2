@@ -3,6 +3,7 @@
     "dev": "govuk-prototype-kit dev",
     "webpack": "webpack",
     "build-css": "sass ./node_modules/@defra/flood-map/src/flood-map.scss:./.tmp/public/css/map.css",
+    "copy-im-from-app": "sh ./bin/copy-im-from-fmp-app.sh",
     "webpack-branch": "webpack --config webpack-branch.config.mjs && webpack --config webpack-css.config.mjs",
     "serve": "govuk-prototype-kit serve",
     "start": "govuk-prototype-kit start"
