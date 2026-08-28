@@ -42,4 +42,9 @@ router.get('/map-help', (req, res) => res.redirect('/v3-8-0-0/help'))
 router.get('/results', (req, res) => res.redirect('/v3-8-0-0/results'))
 router.get('/product-one', (req, res) => res.redirect('v3-7-0-3/product1-3'))
 
+router.get('/assets/*', (req, res) => {
+  const newPath = req.originalUrl.replace('/assets', '/public')
+  res.redirect(newPath)
+})
+
 module.exports = router
