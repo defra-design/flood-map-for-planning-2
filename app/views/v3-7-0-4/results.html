@@ -1,0 +1,549 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Results page - GOV.UK
+{% endblock %}
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+{% block content %}
+
+
+
+<!-- 
+{% if data['mapType'] == 'v2CC' %}
+<p class="govuk-!-margin-bottom-0">
+Version 2 climate change
+</p>
+{% endif %}
+{% if data['mapType'] == 'v1CC' %}
+<p class="govuk-!-margin-bottom-0">
+Version 1 climate change
+</p>
+{% endif %}
+{% if data['mapType'] == 'v1Pd' %}
+<p class="govuk-!-margin-bottom-0">
+Version 1 present day
+</p>
+{% endif %}
+{% if data['mapType'] == 'v2Pd' %}
+<p class="govuk-!-margin-bottom-0">
+Version 2 present day
+</p>
+{% endif %} -->
+
+<h1 class="govuk-heading-xl">
+  This location is in flood zone 3 
+</h1>
+
+<p>
+  In your proposed development site there is a risk of flooding from:  
+</p>
+</br>
+<ul class="govuk-list govuk-list--bullet">
+  <li>
+    rivers and the sea
+  </li>
+  <li>
+    surface water
+  </li>
+</ul>
+
+<h2 class="govuk-heading-m">Flood risk assessments</h2>
+<p>Based on our flood risk data, you need to carry out a flood risk assessment (FRA) as part of the planning application for this development.</p>
+</br>
+<p>If the flood risk to your site is affected by flood defences, you will also need to assess  <a href="https://www.gov.uk/guidance/flood-risk-and-coastal-change#para41">residual risk</a> from flood defence breach in this location. If available, we will provide breach hazard mapping data to help you do this.  
+</p>
+</br>
+<p>Review the flood risks for your location then complete the next steps for your planning application.</p>
+</br>
+  <!-- Rivers -->
+  <div class="govuk-summary-card" id="rivers-sea">
+    <div class="govuk-summary-card__title-wrapper vlow">
+      <h2 class="govuk-summary-card__title">Rivers and the sea</h2>
+      <ul class="govuk-summary-card__actions">
+
+        <li class="govuk-summary-card__action"> 
+
+          <a class="govuk-link" href="mapv2?seg=fzpd&cz=340367,322766,7.7">
+          See this risk on the map<span class="govuk-visually-hidden">from rivers and the sea</span> 
+          </a>
+
+          
+        </li>
+        
+      </ul>
+    </div>
+    <div class="govuk-summary-card__content">
+      <dl class="govuk-summary-list">
+        
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            What flood zone 3 means
+          </dt>
+          <dd class="govuk-summary-list__value">
+            Land within flood zone 3 has a high probability of flooding from rivers and the sea.
+            <br/><br/>
+            You need to carry out a flood risk assessment (FRA) as part of the planning application for this development.
+            <br/><br/>
+            <a href="#" class="govuk-link">Find out more about flood zones and what they mean</a>.
+          </dd>
+          </div>
+            <!-- <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+
+            <h3 class="govuk-heading-s">Present day depth of flooding</h3>
+
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+            <p>If this location flooded now, the water could be up to 300mm deep.</p>
+            
+          </dd>
+        </div> -->
+
+
+
+     
+
+      
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+
+            Climate change: projected chance of flooding 
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+          <p class="govuk-body">This location is at risk from flooding from rivers or the sea when climate change is taken into account: </p>
+
+          <ul class="govuk-list govuk-list--bullet">
+              <li>from rivers for the period 2070 to 2125 </li>
+              <li>from the sea (tidal flooding) by the year 2125 </li>
+
+          </ul>
+           <p class="govuk-body">
+            We do not show the chance of flooding each year, or annual exceedance probability (AEP), for this dataset, as it is produced using a number of different source datasets.  
+           </p>
+           <p class="">
+            Our rivers and sea information that is used to produce this dataset includes: 
+           </p>
+           <ul class="govuk-list govuk-list--bullet">
+              <li>
+                undefended 
+              </li>
+              <li>
+                defended 
+              </li>
+              <li>
+                other suitable data from third parties 
+              </li>
+           </ul>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘defended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling has taken into account the presence of existing flood defences </li>
+                <li>there is still a flood risk if the flood defences fail or if their design standard is exceeded (if the flood event is more than they are designed to cope with) </li>
+                <li>when considering climate change, we assume the presence of flood defences stay the same as present day  </li>
+              </ul>
+            </div>
+          </details>
+          <details class="govuk-details">
+            <summary class="govuk-details__summary">
+              <span class="govuk-details__summary-text">
+                What does ‘undefended’ mean?
+              </span>
+            </summary>
+            <div class="govuk-details__text">
+              <ul class="govuk-list govuk-list--bullet">
+                <li>our modelling ignores the presence of existing flood defences </li>
+              </ul>
+            </div>
+          </details>
+          <p class="govuk-body">
+            Flood zones with climate change are given to help you further investigate flood risk. </br></br><a href="how-to-use-flood-map-for-planning-data">Find out more about this data and how it should be used </a>
+          </p>
+           </dd>
+        </div>
+
+        <div class="govuk-summary-list__row">
+          <dt class="govuk-summary-list__key">
+            <h3 class="govuk-heading-s">Climate change data unavailable</h3>
+
+          </dt>
+          <dd class="govuk-summary-list__value">
+            <p class="govuk-body">
+              In this location, all or part of the site is included in a location where we hold limited flood risk information.  
+            </p>
+            <p class="govuk-body">
+              No data in this location does not mean there is no flood risk. Further assessment is needed to understand the flood risk in this location.  
+            </p>
+            <details class="govuk-details">
+              <summary class="govuk-details__summary">
+                <span class="govuk-details__summary-text">
+                  What does ‘no data available’ mean?
+                </span>
+              </summary>
+              <div class="govuk-details__text">
+                <p class="govuk-body">
+                  In some locations, we have chosen to remove datasets because of missing data, low confidence in the datasets or potential data inconsistencies.   
+                </p>  
+                <p class="govuk-body">
+                  The Environment Agency may still hold flood risk information that can be used to inform or prepare a flood risk assessment, which can be requested through the flood map for planning service.              
+                </p>
+                <p class="govuk-body">
+                  ‘No data available’ locations are currently under review.           
+                </p>
+                <p class="govuk-body">
+                  As new models, data and information become available that meet our quality assurance standards, we will add these to the flood map for planning.  
+                </p>
+              </div>
+  
+            </details>
+            <!-- <p class="govuk-body">
+              In some locations this data layer may show inconsistent results.  
+            </p>  <p class="govuk-body">
+              <a href="how-to-use-flood-map-for-planning-data">Find out more about this data and how it should be used </a>
+            </p>
+            <p class="govuk-body">
+              The flood zones are not affected by this issue. 
+            </p> -->
+  
+      <p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+        
+          </dd>
+
+        </div>
+     
+
+
+             
+    </div>
+  </div>
+
+
+
+
+<!-- 
+<h2 class="govuk-heading-l">
+Functional floodplain 
+</h2>
+
+<p><a href="#" alt="More details on functional flood plain">More details</a></p>
+
+</br>
+
+<h2 class="govuk-heading-s">
+Predicted likelihood of flooding by the year 2125  
+</h2>
+
+<p>By 2125, if this location flooded, the water could be up to 1200mm deep.</p>
+
+<p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+
+</br>
+
+
+<h2 class="govuk-heading-s">
+Current likelihood of flooding   
+</h2>
+
+<p>This location has a 3.3% or greater annual probability of flooding each year.</p>
+
+<p>This location is only suitable for: </p>
+
+</br>
+
+<ul class="govuk-list govuk-list--bullet">
+
+<li>
+  water compatible developments 
+</li>
+
+<li>
+  essential infrastructure that has passed the Exception Test 
+</li>
+
+</ul>
+
+</br>
+
+<h2 class="govuk-heading-s">
+Current depth of flooding    
+</h2>
+
+<p>If this location flooded now, the water could be up to 900mm deep.</p>
+
+<hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible"></hr>
+
+</br> -->
+
+    <!-- surface water-->
+    <div class="govuk-summary-card govuk-!-margin-top-3" id="surface-water">          
+
+      <div class="govuk-summary-card__title-wrapper vlow">
+
+        <h2 class="govuk-summary-card__title">Surface water for planning</h2>
+        <ul class="govuk-summary-card__actions">
+        <li class="govuk-summary-card__action"> 
+
+          <a class="govuk-link" href="map?cz=414325,332330,14.5869&seg=sw,hr&id=&qxy=">
+            See this risk on the map<span class="govuk-visually-hidden">of the risk of surface water flooding</span>
+          </a>
+
+        
+
+          </li> 
+          
+        </ul>
+      </div>
+      <div class="govuk-summary-card__content">
+        <dl class="govuk-summary-list">
+          
+          <!-- <div class="govuk-summary-list__row">
+
+            <dt class="govuk-summary-list__key">
+              Projected chance of flooding between 2070 and 2125 
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+              <p>Between 2070 and 2125 the chance of surface water flooding at this location is 1% in any year.  </p>
+
+              <p><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+        
+            </dd>
+          </div> -->
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Climate change: projected chance of flooding    
+            </dt>
+            <dd class="govuk-summary-list__value">
+            <p class="govuk-body">Between 2061 and 2025 the chance of surface water flooding at this location is 1 in 30 each year. </p>
+            <p class="govuk-body"><a href="https://www.gov.uk/guidance/flood-risk-assessments-climate-change-allowances">Find out more about climate change allowances</a>.</p>
+            </dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Present day chance of flooding   
+            </dt>
+            <dd class="govuk-summary-list__value">
+
+              The chance of surface water flooding at this location could be more than 3.3% (1 in 30) each year.</p>                      
+
+            <!-- <p><a href="https://check-long-term-flood-risk.service.gov.uk/postcode">Find out more about surface water flood risk</a></p> -->
+            </dd>
+          </div>
+          <!-- <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Present day depth of flooding 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              If this location flooded now, the water could be up to 300mm deep.                    
+             
+            </dd>
+          </div> -->
+          <!-- <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">
+              Present day  speed (velocity) of flooding 
+            </dt>
+            <dd class="govuk-summary-list__value">
+              If this location flooded now, the velocity could be less than 0.5 metre per second.                      
+            </dd>
+          </div>   -->
+        
+      </div>
+      
+    </div>
+
+
+<!-- Next steps-->
+<div class="govuk-summary-card govuk-!-margin-top-3" id="next-steps">
+<div class="govuk-summary-card__title-wrapper vlow">
+<h2 class="govuk-summary-card__title">Next steps
+</h2>
+
+</div>
+<div class="govuk-summary-card__content">
+<dl class="govuk-summary-list">
+
+
+ 
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Decide what you need for your planning application  
+  </br>      </br>  
+  </dt>
+  
+  <dd class="govuk-summary-list__value">
+
+    <a href="next-steps">I need help deciding what to include in my planning application.</a>
+
+  </dd>
+</div>
+
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Download a flood map for this location
+  </dt>
+  <dd class="govuk-summary-list__value">      
+    
+    <p class="govuk-body">
+      The flood map is suitable for a local planning authority to use when checking a planning application to see if a development is:               <ul class="govuk-list govuk-list--bullet">
+      <li>
+        in flood zone 1, 2 or 3
+      </li>
+      <li>
+        within 20 metres of a main river or a flood defence
+      </li>
+      <li>
+        in a water storage area (also likely to be flood zone 3b in the strategic flood risk assessment)  
+      </li>
+    </ul>
+    <details class="govuk-details govuk-!-margin-bottom-1" data-module="govuk-details" data-journey-click="Flood-Zone-Results:DETAIL-CLICK:Add-A-Reference">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">
+          Add a reference to the flood map and set the scale
+        </span>
+      </summary>
+      <div class="govuk-details__text">
+        <form class="form" id="product-1-form" method="POST" action="pdf">
+          <input name="id" type="hidden">
+          <input name="zone" type="hidden" value="FZ1">
+          <input name="polygon" type="hidden" value="[[362191,174450],[362281,174351],[362010,174333],[362191,174450]]">
+          <input name="center" type="hidden" value="[362145,174391]">
+          <input name="holdingComments" type="hidden" value="false">
+
+          <div class="govuk-form-group">
+            <h3 class="govuk-label-wrapper">
+              <label class="govuk-label--m" for="reference">
+                Add a reference
+              </label>
+            </h3>
+            <p><span id="reference-hint" class="govuk-hint govuk-hint--block">
+              Optional. This is chosen by you to help you find the report
+              later and should be less than 25 characters.
+            </span></p>
+            <input class="govuk-input form-control govuk-input--width-20" id="reference" name="reference" type="text" maxlength="13" aria-describedby="reference-hint">
+          </div>
+
+          <div class="govuk-form-group">
+            <h3 class="govuk-label-wrapper">
+              <label class="govuk-label--m" for="scale"> Scale </label>
+              <span class="govuk-hint govuk-hint--block">
+                Select the scale of the map shown in the report
+              </span>
+            </h3>
+            <select class="govuk-select" id="scale" name="scale">
+              <option value="2500">1:2500</option>
+              <option value="10000">1:10000</option>
+              <option value="25000">1:25000</option>
+              <option value="50000">1:50000</option>
+            </select>
+          </div>
+        </form>
+      </div>
+    </details>
+    <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Download flood map for this location (PDF)
+    </button>
+  </br>
+  </dd>
+</div>       
+{% if data['shapeType'] == '300ha' %}
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Order detailed flood risk data 
+  </dt>
+  <dd class="govuk-summary-list__value">      
+    
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
+
+<div class="govuk-inset-text">
+        <p class="govuk-body">The boundary is too big to order detailed flood risk information (product 4). Reduce the boundary size to under 300 hectares.</p>
+
+      <a href="javascript:window.history.back()" class="govuk-button" data-module="govuk-button">
+        Edit boundary
+      </a>
+
+    </div>
+    <p class="govuk-body">
+      If your boundary needs to be bigger than 300 hectares, contact <a href="#">area-team@environment-agency.gov.uk</a>         </p>
+    </br>
+
+  </dd>
+</div>
+{% else %}
+
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Order detailed flood risk data 
+  </dt>
+  <dd class="govuk-summary-list__value">      
+    
+    <p class="govuk-body">
+      Order detailed flood risk information to be used for a flood risk assessment as part of a planning application.             </p>
+</br>
+      <a href="contact" class="govuk-button" data-module="govuk-button">
+        Order flood risk data
+      </a>
+    </br>
+    <p class="govuk-body">
+      If you need to order other products, email the Environment Agency team in Greater Manchester, Merseyside and Cheshire at <a href="mailto:communications_EAN@environment-agency.gov.uk">communications_EAN@environment-agency.gov.uk</a>.  
+    </br></br>
+      <a href="https://www.gov.uk/guidance/flood-risk-assessment-for-planning-applications#get-information-about-flood-risk-from-rivers-and-the-sea-to-help-you-to-complete-afra">Find out what products are available</a>     </p>
+  </dd>
+</div>
+{% endif %}
+<div class="govuk-summary-list__row">
+  <dt class="govuk-summary-list__key">
+    Change the location  
+  </dt>
+  <dd class="govuk-summary-list__value">      
+    
+    <p class="govuk-body">
+      <ul class="govuk-list govuk-list--bullet">
+        <li><a href="#">Redraw the boundary of your site</a></li>
+        <li><a href="#">Search for a different location</a></li>
+      </ul>
+    </p>
+
+  </dd>
+</div>
+
+</div>
+
+</div>
+
+
+
+
+</br>
+
+<!-- <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  Download flood map for this location (PDF)
+</button>
+</br>
+<button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+  Order flood risk data
+</button> -->
+<p class="govuk-body">The material displayed, including maps and risk data, is provided without any guarantees, conditions or warranties as to its accuracy. See our <a href="https://flood-map-for-planning.service.gov.uk/terms-and-conditions">terms and conditions</a> for more information.  </p>
+
+</br>
+</br>
+</br>
+
+
+</div>
+
+
+
+{% endblock %}
