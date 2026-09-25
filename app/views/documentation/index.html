@@ -220,6 +220,37 @@
 
     <details class="govuk-details govuk-!-margin-bottom-6">
       <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3b: Auto-generate screenshots (optional)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Instead of manually taking screenshots, you can automate them:</p>
+        
+        <p class="govuk-body"><strong>Prerequisites:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Prototype server running locally (<code>npm run dev</code>)</li>
+          <li>Version's pages defined in <code>versions.json</code></li>
+        </ul>
+
+        <p class="govuk-body"><strong>Run the helper script:</strong></p>
+        <pre class="govuk-body"><code>node scripts/screenshot-version-X-X-X.js --version X.X.X</code></pre>
+
+        <p class="govuk-body">Example:</p>
+        <pre class="govuk-body"><code>node scripts/screenshot-version-3-6-1.js --version 3.6.1</code></pre>
+
+        <p class="govuk-body"><strong>What it does:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Takes full-page screenshots of all pages in your version</li>
+          <li>Saves them sequentially (01-page-name.png, 02-page-name.png, etc.)</li>
+          <li>Generates HTML snippet ready to paste into your post</li>
+          <li>Saves snippet to <code>screenshot-snippet.html</code> for easy copying</li>
+        </ul>
+
+        <p class="govuk-body"><strong>Then:</strong> Copy the generated HTML snippet and paste into your post template, edit alt text as needed.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
         <span class="govuk-details__summary-text">Step 4: Publish (when ready)</span>
       </summary>
       <div class="govuk-details__text">
@@ -477,6 +508,11 @@
     <div class="govuk-inset-text">
       <h3 class="govuk-heading-s">Meaningful tags</h3>
       <p class="govuk-body">Use consistent tag names. "boundary-upload" not "boundary", "map-styling" not "styling". This makes filtering and searching effective.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Automate screenshots (optional)</h3>
+      <p class="govuk-body">Use <code>node scripts/screenshot-version-X-X-X.js</code> to automatically capture full-page screenshots of all pages in your version. This saves time and ensures consistent viewport sizing. Requires prototype server running (<code>npm run dev</code>).</p>
     </div>
 
     <div class="govuk-inset-text">

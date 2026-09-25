@@ -204,6 +204,73 @@ Use tags to make posts discoverable:
 - Activity type: `user-research`, `release`, `bugfix`, `accessibility`
 - Date-based: `2026-q3`, `release-cycle-5`
 
+## Automated Screenshot Capture (Optional)
+
+You can automate full-page screenshots for all pages listed in "Changed pages in this version" to save manual screenshot work.
+
+### Prerequisites
+- Prototype server running locally (`npm run dev`)
+- Playwright installed (included in project dependencies)
+
+### Usage
+
+After creating your design history post, run the screenshot helper:
+
+```bash
+node scripts/screenshot-version-X-X-X.js --version X.X.X
+```
+
+**Example:**
+```bash
+node scripts/screenshot-version-3-6-1.js --version 3.6.1
+```
+
+### What It Does
+
+1. Reads the version's pages from `versions.json`
+2. Launches a browser and navigates to each page
+3. Captures full-page screenshots (scrolls entire page height)
+4. Saves images sequentially: `01-page-name.png`, `02-page-name.png`, etc.
+5. Generates HTML snippet ready to paste into your post
+6. Saves snippet to `app/views/design-history/[version]/screenshot-snippet.html`
+
+### Options
+
+```bash
+--version VERSION      Version number (required, e.g., 3.6.1)
+--base-url URL         Prototype URL (default: http://localhost:3000)
+--width WIDTH          Browser viewport width in pixels (default: 1280)
+--headless BOOL        Run in headless mode (default: true)
+--help                 Show usage information
+```
+
+### Example with Options
+
+```bash
+# Custom prototype URL and viewport width
+node scripts/screenshot-version-3-6-1.js --version 3.6.1 --base-url http://localhost:5000 --width 1024
+
+# With visible browser window
+node scripts/screenshot-version-3-6-1.js --version 3.6.1 --headless false
+```
+
+### Workflow
+
+1. Create design history post with the skill
+2. Ensure prototype server is running: `npm run dev`
+3. Run the screenshot helper for your version
+4. Copy the generated snippet from console or `screenshot-snippet.html` file
+5. Paste into your post template to replace placeholder images
+6. Edit alt text as needed for accessibility
+
+### Notes
+
+- Screenshots are captured at the specified viewport width (default 1280px)
+- Full page height is captured (includes scrolled content)
+- Screenshots are saved in PNG format
+- Existing images will be overwritten (useful for updating)
+- Script requires the "Changed pages" entries to have proper URLs in `versions.json`
+
 ## File Organization
 
 ```
