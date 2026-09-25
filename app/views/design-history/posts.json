@@ -19,6 +19,24 @@
       "summary": "Upgraded to detailed OS Master Map basemap for improved geographic context"
     },
     {
+      "version": "surface-water-depths-cc",
+      "date": "2025-11-20",
+      "url": "/design-history/surface-water-depths-cc/",
+      "title": "Usability testing: Surface water depths and climate change",
+      "type": "research",
+      "tags": ["surface-water", "depths", "climate-change", "opacity-slider", "help-page", "user-research"],
+      "summary": "User research testing surface water depth data, climate change scenarios, opacity controls, and map help page"
+    },
+    {
+      "version": "draw-boundary-user-research",
+      "date": "2025-10-14",
+      "url": "/design-history/draw-boundary-user-research/",
+      "title": "Usability testing: Draw boundary and map interaction",
+      "type": "research",
+      "tags": ["draw-boundary", "map-query", "scale-bar", "user-research", "help-banner", "boundary-dimensions"],
+      "summary": "User research testing help banner, polygon boundary options, scale bar, and handling of large boundaries"
+    },
+    {
       "version": "0.3.3",
       "date": "2025-08-29",
       "url": "/design-history/0-3-3/",

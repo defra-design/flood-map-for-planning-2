@@ -1,0 +1,74 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Usability testing: Draw boundary and map interaction</h1>
+
+<p class="govuk-body-l">
+  Published <time datetime="2025-10-14">14 October 2025</time>
+</p>
+
+<p class="govuk-body">
+  User research round testing polygon boundary drawing, help banner design, and map scale controls.
+</p>
+
+<h2 class="govuk-heading-l">Key findings tested</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Help panel becomes banner – users were closing help pop-ups without reading</li>
+  <li>Draw boundary menu options added – polygon vs square methods</li>
+  <li>Square can't be edited – simplified boundary creation</li>
+  <li>Zoom level can be freely adjusted – relaxed constraints for better UX</li>
+  <li>Boundary dimensions &amp; map scale added – clearer spatial context</li>
+  <li>New large boundary journey – handling oversized boundaries (300ha limit)</li>
+</ul>
+
+<h2 class="govuk-heading-l">Help panel becomes banner</h2>
+
+<p class="govuk-body">
+  It is an ongoing theme that users do not realise that they can click on the flood extents to find further information. In August 2025 we introduced a Map hints pop up, however testing revealed that most users closed this before reading it. Here we test a 'help' banner instead.
+</p>
+
+<img src="images/banner.png" alt="Screenshot of previous Map hints pop up from August, alongside banner design for October">
+
+<h2 class="govuk-heading-l">Draw boundary menu options added</h2>
+
+<p class="govuk-body">
+  March 2025 – 'Add' for draw boundary adds a square that can be edited. October 2025 – Two draw boundary methods. Add polygon allows 'click to draw' and add square option.
+</p>
+
+<img src="images/boundary_menu.png" alt="Screenshot of the previous 'Add' link for single boundary type, against the October two boundary method list">
+
+<h2 class="govuk-heading-l">Square can't be edited</h2>
+
+<p class="govuk-body">
+  Square boundary live since March 2025 is editable by clicking 'edit shape', nodes then appear which can be moved. The square boundary tested in October 2025 remains square. User can pan and zoom to select the area they want.
+</p>
+
+<img src="images/no-edit-square.png" alt="Screenshot of uneditable square boundary in the new design">
+
+<h2 class="govuk-heading-l">Zoom level can be freely adjusted</h2>
+
+<p class="govuk-body">
+  Previously to limit the size of boundary users could draw, they could only zoom out so far. This has been relaxed because we implemented a new method to handle large boundaries.
+</p>
+
+<img src="images/zoom.png" alt="Screenshot of the map in previous design with zoom restriction, alongside new unrestricted map zoom when drawing a boundary">
+
+<h2 class="govuk-heading-l">Boundary dimensions &amp; map scale added</h2>
+
+<p class="govuk-body">
+  March 2025 – no indication of scale. October 2025 – dimensions panel to show Area in hectares and scale in km shown via a scale bar.
+</p>
+
+<img src="images/scale-bar-dimensions.png" alt="Screenshot of previous map with no scale bar or dimensions panel, alongside map now with scale bar with boundary dimensions shown in panel">
+
+<h2 class="govuk-heading-l">New large boundary journey</h2>
+
+<p class="govuk-body">
+  Previously zoom level was used to artificially limit how big a boundary could be. But people were finding ways around this. Now if a boundary is over 300ha a banner will appear and they can't order a P4 via the website. We also tested a 'modal pop-up' that provides more information before people get to the results page.
+</p>
+
+<img src="images/large-boundary.png" alt="Screenshots showing sections of the user journey - the banner with 300 ha max restriction, modal pop-up saying you cannot order a product four unless you reduce your boundary, and the results page again directing to edit boundary size to proceed">
+
+{% endblock %}

@@ -1,0 +1,92 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Usability testing: Surface water depths and climate change</h1>
+
+<p class="govuk-body-l">
+  Published <time datetime="2025-11-20">20 November 2025</time>
+</p>
+
+<p class="govuk-body">
+  User research round testing surface water depth information, climate change data, opacity slider control, and help page for map navigation.
+</p>
+
+<h2 class="govuk-heading-l">Key findings tested</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Surface water depths added – depth bands for different return periods</li>
+  <li>Surface water climate change added – 2070s epoch upper end allowance</li>
+  <li>Menu structure changed to accommodate new datasets – collapsible sections with scrolling</li>
+  <li>Information panel updated to reflect new datasets – location, risk, and depth</li>
+  <li>Results page updated to reflect new datasets – comprehensive risk information</li>
+  <li>How to use this data page updated – guidance on climate change epoch and allowance</li>
+  <li>Layer opacity slider added – user control for viewing map details</li>
+  <li>Map help page added – dedicated guidance on map usage</li>
+</ul>
+
+<h2 class="govuk-heading-l">Surface water depths added</h2>
+
+<p class="govuk-body">
+  Depth information is available for present day and climate change surface water data for 1 in 30, 1 in 100, and 1 in 1000 AEPs. You can see all depths together, or toggle through different depth bands.
+</p>
+
+<img src="images/depths.png" alt="Screenshot of map with surface water depths, and extents shown">
+
+<h2 class="govuk-heading-l">Surface water climate change added</h2>
+
+<p class="govuk-body">
+  November 2025 – surface water '2070s epoch, upper end allowance' data now available on the map.
+</p>
+
+<img src="images/sw-cc.png" alt="Screenshot of the map with surface water climate change">
+
+<h2 class="govuk-heading-l">Menu structure changed to accommodate new datasets</h2>
+
+<p class="govuk-body">
+  March to November 2025 – everything visible in the menu with no need to scroll. November 2025 – menu options must be expanded, when expanded need to scroll in menu to accommodate additional datasets.
+</p>
+
+<img src="images/sw-cc-menu.png" alt="Screenshot of long collapsible menu">
+
+<h2 class="govuk-heading-l">Information panel updated</h2>
+
+<p class="govuk-body">
+  Information panel updated to reflect new datasets with location, risk level, and depth information clearly displayed.
+</p>
+
+<img src="images/info-panel-sw-cc.png" alt="Screenshot of the map with information panel stating location, risk and depth">
+
+<h2 class="govuk-heading-l">Results page updated to reflect new datasets</h2>
+
+<p class="govuk-body">
+  Results page now includes surface water climate change depth information alongside other flood risk data.
+</p>
+
+<img src="images/results-with-sw-cc.png" alt="Screenshot of results page with surface water climate change depth information">
+
+<h2 class="govuk-heading-l">How to use this data page updated</h2>
+
+<p class="govuk-body">
+  'How to use this data' page now contains information about the climate change epoch and allowance for surface water.
+</p>
+
+<img src="images/data-page.png" alt="Screenshots showing the how to use the data page">
+
+<h2 class="govuk-heading-l">Layer opacity slider added</h2>
+
+<p class="govuk-body">
+  To help with being able to see map detail and differentiate between different colours, the user can control the layer opacity. It is set at 75% by default and can be changed from 0 – 100%.
+</p>
+
+<img src="images/opacity-slider.png" alt="Screenshots showing the opacity slider, set to various points">
+
+<h2 class="govuk-heading-l">Map help page added</h2>
+
+<p class="govuk-body">
+  Help button and page added to provide information on how to use the map and interact with its various features.
+</p>
+
+<img src="images/help.png" alt="Screenshot showing help button on the map, and help page">
+
+{% endblock %}
