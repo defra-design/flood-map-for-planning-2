@@ -316,7 +316,7 @@
           const label = document.createElement('label');
           label.className = 'govuk-label govuk-checkboxes__label';
           label.htmlFor = id;
-          const displayText = tag.replace(/-/g, ' ').split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+          const displayText = tag.replace(/-/g, ' ').replace(/^\w/, c => c.toUpperCase());
           label.textContent = displayText;
           
           div.appendChild(input);
