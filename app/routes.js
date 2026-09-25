@@ -7,8 +7,12 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const fs = require('fs')
 const path = require('path')
+const express = require('express')
 
 // Add your routes here
+
+// Serve design history images as static files
+router.use('/design-history', express.static(path.join(__dirname, 'views/design-history')))
 
 // all routes for FMFP with defra componant
 router.use('/v3-3-0-1', require('./routes_v3-3-0-1'))
