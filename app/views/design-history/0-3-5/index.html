@@ -1,0 +1,47 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Release v3.5.0.0</h1>
+
+<p class="govuk-body-l">
+  Published <time datetime="2025-12-10">10 December 2025</time>
+</p>
+
+<p class="govuk-body">
+  Detailed basemap ('OS master map') for low zoom.
+</p>
+
+<h2 class="govuk-heading-l">About this release</h2>
+
+<p class="govuk-body">
+  The December 2025 change to the service includes basemap improvements.
+</p>
+
+<h2 class="govuk-heading-l">Basemap changes to the OS Master Map style around 50/100m</h2>
+
+<p class="govuk-body">
+  The high scale map is very basic. We had lots of feedback that the sites were not detailed enough, the roads were not all labeled, and there were visible styling bugs with the way the road names were displayed. Many users preferred the OS Master Map on the draw a boundary page, so we released an update to the service to accommodate the detailed map on the flood data screens, as well as the draw a boundary.
+</p>
+
+<div class="govuk-inset-text">
+  <p class="govuk-body">
+    <strong>Note:</strong> We did not test this update with prototype users in testing ahead of this release, on the basis we know the map has tested well in the draw a boundary area of the service, and is often users' preferred basemap.
+  </p>
+</div>
+
+<img src="images/defaultOS_Map.png" alt="Before screenshot of map with the basic detail of the initial default OS map">
+
+<h2 class="govuk-heading-l">Low detail initial OS map</h2>
+<p class="govuk-body">Comparison showing the low-detail initial basemap.</p>
+<img src="images/defaultOS_map_zoom.png" alt="Cropped picture of area on the map showing the initial default OS map at low detail">
+
+<h2 class="govuk-heading-l">Detailed map 'OS Master Map'</h2>
+<p class="govuk-body">The new detailed OS Master Map provides better geographic context and road labeling.</p>
+<img src="images/detailedOS_map.png" alt="Screenshot of the service with full map shown using the detailed 'OS Master Map'">
+
+<h2 class="govuk-heading-l">Detailed map zoom comparison</h2>
+<p class="govuk-body">The same area at zoom showing the improved detail and clarity.</p>
+<img src="images/detailedOS_map_zoom.png" alt="Crop of the map showing the detailed 'OS Master Map'">
+
+{% endblock %}

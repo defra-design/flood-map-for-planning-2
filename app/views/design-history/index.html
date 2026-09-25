@@ -1,0 +1,107 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Design history" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Design history</h1>
+
+    <p class="govuk-body-l">
+      A record of changes to the flood map for planning prototype, including design decisions, 
+      user research findings, and feature releases.
+    </p>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+
+    <!-- Releases List -->
+    <h2 class="govuk-heading-l">Releases</h2>
+
+    <div class="govuk-list">
+      <!-- Release 0.3.6 -->
+      <div class="govuk-card govuk-!-margin-bottom-6" style="border: 1px solid #b1b4b6; padding: 1.5rem;">
+        <h3 class="govuk-heading-m">
+          <a href="/design-history/0-3-6/" class="govuk-link">Release v3.6.1</a>
+        </h3>
+        <p class="govuk-body">
+          <time datetime="2026-01-22">22 January 2026</time>
+        </p>
+        <p class="govuk-body">
+          Map and boundary drawing improvements including opacity slider, boundary dimensions, and new error pages.
+        </p>
+        <p class="govuk-body">
+          <a href="/design-history/0-3-6/" class="govuk-link">View changes →</a>
+        </p>
+      </div>
+
+      <!-- Release 0.3.5 -->
+      <div class="govuk-card govuk-!-margin-bottom-6" style="border: 1px solid #b1b4b6; padding: 1.5rem;">
+        <h3 class="govuk-heading-m">
+          <a href="/design-history/0-3-5/" class="govuk-link">Release v3.5.0.0</a>
+        </h3>
+        <p class="govuk-body">
+          <time datetime="2025-12-10">10 December 2025</time>
+        </p>
+        <p class="govuk-body">
+          Upgraded to detailed OS Master Map basemap for improved geographic context and road labeling.
+        </p>
+        <p class="govuk-body">
+          <a href="/design-history/0-3-5/" class="govuk-link">View changes →</a>
+        </p>
+      </div>
+
+      <!-- Release 0.3.3 -->
+      <div class="govuk-card govuk-!-margin-bottom-6" style="border: 1px solid #b1b4b6; padding: 1.5rem;">
+        <h3 class="govuk-heading-m">
+          <a href="/design-history/0-3-3/" class="govuk-link">Release v3.3.0.1</a>
+        </h3>
+        <p class="govuk-body">
+          <time datetime="2025-08-29">29 August 2025</time>
+        </p>
+        <p class="govuk-body">
+          Initial release with flood zones climate change, data unavailable areas, and black/white base map for color vision accessibility.
+        </p>
+        <p class="govuk-body">
+          <a href="/design-history/0-3-3/" class="govuk-link">View changes →</a>
+        </p>
+      </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+
+    <!-- How this works -->
+    <h2 class="govuk-heading-l">How this works</h2>
+
+    <p class="govuk-body">
+      Each release documents the key design changes, screenshots of new features, and the reasoning behind design decisions. 
+      This helps us keep a clear record of how the service evolved and why changes were made.
+    </p>
+
+    <p class="govuk-body">
+      Design history posts are created using the <code>@copilot #design-history-entry</code> skill. 
+      <a href="https://github.com/defra-design/flood-map-for-planning-2" class="govuk-link">See the GitHub repository</a> 
+      for the design history skill documentation.
+    </p>
+
+  </div>
+</div>
+
+<style>
+  .govuk-card {
+    transition: box-shadow 0.2s ease-in-out;
+  }
+
+  .govuk-card:hover {
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  }
+
+  code {
+    background-color: #f3f2f1;
+    padding: 0.2em 0.4em;
+    font-family: "courier new", courier, monospace;
+    font-size: 0.9em;
+  }
+</style>
+
+{% endblock %}

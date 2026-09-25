@@ -1,0 +1,85 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Release v3.3.0.1</h1>
+
+<p class="govuk-body-l">
+  Published <time datetime="2025-08-29">29 August 2025</time>
+</p>
+
+<p class="govuk-body">
+  Flood map for planning at time of release.
+</p>
+
+<h2 class="govuk-heading-l">About this release</h2>
+
+<p class="govuk-body">
+  The release featured:
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>on map load information panel with a how to query the map help prompt</li>
+  <li>rivers and sea with climate change was replaced by flood zones with climate change</li>
+  <li>data unavailable areas were added to the flood zones with climate change for areas of low confidence</li>
+  <li>black and white base map added</li>
+  <li>various content updates explaining the data changes</li>
+</ul>
+
+<h2 class="govuk-heading-l">Start page</h2>
+<p class="govuk-body">The start page was updated in this release, removing the data caveat</p>
+<img src="images/01-start-page.png" alt="Screenshot of service start page">
+
+<h2 class="govuk-heading-l">Triage page</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/02-triage-page.png" alt="Screenshot of service triage page">
+
+<h2 class="govuk-heading-l">Location page</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/03-location-page.png" alt="Screenshot of service triage page">
+
+<h2 class="govuk-heading-l">Query map help panel</h2>
+<p class="govuk-body">The map landing view now has an info panel with help information prompting the user to click the map to query the data. The panel is for first load only, with a cookie set to not display again, for the life of the cookie, once closed</p>
+<img src="images/04-map.png" alt="Screenshot of the map page with an information panel displaying help text prompting the user to click on the map">
+
+<h2 class="govuk-heading-l">Draw a boundary</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/05-draw-boundary.png" alt="Screenshot of boundary drawer">
+
+<h2 class="govuk-heading-l">Information panel</h2>
+<p class="govuk-body">The information panel on the map has updated in line with the new flood zones with climate change, and no data available areas</p>
+<img src="images/06-information-panel.png" alt="Screenshot of information panel on the map">
+
+<h2 class="govuk-heading-l">No data area</h2>
+<p class="govuk-body">Areas of low confidence have been added to the map</p>
+<img src="images/07-no-data-area.png" alt="Screenshot of no data available areas on the map">
+
+<h2 class="govuk-heading-l">Black and white base map</h2>
+<p class="govuk-body">Black and white base map has been added to the map to better accommodate colour vision differences</p>
+<img src="images/08-black-and-white-base-map.png" alt="Screenshot of map with black and white base map">
+
+<h2 class="govuk-heading-l">Key</h2>
+<p class="govuk-body">Key and legend updated to include new flood zones with climate change and data unavailable areas</p>
+<img src="images/09-key.png" alt="Screenshot of map with key showing new flood zones with climate change and data unavailable areas">
+
+<h2 class="govuk-heading-l">Data page</h2>
+<p class="govuk-body">New page detailing how the flood zones with climate change data can be used</p>
+<img src="images/10-data-page.png" alt="Screenshot of How to use flood map for planning page">
+
+<h2 class="govuk-heading-l">Results page</h2>
+<p class="govuk-body">Results page updated to include flood zones with climate change, the removal of rivers and sea with climate change, along with other updates in relation to climate change allowances and defences</p>
+<img src="images/11-results-page.png" alt="Screenshot of results page showing flood risk for chosen location">
+
+<h2 class="govuk-heading-l">Contact details</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/12-contact-details.png" alt="Screenshot of contact details page">
+
+<h2 class="govuk-heading-l">Check your details</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/13-check-your-details.png" alt="Screenshot of check your details page">
+
+<h2 class="govuk-heading-l">Confirmation</h2>
+<p class="govuk-body">This page was not updated</p>
+<img src="images/14-confirmation.png" alt="Screenshot of confirmation page">
+
+{% endblock %}

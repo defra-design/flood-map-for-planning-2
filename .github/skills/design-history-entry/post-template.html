@@ -1,0 +1,85 @@
+<!--
+Design History Post Template
+Replace [PLACEHOLDERS] with actual content
+-->
+
+{% extends "layouts/post.html" %}
+
+{% block pageTitle %}Release [VERSION] - Design History{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <h1 class="govuk-heading-xl">Release [VERSION]</h1>
+    
+    <p class="govuk-body-l">
+      Published <time datetime="[DATE-ISO]">[FORMATTED-DATE]</time>
+    </p>
+
+    <p class="govuk-body">
+      [ONE-PARAGRAPH SUMMARY OF RELEASE AND KEY THEMES]
+    </p>
+
+    <!-- CHANGE 1 -->
+    <h2 class="govuk-heading-l">[CHANGE-1-TITLE]</h2>
+    
+    <p class="govuk-body">
+      [2-3 SENTENCES EXPLAINING THE CHANGE AND WHY IT WAS MADE]
+    </p>
+    
+    <img 
+      src="images/[SCREENSHOT-1].png" 
+      alt="[DESCRIPTIVE ALT TEXT: what the user sees and what changed]"
+      class="govuk-!-margin-bottom-6"
+    >
+
+    <!-- CHANGE 2 -->
+    <h2 class="govuk-heading-l">[CHANGE-2-TITLE]</h2>
+    
+    <p class="govuk-body">
+      [EXPLANATION OF THIS CHANGE]
+    </p>
+    
+    <img 
+      src="images/[SCREENSHOT-2].png" 
+      alt="[DESCRIPTIVE ALT TEXT]"
+      class="govuk-!-margin-bottom-6"
+    >
+
+    <!-- ADD MORE CHANGES AS NEEDED -->
+
+    <!-- PREVIOUS VERSION LINK -->
+    <hr class="govuk-section-break govuk-section-break--visible govuk-!-margin-top-6 govuk-!-margin-bottom-6">
+    
+    <p class="govuk-body">
+      <a href="../[PREVIOUS-VERSION]/">View previous version: Release [PREVIOUS-VERSION]</a>
+    </p>
+
+  </div>
+</div>
+{% endblock %}
+
+<!--
+TEMPLATE NOTES:
+
+Dates: Use ISO format (2026-09-25) in datetime attribute, 
+       formatted date (25 September 2026) in display text
+
+Alt text checklist:
+  ✓ Describe what changed (not just "screenshot")
+  ✓ Include context ("boundary drawing tool")
+  ✓ Mention visual changes ("red outline", "new button", "reorganized layout")
+  ✓ Make it scannable (short sentences)
+
+File names:
+  - Use dashes not spaces
+  - Prefix with number if multiple images of same feature (boundary-1.png, boundary-2.png)
+  - Descriptive names (boundary-snap-indicator.png not image-1.png)
+
+Images:
+  - Store in images/ subfolder
+  - PNG preferred for UI screenshots, JPEG for photos
+  - 800-1200px wide
+  - Optimize for web (tools: ImageOptim, TinyPNG)
+-->

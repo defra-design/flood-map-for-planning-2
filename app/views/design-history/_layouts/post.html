@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    
+    <!-- Navigation back to design history -->
+    <a href="/design-history/" class="govuk-back-link">Back to design history</a>
+
+    <!-- Main content block -->
+    <div class="design-history-post">
+      {% block post %}{% endblock %}
+    </div>
+
+  </div>
+
+  <!-- Optional: Right column for metadata/navigation -->
+  <div class="govuk-grid-column-one-third">
+    {% block sidebar %}{% endblock %}
+  </div>
+</div>
+
+<!-- CSS for design history posts -->
+<style>
+  .design-history-post img {
+    max-width: 100%;
+    height: auto;
+    border: 1px solid #b1b4b6;
+    margin: 1em 0;
+  }
+
+  .design-history-post img:focus {
+    outline: 3px solid #ffbf47;
+    outline-offset: 0;
+  }
+
+  .design-history-post h2 {
+    margin-top: 2em;
+  }
+
+  .design-history-post figure {
+    margin: 1.5em 0;
+  }
+
+  .design-history-post figcaption {
+    font-size: 0.875rem;
+    color: #6f777b;
+    margin-top: 0.5em;
+  }
+
+  .design-history-nav {
+    border-top: 1px solid #b1b4b6;
+    margin-top: 2em;
+    padding-top: 1em;
+  }
+
+  .design-history-nav a {
+    display: block;
+    margin-top: 0.5em;
+  }
+</style>
+
+{% endblock %}

@@ -1,0 +1,49 @@
+{
+  "description": "Metadata index for design history posts. Update this whenever you add a new post.",
+  "posts": [
+    {
+      "version": "0.3.3",
+      "date": "2025-08-29",
+      "url": "/design-history/0-3-3/",
+      "title": "Release 0.3.3",
+      "type": "release",
+      "tags": ["release"],
+      "summary": "Initial release with core flood mapping and boundary drawing features"
+    },
+    {
+      "version": "0.3.5",
+      "date": "2025-12-10",
+      "url": "/design-history/0-3-5/",
+      "title": "Release 0.3.5",
+      "type": "release",
+      "tags": ["release", "user-research"],
+      "summary": "Improved map controls and risk scoring display based on user research"
+    },
+    {
+      "version": "0.3.6",
+      "date": "2026-01-22",
+      "url": "/design-history/0-3-6/",
+      "title": "Release 0.3.6",
+      "type": "release",
+      "tags": ["release", "bugfix", "mobile"],
+      "summary": "Mobile optimization and accessibility improvements"
+    },
+    {
+      "version": "0.3.7",
+      "date": "2026-09-25",
+      "url": "/design-history/0-3-7/",
+      "title": "Release 0.3.7",
+      "type": "release",
+      "tags": ["release", "boundary-drawing", "accessibility"],
+      "summary": "Improved boundary drawing tool with snap-to-feature and keyboard shortcuts"
+    }
+  ],
+  "instructions": {
+    "adding-a-post": "When you create a new post, add an entry here with version, date, URL, title, type (release|research|bugfix), tags, and summary",
+    "date-format": "Use ISO 8601 format: YYYY-MM-DD",
+    "url-pattern": "/design-history/{version}/",
+    "version-naming": "Use semantic versioning (0.3.7) not dot notation (0-3-7) for version field; folder names use dashes",
+    "tags": "Use lowercase, dashes for multi-word tags. Examples: user-research, accessibility, boundary-drawing, mobile, bugfix",
+    "summary": "Keep to 1 sentence, max 100 characters"
+  }
+}

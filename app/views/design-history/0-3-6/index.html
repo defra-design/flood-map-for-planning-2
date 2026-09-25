@@ -1,0 +1,90 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Release v3.6.1</h1>
+
+<p class="govuk-body-l">
+  Published <time datetime="2026-01-22">22 January 2026</time>
+</p>
+
+<p class="govuk-body">
+  Flood map for planning following release with significant map and boundary drawing improvements.
+</p>
+
+<h2 class="govuk-heading-l">Key changes</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Click the map banner replaces help panel</li>
+  <li>Draw boundary menu options added</li>
+  <li>Opacity slider</li>
+  <li>Square can't be edited</li>
+  <li>Zoom level can be freely adjusted</li>
+  <li>Boundary dimensions &amp; map scale added</li>
+</ul>
+
+<h2 class="govuk-heading-l">Start page</h2>
+<p class="govuk-body"></p>
+<img src="images/01-start.png" alt="Screenshot of the start page">
+
+<h2 class="govuk-heading-l">Triage page</h2>
+<p class="govuk-body"></p>
+<img src="images/02-triage.png" alt="Screenshot of the triage page">
+
+<h2 class="govuk-heading-l">Location page</h2>
+<p class="govuk-body"></p>
+<img src="images/03-location.png" alt="Screenshot of the location page">
+
+<h2 class="govuk-heading-l">Map, menu top</h2>
+<p class="govuk-body">Banner prompt to click the map shown at the top of the map. Boundary menu section updated with new title, description and polygon draw. New show/hide buttons added.</p>
+<img src="images/04-map.png" alt="Screenshot of the map, with menu showing the top half of the scroll">
+
+<h2 class="govuk-heading-l">Map, menu bottom</h2>
+<p class="govuk-body">Layer opacity slider added.</p>
+<img src="images/05-map.png" alt="Screenshot of the map, with the menu scrolled down to show bottom of menu">
+
+<h2 class="govuk-heading-l">Surface water default select 1 in 100</h2>
+<p class="govuk-body">When surface water is selected, the default Annual likelihood selected is 1 in 100.</p>
+<img src="images/06-sw-map.png" alt="Screenshot of the map with surface water selected, at 1 in 100 annual likelihood">
+
+<h2 class="govuk-heading-l">Boundary dimensions</h2>
+<p class="govuk-body">Boundary dimensions added to confirmed (double click) shapes in the left hand panel.</p>
+<img src="images/07-boundary.png" alt="Screenshot of the draw a boundary screen, with a polygon drawn with dimensions in the side panel">
+
+<h2 class="govuk-heading-l">Help using the flood map</h2>
+<p class="govuk-body">Various updates in relation to draw boundary changes made to this page.</p>
+<img src="images/10-help.png" alt="Screenshot of the help using the map page">
+
+<h2 class="govuk-heading-l">Results page</h2>
+<p class="govuk-body">Contact details added.</p>
+<img src="images/11-results-page.png" alt="Screenshot of the results page">
+
+<h2 class="govuk-heading-l">Results page over sized boundary</h2>
+<p class="govuk-body">Button and message added to prevent P4 requests for those with an oversized boundary. User directed back to reduce their boundary size to progress to P4 request.</p>
+<img src="images/12-results-300ha.png" alt="Screenshot of the results page for when a boundary is too large to request a P4">
+
+<h2 class="govuk-heading-l">Contact page</h2>
+<p class="govuk-body"></p>
+<img src="images/13-contact.png" alt="Screenshot of the contact page">
+
+<h2 class="govuk-heading-l">Check your details</h2>
+<p class="govuk-body"></p>
+<img src="images/14-check.png" alt="Screenshot of the check your details page">
+
+<h2 class="govuk-heading-l">Confirmation page</h2>
+<p class="govuk-body"></p>
+<img src="images/15-confirm.png" alt="Screenshot of the confirmation page">
+
+<h2 class="govuk-heading-l">Location error</h2>
+<p class="govuk-body">New error page added for locations searched from location page that are out of England.</p>
+<img src="images/16-location-error.png" alt="Screenshot of the location error page">
+
+<h2 class="govuk-heading-l">Next steps</h2>
+<p class="govuk-body">Updated with further info on P1 download, addition of area contact details, removal of check for flooding link for surface water info.</p>
+<img src="images/17-next-steps.png" alt="Screenshot of the next steps page">
+
+<h2 class="govuk-heading-l">Next steps (300 hectares max)</h2>
+<p class="govuk-body">Updated to include version with 300 hectares maximum boundary size.</p>
+<img src="images/18-next-steps-300ha.png" alt="Screenshot of the next steps page">
+
+{% endblock %}
