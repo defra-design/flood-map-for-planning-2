@@ -11,8 +11,15 @@ const express = require('express')
 
 // Add your routes here
 
-// Serve design history images as static files
-router.use('/design-history', express.static(path.join(__dirname, 'views/design-history')))
+// Serve design history images and assets as static files
+// This middleware only serves files with image extensions to avoid interfering with Nunjucks template rendering
+router.use((req, res, next) => {
+  if (req.path.match(/\/design-history\/.*\.(png|jpg|jpeg|gif|svg|webp|css|js)$/i)) {
+    express.static(path.join(__dirname, 'views/design-history'))(req, res, next)
+  } else {
+    next()
+  }
+})
 
 // all routes for FMFP with defra componant
 router.use('/v3-3-0-1', require('./routes_v3-3-0-1'))
