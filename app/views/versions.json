@@ -27,8 +27,8 @@
     },
     {
       "number": "3.7.0.2",
-      "type": "in-development",
-      "date": "In development",
+      "type": "research",
+      "date": "Research round - TBC",
       "tags": ["boundary-upload", "research-sign-up"],
       "pages": [
         { "name": "Start page", "url": "/v3-7-0-2" },
@@ -44,7 +44,7 @@
       ],
       "prototypeUrl": "/v3-7-0-2",
       "hasPrototype": true,
-      "designHistoryUrl": null
+      "designHistoryUrl": "/design-history/3-7-0-2/"
     },
     {
       "number": "3.6.1",

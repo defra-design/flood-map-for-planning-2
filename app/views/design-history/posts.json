@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "version": "3.7.0.2",
+      "date": "2026-09-25",
+      "url": "/design-history/3-7-0-2/",
+      "title": "Research round v3.7.0.2",
+      "type": "research",
+      "tags": ["boundary-upload", "research-sign-up"],
+      "summary": "Research round exploring boundary upload and research sign-up features"
+    },
+    {
       "version": "3.6.1",
       "date": "2026-01-22",
       "url": "/design-history/3-6-1/",
