@@ -32,6 +32,7 @@
       "tags": ["boundary-upload", "research-sign-up"],
       "pages": [
         { "name": "Start page", "url": "/v3-7-0-2" },
+        { "name": "Upload boundary", "url": "/v3-7-0-2/upload" },
         { "name": "300 hectare error", "url": "/v3-7-0-2/upload_error_hectare" },
         { "name": "File format error", "url": "/v3-7-0-2/upload_error_format" },
         { "name": "File size error", "url": "/v3-7-0-2/upload_error_size" },
