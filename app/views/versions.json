@@ -1,0 +1,102 @@
+{
+  "versions": [
+    {
+      "number": "3.8.0.0",
+      "type": "in-development",
+      "date": "In development",
+      "tags": ["map"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-8-0-0/" },
+        { "name": "Map page", "url": "/v3-8-0-0/map" }
+      ],
+      "prototypeUrl": "/v3-8-0-0/",
+      "designHistoryUrl": null
+    },
+    {
+      "number": "3.7.0.3",
+      "type": "in-development",
+      "date": "In development",
+      "tags": ["product-1", "map-styling"],
+      "pages": [
+        { "name": "Product 1", "url": "/v3-7-0-3/product1-3" }
+      ],
+      "prototypeUrl": "/v3-7-0-3/product1-3",
+      "designHistoryUrl": null
+    },
+    {
+      "number": "3.7.0.2",
+      "type": "in-development",
+      "date": "In development",
+      "tags": ["boundary-upload", "research-sign-up"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-7-0-2" },
+        { "name": "300 hectare error", "url": "/v3-7-0-2/upload_error_hectare" },
+        { "name": "File format error", "url": "/v3-7-0-2/upload_error_format" },
+        { "name": "File size error", "url": "/v3-7-0-2/upload_error_size" },
+        { "name": "Boundary format error", "url": "/v3-7-0-2/upload_error_geo" },
+        { "name": "Check your details", "url": "/v3-7-0-2/summary-fz3" },
+        { "name": "Check your details (no research sign up)", "url": "/v3-7-0-2/summary-fz3-no-check" },
+        { "name": "Confirmation page", "url": "/v3-7-0-2/confirmation-fz3" },
+        { "name": "Confirmation email", "url": "/v3-7-0-2/email-template" }
+      ],
+      "prototypeUrl": "/v3-7-0-2",
+      "designHistoryUrl": null
+    },
+    {
+      "number": "3.6.1",
+      "type": "release",
+      "date": "Release - 22 January 2026",
+      "tags": ["draw-boundary", "map-query", "opacity-slider", "scale-bar", "help", "surface-water"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-6-1/" },
+        { "name": "Map page", "url": "/v3-6-1/map" }
+      ],
+      "prototypeUrl": "/v3-6-1/",
+      "designHistoryUrl": "/design-history/3-6-1/"
+    },
+    {
+      "number": "3.6.0.1",
+      "type": "research",
+      "date": "Research round - November 2025",
+      "tags": ["surface-water", "depths", "opacity-slider", "help", "climate-change"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-6-0-1" }
+      ],
+      "prototypeUrl": "/v3-6-0-1",
+      "designHistoryUrl": "/design-history/surface-water-depths-cc/"
+    },
+    {
+      "number": "3.5.0.0",
+      "type": "release",
+      "date": "Release - 10 December 2025",
+      "tags": ["basemap"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-5-0-0" }
+      ],
+      "prototypeUrl": "/v3-5-0-0",
+      "designHistoryUrl": "/design-history/3-5-0-0/"
+    },
+    {
+      "number": "3.4.0.2",
+      "type": "research",
+      "date": "Research round - October 2025",
+      "tags": ["draw-boundary", "map-query", "scale-bar", "help"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-4-0-2" }
+      ],
+      "prototypeUrl": "/v3-4-0-2",
+      "designHistoryUrl": "/design-history/draw-boundary-user-research/"
+    },
+    {
+      "number": "3.3.0.1",
+      "type": "release",
+      "date": "Initial release - 29 August 2025",
+      "tags": ["map-query", "climate-change", "basemap", "data-page", "results-page"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-3-0-1" }
+      ],
+      "prototypeUrl": "/v3-3-0-1",
+      "designHistoryUrl": "/design-history/3-3-0-1/"
+    }
+  ]
+}

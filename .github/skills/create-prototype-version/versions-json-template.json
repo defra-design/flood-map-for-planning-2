@@ -1,0 +1,61 @@
+{
+  "example": {
+    "number": "3.9.0.0",
+    "type": "in-development",
+    "date": "TBC",
+    "tags": [],
+    "pages": [],
+    "prototypeUrl": "/v3-9-0-0/",
+    "designHistoryUrl": null
+  },
+  "template": {
+    "number": "{{VERSION}}",
+    "type": "{{TYPE}}",
+    "date": "{{DATE}}",
+    "tags": {{TAGS_JSON}},
+    "pages": {{PAGES_JSON}},
+    "prototypeUrl": "/{{VERSION_ID}}/",
+    "designHistoryUrl": null
+  },
+  "notes": {
+    "type": "One of: 'release', 'in-development', 'research'",
+    "date": "Examples: 'TBC', 'In development', 'Release - 22 January 2026', 'Research round - January 2026'",
+    "tags": "Array of tag strings. Add/update as features are finalized",
+    "pages": "Array of objects with 'name' and 'url'. Add/update as pages are created",
+    "designHistoryUrl": "Set to design history URL when post is published. Format: '/design-history/3-9-0-0/'"
+  },
+  "examples": {
+    "release_with_tags": {
+      "number": "3.9.0.0",
+      "type": "release",
+      "date": "Release - 22 January 2026",
+      "tags": ["draw-boundary", "map-styling", "scale-bar"],
+      "pages": [
+        { "name": "Start page", "url": "/v3-9-0-0/" },
+        { "name": "Map page", "url": "/v3-9-0-0/map" }
+      ],
+      "prototypeUrl": "/v3-9-0-0/",
+      "designHistoryUrl": "/design-history/3-9-0-0/"
+    },
+    "in_development_empty": {
+      "number": "3.10.0.0",
+      "type": "in-development",
+      "date": "In development",
+      "tags": [],
+      "pages": [],
+      "prototypeUrl": "/v3-10-0-0/",
+      "designHistoryUrl": null
+    },
+    "research_round": {
+      "number": "draw-boundary-testing",
+      "type": "research",
+      "date": "Research round - February 2026",
+      "tags": ["draw-boundary", "user-research"],
+      "pages": [
+        { "name": "Prototype", "url": "/research/draw-boundary-testing/" }
+      ],
+      "prototypeUrl": "/research/draw-boundary-testing/",
+      "designHistoryUrl": "/design-history/draw-boundary-testing/"
+    }
+  }
+}

@@ -1,0 +1,31 @@
+<!-- v{{VERSION}} -->
+<div class="version-card govuk-!-padding-4" data-tags="{{TAGS_SPACE_SEPARATED}}" style="border: 1px solid #b1b4b6;">
+  <h3 class="govuk-heading-m govuk-!-margin-0 govuk-!-margin-bottom-2">v{{VERSION}}</h3>
+  <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">{{DATE}}</p>
+  <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+{{TAGS_HTML}}  </div>
+  <details class="govuk-details" style="margin-bottom: 1.5rem;">
+    <summary class="govuk-details__summary">
+      <span class="govuk-details__summary-text">Pages in this version</span>
+    </summary>
+    <div class="govuk-details__text">
+      <ul class="govuk-list">
+{{PAGES_HTML}}      </ul>
+    </div>
+  </details>
+  <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin: 1rem 0;">
+  <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+    <a href="{{PROTOTYPE_URL}}" class="govuk-link govuk-body-m">View v{{VERSION}} prototype</a>
+    <span style="color: #b1b4b6;">•</span>
+{{DESIGN_HISTORY_LINK}}  </div>
+</div>
+
+<!-- TEMPLATE VARIABLES (replace in skill):
+  {{VERSION}} = version number (e.g., 3.9.0.0)
+  {{DATE}} = date string (e.g., "In development" or "Release - 22 Jan 2026")
+  {{TAGS_SPACE_SEPARATED}} = tags for data-tags attribute (e.g., "boundary-upload map-styling")
+  {{TAGS_HTML}} = full HTML tag elements for each tag
+  {{PAGES_HTML}} = full HTML list items for each page
+  {{PROTOTYPE_URL}} = prototype URL (e.g., /v3-9-0-0/)
+  {{DESIGN_HISTORY_LINK}} = either link to design history OR "Design history not yet available" text
+-->
