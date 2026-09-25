@@ -1,6 +1,15 @@
 {
   "posts": [
     {
+      "version": "3.7.0.3",
+      "date": "2026-09-25",
+      "url": "/design-history/3-7-0-3/",
+      "title": "Research round v3.7.0.3",
+      "type": "research",
+      "tags": ["product-1", "map-styling"],
+      "summary": "Research round exploring Product 1 and map styling updates"
+    },
+    {
       "version": "3.7.0.2",
       "date": "2026-09-25",
       "url": "/design-history/3-7-0-2/",

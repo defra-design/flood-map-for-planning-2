@@ -15,15 +15,15 @@
     },
     {
       "number": "3.7.0.3",
-      "type": "in-development",
-      "date": "In development",
+      "type": "research",
+      "date": "Research round - TBC",
       "tags": ["product-1", "map-styling"],
       "pages": [
         { "name": "Product 1", "url": "/v3-7-0-3/product1-3" }
       ],
       "prototypeUrl": "/v3-7-0-3/product1-3",
       "hasPrototype": true,
-      "designHistoryUrl": null
+      "designHistoryUrl": "/design-history/3-7-0-3/"
     },
     {
       "number": "3.7.0.2",
