@@ -288,8 +288,51 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <!-- Metadata Reference -->
-    <h2 class="govuk-heading-l">Metadata: versions.json structure</h2>
+    <!-- Design history only versions -->
+    <h2 class="govuk-heading-l">Design history-only versions</h2>
+
+    <p class="govuk-body">Sometimes you want to document a release or research finding without building a working prototype. For example:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>A release that only involved backend changes (no new user interface)</li>
+      <li>A research round where the findings are documented but prototype was never built</li>
+      <li>A version that has been sunsetted and is kept for historical reference only</li>
+    </ul>
+
+    <p class="govuk-body">For these cases, create a version card without a prototype link.</p>
+
+    <h3 class="govuk-heading-m">Setting up a design history-only version</h3>
+
+    <p class="govuk-body"><strong>In versions.json:</strong></p>
+    <pre class="govuk-body"><code>{
+  "number": "3.6.1",
+  "type": "release",
+  "date": "Release - 22 January 2026",
+  "tags": ["draw-boundary", "map-query"],
+  "pages": [],
+  "prototypeUrl": null,
+  "hasPrototype": false,
+  "designHistoryUrl": "/design-history/3-6-1/"
+}</code></pre>
+
+    <p class="govuk-body"><strong>Key fields:</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><code>"pages": []</code> – Leave empty (no prototype pages to list)</li>
+      <li><code>"prototypeUrl": null</code> – No prototype to link to</li>
+      <li><code>"hasPrototype": false</code> – Indicates this is documentation only</li>
+      <li><code>"designHistoryUrl": "/design-history/3-6-1/"</code> – Link to the design history post</li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Card display</h3>
+
+    <p class="govuk-body">The version card will display:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Version number, date, and tags (filtered as normal)</li>
+      <li>"No prototype" text instead of a "View prototype" link</li>
+      <li>Design history link so users can access full documentation</li>
+      <li>No "Pages in this version" section (empty pages array)</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
     <p class="govuk-body">All version data lives in <code>app/views/versions.json</code>. This is the single source of truth.</p>
 
@@ -356,9 +399,15 @@
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><code>prototypeUrl</code></td>
-          <td class="govuk-table__cell">String</td>
+          <td class="govuk-table__cell">String or null</td>
           <td class="govuk-table__cell"><code>/v3-9-0-0/</code></td>
-          <td class="govuk-table__cell">Link to start page of version</td>
+          <td class="govuk-table__cell">Link to start page of version. Set to null for design-history-only versions.</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>hasPrototype</code></td>
+          <td class="govuk-table__cell">Boolean</td>
+          <td class="govuk-table__cell"><code>true</code> or <code>false</code></td>
+          <td class="govuk-table__cell">Set to false for versions documented only in design history (no working prototype)</td>
         </tr>
         <tr class="govuk-table__row">
           <td class="govuk-table__cell"><code>designHistoryUrl</code></td>

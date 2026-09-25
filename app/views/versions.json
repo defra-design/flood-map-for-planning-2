@@ -10,6 +10,7 @@
         { "name": "Map page", "url": "/v3-8-0-0/map" }
       ],
       "prototypeUrl": "/v3-8-0-0/",
+      "hasPrototype": true,
       "designHistoryUrl": null
     },
     {
@@ -21,6 +22,7 @@
         { "name": "Product 1", "url": "/v3-7-0-3/product1-3" }
       ],
       "prototypeUrl": "/v3-7-0-3/product1-3",
+      "hasPrototype": true,
       "designHistoryUrl": null
     },
     {
@@ -40,6 +42,7 @@
         { "name": "Confirmation email", "url": "/v3-7-0-2/email-template" }
       ],
       "prototypeUrl": "/v3-7-0-2",
+      "hasPrototype": true,
       "designHistoryUrl": null
     },
     {
@@ -47,11 +50,9 @@
       "type": "release",
       "date": "Release - 22 January 2026",
       "tags": ["draw-boundary", "map-query", "opacity-slider", "scale-bar", "help", "surface-water"],
-      "pages": [
-        { "name": "Start page", "url": "/v3-6-1/" },
-        { "name": "Map page", "url": "/v3-6-1/map" }
-      ],
-      "prototypeUrl": "/v3-6-1/",
+      "pages": [],
+      "prototypeUrl": null,
+      "hasPrototype": false,
       "designHistoryUrl": "/design-history/3-6-1/"
     },
     {
@@ -63,6 +64,7 @@
         { "name": "Start page", "url": "/v3-6-0-1" }
       ],
       "prototypeUrl": "/v3-6-0-1",
+      "hasPrototype": true,
       "designHistoryUrl": "/design-history/surface-water-depths-cc/"
     },
     {
@@ -70,10 +72,9 @@
       "type": "release",
       "date": "Release - 10 December 2025",
       "tags": ["basemap"],
-      "pages": [
-        { "name": "Start page", "url": "/v3-5-0-0" }
-      ],
-      "prototypeUrl": "/v3-5-0-0",
+      "pages": [],
+      "prototypeUrl": null,
+      "hasPrototype": false,
       "designHistoryUrl": "/design-history/3-5-0-0/"
     },
     {
@@ -85,6 +86,7 @@
         { "name": "Start page", "url": "/v3-4-0-2" }
       ],
       "prototypeUrl": "/v3-4-0-2",
+      "hasPrototype": true,
       "designHistoryUrl": "/design-history/draw-boundary-user-research/"
     },
     {
@@ -96,6 +98,7 @@
         { "name": "Start page", "url": "/v3-3-0-1" }
       ],
       "prototypeUrl": "/v3-3-0-1",
+      "hasPrototype": true,
       "designHistoryUrl": "/design-history/3-3-0-1/"
     }
   ]
