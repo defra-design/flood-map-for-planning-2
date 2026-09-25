@@ -1,18 +1,18 @@
 {
   "posts": [
     {
-      "version": "0.3.6",
+      "version": "3.6.1",
       "date": "2026-01-22",
-      "url": "/design-history/0-3-6/",
+      "url": "/design-history/3-6-1/",
       "title": "Release v3.6.1",
       "type": "release",
       "tags": ["draw-boundary", "map-query", "scale-bar", "help-button", "surface-water", "opacity-slider", "depths", "data-page", "climate-change"],
       "summary": "Map and boundary drawing improvements including opacity slider, boundary dimensions, and new error pages"
     },
     {
-      "version": "0.3.5",
+      "version": "3.5.0.0",
       "date": "2025-12-10",
-      "url": "/design-history/0-3-5/",
+      "url": "/design-history/3-5-0-0/",
       "title": "Release v3.5.0.0",
       "type": "release",
       "tags": ["base-maps"],
@@ -37,9 +37,9 @@
       "summary": "User research testing help banner, polygon boundary options, scale bar, and handling of large boundaries"
     },
     {
-      "version": "0.3.3",
+      "version": "3.3.0.1",
       "date": "2025-08-29",
-      "url": "/design-history/0-3-3/",
+      "url": "/design-history/3-3-0-1/",
       "title": "Release v3.3.0.1",
       "type": "release",
       "tags": ["map-query", "no-data-areas", "base-maps", "climate-data", "data-page", "results-page", "start-page"],
