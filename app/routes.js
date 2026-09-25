@@ -7,7 +7,6 @@ const govukPrototypeKit = require('govuk-prototype-kit')
 const router = govukPrototypeKit.requests.setupRouter()
 const fs = require('fs')
 const path = require('path')
-const express = require('express')
 
 // Add your routes here
 
@@ -15,7 +14,22 @@ const express = require('express')
 // This middleware only serves files with image extensions to avoid interfering with Nunjucks template rendering
 router.use((req, res, next) => {
   if (req.path.match(/\/design-history\/.*\.(png|jpg|jpeg|gif|svg|webp|css|js)$/i)) {
-    express.static(path.join(__dirname, 'views/design-history'))(req, res, next)
+    const filePath = path.join(__dirname, 'views', req.path)
+    
+    // Security check to prevent directory traversal
+    const resolvedPath = path.resolve(filePath)
+    const viewsPath = path.resolve(path.join(__dirname, 'views/design-history'))
+    
+    if (!resolvedPath.startsWith(viewsPath)) {
+      return res.status(403).send('Forbidden')
+    }
+    
+    // Check if file exists and serve it
+    if (fs.existsSync(resolvedPath)) {
+      res.sendFile(resolvedPath)
+    } else {
+      res.status(404).send('Not found')
+    }
   } else {
     next()
   }
