@@ -1,0 +1,468 @@
+{% extends "layouts/main.html" %}
+
+{% block content %}
+
+<style>
+  /* Tree/Map Layout */
+  .journey-tree {
+    margin: 3rem 0;
+    overflow-x: auto;
+    padding: 2rem 1rem;
+  }
+
+  .tree-container {
+    min-width: min-content;
+    display: inline-block;
+    position: relative;
+  }
+
+  /* Main horizontal path */
+  .main-path {
+    display: flex;
+    align-items: center;
+    gap: 0;
+    margin-bottom: 3rem;
+    position: relative;
+    z-index: 10;
+  }
+
+  /* Page boxes */
+  .page-box {
+    flex: 0 0 auto;
+    width: 140px;
+    position: relative;
+  }
+
+  .page-box-inner {
+    border: 2px solid #0b0c0c;
+    background-color: #fff;
+    padding: 0.75rem;
+    min-height: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    cursor: pointer;
+    transition: background-color 0.2s, box-shadow 0.2s;
+    text-decoration: none;
+    color: #0b0c0c;
+  }
+
+  .page-box-inner:hover {
+    background-color: #f3f2f1;
+    box-shadow: 0 4px 8px rgba(11, 12, 12, 0.15);
+  }
+
+  .page-box-number {
+    font-size: 0.65rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #626a6e;
+    margin-bottom: 0.4rem;
+  }
+
+  .page-box-title {
+    font-size: 0.8rem;
+    font-weight: bold;
+    line-height: 1.2;
+    color: #0b0c0c;
+  }
+
+  /* Arrow between boxes */
+  .connector {
+    flex: 0 0 auto;
+    width: 30px;
+    height: 2px;
+    background-color: #0b0c0c;
+    position: relative;
+  }
+
+  .connector::after {
+    content: '';
+    position: absolute;
+    right: -6px;
+    top: 50%;
+    width: 0;
+    height: 0;
+    border-left: 8px solid #0b0c0c;
+    border-top: 4px solid transparent;
+    border-bottom: 4px solid transparent;
+    transform: translateY(-50%);
+  }
+
+  /* Branch section */
+  .branch-section {
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+
+  .branch-label {
+    font-size: 0.875rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    color: #626a6e;
+    margin-bottom: 1rem;
+    display: block;
+  }
+
+  .branch-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+
+  @media (max-width: 1024px) {
+    .main-path {
+      gap: 0;
+      margin-bottom: 2rem;
+    }
+
+    .page-box {
+      width: 120px;
+    }
+
+    .page-box-inner {
+      padding: 0.5rem;
+      min-height: 80px;
+      font-size: 0.9rem;
+    }
+
+    .page-box-title {
+      font-size: 0.7rem;
+    }
+  }
+
+  @media (max-width: 768px) {
+    .journey-tree {
+      padding: 1rem;
+    }
+
+    .main-path {
+      flex-direction: column;
+      gap: 1rem;
+      margin-bottom: 2rem;
+    }
+
+    .connector {
+      width: 2px;
+      height: 1.5rem;
+      background-color: #0b0c0c;
+    }
+
+    .connector::after {
+      right: 50%;
+      top: 100%;
+      border-left: 4px solid transparent;
+      border-right: 4px solid transparent;
+      border-top: 8px solid #0b0c0c;
+      border-bottom: 0;
+      transform: translateX(50%);
+    }
+
+    .page-box {
+      width: 100px;
+    }
+
+    .page-box-inner {
+      min-height: 70px;
+      padding: 0.4rem;
+    }
+
+    .page-box-title {
+      font-size: 0.65rem;
+    }
+
+    .branch-row {
+      flex-direction: column;
+      gap: 1rem;
+    }
+  }
+
+  /* Modal styles */
+  .modal {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+  }
+
+  .modal.open {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .modal-content {
+    position: relative;
+    background-color: #fff;
+    padding: 2rem;
+    max-width: 90%;
+    max-height: 90vh;
+    overflow: auto;
+    border-radius: 0.25rem;
+  }
+
+  .modal-image {
+    max-width: 100%;
+    max-height: 80vh;
+    width: auto;
+    height: auto;
+  }
+
+  .modal-close {
+    position: absolute;
+    right: 1rem;
+    top: 1rem;
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: #0b0c0c;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0.5rem;
+  }
+
+  .modal-close:hover {
+    color: #626a6e;
+  }
+</style>
+
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-full">
+
+        <p class="govuk-body"><a href="/" class="govuk-link">← Back</a></p>
+
+        <h1 class="govuk-heading-xl">User journey: v3.8.0.0</h1>
+
+        <p class="govuk-body-l">Complete user flow showing main path and supporting branches. Click any page to view it live.</p>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <div class="journey-tree">
+          <div class="tree-container">
+
+            <span class="branch-label">Main journey</span>
+
+            <!-- MAIN PATH: Start → Options → Location → Map → Results → Contact → Summary → Confirmation -->
+            <div class="main-path">
+              <div class="page-box">
+                <a href="/v3-8-0-0/start" class="page-box-inner" title="Start page">
+                  <div class="page-box-number">1</div>
+                  <div class="page-box-title">Start</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/options-radio" class="page-box-inner" title="Options">
+                  <div class="page-box-number">2</div>
+                  <div class="page-box-title">Options</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/location" class="page-box-inner" title="Location">
+                  <div class="page-box-number">3</div>
+                  <div class="page-box-title">Location</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/map" class="page-box-inner" title="Map">
+                  <div class="page-box-number">4</div>
+                  <div class="page-box-title">Map</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/results" class="page-box-inner" title="Results">
+                  <div class="page-box-number">5</div>
+                  <div class="page-box-title">Results</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/contact" class="page-box-inner" title="Contact">
+                  <div class="page-box-number">6</div>
+                  <div class="page-box-title">Contact</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/summary-fz3" class="page-box-inner" title="Summary">
+                  <div class="page-box-number">7</div>
+                  <div class="page-box-title">Summary</div>
+                </a>
+              </div>
+              <div class="connector"></div>
+              <div class="page-box">
+                <a href="/v3-8-0-0/confirmation-fz1" class="page-box-inner" title="Confirmation">
+                  <div class="page-box-number">8</div>
+                  <div class="page-box-title">Confirmation</div>
+                </a>
+              </div>
+            </div>
+
+            <!-- BRANCH SECTION: From Map -->
+            <div class="branch-section">
+              <span class="branch-label">Additional pages from Map</span>
+              <div class="branch-row">
+                <div class="page-box">
+                  <a href="/v3-8-0-0/upload" class="page-box-inner" title="Upload a boundary">
+                    <div class="page-box-number">9</div>
+                    <div class="page-box-title">Upload a boundary</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="#" class="page-box-inner modal-trigger" data-image="/assets/images/v3-8-0-0/journey-screenshots/add-polygon.png" title="Add polygon">
+                    <div class="page-box-number">10</div>
+                    <div class="page-box-title">Add polygon</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="#" class="page-box-inner modal-trigger" data-image="/assets/images/v3-8-0-0/journey-screenshots/add-square.png" title="Add square">
+                    <div class="page-box-number">11</div>
+                    <div class="page-box-title">Add square</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="/v3-8-0-0/help" class="page-box-inner" title="Help">
+                    <div class="page-box-number">12</div>
+                    <div class="page-box-title">Help</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="/v3-8-0-0/flood-zones" class="page-box-inner" title="Flood Zones">
+                    <div class="page-box-number">13</div>
+                    <div class="page-box-title">Flood Zones</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="/v3-8-0-0/how-to-use-flood-map-for-planning-data" class="page-box-inner" title="How to use the data">
+                    <div class="page-box-number">14</div>
+                    <div class="page-box-title">How to use the data</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- BRANCH SECTION: From Results -->
+            <div class="branch-section">
+              <span class="branch-label">Additional pages from Results</span>
+              <div class="branch-row">
+                <div class="page-box">
+                  <a href="/v3-8-0-0/how-to-use-flood-map-for-planning-data" class="page-box-inner" title="How to use the data">
+                    <div class="page-box-number">14</div>
+                    <div class="page-box-title">How to use the data</div>
+                  </a>
+                </div>
+                <div class="page-box">
+                  <a href="/v3-8-0-0/product1" class="page-box-inner" title="Product 1">
+                    <div class="page-box-number">15</div>
+                    <div class="page-box-title">Product 1</div>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <h2 class="govuk-heading-l">Journey structure</h2>
+
+        <p class="govuk-body">The core user journey follows this main path:</p>
+
+        <ol class="govuk-list govuk-list--number">
+          <li>User starts at the service entry point</li>
+          <li>Selects their option (query type)</li>
+          <li>Enters location details</li>
+          <li>Views interactive map and refines search</li>
+          <li>Reviews results data</li>
+          <li>Contacts support if needed</li>
+          <li>Reviews summary of findings</li>
+          <li>Receives confirmation</li>
+        </ol>
+
+        <p class="govuk-body">Supporting branches provide additional functionality:</p>
+
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Additional pages from Map:</strong> Users can upload boundaries, draw polygons or squares on the map, access help, view flood zone information, or learn how to use the data</li>
+          <li><strong>Additional pages from Results:</strong> Users can learn how to use the data or access the Product 1 output variant</li>
+        </ul>
+
+        <dl class="govuk-summary-list">
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Version</dt>
+            <dd class="govuk-summary-list__value">v3.8.0.0</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Main path</dt>
+            <dd class="govuk-summary-list__value">8 pages (Start → Options → Location → Map → Results → Contact → Summary → Confirmation)</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Branch pages</dt>
+            <dd class="govuk-summary-list__value">7 pages (Upload a boundary, Add polygon, Add square, Help, Flood Zones, How to use the data, Product 1)</dd>
+          </div>
+          <div class="govuk-summary-list__row">
+            <dt class="govuk-summary-list__key">Total pages shown</dt>
+            <dd class="govuk-summary-list__value">15 key pages</dd>
+          </div>
+        </dl>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+        <p class="govuk-body"><a href="/" class="govuk-link">← Back</a></p>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<!-- Modal for screenshots -->
+<div id="screenshotModal" class="modal">
+  <div class="modal-content">
+    <button class="modal-close" onclick="closeModal()">&times;</button>
+    <img id="modalImage" class="modal-image" src="" alt="Screenshot">
+  </div>
+</div>
+
+<script>
+  function openModal(imageSrc) {
+    const modal = document.getElementById('screenshotModal');
+    const modalImage = document.getElementById('modalImage');
+    modalImage.src = imageSrc;
+    modal.classList.add('open');
+  }
+
+  function closeModal() {
+    const modal = document.getElementById('screenshotModal');
+    modal.classList.remove('open');
+  }
+
+  // Close modal when clicking outside the content
+  document.getElementById('screenshotModal').addEventListener('click', function(event) {
+    if (event.target === this) {
+      closeModal();
+    }
+  });
+
+  // Add event listeners to modal triggers
+  document.querySelectorAll('.modal-trigger').forEach(element => {
+    element.addEventListener('click', function(event) {
+      event.preventDefault();
+      const imageSrc = this.getAttribute('data-image');
+      openModal(imageSrc);
+    });
+  });
+</script>
+
+{% endblock %}

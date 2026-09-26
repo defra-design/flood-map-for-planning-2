@@ -11,6 +11,12 @@ const folder = 'v3-8-0-0'
 // Add your routes here
 
 require('./router/addLocalsMiddleware')(router, folder)
+
+// User journey wireframe page
+router.get('/user-journey', function (req, res) {
+  res.render(folder + '/user-journey')
+})
+
 // set up route variable results page option
 require('./router/addResultsPageRoutes')(router, folder)
 require('./router/addLocationPageRoutes')(router, folder)
