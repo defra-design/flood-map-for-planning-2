@@ -65,10 +65,11 @@ and improved the results page layout.
 ```
 
 **⚠️ Important:** Before running this skill, check if the version already has a card on the index page. If it does:
-- Update the existing card (change date, type, links)
-- Do NOT add a duplicate card
+- You can still run this skill to automate the post folder and screenshots
+- Just **ignore the generated card template** — don't add it to index.html
+- Update the existing card's links instead (see "Three workflows" section below)
 
-See "Updating an existing version card" section below for guidance.
+See "Three workflows" section below for guidance.
 
 ### 3. Skill Outputs
 
@@ -185,11 +186,52 @@ What changed:
 Just one screenshot showing the improved mobile experience.
 ```
 
+## Three Workflows
+
+Depending on whether a version card already exists, you have options:
+
+### Workflow A: No card exists yet
+1. Run this skill (creates post + screenshots + card template)
+2. Copy the generated card template to `app/views/index.html`
+3. Commit
+
+**Use when:** This is a completely new version with no card on index page yet.
+
+### Workflow B: Card exists, create post manually
+1. Don't run the skill — create the post folder manually
+2. Update the existing card's design history link
+3. Copy an existing post's `index.html` as your template
+4. Manually take screenshots or use a screenshot script
+
+**Use when:** You prefer complete manual control and don't want Playwright automation.
+
+### Workflow C: Card exists, automate post (recommended ⭐)
+1. **Run this skill** (creates post + screenshots + posts.json entry automatically)
+2. **Ignore the card template** the skill generates
+3. Update the existing card's links in `index.html` or `versions.json`
+4. Commit
+
+**Benefits:** Fastest approach — gets automated screenshot generation and post structure, while keeping your existing card.
+
+**Use when:** Version card was created with create-prototype-version skill, and you want to add design history with screenshots.
+
+---
+
 ## Updating an Existing Version Card
 
-If the version already appears on the index page (created via create-prototype-version skill or manually added), **update the existing card instead of creating a duplicate**:
+If the version already appears on the index page (created via create-prototype-version skill or manually added), you don't need to create a new card. Instead:
 
-### How to update a card
+### For Workflow C (recommended): Quick update after running skill
+
+1. Open `versions.json`
+2. Find your version and add/update:
+   ```json
+   "designHistoryUrl": "/design-history/3-7-0-3/"
+   ```
+3. Card updates automatically from JSON
+4. Commit
+
+### For Workflow B (manual approach): Update card in HTML
 
 1. Open `app/views/index.html`
 2. Find the card for your version (search for the version number)
