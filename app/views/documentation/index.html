@@ -156,6 +156,42 @@
       <li>Design iteration reaches a milestone worth explaining</li>
     </ul>
 
+    <h3 class="govuk-heading-m">Two ways to create a design history post</h3>
+    
+    <p class="govuk-body"><strong>If you already have a version card on index.html:</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The version was probably created with <code>#create-prototype-version</code>, which added a card</li>
+      <li><strong>Do NOT run this skill</strong> — it will generate a duplicate card template</li>
+      <li>Instead: Create the design history folder and post <strong>manually</strong> (see Alternative path below)</li>
+    </ul>
+
+    <p class="govuk-body"><strong>If this is a new version with no card yet:</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run this skill, it will create everything including a card template</li>
+      <li>Copy the card template to index.html</li>
+    </ul>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Alternative path: Create manually (no skill needed)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">If a card already exists, you can create the design history post without running the skill:</p>
+        
+        <ol class="govuk-list govuk-list--number">
+          <li><strong>Create the folder:</strong> <code>/app/views/design-history/3-9-0-0/</code></li>
+          <li><strong>Create index.html:</strong> Copy structure from an existing post (e.g., <code>/app/views/design-history/3-7-0-2/index.html</code>)</li>
+          <li><strong>Update versions.json:</strong> Add <code>"designHistoryUrl": "/design-history/3-9-0-0/"</code></li>
+          <li><strong>Update index.html card:</strong> Change the link to point to your new design history post</li>
+          <li><strong>Update posts.json:</strong> Manually add an entry with version, date, url, title, type, tags, summary</li>
+          <li><strong>Add images:</strong> Place screenshots in <code>/app/views/design-history/3-9-0-0/images/</code></li>
+          <li><strong>Write content:</strong> Fill in your post template with narrative and screenshots</li>
+        </ol>
+
+        <p class="govuk-body">This is exactly what the skill does automatically — doing it manually is slower but avoids generating duplicate cards.</p>
+      </div>
+    </details>
+
     <h3 class="govuk-heading-m">Workflow: from research to published post</h3>
 
     <details class="govuk-details govuk-!-margin-bottom-6">
