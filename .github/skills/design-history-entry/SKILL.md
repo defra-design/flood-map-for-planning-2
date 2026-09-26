@@ -64,6 +64,12 @@ We made changes to the boundary drawing tool
 and improved the results page layout.
 ```
 
+**⚠️ Important:** Before running this skill, check if the version already has a card on the index page. If it does:
+- Update the existing card (change date, type, links)
+- Do NOT add a duplicate card
+
+See "Updating an existing version card" section below for guidance.
+
 ### 3. Skill Outputs
 
 The skill will generate:
@@ -178,6 +184,44 @@ What changed:
 
 Just one screenshot showing the improved mobile experience.
 ```
+
+## Updating an Existing Version Card
+
+If the version already appears on the index page (created via create-prototype-version skill or manually added), **update the existing card instead of creating a duplicate**:
+
+### How to update a card
+
+1. Open `app/views/index.html`
+2. Find the card for your version (search for the version number)
+3. Update these fields:
+   - **Date**: Change from "In development" or "TBC" to actual date
+   - **Status/Type**: Update to "Research round - TBC" or final date
+   - **Links**: Add design history link once post is ready
+4. Commit changes
+
+### Example updates
+
+**Before (in-development version):**
+```html
+<p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">In development</p>
+<!-- ... -->
+<span class="govuk-body-m" style="color: #626a6e;">Design history not yet available</span>
+```
+
+**After (design history published):**
+```html
+<p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Research round - TBC</p>
+<!-- ... -->
+<a href="/design-history/3-9-0-0/" class="govuk-link govuk-body-m">v3.9.0.0 research findings</a>
+```
+
+### Check before adding a new card
+
+Always search `app/views/index.html` for your version number first:
+- If found: Update the existing card
+- If not found: Add the new card template
+
+This prevents duplicate cards and keeps the index clean.
 
 ## Best Practices
 
