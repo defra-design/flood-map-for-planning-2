@@ -12,293 +12,47 @@
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <!-- Overview Section -->
-    <h2 class="govuk-heading-l">Overview</h2>
-    
-    <p class="govuk-body">This prototype uses two main workflows:</p>
-    
-    <ol class="govuk-list govuk-list--number">
-      <li><strong>Create a new prototype version</strong> – Scaffold folder structure, routes, and metadata for design iteration</li>
-      <li><strong>Document design history</strong> – Record design changes, decisions, and research findings</li>
-    </ol>
+    <p class="govuk-body">This prototype uses two main Copilot skills to automate repetitive setup tasks, letting you focus on design and content.</p>
 
-    <p class="govuk-body">Both are supported by Copilot skills that automate repetitive setup tasks, letting you focus on design and content.</p>
+    <p class="govuk-body">Get started by choosing a skill:</p>
 
-    <p class="govuk-body"><a href="/documentation/skills-menu/" class="govuk-link">View Copilot skills documentation →</a></p>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <!-- Complete Workflow -->
-
-    <!-- Complete Workflow -->
-    <h2 class="govuk-heading-l">Complete workflow: idea to launch</h2>
-
-    <ol class="govuk-list govuk-list--number">
-      <li>
-        <strong>Have a design idea</strong> (new version, iteration, or research round)
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Decide version number and type</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Run create-prototype-version skill</strong>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Scaffold folder and routes</li>
-          <li>Create metadata entry with empty tags/pages</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Design iteratively</strong>
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Create views in version folder</li>
-          <li>Add routes to route file</li>
-          <li>Update tags/pages in versions.json as you go</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Publish version card</strong> (when you want it visible on home page)
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Copy generated HTML card into index.html</li>
-          <li>Commit</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Document the design</strong> (when there are changes worth explaining)
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Run design-history-entry skill</li>
-          <li>Write narrative with screenshots</li>
-          <li>Publish post</li>
-        </ul>
-      </li>
-      <li>
-        <strong>Link design history</strong> (after post is live)
-        <ul class="govuk-list govuk-list--bullet">
-          <li>Update designHistoryUrl in versions.json</li>
-          <li>Update the version card on index.html with new date and design history link</li>
-          <li>If card already exists, update it instead of adding a duplicate</li>
-          <li>Version card now links to full documentation</li>
-        </ul>
-      </li>
-    </ol>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <!-- Design history only versions -->
-    <h2 class="govuk-heading-l">Design history-only versions</h2>
-
-    <p class="govuk-body">Sometimes you want to document a release or research finding without building a working prototype. For example:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>A release that only involved backend changes (no new user interface)</li>
-      <li>A research round where the findings are documented but prototype was never built</li>
-      <li>A version that has been sunsetted and is kept for historical reference only</li>
-    </ul>
-
-    <p class="govuk-body">For these cases, create a version card without a prototype link.</p>
-
-    <h3 class="govuk-heading-m">Setting up a design history-only version</h3>
-
-    <p class="govuk-body"><strong>In versions.json:</strong></p>
-    <pre class="govuk-body"><code>{
-  "number": "3.6.1",
-  "type": "release",
-  "date": "Release - 22 January 2026",
-  "tags": ["draw-boundary", "map-query"],
-  "pages": [],
-  "prototypeUrl": null,
-  "hasPrototype": false,
-  "designHistoryUrl": "/design-history/3-6-1/"
-}</code></pre>
-
-    <p class="govuk-body"><strong>Key fields:</strong></p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><code>"pages": []</code> – Leave empty (no prototype pages to list)</li>
-      <li><code>"prototypeUrl": null</code> – No prototype to link to</li>
-      <li><code>"hasPrototype": false</code> – Indicates this is documentation only</li>
-      <li><code>"designHistoryUrl": "/design-history/3-6-1/"</code> – Link to the design history post</li>
-    </ul>
-
-    <h3 class="govuk-heading-m">Card display</h3>
-
-    <p class="govuk-body">The version card will display:</p>
-    <ul class="govuk-list govuk-list--bullet">
-      <li>Version number, date, and tags (filtered as normal)</li>
-      <li>"No prototype" text instead of a "View prototype" link</li>
-      <li>Design history link so users can access full documentation</li>
-      <li>No "Pages in this version" section (empty pages array)</li>
-    </ul>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <p class="govuk-body">All version data lives in <code>app/views/versions.json</code>. This is the single source of truth.</p>
-
-    <details class="govuk-details govuk-!-margin-bottom-6">
-      <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">Example entry</span>
-      </summary>
-      <div class="govuk-details__text">
-        <pre class="govuk-body"><code>{
-  "number": "3.9.0.0",
-  "type": "release",
-  "date": "Release - 22 January 2026",
-  "tags": ["boundary-upload", "map-styling"],
-  "pages": [
-    { "name": "Start page", "url": "/v3-9-0-0/" },
-    { "name": "Map page", "url": "/v3-9-0-0/map" }
-  ],
-  "prototypeUrl": "/v3-9-0-0/",
-  "designHistoryUrl": "/design-history/3-9-0-0/"
-}</code></pre>
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-card govuk-!-margin-bottom-6">
+          <div class="govuk-card__content">
+            <h2 class="govuk-heading-m">
+              <a href="/documentation/skill-create-prototype-version/" class="govuk-link govuk-link--no-visited-state">Create a new prototype version</a>
+            </h2>
+            <p class="govuk-body">Start a new design iteration with scaffolded folders, routes, and metadata.</p>
+            <p class="govuk-body"><code>@copilot #create-prototype-version</code></p>
+          </div>
+        </div>
       </div>
-    </details>
 
-    <table class="govuk-table">
-      <caption class="govuk-table__caption govuk-table__caption--l">versions.json fields</caption>
-      <thead class="govuk-table__head">
-        <tr class="govuk-table__row">
-          <th scope="col" class="govuk-table__header">Field</th>
-          <th scope="col" class="govuk-table__header">Type</th>
-          <th scope="col" class="govuk-table__header">Example</th>
-          <th scope="col" class="govuk-table__header">Notes</th>
-        </tr>
-      </thead>
-      <tbody class="govuk-table__body">
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>number</code></td>
-          <td class="govuk-table__cell">String</td>
-          <td class="govuk-table__cell"><code>3.9.0.0</code></td>
-          <td class="govuk-table__cell">Semantic versioning</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>type</code></td>
-          <td class="govuk-table__cell">String</td>
-          <td class="govuk-table__cell"><code>release</code>, <code>in-development</code>, <code>research</code></td>
-          <td class="govuk-table__cell">Determines card formatting and date prefix</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>date</code></td>
-          <td class="govuk-table__cell">String</td>
-          <td class="govuk-table__cell"><code>Release - 22 January 2026</code></td>
-          <td class="govuk-table__cell">Use "TBC" initially, update when confirmed</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>tags</code></td>
-          <td class="govuk-table__cell">Array</td>
-          <td class="govuk-table__cell"><code>["boundary-upload", "map-styling"]</code></td>
-          <td class="govuk-table__cell">Feature tags, used for filtering. Start empty.</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>pages</code></td>
-          <td class="govuk-table__cell">Array of objects</td>
-          <td class="govuk-table__cell"><code>[{"name": "Start page", "url": "/v3-9-0-0/"}]</code></td>
-          <td class="govuk-table__cell">List of pages in this version. Start empty.</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>prototypeUrl</code></td>
-          <td class="govuk-table__cell">String or null</td>
-          <td class="govuk-table__cell"><code>/v3-9-0-0/</code></td>
-          <td class="govuk-table__cell">Link to start page of version. Set to null for design-history-only versions.</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>hasPrototype</code></td>
-          <td class="govuk-table__cell">Boolean</td>
-          <td class="govuk-table__cell"><code>true</code> or <code>false</code></td>
-          <td class="govuk-table__cell">Set to false for versions documented only in design history (no working prototype)</td>
-        </tr>
-        <tr class="govuk-table__row">
-          <td class="govuk-table__cell"><code>designHistoryUrl</code></td>
-          <td class="govuk-table__cell">String or null</td>
-          <td class="govuk-table__cell"><code>/design-history/3-9-0-0/</code></td>
-          <td class="govuk-table__cell">Add after design history post is published</td>
-        </tr>
-      </tbody>
-    </table>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <!-- For Other Designers -->
-    <h2 class="govuk-heading-l">For other designers & teams</h2>
-
-    <p class="govuk-body">This approach is designed to be reusable. Here's what you can adapt:</p>
-
-    <h3 class="govuk-heading-m">Core concept</h3>
-    <p class="govuk-body"><strong>Separate concerns:</strong> Prototype versions (for design exploration) and design history (for documentation) are distinct workflows supported by automation, not manual card editing.</p>
-
-    <h3 class="govuk-heading-m">Key files to reference</h3>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><strong>Skill documentation:</strong> <a href="/documentation/skills-menu/" class="govuk-link">Copilot skills overview</a></li>
-      <li><strong>Source files:</strong> <code>.github/skills/create-prototype-version/SKILL.md</code> and <code>.github/skills/design-history-entry/SKILL.md</code></li>
-      <li><strong>Metadata Source</strong> – <code>app/views/versions.json</code></li>
-      <li><strong>Home Page</strong> – <code>app/views/index.html</code> (card HTML structure)</li>
-      <li><strong>Design History Index</strong> – <code>app/views/design-history/index.html</code></li>
-    </ul>
-
-    <h3 class="govuk-heading-m">Adaptable elements</h3>
-    <dl class="govuk-list govuk-list--bullet">
-      <li><strong>Metadata schema</strong> – Add/remove fields in versions.json and posts.json as needed</li>
-      <li><strong>Card template</strong> – Modify HTML structure for different designs (but keep consistent)</li>
-      <li><strong>Route scaffolding</strong> – Adjust for your router setup (this uses Express.js)</li>
-      <li><strong>Date formatting</strong> – Customize "Release - " prefix or date display</li>
-      <li><strong>Tag filtering</strong> – JavaScript filter logic in index.html can be styled differently</li>
-    </dl>
-
-    <h3 class="govuk-heading-m">Common adaptations</h3>
-    <ul class="govuk-list govuk-list--bullet">
-      <li><strong>Different metadata</strong> – Add fields like "owner", "research-phase", "team"</li>
-      <li><strong>Multiple prototype types</strong> – Split into "variants", "experiments", "releases"</li>
-      <li><strong>Integrated design system</strong> – Embed design tokens/component library metadata</li>
-      <li><strong>Research tracker</strong> – Extend to track research sessions, participants, insights</li>
-    </ul>
-
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <!-- Best Practices -->
-    <h2 class="govuk-heading-l">Best practices</h2>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Metadata is flexible</h3>
-      <p class="govuk-body">Don't let metadata perfection block design. Start with empty tags/pages and populate iteratively as you design.</p>
-    </div>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Document as you go</h3>
-      <p class="govuk-body">Take screenshots during design iteration. It's easier to write narrative around existing screenshots than to retroactively document.</p>
-    </div>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">One source of truth</h3>
-      <p class="govuk-body">Keep versions.json and posts.json as the single metadata source. Don't duplicate in index.html or elsewhere.</p>
-    </div>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Meaningful tags</h3>
-      <p class="govuk-body">Use consistent tag names. "boundary-upload" not "boundary", "map-styling" not "styling". This makes filtering and searching effective.</p>
-    </div>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Automate screenshots (optional)</h3>
-      <p class="govuk-body">Use <code>node scripts/screenshot-version-X-X-X.js</code> to automatically capture full-page screenshots of all pages in your version. This saves time and ensures consistent viewport sizing. Requires prototype server running (<code>npm run dev</code>).</p>
-    </div>
-
-    <div class="govuk-inset-text">
-      <h3 class="govuk-heading-s">Descriptive narrative</h3>
-      <p class="govuk-body">Design history isn't a screenshot gallery. Explain: Why did we explore this? What did we learn? What changed?</p>
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-card govuk-!-margin-bottom-6">
+          <div class="govuk-card__content">
+            <h2 class="govuk-heading-m">
+              <a href="/documentation/skill-design-history-entry/" class="govuk-link govuk-link--no-visited-state">Create a design history entry</a>
+            </h2>
+            <p class="govuk-body">Document design changes, releases, or research findings with screenshots.</p>
+            <p class="govuk-body"><code>@copilot #design-history-entry</code></p>
+          </div>
+        </div>
+      </div>
     </div>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
-    <!-- Getting Help -->
     <h2 class="govuk-heading-l">Getting started</h2>
 
     <ol class="govuk-list govuk-list--number">
-      <li>Open the home page: <a href="/" class="govuk-link">Prototype versions overview</a></li>
-      <li>Click "Filter by feature" to explore existing versions by tag</li>
-      <li>Click "View design history" to see documented releases and research</li>
-      <li>When ready to create something new, see the <a href="/documentation/skills-menu/" class="govuk-link">Copilot skills documentation</a></li>
+      <li>Click on a skill above to see the full documentation</li>
+      <li>When you're ready, run the skill in Copilot chat with your version details</li>
+      <li>Copilot will scaffold everything automatically</li>
     </ol>
 
-    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
-
-    <p class="govuk-body">Questions? Refer to the <a href="/documentation/skills-menu/" class="govuk-link">skills documentation</a>, the skill documentation in <code>.github/skills/</code>, or ask Copilot.</p>
+    <p class="govuk-body">For workflow overview, best practices, and version metadata reference, see the <a href="/documentation/skills-menu/" class="govuk-link">skills menu</a>.</p>
 
   </div>
 </div>
