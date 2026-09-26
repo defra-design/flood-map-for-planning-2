@@ -271,6 +271,19 @@ node scripts/screenshot-version-3-6-1.js --version 3.6.1 --headless false
 - Existing images will be overwritten (useful for updating)
 - Script requires the "Changed pages" entries to have proper URLs in `versions.json`
 
+### ⚠️ Important: NPM Dependencies and Deployment
+
+The screenshot helper script uses Playwright, which has peer dependency conflicts with the current @arcgis/core version. To prevent deployment failures:
+
+**Do this when installing packages:**
+```bash
+npm install --legacy-peer-deps
+```
+
+**Don't forget:** Commit the updated `package-lock.json` to git after installing packages.
+
+**Why:** The `.npmrc` file includes `legacy-peer-deps=true` to handle these conflicts locally, but Heroku needs the lockfile to be in sync. If you run `npm install` without the flag and don't commit the lockfile, Heroku deployments will fail with "npm lockfile is not in sync" errors.
+
 ## File Organization
 
 ```

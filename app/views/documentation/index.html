@@ -246,6 +246,10 @@
         </ul>
 
         <p class="govuk-body"><strong>Then:</strong> Copy the generated HTML snippet and paste into your post template, edit alt text as needed.</p>
+
+        <div class="govuk-inset-text">
+          <p class="govuk-body"><strong>⚠️ Important for deployment:</strong> The screenshot automation requires Playwright, which has peer dependency conflicts with the current @arcgis/core version. The <code>.npmrc</code> file includes <code>legacy-peer-deps=true</code> to handle this. If you ever run <code>npm install</code> without this flag, ensure you also run it with <code>--legacy-peer-deps</code> and commit the updated <code>package-lock.json</code>. Otherwise, Heroku deployments will fail with "npm lockfile is not in sync" errors.</p>
+        </div>
       </div>
     </details>
 
