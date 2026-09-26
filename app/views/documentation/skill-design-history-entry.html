@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Design History Entry Skill" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">Skill 2: Create a design history entry</h1>
+    
+    <p class="govuk-body-l">Scaffolds folder structure, post template, and metadata for documenting design changes, releases, or research findings.</p>
+
+    <p class="govuk-body"><a href="/documentation/skills-menu/" class="govuk-link">← Back to skills menu</a></p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <div class="govuk-inset-text">
+      <p class="govuk-body"><strong>Invoke:</strong> <code>@copilot #design-history-entry</code></p>
+    </div>
+
+    <h2 class="govuk-heading-l">What it does</h2>
+    <p class="govuk-body">Scaffolds folder structure, post template, and metadata for documenting design changes, releases, or research findings.</p>
+
+    <h2 class="govuk-heading-l">Use when</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Release is ready to document (what changed, why, screenshots)</li>
+      <li>Research findings need recording (what users struggled with, solutions tested)</li>
+      <li>Design iteration reaches a milestone worth explaining</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Three ways to create a design history post</h2>
+    
+    <p class="govuk-body"><strong>Option A: Version has no card yet</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run the skill — it creates everything including a card template</li>
+      <li>Copy the card template to index.html</li>
+    </ul>
+
+    <p class="govuk-body"><strong>Option B: Version card exists, create post manually</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The version was created with <code>#create-prototype-version</code>, which added a card</li>
+      <li>Create the post manually (don't run the skill, see Alternative path below)</li>
+      <li>Update the existing card's design history link</li>
+    </ul>
+
+    <p class="govuk-body"><strong>Option C: Version card exists, automate post + screenshots (recommended)</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run the skill to generate post folder, screenshots, and posts.json entry automatically</li>
+      <li><strong>Ignore the card template</strong> the skill generates</li>
+      <li>Update the existing card's design history link (just change date and <code>designHistoryUrl</code> in versions.json)</li>
+    </ul>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Alternative path: Create manually (no skill needed) — Option B only</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">If you prefer not to run the skill and the version card already exists:</p>
+        
+        <ol class="govuk-list govuk-list--number">
+          <li><strong>Create the folder:</strong> <code>/app/views/design-history/3-9-0-0/</code></li>
+          <li><strong>Create index.html:</strong> Copy structure from an existing post (e.g., <code>/app/views/design-history/3-7-0-2/index.html</code>)</li>
+          <li><strong>Update versions.json:</strong> Add <code>"designHistoryUrl": "/design-history/3-9-0-0/"</code></li>
+          <li><strong>Update index.html card:</strong> Change the link to point to your new design history post</li>
+          <li><strong>Update posts.json:</strong> Manually add an entry with version, date, url, title, type, tags, summary</li>
+          <li><strong>Add images:</strong> Place screenshots in <code>/app/views/design-history/3-9-0-0/images/</code></li>
+          <li><strong>Write content:</strong> Fill in your post template with narrative and screenshots</li>
+        </ol>
+
+        <p class="govuk-body">This is slower than running the skill (no automation for screenshots or metadata), but completely avoids generating extra card templates.</p>
+        
+        <p class="govuk-body"><strong>When to use:</strong> You prefer manual control or don't want Playwright screenshot automation.</p>
+      </div>
+    </details>
+
+    <h2 class="govuk-heading-l">Workflow: from research to published post</h2>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Prepare content (you do this)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Before running the skill, gather:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Screenshots/images</strong> (PNG format, max 2MB each, descriptive alt text)</li>
+          <li><strong>Design narrative</strong> (what changed and why, 100-500 words)</li>
+          <li><strong>Version identifier</strong> (e.g., <code>3.9.0.0</code> or <code>draw-boundary-research</code>)</li>
+          <li><strong>Type</strong>: release / research</li>
+          <li><strong>Date</strong> (e.g., "22 January 2026")</li>
+          <li><strong>Feature tags</strong> (e.g., boundary-upload, map-styling)</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Run skill (Copilot does this)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Run the skill and provide:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Version identifier</li>
+          <li>Type (release or research)</li>
+          <li>Date</li>
+          <li>Title/heading</li>
+          <li>Summary (one-liner)</li>
+          <li>Feature tags</li>
+        </ul>
+
+        <p class="govuk-body"><strong>Copilot creates:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Folder: <code>/app/views/design-history/3-9-0-0/</code></li>
+          <li>Post template: <code>index.html</code> with structure ready for content</li>
+          <li>Entry in: <code>app/views/design-history/posts.json</code></li>
+          <li>Breadcrumb navigation set up</li>
+          <li><strong>Also generates:</strong> HTML card template (use it only if you don't already have a card on index.html)</li>
+        </ul>
+
+        <p class="govuk-body"><strong>If a card already exists:</strong> Just ignore the generated card template and proceed to Step 3. You'll update the existing card's link later.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Write content (you do this)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Edit the post template with your design narrative:</p>
+        <ol class="govuk-list govuk-list--number">
+          <li>Add introductory paragraph (context and goals)</li>
+          <li>Add section for each key change/finding</li>
+          <li>Add screenshots with descriptive captions</li>
+          <li>Use heading hierarchy (h2 for major sections, h3 for subsections)</li>
+          <li>Keep alt text meaningful: "Screenshot of new boundary drawing menu showing options for freehand vs polygon"</li>
+        </ol>
+
+        <p class="govuk-body"><strong>Structure:</strong> narrative + images, not a list. Tell the story of the design.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3b: Auto-generate screenshots (optional)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Instead of manually taking screenshots, you can automate them:</p>
+        
+        <p class="govuk-body"><strong>Prerequisites:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Prototype server running locally (<code>npm run dev</code>)</li>
+          <li>Version's pages defined in <code>versions.json</code></li>
+        </ul>
+
+        <p class="govuk-body"><strong>Run the helper script:</strong></p>
+        <pre class="govuk-body"><code>node scripts/screenshot-version-X-X-X.js --version X.X.X</code></pre>
+
+        <p class="govuk-body">Example:</p>
+        <pre class="govuk-body"><code>node scripts/screenshot-version-3-6-1.js --version 3.6.1</code></pre>
+
+        <p class="govuk-body"><strong>What it does:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Takes full-page screenshots of all pages in your version</li>
+          <li>Saves them sequentially (01-page-name.png, 02-page-name.png, etc.)</li>
+          <li>Generates HTML snippet ready to paste into your post</li>
+          <li>Saves snippet to <code>screenshot-snippet.html</code> for easy copying</li>
+        </ul>
+
+        <p class="govuk-body"><strong>Then:</strong> Copy the generated HTML snippet and paste into your post template, edit alt text as needed.</p>
+
+        <div class="govuk-inset-text">
+          <p class="govuk-body"><strong>⚠️ Important for deployment:</strong> The screenshot automation requires Playwright, which has peer dependency conflicts with the current @arcgis/core version. The <code>.npmrc</code> file includes <code>legacy-peer-deps=true</code> to handle this. If you ever run <code>npm install</code> without this flag, ensure you also run it with <code>--legacy-peer-deps</code> and commit the updated <code>package-lock.json</code>. Otherwise, Heroku deployments will fail with "npm lockfile is not in sync" errors.</p>
+        </div>
+      </div>
+    </details>
+
+    <details class="govuk-details govuk-!-margin-bottom-6">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Publish (when ready)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Once content is complete:</p>
+        <ol class="govuk-list govuk-list--number">
+          <li>Verify all images are added and alt text is descriptive</li>
+          <li>Check breadcrumb navigation (should link: Home → Design history → This post)</li>
+          <li>Test links to prototype versions</li>
+          <li>Commit to git</li>
+        </ol>
+
+        <p class="govuk-body">Post is now live at <code>/design-history/3-9-0-0/</code> and linked from version card.</p>
+
+        <p class="govuk-body"><strong>Linking to the version card:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>No card exists yet:</strong> Copy the card template Copilot generated and paste it into <code>index.html</code></li>
+          <li><strong>Card already exists:</strong> Update it in <code>index.html</code> — change the date field and add design history link. You can also update <code>versions.json</code> with <code>"designHistoryUrl": "/design-history/3-9-0-0/"</code> and the card will update automatically.</li>
+        </ul>
+
+        <div class="govuk-inset-text">
+          <p class="govuk-body"><strong>⚠️ Avoid duplicate cards:</strong> Always search <code>index.html</code> for your version number before adding a new card. If it exists, update it instead.</p>
+        </div>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body">Ready to document a design iteration? Run <code>@copilot #design-history-entry</code> in chat and provide the information from Step 1 above.</p>
+
+    <p class="govuk-body"><a href="/documentation/skills-menu/" class="govuk-link">← Back to skills menu</a></p>
+
+  </div>
+</div>
+
+{% endblock %}
