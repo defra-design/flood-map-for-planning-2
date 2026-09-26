@@ -1,0 +1,204 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Skill: Create Page Variant" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+    <h1 class="govuk-heading-xl">Skill 4: Create a page variant (split testing)</h1>
+
+    <p class="govuk-body-l">Create an alternative version of an existing page within the same research round to enable split testing different journey options or design choices</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">When to use variants</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Journey options</strong>: Two different paths to accomplish same goal (e.g., upload with/without research sign-up)</li>
+      <li><strong>Design alternatives</strong>: Testing different visual approaches or interaction patterns</li>
+      <li><strong>Error handling variations</strong>: Different error message approaches</li>
+      <li><strong>Content options</strong>: Testing different content lengths or explanation approaches</li>
+      <li><strong>Same research round</strong>: Variants belong in same version folder to compare during testing</li>
+    </ul>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Eight-step workflow</h2>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Identify base page and variant approach</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Choose existing page to variant (e.g., <code>check-your-details.html</code>)</li>
+          <li>Define variant purpose in one phrase (e.g., "without research sign-up", "compact version")</li>
+          <li>Decide: Show variant based on query parameter, session data, or as separate page</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Create variant view file</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body"><strong>Naming pattern:</strong> Keep original name, add dash and variant descriptor</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Base: <code>check-your-details.html</code></li>
+          <li>Variants: <code>check-your-details-no-research-sign-up.html</code>, <code>check-your-details-compact.html</code></li>
+        </ul>
+        <p class="govuk-body">Copy base page HTML and modify for variant. Add comment at top explaining variant purpose:</p>
+        <pre class="govuk-body"><code>&lt;!-- Variant: Check your details without research sign-up flow --&gt;
+&lt;!-- Used in split test to measure impact of research sign-up on completion --&gt;</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Add routes for variant</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Open <code>app/routes_{version}.js</code></li>
+          <li>Keep both original and variant routes active (don't remove original)</li>
+          <li>Document which is base and which are variants</li>
+        </ul>
+        <pre class="govuk-body"><code>// Check your details page (base journey)
+router.get('/check-your-details', function (req, res) {
+  res.render(folder + '/check-your-details')
+})
+
+// Variant: Check your details without research sign-up
+router.get('/check-your-details-no-research-sign-up', function (req, res) {
+  res.render(folder + '/check-your-details-no-research-sign-up')
+})</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Update pages array in versions.json</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Add variant as separate entry in <code>pages</code> array:</p>
+        <pre class="govuk-body"><code>"pages": [
+  { "url": "/v3-7-0-2/start", "title": "Start page" },
+  { "url": "/v3-7-0-2/check-your-details", "title": "Check your details" },
+  { "url": "/v3-7-0-2/check-your-details-no-research-sign-up", "title": "Check your details (no research sign-up)" },
+  { "url": "/v3-7-0-2/confirmation", "title": "Confirmation" }
+]</code></pre>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>List variant immediately after base page for clarity</li>
+          <li>Use descriptive title showing variant purpose</li>
+          <li>This ensures screenshot automation captures both paths</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 5: Create navigation between variants</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Add links on variant pages so research participants can try both:</p>
+        <pre class="govuk-body"><code>&lt;p class="govuk-body"&gt;
+  &lt;a href="/{{ folder }}/check-your-details"&gt;Try the full version with research sign-up&lt;/a&gt;
+&lt;/p&gt;</code></pre>
+        <p class="govuk-body">Or add at parent/decision page:</p>
+        <pre class="govuk-body"><code>&lt;p class="govuk-body"&gt;Choose which check flow you prefer:&lt;/p&gt;
+&lt;ul class="govuk-list"&gt;
+  &lt;li&gt;&lt;a href="/{{ folder }}/check-your-details"&gt;Full journey&lt;/a&gt;&lt;/li&gt;
+  &lt;li&gt;&lt;a href="/{{ folder }}/check-your-details-no-research-sign-up"&gt;Simplified version&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 6: Document variant purpose</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Edit <code>app/views/design-history/{version}/index.html</code>. Add section explaining variant testing:</p>
+        <pre class="govuk-body"><code>&lt;h3 class="govuk-heading-m"&gt;Testing Variants&lt;/h3&gt;
+&lt;p class="govuk-body"&gt;
+  This round tested two approaches to the check your details page:
+&lt;/p&gt;
+&lt;ul class="govuk-list govuk-list--bullet"&gt;
+  &lt;li&gt;&lt;strong&gt;Full journey&lt;/strong&gt;: Includes research sign-up opportunity&lt;/li&gt;
+  &lt;li&gt;&lt;strong&gt;Simplified version&lt;/strong&gt;: Removes research sign-up, focuses on confirmation&lt;/li&gt;
+&lt;/ul&gt;</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 7: Capture screenshots</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Run screenshot automation: variants should be captured as separate entries</li>
+          <li>Both <code>/check-your-details</code> and <code>/check-your-details-no-research-sign-up</code> will generate separate PNG files</li>
+          <li>Screenshot filenames will reflect URL, e.g.:
+            <ul class="govuk-list govuk-list--bullet">
+              <li><code>07-check-your-details.png</code></li>
+              <li><code>08-check-your-details-no-research-sign-up.png</code></li>
+            </ul>
+          </li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 8: Commit and document</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Commit: <code>feat: Add variant of check-your-details for split testing</code></li>
+          <li>Include in commit message what variant is testing and why</li>
+          <li>Link to any research documentation or analysis from variant testing</li>
+        </ul>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Best practices</h2>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Naming clarity</h3>
+      <p class="govuk-body">Variant names should be descriptive, not numbered. Use "no-research-sign-up", "compact", not "v1", "v2"</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Keep originals</h3>
+      <p class="govuk-body">Never delete base page when creating variant. Test both in same version.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Document purpose</h3>
+      <p class="govuk-body">Always explain in design history what variant is testing and why. Make sure findings are recorded.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Screenshot ordering</h3>
+      <p class="govuk-body">Place variant screenshot immediately after base in design history for easy comparison.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Version progression</h3>
+      <p class="govuk-body">When creating next version, include learnings from variant testing. Implement winning variant as default.</p>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a> | <a href="/documentation/skill-generate-design-history-changelog" class="govuk-link">Next: Skill 5 →</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

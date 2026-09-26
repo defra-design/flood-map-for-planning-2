@@ -1,0 +1,213 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Skill: Generate Design History Changelog" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+    <h1 class="govuk-heading-xl">Skill 5: Generate design history changelog</h1>
+
+    <p class="govuk-body-l">Create a summary of key changes and research findings from design history posts</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Six-step workflow</h2>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Define changelog scope</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Decide which posts to include:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Single version:</strong> Focus on one research round or release</li>
+          <li><strong>Date range:</strong> Summarize multiple posts from start to end date</li>
+          <li><strong>Tag filter:</strong> Extract all posts with specific tag (e.g., all "surface-water" posts)</li>
+          <li><strong>Example:</strong> "Show all changes from v3.6.1 through v3.7.0.3"</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Extract metadata from posts.json</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Open <code>app/views/design-history/posts.json</code></li>
+          <li>Identify relevant posts by:
+            <ul class="govuk-list govuk-list--bullet">
+              <li>Version number</li>
+              <li>Date range</li>
+              <li>Tags (filter by research focus)</li>
+              <li>Type (research vs release)</li>
+            </ul>
+          </li>
+          <li>Copy version, date, title, tags, and summary for each</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Read design history posts</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Navigate to <code>app/views/design-history/{version}/index.html</code> for each relevant post.</p>
+        <p class="govuk-body">Extract key sections:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Research focus:</strong> What was being tested/explored?</li>
+          <li><strong>Key findings:</strong> What did you learn?</li>
+          <li><strong>Key areas explored:</strong> List of features/journeys tested</li>
+          <li><strong>Screenshots:</strong> What pages were created/modified?</li>
+        </ul>
+        <p class="govuk-body">Note both features added and research insights gained</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Synthesize into changelog structure</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Create markdown document with this structure:</p>
+        <pre class="govuk-body"><code># Changelog: [Title] ([Version/Date Range])
+
+## Overview
+[1-2 sentence summary of release or research round]
+
+## Research Findings
+- [Key finding 1]
+- [Key finding 2]
+- [Impact or next steps]
+
+## Features & Changes
+- **Feature area 1**: Description of change and why
+- **Feature area 2**: Description of change and why
+
+## Pages in This Round
+- Start page
+- Upload boundary
+- Results page
+[etc. - list all pages with descriptions]
+
+## Tags
+research-sign-up, boundary-upload, map-styling</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 5: Create changelog file</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body"><strong>Option A: Add to design history</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Create <code>app/views/design-history/{version}/changelog.md</code></li>
+          <li>Link from post: <code>&lt;a href="changelog.md"&gt;Full changelog&lt;/a&gt;</code></li>
+          <li>Useful for detailed project documentation</li>
+        </ul>
+        <p class="govuk-body"><strong>Option B: Create standalone releases document</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Create <code>CHANGELOG.md</code> in project root if not exists</li>
+          <li>Add entry for this version/date range</li>
+          <li>Update regularly as new versions release</li>
+          <li>Useful for GitHub releases and stakeholder visibility</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 6: Distribute to stakeholders</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Share generated changelog in:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Email to research team/stakeholders</li>
+          <li>GitHub release notes (if released)</li>
+          <li>Project documentation</li>
+          <li>Team wiki/knowledge base</li>
+        </ul>
+        <p class="govuk-body">Include link to full design history posts for deep dives</p>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Example changelog</h2>
+
+    <p class="govuk-body"><strong>Changelog for v3.7.0.3 research round:</strong></p>
+
+    <pre class="govuk-body"><code># Changelog: Research Round v3.7.0.3 (September 2026)
+
+## Overview
+Product 1 integration and map styling improvements tested with users. Findings inform styling decisions and Product 1 interaction patterns.
+
+## Research Findings
+- Users prefer darker boundary colors for clarity
+- Product 1 information panel layout needs simplified navigation
+- Help text for opacity slider should appear inline, not on hover
+
+## Features & Changes
+- **Map styling**: Product 1 colors and styling options tested
+- **Product 1 integration**: User flows for selecting and filtering by Product 1 tested
+
+## Pages in This Round
+- Start page (Product 1 entry point)
+- Product 1 selection
+- Results filtered by Product 1
+
+## Tags
+product-1, map-styling</code></pre>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Best practices</h2>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Synthesis over transcription</h3>
+      <p class="govuk-body">Don't copy entire posts. Extract key insights and condense.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">User-focused language</h3>
+      <p class="govuk-body">Explain features in terms of user benefit, not just technical change.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Research to action</h3>
+      <p class="govuk-body">Connect findings to what changed or what's next.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Trend spotting</h3>
+      <p class="govuk-body">Changelogs help identify themes: "Multiple posts with 'boundary' tag? Boundary handling is actively iterated."</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Audience-specific versions</h3>
+      <p class="govuk-body">Create different changelogs for different audiences:</p>
+      <ul class="govuk-list govuk-list--bullet">
+        <li><strong>Designers/researchers:</strong> Focus on research findings and user insights</li>
+        <li><strong>Stakeholders:</strong> Focus on features and timeline</li>
+        <li><strong>Developers:</strong> Focus on scope and page changes</li>
+      </ul>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Keep in sync</h3>
+      <p class="govuk-body">When updating design history posts, review if changelog summary needs update. Keep changelog in version control.</p>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+  </div>
+</div>
+
+{% endblock %}

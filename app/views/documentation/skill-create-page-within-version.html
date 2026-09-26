@@ -1,0 +1,148 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Skill: Create Page Within Version" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+    <h1 class="govuk-heading-xl">Skill 3: Create a page within a version</h1>
+
+    <p class="govuk-body-l">Add a new page to an existing prototype version with complete workflow, route configuration, and metadata updates</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Five-step workflow</h2>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Identify target version</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Choose which version folder to add the page to (e.g., <code>v3-7-0-2</code>)</p>
+        <p class="govuk-body">Determine page name and URL path (lowercase, hyphens for spaces)</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Create view file</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Create new HTML file in <code>app/views/{version}/</code> folder</li>
+          <li>Use <code>.html</code> extension</li>
+          <li>Extend base template: <code>{% "{% extends \"layouts/main.html\" %}" %}</code></li>
+          <li>Add content blocks with GOV.UK components</li>
+          <li><strong>Tip</strong>: Copy similar existing page as template and modify</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Add route to version router</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Open <code>app/routes_{version}.js</code> file</li>
+          <li>Add route handler that renders your new view</li>
+        </ul>
+        <pre class="govuk-body"><code>router.get('/page-name', function (req, res) {
+  res.render(folder + '/page-name')
+})</code></pre>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Place after <code>addLocalsMiddleware</code> but typically before or after related routes</li>
+          <li>Test route locally: <code>npm run dev</code> then visit <code>/{version}/page-name</code></li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Update pages array in versions.json</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Open <code>app/views/versions.json</code></li>
+          <li>Find version entry (e.g., v3.7.0.2)</li>
+          <li>Add new page to <code>pages</code> array</li>
+        </ul>
+        <pre class="govuk-body"><code>{
+  "url": "/v3-7-0-2/page-name",
+  "title": "Page Title Here"
+}</code></pre>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Maintain consistent ordering (logical journey or alphabetical)</li>
+          <li>This array drives screenshot automation and page listing</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 5: Commit and deploy</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Commit with message: <code>feat: Add page-name page to {version}</code></li>
+          <li>Push to repository</li>
+          <li>Verify page appears on prototype instance</li>
+        </ul>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Example: Adding results page to v3.7.0.2</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>Create file: <code>app/views/v3-7-0-2/results.html</code></li>
+      <li>Add to <code>routes_v3-7-0-2.js</code>:
+        <pre class="govuk-body"><code>router.get('/results', function (req, res) {
+  res.render(folder + '/results')
+})</code></pre>
+      </li>
+      <li>Update <code>versions.json</code> v3.7.0.2 entry:
+        <pre class="govuk-body"><code>"pages": [
+  { "url": "/v3-7-0-2/start", "title": "Start page" },
+  { "url": "/v3-7-0-2/results", "title": "Results" }
+]</code></pre>
+      </li>
+      <li>Commit and push</li>
+    </ol>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Best practices</h2>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Naming</h3>
+      <p class="govuk-body">Use lowercase, hyphenated names (e.g., <code>check-your-details</code>). Match file name to URL path for consistency.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Pages array matters</h3>
+      <p class="govuk-body">If a page isn't listed in <code>versions.json</code>, screenshot scripts won't capture it. Always keep this in sync.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Use the folder variable</h3>
+      <p class="govuk-body">Always use the <code>folder</code> variable in routes. This keeps flexibility for versioning.</p>
+    </div>
+
+    <div class="govuk-inset-text">
+      <h3 class="govuk-heading-s">Navigation</h3>
+      <p class="govuk-body">Use backlink on pages: <code>{{ backlink }}</code> (injected by addLocalsMiddleware)</p>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a> | <a href="/documentation/skill-create-page-variant" class="govuk-link">Next: Skill 4 →</a></p>
+
+  </div>
+</div>
+
+{% endblock %}
