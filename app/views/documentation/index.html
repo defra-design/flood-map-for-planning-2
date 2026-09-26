@@ -156,27 +156,34 @@
       <li>Design iteration reaches a milestone worth explaining</li>
     </ul>
 
-    <h3 class="govuk-heading-m">Two ways to create a design history post</h3>
+    <h3 class="govuk-heading-m">Three ways to create a design history post</h3>
     
-    <p class="govuk-body"><strong>If you already have a version card on index.html:</strong></p>
+    <p class="govuk-body"><strong>Option A: Version has no card yet</strong></p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>The version was probably created with <code>#create-prototype-version</code>, which added a card</li>
-      <li><strong>Do NOT run this skill</strong> — it will generate a duplicate card template</li>
-      <li>Instead: Create the design history folder and post <strong>manually</strong> (see Alternative path below)</li>
+      <li>Run the skill — it creates everything including a card template</li>
+      <li>Copy the card template to index.html</li>
     </ul>
 
-    <p class="govuk-body"><strong>If this is a new version with no card yet:</strong></p>
+    <p class="govuk-body"><strong>Option B: Version card exists, create post manually</strong></p>
     <ul class="govuk-list govuk-list--bullet">
-      <li>Run this skill, it will create everything including a card template</li>
-      <li>Copy the card template to index.html</li>
+      <li>The version was created with <code>#create-prototype-version</code>, which added a card</li>
+      <li>Create the post manually (don't run the skill, see Alternative path below)</li>
+      <li>Update the existing card's design history link</li>
+    </ul>
+
+    <p class="govuk-body"><strong>Option C: Version card exists, automate post + screenshots (recommended)</strong></p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Run the skill to generate post folder, screenshots, and posts.json entry automatically</li>
+      <li><strong>Ignore the card template</strong> the skill generates</li>
+      <li>Update the existing card's design history link (just change date and <code>designHistoryUrl</code> in versions.json)</li>
     </ul>
 
     <details class="govuk-details govuk-!-margin-bottom-6">
       <summary class="govuk-details__summary">
-        <span class="govuk-details__summary-text">Alternative path: Create manually (no skill needed)</span>
+        <span class="govuk-details__summary-text">Alternative path: Create manually (no skill needed) — Option B only</span>
       </summary>
       <div class="govuk-details__text">
-        <p class="govuk-body">If a card already exists, you can create the design history post without running the skill:</p>
+        <p class="govuk-body">If you prefer not to run the skill and the version card already exists:</p>
         
         <ol class="govuk-list govuk-list--number">
           <li><strong>Create the folder:</strong> <code>/app/views/design-history/3-9-0-0/</code></li>
@@ -188,7 +195,9 @@
           <li><strong>Write content:</strong> Fill in your post template with narrative and screenshots</li>
         </ol>
 
-        <p class="govuk-body">This is exactly what the skill does automatically — doing it manually is slower but avoids generating duplicate cards.</p>
+        <p class="govuk-body">This is slower than running the skill (no automation for screenshots or metadata), but completely avoids generating extra card templates.</p>
+        
+        <p class="govuk-body"><strong>When to use:</strong> You prefer manual control or don't want Playwright screenshot automation.</p>
       </div>
     </details>
 
@@ -232,7 +241,10 @@
           <li>Post template: <code>index.html</code> with structure ready for content</li>
           <li>Entry in: <code>app/views/design-history/posts.json</code></li>
           <li>Breadcrumb navigation set up</li>
+          <li><strong>Also generates:</strong> HTML card template (use it only if you don't already have a card on index.html)</li>
         </ul>
+
+        <p class="govuk-body"><strong>If a card already exists:</strong> Just ignore the generated card template and proceed to Step 3. You'll update the existing card's link later.</p>
       </div>
     </details>
 
@@ -304,8 +316,14 @@
 
         <p class="govuk-body">Post is now live at <code>/design-history/3-9-0-0/</code> and linked from version card.</p>
 
+        <p class="govuk-body"><strong>Linking to the version card:</strong></p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>No card exists yet:</strong> Copy the card template Copilot generated and paste it into <code>index.html</code></li>
+          <li><strong>Card already exists:</strong> Update it in <code>index.html</code> — change the date field and add design history link. You can also update <code>versions.json</code> with <code>"designHistoryUrl": "/design-history/3-9-0-0/"</code> and the card will update automatically.</li>
+        </ul>
+
         <div class="govuk-inset-text">
-          <p class="govuk-body"><strong>⚠️ Check for existing cards:</strong> Before adding a card to <code>index.html</code>, search the page for your version number. If the card already exists (from when the version was created), <strong>update the existing card</strong> instead of adding a duplicate. Just change the date and design history link fields.</p>
+          <p class="govuk-body"><strong>⚠️ Avoid duplicate cards:</strong> Always search <code>index.html</code> for your version number before adding a new card. If it exists, update it instead.</p>
         </div>
       </div>
     </details>
