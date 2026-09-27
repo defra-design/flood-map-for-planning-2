@@ -1,14 +1,16 @@
 {% extends "layouts/main.html" %}
-{% set pageName="Copilot Skills" %}
+{% set pageName="AI-assisted workflows" %}
 
 {% block content %}
 
 <div class="govuk-grid-row">
   <div class="govuk-grid-column-two-thirds">
 
-    <h1 class="govuk-heading-xl">Copilot skills for prototype management</h1>
+    <h1 class="govuk-heading-xl">AI-assisted workflows</h1>
     
-    <p class="govuk-body-l">Automated workflows to streamline prototype management and documentation</p>
+    <p class="govuk-body-l">Step-by-step instructions an AI coding assistant can follow to create versions, pages, user flows and design history entries in this prototype.</p>
+
+    <p class="govuk-body">In GitHub Copilot and other AI tools, these instructions are known as <strong>skills</strong>. Each one is saved in the <code>.github/skills</code> folder of this prototype.</p>
 
     <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
 
@@ -29,6 +31,7 @@
       <div class="govuk-grid-column-one-half">
         <div class="govuk-card govuk-!-margin-bottom-6">
           <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-!-margin-bottom-2">Private beta</strong>
             <h2 class="govuk-heading-m">
               <a href="/documentation/skill-create-prototype-version" class="govuk-link govuk-link--no-visited-state">Skill 1: Create a new prototype version</a>
             </h2>
@@ -47,6 +50,7 @@
       <div class="govuk-grid-column-one-half">
         <div class="govuk-card govuk-!-margin-bottom-6">
           <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-!-margin-bottom-2">Private beta</strong>
             <h2 class="govuk-heading-m">
               <a href="/documentation/skill-design-history-entry" class="govuk-link govuk-link--no-visited-state">Skill 2: Create a design history entry</a>
             </h2>
@@ -72,6 +76,7 @@
       <div class="govuk-grid-column-one-half">
         <div class="govuk-card govuk-!-margin-bottom-6">
           <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-2">Alpha</strong>
             <h2 class="govuk-heading-m">
               <a href="/documentation/skill-create-page-within-version" class="govuk-link govuk-link--no-visited-state">Skill 3: Create a page within a version</a>
             </h2>
@@ -90,6 +95,7 @@
       <div class="govuk-grid-column-one-half">
         <div class="govuk-card govuk-!-margin-bottom-6">
           <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-2">Alpha</strong>
             <h2 class="govuk-heading-m">
               <a href="/documentation/skill-create-page-variant" class="govuk-link govuk-link--no-visited-state">Skill 4: Create a page variant (split testing)</a>
             </h2>
@@ -110,6 +116,7 @@
       <div class="govuk-grid-column-one-half">
         <div class="govuk-card govuk-!-margin-bottom-6">
           <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-tag--pink govuk-!-margin-bottom-2">Alpha</strong>
             <h2 class="govuk-heading-m">
               <a href="/documentation/skill-generate-design-history-changelog" class="govuk-link govuk-link--no-visited-state">Skill 5: Generate design history changelog</a>
             </h2>
@@ -120,6 +127,50 @@
               <li>Summarizing release for stakeholders</li>
               <li>Creating release notes from research findings</li>
               <li>Need quick overview of changes across versions</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Skills in discovery</h2>
+    <p class="govuk-body">We're still exploring how these skills could work. Their workflows are a starting point and are likely to change.</p>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-card govuk-!-margin-bottom-6">
+          <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-tag--purple govuk-!-margin-bottom-2">Discovery</strong>
+            <h2 class="govuk-heading-m">
+              <a href="/documentation/skill-create-user-flow" class="govuk-link govuk-link--no-visited-state">Skill 6: Create a user flow for a new version</a>
+            </h2>
+            <p class="govuk-body">Part of creating a new version. Copies the previous version's user flow, checks its prototype links and adds a user flow link to the version card.</p>
+            <p class="govuk-body"><code>@copilot #create-user-flow</code></p>
+            <p class="govuk-body"><strong>Use when:</strong></p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              <li>You've just created a new prototype version</li>
+              <li>A version doesn't have a user flow yet</li>
+            </ul>
+          </div>
+        </div>
+      </div>
+
+      <div class="govuk-grid-column-one-half">
+        <div class="govuk-card govuk-!-margin-bottom-6">
+          <div class="govuk-card__content">
+            <strong class="govuk-tag govuk-tag--purple govuk-!-margin-bottom-2">Discovery</strong>
+            <h2 class="govuk-heading-m">
+              <a href="/documentation/skill-edit-user-flow" class="govuk-link govuk-link--no-visited-state">Skill 7: Edit a user flow</a>
+            </h2>
+            <p class="govuk-body">Add, remove or reorder steps and journeys, update live and prototype links, add pages outside the main flow, or add a new screen type.</p>
+            <p class="govuk-body"><code>@copilot #edit-user-flow</code></p>
+            <p class="govuk-body"><strong>Use when:</strong></p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+              <li>A journey has changed</li>
+              <li>You're showing an alternative route</li>
+              <li>A help or guidance page needs adding</li>
             </ul>
           </div>
         </div>

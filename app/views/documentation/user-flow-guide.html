@@ -1,0 +1,240 @@
+{% extends "layouts/main.html" %}
+{% set pageName="How to use the user flows" %}
+
+{% block beforeContent %}
+
+  <script>
+    // Go back to the page the guide was opened from (home page or a user flow),
+    // falling back to the home page.
+    (function () {
+      var link = document.getElementById('guide-back-link')
+      try {
+        var ref = document.referrer && new URL(document.referrer)
+        if (ref && ref.origin === window.location.origin && ref.pathname !== window.location.pathname) {
+          link.href = ref.pathname + ref.search
+        }
+      } catch (e) {}
+    })()
+  </script>
+{% endblock %}
+
+{% block content %}
+
+<style>
+  .app-code {
+    display: block; overflow-x: auto; margin: 0 0 30px; padding: 15px;
+    background: #f3f2f1; border-left: 5px solid #b1b4b6;
+    font-family: monospace; font-size: 16px; line-height: 1.5; white-space: pre; color: #0b0c0c;
+  }
+  .app-contents { border-left: 5px solid #1d70b8; padding-left: 15px; }
+</style>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <h1 class="govuk-heading-xl">How to use the user flows</h1>
+
+    <p class="govuk-body-l">A user flow shows every screen in a journey through the service as a small wireframe, with the live and prototype address of each page.</p>
+
+    <nav class="app-contents govuk-!-margin-bottom-8" aria-label="Contents">
+      <h2 class="govuk-heading-s govuk-!-margin-bottom-2">Contents</h2>
+      <ul class="govuk-list">
+        <li><a class="govuk-link" href="#reading">Reading a user flow</a></li>
+        <li><a class="govuk-link" href="#where">Where the user flow lives</a></li>
+        <li><a class="govuk-link" href="#steps">Adding or changing a step</a></li>
+        <li><a class="govuk-link" href="#journeys">Adding a journey</a></li>
+        <li><a class="govuk-link" href="#other-pages">Pages outside the main flow</a></li>
+        <li><a class="govuk-link" href="#screen-types">Screen types</a></li>
+        <li><a class="govuk-link" href="#links">Linking to prototype pages</a></li>
+        <li><a class="govuk-link" href="#new-version">Making a user flow for a new version</a></li>
+        <li><a class="govuk-link" href="#problems">If the page does not load</a></li>
+      </ul>
+    </nav>
+
+    <h2 class="govuk-heading-l" id="reading">Reading a user flow</h2>
+
+    <p class="govuk-body">Each grey box is one journey. The screens in a journey are shown in order, joined by arrows.</p>
+
+    <p class="govuk-body">Under each screen you'll see:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><strong>Live</strong> – the address of the page on the live service (plain text, not a link)</li>
+      <li><strong>Prototype</strong> – a link to the page in this prototype, if there is one</li>
+      <li>a short note, if one has been added</li>
+    </ul>
+
+    <p class="govuk-body">Select the screen title to open that page in the prototype.</p>
+
+    <p class="govuk-body">Use the buttons at the top of the page to:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>show desktop screens, mobile screens, or both – the page remembers your choice</li>
+      <li>print the user flow, with each journey kept on one page where possible</li>
+    </ul>
+
+    <p class="govuk-body">Pages that sit outside the journeys, such as help pages, are in a dashed box at the bottom under <strong>Pages outside the main flow</strong>. Each one lists the pages that link to it.</p>
+
+    <h2 class="govuk-heading-l" id="where">Where the user flow lives</h2>
+
+    <p class="govuk-body">Each prototype version has its own user flow file. For version 3.8.0.0 it is:</p>
+    <p class="govuk-body"><code>app/views/v3-8-0-0/user-flow.html</code></p>
+    <p class="govuk-body">and you can view it at <a class="govuk-link" href="/v3-8-0-0/user-flow">/v3-8-0-0/user-flow</a>.</p>
+
+    <p class="govuk-body">Everything you need to change is in two lists near the top of the file:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li><code>journeys</code> – the journeys and their steps</li>
+      <li><code>otherPages</code> – pages outside the main flow</li>
+    </ul>
+    <p class="govuk-body">You should not need to change anything below these lists.</p>
+
+    <h2 class="govuk-heading-l" id="steps">Adding or changing a step</h2>
+
+    <p class="govuk-body">Each step is one line inside a journey's <code>steps</code> list:</p>
+
+    <pre class="app-code">{ "type": "radio", "title": "Triage page", "live": "/triage", "prototype": "options-radio", "note": "Optional note" },</pre>
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">What each part of a step does</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Field</th>
+          <th scope="col" class="govuk-table__header">What it does</th>
+          <th scope="col" class="govuk-table__header">Needed?</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>type</code></td>
+          <td class="govuk-table__cell">Which wireframe to show – see <a class="govuk-link" href="#screen-types">screen types</a></td>
+          <td class="govuk-table__cell">Yes</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>title</code></td>
+          <td class="govuk-table__cell">The label above the screen</td>
+          <td class="govuk-table__cell">Yes</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>live</code></td>
+          <td class="govuk-table__cell">The page's address on the live service, shown as plain text</td>
+          <td class="govuk-table__cell">No</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>prototype</code></td>
+          <td class="govuk-table__cell">The page in this prototype – shown as a link, and the title links to it too</td>
+          <td class="govuk-table__cell">No</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>note</code></td>
+          <td class="govuk-table__cell">A short note shown under the screen</td>
+          <td class="govuk-table__cell">No</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p class="govuk-body">If you do not need a field, leave it out or leave it empty, for example <code>"prototype": ""</code>. It will not be shown.</p>
+
+    <p class="govuk-body">To add a step, copy an existing line and change it. Steps are shown in the order they appear in the list.</p>
+
+    <div class="govuk-inset-text">
+      Every step except the last one in a list must end with a comma.
+    </div>
+
+    <h2 class="govuk-heading-l" id="journeys">Adding a journey</h2>
+
+    <p class="govuk-body">Use a new journey to show an alternative route, such as a different way of adding a site boundary. Copy an existing journey block, give it a new heading and change the steps:</p>
+
+    <pre class="app-code">{
+  "heading": "Upload a boundary",
+  "steps": [
+    { "type": "map",     "title": "Flood map",          "live": "/map",    "prototype": "map" },
+    { "type": "upload",  "title": "Upload a boundary",  "live": "/upload", "prototype": "upload" },
+    { "type": "results", "title": "Flood risk results", "live": "/results?[polygonstring]", "prototype": "results" }
+  ]
+},</pre>
+
+    <p class="govuk-body">Journeys are shown in the order they appear in the list. Put a comma between journey blocks, but not after the last one.</p>
+
+    <h2 class="govuk-heading-l" id="other-pages">Pages outside the main flow</h2>
+
+    <p class="govuk-body">Some pages are not part of a journey but can be reached from several places, like the help page. Add these to the <code>otherPages</code> list.</p>
+
+    <p class="govuk-body">They use the same fields as steps, plus <code>from</code> – a list of the pages that link to it:</p>
+
+    <pre class="app-code">{
+  "type": "content",
+  "title": "How to use this data",
+  "live": "/how-to-use-flood-map-for-planning-data",
+  "prototype": "how-to-use-flood-map-for-planning-data",
+  "from": ["Full screen map (info panel)", "Help page", "Results page"]
+},</pre>
+
+    <p class="govuk-body">These pages are shown without arrows, because they are not in a set order.</p>
+
+    <h2 class="govuk-heading-l" id="screen-types">Screen types</h2>
+
+    <p class="govuk-body">Choose the <code>type</code> that looks most like the page. To see all of them as wireframes, open <strong>Screen types you can use</strong> at the bottom of the user flow page.</p>
+
+    <table class="govuk-table">
+      <caption class="govuk-table__caption govuk-table__caption--m">Screen types you can use</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Type</th>
+          <th scope="col" class="govuk-table__header">Use for</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>start</code></td><td class="govuk-table__cell">Start page with a "Start now" button</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>hero</code></td><td class="govuk-table__cell">Landing page with a blue banner</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>signin</code></td><td class="govuk-table__cell">Sign in page</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>tasklist</code></td><td class="govuk-table__cell">Task list</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>text</code></td><td class="govuk-table__cell">Question with a text input, such as contact details</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>radio</code></td><td class="govuk-table__cell">Question with radio buttons, such as the triage page</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>checkbox</code></td><td class="govuk-table__cell">Question with checkboxes</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>check</code></td><td class="govuk-table__cell">Check your answers</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>confirmation</code></td><td class="govuk-table__cell">Confirmation page with a green panel</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>dashboard</code></td><td class="govuk-table__cell">Dashboard with search and a table</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>map</code></td><td class="govuk-table__cell">Full screen flood map with side panel, key and controls</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>draw-polygon</code></td><td class="govuk-table__cell">Drawing a polygon site boundary on the map</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>draw-square</code></td><td class="govuk-table__cell">Adding a square site boundary on the map</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>upload</code></td><td class="govuk-table__cell">Uploading a boundary file</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>results</code></td><td class="govuk-table__cell">Results page with flood zone and summary cards</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>product1</code></td><td class="govuk-table__cell">Printable Product 1 with maps and legends</td></tr>
+        <tr class="govuk-table__row"><td class="govuk-table__cell"><code>content</code></td><td class="govuk-table__cell">Guidance or help page</td></tr>
+      </tbody>
+    </table>
+
+    <p class="govuk-body">If you use a type that is not in this list, a plain page is shown instead.</p>
+
+    <h2 class="govuk-heading-l" id="links">Linking to prototype pages</h2>
+
+    <p class="govuk-body">The <code>prototype</code> address can be written in two ways:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>without a slash at the start, like <code>"map"</code> – this links to the page in the same version folder as the user flow, for example <code>/v3-8-0-0/map</code></li>
+      <li>with a slash at the start, like <code>"/v3-7-0-2/upload"</code> – this links to that exact address, so you can link to a page in another version</li>
+    </ul>
+
+    <p class="govuk-body">The <code>live</code> address is only ever shown as text, so it can include placeholders, such as <code>/results?[polygonstring]</code>.</p>
+
+    <h2 class="govuk-heading-l" id="new-version">Making a user flow for a new version</h2>
+
+    <ol class="govuk-list govuk-list--number">
+      <li>Copy <code>user-flow.html</code> from the previous version's folder into the new version's folder, for example <code>app/views/v3-9-0-0/</code>.</li>
+      <li>Update the steps for anything that has changed in this version.</li>
+      <li>Check that the <code>prototype</code> addresses point to pages that exist in the new version.</li>
+      <li>On the <a class="govuk-link" href="/">prototype home page</a>, add a “View user flow” link to the new version’s card, and update the <strong>User flow</strong> link under <strong>Related links and information</strong> so it points to the new version.</li>
+      <li>Add <code>"userFlowUrl"</code> to the version’s entry in <code>app/views/versions.json</code>, for example <code>"userFlowUrl": "/v3-9-0-0/user-flow"</code>.</li>
+    </ol>
+
+    <h2 class="govuk-heading-l" id="problems">If the page does not load</h2>
+
+    <p class="govuk-body">The user flow is built from the lists at the top of the file, so a small typing mistake in them can stop the page loading. Check for:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>a missing comma between steps or journeys</li>
+      <li>an extra comma after the last step or journey in a list</li>
+      <li>a missing <code>"</code> quote mark around a value</li>
+      <li>a missing <code>{</code>, <code>}</code>, <code>[</code> or <code>]</code> bracket</li>
+    </ul>
+    <p class="govuk-body">The error in the terminal where the prototype is running usually gives the line number of the problem.</p>
+
+  </div>
+</div>
+
+{% endblock %}

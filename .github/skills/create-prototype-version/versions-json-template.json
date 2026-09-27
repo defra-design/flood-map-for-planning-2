@@ -6,6 +6,7 @@
     "tags": [],
     "pages": [],
     "prototypeUrl": "/v3-9-0-0/",
+    "userFlowUrl": null,
     "designHistoryUrl": null
   },
   "template": {
@@ -15,6 +16,7 @@
     "tags": {{TAGS_JSON}},
     "pages": {{PAGES_JSON}},
     "prototypeUrl": "/{{VERSION_ID}}/",
+    "userFlowUrl": null,
     "designHistoryUrl": null
   },
   "notes": {
@@ -22,6 +24,7 @@
     "date": "Examples: 'TBC', 'In development', 'Release - 22 January 2026', 'Research round - January 2026'",
     "tags": "Array of tag strings. Add/update as features are finalized",
     "pages": "Array of objects with 'name' and 'url'. Add/update as pages are created",
+    "userFlowUrl": "Set to the version's user flow page when it has one. Format: '/v3-9-0-0/user-flow'",
     "designHistoryUrl": "Set to design history URL when post is published. Format: '/design-history/3-9-0-0/'"
   },
   "examples": {

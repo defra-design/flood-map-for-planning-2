@@ -10,6 +10,7 @@
         { "name": "Map page", "url": "/v3-8-0-0/map" }
       ],
       "prototypeUrl": "/v3-8-0-0/",
+      "userFlowUrl": "/v3-8-0-0/user-flow",
       "hasPrototype": true,
       "designHistoryUrl": null
     },

@@ -1,0 +1,117 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Skill: Edit User Flow" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+    <strong class="govuk-tag govuk-tag--purple govuk-!-margin-bottom-4">Discovery</strong>
+
+    <h1 class="govuk-heading-xl">Skill 7: Edit a user flow</h1>
+
+    <p class="govuk-body-l">Add, remove or reorder steps and journeys in a version's user flow, update links, add pages outside the main flow, or add a new screen type</p>
+
+    <div class="govuk-inset-text">
+      This skill is in discovery. The workflow below is a starting point for exploring how it could work, and may change.
+    </div>
+
+    <p class="govuk-body"><code>@copilot #edit-user-flow</code></p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">When to use it</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>A page has been added to, or removed from, a journey</li>
+      <li>You want to show an alternative route as a new journey</li>
+      <li>A live or prototype address has changed</li>
+      <li>A help or guidance page needs adding under “Pages outside the main flow”</li>
+      <li>None of the screen types looks like a new page</li>
+    </ul>
+
+    <p class="govuk-body">Describe the change in your own words, for example: “add a contact details step after the results page in the main journey”.</p>
+
+    <p class="govuk-body">For how user flows work, see <a href="/documentation/user-flow-guide" class="govuk-link">How to use the user flows</a>.</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Five-step workflow</h2>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Read the current journeys</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Reads the <code>journeys</code> and <code>otherPages</code> lists at the top of the version's <code>user-flow.html</code>. Asks which journey you mean if a page appears in more than one.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Make the change</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Adds, removes or reorders steps and journeys</li>
+          <li>Picks the closest screen type for a new step</li>
+          <li>Checks a prototype page exists before linking to it</li>
+          <li>Only adds a live address if you give it – it never guesses</li>
+          <li>Keeps commas and quote marks correct so the page still loads</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Add a new screen type (only if asked)</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Adding a screen type changes the shared part of the file, so the skill checks with you first. It then:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>draws the new screen for desktop and mobile using the existing wireframe parts</li>
+          <li>checks it fits inside the screen frames</li>
+          <li>adds it to “Screen types you can use” and to the table in the user flow guide</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Check the page loads</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Opens the user flow in the running prototype and checks the change in the desktop and mobile views.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 5: Summarise</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Lists what changed, and any steps still missing a prototype link or live address.</p>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Open questions</h2>
+
+    <p class="govuk-body">Things we're still exploring:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Could the skill build journeys from a description, like a research plan or a Mural board?</li>
+      <li>Should it flag prototype links to pages that no longer exist every time it runs?</li>
+      <li>Should journeys live in a separate data file so they're easier to edit and share between versions?</li>
+      <li>When a page changes, should every version's user flow be updated, or only the current one?</li>
+      <li>Do we need a screen type for every page, or would a general type with options work better?</li>
+    </ul>
+
+    <p class="govuk-body">Skill definition: <code>.github/skills/edit-user-flow/SKILL.md</code></p>
+
+  </div>
+</div>
+
+{% endblock %}

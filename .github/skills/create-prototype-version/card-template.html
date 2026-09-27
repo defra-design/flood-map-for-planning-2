@@ -17,7 +17,7 @@
   <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
     <a href="{{PROTOTYPE_URL}}" class="govuk-link govuk-body-m">View v{{VERSION}} prototype</a>
     <span style="color: #b1b4b6;">•</span>
-{{DESIGN_HISTORY_LINK}}  </div>
+{{USER_FLOW_LINK}}{{DESIGN_HISTORY_LINK}}  </div>
 </div>
 
 <!-- TEMPLATE VARIABLES (replace in skill):
@@ -27,5 +27,9 @@
   {{TAGS_HTML}} = full HTML tag elements for each tag
   {{PAGES_HTML}} = full HTML list items for each page
   {{PROTOTYPE_URL}} = prototype URL (e.g., /v3-9-0-0/)
+  {{USER_FLOW_LINK}} = if the version has a user flow (userFlowUrl in versions.json), a link followed by a separator:
+      <a href="{{USER_FLOW_URL}}" class="govuk-link govuk-body-m">View v{{VERSION}} user flow</a>
+      <span style="color: #b1b4b6;">•</span>
+    otherwise leave empty
   {{DESIGN_HISTORY_LINK}} = either link to design history OR "Design history not yet available" text
 -->

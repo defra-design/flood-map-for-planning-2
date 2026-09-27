@@ -20,6 +20,7 @@
 - [ ] Update `app/views/versions.json` with tags as features are finalized
 - [ ] Update `pages` list in JSON as you create new pages
 - [ ] Update date when release/research date is confirmed
+- [ ] If the version has a user flow, add `userFlowUrl` to versions.json and a user flow link to the card
 
 ### When Design History Post is Ready
 - [ ] Add `designHistoryUrl` to versions.json entry
@@ -36,6 +37,7 @@
   "tags": [],                            // Add as you design: ["tag1", "tag2"]
   "pages": [],                           // Add as you create pages
   "prototypeUrl": "/v3-9-0-0/",
+  "userFlowUrl": null,                   // Add when user flow exists
   "designHistoryUrl": null               // Add when post exists
 }
 ```
@@ -68,6 +70,12 @@
 ```json
 "date": "Research round - January 2026"
 ```
+
+### Add user flow link (when user flow created)
+```json
+"userFlowUrl": "/v3-9-0-0/user-flow"
+```
+Also add the link to the card in `index.html`.
 
 ### Add design history link (when post created)
 ```json

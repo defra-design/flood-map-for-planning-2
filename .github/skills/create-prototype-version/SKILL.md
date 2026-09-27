@@ -28,6 +28,9 @@ This skill scaffolds a new prototype version for iterative design work. It handl
 3. Update tags/pages in versions.json as features solidify
 4. Add design history link when post is created
 
+### Optional: Create a user flow (Discovery)
+Run `#create-user-flow` to copy the previous version's user flow into the new version and add a user flow link to the version card. See `.github/skills/create-user-flow/SKILL.md`.
+
 ### Phase 3: Publish (Manual)
 1. Copy generated HTML card into `app/views/index.html`
 2. Update date field when release date is confirmed
@@ -183,6 +186,9 @@ Generates a card for `app/views/index.html`:
   <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
     <a href="/v3-9-0-0/" class="govuk-link govuk-body-m">View v3.9.0.0 prototype</a>
     <span style="color: #b1b4b6;">•</span>
+    <!-- Only if the version has a user flow (userFlowUrl in versions.json): -->
+    <a href="/v3-9-0-0/user-flow" class="govuk-link govuk-body-m">View v3.9.0.0 user flow</a>
+    <span style="color: #b1b4b6;">•</span>
     <span class="govuk-body-m" style="color: #626a6e;">Design history not yet available</span>
   </div>
 </div>
@@ -198,6 +204,7 @@ Generates a card for `app/views/index.html`:
   "tags": [],
   "pages": [],
   "prototypeUrl": "/v3-9-0-0/",
+  "userFlowUrl": null,
   "designHistoryUrl": null
 }
 ```
@@ -235,6 +242,14 @@ Or for research rounds:
 ```json
 "date": "Research round - February 2026"
 ```
+
+### Link to the User Flow
+When the version has a user flow page (for example `app/views/v3-9-0-0/user-flow.html`), edit `app/views/versions.json`:
+```json
+"userFlowUrl": "/v3-9-0-0/user-flow"
+```
+
+Then add a "View v3.9.0.0 user flow" link to the version's card in `app/views/index.html`, after the prototype link. See [How to use the user flows](/documentation/user-flow-guide) for making a user flow.
 
 ### Link to Design History
 When design history post is published, edit `app/views/versions.json`:

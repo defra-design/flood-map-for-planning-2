@@ -45,8 +45,15 @@ router.get('/defra-map/info-panel', async (req, res) => {
 })
 
 router.get('/map-help', (req, res) => res.redirect('/v3-8-0-0/help'))
-router.get('/results', (req, res) => res.redirect('/v3-8-0-0/results'))
-router.get('/product-one', (req, res) => res.redirect('v3-7-0-3/product1-3'))
+// The map's "get summary" button goes to /results at the site root, so send it to this version's results page.
+// setupRouter() returns the kit's shared router, so this route also matches inside version paths such as
+// /v3-8-0-0/results – only redirect at the site root, to avoid a redirect loop.
+router.get('/results', (req, res, next) => {
+  if (req.baseUrl) return next()
+  const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : ''
+  res.redirect('/v3-8-0-0/results' + query)
+})
+router.get('/product-one', (req, res) => res.redirect('/v3-8-0-0/product1'))
 
 router.get('/assets/*', (req, res) => {
   const newPath = req.originalUrl.replace('/assets', '/public')

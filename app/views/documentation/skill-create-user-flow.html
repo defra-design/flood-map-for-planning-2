@@ -1,0 +1,160 @@
+{% extends "layouts/main.html" %}
+{% set pageName="Skill: Create User Flow" %}
+
+{% block content %}
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    <p class="govuk-body"><a href="/documentation/skills-menu" class="govuk-link">← Back to skills menu</a></p>
+
+    <strong class="govuk-tag govuk-tag--purple govuk-!-margin-bottom-4">Discovery</strong>
+
+    <h1 class="govuk-heading-xl">Skill 6: Create a user flow for a new version</h1>
+
+    <p class="govuk-body-l">Copy the previous version's user flow into a new prototype version and update its links, as part of creating a new version</p>
+
+    <div class="govuk-inset-text">
+      This skill is in discovery. The workflow below is a starting point for exploring how it could work, and may change.
+    </div>
+
+    <p class="govuk-body"><code>@copilot #create-user-flow</code></p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">When to use it</h2>
+
+    <ul class="govuk-list govuk-list--bullet">
+      <li>After running <a href="/documentation/skill-create-prototype-version" class="govuk-link">Skill 1: Create a new prototype version</a></li>
+      <li>When a version doesn't have a user flow yet</li>
+    </ul>
+
+    <p class="govuk-body">To change the journeys in a user flow, use <a href="/documentation/skill-edit-user-flow" class="govuk-link">Skill 7: Edit a user flow</a>. For how user flows work, see <a href="/documentation/user-flow-guide" class="govuk-link">How to use the user flows</a>.</p>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Eight-step workflow</h2>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 1: Find the user flow to copy</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Uses the newest version that has a <code>user-flow.html</code> file, currently <code>v3-8-0-0</code>.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 2: Copy it into the new version</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Copies it to <code>app/views/v3-9-0-0/user-flow.html</code>. No route is needed – the Prototype Kit shows it at <code>/v3-9-0-0/user-flow</code> automatically.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 3: Check the prototype links</span>
+      </summary>
+      <div class="govuk-details__text">
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Checks each <code>prototype</code> page exists in the new version folder</li>
+          <li>Clears the link (but keeps the step) if the page doesn't exist</li>
+          <li>Leaves links to other versions, like <code>/v3-7-0-2/upload</code>, and lists them</li>
+          <li>Doesn't change <code>live</code> addresses</li>
+        </ul>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 4: Add a user flow link to the version card</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Adds a “View v3.9.0.0 user flow” link to the version's card on the home page, after the prototype link.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 5: Update versions.json</span>
+      </summary>
+      <div class="govuk-details__text">
+        <pre class="govuk-body"><code>"userFlowUrl": "/v3-9-0-0/user-flow"</code></pre>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 6: Update the Related links</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Points the <strong>User flow</strong> link under <strong>Related links and information</strong> on the home page at the new version. Asks first, in case you want it to keep pointing at the older version for now.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 7: Check the page loads</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Opens the new user flow in the running prototype, or checks the file for typing mistakes like missing commas.</p>
+      </div>
+    </details>
+
+    <details class="govuk-details">
+      <summary class="govuk-details__summary">
+        <span class="govuk-details__summary-text">Step 8: Summarise</span>
+      </summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Lists which prototype links were cleared and which link to other versions, so you know what to update.</p>
+      </div>
+    </details>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Files it changes</h2>
+
+    <table class="govuk-table">
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">File</th>
+          <th scope="col" class="govuk-table__header">Change</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>app/views/v3-9-0-0/user-flow.html</code></td>
+          <td class="govuk-table__cell">New – copied from the previous version</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>app/views/index.html</code></td>
+          <td class="govuk-table__cell">User flow link on the version card, Related links updated</td>
+        </tr>
+        <tr class="govuk-table__row">
+          <td class="govuk-table__cell"><code>app/views/versions.json</code></td>
+          <td class="govuk-table__cell"><code>userFlowUrl</code> added</td>
+        </tr>
+      </tbody>
+    </table>
+
+    <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+
+    <h2 class="govuk-heading-l">Open questions</h2>
+
+    <p class="govuk-body">Things we're still exploring:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Should creating a new version always create a user flow, or offer it as an option?</li>
+      <li>Should journeys be copied unchanged, or should the skill ask which journeys changed in the new version?</li>
+      <li>Should the screen designs and styles move into a shared file, so each version only holds its journeys?</li>
+      <li>Could the skill fill in prototype links by matching page names in the new version?</li>
+      <li>Should the home page User flow link always point to the newest version?</li>
+    </ul>
+
+    <p class="govuk-body">Skill definition: <code>.github/skills/create-user-flow/SKILL.md</code></p>
+
+  </div>
+</div>
+
+{% endblock %}
