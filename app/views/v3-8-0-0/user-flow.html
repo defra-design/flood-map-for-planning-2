@@ -19,6 +19,10 @@
                 (the screen title links to it too)
     note      – (optional) a short note shown under the screen
 
+  A step can instead be a choice between screens. Give it "choice" (a short
+  label) and "options" (a list of steps). The options are shown side by side
+  in a dashed box and count as one step in the journey.
+
   Pages outside the main flow go in "otherPages" (below the journeys).
   They take the same fields, plus:
     from – a list of the pages that link to it
@@ -33,51 +37,30 @@
       { "type": "start",        "title": "Start page", "live": "/", "prototype": "start" },
       { "type": "radio",        "title": "Triage page", "live": "/triage", "prototype": "options-radio" },
       { "type": "radio",        "title": "Find a location", "live": "/location", "prototype": "location" },
-      { "type": "map",          "title": "Full screen map", "live": "/map", "prototype": "map", "note": "User draws a boundary on the map, see boundary journeys below" },     
-      { "type": "results",      "title": "Results page", "live": "/results?[polygonstring]", "prototype": "results" },
+      { "type": "map",          "title": "Full screen map", "live": "/map", "prototype": "map", "note": "User chooses how to add a boundary" },
+      { "choice": "Add a boundary", "options": [
+        { "type": "draw-polygon", "title": "Draw a polygon", "live": "/map", "prototype": "map", "note": "Modal inside the map" },
+        { "type": "draw-square",  "title": "Add a square", "live": "/map", "prototype": "map", "note": "Modal inside the map" },
+        { "type": "upload",       "title": "Upload a boundary", "live": "/upload", "prototype": "upload", "note": "GeoJSON, GeoPackage or Shape files, up to 50MB" }
+      ] },
+      { "type": "map",          "title": "Full screen map", "live": "/map", "prototype": "map", "note": "Boundary shown on the map, user selects to get results" },
+      { "type": "results",      "title": "Results page", "live": "/results?[polygonstring]", "prototype": "results", "note": "User can optionally download a Product 1, see pages outside the main flow" },
       { "type": "text",         "title": "Contact details", "live": "/contact-details", "prototype": "contact" },
       { "type": "check",        "title": "Check your answers", "live": "/check-answers", "prototype": "summary-fz3-no-check" },
       { "type": "confirmation", "title": "Confirmation page", "live": "/confirmation", "prototype": "confirmation-fz3" }
-    ]
-  },
-  {
-    "heading": "Downloading a Product 1",
-    "steps": [
-      { "type": "start",        "title": "Start page", "live": "/", "prototype": "start" },
-      { "type": "radio",        "title": "Triage page", "live": "/triage", "prototype": "options-radio" },
-      { "type": "radio",        "title": "Find a location", "live": "/location", "prototype": "location" },
-      { "type": "map",          "title": "Full screen map", "live": "/map", "prototype": "map", "note": "User draws a boundary on the map, see boundary journeys below" },     
-      { "type": "results",      "title": "Results page", "live": "/results?[polygonstring]", "prototype": "results" },
-      { "type": "product1",     "title": "Product 1", "live": "", "prototype": "product-1", "note": "Printable flood map with reference details and legends" }
-   ]
-  },
-  {
-    "heading": "Add a polygon boundary",
-    "steps": [
-      { "type": "map",         "title": "Flood map", "live": "/map", "prototype": "map" },
-      { "type": "draw-polygon", "title": "Add a polygon boundary", "live": "/map", "prototype": "map", "note": "Modal inside the map" },
-      { "type": "map",          "title": "Flood map", "live": "/map", "prototype": "map" }
-    ]
-  },
-  {
-    "heading": "Add a square boundary",
-    "steps": [
-      { "type": "map",         "title": "Flood map", "live": "/map", "prototype": "map" },
-      { "type": "draw-square", "title": "Add a square boundary",  "live": "/map", "prototype": "map", "note": "Modal inside the map" },
-      { "type": "map",         "title": "Flood map", "live": "/map", "prototype": "map" }
-    ]
-  },
-  {
-    "heading": "Upload a boundary",
-    "steps": [
-      { "type": "map",    "title": "Flood map", "live": "/map", "prototype": "map" },
-      { "type": "upload",  "title": "Upload a boundary", "live": "/upload",   "prototype": "upload", "note": "GeoJSON, GeoPackage or Shape files, up to 50MB" },
-      { "type": "map",    "title": "Flood map", "live": "/map", "prototype": "map" }
     ]
   }
 ] %}
 
 {% set otherPages = [
+  {
+    "type": "product1",
+    "title": "Product 1",
+    "live": "",
+    "prototype": "product-1",
+    "note": "Optional. Printable flood map with reference details and legends",
+    "from": ["Results page"]
+  },
   {
     "type": "content",
     "title": "How to use this data",
@@ -452,6 +435,16 @@
   }
   .uf-url-label--proto { background: #bbd4ea; color: #0c2d4a; }
 
+  /* ---------- Choice of screens in one step ---------- */
+  .uf-step--choice { width: auto; }
+  .uf--desktop .uf-step--choice, .uf--mobile .uf-step--choice { width: auto; }
+  .uf-choice {
+    list-style: none; margin: 0; padding: 0; display: flex; gap: 20px;
+    outline: 2px dashed #b1b4b6; outline-offset: 5px;
+  }
+  .uf-choice > li { display: flex; flex-direction: column; align-items: center; width: 200px; text-align: center; }
+  .uf--desktop .uf-choice > li, .uf--mobile .uf-choice > li { width: 130px; }
+
   /* ---------- Device frames ---------- */
   .uf-devices { display: flex; gap: 10px; align-items: flex-end; }
   .uf--desktop .uf-mobile, .uf--mobile .uf-desktop { display: none; }
@@ -693,6 +686,26 @@
         <h2 class="govuk-heading-m">{{ journey.heading }}</h2>
         <ol class="uf-steps">
           {% for step in journey.steps %}
+          {% if step.options %}
+          {% set stepNumber = loop.index %}
+          <li class="uf-step uf-step--choice">
+            <ul class="uf-choice" aria-label="{{ step.choice }}">
+              {% for opt in step.options %}
+              <li>
+                <span class="uf-number">{{ ("Step " ~ stepNumber ~ " – choose one") if loop.first else "or" }}</span>
+                <span class="uf-pill">
+                  {% set protoUrl = opt.prototype or opt.url %}
+                  {% if protoUrl %}<a href="{{ protoUrl }}">{{ opt.title }}</a>{% else %}{{ opt.title }}{% endif %}
+                </span>
+                {{ ufDevices(opt.type) }}
+                {% if opt.live %}<p class="uf-url"><span class="uf-url-label">Live</span>{{ opt.live }}</p>{% endif %}
+                {% if protoUrl %}<p class="uf-url"><span class="uf-url-label uf-url-label--proto">Prototype</span><a class="govuk-link" href="{{ protoUrl }}">{{ protoUrl }}</a></p>{% endif %}
+                {% if opt.note %}<p class="uf-note">{{ opt.note }}</p>{% endif %}
+              </li>
+              {% endfor %}
+            </ul>
+          </li>
+          {% else %}
           <li class="uf-step">
             <span class="uf-number">Step {{ loop.index }}</span>
             <span class="uf-pill">
@@ -704,6 +717,7 @@
             {% if protoUrl %}<p class="uf-url"><span class="uf-url-label uf-url-label--proto">Prototype</span><a class="govuk-link" href="{{ protoUrl }}">{{ protoUrl }}</a></p>{% endif %}
             {% if step.note %}<p class="uf-note">{{ step.note }}</p>{% endif %}
           </li>
+          {% endif %}
           {% endfor %}
         </ol>
       </section>
