@@ -15,7 +15,7 @@ applyTo:
 
 > **Status: Discovery.** This skill is still being explored. The steps below are a starting point and may change. Record anything that doesn't work well under [Open questions](#open-questions).
 
-A user flow is a page (`app/views/{version}/user-flow.html`) that shows each journey through the service as small desktop and mobile wireframes. See the guide at `/documentation/user-flow-guide` (`app/views/documentation/user-flow-guide.html`) for how it works.
+A user flow is a page (`app/views/{version}/user-flow.html`) that shows each journey through the service as small desktop and mobile wireframes. The wireframes, steps and styles are drawn by a shared file, `app/views/includes/user-flow/wireframes.njk`, used by every version and by the guide. See the guide at `/documentation/user-flow-guide` (pages in `app/views/documentation/user-flows/`) for how it works.
 
 ---
 
@@ -49,6 +49,15 @@ Each step or page:
 | `note` | Short note under the screen |
 | `from` | `otherPages` only – list of pages that link to it |
 
+A **choice step** shows several screens side by side in a dashed box, where the user goes through one of them and then carries on. It counts as one step. It has `choice` (a short label, used as the accessible name) and `options` (a list of normal steps) instead of `type`:
+```
+{ "choice": "Add a boundary", "options": [
+  { "type": "draw-polygon", "title": "Draw a polygon", "live": "/map", "prototype": "map" },
+  { "type": "draw-square",  "title": "Add a square", "live": "/map", "prototype": "map" },
+  { "type": "upload",       "title": "Upload a boundary", "live": "/upload", "prototype": "upload" }
+] }
+```
+
 Screen types: `start`, `hero`, `signin`, `tasklist`, `text`, `radio`, `checkbox`, `check`, `confirmation`, `dashboard`, `map`, `draw-polygon`, `draw-square`, `upload`, `results`, `product1`, `content`.
 
 ---
@@ -65,7 +74,9 @@ Common changes:
 - **Add a step** – copy a nearby step line, change it, keep it in journey order
 - **Remove a step** – delete the line; check the comma on the new last line
 - **Reorder steps** – move lines; order in the list is order on the page
-- **Add a journey** – copy a journey block, change `heading` and `steps`. Put alternative routes (e.g. different ways to add a boundary) in their own journey
+- **Add a choice** – if the user picks one of several screens at one point and then rejoins the same route (e.g. different ways to add a boundary), use a choice step rather than a separate journey, so steps aren't repeated
+- **Optional page** – if the user doesn't have to visit a page to carry on (e.g. Product 1 from results), add it to `otherPages` and mention it in a note on the page that links to it. Don't make it a step or a choice
+- **Add a journey** – copy a journey block, change `heading` and `steps`. Only for routes that differ from start to finish
 - **Page used in several journeys** – ask whether to change it in all of them
 - **Add a page outside the flow** – add to `otherPages` with a `from` list
 - **Choose a type** – pick the screen type closest to the real page. If none fits, use the nearest one and ask if a new type is wanted (see Step 3)
@@ -77,17 +88,17 @@ Rules:
 - For `prototype`, check `app/views/{version}/{value}.html` exists. If it doesn't, ask before adding a link to a page that doesn't exist
 
 ### Step 3 (only if asked): Add a new screen type
-Adding a type changes the shared part of the file, so confirm with the user first.
+Adding a type changes the shared file `app/views/includes/user-flow/wireframes.njk`, which every version's user flow uses, so confirm with the user first.
 1. In the `ufScreen` macro, add a branch for the new type. Build it from the existing classes (`uf-l`, `uf-h`, `uf-btn`, `uf-card`, etc.) and match the header style of similar screens (blue header for flood map service pages)
-2. Add any new CSS in the `<style>` block, with desktop and `.uf-mobile` rules
+2. Add any new CSS in the `ufStyles` macro, with desktop and `.uf-mobile` rules
 3. Check it fits the screen height: desktop screens are 104px tall, mobile 148px. Content below that is cut off
-4. Add the type to the type list in the comment at the top of the file
-5. Add it to the **Screen types you can use** list near the bottom of the file
-6. Add a row to the screen types table in `app/views/documentation/user-flow-guide.html`
+4. Add it to the `ufScreenTypes` list with a `name` and `use`. This adds it to **Screen types you can use** on every user flow and to the guide's screen types page
+5. Add the type to the type list in the comment at the top of the version's `user-flow.html`
 
 ### Step 4: Check the page loads
 - If the prototype is running, open `http://localhost:3000/{version}/user-flow` and check the change
 - Look at both **Desktop** and **Mobile** views if a screen type changed
+- If the shared file changed, also check `/documentation/user-flows/screen-types`
 
 ### Step 5: Summarise
 Tell the user what changed, and list any steps where the prototype link was left empty or the live address is still needed.

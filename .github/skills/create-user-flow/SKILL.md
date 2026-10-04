@@ -12,7 +12,7 @@ applyTo:
 
 > **Status: Discovery.** This skill is still being explored. The steps below are a starting point and may change. Record anything that doesn't work well under [Open questions](#open-questions).
 
-A user flow is a page (`app/views/{version}/user-flow.html`) that shows each journey through the service as small desktop and mobile wireframes, with the live and prototype address of each page. See the guide at `/documentation/user-flow-guide` (`app/views/documentation/user-flow-guide.html`).
+A user flow is a page (`app/views/{version}/user-flow.html`) that shows each journey through the service as small desktop and mobile wireframes, with the live and prototype address of each page. The wireframes are drawn by a shared file, `app/views/includes/user-flow/wireframes.njk`, so the version file only holds its lists. See the guide at `/documentation/user-flow-guide` (pages in `app/views/documentation/user-flows/`).
 
 This skill runs as part of `#create-prototype-version`, after the new version folder exists. It can also be run on its own for a version that doesn't have a user flow yet.
 
@@ -33,7 +33,7 @@ This skill runs as part of `#create-prototype-version`, after the new version fo
 
 ### Step 2: Copy it into the new version
 - Copy to `app/views/{new-version}/user-flow.html`
-- Do **not** change anything below the `journeys` and `otherPages` lists (screen type macros, styles and scripts)
+- Do **not** change anything below the `journeys` and `otherPages` lists (page layout and scripts). Do not copy `includes/user-flow/wireframes.njk` – it is shared
 - No route is needed: the Prototype Kit serves `app/views/{new-version}/user-flow.html` at `/{new-version}/user-flow` automatically
 
 ### Step 3: Check the prototype links
@@ -92,7 +92,6 @@ These are being explored in discovery:
 
 - Should the user flow be created automatically by `#create-prototype-version`, or offered as an optional step?
 - Should journeys be carried over unchanged, or should the skill ask which journeys have changed in the new version?
-- Should the screen type macros and styles move into a shared include, so each version's file only holds its journeys? This would make fixes apply to every version, but older flows would change when the shared file changes
 - Should the skill try to fill in `prototype` links automatically by matching page names in the new version folder?
 - Should the home page **User flow** link always point to the newest version?
 

@@ -1,0 +1,26 @@
+{% extends "layouts/user-flow-guide.html" %}
+{% set pageName = "A user flow for a new version" %}
+{% set pageUrl = "/documentation/user-flows/new-version" %}
+
+{% block guideContent %}
+<h1 class="govuk-heading-xl">A user flow for a new version</h1>
+
+<p class="govuk-body-l">When you make a new prototype version, copy the user flow from the previous version and update it.</p>
+
+<div class="govuk-inset-text">
+  The <a class="govuk-link" href="/documentation/skill-create-user-flow">Create a user flow</a> skill does all of these steps for you. Ask Copilot to “create a user flow for v3.9.0.0”.
+</div>
+
+<h2 class="govuk-heading-l">Doing it yourself</h2>
+
+<ol class="govuk-list govuk-list--number">
+  <li>Copy <code>user-flow.html</code> from the previous version’s folder into the new version’s folder, for example <code>app/views/v3-9-0-0/</code>.</li>
+  <li>Update the steps for anything that has changed in this version.</li>
+  <li>Check that the <code>prototype</code> links point to pages that exist in the new version – see <a class="govuk-link" href="/documentation/user-flows/links">linking to prototype pages</a>.</li>
+  <li>On the <a class="govuk-link" href="/">prototype home page</a>, add a “View user flow” link to the new version’s card, and update the <strong>User flow</strong> link under <strong>Related links and information</strong> so it points to the new version.</li>
+  <li>Add <code>"userFlowUrl"</code> to the version’s entry in <code>app/views/versions.json</code>, for example <code>"userFlowUrl": "/v3-9-0-0/user-flow"</code>.</li>
+  <li>Open the new user flow in the browser and check it loads.</li>
+</ol>
+
+<p class="govuk-body">You do not need to copy the wireframes. They are in a shared file, <code>app/views/includes/user-flow/wireframes.njk</code>, which every version uses.</p>
+{% endblock %}

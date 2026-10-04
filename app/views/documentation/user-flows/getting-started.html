@@ -1,0 +1,69 @@
+{% extends "layouts/user-flow-guide.html" %}
+{% set pageName = "Getting started" %}
+{% set pageUrl = "/documentation/user-flows/getting-started" %}
+
+{% block guideContent %}
+<h1 class="govuk-heading-xl">Getting started</h1>
+
+<p class="govuk-body-l">Each prototype version has its own user flow. You change it by editing two lists at the top of one file.</p>
+
+<div class="govuk-inset-text">
+  <p class="govuk-body">You can ask Copilot to make most changes for you, using these skills:</p>
+  <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-0">
+    <li><a class="govuk-link" href="/documentation/skill-edit-user-flow">Edit a user flow</a> – add, remove or change steps, journeys and pages</li>
+    <li><a class="govuk-link" href="/documentation/skill-create-user-flow">Create a user flow</a> – make a user flow for a new version</li>
+  </ul>
+</div>
+
+<h2 class="govuk-heading-l">Where the user flow lives</h2>
+
+<p class="govuk-body">For version 3.8.0.0, the file is <code>app/views/v3-8-0-0/user-flow.html</code>. You can view it at <a class="govuk-link" href="/v3-8-0-0/user-flow">/v3-8-0-0/user-flow</a>.</p>
+
+<p class="govuk-body">Other versions follow the same pattern: <code>app/views/{version}/user-flow.html</code>.</p>
+
+<h2 class="govuk-heading-l">What to change in the file</h2>
+
+<p class="govuk-body">Only edit the two lists near the top. Everything else draws the page.</p>
+
+<div class="ufg-file">
+  <div class="ufg-file__name">app/views/v3-8-0-0/user-flow.html</div>
+  <div class="ufg-file__part ufg-file__part--leave">
+    <div><span class="ufg-tag ufg-tag--leave">Leave</span><br><code>{% raw %}{# … #}{% endraw %}</code></div>
+    <p>Notes on how to fill in the lists</p>
+  </div>
+  <div class="ufg-file__part ufg-file__part--edit">
+    <div><span class="ufg-tag ufg-tag--edit">Edit</span><br><code>journeys</code></div>
+    <p>The journeys and their steps, including <a class="govuk-link" href="/documentation/user-flows/choice-steps">choice steps</a>. Each journey becomes a grey box with arrows.</p>
+  </div>
+  <div class="ufg-file__part ufg-file__part--edit">
+    <div><span class="ufg-tag ufg-tag--edit">Edit</span><br><code>otherPages</code></div>
+    <p>Pages outside the main flow. They go in the dashed box at the bottom.</p>
+  </div>
+  <div class="ufg-file__part ufg-file__part--leave">
+    <div><span class="ufg-tag ufg-tag--leave">Leave</span><br><code>{% raw %}{% block content %}{% endraw %}</code></div>
+    <p>The page layout, view buttons and print button</p>
+  </div>
+</div>
+
+<div class="ufg-file">
+  <div class="ufg-file__name">app/views/includes/user-flow/wireframes.njk</div>
+  <div class="ufg-file__part ufg-file__part--leave">
+    <div><span class="ufg-tag ufg-tag--leave">Leave</span><br><code>Shared</code></div>
+    <p>Draws the wireframes, steps and styles for every version’s user flow and this guide. Only change it to <a class="govuk-link" href="/documentation/user-flows/screen-types">add a screen type</a>.</p>
+  </div>
+</div>
+
+<h2 class="govuk-heading-l">How the lists are written</h2>
+
+<p class="govuk-body">The lists use a format like JSON. You do not need to know it well, but you need to keep to a few rules or the page will not load:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>put every name and value in double quotes, like <code>"title": "Results page"</code></li>
+  <li>put a comma after every item in a list except the last one</li>
+  <li>keep the brackets in pairs – every <code>{</code> needs a <code>}</code> and every <code>[</code> needs a <code>]</code></li>
+</ul>
+
+<p class="govuk-body">The easiest way to add something is to copy a line that already works and change it.</p>
+
+<p class="govuk-body">If the page stops loading after a change, see <a class="govuk-link" href="/documentation/user-flows/troubleshooting">if the page does not load</a>.</p>
+{% endblock %}
