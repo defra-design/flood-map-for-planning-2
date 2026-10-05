@@ -52,10 +52,11 @@ You'll be asked for:
 
 **Required:**
 - **Version number** (e.g., `3.9.0.0`)
-- **Type** (release / in-development / research)
+- **Type** (release / in-development / research / snapshot)
   - `release`: Completed, shipped to production
   - `in-development`: Active design work
   - `research`: User research round (maps to research findings URL)
+  - `snapshot`: Design snapshot — a version recorded for the design history that was not tested, usually because the design moved on before research took place
 
 **Optional (can be added/updated later):**
 - **Date**: Release/research date (use "TBC" for research, exact date for releases)
@@ -243,6 +244,19 @@ Or for research rounds:
 "date": "Research round - February 2026"
 ```
 
+### Mark a version as a design snapshot
+If the design moves on before a version is tested, don't leave it as "Research round - TBC". Change it to a snapshot in `app/views/versions.json`:
+```json
+"type": "snapshot",
+"date": "Design snapshot - not tested"
+```
+
+Also:
+- Update the date line on the card in `app/views/index.html` to match
+- Remove any tags for features that were tested in a later round instead, and add them to that version
+- Change the card's design history link text from "design history and research findings" to "design history"
+- Follow the design-history-entry skill to mark the post as a snapshot
+
 ### Link to the User Flow
 When the version has a user flow page (for example `app/views/v3-9-0-0/user-flow.html`), edit `app/views/versions.json`:
 ```json
@@ -284,7 +298,7 @@ When design history post is published, edit `app/views/versions.json`:
 Used in generated files:
 - `{{VERSION}}` → version number (e.g., `3.9.0.0`)
 - `{{VERSION_ID}}` → folder version ID (e.g., `v3-9-0-0`)
-- `{{TYPE}}` → type (release/in-development/research)
+- `{{TYPE}}` → type (release/in-development/research/snapshot)
 - `{{DATE}}` → date string (or "TBC")
 - `{{TAGS}}` → initial tags list (empty or provided)
 - `{{PAGES}}` → initial pages list (empty or provided)

@@ -4,7 +4,7 @@
 
 ### Before Running Skill
 - [ ] Version number decided (e.g., `3.9.0.0`)
-- [ ] Type chosen: release / in-development / research
+- [ ] Type chosen: release / in-development / research / snapshot
 - [ ] Know roughly when version will release (or "TBC")
 
 ### Skill Execution
@@ -20,6 +20,7 @@
 - [ ] Update `app/views/versions.json` with tags as features are finalized
 - [ ] Update `pages` list in JSON as you create new pages
 - [ ] Update date when release/research date is confirmed
+- [ ] If the design moves on before the version is tested, change it to a design snapshot
 - [ ] If the version has a user flow, add `userFlowUrl` to versions.json and a user flow link to the card
 
 ### When Design History Post is Ready
@@ -32,7 +33,7 @@
 ```json
 {
   "number": "3.9.0.0",
-  "type": "in-development",              // or "release", "research"
+  "type": "in-development",              // or "release", "research", "snapshot"
   "date": "TBC",                         // or "Release - 15 Feb 2026"
   "tags": [],                            // Add as you design: ["tag1", "tag2"]
   "pages": [],                           // Add as you create pages
@@ -69,6 +70,12 @@
 **For research:**
 ```json
 "date": "Research round - January 2026"
+```
+
+**For a design snapshot (not tested):**
+```json
+"type": "snapshot",
+"date": "Design snapshot - not tested"
 ```
 
 ### Add user flow link (when user flow created)

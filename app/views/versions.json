@@ -2,9 +2,9 @@
   "versions": [
     {
       "number": "3.8.0.0",
-      "type": "in-development",
-      "date": "In development",
-      "tags": ["map"],
+      "type": "research",
+      "date": "Research round - August 2026",
+      "tags": ["map", "map-styling", "postcode-pin", "draw-boundary", "side-panel", "surface-water"],
       "pages": [
         { "name": "Start page", "url": "/v3-8-0-0/" },
         { "name": "Map page", "url": "/v3-8-0-0/map" }
@@ -12,15 +12,19 @@
       "prototypeUrl": "/v3-8-0-0/",
       "userFlowUrl": "/v3-8-0-0/user-flow",
       "hasPrototype": true,
-      "designHistoryUrl": null
+      "designHistoryUrl": "/design-history/3-8-0-0/"
     },
     {
       "number": "3.7.0.3",
-      "type": "research",
-      "date": "Research round - TBC",
-      "tags": ["product-1", "map-styling"],
+      "type": "snapshot",
+      "date": "Design snapshot - not tested",
+      "tags": ["product-1", "research-sign-up"],
       "pages": [
-        { "name": "Product 1", "url": "/v3-7-0-3/product1-3" }
+        { "name": "Product 1", "url": "/v3-7-0-3/product1-3" },
+        { "name": "Check your details", "url": "/v3-7-0-2/summary-fz3" },
+        { "name": "Check your details (no research sign up)", "url": "/v3-7-0-2/summary-fz3-no-check" },
+        { "name": "Confirmation page", "url": "/v3-7-0-2/confirmation-fz3" },
+        { "name": "Confirmation email", "url": "/v3-7-0-2/email-template" }
       ],
       "prototypeUrl": "/v3-7-0-3/product1-3",
       "hasPrototype": true,
@@ -29,19 +33,14 @@
     {
       "number": "3.7.0.2",
       "type": "research",
-      "date": "Research round - TBC",
-      "tags": ["boundary-upload", "research-sign-up"],
+      "date": "Research round - April to May 2026",
+      "tags": ["boundary-upload"],
       "pages": [
-        { "name": "Start page", "url": "/v3-7-0-2" },
         { "name": "Upload boundary", "url": "/v3-7-0-2/upload" },
         { "name": "300 hectare error", "url": "/v3-7-0-2/upload_error_hectare" },
         { "name": "File format error", "url": "/v3-7-0-2/upload_error_format" },
         { "name": "File size error", "url": "/v3-7-0-2/upload_error_size" },
-        { "name": "Boundary format error", "url": "/v3-7-0-2/upload_error_geo" },
-        { "name": "Check your details", "url": "/v3-7-0-2/summary-fz3" },
-        { "name": "Check your details (no research sign up)", "url": "/v3-7-0-2/summary-fz3-no-check" },
-        { "name": "Confirmation page", "url": "/v3-7-0-2/confirmation-fz3" },
-        { "name": "Confirmation email", "url": "/v3-7-0-2/email-template" }
+        { "name": "Boundary format error", "url": "/v3-7-0-2/upload_error_geo" }
       ],
       "prototypeUrl": "/v3-7-0-2",
       "hasPrototype": true,

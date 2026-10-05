@@ -79,11 +79,19 @@ Each post entry should include:
   "date": "2026-09-25",
   "url": "/design-history/0-3-7/",
   "title": "Release 0.3.7",
-  "type": "release",        // or "research", "bugfix"
+  "type": "release",        // or "research", "snapshot", "bugfix"
   "tags": ["boundary-drawing", "accessibility"],
   "summary": "Brief one-liner"
 }
 ```
+
+## Post types
+
+| Type | Use for | Landing page tag |
+|------|---------|------------------|
+| `release` | Changes shipped to production | Purple "Release" |
+| `research` | User research rounds and findings | Green "User research" |
+| `snapshot` | A version recorded but not tested, because the design moved on before research took place | Grey "Design snapshot" |
 
 ## Best Practices
 

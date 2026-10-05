@@ -4,10 +4,19 @@
       "version": "3.7.0.3",
       "date": "2026-09-25",
       "url": "/design-history/3-7-0-3/",
-      "title": "Research round v3.7.0.3",
+      "title": "Design snapshot v3.7.0.3",
+      "type": "snapshot",
+      "tags": ["product-1", "research-sign-up"],
+      "summary": "Snapshot of the Product 1 report preview and research participant sign up. Not tested: the design moved on to v3.8.0.0 before research took place"
+    },
+    {
+      "version": "3.8.0.0",
+      "date": "2026-08-01",
+      "url": "/design-history/3-8-0-0/",
+      "title": "Research round v3.8.0.0",
       "type": "research",
-      "tags": ["product-1", "map-styling"],
-      "summary": "Research round exploring Product 1 and map styling updates"
+      "tags": ["map", "map-styling", "postcode-pin", "draw-boundary", "side-panel", "surface-water"],
+      "summary": "Usability testing of new map features: postcode pin, boundary button, expanded side panel, surface water key and polygon snapback"
     },
     {
       "version": "3.7.0.2",
@@ -15,8 +24,8 @@
       "url": "/design-history/3-7-0-2/",
       "title": "Research round v3.7.0.2",
       "type": "research",
-      "tags": ["boundary-upload", "research-sign-up"],
-      "summary": "Research round exploring boundary upload and research sign-up features"
+      "tags": ["boundary-upload"],
+      "summary": "Usability testing of boundary upload: useful for large or complex sites, while drawing a polygon is currently the preferred option"
     },
     {
       "version": "3.6.1",

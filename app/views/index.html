@@ -52,11 +52,16 @@
         <div id="versions-grid" style="display: grid; grid-template-columns: 1fr; gap: 1.5rem; margin-bottom: 2rem;">
       
       <!-- v3.8.0.0 -->
-      <div class="version-card govuk-!-padding-4" data-tags="map" style="border: 1px solid #b1b4b6;">
+      <div class="version-card govuk-!-padding-4" data-tags="map map-styling postcode-pin draw-boundary side-panel surface-water" style="border: 1px solid #b1b4b6;">
         <h3 class="govuk-heading-m govuk-!-margin-0 govuk-!-margin-bottom-2">v3.8.0.0</h3>
-        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">In development</p>
+        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Research round - August 2026</p>
         <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
           <span class="govuk-tag" data-tag="map">Map</span>
+          <span class="govuk-tag" data-tag="map-styling">Map styling</span>
+          <span class="govuk-tag" data-tag="postcode-pin">Postcode pin</span>
+          <span class="govuk-tag" data-tag="draw-boundary">Draw boundary</span>
+          <span class="govuk-tag" data-tag="side-panel">Side panel</span>
+          <span class="govuk-tag" data-tag="surface-water">Surface water</span>
         </div>
         <details class="govuk-details" style="margin-bottom: 1.5rem;">
           <summary class="govuk-details__summary">
@@ -73,41 +78,16 @@
         <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
           <a href="/v3-8-0-0/" class="govuk-link govuk-body-m">View v3.8.0.0 prototype</a>
           <a href="/v3-8-0-0/user-flow" class="govuk-link govuk-body-m">View v3.8.0.0 user flow</a>
-          <span class="govuk-body-m" style="color: #626a6e;">Design history not yet available</span>
+          <a href="/design-history/3-8-0-0/" class="govuk-link govuk-body-m">v3.8.0.0 design history and research findings</a>
         </div>
       </div>
 
       <!-- v3.7.0.3 -->
-      <div class="version-card govuk-!-padding-4" data-tags="product-1 map-styling" style="border: 1px solid #b1b4b6;">
+      <div class="version-card govuk-!-padding-4" data-tags="product-1 research-sign-up" style="border: 1px solid #b1b4b6;">
         <h3 class="govuk-heading-m govuk-!-margin-0 govuk-!-margin-bottom-2">v3.7.0.3</h3>
-        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Research round - TBC</p>
+        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Design snapshot - not tested</p>
         <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
           <span class="govuk-tag" data-tag="product-1">Product 1</span>
-          <span class="govuk-tag" data-tag="map-styling">Map styling</span>
-        </div>
-        <details class="govuk-details" style="margin-bottom: 1.5rem;">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">Changed pages in this version</span>
-          </summary>
-          <div class="govuk-details__text">
-            <ul class="govuk-list">
-              <li><a class="govuk-link" href="/v3-7-0-3/product1-3">Product 1</a></li>
-            </ul>
-          </div>
-        </details>
-        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin: 1rem 0;">
-        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
-          <a href="/v3-7-0-3/product1-3" class="govuk-link govuk-body-m">View v3.7.0.3 prototype</a>
-          <a href="/design-history/3-7-0-3/" class="govuk-link govuk-body-m">v3.7.0.3 design history and research findings</a>
-        </div>
-      </div>
-
-      <!-- v3.7.0.2 -->
-      <div class="version-card govuk-!-padding-4" data-tags="boundary-upload research-sign-up" style="border: 1px solid #b1b4b6;">
-        <h3 class="govuk-heading-m govuk-!-margin-0 govuk-!-margin-bottom-2">v3.7.0.2</h3>
-        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Research round - TBC</p>
-        <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
-          <span class="govuk-tag" data-tag="boundary-upload">Boundary upload</span>
           <span class="govuk-tag" data-tag="research-sign-up">Research sign up</span>
         </div>
         <details class="govuk-details" style="margin-bottom: 1.5rem;">
@@ -116,16 +96,39 @@
           </summary>
           <div class="govuk-details__text">
             <ul class="govuk-list">
-              <li><a class="govuk-link" href="/v3-7-0-2">Start page</a></li>
+              <li><a class="govuk-link" href="/v3-7-0-3/product1-3">Product 1</a></li>
+              <li><a class="govuk-link" href="/v3-7-0-2/summary-fz3">Check your details</a></li>
+              <li><a class="govuk-link" href="/v3-7-0-2/summary-fz3-no-check">Check your details (no research sign up)</a></li>
+              <li><a class="govuk-link" href="/v3-7-0-2/confirmation-fz3">Confirmation page</a></li>
+              <li><a class="govuk-link" href="/v3-7-0-2/email-template">Confirmation email</a></li>
+            </ul>
+          </div>
+        </details>
+        <hr class="govuk-section-break govuk-section-break--m govuk-section-break--visible" style="margin: 1rem 0;">
+        <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+          <a href="/v3-7-0-3/product1-3" class="govuk-link govuk-body-m">View v3.7.0.3 prototype</a>
+          <a href="/design-history/3-7-0-3/" class="govuk-link govuk-body-m">v3.7.0.3 design history</a>
+        </div>
+      </div>
+
+      <!-- v3.7.0.2 -->
+      <div class="version-card govuk-!-padding-4" data-tags="boundary-upload" style="border: 1px solid #b1b4b6;">
+        <h3 class="govuk-heading-m govuk-!-margin-0 govuk-!-margin-bottom-2">v3.7.0.2</h3>
+        <p class="govuk-body-m govuk-!-margin-bottom-2" style="color: #626a6e;">Research round - April to May 2026</p>
+        <div style="margin-bottom: 1.5rem; display: flex; flex-wrap: wrap; gap: 0.5rem;">
+          <span class="govuk-tag" data-tag="boundary-upload">Boundary upload</span>
+        </div>
+        <details class="govuk-details" style="margin-bottom: 1.5rem;">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">Pages tested in this version</span>
+          </summary>
+          <div class="govuk-details__text">
+            <ul class="govuk-list">
               <li><a class="govuk-link" href="/v3-7-0-2/upload">Upload boundary</a></li>
               <li><a class="govuk-link" href="/v3-7-0-2/upload_error_hectare">300 hectare error</a></li>
               <li><a class="govuk-link" href="/v3-7-0-2/upload_error_format">File format error</a></li>
               <li><a class="govuk-link" href="/v3-7-0-2/upload_error_size">File size error</a></li>
               <li><a class="govuk-link" href="/v3-7-0-2/upload_error_geo">Boundary format error</a></li>
-              <li><a class="govuk-link" href="/v3-7-0-2/summary-fz3">Check your details</a></li>
-              <li><a class="govuk-link" href="/v3-7-0-2/summary-fz3-no-check">Check your details (no research sign up)</a></li>
-              <li><a class="govuk-link" href="/v3-7-0-2/confirmation-fz3">Confirmation page</a></li>
-              <li><a class="govuk-link" href="/v3-7-0-2/email-template">Confirmation email</a></li>
             </ul>
           </div>
         </details>

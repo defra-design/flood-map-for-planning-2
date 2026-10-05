@@ -39,7 +39,7 @@
     }
   ],
   "instructions": {
-    "adding-a-post": "When you create a new post, add an entry here with version, date, URL, title, type (release|research|bugfix), tags, and summary",
+    "adding-a-post": "When you create a new post, add an entry here with version, date, URL, title, type (release|research|snapshot|bugfix). Use snapshot for a version that was not tested because the design moved on, tags, and summary",
     "date-format": "Use ISO 8601 format: YYYY-MM-DD",
     "url-pattern": "/design-history/{version}/",
     "version-naming": "Use semantic versioning (0.3.7) not dot notation (0-3-7) for version field; folder names use dashes",

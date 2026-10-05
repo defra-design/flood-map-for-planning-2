@@ -2,28 +2,92 @@
 
 {% block post %}
 
-<h1 class="govuk-heading-xl">Research round v3.7.0.3</h1>
+<h1 class="govuk-heading-xl">Design snapshot v3.7.0.3</h1>
 
 <p class="govuk-body-l">
-  Published <time datetime="TBC">TBC</time>
+  Published <time datetime="2026-09-25">25 September 2026</time>
 </p>
 
 <p class="govuk-body">
-  User research round exploring Product 1 and map styling updates.
+  <strong class="govuk-tag govuk-tag--grey">Design snapshot</strong>
 </p>
-
-<h2 class="govuk-heading-l">Research focus</h2>
 
 <p class="govuk-body">
-  [Research findings and focus areas to be added]
+  This is a record of the Product 1 report design and a research recruitment feature at this point in time.
 </p>
 
-<h2 class="govuk-heading-l">Screenshots</h2>
+<div class="govuk-inset-text">
+  This version was not tested with users. The design moved on to
+  <a href="/v3-8-0-0/" class="govuk-link">v3.8.0.0</a> before a research round took place.
+</div>
 
-<!-- Generated screenshots -->
+<h2 class="govuk-heading-l">What changed</h2>
 
-<h2 class="govuk-heading-l">Product 1</h2>
-<p class="govuk-body"></p>
-<img src="images/01-product-1.png" alt="Screenshot of Product 1">
+<h3 class="govuk-heading-m">An HTML preview of the report before download</h3>
+
+<p class="govuk-body">
+  This design shows the Product 1 report as an HTML page, so users can preview it before they download it.
+</p>
+
+<p class="govuk-body">
+  Users often find the report area does not scale the way they expected. Seeing the preview first lets them go back
+  and adjust their boundary before downloading, which avoids unnecessary downloads.
+</p>
+
+<p class="govuk-body">
+  From the preview page, users can download the report as a PDF or print it.
+</p>
+
+<h3 class="govuk-heading-m">A more accessible report</h3>
+
+<p class="govuk-body">
+  Showing the report as an HTML page first gives users a far more accessible copy of the report before they get the PDF.
+</p>
+
+<h3 class="govuk-heading-m">More data on the map</h3>
+
+<p class="govuk-body">
+  The map in the report now shows more data, including surface water and climate change scenarios. This matches
+  the data available in the online service.
+</p>
+
+<h3 class="govuk-heading-m">Product 1 report</h3>
+<img src="images/01-product-1.png" alt="Screenshot of the Product 1 report preview page">
+
+<h2 class="govuk-heading-l">Recruiting research participants</h2>
+
+<p class="govuk-body">
+  We currently struggle to recruit users to take part in research. This design adds ways for users to sign up to research
+  as part of ordering flood risk data, at points where they have just used the service.
+</p>
+
+<p class="govuk-body">
+  These pages were first designed in <a href="/v3-7-0-2" class="govuk-link">v3.7.0.2</a>, but were not part of that research round.
+  They have not yet been tested with users.
+</p>
+
+<h3 class="govuk-heading-m">Check your details</h3>
+<p class="govuk-body">
+  An optional "Research" checkbox lets users consent to being contacted by the Environment Agency for research to help improve the service.
+</p>
+<img src="images/02-check-your-details.png" alt="Screenshot of the check your details page with an optional checkbox to consent to being contacted for research">
+
+<h3 class="govuk-heading-m">Check your details (no research sign up)</h3>
+<p class="govuk-body">
+  An alternative version of the page without the research checkbox, for comparison.
+</p>
+<img src="images/03-check-your-details-no-research-sign-up.png" alt="Screenshot of the check your details page without the research checkbox">
+
+<h3 class="govuk-heading-m">Confirmation page</h3>
+<p class="govuk-body">
+  A "Help make GOV.UK better" banner at the top of the confirmation page links to a research sign-up form.
+</p>
+<img src="images/04-confirmation-page.png" alt="Screenshot of the request submitted confirmation page with a banner linking to research sign up">
+
+<h3 class="govuk-heading-m">Confirmation email</h3>
+<p class="govuk-body">
+  The same research sign-up banner appears at the end of the confirmation email.
+</p>
+<img src="images/05-confirmation-email.png" alt="Screenshot of the confirmation email with a research sign-up banner at the bottom">
 
 {% endblock %}

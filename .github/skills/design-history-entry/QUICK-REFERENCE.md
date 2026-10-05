@@ -82,6 +82,19 @@ Screenshots: snap-indicator.png, keyboard-help.png
 Tags: user-research, accessibility
 ```
 
+### Design Snapshot (not tested)
+```
+@copilot #design-history-entry
+
+Design snapshot v3.7.0.3
+Date: 2026-09-25
+Not tested: the design moved on to v3.8.0.0 before research
+Change: Product 1 page redesign
+Screenshot: 01-product-1.png
+Tags: product-1
+```
+Post type `snapshot`, grey "Design snapshot" tag, no research findings section.
+
 ### Feature-Heavy Release
 ```
 @copilot #design-history-entry

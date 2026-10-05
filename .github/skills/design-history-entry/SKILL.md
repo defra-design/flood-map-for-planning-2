@@ -11,6 +11,7 @@ Create and integrate design history posts into the flood-map-for-planning-2 prot
 
 - **End of each prototype release** — Document design changes that happened during development
 - **After user research rounds** — Capture research findings and design decisions
+- **Design snapshots** — Record a version that was not tested because the design moved on before research took place
 - **Version bumps** — Create history report as part of your release process
 - **Quick design updates** — Log notable changes to existing features
 
@@ -170,7 +171,30 @@ Changes made based on research:
 I have screenshots showing before/after for each change.
 ```
 
-### Example 3: Quick Bug Fix Release
+### Example 3: Design Snapshot
+
+```
+@copilot #design-history-entry
+
+Design snapshot v3.7.0.3
+Date: 2026-09-25
+This version was not tested. The design moved on to v3.8.0.0 before research took place.
+
+What changed:
+- Product 1 page redesign
+
+Screenshots from the Product 1 page.
+```
+
+For a snapshot, the post should:
+- Use the title "Design snapshot v[VERSION]"
+- Show a grey tag: `<strong class="govuk-tag govuk-tag--grey">Design snapshot</strong>`
+- Explain in an inset text that it was not tested, linking to the version that superseded it
+- Use a "What changed" section instead of "Research focus" — never leave placeholder findings
+- Use `"type": "snapshot"` in `posts.json`, and only tag features shown in this version (if a feature was tested in a later round, tag it there instead)
+- Appear on the design history landing page with a grey "Design snapshot" tag and a "View snapshot →" link
+
+### Example 4: Quick Bug Fix Release
 
 ```
 @copilot #design-history-entry
@@ -237,7 +261,7 @@ If the version already appears on the index page (created via create-prototype-v
 2. Find the card for your version (search for the version number)
 3. Update these fields:
    - **Date**: Change from "In development" or "TBC" to actual date
-   - **Status/Type**: Update to "Research round - TBC" or final date
+   - **Status/Type**: Update to "Research round - TBC", "Design snapshot - not tested" or final date
    - **Links**: Add design history link once post is ready
 4. Commit changes
 
@@ -282,12 +306,14 @@ This prevents duplicate cards and keeps the index clean.
 ### Version Naming
 - **Semantic versioning**: `0.3.7` (major.minor.patch)
 - **Research rounds**: `release-0-3-5-research` or `surface-water-depths-cc`
+- **Design snapshots**: use the version number, e.g. `3-7-0-3`
 - **Consistent format**: Dashes, not dots, for folder names
 
 ### Metadata & Tags
 Use tags to make posts discoverable:
 - Feature areas: `boundary-drawing`, `results-page`, `map-controls`
 - Activity type: `user-research`, `release`, `bugfix`, `accessibility`
+- Post types in `posts.json`: `release`, `research`, `snapshot`, `bugfix`
 - Date-based: `2026-q3`, `release-cycle-5`
 
 ## Automated Screenshot Capture (Optional)

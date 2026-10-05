@@ -26,7 +26,7 @@ This skill helps you extract key changes and research findings from design histo
   - Version number
   - Date range
   - Tags (filter by research focus)
-  - Type (research vs release)
+  - Type (research, release or snapshot — snapshots have no research findings)
 - Copy version, date, title, tags, and summary for each
 
 ### Step 3: Read Design History Posts
@@ -88,10 +88,10 @@ research-sign-up, boundary-upload, map-styling
 
 ## Example
 
-**Changelog for v3.7.0.3 research round:**
+**Changelog for a research round (illustrative example):**
 
 ```markdown
-# Changelog: Research Round v3.7.0.3 (September 2026)
+# Changelog: Research Round v3.9.0.0 (Month YYYY)
 
 ## Overview
 Product 1 integration and map styling improvements tested with users. Findings inform styling decisions and Product 1 interaction patterns.

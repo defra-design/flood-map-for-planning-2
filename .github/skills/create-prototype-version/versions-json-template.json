@@ -20,8 +20,8 @@
     "designHistoryUrl": null
   },
   "notes": {
-    "type": "One of: 'release', 'in-development', 'research'",
-    "date": "Examples: 'TBC', 'In development', 'Release - 22 January 2026', 'Research round - January 2026'",
+    "type": "One of: 'release', 'in-development', 'research', 'snapshot'. Use 'snapshot' for a version that was not tested because the design moved on before research took place",
+    "date": "Examples: 'TBC', 'In development', 'Release - 22 January 2026', 'Research round - January 2026', 'Design snapshot - not tested'",
     "tags": "Array of tag strings. Add/update as features are finalized",
     "pages": "Array of objects with 'name' and 'url'. Add/update as pages are created",
     "userFlowUrl": "Set to the version's user flow page when it has one. Format: '/v3-9-0-0/user-flow'",
@@ -59,6 +59,17 @@
       ],
       "prototypeUrl": "/research/draw-boundary-testing/",
       "designHistoryUrl": "/design-history/draw-boundary-testing/"
+    },
+    "design_snapshot": {
+      "number": "3.9.0.1",
+      "type": "snapshot",
+      "date": "Design snapshot - not tested",
+      "tags": ["product-1"],
+      "pages": [
+        { "name": "Product 1", "url": "/v3-9-0-1/product1" }
+      ],
+      "prototypeUrl": "/v3-9-0-1/product1",
+      "designHistoryUrl": "/design-history/3-9-0-1/"
     }
   }
 }

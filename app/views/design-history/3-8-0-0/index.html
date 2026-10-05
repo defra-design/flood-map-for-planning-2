@@ -1,0 +1,157 @@
+{% extends "design-history/_layouts/post.html" %}
+
+{% block post %}
+
+<h1 class="govuk-heading-xl">Research round v3.8.0.0</h1>
+
+<p class="govuk-body-l">
+  Research carried out August 2026
+</p>
+
+<p class="govuk-body">
+  <strong class="govuk-tag govuk-tag--green">User research</strong>
+</p>
+
+<p class="govuk-body">
+  A new mapping component is being deployed on Flood Map for Planning, bringing some new features to the map.
+  This research round tested the usability of those changes.
+</p>
+
+<h2 class="govuk-heading-l">Why we did this research</h2>
+
+<p class="govuk-body">
+  We wanted to understand how users find and use the boundary tools, search controls, surface water key and postcode pin
+  when following the journey to request a Product 1 (a download of the flood map).
+</p>
+
+<h2 class="govuk-heading-l">What we did</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Prototype testing, using scenarios based on users' real workflows</li>
+  <li>Semi-structured interviews about the prototype, including whether labels, icons and interactions matched what users expected</li>
+</ul>
+
+<h2 class="govuk-heading-l">What changed and what we found</h2>
+
+<h3 class="govuk-heading-m">Postcode pin and label</h3>
+
+<p class="govuk-body">
+  Searching for a postcode now drops a pin with a label at the centre of the postcode.
+</p>
+
+<img src="images/01-postcode-pin.png" alt="Map page showing a red pin and a label with the searched postcode">
+
+<p class="govuk-body">What we found:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>Users who noticed the pin saw it as helpful and time-saving, taking them straight to their site without workarounds</li>
+  <li>Not all regular users noticed the change unless prompted</li>
+  <li>Users expected to be able to remove the pin, as the label could clutter the map, get in the way, and could be mistaken for the centre of the site. Most assumed it would disappear when they started drawing a boundary</li>
+  <li>Few users bookmark the map, so the postcode search is likely to be used earlier in the journey</li>
+</ul>
+
+<h3 class="govuk-heading-m">Boundary button location and colour</h3>
+
+<p class="govuk-body">
+  The "Add or edit a location boundary" button has moved from the side panel to a green button at the top centre of the map.
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">Before</p>
+    <img src="images/03-boundary-button-current.png" alt="Before: boundary drawing options shown in the side panel">
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">After</p>
+    <img src="images/02-boundary-button-proposed.png" alt="After: a green 'Add or edit a location boundary' button at the top centre of the map, opened to show boundary options">
+  </div>
+</div>
+
+<p class="govuk-body">What we found:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>All users found the button and recognised it as the start of the map download (Product 1) journey, although one user said this was not clear</li>
+  <li>Most were positive or indifferent to the change. One user preferred the old placement in the side panel, as it left more space to see the map</li>
+  <li>It was not obvious that drawing a boundary leads to a summary report, so some users would not have thought to draw one</li>
+  <li>Some users prefer to take screenshots because it is easier</li>
+</ul>
+
+<h3 class="govuk-heading-m">Expanded side panel</h3>
+
+<p class="govuk-body">
+  The side panel options are now always expanded, instead of being hidden behind "Show" and "Hide" controls.
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">Before</p>
+    <img src="images/05-side-panel-current.png" alt="Before: side panel with each section collapsed behind a 'Show' link">
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">After</p>
+    <img src="images/04-side-panel-proposed.png" alt="After: side panel with all dataset, climate change, likelihood and depth options visible">
+  </div>
+</div>
+
+<p class="govuk-body">What we found:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>All users worked through the side panel to find the datasets</li>
+  <li>Scrolling was seen as little effort for the amount of data shown</li>
+  <li>Users preferred fewer clicks, and seeing all the available data is clearer for less experienced users</li>
+  <li>Surface water depth information was seen as useful. Some regular users mistook the surface water extent options for new map features</li>
+</ul>
+
+<h3 class="govuk-heading-m">Surface water key</h3>
+
+<p class="govuk-body">
+  The surface water key has been updated to sit with the new map component.
+</p>
+
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">Before</p>
+    <img src="images/07-surface-water-key-current.png" alt="Before: surface water depth key in millimetres">
+  </div>
+  <div class="govuk-grid-column-one-half">
+    <p class="govuk-body govuk-!-font-weight-bold">After</p>
+    <img src="images/06-surface-water-key-proposed.png" alt="After: updated surface water depth key in millimetres">
+  </div>
+</div>
+
+<p class="govuk-body">What we found:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>The key worked well in most situations</li>
+  <li>Most users thought the depths started at 0mm. The few who knew surface water data starts at 75mm felt the key should make this clear</li>
+  <li>Without the info panel or surrounding context, some colours were hard to tell apart. The shading inside a drawn boundary made this harder</li>
+  <li>Users valued seeing all surface water likelihoods on one map for concise reporting</li>
+</ul>
+
+<h3 class="govuk-heading-m">Self-intersecting polygon "snapback"</h3>
+
+<p class="govuk-body">
+  If a user draws a boundary where the lines cross over each other, the shape snaps back, as self-intersecting boundaries are not allowed.
+</p>
+
+<img src="images/08-self-intersecting-polygon.png" alt="A boundary being drawn on the map with lines that cross each other, forming a bow-tie shape">
+
+<p class="govuk-body">What we found:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>It caused some confusion, but users worked it out by trial and error, helped by experience of other mapping software</li>
+  <li>Users thought drawing a shape like this would be rare</li>
+  <li>Some users asked for a hint or note explaining that boundary lines cannot cross, to avoid frustration</li>
+  <li>Some users only need a rough boundary. Users who tried "Add square" found the zoom confusing</li>
+</ul>
+
+<h2 class="govuk-heading-l">Recommendations</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Make it clearer how to remove the postcode pin or label</li>
+  <li>Add the pin to the postcode search on the triage page</li>
+  <li>Keep "Add boundary" in the top centre position</li>
+  <li>Improve the zoom when using "Add square"</li>
+  <li>Keep the side panel without "Show" and "Hide" controls until more information is added</li>
+  <li>Make it clear where the surface water key starts</li>
+  <li>Explore improvements to the surface water colours</li>
+  <li>Explore the shading inside a drawn boundary</li>
+  <li>Add a hint or note to help users avoid drawing self-intersecting shapes</li>
+</ul>
+
+{% endblock %}
