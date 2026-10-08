@@ -10,20 +10,22 @@ const path = require('path')
 
 // Add your routes here
 
-// Serve design history images and assets as static files
+// Serve design history and design spec images/assets as static files
 // This middleware only serves files with image extensions to avoid interfering with Nunjucks template rendering
 router.use((req, res, next) => {
-  if (req.path.match(/\/design-history\/.*\.(png|jpg|jpeg|gif|svg|webp|css|js)$/i)) {
+  const match = req.path.match(/^\/(design-history|design-spec)\/.*\.(png|jpg|jpeg|gif|svg|webp|css|js)$/i)
+  if (match) {
+    const section = match[1]
     const filePath = path.join(__dirname, 'views', req.path)
-    
+
     // Security check to prevent directory traversal
     const resolvedPath = path.resolve(filePath)
-    const viewsPath = path.resolve(path.join(__dirname, 'views/design-history'))
-    
+    const viewsPath = path.resolve(path.join(__dirname, 'views', section))
+
     if (!resolvedPath.startsWith(viewsPath)) {
       return res.status(403).send('Forbidden')
     }
-    
+
     // Check if file exists and serve it
     if (fs.existsSync(resolvedPath)) {
       res.sendFile(resolvedPath)
@@ -45,6 +47,7 @@ router.use('/v3-7-0-1', require('./routes_v3-7-0-1'))
 router.use('/v3-7-0-2', require('./routes_v3-7-0-2'))
 router.use('/v3-7-0-3', require('./routes_v3-7-0-3'))
 router.use('/v3-8-0-0', require('./routes_v3-8-0-0'))
+router.use('/v3-9-0-0', require('./routes_v3-9-0-0'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {

@@ -6,7 +6,7 @@ const masterMapDark = require('./styles/OS_VTS_27700_Dark.json')
 const openTile = require('./styles/open-tile.json')
 const vtsTile = require('./styles/vts-tile.json')
 
-const folder = 'v3-8-0-0'
+const folder = 'v3-9-0-0'
 
 // Add your routes here
 
@@ -19,6 +19,12 @@ router.get('/user-journey', function (req, res) {
 
 // set up route variable results page option
 require('./router/addResultsPageRoutes')(router, folder)
+
+// The "Find a location" step has been removed from this version's user flow - map search is
+// planned to cover NGR, easting/northing and lat/long instead (see design spec). Redirect so
+// no links break, registered before addLocationPageRoutes so it takes priority.
+router.get('/location', (req, res) => res.redirect('/' + folder + '/map'))
+
 require('./router/addLocationPageRoutes')(router, folder)
 require('./router/addTriagePageRoutes')(router, folder)
 require('./router/addCheckBoundaryPageRoutes')(router, folder)
@@ -29,7 +35,7 @@ router.get('/mock', (req, res) => res.redirect('/' + folder + '/map?cz=504621.1,
 
 router.get('/defra-map/config', function (req, res) {
   res.json({
-    version: 'v3-8-0-0',
+    version: 'v3-9-0-0',
     OS_ACCOUNT_NUMBER: '12345678',
     layerNameSuffix: '_NON_PRODUCTION',
     agolServiceUrl: 'https://services1.arcgis.com/JZM7qJpmv7vJ0Hzx/arcgis/rest/services',
@@ -48,16 +54,16 @@ router.get('/defra-map/info-panel', async (req, res) => {
   res.render(`${folder}/info-panel`, { ...params, gaId: '12345' })
 })
 
-router.get('/map-help', (req, res) => res.redirect('/v3-8-0-0/help'))
+router.get('/map-help', (req, res) => res.redirect('/v3-9-0-0/help'))
 // The map's "get summary" button goes to /results at the site root, so send it to this version's results page.
 // setupRouter() returns the kit's shared router, so this route also matches inside version paths such as
-// /v3-8-0-0/results – only redirect at the site root, to avoid a redirect loop.
+// /v3-9-0-0/results – only redirect at the site root, to avoid a redirect loop.
 router.get('/results', (req, res, next) => {
   if (req.baseUrl) return next()
   const query = req.url.includes('?') ? req.url.slice(req.url.indexOf('?')) : ''
-  res.redirect('/v3-8-0-0/results' + query)
+  res.redirect('/v3-9-0-0/results' + query)
 })
-router.get('/product-one', (req, res) => res.redirect('/v3-8-0-0/product1'))
+router.get('/product-one', (req, res) => res.redirect('/v3-9-0-0/product1'))
 
 router.get('/assets/*', (req, res) => {
   const newPath = req.originalUrl.replace('/assets', '/public')

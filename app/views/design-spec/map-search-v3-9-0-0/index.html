@@ -1,0 +1,133 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Map search enhancement - design spec" %}
+
+{% block content %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/v3-9-0-0/user-flow">v3.9.0.0 user flow</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Map search enhancement - design spec</li>
+      </ol>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Spec for development</strong>
+        <h1 class="govuk-heading-xl">Map search enhancement</h1>
+        <p class="govuk-body-l">
+          Extending the map's search box to accept National Grid References, easting/northing pairs, and
+          latitude/longitude (decimal or degrees-minutes-seconds), alongside the existing place name and postcode search.
+        </p>
+
+        <div class="govuk-inset-text">
+          This feature could not be built as a clickable prototype. The map's search box is part of a shared component
+          (<code>@defra/interactive-map</code>) built and maintained in a separate repository, so this page sets out the
+          intended behaviour as a spec for a developer to implement, with example states shown as annotated images.
+        </div>
+
+        <h2 class="govuk-heading-l">Why this change</h2>
+        <p class="govuk-body">
+          Today, the map's search box only matches place names and postcodes. Users who already have a precise
+          location - for example from a site plan, surveyor's report, or GPS device - have no way to search by
+          National Grid Reference, easting/northing, or latitude/longitude. They currently have to convert their
+          coordinates to a place name or postcode first, or guess-and-check by panning the map.
+        </p>
+
+        <h2 class="govuk-heading-l">Technical starting point</h2>
+        <p class="govuk-body">
+          For whoever picks this up: the map's search box is rendered by the <code>search</code> plugin in the
+          <code>@defra/interactive-map</code> package, consumed by the production <code>fmp-app</code> service. That
+          plugin already supports a <code>customDatasets</code> option alongside its default <code>osNamesURL</code>
+          (place name/postcode) dataset - each dataset has <code>includeRegex</code>/<code>excludeRegex</code> to decide
+          which input it should respond to, and a <code>parseResults</code> function to shape results for the map.
+          The existing place name dataset's <code>excludeRegex</code> already excludes grid reference and coordinate-looking
+          input, which suggests this exact feature was anticipated but never built. This is the extension point to use,
+          rather than replacing the search box.
+        </p>
+
+        <h2 class="govuk-heading-l">Search states</h2>
+        <p class="govuk-body">Example images to be added below for each state.</p>
+
+        <h3 class="govuk-heading-m">1. Empty search box</h3>
+        <p class="govuk-body">Default state, placeholder text unchanged.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/01-empty.png" alt="Map search box in its default, empty state" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
+          <p class="design-spec-placeholder__label">Image: images/01-empty.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">2. Typing a National Grid Reference</h3>
+        <p class="govuk-body">For example <code>SJ8632 1979</code>. Suggestions show the parsed grid reference, not a place name list.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/02-typing-ngr.png" alt="Map search box showing a single suggestion for a typed National Grid Reference" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
+          <p class="design-spec-placeholder__label">Image: images/02-typing-ngr.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">3. Typing a latitude/longitude</h3>
+        <p class="govuk-body">Decimal (<code>53.4084, -2.9916</code>) or DMS (<code>53°24'30"N 2°59'30"W</code>).</p>
+        <div class="design-spec-placeholder">
+          <img src="images/03-typing-latlong.png" alt="Map search box showing a single suggestion for a typed latitude/longitude" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
+          <p class="design-spec-placeholder__label">Image: images/03-typing-latlong.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">4. Match found and selected</h3>
+        <p class="govuk-body">Map pans and zooms to the coordinate, with the same marker style as a place name match.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/04-match-found.png" alt="Map zoomed to a selected coordinate match, with a marker shown" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
+          <p class="design-spec-placeholder__label">Image: images/04-match-found.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">5. No match / invalid input</h3>
+        <p class="govuk-body">Shown when the input looks like a coordinate but cannot be parsed, or falls outside Great Britain.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/05-no-match.png" alt="Map search box showing a no results message for an invalid or out-of-range coordinate" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
+          <p class="design-spec-placeholder__label">Image: images/05-no-match.png</p>
+        </div>
+
+        <h2 class="govuk-heading-l">Acceptance criteria</h2>
+        <p class="govuk-body">Draft - please review and refine before handing to development.</p>
+
+        <ol class="govuk-list govuk-list--number">
+          <li>If a user types a National Grid Reference (with or without spaces, for example <code>SJ8632197947</code> or <code>SJ 8632 1979</code>), when they pause typing, then the search box shows one suggestion with the parsed grid reference as the label.</li>
+          <li>If a user types a numeric easting/northing pair (comma or space separated, for example <code>433200, 342200</code>), when they pause typing, then the search box shows one suggestion labelled with the easting and northing values.</li>
+          <li>If a user types a decimal latitude/longitude pair (for example <code>53.4084, -2.9916</code>), when they pause typing, then the search box shows one suggestion labelled with the latitude and longitude to 5 decimal places.</li>
+          <li>If a user types a degrees-minutes-seconds latitude/longitude (for example <code>53°24'30"N 2°59'30"W</code>), when they pause typing, then the search box shows one suggestion labelled the same way as the decimal format.</li>
+          <li>If a user selects any coordinate-type suggestion, when it is applied, then the map pans and zooms to that location and shows a marker, consistent with selecting a place name or postcode match.</li>
+          <li>If a user types something that could be a place name or postcode (for example "Manchester" or "SW1A 1AA"), when they pause typing, then only the existing place name/postcode suggestions show - the coordinate formats must not interfere with this.</li>
+          <li>Only a full National Grid Reference (two-letter prefix plus a complete easting and northing, for example <code>SJ8632197947</code>) is treated as a grid reference - agreed with development to avoid ambiguity with postcode prefixes. Anything shorter falls through to the place name/postcode dataset as normal.</li>
+        </ol>
+
+        <h2 class="govuk-heading-l">Edge cases</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Grid reference or easting/northing resolves to a location outside Great Britain's National Grid - show the no-match state rather than an error page</li>
+          <li>Latitude/longitude resolves to a location outside Great Britain - show the no-match state, since the map only covers England</li>
+          <li>Partial or incomplete grid references (for example <code>SJ86</code>, a 100km square only) - treat as not yet a valid match rather than guessing a location</li>
+          <li>Grid reference vs postcode prefix ambiguity (for example two letters followed by a short number) - resolved: only a full NGR is accepted, so a short input like this always falls through to the place name/postcode dataset. Confirmed with development; review again after user testing in case it needs revisiting</li>
+          <li>Latitude/longitude with mismatched or missing compass directions (for example a bare <code>53.4, -2.9</code> with no N/S/E/W) - decimal format already covers this as signed numbers, so no direction letters are required</li>
+        </ul>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <p class="govuk-body">
+          <a class="govuk-link" href="/v3-9-0-0/user-flow">Back to v3.9.0.0 user flow</a>
+        </p>
+        <p class="govuk-body">
+          <a class="govuk-link" href="/v3-9-0-0/map">View the current map prototype (without this feature)</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+  .design-spec-placeholder { border: 1px dashed #b1b4b6; padding: 1em; margin: 0 0 1.5em; background: #f8f8f8; }
+  .design-spec-placeholder img { max-width: 100%; height: auto; display: block; }
+  .design-spec-placeholder__label { font-size: 0.875rem; color: #6f777b; margin: 0.5em 0 0; }
+  .design-spec-placeholder--missing img { display: none; }
+  .design-spec-placeholder--missing { background: #fff; }
+  .design-spec-placeholder--missing .design-spec-placeholder__label::before { content: "Not yet added - "; }
+</style>
+{% endblock %}

@@ -6,6 +6,7 @@
 - [ ] Version number decided (e.g., `3.9.0.0`)
 - [ ] Type chosen: release / in-development / research / snapshot
 - [ ] Know roughly when version will release (or "TBC")
+- [ ] Know which pages are planned to change, be added, or be removed (don't assume the previous version's page list carries over — pages like start rarely change)
 
 ### Skill Execution
 - [ ] Run: `@copilot #create-prototype-version`
@@ -37,7 +38,7 @@
   "date": "TBC",                         // or "Release - 15 Feb 2026"
   "tags": [],                            // Add as you design: ["tag1", "tag2"]
   "pages": [],                           // Add as you create pages
-  "prototypeUrl": "/v3-9-0-0/",
+  "prototypeUrl": "/v3-9-0-0/start",
   "userFlowUrl": null,                   // Add when user flow exists
   "designHistoryUrl": null               // Add when post exists
 }

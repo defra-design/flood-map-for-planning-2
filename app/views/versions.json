@@ -1,6 +1,19 @@
 {
   "versions": [
     {
+      "number": "3.9.0.0",
+      "type": "in-development",
+      "date": "TBC",
+      "tags": ["map-search", "user-flow-simplification"],
+      "pages": [
+        { "name": "Map page", "url": "/v3-9-0-0/map" }
+      ],
+      "prototypeUrl": "/v3-9-0-0/start",
+      "userFlowUrl": "/v3-9-0-0/user-flow",
+      "hasPrototype": true,
+      "designHistoryUrl": null
+    },
+    {
       "number": "3.8.0.0",
       "type": "research",
       "date": "Research round - August 2026",

@@ -57,6 +57,10 @@ You'll be asked for:
   - `in-development`: Active design work
   - `research`: User research round (maps to research findings URL)
   - `snapshot`: Design snapshot — a version recorded for the design history that was not tested, usually because the design moved on before research took place
+- **Planned page changes**: Which pages are planned to change, be added, or be removed in this version? Don't assume — pages like the start page rarely change, so ask rather than carrying over the previous version's full page list. Use the answer to:
+  - Prefill `pages` in versions.json with only the pages expected to change
+  - Set `prototypeUrl` to the actual entry page for this version (commonly `/v[version]/start`, not `/v[version]/` — many versions have no view at the folder root, so linking there 404s)
+  - Suggest initial tags that describe the planned changes
 
 **Optional (can be added/updated later):**
 - **Date**: Release/research date (use "TBC" for research, exact date for releases)

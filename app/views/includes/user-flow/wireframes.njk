@@ -342,6 +342,7 @@
   {% set protoUrl = item.prototype or item.url %}
   {% if item.live %}<p class="uf-url"><span class="uf-url-label">Live</span>{{ item.live }}</p>{% endif %}
   {% if protoUrl %}<p class="uf-url"><span class="uf-url-label uf-url-label--proto">Prototype</span><a class="govuk-link" href="{{ protoUrl }}">{{ protoUrl }}</a></p>{% endif %}
+  {% if item.design %}<p class="uf-url"><span class="uf-url-label uf-url-label--design">Design spec</span><a class="govuk-link" href="{{ item.design }}">{{ item.designLabel or "View design spec" }}</a></p>{% endif %}
 {% endmacro %}
 
 {% macro ufTitle(item) %}
@@ -430,6 +431,7 @@
     background: #cecece; color: #0b0c0c; word-break: normal;
   }
   .uf-url-label--proto { background: #bbd4ea; color: #0c2d4a; }
+  .uf-url-label--design { background: #d6bbea; color: #2e0c4a; }
 
   /* ---------- Choice of screens in one step ---------- */
   .uf-step--choice { width: auto; }
