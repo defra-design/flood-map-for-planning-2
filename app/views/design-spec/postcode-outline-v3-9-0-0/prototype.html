@@ -1,0 +1,175 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Postcode outline - low fidelity prototype" %}
+
+{% block header %}{% endblock %}
+{% block footer %}{% endblock %}
+
+{% block main %}
+<main id="main-content" class="lofi">
+  <h1 class="govuk-visually-hidden">Postcode outline - low fidelity prototype</h1>
+
+  <div class="lofi-stage" id="stage">
+    <img class="lofi-map" id="map-base" src="images/prototype-map.png" alt="Flood map showing central Bristol with flood zones">
+    <img class="lofi-map" id="map-outline" src="images/prototype-map-outline.png" alt="Flood map with the BS1 5AH postcode area outlined by a dashed line and the base map outside it tinted" hidden>
+
+    <!-- Search button, shown when the search is closed (sits over the button in the screenshot) -->
+    <button class="lofi-hotspot" id="search-open" type="button" style="left:293px;top:76px;width:102px;height:40px" aria-label="Search for a place in England"></button>
+
+    <!-- Search box, stays open while a location is showing -->
+    <div class="lofi-search" id="search" hidden>
+      <label class="govuk-visually-hidden" for="search-input">Search for a place in England</label>
+      <input class="lofi-search__input" id="search-input" type="search" autocomplete="off" placeholder="Search for a place in england" aria-describedby="search-hint" aria-controls="suggestions" aria-expanded="false">
+      <span class="govuk-visually-hidden" id="search-hint">Try BS1 5AH</span>
+      <button class="lofi-search__clear" id="search-clear" type="button" aria-label="Close search">
+        <svg width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false"><path d="M3 3l14 14M17 3L3 17" stroke="#0b0c0c" stroke-width="2.5" fill="none"/></svg>
+      </button>
+      <ul class="lofi-suggestions" id="suggestions" role="listbox" hidden></ul>
+    </div>
+
+    <!-- Postcode label, above the outline -->
+    <div class="lofi-label" id="label" tabindex="0" hidden>BS1 5AH, City of Bristol</div>
+
+    <!-- Add or edit a location boundary button in the screenshot -->
+    <button class="lofi-hotspot" id="boundary" type="button" style="left:966px;top:76px;width:268px;height:40px" aria-label="Add or edit a location boundary"></button>
+
+    <div class="lofi-toast" id="toast" hidden></div>
+  </div>
+
+  <div class="govuk-visually-hidden" aria-live="polite" id="announce"></div>
+
+  <div class="lofi-note">
+    <strong class="govuk-tag govuk-tag--grey">Low fidelity prototype</strong>
+    Search for <strong>BS1 5AH</strong>.
+    <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/">Back to the design spec</a>
+  </div>
+</main>
+
+<style>
+  body { background: #f3f2f1; overflow: hidden; }
+  .lofi { position: relative; height: 100vh; margin: 0; padding: 0; }
+  .lofi-stage { position: absolute; top: 0; left: 0; width: 1920px; height: 992px; transform-origin: top left; overflow: hidden; background: #fff; }
+  .lofi-map { position: absolute; top: 0; left: 0; width: 1920px; height: 992px; display: block; }
+  .lofi-map[hidden] { display: none; }
+  .lofi-hotspot { position: absolute; background: transparent; border: 0; padding: 0; cursor: pointer; }
+  .lofi-hotspot:focus-visible { outline: 3px solid #ffdd00; box-shadow: 0 0 0 7px #0b0c0c; }
+  .lofi-search { position: absolute; left: 293px; top: 75px; width: 300px; font-family: "GDS Transport", arial, sans-serif; }
+  .lofi-search[hidden] { display: none; }
+  .lofi-search__input { box-sizing: border-box; width: 100%; height: 42px; padding: 0 44px 0 10px; border: 2px solid #0b0c0c; border-radius: 0; font: inherit; font-size: 16px; color: #0b0c0c; background: #fff; }
+  .lofi-search__input::-webkit-search-cancel-button { display: none; }
+  .lofi-search__input:focus { outline: 3px solid #ffdd00; outline-offset: 0; box-shadow: inset 0 0 0 2px #0b0c0c; }
+  .lofi-search__clear { position: absolute; right: 2px; top: 2px; width: 38px; height: 38px; border: 0; background: #fff; cursor: pointer; display: flex; align-items: center; justify-content: center; }
+  .lofi-search__clear:focus-visible { outline: 3px solid #ffdd00; background: #ffdd00; box-shadow: inset 0 -4px #0b0c0c; }
+  .lofi-suggestions { list-style: none; margin: 0; padding: 0; background: #fff; box-shadow: 0 2px 4px rgba(0,0,0,.25); }
+  .lofi-suggestions[hidden] { display: none; }
+  .lofi-suggestions li { padding: 7px 10px; font-size: 16px; color: #505a5f; border-bottom: 1px solid #f3f2f1; cursor: pointer; }
+  .lofi-suggestions li[aria-selected="true"], .lofi-suggestions li:hover { background: #1d70b8; color: #fff; }
+  .lofi-suggestions li b { color: inherit; }
+  /* Postcode label: current grey style with a 2px white halo, 12px above the outline */
+  .lofi-label { position: absolute; left: 1039px; top: 412px; width: 160px; height: 35px; box-sizing: border-box; display: flex; align-items: center; justify-content: center; background: #393f42; color: #fff; font-family: "GDS Transport", arial, sans-serif; font-size: 14px; border-radius: 3px; box-shadow: 0 0 0 2px #fff; }
+  .lofi-label[hidden] { display: none; }
+  /* Focus style outside the halo: 4px black border, then 3px yellow ring */
+  .lofi-label:focus { outline: none; box-shadow: 0 0 0 2px #fff, 0 0 0 6px #0b0c0c, 0 0 0 9px #ffdd00; }
+  .lofi-toast { position: absolute; left: 50%; bottom: 80px; transform: translateX(-50%); background: #0b0c0c; color: #fff; padding: 12px 18px; font-family: "GDS Transport", arial, sans-serif; font-size: 16px; }
+  .lofi-toast[hidden] { display: none; }
+  .lofi-note { position: fixed; right: 12px; bottom: 12px; background: #fff; padding: 8px 12px; font-family: "GDS Transport", arial, sans-serif; font-size: 16px; box-shadow: 0 1px 4px rgba(0,0,0,.3); }
+  .lofi-note { display: flex; align-items: center; gap: 8px; }
+  .lofi-note .govuk-tag { white-space: nowrap; max-width: none; margin: 0; }
+</style>
+
+<script>
+  (function () {
+    var stage = document.getElementById('stage')
+    var baseMap = document.getElementById('map-base')
+    var outlineMap = document.getElementById('map-outline')
+    var openBtn = document.getElementById('search-open')
+    var search = document.getElementById('search')
+    var input = document.getElementById('search-input')
+    var clearBtn = document.getElementById('search-clear')
+    var list = document.getElementById('suggestions')
+    var label = document.getElementById('label')
+    var boundary = document.getElementById('boundary')
+    var toast = document.getElementById('toast')
+    var announce = document.getElementById('announce')
+    var RESULTS = ['BS1 5AH, City of Bristol', 'BS10 5AH, City of Bristol', 'BS16 5AH, City of Bristol', 'BD1 5AH, Bradford', 'BL1 5AH, Bolton', 'BN1 5AH, The City of Brighton and Hove', 'BR1 5AH, Greater London', 'BS21 5AH, North Somerset']
+    var active = -1
+    var toastTimer
+
+    function fit () {
+      var s = Math.min(window.innerWidth / 1920, window.innerHeight / 992)
+      stage.style.transform = 'scale(' + s + ')'
+      stage.style.left = Math.max(0, (window.innerWidth - 1920 * s) / 2) + 'px'
+    }
+    window.addEventListener('resize', fit); fit()
+
+    function say (text) { announce.textContent = ''; setTimeout(function () { announce.textContent = text }, 50) }
+    function showToast (text) {
+      toast.textContent = text; toast.hidden = false
+      clearTimeout(toastTimer); toastTimer = setTimeout(function () { toast.hidden = true }, 4000)
+    }
+    function setOutline (on) {
+      outlineMap.hidden = !on; baseMap.hidden = on; label.hidden = !on
+    }
+    function updateClearName () {
+      clearBtn.setAttribute('aria-label', input.value ? 'Clear search' : 'Close search')
+    }
+    function hideList () { list.hidden = true; input.setAttribute('aria-expanded', 'false'); active = -1 }
+    function renderList () {
+      var q = input.value.trim().toLowerCase().replace(/\s+/g, ' ')
+      list.innerHTML = ''
+      if (q.length < 2) { hideList(); return }
+      var matches = RESULTS.filter(function (r) { return r.toLowerCase().replace(/\s+/g, ' ').indexOf(q) !== -1 || r.toLowerCase().replace(/\s/g, '').indexOf(q.replace(/\s/g, '')) !== -1 })
+      if (!matches.length) { hideList(); return }
+      matches.forEach(function (r, i) {
+        var li = document.createElement('li')
+        li.id = 'suggestion-' + i; li.setAttribute('role', 'option')
+        var parts = r.split(', ')
+        li.innerHTML = '<b>' + parts[0] + '</b>, ' + parts.slice(1).join(', ')
+        li.addEventListener('mousedown', function (e) { e.preventDefault(); choose(r) })
+        list.appendChild(li)
+      })
+      list.hidden = false; input.setAttribute('aria-expanded', 'true')
+    }
+    function choose (r) {
+      input.value = r; hideList(); updateClearName()
+      if (r === 'BS1 5AH, City of Bristol') {
+        setOutline(true); say('Showing ' + r + ' on the map')
+      } else {
+        setOutline(false); showToast('Only BS1 5AH works in this low fidelity prototype')
+      }
+    }
+    function clearSearch () {
+      input.value = ''; hideList(); setOutline(false); updateClearName()
+      say('Search cleared. Outline removed'); input.focus()
+    }
+
+    openBtn.addEventListener('click', function () {
+      openBtn.hidden = true; search.hidden = false; input.focus()
+    })
+    input.addEventListener('input', function () {
+      updateClearName(); renderList()
+      if (!input.value && !outlineMap.hidden) { setOutline(false); say('Search cleared. Outline removed') }
+    })
+    input.addEventListener('keydown', function (e) {
+      var items = list.querySelectorAll('li')
+      if (e.key === 'ArrowDown' && items.length) { e.preventDefault(); active = Math.min(active + 1, items.length - 1) }
+      else if (e.key === 'ArrowUp' && items.length) { e.preventDefault(); active = Math.max(active - 1, 0) }
+      else if (e.key === 'Enter') { e.preventDefault(); if (items.length) choose(items[Math.max(active, 0)].textContent); return }
+      else if (e.key === 'Escape') { hideList(); return }
+      else return
+      items.forEach(function (li, i) { li.setAttribute('aria-selected', i === active ? 'true' : 'false') })
+      input.setAttribute('aria-activedescendant', active >= 0 ? 'suggestion-' + active : '')
+    })
+    input.addEventListener('blur', function () { setTimeout(hideList, 150) })
+    clearBtn.addEventListener('click', function () {
+      if (input.value) { clearSearch() } else {
+        // nothing showing: the cross closes the search, as it does now
+        hideList(); search.hidden = true; openBtn.hidden = false; openBtn.focus()
+      }
+    })
+    boundary.addEventListener('click', function () {
+      if (!outlineMap.hidden || input.value) { setOutline(false); input.value = ''; hideList(); updateClearName(); say('Search cleared and outline removed while you draw a boundary') }
+      showToast('Drawing a boundary would start here. The search is cleared and the postcode outline removed')
+    })
+  })()
+</script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Postcode label close button - further design" %}
+
+{% block content %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/design-spec/postcode-outline-v3-9-0-0/">Postcode outline - design spec</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Postcode label close button</li>
+      </ol>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <strong class="govuk-tag govuk-tag--grey govuk-!-margin-bottom-4">Further design to consider</strong>
+        <h1 class="govuk-heading-xl">Close button inside the postcode label</h1>
+        <p class="govuk-body-l">
+          A possible next iteration of the <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/">postcode outline design spec</a>,
+          to consider only if keeping the search open is not enough.
+        </p>
+
+        <div class="govuk-inset-text">
+          This is not part of the postcode outline spec. The first design keeps the search box open with the location in
+          it, so users can clear the search to remove the outline. Only consider this design if research shows that
+          does not work.
+        </div>
+
+        <h2 class="govuk-heading-l">The design</h2>
+        <p class="govuk-body">
+          A close button is joined to the right of the postcode label, rather than being a separate control elsewhere on
+          the map. This makes the label 56 pixels wider (the 44 pixel button plus 12 pixels of space before it) and
+          9 pixels taller, so it covers slightly more of the map than the label alone.
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>The button is a 44 by 44 pixel target, above the 24 by 24 pixel minimum in WCAG 2.2, to help users with dexterity issues and touch screen users. The label grows to 44 pixels tall to fit it</li>
+          <li>The label keeps the main spec's style: white text on dark grey <code>#393f42</code>, with a 2px white halo around the whole label including the button</li>
+          <li>A 14 by 14 pixel white cross icon with a 2px stroke, separated from the postcode text by a thin divider</li>
+          <li>12 pixels of space between the postcode text and the divider, so a focus ring on the close button never covers the text</li>
+          <li>The button has an accessible name that includes the postcode, for example "Remove BS1 5AH outline"</li>
+          <li>It is reached with the Tab key, and is always visible rather than only appearing on hover</li>
+          <li>Selecting it removes the outline, tint and label, and also clears the search box, so the two stay in step</li>
+          <li>After removal, focus moves to the search box so keyboard users are not left on a control that no longer exists</li>
+        </ul>
+        <div class="design-spec-placeholder">
+          <img src="images/01-label-close-button.png" alt="The postcode label with a close button on its right, showing a white cross separated from the postcode text by a thin divider">
+          <p class="design-spec-placeholder__label">Image: images/01-label-close-button.png</p>
+        </div>
+
+        <h2 class="govuk-heading-l">Keyboard focus</h2>
+        <p class="govuk-body">
+          The name label keeps its own focus stop and
+          <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/#label-focus">focus style</a> from the main
+          spec, and the close button is added as a second focus stop. Pressing Tab moves to the name label first, then to
+          the close button. Each takes the focus style on its own, so it is clear which part is selected.
+        </p>
+        <p class="govuk-body">
+          The focus style sits outside the white halo. Where the 2 parts meet, the focus style of the focused part sits on
+          top of the other part, so the yellow ring and black border are visible the whole way round and never hidden
+          behind the other part.
+        </p>
+
+        <h3 class="govuk-heading-m">Name label focused</h3>
+        <p class="govuk-body">The focus style sits over the edge of the close button.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/02-label-name-focus-with-close-button.png" alt="The postcode label with a close button, where the name part has focus. Its black border and yellow ring overlap the edge of the close button">
+          <p class="design-spec-placeholder__label">Image: images/02-label-name-focus-with-close-button.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">Close button focused</h3>
+        <p class="govuk-body">The focus style sits over the edge of the name label.</p>
+        <div class="design-spec-placeholder">
+          <img src="images/03-label-close-button-focus.png" alt="The postcode label with its close button focused. Its black border and yellow ring overlap the edge of the name label">
+          <p class="design-spec-placeholder__label">Image: images/03-label-close-button-focus.png</p>
+        </div>
+
+        <h2 class="govuk-heading-l">Things to consider</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Users would have 2 ways to remove the outline (clearing the search and the close button), so both must do exactly the same thing</li>
+          <li>If research shows the label is not needed, this design would need a different place for the close button</li>
+        </ul>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <p class="govuk-body">
+          <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/">Back to the postcode outline design spec</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+  .design-spec-placeholder { border: 1px dashed #b1b4b6; padding: 1em; margin: 0 0 1.5em; background: #f8f8f8; }
+  .design-spec-placeholder img { max-width: 100%; height: auto; display: block; }
+  .design-spec-placeholder__label { font-size: 0.875rem; color: #6f777b; margin: 0.5em 0 0; }
+</style>
+{% endblock %}

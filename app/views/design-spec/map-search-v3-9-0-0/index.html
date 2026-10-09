@@ -29,6 +29,11 @@
           intended behaviour as a spec for a developer to implement, with example states shown as annotated images.
         </div>
 
+        <p class="govuk-body">
+          <a class="govuk-link" href="/design-spec/map-search-v3-9-0-0/prototype">Try the low fidelity clickable prototype</a>
+          (try ST 58205 72708, 358205, 172708 or 51.4518, -2.6029).
+        </p>
+
         <h2 class="govuk-heading-l">Why this change</h2>
         <p class="govuk-body">
           Today, the map's search box only matches place names and postcodes. Users who already have a precise
@@ -74,7 +79,7 @@
         </div>
 
         <h3 class="govuk-heading-m">4. Match found and selected</h3>
-        <p class="govuk-body">Map pans and zooms to the coordinate, with the same marker style as a place name match.</p>
+        <p class="govuk-body">Map pans and zooms to the coordinate, with the same marker and label as a place name match. See <a class="govuk-link" href="#marker-label-style">marker and label style</a>.</p>
         <div class="design-spec-placeholder">
           <img src="images/04-match-found.png" alt="Map zoomed to a selected coordinate match, with a marker shown" onerror="this.closest('.design-spec-placeholder').classList.add('design-spec-placeholder--missing')">
           <p class="design-spec-placeholder__label">Image: images/04-match-found.png</p>
@@ -87,6 +92,21 @@
           <p class="design-spec-placeholder__label">Image: images/05-no-match.png</p>
         </div>
 
+        <h2 class="govuk-heading-l" id="marker-label-style">Marker and label style</h2>
+        <p class="govuk-body">
+          This ticket is about search, not the look of the marker or label. Coordinate results reuse whatever marker and
+          label place name results use when this is built. Do not restyle them here.
+        </p>
+        <p class="govuk-body">
+          The label style is owned by the
+          <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/">postcode outline design spec</a>, which
+          updates the label for all search results (postcodes, place names and coordinates) at the same time.
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>If this ticket is built first, use the current pin and label. The postcode outline ticket will update them later</li>
+          <li>If the postcode outline ticket is built first, use its label style (grey with a white halo). Do not go back to the old style</li>
+        </ul>
+
         <h2 class="govuk-heading-l">Acceptance criteria</h2>
         <p class="govuk-body">Draft - please review and refine before handing to development.</p>
 
@@ -95,7 +115,7 @@
           <li>If a user types a numeric easting/northing pair (comma or space separated, for example <code>433200, 342200</code>), when they pause typing, then the search box shows one suggestion labelled with the easting and northing values.</li>
           <li>If a user types a decimal latitude/longitude pair (for example <code>53.4084, -2.9916</code>), when they pause typing, then the search box shows one suggestion labelled with the latitude and longitude to 5 decimal places.</li>
           <li>If a user types a degrees-minutes-seconds latitude/longitude (for example <code>53°24'30"N 2°59'30"W</code>), when they pause typing, then the search box shows one suggestion labelled the same way as the decimal format.</li>
-          <li>If a user selects any coordinate-type suggestion, when it is applied, then the map pans and zooms to that location and shows a marker, consistent with selecting a place name or postcode match.</li>
+          <li>If a user selects any coordinate-type suggestion, when it is applied, then the map pans and zooms to that location and shows the same marker and label as a place name match (see <a class="govuk-link" href="#marker-label-style">marker and label style</a>).</li>
           <li>If a user types something that could be a place name or postcode (for example "Manchester" or "SW1A 1AA"), when they pause typing, then only the existing place name/postcode suggestions show - the coordinate formats must not interfere with this.</li>
           <li>Only a full National Grid Reference (two-letter prefix plus a complete easting and northing, for example <code>SJ8632197947</code>) is treated as a grid reference - agreed with development to avoid ambiguity with postcode prefixes. Anything shorter falls through to the place name/postcode dataset as normal.</li>
         </ol>

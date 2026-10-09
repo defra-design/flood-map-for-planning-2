@@ -1,0 +1,270 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Postcode outline - design spec" %}
+
+{% block content %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/v3-9-0-0/user-flow">v3.9.0.0 user flow</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Postcode outline - design spec</li>
+      </ol>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Spec for development</strong>
+        <h1 class="govuk-heading-xl">Postcode outline on search</h1>
+        <p class="govuk-body-l">
+          When a user searches for a postcode, outline the postcode area on the map with a dashed line and lightly tint
+          the map outside it, instead of dropping a pin at the centre of the postcode. Keep the search box open with the
+          location in it, so users can see that clearing the search removes the outline.
+        </p>
+
+        <div class="govuk-inset-text">
+          This feature could not be built as a clickable prototype. The map, including its search and marker, is a
+          compiled bundle of the shared <code>@defra/interactive-map</code> component built in the separate
+          <code>fmp-app</code> repository, so this page sets out the intended behaviour as a spec for a developer to
+          implement, with an illustrative mock-up.
+        </div>
+
+        <p class="govuk-body">
+          <a class="govuk-link" href="/design-spec/postcode-outline-v3-9-0-0/prototype">Try the low fidelity clickable prototype</a>
+          (search for BS1 5AH).
+        </p>
+
+        <h2 class="govuk-heading-l">Why this change</h2>
+        <p class="govuk-body">
+          In the <a class="govuk-link" href="/design-history/3-8-0-0/">v3.8.0.0 research round</a>, users who noticed the
+          postcode pin found it helpful, but:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>the pin and label cluttered the map and got in the way of seeing the site</li>
+          <li>the pin could be mistaken for the centre of the user's site, when it is only the centre of the postcode</li>
+          <li>users expected to be able to remove it, and assumed it would go away when they started drawing a boundary</li>
+        </ul>
+        <p class="govuk-body">
+          Clearing the search already removes the pin. But the search box closes as soon as a result is selected, so users
+          cannot see the location they searched for, or that deleting it would remove the pin.
+        </p>
+        <p class="govuk-body">
+          Outlining the postcode area shows users where their search landed without covering the map, and makes it clearer
+          that the result is a postcode area rather than a precise site location. This follows the pattern users already
+          know from Google Maps, which outlines a searched postcode with a dotted line and lightly tints the map around it.
+        </p>
+
+        <h2 class="govuk-heading-l">Current and proposed</h2>
+
+        <h3 class="govuk-heading-m">Current: pin and label at the centre of the postcode</h3>
+        <div class="design-spec-placeholder">
+          <img src="images/02-current-pin-detail.png" alt="Close-up of the current map with a red pin and a 'BS1 5AH, City of Bristol' label at the centre of the postcode">
+          <p class="design-spec-placeholder__label">Image: images/02-current-pin-detail.png (<a class="govuk-link" href="images/01-current-pin.png">full screen</a>)</p>
+        </div>
+
+        <h3 class="govuk-heading-m">Proposed: dashed postcode outline with the map tinted outside it, and the search kept open</h3>
+        <div class="design-spec-placeholder">
+          <img src="images/04-postcode-outline-detail.png" alt="Close-up of the proposed map with the BS1 5AH postcode area outlined by a black dashed line and a 'BS1 5AH, City of Bristol' label above it. The base map outside the outline is slightly darkened, while the flood zones keep their normal colours">
+          <p class="design-spec-placeholder__label">Image: images/04-postcode-outline-detail.png</p>
+        </div>
+
+        <div class="design-spec-placeholder">
+          <img src="images/03-postcode-outline.png" alt="Full screen view of the proposed map page. The search box stays open showing 'BS1 5AH, City of Bristol', the BS1 5AH postcode is outlined and labelled, and the rest of the base map is tinted">
+          <p class="design-spec-placeholder__label">Image: images/03-postcode-outline.png (full screen)</p>
+        </div>
+
+        <p class="govuk-body govuk-!-font-size-16">
+          The mock-up is illustrative.
+        </p>
+
+        <h2 class="govuk-heading-l">Keep the search open with the location in it</h2>
+        <p class="govuk-body">
+          After a user selects a search result, the search box stays open instead of closing back to the "Search" button.
+          It shows the selected location (for example "BS1 5AH, City of Bristol") until the user deletes it. This makes it
+          clear what the map is showing, and that deleting it from the search box will remove the outline.
+        </p>
+        <p class="govuk-body">
+          This applies whenever the map is showing a search result: the postcode outline, or the pin for a place name.
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>The search box stays open while the user clicks, pans or zooms the map</li>
+          <li>Deleting the text, or selecting the cross in the search box, clears the search and removes the outline, tint and label (or the pin for a place name)</li>
+          <li>While a location is showing, the cross clears the search, so its accessible name should be "Clear search" rather than the current "Close search"</li>
+          <li>Once cleared, the search box stays open and empty, showing the placeholder text, ready for a new search</li>
+          <li>Starting to draw a boundary also clears the search and removes the outline, tint and label</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">Search open with the location in it</h3>
+        <div class="design-spec-placeholder">
+          <img src="images/06-search-open-detail.png" alt="Close-up of the top left of the map, where the search box stays open showing 'BS1 5AH, City of Bristol' with a cross to clear it">
+          <p class="design-spec-placeholder__label">Image: images/06-search-open-detail.png</p>
+        </div>
+
+        <h3 class="govuk-heading-m">Search cleared</h3>
+        <div class="design-spec-placeholder">
+          <img src="images/07-search-cleared.png" alt="Full screen view of the map after the search is cleared. The search box is open and empty with the placeholder 'Search for a place in england', and there is no outline, tint or label on the map">
+          <p class="design-spec-placeholder__label">Image: images/07-search-cleared.png (full screen)</p>
+        </div>
+
+        <h2 class="govuk-heading-l">Visual design</h2>
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Postcode outline styles</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Element</th>
+              <th scope="col" class="govuk-table__header">Style</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Outline</th>
+              <td class="govuk-table__cell">3px dashed line in GOV.UK black <code>#0b0c0c</code>, 8px dash and 5px gap, round joins</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Outline halo</th>
+              <td class="govuk-table__cell">6px solid white <code>#ffffff</code> line drawn under the dashes, so the outline stands out on light base map and dark blue flood zones</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Tint outside the postcode</th>
+              <td class="govuk-table__cell"><code>#0b0c0c</code> at 20% opacity, covering the map outside the postcode area</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Inside the postcode</th>
+              <td class="govuk-table__cell">No tint or fill, so the map inside reads at full brightness</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Label</th>
+              <td class="govuk-table__cell">The existing search result label (for example "BS1 5AH, City of Bristol"), in its current style (white <code>#ffffff</code> text on dark grey <code>#393f42</code>), with a 2px white <code>#ffffff</code> halo added around it. Centred horizontally above the top of the outline, with a 12px gap between the halo and the outline so there is room for the focus style. It sits above the tint and outline. This style applies to every search result label: postcodes, place names, and coordinates from the <a class="govuk-link" href="/design-spec/map-search-v3-9-0-0/">map search enhancement</a></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Label contrast</th>
+              <td class="govuk-table__cell">Text against the label background is 10.6:1. The grey label stands out against the light and tinted base map (at least 6:1), and the white halo stands out against the dark blue flood zones (about 7:1), so the label is clear wherever it sits. Without the halo, the grey label is only 1.5:1 against flood zone 3</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Dark map style</th>
+              <td class="govuk-table__cell">Swap the outline to white dashes with a black halo, and tint with <code>#000000</code> at 30%. To be checked against the dark base map</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="govuk-heading-m">Layer order</h3>
+        <p class="govuk-body">
+          The tint sits <strong>under</strong> the flood data layers, and only covers the base map outside the postcode
+          and outside any flood data shapes. This means flood zone (including climate change) and surface water colours
+          are never changed by it and still match the key. The outline sits <strong>above</strong> the flood data layers, so it stays
+          visible when a postcode is inside a flood zone.
+        </p>
+        <p class="govuk-body">From top to bottom:</p>
+        <ol class="govuk-list govuk-list--number">
+          <li>Map controls, panels and the postcode label</li>
+          <li>User's drawn boundary</li>
+          <li>Postcode outline (dashed line and halo)</li>
+          <li>Flood data layers (flood zones 2 and 3, climate change flood zones, surface water, map features)</li>
+          <li>Postcode tint (the base map outside the postcode and flood data)</li>
+          <li>Base map</li>
+        </ol>
+        <p class="govuk-body">
+          The flood data layers are partly see-through, so a tint placed underneath them would show through and
+          change their colours. A tint with only the postcode cut out of it is not enough: the flood data shapes must be
+          left untinted too. Darkening the base map in any other way has the same problem, because the base map shows
+          through the flood data.
+        </p>
+        <p class="govuk-body">
+          One way to build this is a single "inverted" polygon: a rectangle covering the whole map, with the postcode
+          shape and the visible flood data shapes cut out as holes, filled at 20% opacity. The flood data shapes change
+          with the selected dataset and climate change scenario, so the holes must be updated whenever these change.
+        </p>
+        <p class="govuk-body">
+          However it is built, the flood data colours must look exactly the same as they do without the postcode outline.
+        </p>
+
+        <h3 class="govuk-heading-m" id="label-focus">Label with keyboard focus</h3>
+        <p class="govuk-body">
+          The label can receive focus (for example to read it out), and uses the same focus style as the map's other
+          buttons: a 4px black <code>#0b0c0c</code> border with a 3px yellow <code>#ffdd00</code> ring outside it.
+          The focus style sits outside the label's white halo, and must be visible the whole way round the label.
+        </p>
+        <div class="design-spec-placeholder">
+          <img src="images/05-label-focus.png" alt="The 'BS1 5AH, City of Bristol' label above the postcode outline. Outside its white halo is a black border and yellow focus ring">
+          <p class="design-spec-placeholder__label">Image: images/05-label-focus.png</p>
+        </div>
+
+        <h2 class="govuk-heading-l">Data source</h2>
+        <p class="govuk-body">
+          The map's search currently uses the OS Names API. For a postcode, this returns a single centre point and a
+          bounding box (<code>MBR_XMIN</code>, <code>MBR_YMIN</code>, <code>MBR_XMAX</code>, <code>MBR_YMAX</code>), but
+          not the shape of the postcode area. This is why the map can currently only show a pin.
+        </p>
+        <p class="govuk-body">
+          To draw the outline, the service needs postcode boundary polygons. The likely source is OS Code-Point with
+          Polygons, which is available to public sector bodies under the Public Sector Geospatial Agreement (PSGA).
+          The team should confirm the Environment Agency's access and licence terms with the data team before development.
+        </p>
+        <p class="govuk-body">
+          If a boundary is not available for a postcode (for example a newly created postcode), fall back to the current
+          behaviour: zoom to the bounding box and show the pin.
+        </p>
+
+        <h2 class="govuk-heading-l">Acceptance criteria</h2>
+        <ol class="govuk-list govuk-list--number">
+          <li>If a user searches for a full postcode and selects it, when the result is applied, then the map zooms to fit the postcode area with padding around it, and shows the dashed outline and the tint outside it.</li>
+          <li>If a user searches for a full postcode, when the outline is shown, then no pin is shown, and the postcode label is shown centred above the outline.</li>
+          <li>If a postcode area is inside or overlaps a flood zone or surface water area, when the outline is shown, then the flood data colours inside and outside the outline are exactly the same as without the outline.</li>
+          <li>If a postcode area is made of more than one separate part, when the outline is shown, then every part is outlined and left untinted.</li>
+          <li>If a user searches for a place name (for example a town or village), when the result is applied, then the map shows the pin as it does now with the label in the new style (grey with a white halo), with no outline, and the search box stays open with the place name in it.</li>
+          <li>If a user selects a search result, when the result is applied, then the search box stays open and shows the selected location.</li>
+          <li>If a search result is showing, when the user clicks, pans or zooms the map, then the search box stays open with the location still in it.</li>
+          <li>If a user deletes the location from the search box, or selects the cross, when the search is cleared, then the outline, tint and label (or the pin for a place name) are all removed, and the search box stays open and empty.</li>
+          <li>If a search result is showing, when a screen reader user reaches the cross in the search box, then it is announced as "Clear search".</li>
+          <li>If a user searches for a different location, when the new result is applied, then the previous outline, tint and label are replaced.</li>
+          <li>If a user starts drawing a boundary (add polygon, add square or upload), when drawing begins, then the outline, tint and label are removed so they do not get in the way of the user's own boundary, and the search box is cleared so it no longer suggests a location is being shown.</li>
+          <li>If no boundary is available for a postcode, when the result is applied, then the map falls back to the current pin behaviour.</li>
+          <li>If a screen reader user selects a postcode result, when the outline is shown, then the existing search announcement confirms the map is showing that postcode.</li>
+          <li>If a keyboard user tabs to the postcode label, when it receives focus, then it shows the <a class="govuk-link" href="#label-focus">label focus style</a> (a 4px black border with a 3px yellow ring outside the label's white halo, visible the whole way round), and screen readers read out the label text.</li>
+        </ol>
+
+        <h2 class="govuk-heading-l">Edge cases</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Large rural postcodes may cover a big area - zoom to fit the whole postcode, even if that means zooming further out than the current postcode zoom level</li>
+          <li>Very small postcodes (for example a single building) - keep a minimum zoom so the user still sees enough of the surrounding area</li>
+          <li>Postcodes partly outside England - outline the whole postcode, as the flood data stops at the border anyway</li>
+          <li>Users may mistake the postcode outline for their site boundary - the outline style must look clearly different from a drawn boundary (dashed and black, rather than the solid boundary style)</li>
+        </ul>
+
+        <h2 class="govuk-heading-l">To test in research</h2>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>With and without the label - the current label had mixed feedback, as it confirms what was searched but can clutter the map</li>
+          <li>Whether 20% tint gives enough focus without making the base map hard to read</li>
+          <li>Whether keeping the search open with the location in it makes it clear to users how to remove the outline</li>
+        </ul>
+
+        <h2 class="govuk-heading-l">If this does not work</h2>
+        <p class="govuk-body">
+          If research shows that keeping the search open is not enough for users to see how to remove the outline, a
+          further design to consider is a
+          <a class="govuk-link" href="/design-spec/postcode-outline-close-button-v3-9-0-0/">close button inside the postcode label</a>.
+          This is a separate design and is not part of this spec.
+        </p>
+
+        <hr class="govuk-section-break govuk-section-break--l govuk-section-break--visible">
+        <p class="govuk-body">
+          <a class="govuk-link" href="/v3-9-0-0/user-flow">Back to v3.9.0.0 user flow</a>
+        </p>
+        <p class="govuk-body">
+          <a class="govuk-link" href="/v3-9-0-0/map">View the current map prototype (without this feature)</a>
+        </p>
+
+      </div>
+    </div>
+  </main>
+</div>
+
+<style>
+  .design-spec-placeholder { border: 1px dashed #b1b4b6; padding: 1em; margin: 0 0 1.5em; background: #f8f8f8; }
+  .design-spec-placeholder img { max-width: 100%; height: auto; display: block; }
+  .design-spec-placeholder__label { font-size: 0.875rem; color: #6f777b; margin: 0.5em 0 0; }
+</style>
+{% endblock %}
