@@ -1,0 +1,439 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Product 1: flood risk summary for your site" %}
+
+{% set p1 = {
+  reference: "Unspecified",
+  location: "443574/161376",
+  created: "12 October 2026, 10:08",
+  scale: "1:2,500"
+} %}
+
+{% macro mapDetails(scale) %}
+  <dl class="p1-map-details">
+    <div><dt>Your reference</dt><dd class="p1-ref">{{ p1.reference }}</dd></div>
+    <div><dt>Location (easting/northing)</dt><dd>{{ p1.location }}</dd></div>
+    <div><dt>Scale</dt><dd{% if not scale %} class="p1-scale"{% endif %}>{{ scale or p1.scale }}</dd></div>
+    <div><dt>Created</dt><dd>{{ p1.created }}</dd></div>
+  </dl>
+{% endmacro %}
+
+{% macro keyItem(swatch, label) %}
+  <li class="p1-key__item"><span class="p1-key__swatch {{ swatch }}" aria-hidden="true"></span>{{ label }}</li>
+{% endmacro %}
+
+{% macro featureKey() %}
+  {{ keyItem("p1-swatch--boundary", "Your site boundary") }}
+  {{ keyItem("p1-swatch--defence", "Flood defence") }}
+  {{ keyItem("p1-swatch--river", "Main river") }}
+  {{ keyItem("p1-swatch--storage", "Water storage area") }}
+{% endmacro %}
+
+{% macro depthKey() %}
+  <p class="govuk-body-s govuk-!-margin-bottom-1"><strong>Surface water depth in millimetres</strong></p>
+  <ol class="p1-depth" aria-label="Surface water depth bands, shallowest to deepest">
+    <li><span class="p1-depth__band" style="background:#fdd0a2"></span>Under 150</li>
+    <li><span class="p1-depth__band" style="background:#fdae6b"></span>150 to 300</li>
+    <li><span class="p1-depth__band" style="background:#fd8d3c"></span>300 to 600</li>
+    <li><span class="p1-depth__band" style="background:#f16913"></span>600 to 900</li>
+    <li><span class="p1-depth__band" style="background:#d94801"></span>900 to 1,200</li>
+    <li><span class="p1-depth__band" style="background:#a63603"></span>1,200 to 2,300</li>
+    <li><span class="p1-depth__band" style="background:#7f2704"></span>Over 2,300</li>
+  </ol>
+{% endmacro %}
+
+{% macro swMap(file, title, chance, period) %}
+  <figure class="p1-figure">
+    <img src="/public/images/product1-v3-9-0-0/solid-{{ file }}?v=6" alt="Map of the site and surrounding area showing surface water flooding with a {{ chance }} chance each year, {{ period }}. Shaded orange areas show depth, darker for deeper water">
+    <figcaption class="govuk-body-s"><strong>{{ title }}</strong>: {{ chance }} chance each year, {{ period }}</figcaption>
+  </figure>
+{% endmacro %}
+
+{% block content %}
+<div class="p1">
+
+  {% set resetHref = "product1-5" %}
+  {% include "v3-9-0-0/partials/p1-settings.html" %}
+
+  <!-- Actions: not printed -->
+  <div class="p1-actions p1-no-print">
+    <div class="govuk-button-group">
+      <button type="button" class="govuk-button" data-module="govuk-button" id="p1-print">Print this page</button>
+      <a href="/public/pdf/product1-5.pdf" download="flood-map-for-planning-product-1-solid-colours.pdf" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="p1-pdf">Download PDF</a>
+    </div>
+
+  </div>
+
+  <!-- Document header -->
+  <header class="p1-header">
+    <img class="p1-logo" src="/public/images/EA_Logo.png" alt="Environment Agency">
+    <span class="govuk-caption-l">Product 1</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Flood map for planning</h1>
+
+    <dl class="p1-meta">
+      <div><dt>Your reference</dt><dd class="p1-ref">{{ p1.reference }}</dd></div>
+      <div><dt>Location (easting/northing)</dt><dd>{{ p1.location }}</dd></div>
+      <div><dt>Created</dt><dd>{{ p1.created }}</dd></div>
+    </dl>
+  </header>
+
+  <!-- The quick decision -->
+  <section class="p1-section" aria-labelledby="result-heading">
+    <h2 class="govuk-heading-l" id="result-heading">Your site is in flood zone 3</h2>
+    <p class="govuk-body-l">An area with a high probability of flooding from rivers or the sea.</p>
+
+    <h3 class="govuk-heading-m">This means</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>you must complete a flood risk assessment for development in this area</li>
+      <li>you should follow the Environment Agency's standing advice for carrying out a flood risk assessment: <a class="govuk-link" href="https://www.gov.uk/guidance/flood-risk-assessment-standing-advice">www.gov.uk/guidance/flood-risk-assessment-standing-advice</a></li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Data in this summary</h3>
+    <p class="govuk-body" id="p1-included-text">This summary includes flood zones, flood zones with climate change, surface water and surface water with climate change. Surface water is shown at a 1 in 100 chance.</p>
+
+    <table class="govuk-table p1-glance">
+      <caption class="govuk-table__caption govuk-table__caption--s">At a glance for your site</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Data</th>
+          <th scope="col" class="govuk-table__header">Result for your site</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#fz-heading">Flood zones</a></th>
+          <td class="govuk-table__cell">Flood zone 3</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="fz-cc">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#fzcc-heading">Flood zones with climate change</a></th>
+          <td class="govuk-table__cell">Flood zone 3</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="sw-present">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#sw-heading">Surface water, present day</a></th>
+          <td class="govuk-table__cell">Some surface water at a 1 in 100 chance, mostly under 150mm deep</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="sw-cc">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#swcc-heading">Surface water with climate change</a></th>
+          <td class="govuk-table__cell">Some surface water at a 1 in 100 chance, mostly under 300mm deep</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Flood zones: always included -->
+  <section class="p1-section p1-map-section" id="fz" aria-labelledby="fz-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="fz-heading" tabindex="-1">Flood zones</h2>
+    <p class="govuk-body">Flood zones show the chance of flooding from rivers and the sea, ignoring flood defences. They are used to decide whether a flood risk assessment is needed.</p>
+    <div class="p1-map-layout">
+      <figure class="p1-figure">
+        <img src="/public/images/product1-v3-9-0-0/fz-present.png?v=6" alt="Map of the site and surrounding area. A river channel running north-east to south-west is in flood zone 3, with flood zone 2 along its edges. The south-east end of the site boundary is in flood zone 3">
+        <figcaption class="govuk-body-s"><strong>Flood zones, present day</strong></figcaption>
+      </figure>
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        <ul class="p1-key">
+          {{ keyItem("p1-swatch--fz3", "Flood zone 3") }}
+          {{ keyItem("p1-swatch--fz2", "Flood zone 2") }}
+          {{ keyItem("p1-swatch--fz1", "Flood zone 1") }}
+          {{ featureKey() }}
+        </ul>
+      </div>
+    </div>
+    {{ mapDetails() }}
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Flood zone 3 has a 1% or greater chance each year of flooding from rivers, or a 0.5% or greater chance from the sea. Flood zone 2 has between a 0.1% and 1% chance from rivers, or between 0.1% and 0.5% from the sea.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2). The data shown is correct on the date this summary was created.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Flood zones with climate change -->
+  <section class="p1-section p1-map-section" id="fz-cc" data-section="fz-cc" aria-labelledby="fzcc-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="fzcc-heading" tabindex="-1">Flood zones with climate change</h2>
+    <p class="govuk-body">How flood zones 2 and 3 could extend between 2070 and 2125, based on a central allowance for climate change.</p>
+    <div class="p1-map-layout">
+      <figure class="p1-figure">
+        <img src="/public/images/product1-v3-9-0-0/solid-fz-cc.png?v=6" alt="Map of the site and surrounding area showing flood zones 2 and 3 with climate change. The map uses a black and white base map. The flooded area is similar to present day, with small additional areas near Mount Road shown in light orange">
+        <figcaption class="govuk-body-s"><strong>Flood zones with climate change</strong>: 2070 to 2125</figcaption>
+      </figure>
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        <ul class="p1-key">
+          {{ keyItem("p1-swatch--fz3", "Flood zone 3") }}
+          {{ keyItem("p1-swatch--fz2", "Flood zone 2") }}
+          {{ keyItem("p1-swatch--cc", "Extra area with climate change") }}
+          {{ featureKey() }}
+        </ul>
+      </div>
+    </div>
+    {{ mapDetails() }}
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Use this alongside the present day flood zones to understand how flood risk could change over the lifetime of a development.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2).</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Surface water, present day -->
+  <section class="p1-section p1-map-section" id="sw-present" data-section="sw-present" aria-labelledby="sw-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="sw-heading" tabindex="-1">Surface water, present day</h2>
+    <p class="govuk-body">Surface water flooding happens when heavy rain cannot drain away. It is not part of the flood zones, so it does not change whether a flood risk assessment is needed, but you may need to consider it in one. The map shows areas with a 1 in 100 (1%) chance of flooding each year.</p>
+    <div class="p1-map-layout">
+      {{ swMap("sw-present-100.png", "Surface water, present day", "1 in 100 (1%)", "present day") }}
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        {{ depthKey() }}
+        <ul class="p1-key">{{ featureKey() }}</ul>
+      </div>
+    </div>
+    {{ mapDetails("1:1,500") }}
+    <div class="p1-sw-more p1-excluded" data-section="sw-more">
+      <h3 class="govuk-heading-m">Other chances of flooding</h3>
+      <div class="p1-sw-grid">
+        {{ swMap("sw-present-30.png", "Higher chance", "1 in 30 (3.3%)", "present day") }}
+        {{ swMap("sw-present-1000.png", "Lower chance", "1 in 1000 (0.1%)", "present day") }}
+      </div>
+    </div>
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">The map shows the area that could flood from surface water with a 1 in 100 chance each year, and how deep the water could be. You can also include maps for a 1 in 30 and 1 in 1000 chance.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2), risk of flooding from surface water.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Surface water with climate change -->
+  <section class="p1-section p1-map-section" id="sw-cc" data-section="sw-cc" aria-labelledby="swcc-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="swcc-heading" tabindex="-1">Surface water with climate change</h2>
+    <p class="govuk-body">How surface water flooding with a 1 in 100 (1%) chance each year could change between 2061 and 2125, based on a central allowance for climate change.</p>
+    <div class="p1-map-layout">
+      {{ swMap("sw-cc-100.png", "Surface water with climate change", "1 in 100 (1%)", "2061 to 2125") }}
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        {{ depthKey() }}
+        <ul class="p1-key">{{ featureKey() }}</ul>
+      </div>
+    </div>
+    {{ mapDetails("1:1,500") }}
+    <div class="p1-sw-more p1-excluded" data-section="sw-more">
+      <h3 class="govuk-heading-m">Other chances of flooding</h3>
+      <div class="p1-sw-grid">
+        {{ swMap("sw-cc-30.png", "Higher chance", "1 in 30 (3.3%)", "2061 to 2125") }}
+        {{ swMap("sw-cc-1000.png", "Lower chance", "1 in 1000 (0.1%)", "2061 to 2125") }}
+      </div>
+    </div>
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2), risk of flooding from surface water with climate change.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Next steps and notes -->
+  <section class="p1-section" aria-labelledby="next-heading">
+    <h2 class="govuk-heading-l" id="next-heading">More data for your site</h2>
+    <p class="govuk-body">If you need more detail for a flood risk assessment, you can request a Product 4 (detailed flood risk data, including modelled flood levels and flood defence details) from the flood map for planning service.</p>
+    <p class="govuk-body">Find out about other sources of flood risk:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>shoreline management plans: <a class="govuk-link" href="https://environment.data.gov.uk/shoreline-planning">environment.data.gov.uk/shoreline-planning</a></li>
+      <li>coastal erosion: <a class="govuk-link" href="https://www.gov.uk/check-coastal-erosion-management-in-your-area">www.gov.uk/check-coastal-erosion-management-in-your-area</a></li>
+      <li>reservoir flooding: <a class="govuk-link" href="https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them">www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Notes</h2>
+    <p class="govuk-body">This information relates to the selected location and is not specific to any property within it. The data is updated regularly and is correct on the date this summary was created. Keep this summary as a record of the data at that time.</p>
+    <p class="govuk-body">Use this data alongside the local planning authority's strategic flood risk assessment (SFRA). Check the data is suitable for your intended use.</p>
+    <p class="govuk-body">Flood risk data is covered by the Open Government Licence: <a class="govuk-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">www.nationalarchives.gov.uk/doc/open-government-licence/version/3</a></p>
+    <p class="govuk-body">Use of the address and mapping data is subject to Ordnance Survey public viewing terms under Crown copyright and database rights 2026 AC0000807064: <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/os-terms">flood-map-for-planning.service.gov.uk/os-terms</a></p>
+    <p class="govuk-body-s p1-copyright">© Environment Agency copyright and/or database rights 2026. All rights reserved. © Crown copyright and database rights 2026 Ordnance Survey licence number AC0000807064.</p>
+  </section>
+</div>
+
+<style>
+  /* Map key colours match how each layer looks on the map */
+  .p1 { font-family: "GDS Transport", arial, sans-serif; color: #0b0c0c; -webkit-font-smoothing: antialiased; }
+  /* Key symbols match the flood map for planning map key */
+  .p1 { --fz3: #102d76; --fz2: #2b6db5; --cc: #f4a582; --boundary: #d33f28; --defence: #f27c43; --teal: #13383d; }
+  .p1-header { position: relative; }
+  .p1-logo { display: block; width: 160px; height: auto; margin: 0 0 20px; }
+  .p1-meta, .p1-map-details { display: grid; grid-template-columns: 1fr; gap: 10px 30px; margin: 0 0 30px; }
+  .p1-meta dt, .p1-map-details dt { font-size: 1rem; color: #505a5f; }
+  .p1-meta dd, .p1-map-details dd { margin: 0; font-weight: 700; font-size: 1.1875rem; }
+  .p1-map-details { margin: 20px 0 0; gap: 8px; }
+  .p1-map-details dd { font-size: 1rem; }
+  .p1-section { margin-bottom: 50px; }
+  .p1-figure { margin: 0 0 20px; }
+  .p1-figure img { display: block; width: 100%; height: auto; border: 1px solid #b1b4b6; }
+  .p1-figure figcaption { margin-top: 8px; }
+  .p1-key { list-style: none; margin: 0; padding: 0; }
+  .p1-key__item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 1rem; }
+  .p1-key__swatch { flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; box-sizing: border-box; }
+  .p1-key__swatch::before { content: ""; display: block; box-sizing: border-box; width: 24px; height: 24px; }
+  .p1-swatch--fz3::before { background: var(--fz3); }
+  .p1-swatch--fz2::before { background: var(--fz2); }
+  .p1-swatch--fz1::before { background: #fff; border: 1px solid #505a5f; }
+  .p1-swatch--cc::before { background: var(--cc); }
+  .p1-swatch--boundary::before { width: 22px; height: 22px; border: 2px solid var(--boundary); }
+  .p1-swatch--defence::before { height: 7px; background: var(--defence); }
+  .p1-swatch--river::before { height: 7px; background: var(--teal); }
+  .p1-swatch--storage::before { border: 1.5px solid var(--teal); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 12L12 0M0 24L24 0M12 24L24 12M0 12L12 24M0 0L24 24M12 0L24 12' stroke='%2313383d' stroke-width='1.2' fill='none'/%3E%3C/svg%3E") center / 21px 21px no-repeat; }
+  .p1-key--inline { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 10px; }
+  .p1-depth { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px 16px; font-size: 1rem; }
+  .p1-depth li { display: flex; align-items: center; gap: 10px; }
+  .p1-depth__band { flex: none; width: 32px; height: 22px; border: 1px solid #505a5f; box-sizing: border-box; }
+  .p1-sw-grid { display: grid; grid-template-columns: 1fr; gap: 0 20px; }
+  .p1-sw-more { margin-top: 30px; }
+  .p1-key-panel { border-top: 1px solid #b1b4b6; padding-top: 15px; }
+  .p1-hint { margin-top: -15px; }
+  .p1-about { margin-top: 25px; }
+  /* In-page link targets: focus moves to the heading, so screen readers announce it and Tab continues from here */
+  .p1-anchor-target { scroll-margin-top: 20px; }
+  .p1-anchor-target:focus { outline: 3px solid #ffdd00; outline-offset: 2px; }
+  .p1-anchor-target:focus:not(:focus-visible) { outline: none; }
+  .p1-copyright { color: #505a5f; }
+  .p1-glance .govuk-table__header { width: 45%; }
+  [data-section].p1-excluded, [data-row].p1-excluded { display: none; }
+
+  @media (min-width: 641px) {
+    .p1-meta { grid-template-columns: repeat(3, auto); justify-content: start; }
+    .p1-map-section > .p1-map-details { grid-template-columns: repeat(4, auto); justify-content: start; }
+    .p1-logo { position: absolute; right: 0; top: 0; margin: 0; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .p1-map-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr); gap: 30px; align-items: start; }
+    .p1-key-panel { border-top: 0; border-left: 1px solid #b1b4b6; padding: 0 0 0 20px; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Print and PDF: A4 portrait, one dataset per page */
+  @media print {
+    @page { size: A4 portrait; margin: 15mm; }
+    .govuk-header, .govuk-service-navigation, .govuk-phase-banner, .govuk-footer, .govuk-skip-link, .p1-no-print { display: none !important; }
+    .govuk-width-container { max-width: none; margin: 0; }
+    .govuk-main-wrapper { padding: 0; }
+    body { font-size: 11pt; }
+    .p1-logo { position: absolute; right: 0; top: 0; width: 130px; }
+    .p1-meta { grid-template-columns: repeat(3, auto); }
+    .p1-map-section { break-before: page; }
+    .p1-map-layout { display: block; }
+    .p1-key-panel { border: 0; padding: 0; columns: 2; column-gap: 30px; }
+    .p1-key-panel > h3 { column-span: all; margin-bottom: 10px; }
+    .p1-figure, .p1-key__item, .p1-depth li { break-inside: avoid; }
+    .p1-about .govuk-details__summary { display: none; }
+    .p1-about .govuk-details__text { border: 0; padding: 0; }
+    html, body, .govuk-template, .govuk-template__body, .govuk-main-wrapper { background: #fff !important; }
+    .p1 a.govuk-link { color: #0b0c0c !important; text-decoration: none; }
+    .p1 a[href]::after { content: none !important; }
+    .p1-figure img { width: auto; max-width: 100%; max-height: 120mm; margin: 0 auto; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); gap: 0 10px; }
+    .p1-sw-more { break-before: page; }
+    .p1-sw-grid .p1-figure img { max-height: none; width: 100%; }
+    .p1-section { margin-bottom: 20px; }
+    .p1-map-details { grid-template-columns: repeat(4, auto); justify-content: start; margin-top: 10px; }
+    .p1-key-panel .p1-map-details { grid-template-columns: repeat(2, auto); }
+    .p1-key__item { margin-bottom: 4px; }
+    .govuk-heading-l { margin-bottom: 10px; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+
+<script>
+  (function () {
+    var names = { 'fz-cc': 'flood zones with climate change', 'sw-present': 'surface water', 'sw-cc': 'surface water with climate change' }
+    var boxes = document.querySelectorAll('#p1-settings-form [data-section]')
+    var text = document.getElementById('p1-included-text')
+    function update () {
+      var included = ['flood zones']
+      boxes.forEach(function (box) {
+        var key = box.getAttribute('data-section')
+        document.querySelectorAll('[data-section="' + key + '"]:not(input), tr[data-row="' + key + '"]').forEach(function (el) {
+          el.classList.toggle('p1-excluded', !box.checked)
+        })
+        if (box.checked && names[key]) included.push(names[key])
+      })
+      var swShown = document.getElementById('inc-sw').checked || document.getElementById('inc-swcc').checked
+      var more = document.getElementById('inc-swmore')
+      more.disabled = !swShown
+      if (!swShown) more.checked = false
+      var last = included.pop()
+      text.textContent = 'This summary includes ' + (included.length ? included.join(', ') + ' and ' : '') + last + '.' +
+        (swShown ? (more.checked ? ' Surface water is shown at a 1 in 30, 1 in 100 and 1 in 1000 chance.' : ' Surface water is shown at a 1 in 100 chance.') : '')
+    }
+    // Settings are applied only when the user selects "Apply settings" (the form reloads this page with ?applied=yes)
+    var params = new URLSearchParams(window.location.search)
+    var applied = params.get('applied') === 'yes'
+    var form = document.getElementById('p1-settings-form')
+    var toggle = document.getElementById('p1-settings-toggle')
+    var selected = document.getElementById('p1-settings-selected')
+    var status = document.getElementById('p1-settings-status')
+    var tags = document.getElementById('p1-settings-tags')
+    if (applied) {
+      var chosen = params.getAll('include')
+      boxes.forEach(function (box) { box.checked = chosen.indexOf(box.getAttribute('data-section')) !== -1 })
+      var ref = (params.get('reference') || '').trim()
+      var scale = params.get('scale') || '1:2,500'
+      document.getElementById('p1-reference').value = ref
+      document.getElementById('p1-scale').value = scale
+      document.querySelectorAll('.p1-ref').forEach(function (el) { el.textContent = ref || 'Unspecified' })
+      document.querySelectorAll('.p1-scale').forEach(function (el) { el.textContent = scale })
+    }
+    update()
+
+    if (applied) {
+      // List what is included. Each optional item is a link that removes it, as in the Defra filter pattern
+      function hrefWithout (key) {
+        var next = new URLSearchParams(params.toString())
+        var keep = next.getAll('include').filter(function (v) { return v !== key })
+        next.delete('include')
+        keep.forEach(function (v) { next.append('include', v) })
+        return window.location.pathname + '?' + next.toString()
+      }
+      var items = ['<li><span class="p1-settings__tag p1-settings__tag--fixed">Flood zones</span></li>']
+      boxes.forEach(function (box) {
+        if (!box.checked || box.disabled) return
+        var key = box.getAttribute('data-section')
+        items.push('<li><a class="p1-settings__tag" href="' + hrefWithout(key) + '"><span class="govuk-visually-hidden">Remove </span>' + box.getAttribute('data-label') + '</a></li>')
+      })
+      var refNow = (params.get('reference') || '').trim()
+      if (refNow) items.push('<li><span class="p1-settings__tag p1-settings__tag--fixed">Reference: ' + refNow.replace(/[<>&"]/g, '') + '</span></li>')
+      items.push('<li><span class="p1-settings__tag p1-settings__tag--fixed">Scale: ' + (params.get('scale') || '1:2,500') + '</span></li>')
+      tags.innerHTML = items.join('')
+      selected.hidden = false
+      form.hidden = true
+      toggle.hidden = false
+      toggle.setAttribute('aria-expanded', 'false')
+      status.textContent = 'Settings applied. ' + text.textContent
+      // Move focus to the confirmation so screen reader users hear that the settings changed
+      status.focus()
+    }
+    ;['inc-sw', 'inc-swcc'].forEach(function (id) {
+      document.getElementById(id).addEventListener('change', function () {
+        var more = document.getElementById('inc-swmore')
+        more.disabled = !(document.getElementById('inc-sw').checked || document.getElementById('inc-swcc').checked)
+      })
+    })
+    toggle.addEventListener('click', function () {
+      var open = form.hidden
+      form.hidden = !open
+      toggle.setAttribute('aria-expanded', String(open))
+      toggle.textContent = open ? 'Hide settings' : 'Change settings'
+      if (open) document.getElementById('p1-reference').focus()
+    })
+
+    // Show every "About this data" section when printing, so the PDF includes it
+    var opened = []
+    window.addEventListener('beforeprint', function () {
+      document.querySelectorAll('.p1-about').forEach(function (d) { if (!d.open) { d.open = true; opened.push(d) } })
+    })
+    window.addEventListener('afterprint', function () { opened.forEach(function (d) { d.open = false }); opened = [] })
+
+    document.getElementById('p1-print').addEventListener('click', function () { window.print() })
+  })()
+</script>
+{% endblock %}

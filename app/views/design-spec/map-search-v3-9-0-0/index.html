@@ -92,7 +92,7 @@
           <p class="design-spec-placeholder__label">Image: images/05-no-match.png</p>
         </div>
 
-        <h2 class="govuk-heading-l" id="marker-label-style">Marker and label style</h2>
+        <h2 class="govuk-heading-l" id="marker-label-style" tabindex="-1">Marker and label style</h2>
         <p class="govuk-body">
           This ticket is about search, not the look of the marker or label. Coordinate results reuse whatever marker and
           label place name results use when this is built. Do not restyle them here.
@@ -149,5 +149,8 @@
   .design-spec-placeholder--missing img { display: none; }
   .design-spec-placeholder--missing { background: #fff; }
   .design-spec-placeholder--missing .design-spec-placeholder__label::before { content: "Not yet added - "; }
+  [id][tabindex="-1"] { scroll-margin-top: 20px; }
+  [id][tabindex="-1"]:focus { outline: 3px solid #ffdd00; outline-offset: 2px; }
+  [id][tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
 </style>
 {% endblock %}

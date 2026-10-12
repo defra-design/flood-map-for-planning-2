@@ -1,0 +1,87 @@
+{#
+  Product 1 settings panel.
+  Based on the Defra filter pattern (DEF-104, follows MoJ Filter): options are grouped in one form,
+  nothing changes until the user selects "Apply settings", and applied choices are listed as links that remove them.
+  Works without JavaScript as a plain GET form. With JavaScript, the panel opens on first landing and
+  collapses once settings are applied, with a "Change settings" button to reopen it.
+#}
+<section class="p1-settings p1-no-print" id="p1-settings" aria-labelledby="p1-settings-heading">
+  <div class="p1-settings__header">
+    <h2 class="govuk-heading-m govuk-!-margin-bottom-0" id="p1-settings-heading">Customise your flood map</h2>
+    <button type="button" class="govuk-button govuk-button--secondary govuk-!-margin-bottom-0 p1-settings__toggle" id="p1-settings-toggle" aria-expanded="true" aria-controls="p1-settings-form" hidden>Change settings</button>
+  </div>
+
+  <div class="p1-settings__selected" id="p1-settings-selected" hidden>
+    <div class="p1-settings__status" id="p1-settings-status" role="status" tabindex="-1"></div>
+    <h3 class="govuk-heading-s govuk-!-margin-bottom-2">Included in your flood map</h3>
+    <ul class="p1-settings__tags" id="p1-settings-tags"></ul>
+    <p class="govuk-body govuk-!-margin-bottom-0"><a class="govuk-link" href="{{ resetHref }}">Reset to default settings</a></p>
+  </div>
+
+  <form class="p1-settings__form" id="p1-settings-form" method="GET" action="{{ resetHref }}" novalidate>
+    <input type="hidden" name="applied" value="yes">
+
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--s" for="p1-reference">Your reference</label>
+      <div id="p1-reference-hint" class="govuk-hint">Optional. Helps you find this flood map later. Up to 25 characters.</div>
+      <input class="govuk-input govuk-input--width-20" id="p1-reference" name="reference" type="text" maxlength="25" aria-describedby="p1-reference-hint">
+    </div>
+
+    <div class="govuk-form-group">
+      <label class="govuk-label govuk-label--s" for="p1-scale">Scale of the flood zone maps</label>
+      <select class="govuk-select" id="p1-scale" name="scale">
+        <option value="1:2,500" selected>1:2,500</option>
+        <option value="1:10,000">1:10,000</option>
+        <option value="1:25,000">1:25,000</option>
+        <option value="1:50,000">1:50,000</option>
+      </select>
+    </div>
+
+    <div class="govuk-form-group">
+      <fieldset class="govuk-fieldset" aria-describedby="p1-include-hint">
+        <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Data to include</legend>
+        <div id="p1-include-hint" class="govuk-hint">Flood zones are always included.</div>
+        <div class="govuk-checkboxes govuk-checkboxes--small" data-module="govuk-checkboxes">
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="inc-fzcc" name="include" type="checkbox" value="fz-cc" data-section="fz-cc" data-label="Flood zones with climate change" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="inc-fzcc">Flood zones with climate change (2070 to 2125)</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="inc-sw" name="include" type="checkbox" value="sw-present" data-section="sw-present" data-label="Surface water, present day" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="inc-sw">Surface water, present day</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="inc-swcc" name="include" type="checkbox" value="sw-cc" data-section="sw-cc" data-label="Surface water with climate change" checked>
+            <label class="govuk-label govuk-checkboxes__label" for="inc-swcc">Surface water with climate change (2061 to 2125)</label>
+          </div>
+          <div class="govuk-checkboxes__item">
+            <input class="govuk-checkboxes__input" id="inc-swmore" name="include" type="checkbox" value="sw-more" data-section="sw-more" data-label="Surface water at a 1 in 30 and 1 in 1000 chance" aria-describedby="inc-swmore-hint">
+            <label class="govuk-label govuk-checkboxes__label" for="inc-swmore">Surface water at a 1 in 30 and 1 in 1000 chance</label>
+            <div id="inc-swmore-hint" class="govuk-hint govuk-checkboxes__hint">Surface water maps show a 1 in 100 chance by default</div>
+          </div>
+        </div>
+      </fieldset>
+    </div>
+
+    <button type="submit" class="govuk-button govuk-!-margin-bottom-0" data-module="govuk-button">Apply settings</button>
+  </form>
+</section>
+
+<style>
+  .p1-settings { background: #f3f2f1; margin-bottom: 30px; }
+  .p1-settings__header { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px; background: #e5e6e7; padding: 15px 20px; }
+  .p1-settings__selected { padding: 20px 20px 0; }
+  .p1-settings__selected + .p1-settings__form, .p1-settings__selected:not([hidden]) { padding-bottom: 20px; }
+  .p1-settings__status:focus { outline: 3px solid #ffdd00; outline-offset: 2px; }
+  .p1-settings__status:focus:not(:focus-visible) { outline: none; }
+  .p1-settings__status:not(:empty) { font-weight: 700; margin-bottom: 15px; }
+  .p1-settings__tags { list-style: none; margin: 0 0 15px; padding: 0; display: flex; flex-wrap: wrap; gap: 8px; }
+  .p1-settings__tag { display: inline-block; padding: 5px 10px 5px 30px; position: relative; background: #fff; border: 1px solid #0b0c0c; color: #0b0c0c; text-decoration: none; font-size: 1rem; line-height: 1.25; }
+  .p1-settings__tag::before { content: "×"; position: absolute; left: 10px; top: 3px; font-size: 1.25rem; line-height: 1; }
+  .p1-settings__tag:hover { background: #0b0c0c; color: #fff; }
+  .p1-settings__tag:focus { outline: 3px solid transparent; background: #ffdd00; color: #0b0c0c; box-shadow: 0 -2px #ffdd00, 0 4px #0b0c0c; border-color: #ffdd00; }
+  .p1-settings__tag--fixed { padding-left: 10px; background: transparent; border-style: dashed; }
+  .p1-settings__tag--fixed::before { content: none; }
+  .p1-settings__form { padding: 20px; }
+  .p1-settings__form[hidden] { display: none; }
+</style>

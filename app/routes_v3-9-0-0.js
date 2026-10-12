@@ -65,6 +65,29 @@ router.get('/results', (req, res, next) => {
 })
 router.get('/product-one', (req, res) => res.redirect('/v3-9-0-0/product1'))
 
+// Product 1 variations for user research.
+// /v3-9-0-0/p1/<variation> stores the variation in the session and opens the results page.
+// The results page button goes to /v3-9-0-0/view-product-1, which redirects to the stored variation.
+// See /v3-9-0-0/product1-variations for how to use these links in research sessions.
+// setupRouter() returns the kit's shared router, so only respond inside this version's path.
+const p1Variations = {
+  main: 'product1-3',
+  'sample-points': 'product1-4',
+  'solid-colours': 'product1-5'
+}
+router.get('/p1/:variation', (req, res, next) => {
+  if (req.baseUrl !== '/v3-9-0-0') return next()
+  const page = p1Variations[req.params.variation]
+  if (!page) return next()
+  req.session.data.p1Variation = page
+  res.redirect('/v3-9-0-0/results')
+})
+router.get('/view-product-1', (req, res, next) => {
+  if (req.baseUrl !== '/v3-9-0-0') return next()
+  const page = Object.values(p1Variations).includes(req.session.data.p1Variation) ? req.session.data.p1Variation : 'product1-3'
+  res.redirect('/v3-9-0-0/' + page)
+})
+
 router.get('/assets/*', (req, res) => {
   const newPath = req.originalUrl.replace('/assets', '/public')
   res.redirect(newPath)

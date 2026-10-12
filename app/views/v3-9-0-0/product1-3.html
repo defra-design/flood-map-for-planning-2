@@ -1,792 +1,439 @@
-{% extends "govuk-prototype-kit/layouts/unbranded.html" %}
+{% extends "layouts/main.html" %}
+{% set pageName = "Product 1: flood risk summary for your site" %}
 
-{% set imgpath="/public/images/email/" %}
+{% set p1 = {
+  reference: "Unspecified",
+  location: "443574/161376",
+  created: "12 October 2026, 10:08",
+  scale: "1:2,500"
+} %}
 
-{% block page_title %}
-  Gmail | Flood risk activity exemption application
-{% endblock %}
+{% macro mapDetails(scale) %}
+  <dl class="p1-map-details">
+    <div><dt>Your reference</dt><dd class="p1-ref">{{ p1.reference }}</dd></div>
+    <div><dt>Location (easting/northing)</dt><dd>{{ p1.location }}</dd></div>
+    <div><dt>Scale</dt><dd{% if not scale %} class="p1-scale"{% endif %}>{{ scale or p1.scale }}</dd></div>
+    <div><dt>Created</dt><dd>{{ p1.created }}</dd></div>
+  </dl>
+{% endmacro %}
 
-{% block proposition_header %}
-  <!-- blank to remove the proposition header -->
-{% endblock %}
+{% macro keyItem(swatch, label) %}
+  <li class="p1-key__item"><span class="p1-key__swatch {{ swatch }}" aria-hidden="true"></span>{{ label }}</li>
+{% endmacro %}
 
-{% block header_class %}
-  <!-- blank to remove the proposition header -->
-{% endblock %}
+{% macro featureKey() %}
+  {{ keyItem("p1-swatch--boundary", "Your site boundary") }}
+  {{ keyItem("p1-swatch--defence", "Flood defence") }}
+  {{ keyItem("p1-swatch--river", "Main river") }}
+  {{ keyItem("p1-swatch--storage", "Water storage area") }}
+{% endmacro %}
+
+{% macro depthKey() %}
+  <p class="govuk-body-s govuk-!-margin-bottom-1"><strong>Surface water depth in millimetres</strong></p>
+  <ol class="p1-depth" aria-label="Surface water depth bands, shallowest to deepest">
+    <li><span class="p1-depth__band" style="background:#fdd0a2"></span>Under 150</li>
+    <li><span class="p1-depth__band" style="background:#fdae6b"></span>150 to 300</li>
+    <li><span class="p1-depth__band" style="background:#fd8d3c"></span>300 to 600</li>
+    <li><span class="p1-depth__band" style="background:#f16913"></span>600 to 900</li>
+    <li><span class="p1-depth__band" style="background:#d94801"></span>900 to 1,200</li>
+    <li><span class="p1-depth__band" style="background:#a63603"></span>1,200 to 2,300</li>
+    <li><span class="p1-depth__band" style="background:#7f2704"></span>Over 2,300</li>
+  </ol>
+{% endmacro %}
+
+{% macro swMap(file, title, chance, period) %}
+  <figure class="p1-figure">
+    <img src="/public/images/product1-v3-9-0-0/{{ file }}?v=6" alt="Map of the site and surrounding area showing surface water flooding with a {{ chance }} chance each year, {{ period }}. Shaded orange areas show depth, darker for deeper water">
+    <figcaption class="govuk-body-s"><strong>{{ title }}</strong>: {{ chance }} chance each year, {{ period }}</figcaption>
+  </figure>
+{% endmacro %}
 
 {% block content %}
+<div class="p1">
 
+  {% set resetHref = "product1-3" %}
+  {% include "v3-9-0-0/partials/p1-settings.html" %}
 
-<html>
-
-<head>
-  <meta charset="utf-8">
-  <meta name="robots" content="noindex">
-  <title>
-    Product 1 - Flood map for planning - GOV.UK
-  </title>
-  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-  <meta name="theme-color" content="#1d70b8">
-  <link rel="icon" sizes="48x48" href="/assets/images/favicon.ico">
-  <link rel="icon" sizes="any" href="/assets/images/favicon.svg" type="image/svg+xml">
-  <link rel="mask-icon" href="/assets/images/govuk-icon-mask.svg" color="#1d70b8">
-  <link rel="apple-touch-icon" href="/assets/images/govuk-icon-180.png">
-  <link rel="manifest" href="/assets/manifest.json">
-  <link href="/assets/application.css" rel="stylesheet">
-  <link href="/assets/check-your-details.css" rel="stylesheet"/>
-</head>
-<header>
-        <!-- HEADING -->
-    <input type="button" role="button" value="Print this page" onClick="window.print()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
-    <input type="button" role="button" value="Download PDF" onClick="window.getPdf()" class="govuk-button govuk-!-margin-top-7 govuk-!-margin-bottom-8 no-print">
-              <div class="map-legend-logo" style="margin-top: 0em; margin-bottom: 0em;">
-                <img id="ea-logo-image" class="ea-logo-image" style="width: 200px; height: auto; margin-left: 750px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div> 
-
-  </header>
-<body class="govuk-template__body js-enabled govuk-frontend-supported">
-
-  <div class="govuk-width-container">
-    <div class="govuk-main-wrapper govuk-main-wrapper--l print-page">
-
-    <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-          <h1 class="govuk-heading-l">
-            Flood map for planning
-          </h1>
-
-          <div style="background-color:#F1F0EF; padding-top: 10px; padding-left: 20px;">
-
-             <div class="govuk-warning-text">
-                <span class="govuk-warning-text__icon flood-risk-changed-icon" aria-hidden="true">!</span>
-                <h3 id="adminUpdatedData" class="govuk-heading-s govuk-warning-text__text" data-testid="understanding-changed">
-                  Our understanding of flood risk from rivers and the sea has changed
-                  since this information was published.
-
-                  Contact
-                  <a class="govuk-link" href="mailto:inforequests.gmmc@environment-agency.gov.uk" contenteditable="false" style="cursor: pointer;">inforequests.gmmc@environment-agency.gov.uk</a>
-                  for further information.
-                </h3>
-              </div>  
-            </div>  
-          <!-- Parameters -->
-      <div class="govuk-grid-row">
-        <!-- REFERENCE -->
-        <div class="govuk-grid-column-one-third">
-          <h3 class="govuk-heading-s"> Your reference </h3>
-          <p class="govuk-body"> Residential site </p>
-        </div>
-        <!-- LOCATION -->
-        <div class="govuk-grid-column-one-third">
-          <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-          <p class="govuk-body"> 395360/340050 </p>
-        </div>
-        <!-- Date -->
-        <div class="govuk-grid-column-one-third">
-          <h3 class="govuk-heading-s"> Created </h3>
-          <p class="govuk-body"> 05/05/2026 10:29 </p>
-        </div>
-      </div>
-</br>
-                <!-- Flood Zone 3 -->
-       {% if data['product1'] == 'FZ3' %}
-         <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
-            data-module="govuk-notification-banner">
-            <div class="govuk-notification-banner__content">
-              Your selected location is in flood zone 3, an area with a high probability of flooding.
-            </div>
-          </div>
-
-        {% else %}
-        <!-- Flood Zone 1 -->     
- 
-          <h2 class="govuk-heading-m"> 
-            This location is in flood zone 1</h2>
-            <p class="govuk-body">Land within flood zone 1 has a low probability of flooding from rivers or the sea.</p>
-
-
-          <!-- <div class="govuk-notification-banner" role="region" aria-labelledby="govuk-notification-banner-title"
-            data-module="govuk-notification-banner">
-          <div class="govuk-notification-banner__content">
-            Your selected location is in flood zone 1, an area with a low probability of flooding.
-         -->
-          </br>
-
-          
-          <!-- </div>
-          </div> -->
-          
-        {% endif %}
-
-
-
-
-
-        </div>
-      </div>
-      
-      <!-- Flood Zone Heading -->
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-
-        
-
-        </div>
-      </div>
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-
-          <!-- Flood Zones 2 and 3 -->
-       {% if data['product1'] == 'FZ3' %}
-
-          <h3 class="govuk-heading-s"> This means</h3>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              you must complete a flood risk assessment for development in this area
-            </li>
-            <li>
-              you should follow the Environment Agency's standing advice for carrying
-              out a flood risk assessment (see <a class="govuk-link"
-                href="https://www.gov.uk/guidance/flood-risk-assessment-standing-advice">
-                https://www.gov.uk/guidance/flood-risk-assessment-standing-advice </a>)
-            </li>
-          </ul>
-
-            {% else %}
-
-          <!-- Flood Zone 1 -->
-          <h3 class="govuk-heading-s">Flood risk assessments</h3>
-
-          <p class="govuk-body">You will need to do a flood risk assessment if:</p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              your site is more than 1 hectare
-            </li>
-            <li>
-              your location has been identified as having critical drainage problems
-            </li>
-            <li>
-              your location is identified in the local planning authority's (LPA) strategic flood risk assessment (SFRA) as being at increased flood risk in future
-            </li>
-            <li>
-              development would increase the vulnerability classification and land may be subject to sources of flooding other than rivers or sea
-            </li>
-          </ul>
-          {% endif %}
-        </div>
-      </div>
-
-      <!-- Notes -->
-      <div class="govuk-grid-row">
-        <div class="govuk-grid-column-full">
-          <h3 class="govuk-heading-s">Notes</h3>
-          <p class="govuk-body">
-            The data shown on the flood map for planning should be used alongside strategic flood risk assessments (SFRAs).
-          </p>
-          <p class="govuk-body">
-            Users of these datasets should always check they are suitable for the intended use.
-          </p>
-          <p class="govuk-body">
-            This information tells you the flood risk of the land around a building and cannot tell you if individual buildings are at risk.
-          </p>
-          <p class="govuk-body">
-            Flood risk data is covered by the Open Government Licence, which sets out the terms and conditions for using government data:
-            <a class="govuk-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">
-              https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3
-            </a>
-          </p>
-          <p class="govuk-body">
-            Use of the address and mapping data is subject to Ordnance Survey public viewing terms under Crown copyright and database rights 2026 AC0000807064:
-            <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/os-terms">
-              https://flood-map-for-planning.service.gov.uk/os-terms
-            </a>
-          </p>
-          <p class="govuk-body">
-            Find further flood risk information:
-          </p>
-          <ul class="govuk-list govuk-list--bullet">
-            <li>
-              shoreline management plans:
-              <a class="govuk-link" href="https://environment.data.gov.uk/shoreline-planning">
-                https://environment.data.gov.uk/shoreline-planning
-              </a>
-            </li>
-            <li>
-              coastal erosion:
-              <a class="govuk-link" href="https://www.gov.uk/check-coastal-erosion-management-in-your-area">
-                https://www.gov.uk/check-coastal-erosion-management-in-your-area
-              </a>
-            </li>
-            <li>
-              reservoir flooding:
-              <a class="govuk-link" href="https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them">
-                https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them
-              </a>
-            </li>
-          </ul>
-          <p class="govuk-body">
-            The material displayed, including maps and risk data, is provided without any guarantees, conditions or warranties as to its accuracy. See our terms and conditions for more information:
-            <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/terms-and-conditions">
-              https://flood-map-for-planning.service.gov.uk/terms-and-conditions
-            </a>
-          </p>
-        </div>
-      </div>
+  <!-- Actions: not printed -->
+  <div class="p1-actions p1-no-print">
+    <div class="govuk-button-group">
+      <button type="button" class="govuk-button" data-module="govuk-button" id="p1-print">Print this page</button>
+      <a href="/public/pdf/product1-3.pdf" download="flood-map-for-planning-product-1.pdf" role="button" draggable="false" class="govuk-button" data-module="govuk-button" id="p1-pdf">Download PDF</a>
     </div>
-    <div id="map-page" class="govuk-main-wrapper govuk-main-wrapper--l print-page">
-      <!-- MAP -->
-                 <h3 class="govuk-heading-s">Flood maps for your location</h3>
 
-      <div  class="govuk-grid-row ">
-        <div class="govuk-grid-column-full">
-
-          <!-- Flood zones map -->
-          <figure id="map-container" style="height: 810px;" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 790px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/blackwhitemap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend"style="height: 876px">
-              <div class="map-legend-parameters">
-
-                    <div class="parameter" style="padding-bottom: 30px;">
-                  <h3 class="govuk-heading-s">Flood zones plus climate change</h3>
-                  <p class="govuk-body">The combined extent of flood zones 2 and 3</p>
-                </div>
-
-
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                <!-- LOCATION -->
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Easting/northing </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-
-                <!-- Scale-->
-                  <div class="parameter">
-                    <h3 class="govuk-heading-s"> Scale </h3>
-                    <p class="govuk-body"> 1:2,500 </p>
-                  </div>
-
-                <!-- Date -->
-                    <div class="parameter" style="padding-bottom: 35px;">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-               <h3 class="govuk-heading-s" style="margin-bottom: -10px; margin-left: 8px;"> Key </h3>
-
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#1C48DF"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood zone 3</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#3584FF"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood zone 2</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#FEBF95"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">With climate change</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#000000"><path d="M32 32H8V8h24v24zm-.983-23h-22v22h22V9zM12 9.996c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 13.106 9.996 12 10.894 9.996 12 9.996zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 21.106 9.996 20s.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004S9.996 29.106 9.996 28s.898-2.004 2.004-2.004zm8-16c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm8-16c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004zm0 8c1.106 0 2.004.898 2.004 2.004s-.898 2.004-2.004 2.004-2.004-.898-2.004-2.004.898-2.004 2.004-2.004z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">No data</div>
-              </div>
-
-              <!-- <div class="map-legend-logo" style="margin-top: 2em;">
-                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>               -->
-
-              </div>
-            </div>
-          </figure>
-</br></br>
-
-
-          <!-- surface water full extent -->
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;">
-
-    
-              <div class="map-legend-parameters">
-                    <div class="parameter" style="padding-bottom: 25px;">
-                  <h3 class="govuk-heading-s"">Surface water, present day</h3>
-                  <p class="govuk-body">1% (1 in 100) or more chance of flooding</p>
-                </div>
-
-
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                <!-- LOCATION -->
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Easting/northing </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                <!-- Date -->
-                    <div class="parameter" style="padding-bottom: 35px;">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-               <h3 class="govuk-heading-s" style="margin-bottom: -10px; margin-left: 8px;"> Key </h3>
-
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#48A1DB"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-                
-              <!-- <div class="map-legend-logo" style="margin-top: 7.1em;">
-                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>               -->
-
-              </div>
-            </div>
-          </figure>
-
-          <!-- surface water climate change -->
-
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;">
-
-              <div class="map-legend-parameters">
-                    <div class="parameter" style="padding-bottom: 25px;">
-                  <h3 class="govuk-heading-s">Surface water with climate change</h3>
-                  <p class="govuk-body">1% (1 in 100) or more chance of flooding</p>
-                </div>
-
-
-<div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                <!-- LOCATION -->
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Easting/northing </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                <!-- Date -->
-                    <div class="parameter" style="padding-bottom: 35px;">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <h3 class="govuk-heading-s" style="margin-bottom: -10px; margin-left: 8px;"> Key </h3>
-
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#48A1DB"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Full flood extent</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-<!-- 
-              <div class="map-legend-logo" style="margin-top: 7.1em;">
-                <img id="ea-logo-image" class="ea-logo-image" style="width: 110px; height: auto; margin-left: 90px;" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>  -->
-
-              </div>
-            </div>
-          </figure>
-
-          <!-- surface water 300mm
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;">
-
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-               Date
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 300mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-
-              </div>
-            </div>
-          </figure> -->
-
-          <!-- surface water over 600mm
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;" >
-
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                 LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                 Date 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 600mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-
-              </div>
-            </div>
-          </figure> -->
-
-          <!-- surface water over 900mm
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;" >
-
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                 LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                 Date 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 900mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-
-              </div>
-            </div>
-          </figure>
-
-          <!-- surface water over 1200mm
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;">
-
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                 LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                 Date 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 1200mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-
-              </div>
-            </div>
-          </figure>
-
-           surface water over 2300mm
-          <figure id="map-container" class="map-container product-1-map govuk-!-margin-bottom-6">
-            <img id="screenshot-image" style="height: 656px; border: 1px solid #ccc;" class="screenshot-image" src="/public/images/tempProduct1FullExtentMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 656px;" >
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                 LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                 Date 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#2B8CBE"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">Extent over 2300mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#f47738"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-              </div>
-            </div>
-          </figure>
-
-
-           surface water all depths
-          <figure id="map-container" style="height: 1030px;" class="map-container product-1-map govuk-!-margin-bottom-6"  style="height: 810px;" >
-            <img id="screenshot-image" style="height: 906px;" class="screenshot-image"  style="height: 730px;" src="/public/images/tempProduct1AllDepthsMap-highcontrast.png" alt="Flood map for planning">
-            <div class="map-legend" style="height: 930px;">
-
-              
-              <div class="map-legend-parameters">
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Your reference </h3>
-                  <p class="govuk-body"> Residential site </p>
-                </div>
-                 LOCATION 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Location (easting/northing) </h3>
-                  <p class="govuk-body"> 395360/340050 </p>
-                </div>
-                 Date 
-                <div class="parameter">
-                  <h3 class="govuk-heading-s"> Created </h3>
-                  <p class="govuk-body"> 05/05/2026 10:29 </p>
-                </div>
-              </div>
-              <div class="map-legend-values">
-                <div class="value" style="margin-top: 1em;">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--query-polygon"><svg width="40" height="40" viewBox="0 0 40 40" fill="none"><path d="M9 9h22v22H9z"></path></svg></div></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Selected area</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fdd0a2"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;"><150mm</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fdae6b"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">150-300mm</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#fd8d3c"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">300-600mm</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#d94801"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">600-900mm</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#a63603"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">900-1200mm</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--fill"><svg width="40" height="40" viewBox="0 0 40 40" fill="#7f2704"><path d="M8 8h24v24H8z"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em;">>2300mm</div>
-                </div>
-
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#2B8CBE"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Flood defence</div>
-                </div>
-                <div class="value">
-                  <div class="img"><div class="fm-c-layers__image fm-c-layers__image--icon"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M8 17h24v6H8z"></path><path d="M8 17h24" stroke="#000" stroke-width="2" fill="none"></path><path d="M8 23h24" stroke="#000" stroke-width="2" fill="none"></path></svg></div></div>
-                  <div class="govuk-body" style="line-height: 2em; ">Main river</div>
-                </div>
-                <div class="value">
-                  <div class="img"><svg xmlns="http://www.w3.org/2000/svg" width="40" height="40" viewBox="0 0 40 40" fill-rule="evenodd" stroke-linejoin="round" stroke-miterlimit="2" xmlns:v="https://vecta.io/nano" class="fm-c-symbol" fill="#12393d"><path d="M32 32H8V8h24v24zM16.124 9H9l-.001 3.227 1.949 1.949L16.124 9zM18.5 9h-.962l-5.883 5.883 6.364 6.364 6.364-6.364L18.5 9zm11.766 0H19.914l5.176 5.176L30.266 9zM31 20.085V9.681l-5.203 5.202L31 20.085zm0 2.324v-.91l-5.91-5.909-6.364 6.364 6.364 6.364L31 22.409zM27.772 31H31v-7.177l-5.203 5.202L27.772 31zm-3.949 0h2.535l-1.268-1.268L23.823 31zM13.63 31h8.778l1.975-1.975-6.364-6.364-6.364 6.364L13.63 31zm-3.949 0h2.535l-1.267-1.268L9.681 31zM9 27.784v2.482l1.242-1.241L9 27.784zm0-10.246v8.832l1.949 1.948 6.364-6.364-6.364-6.364L9 17.538zm0-3.896v2.482l1.242-1.241L9 13.642z"></path></svg></div>
-                  <div class="govuk-body" style="line-height: 2em;">Water storage area</div>
-                </div>
-
-              <div class="map-legend-logo" style="margin-top: 6.5em;">
-                <img id="ea-logo-image" class="ea-logo-image" src="/public/images/EA_Logo.png" alt="Environment Agency logo">
-              </div>
-
-              </div>
-            </div>-->
-            <div class="map-footer">
-              © Environment Agency copyright and/or database rights 2026. All rights reserved. © Crown copyright and database rights 2026 Ordnance Survey licence number AC0000807064
-            </div>
-          </figure> 
-        </div>
-      </div>
-    </div>
   </div>
-  <script src="/assets/product-1-client.js"></script>
-  <script>
-    document.addEventListener('DOMContentLoaded', () => {
-      showMapAsImage([[394376.18,340516.37],[396306.22,340525.93],[396345.63,339583.6],[394410.82,339575.24],[394376.18,340516.37]])
+
+  <!-- Document header -->
+  <header class="p1-header">
+    <img class="p1-logo" src="/public/images/EA_Logo.png" alt="Environment Agency">
+    <span class="govuk-caption-l">Product 1</span>
+    <h1 class="govuk-heading-xl govuk-!-margin-bottom-6">Flood map for planning</h1>
+
+    <dl class="p1-meta">
+      <div><dt>Your reference</dt><dd class="p1-ref">{{ p1.reference }}</dd></div>
+      <div><dt>Location (easting/northing)</dt><dd>{{ p1.location }}</dd></div>
+      <div><dt>Created</dt><dd>{{ p1.created }}</dd></div>
+    </dl>
+  </header>
+
+  <!-- The quick decision -->
+  <section class="p1-section" aria-labelledby="result-heading">
+    <h2 class="govuk-heading-l" id="result-heading">Your site is in flood zone 3</h2>
+    <p class="govuk-body-l">An area with a high probability of flooding from rivers or the sea.</p>
+
+    <h3 class="govuk-heading-m">This means</h3>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>you must complete a flood risk assessment for development in this area</li>
+      <li>you should follow the Environment Agency's standing advice for carrying out a flood risk assessment: <a class="govuk-link" href="https://www.gov.uk/guidance/flood-risk-assessment-standing-advice">www.gov.uk/guidance/flood-risk-assessment-standing-advice</a></li>
+    </ul>
+
+    <h3 class="govuk-heading-m">Data in this summary</h3>
+    <p class="govuk-body" id="p1-included-text">This summary includes flood zones, flood zones with climate change, surface water and surface water with climate change. Surface water is shown at a 1 in 100 chance.</p>
+
+    <table class="govuk-table p1-glance">
+      <caption class="govuk-table__caption govuk-table__caption--s">At a glance for your site</caption>
+      <thead class="govuk-table__head">
+        <tr class="govuk-table__row">
+          <th scope="col" class="govuk-table__header">Data</th>
+          <th scope="col" class="govuk-table__header">Result for your site</th>
+        </tr>
+      </thead>
+      <tbody class="govuk-table__body">
+        <tr class="govuk-table__row">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#fz-heading">Flood zones</a></th>
+          <td class="govuk-table__cell">Flood zone 3</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="fz-cc">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#fzcc-heading">Flood zones with climate change</a></th>
+          <td class="govuk-table__cell">Flood zone 3</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="sw-present">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#sw-heading">Surface water, present day</a></th>
+          <td class="govuk-table__cell">Some surface water at a 1 in 100 chance, mostly under 150mm deep</td>
+        </tr>
+        <tr class="govuk-table__row" data-row="sw-cc">
+          <th scope="row" class="govuk-table__header"><a class="govuk-link" href="#swcc-heading">Surface water with climate change</a></th>
+          <td class="govuk-table__cell">Some surface water at a 1 in 100 chance, mostly under 300mm deep</td>
+        </tr>
+      </tbody>
+    </table>
+  </section>
+
+  <!-- Flood zones: always included -->
+  <section class="p1-section p1-map-section" id="fz" aria-labelledby="fz-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="fz-heading" tabindex="-1">Flood zones</h2>
+    <p class="govuk-body">Flood zones show the chance of flooding from rivers and the sea, ignoring flood defences. They are used to decide whether a flood risk assessment is needed.</p>
+    <div class="p1-map-layout">
+      <figure class="p1-figure">
+        <img src="/public/images/product1-v3-9-0-0/fz-present.png?v=6" alt="Map of the site and surrounding area. A river channel running north-east to south-west is in flood zone 3, with flood zone 2 along its edges. The south-east end of the site boundary is in flood zone 3">
+        <figcaption class="govuk-body-s"><strong>Flood zones, present day</strong></figcaption>
+      </figure>
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        <ul class="p1-key">
+          {{ keyItem("p1-swatch--fz3", "Flood zone 3") }}
+          {{ keyItem("p1-swatch--fz2", "Flood zone 2") }}
+          {{ keyItem("p1-swatch--fz1", "Flood zone 1") }}
+          {{ featureKey() }}
+        </ul>
+      </div>
+    </div>
+    {{ mapDetails() }}
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Flood zone 3 has a 1% or greater chance each year of flooding from rivers, or a 0.5% or greater chance from the sea. Flood zone 2 has between a 0.1% and 1% chance from rivers, or between 0.1% and 0.5% from the sea.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2). The data shown is correct on the date this summary was created.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Flood zones with climate change -->
+  <section class="p1-section p1-map-section" id="fz-cc" data-section="fz-cc" aria-labelledby="fzcc-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="fzcc-heading" tabindex="-1">Flood zones with climate change</h2>
+    <p class="govuk-body">How flood zones 2 and 3 could extend between 2070 and 2125, based on a central allowance for climate change.</p>
+    <div class="p1-map-layout">
+      <figure class="p1-figure">
+        <img src="/public/images/product1-v3-9-0-0/fz-cc.png?v=6" alt="Map of the site and surrounding area showing flood zones 2 and 3 with climate change. The map uses a black and white base map. The flooded area is similar to present day, with small additional areas near Mount Road shown in light orange">
+        <figcaption class="govuk-body-s"><strong>Flood zones with climate change</strong>: 2070 to 2125</figcaption>
+      </figure>
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        <ul class="p1-key">
+          {{ keyItem("p1-swatch--fz3", "Flood zone 3") }}
+          {{ keyItem("p1-swatch--fz2", "Flood zone 2") }}
+          {{ keyItem("p1-swatch--cc", "Extra area with climate change") }}
+          {{ featureKey() }}
+        </ul>
+      </div>
+    </div>
+    {{ mapDetails() }}
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Use this alongside the present day flood zones to understand how flood risk could change over the lifetime of a development.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2).</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Surface water, present day -->
+  <section class="p1-section p1-map-section" id="sw-present" data-section="sw-present" aria-labelledby="sw-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="sw-heading" tabindex="-1">Surface water, present day</h2>
+    <p class="govuk-body">Surface water flooding happens when heavy rain cannot drain away. It is not part of the flood zones, so it does not change whether a flood risk assessment is needed, but you may need to consider it in one. The map shows areas with a 1 in 100 (1%) chance of flooding each year.</p>
+    <div class="p1-map-layout">
+      {{ swMap("sw-present-100.png", "Surface water, present day", "1 in 100 (1%)", "present day") }}
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        {{ depthKey() }}
+        <ul class="p1-key">{{ featureKey() }}</ul>
+      </div>
+    </div>
+    {{ mapDetails("1:1,500") }}
+    <div class="p1-sw-more p1-excluded" data-section="sw-more">
+      <h3 class="govuk-heading-m">Other chances of flooding</h3>
+      <div class="p1-sw-grid">
+        {{ swMap("sw-present-30.png", "Higher chance", "1 in 30 (3.3%)", "present day") }}
+        {{ swMap("sw-present-1000.png", "Lower chance", "1 in 1000 (0.1%)", "present day") }}
+      </div>
+    </div>
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">The map shows the area that could flood from surface water with a 1 in 100 chance each year, and how deep the water could be. You can also include maps for a 1 in 30 and 1 in 1000 chance.</p>
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2), risk of flooding from surface water.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Surface water with climate change -->
+  <section class="p1-section p1-map-section" id="sw-cc" data-section="sw-cc" aria-labelledby="swcc-heading">
+    <h2 class="govuk-heading-l p1-anchor-target" id="swcc-heading" tabindex="-1">Surface water with climate change</h2>
+    <p class="govuk-body">How surface water flooding with a 1 in 100 (1%) chance each year could change between 2061 and 2125, based on a central allowance for climate change.</p>
+    <div class="p1-map-layout">
+      {{ swMap("sw-cc-100.png", "Surface water with climate change", "1 in 100 (1%)", "2061 to 2125") }}
+      <div class="p1-key-panel">
+        <h3 class="govuk-heading-s">Key</h3>
+        {{ depthKey() }}
+        <ul class="p1-key">{{ featureKey() }}</ul>
+      </div>
+    </div>
+    {{ mapDetails("1:1,500") }}
+    <div class="p1-sw-more p1-excluded" data-section="sw-more">
+      <h3 class="govuk-heading-m">Other chances of flooding</h3>
+      <div class="p1-sw-grid">
+        {{ swMap("sw-cc-30.png", "Higher chance", "1 in 30 (3.3%)", "2061 to 2125") }}
+        {{ swMap("sw-cc-1000.png", "Lower chance", "1 in 1000 (0.1%)", "2061 to 2125") }}
+      </div>
+    </div>
+    <details class="govuk-details p1-about">
+      <summary class="govuk-details__summary"><span class="govuk-details__summary-text">About this data</span></summary>
+      <div class="govuk-details__text">
+        <p class="govuk-body">Source: Environment Agency, National Flood Risk Assessment (NaFRA2), risk of flooding from surface water with climate change.</p>
+      </div>
+    </details>
+  </section>
+
+  <!-- Next steps and notes -->
+  <section class="p1-section" aria-labelledby="next-heading">
+    <h2 class="govuk-heading-l" id="next-heading">More data for your site</h2>
+    <p class="govuk-body">If you need more detail for a flood risk assessment, you can request a Product 4 (detailed flood risk data, including modelled flood levels and flood defence details) from the flood map for planning service.</p>
+    <p class="govuk-body">Find out about other sources of flood risk:</p>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>shoreline management plans: <a class="govuk-link" href="https://environment.data.gov.uk/shoreline-planning">environment.data.gov.uk/shoreline-planning</a></li>
+      <li>coastal erosion: <a class="govuk-link" href="https://www.gov.uk/check-coastal-erosion-management-in-your-area">www.gov.uk/check-coastal-erosion-management-in-your-area</a></li>
+      <li>reservoir flooding: <a class="govuk-link" href="https://www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them">www.gov.uk/guidance/reservoir-flood-maps-when-and-how-to-use-them</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Notes</h2>
+    <p class="govuk-body">This information relates to the selected location and is not specific to any property within it. The data is updated regularly and is correct on the date this summary was created. Keep this summary as a record of the data at that time.</p>
+    <p class="govuk-body">Use this data alongside the local planning authority's strategic flood risk assessment (SFRA). Check the data is suitable for your intended use.</p>
+    <p class="govuk-body">Flood risk data is covered by the Open Government Licence: <a class="govuk-link" href="https://www.nationalarchives.gov.uk/doc/open-government-licence/version/3">www.nationalarchives.gov.uk/doc/open-government-licence/version/3</a></p>
+    <p class="govuk-body">Use of the address and mapping data is subject to Ordnance Survey public viewing terms under Crown copyright and database rights 2026 AC0000807064: <a class="govuk-link" href="https://flood-map-for-planning.service.gov.uk/os-terms">flood-map-for-planning.service.gov.uk/os-terms</a></p>
+    <p class="govuk-body-s p1-copyright">© Environment Agency copyright and/or database rights 2026. All rights reserved. © Crown copyright and database rights 2026 Ordnance Survey licence number AC0000807064.</p>
+  </section>
+</div>
+
+<style>
+  /* Map key colours match how each layer looks on the map */
+  .p1 { font-family: "GDS Transport", arial, sans-serif; color: #0b0c0c; -webkit-font-smoothing: antialiased; }
+  /* Key symbols match the flood map for planning map key */
+  .p1 { --fz3: #102d76; --fz2: #2b6db5; --cc: #f4a582; --boundary: #d33f28; --defence: #f27c43; --teal: #13383d; }
+  .p1-header { position: relative; }
+  .p1-logo { display: block; width: 160px; height: auto; margin: 0 0 20px; }
+  .p1-meta, .p1-map-details { display: grid; grid-template-columns: 1fr; gap: 10px 30px; margin: 0 0 30px; }
+  .p1-meta dt, .p1-map-details dt { font-size: 1rem; color: #505a5f; }
+  .p1-meta dd, .p1-map-details dd { margin: 0; font-weight: 700; font-size: 1.1875rem; }
+  .p1-map-details { margin: 20px 0 0; gap: 8px; }
+  .p1-map-details dd { font-size: 1rem; }
+  .p1-section { margin-bottom: 50px; }
+  .p1-figure { margin: 0 0 20px; }
+  .p1-figure img { display: block; width: 100%; height: auto; border: 1px solid #b1b4b6; }
+  .p1-figure figcaption { margin-top: 8px; }
+  .p1-key { list-style: none; margin: 0; padding: 0; }
+  .p1-key__item { display: flex; align-items: center; gap: 12px; margin-bottom: 10px; font-size: 1rem; }
+  .p1-key__swatch { flex: none; display: flex; align-items: center; justify-content: center; width: 24px; height: 24px; box-sizing: border-box; }
+  .p1-key__swatch::before { content: ""; display: block; box-sizing: border-box; width: 24px; height: 24px; }
+  .p1-swatch--fz3::before { background: var(--fz3); }
+  .p1-swatch--fz2::before { background: var(--fz2); }
+  .p1-swatch--fz1::before { background: #fff; border: 1px solid #505a5f; }
+  .p1-swatch--cc::before { background: var(--cc); }
+  .p1-swatch--boundary::before { width: 22px; height: 22px; border: 2px solid var(--boundary); }
+  .p1-swatch--defence::before { height: 7px; background: var(--defence); }
+  .p1-swatch--river::before { height: 7px; background: var(--teal); }
+  .p1-swatch--storage::before { border: 1.5px solid var(--teal); background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 12L12 0M0 24L24 0M12 24L24 12M0 12L12 24M0 0L24 24M12 0L24 12' stroke='%2313383d' stroke-width='1.2' fill='none'/%3E%3C/svg%3E") center / 21px 21px no-repeat; }
+  .p1-key--inline { display: flex; flex-wrap: wrap; gap: 0 24px; margin-top: 10px; }
+  .p1-depth { list-style: none; margin: 0 0 20px; padding: 0; display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 6px 16px; font-size: 1rem; }
+  .p1-depth li { display: flex; align-items: center; gap: 10px; }
+  .p1-depth__band { flex: none; width: 32px; height: 22px; border: 1px solid #505a5f; box-sizing: border-box; }
+  .p1-sw-grid { display: grid; grid-template-columns: 1fr; gap: 0 20px; }
+  .p1-sw-more { margin-top: 30px; }
+  .p1-key-panel { border-top: 1px solid #b1b4b6; padding-top: 15px; }
+  .p1-hint { margin-top: -15px; }
+  .p1-about { margin-top: 25px; }
+  /* In-page link targets: focus moves to the heading, so screen readers announce it and Tab continues from here */
+  .p1-anchor-target { scroll-margin-top: 20px; }
+  .p1-anchor-target:focus { outline: 3px solid #ffdd00; outline-offset: 2px; }
+  .p1-anchor-target:focus:not(:focus-visible) { outline: none; }
+  .p1-copyright { color: #505a5f; }
+  .p1-glance .govuk-table__header { width: 45%; }
+  [data-section].p1-excluded, [data-row].p1-excluded { display: none; }
+
+  @media (min-width: 641px) {
+    .p1-meta { grid-template-columns: repeat(3, auto); justify-content: start; }
+    .p1-map-section > .p1-map-details { grid-template-columns: repeat(4, auto); justify-content: start; }
+    .p1-logo { position: absolute; right: 0; top: 0; margin: 0; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (min-width: 900px) {
+    .p1-map-layout { display: grid; grid-template-columns: minmax(0, 2fr) minmax(220px, 1fr); gap: 30px; align-items: start; }
+    .p1-key-panel { border-top: 0; border-left: 1px solid #b1b4b6; padding: 0 0 0 20px; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); }
+  }
+
+  /* Print and PDF: A4 portrait, one dataset per page */
+  @media print {
+    @page { size: A4 portrait; margin: 15mm; }
+    .govuk-header, .govuk-service-navigation, .govuk-phase-banner, .govuk-footer, .govuk-skip-link, .p1-no-print { display: none !important; }
+    .govuk-width-container { max-width: none; margin: 0; }
+    .govuk-main-wrapper { padding: 0; }
+    body { font-size: 11pt; }
+    .p1-logo { position: absolute; right: 0; top: 0; width: 130px; }
+    .p1-meta { grid-template-columns: repeat(3, auto); }
+    .p1-map-section { break-before: page; }
+    .p1-map-layout { display: block; }
+    .p1-key-panel { border: 0; padding: 0; columns: 2; column-gap: 30px; }
+    .p1-key-panel > h3 { column-span: all; margin-bottom: 10px; }
+    .p1-figure, .p1-key__item, .p1-depth li { break-inside: avoid; }
+    .p1-about .govuk-details__summary { display: none; }
+    .p1-about .govuk-details__text { border: 0; padding: 0; }
+    html, body, .govuk-template, .govuk-template__body, .govuk-main-wrapper { background: #fff !important; }
+    .p1 a.govuk-link { color: #0b0c0c !important; text-decoration: none; }
+    .p1 a[href]::after { content: none !important; }
+    .p1-figure img { width: auto; max-width: 100%; max-height: 120mm; margin: 0 auto; }
+    .p1-sw-grid { grid-template-columns: repeat(2, 1fr); gap: 0 10px; }
+    .p1-sw-more { break-before: page; }
+    .p1-sw-grid .p1-figure img { max-height: none; width: 100%; }
+    .p1-section { margin-bottom: 20px; }
+    .p1-map-details { grid-template-columns: repeat(4, auto); justify-content: start; margin-top: 10px; }
+    .p1-key-panel .p1-map-details { grid-template-columns: repeat(2, auto); }
+    .p1-key__item { margin-bottom: 4px; }
+    .govuk-heading-l { margin-bottom: 10px; }
+    * { -webkit-print-color-adjust: exact; print-color-adjust: exact; }
+  }
+</style>
+
+<script>
+  (function () {
+    var names = { 'fz-cc': 'flood zones with climate change', 'sw-present': 'surface water', 'sw-cc': 'surface water with climate change' }
+    var boxes = document.querySelectorAll('#p1-settings-form [data-section]')
+    var text = document.getElementById('p1-included-text')
+    function update () {
+      var included = ['flood zones']
+      boxes.forEach(function (box) {
+        var key = box.getAttribute('data-section')
+        document.querySelectorAll('[data-section="' + key + '"]:not(input), tr[data-row="' + key + '"]').forEach(function (el) {
+          el.classList.toggle('p1-excluded', !box.checked)
+        })
+        if (box.checked && names[key]) included.push(names[key])
+      })
+      var swShown = document.getElementById('inc-sw').checked || document.getElementById('inc-swcc').checked
+      var more = document.getElementById('inc-swmore')
+      more.disabled = !swShown
+      if (!swShown) more.checked = false
+      var last = included.pop()
+      text.textContent = 'This summary includes ' + (included.length ? included.join(', ') + ' and ' : '') + last + '.' +
+        (swShown ? (more.checked ? ' Surface water is shown at a 1 in 30, 1 in 100 and 1 in 1000 chance.' : ' Surface water is shown at a 1 in 100 chance.') : '')
+    }
+    // Settings are applied only when the user selects "Apply settings" (the form reloads this page with ?applied=yes)
+    var params = new URLSearchParams(window.location.search)
+    var applied = params.get('applied') === 'yes'
+    var form = document.getElementById('p1-settings-form')
+    var toggle = document.getElementById('p1-settings-toggle')
+    var selected = document.getElementById('p1-settings-selected')
+    var status = document.getElementById('p1-settings-status')
+    var tags = document.getElementById('p1-settings-tags')
+    if (applied) {
+      var chosen = params.getAll('include')
+      boxes.forEach(function (box) { box.checked = chosen.indexOf(box.getAttribute('data-section')) !== -1 })
+      var ref = (params.get('reference') || '').trim()
+      var scale = params.get('scale') || '1:2,500'
+      document.getElementById('p1-reference').value = ref
+      document.getElementById('p1-scale').value = scale
+      document.querySelectorAll('.p1-ref').forEach(function (el) { el.textContent = ref || 'Unspecified' })
+      document.querySelectorAll('.p1-scale').forEach(function (el) { el.textContent = scale })
+    }
+    update()
+
+    if (applied) {
+      // List what is included. Each optional item is a link that removes it, as in the Defra filter pattern
+      function hrefWithout (key) {
+        var next = new URLSearchParams(params.toString())
+        var keep = next.getAll('include').filter(function (v) { return v !== key })
+        next.delete('include')
+        keep.forEach(function (v) { next.append('include', v) })
+        return window.location.pathname + '?' + next.toString()
+      }
+      var items = ['<li><span class="p1-settings__tag p1-settings__tag--fixed">Flood zones</span></li>']
+      boxes.forEach(function (box) {
+        if (!box.checked || box.disabled) return
+        var key = box.getAttribute('data-section')
+        items.push('<li><a class="p1-settings__tag" href="' + hrefWithout(key) + '"><span class="govuk-visually-hidden">Remove </span>' + box.getAttribute('data-label') + '</a></li>')
+      })
+      var refNow = (params.get('reference') || '').trim()
+      if (refNow) items.push('<li><span class="p1-settings__tag p1-settings__tag--fixed">Reference: ' + refNow.replace(/[<>&"]/g, '') + '</span></li>')
+      items.push('<li><span class="p1-settings__tag p1-settings__tag--fixed">Scale: ' + (params.get('scale') || '1:2,500') + '</span></li>')
+      tags.innerHTML = items.join('')
+      selected.hidden = false
+      form.hidden = true
+      toggle.hidden = false
+      toggle.setAttribute('aria-expanded', 'false')
+      status.textContent = 'Settings applied. ' + text.textContent
+      // Move focus to the confirmation so screen reader users hear that the settings changed
+      status.focus()
+    }
+    ;['inc-sw', 'inc-swcc'].forEach(function (id) {
+      document.getElementById(id).addEventListener('change', function () {
+        var more = document.getElementById('inc-swmore')
+        more.disabled = !(document.getElementById('inc-sw').checked || document.getElementById('inc-swcc').checked)
+      })
     })
-  </script>
-</body>
+    toggle.addEventListener('click', function () {
+      var open = form.hidden
+      form.hidden = !open
+      toggle.setAttribute('aria-expanded', String(open))
+      toggle.textContent = open ? 'Hide settings' : 'Change settings'
+      if (open) document.getElementById('p1-reference').focus()
+    })
 
-</html>
+    // Show every "About this data" section when printing, so the PDF includes it
+    var opened = []
+    window.addEventListener('beforeprint', function () {
+      document.querySelectorAll('.p1-about').forEach(function (d) { if (!d.open) { d.open = true; opened.push(d) } })
+    })
+    window.addEventListener('afterprint', function () { opened.forEach(function (d) { d.open = false }); opened = [] })
 
+    document.getElementById('p1-print').addEventListener('click', function () { window.print() })
+  })()
+</script>
 {% endblock %}

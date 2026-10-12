@@ -181,7 +181,7 @@
           However it is built, the flood data colours must look exactly the same as they do without the postcode outline.
         </p>
 
-        <h3 class="govuk-heading-m" id="label-focus">Label with keyboard focus</h3>
+        <h3 class="govuk-heading-m" id="label-focus" tabindex="-1">Label with keyboard focus</h3>
         <p class="govuk-body">
           The label can receive focus (for example to read it out), and uses the same focus style as the map's other
           buttons: a 4px black <code>#0b0c0c</code> border with a 3px yellow <code>#ffdd00</code> ring outside it.
@@ -266,5 +266,8 @@
   .design-spec-placeholder { border: 1px dashed #b1b4b6; padding: 1em; margin: 0 0 1.5em; background: #f8f8f8; }
   .design-spec-placeholder img { max-width: 100%; height: auto; display: block; }
   .design-spec-placeholder__label { font-size: 0.875rem; color: #6f777b; margin: 0.5em 0 0; }
+  [id][tabindex="-1"] { scroll-margin-top: 20px; }
+  [id][tabindex="-1"]:focus { outline: 3px solid #ffdd00; outline-offset: 2px; }
+  [id][tabindex="-1"]:focus:not(:focus-visible) { outline: none; }
 </style>
 {% endblock %}
