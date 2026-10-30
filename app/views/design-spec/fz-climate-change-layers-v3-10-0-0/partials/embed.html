@@ -1,6 +1,85 @@
 {# Wireframes are shown in iframes so the live map component's stylesheet (map.css, which bundles its own copy of
    GOV.UK Frontend) doesn't restyle the rest of the page. #}
 {% set base = "/design-spec/fz-climate-change-layers-v3-10-0-0/frames/" %}
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Test the existing map lines</legend>
+    <div class="govuk-checkboxes govuk-checkboxes--small">
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="wf-flag-boundary" type="checkbox" data-flag="boundary">
+        <label class="govuk-label govuk-checkboxes__label" for="wf-flag-boundary">Show a location boundary (current design)</label>
+      </div>
+      <div class="govuk-checkboxes__item">
+        <input class="govuk-checkboxes__input" id="wf-flag-defence" type="checkbox" data-flag="defence">
+        <label class="govuk-label govuk-checkboxes__label" for="wf-flag-defence">Show flood defences (illustrative lines, not real data)</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Map style</legend>
+    <div class="govuk-radios govuk-radios--small govuk-radios--inline">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="wf-mode-outdoor" name="wf-mode" type="radio" value="outdoor" checked>
+        <label class="govuk-label govuk-radios__label" for="wf-mode-outdoor">Outdoor</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="wf-mode-dark" name="wf-mode" type="radio" value="dark">
+        <label class="govuk-label govuk-radios__label" for="wf-mode-dark">Dark</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<div class="govuk-form-group">
+  <fieldset class="govuk-fieldset">
+    <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">Line style for the boundary and flood defence</legend>
+    <div class="govuk-radios govuk-radios--small">
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="wf-lines-current" name="wf-lines" type="radio" value="current" checked>
+        <label class="govuk-label govuk-radios__label" for="wf-lines-current">Current: plain boundary and plain orange defence</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="wf-lines-onesided" name="wf-lines" type="radio" value="onesided">
+        <label class="govuk-label govuk-radios__label" for="wf-lines-onesided">B: casing on one side of the defence only, heavier boundary with casing both sides</label>
+      </div>
+      <div class="govuk-radios__item">
+        <input class="govuk-radios__input" id="wf-lines-darkcase" name="wf-lines" type="radio" value="darkcase">
+        <label class="govuk-label govuk-radios__label" for="wf-lines-darkcase">C: near-black casing on the boundary, white casing on the defence</label>
+      </div>
+    </div>
+  </fieldset>
+</div>
+<script>
+  (function () {
+    Array.prototype.forEach.call(document.querySelectorAll('input[data-flag]'), function (box) {
+      var key = 'fz-climate-wireframe-' + box.getAttribute('data-flag')
+      try { box.checked = sessionStorage.getItem(key) === '1' } catch (e) { /* storage unavailable */ }
+      box.addEventListener('change', function () {
+        try { sessionStorage.setItem(key, box.checked ? '1' : '0') } catch (e) { /* storage unavailable */ }
+      })
+    })
+    var radios = Array.prototype.slice.call(document.querySelectorAll('input[name="wf-lines"]'))
+    var saved = null
+    try { saved = sessionStorage.getItem('fz-climate-wireframe-lines') } catch (e) { /* storage unavailable */ }
+    radios.forEach(function (r) {
+      r.checked = r.value === (saved || 'current')
+      r.addEventListener('change', function () {
+        try { sessionStorage.setItem('fz-climate-wireframe-lines', r.value) } catch (e) { /* storage unavailable */ }
+      })
+    })
+    var modes = Array.prototype.slice.call(document.querySelectorAll('input[name="wf-mode"]'))
+    var savedMode = null
+    try { savedMode = sessionStorage.getItem('fz-climate-wireframe-mode') } catch (e) { /* storage unavailable */ }
+    modes.forEach(function (r) {
+      r.checked = r.value === (savedMode || 'outdoor')
+      r.addEventListener('change', function () {
+        try { sessionStorage.setItem('fz-climate-wireframe-mode', r.value) } catch (e) { /* storage unavailable */ }
+      })
+    })
+  })()
+</script>
+
 <h2 class="govuk-heading-l" id="desktop">Desktop</h2>
 <p class="govuk-body">Menu and key open, as the service opens today. Change the layers to see the map and key respond. Open any wireframe on its own with the link underneath.</p>
 <div class="wf-set">

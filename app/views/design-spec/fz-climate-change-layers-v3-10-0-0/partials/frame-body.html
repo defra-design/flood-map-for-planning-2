@@ -107,6 +107,117 @@
       try { sessionStorage.setItem(KEY, JSON.stringify(state)) } catch (e) { /* ignore */ }
     }
 
+    function flag (name) {
+      if (new URLSearchParams(window.location.search).get(name) === '1') return true
+      try { return sessionStorage.getItem('fz-climate-wireframe-' + name) === '1' } catch (e) { return false }
+    }
+
+    var LINE_STYLES = ['current', 'onesided', 'darkcase']
+    function lineStyle () {
+      var value = new URLSearchParams(window.location.search).get('lines')
+      if (!value) { try { value = sessionStorage.getItem('fz-climate-wireframe-lines') } catch (e) { /* storage unavailable */ } }
+      return LINE_STYLES.indexOf(value) > -1 ? value : 'current'
+    }
+
+    function isDark () {
+      var value = new URLSearchParams(window.location.search).get('mode')
+      if (!value) { try { value = sessionStorage.getItem('fz-climate-wireframe-mode') } catch (e) { /* storage unavailable */ } }
+      return value === 'dark'
+    }
+
+    // Line styles for the existing boundary and flood defence lines (see "Location boundary and flood defences" in the spec).
+    // Colours are today's. Outdoor: boundary #D4351D, flood defence #F47738. Dark: boundary #ffffff, flood defence #F47738.
+    // The casing colour is the opposite of the line it protects from the flood colours: white in the outdoor style, near black in dark.
+    var ORANGE = '#F47738'
+    var NEAR_BLACK = '#0b0c0c'
+    var SVG = 'http://www.w3.org/2000/svg'
+    var BOUNDARY = { x: 279, y: 204, w: 309, h: 309 }
+    var boundaryColour = function () { return isDark() ? '#ffffff' : '#D4351D' }
+    var casingColour = function () { return isDark() ? NEAR_BLACK : '#ffffff' }
+
+    function node (tag, attrs, parent) {
+      var n = document.createElementNS(SVG, tag)
+      Object.keys(attrs).forEach(function (k) { n.setAttribute(k, attrs[k]) })
+      if (parent) parent.appendChild(n)
+      return n
+    }
+
+    // Samples a path every `step` units and returns points with unit normals pointing to the left of the direction of travel
+    function samplePath (pathEl, step) {
+      var length = pathEl.getTotalLength()
+      var out = []
+      for (var d = 0; d <= length; d += step) {
+        var a = pathEl.getPointAtLength(d)
+        var b = pathEl.getPointAtLength(Math.min(d + 1, length))
+        var tx = b.x - a.x
+        var ty = b.y - a.y
+        var len = Math.hypot(tx, ty) || 1
+        out.push({ x: a.x, y: a.y, nx: ty / len, ny: -tx / len })
+      }
+      return out
+    }
+
+    // B: casing on one side of the defence only. C: the defence gets a white casing and the boundary a near-black one.
+    function defenceCasing (style) { return style === 'darkcase' ? '#ffffff' : casingColour() }
+
+    function drawDefence (parent, d, style) {
+      if (style === 'darkcase') node('path', { d: d, stroke: defenceCasing(style), 'stroke-width': 4, 'stroke-linejoin': 'miter' }, parent)
+      if (style === 'onesided') {
+        var src = node('path', { d: d }, parent)
+        var pts = samplePath(src, 3).map(function (p) { return (p.x + p.nx * 2.25).toFixed(1) + ',' + (p.y + p.ny * 2.25).toFixed(1) })
+        parent.removeChild(src)
+        node('polyline', { points: pts.join(' '), stroke: casingColour(), 'stroke-width': 2.5 }, parent)
+      }
+      node('path', { d: d, stroke: ORANGE, 'stroke-width': 2, 'stroke-linejoin': 'miter' }, parent)
+    }
+
+    function drawBoundary (parent, style) {
+      var rect = function (stroke, width) {
+        node('rect', { x: BOUNDARY.x, y: BOUNDARY.y, width: BOUNDARY.w, height: BOUNDARY.h, stroke: stroke, 'stroke-width': width }, parent)
+      }
+      if (style === 'current') return rect(boundaryColour(), 2)
+      if (style === 'darkcase') { rect(NEAR_BLACK, 4); return rect(boundaryColour(), 2) }
+      rect(casingColour(), 5.5)
+      rect(boundaryColour(), 3)
+    }
+
+    function drawLines (on) {
+      var out = root.querySelector('#wf-lines-out')
+      var src = root.querySelector('#wf-defence-src')
+      if (!out || !src) return
+      while (out.firstChild) out.removeChild(out.firstChild)
+      var style = lineStyle()
+      if (on.defence) {
+        Array.prototype.forEach.call(src.querySelectorAll('path'), function (p) { drawDefence(out, p.getAttribute('d'), style) })
+      }
+      if (on.boundary) drawBoundary(out, style)
+
+      // Key swatches follow the same style
+      Array.prototype.forEach.call(root.querySelectorAll('svg[data-key-line]'), function (svg) {
+        while (svg.firstChild) svg.removeChild(svg.firstChild)
+        if (svg.getAttribute('data-key-line') === 'boundary') {
+          var box = function (stroke, width) { node('rect', { x: 1.5, y: 1.5, width: 17, height: 17, rx: 2, fill: 'none', stroke: stroke, 'stroke-width': width }, svg) }
+          if (style === 'current') box(boundaryColour(), 2)
+          else if (style === 'darkcase') { box(NEAR_BLACK, 4); box(boundaryColour(), 2) }
+          else { box(casingColour(), 5.5); box(boundaryColour(), 3) }
+        } else {
+          if (style === 'darkcase') node('line', { x1: 1, y1: 10, x2: 19, y2: 10, stroke: defenceCasing(style), 'stroke-width': 4 }, svg)
+          if (style === 'onesided') node('line', { x1: 1, y1: 7.75, x2: 19, y2: 7.75, stroke: casingColour(), 'stroke-width': 2.5 }, svg)
+          node('line', { x1: 1, y1: 10, x2: 19, y2: 10, stroke: ORANGE, 'stroke-width': 2 }, svg)
+        }
+      })
+    }
+
+    function applyMode () {
+      var dark = isDark()
+      root.classList.toggle('wf-dark', dark)
+      var app = root.querySelector('.im-o-app')
+      if (app) {
+        app.classList.toggle('im-o-app--dark-app', dark)
+        app.classList.toggle('im-o-app--light-app', !dark)
+      }
+    }
+
     function render () {
       var on = {}
       LAYERS.forEach(function (l) {
@@ -117,6 +228,10 @@
         on[l] = v
       })
       on.nodata = !!(on.fz2cc || on.fz3cc)
+      on.boundary = flag('boundary')
+      on.defence = flag('defence')
+      applyMode()
+      drawLines(on)
 
       inputs.forEach(function (c) {
         var l = c.getAttribute('data-layer')
@@ -134,7 +249,7 @@
         var any = el.getAttribute('data-show-any').split(' ').some(function (l) { return on[l] })
         el.style.display = any ? '' : 'none'
       })
-      var anyOn = Object.keys(on).some(function (l) { return on[l] })
+      var anyOn = Object.keys(on).some(function (l) { return ['boundary', 'defence'].indexOf(l) === -1 && on[l] })
       Array.prototype.forEach.call(root.querySelectorAll('[data-key-empty]'), function (el) {
         el.style.display = anyOn ? 'none' : ''
       })
@@ -153,6 +268,7 @@
       render()
     })
     window.addEventListener('storage', function (e) {
+      if (e.key && e.key.indexOf('fz-climate-wireframe-') === 0 && e.key !== KEY) return render()
       if (e.key !== KEY) return
       load()
       render()

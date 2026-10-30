@@ -9,4 +9,13 @@
   .wf-app .im-o-app { position: absolute; inset: 0; width: 100%; height: 100%; }
   .wf__nested { margin-left: 28px; }
   .wf__empty { margin: 0; }
+
+  /* Colours for the outdoor style (default) and the dark style. m = as shown on the map, c = key swatch. */
+  .wf-app { --m-fz2: #5483b2; --m-fz3: #3e5382; --m-fz2cc: #F4A582; --m-fz3cc: #C82B12;
+            --c-fz2: #1d70b8; --c-fz3: #003078; --c-fz2cc: #F4A582; --c-fz3cc: #C82B12; }
+  .wf-dark .wf-app { background: #2c2c2c; --m-fz2: #348349; --m-fz3: #aebaab; --m-fz2cc: #C75BC0; --m-fz3cc: #6A1B9A;
+                     --c-fz2: #41ab5d; --c-fz3: #e5f5e0; --c-fz2cc: #C75BC0; --c-fz3cc: #6A1B9A; }
+  .wf-base-dark { display: none; }
+  .wf-dark .wf-base-dark { display: inline; }
+  .wf-dark .wf-base-light { display: none; }
 </style>
