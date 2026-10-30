@@ -1,0 +1,353 @@
+{% extends "layouts/main.html" %}
+{% from "design-spec/fz-climate-change-layers-v3-10-0-0/partials/wireframes.html" import symbol as swatch %}
+{% set pageName = "Separate flood zone 2 and 3 climate change layers - design spec" %}
+
+{% block content %}
+{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/styles.html" %}
+{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/defs.html" %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Separate climate change layers - design spec</li>
+      </ol>
+    </div>
+
+    <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+
+        <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Proof of concept - estimated data</strong>
+        <h1 class="govuk-heading-xl">Separate flood zone 2 and 3 climate change layers</h1>
+        <p class="govuk-body-l">
+          Flood map for planning shows climate change as one extent covering flood zones 2 and 3 together. This proof of concept explores how
+          "flood zone 2 with climate change" and "flood zone 3 with climate change" could be shown separately, in the menu, on the map and in the key.
+        </p>
+
+        <div class="govuk-inset-text">
+          <p class="govuk-body">
+            These are wireframes, not the live map. The map is a shared component maintained in a separate repository, so it can't be changed from
+            this prototype. The menu, buttons and key use the live component's own stylesheet and markup so they look like the current service,
+            and they respond when you change a layer.
+          </p>
+          <p class="govuk-body">
+            Behind them is a screenshot of the live map. Only one climate change extent exists today, so flood zone 2 and flood zone 3 with climate
+            change are <strong>estimated</strong>. They are not flood modelling and must not be used for decisions.
+          </p>
+          <p class="govuk-body govuk-!-margin-bottom-0">
+            To use a different location, see <a class="govuk-link" href="#how-the-map-is-made">how the map is made</a>.
+          </p>
+        </div>
+
+        <h2 class="govuk-heading-l">Options</h2>
+        <p class="govuk-body">Each option has desktop and mobile wireframes covering the menu, map styling and key.</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-a">Option A: nested toggles under each zone</a></li>
+          <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-b">Option B: climate change group under timeframe</a></li>
+          <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-c">Option C: present day and climate change groups</a></li>
+        </ul>
+
+        <table class="govuk-table wf-compare">
+          <caption class="govuk-table__caption govuk-table__caption--m">Comparison</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header"></th>
+              <th scope="col" class="govuk-table__header">A: nested toggles</th>
+              <th scope="col" class="govuk-table__header">B: under timeframe</th>
+              <th scope="col" class="govuk-table__header">C: two groups</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Change from today</th>
+              <td class="govuk-table__cell">Large. "Climate change" radios removed</td>
+              <td class="govuk-table__cell">Small. "Climate change" radios kept, one group added</td>
+              <td class="govuk-table__cell">Medium. "Climate change" radios replaced by two groups</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Layer combinations</th>
+              <td class="govuk-table__cell">Climate change only if its zone is on</td>
+              <td class="govuk-table__cell">Present day always on with climate change</td>
+              <td class="govuk-table__cell">Any combination</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Menu length</th>
+              <td class="govuk-table__cell">4 checkboxes</td>
+              <td class="govuk-table__cell">2 radios, 2 checkboxes (revealed)</td>
+              <td class="govuk-table__cell">4 checkboxes</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Key grouping</th>
+              <td class="govuk-table__cell">By zone</td>
+              <td class="govuk-table__cell">By timeframe</td>
+              <td class="govuk-table__cell">By timeframe</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <th scope="row" class="govuk-table__header">Main risk</th>
+              <td class="govuk-table__cell">Nested controls on mobile</td>
+              <td class="govuk-table__cell">Two levels of choice</td>
+              <td class="govuk-table__cell">Repeated "Flood zone 2" labels, busiest map</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h2 class="govuk-heading-l" id="how-the-map-is-made">How the map is made</h2>
+        <p class="govuk-body">
+          The map image is a screenshot of the live service, so the basemap, flood zone 2, flood zone 3 and the climate change extent are the real
+          data. The service only has one climate change extent, so the split into flood zone 2 and flood zone 3 with climate change is estimated:
+        </p>
+        <ol class="govuk-list govuk-list--number">
+          <li>Flood zone 2 with climate change is the whole climate change extent (present day zones 2 and 3 plus the extra area climate change adds).</li>
+          <li>Flood zone 3 with climate change is the part of that extent nearest to present day flood zone 3.</li>
+          <li>It is sized so that zone 3's share of the extent matches zone 3's share of present day flood zone 2.</li>
+        </ol>
+        <p class="govuk-body">
+          This is a design estimate. It ignores ground levels, flood depths and defences, so the real extents will differ.
+        </p>
+
+        <h3 class="govuk-heading-m">What the example shows</h3>
+        <p class="govuk-body">
+          The example location is a river floodplain near Down Ampney Road. Climate change adds only about 6% to the present day flood zone area, mostly as
+          strips a few pixels wide along the edge and a few small patches. Present day flood zone 3 is about 76% of the present day flood zone 2 area.
+          Splitting those strips in two leaves very small areas of each colour, so the styling has to work for slivers. This is why the extents use solid
+          colours and not patterns.
+        </p>
+
+        <h3 class="govuk-heading-m">Changing the location</h3>
+        <ol class="govuk-list govuk-list--number">
+          <li>In the live service, choose Datasets: Flood zones and Climate change: 2070 to 2125. Leave Layer opacity at the default and switch off Map features.</li>
+          <li>Take a screenshot of the map only, with no panels or buttons on top. Use the default outdoor style.</li>
+          <li>Save it as <code>climate-change.png</code> in <code>app/views/design-spec/fz-climate-change-layers-v3-10-0-0/images/source/</code>.</li>
+          <li>Optional: take the same view with Datasets: None and save it as <code>base.png</code>. This gives an exact basemap under the flood layers.</li>
+          <li>Run <code>python3 scripts/build-fz-climate-estimate.py</code> (needs numpy, scipy and pillow). The wireframes show a tall map, so a wide screenshot is cropped. Use <code>--focus-x</code> and <code>--focus-y</code> (0 to 1) to choose the centre of the crop. The script prints how much of the extent it estimated as flood zone 3.</li>
+        </ol>
+
+        <h2 class="govuk-heading-l">Current design</h2>
+        <p class="govuk-body">
+          Reviewed from the map code (<code>client/map/plugins/datasets/floodZones.js</code>, <code>colours.js</code> and <code>terms.js</code> in
+          <code>DEFRA/fmp-map</code>) and the 3.9.0.0 info panel.
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li><strong>Menu:</strong> Datasets (flood zones, surface water or none), then Climate change (present day or 2070 to 2125), then Map features and Layer opacity.</li>
+          <li><strong>Present day:</strong> flood zone 2 and flood zone 3 layers.</li>
+          <li><strong>Climate change:</strong> a single "Climate change (2070 to 2125)" layer covering zones 2 and 3 together, shown with present day flood zone 2 and 3. Areas without data are shown with a dotted pattern.</li>
+          <li><strong>Key:</strong> in climate change mode lists "Flood zone 2 (present day)", "Flood zone 3 (present day)", "Climate change (2070 to 2125)" and "Climate change data unavailable".</li>
+          <li><strong>Help:</strong> the info panel text "How to use flood zones plus climate change" describes the "combined extent of flood zones 2 and 3".</li>
+        </ul>
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Current colours</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Layer</th>
+              <th scope="col" class="govuk-table__header">Colour</th>
+              <th scope="col" class="govuk-table__header">Contrast with white</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row"><td class="govuk-table__cell">Flood zone 2</td><td class="govuk-table__cell">#1d70b8</td><td class="govuk-table__cell">5.2:1</td></tr>
+            <tr class="govuk-table__row"><td class="govuk-table__cell">Flood zone 3</td><td class="govuk-table__cell">#003078</td><td class="govuk-table__cell">12.4:1</td></tr>
+            <tr class="govuk-table__row"><td class="govuk-table__cell">Climate change</td><td class="govuk-table__cell">#F4A582</td><td class="govuk-table__cell">2.0:1</td></tr>
+          </tbody>
+        </table>
+        <p class="govuk-body">
+          Two points to carry into the new styling. The current climate change colour is below the 3:1 minimum for graphics (WCAG 1.4.11) against
+          white, so it relies on the map behind it. Flood zone 2 and 3 are only 2.4:1 against each other, so the shape of the extent is what separates them.
+        </p>
+
+        <h2 class="govuk-heading-l" id="styling">Proposed map styling</h2>
+        <p class="govuk-body">
+          Each of the four extents is a solid colour, with no patterns. In the example, the climate change areas are strips a few pixels wide and small
+          patches, and splitting them in two makes them smaller. A hatch or dot pattern needs room to repeat, so at this size it reads as noise.
+          Solid colours stay legible on slivers, match how the service styles layers today, and are the simplest to build.
+        </p>
+        <p class="govuk-body">
+          Zone 3 with climate change is a deeper tone of the same warm family as zone 2 with climate change, in the same way that zone 3 is a deeper
+          blue than zone 2 today. Users only need to learn one rule: darker means zone 3.
+        </p>
+
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Layer styles (light map styles)</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Layer</th>
+              <th scope="col" class="govuk-table__header">Swatch</th>
+              <th scope="col" class="govuk-table__header">Style</th>
+              <th scope="col" class="govuk-table__header">Contrast</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 3 present day</td>
+              <td class="govuk-table__cell wf-swatch-cell">{{ swatch('fz3') }}</td>
+              <td class="govuk-table__cell">Solid #003078 (unchanged)</td>
+              <td class="govuk-table__cell">12.4:1 against white</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 2 present day</td>
+              <td class="govuk-table__cell wf-swatch-cell">{{ swatch('fz2') }}</td>
+              <td class="govuk-table__cell">Solid #1d70b8 (unchanged)</td>
+              <td class="govuk-table__cell">5.2:1 against white</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 3 with climate change</td>
+              <td class="govuk-table__cell wf-swatch-cell">{{ swatch('fz3cc') }}</td>
+              <td class="govuk-table__cell">Solid #C82B12, shown at the service's default 75% opacity (looks like rgb(214, 96, 77) on a white basemap)</td>
+              <td class="govuk-table__cell">5.5:1 against white at full strength, 3.7:1 as shown on the map. 2.8:1 against the zone 2 with climate change colour</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 2 with climate change</td>
+              <td class="govuk-table__cell wf-swatch-cell">{{ swatch('fz2cc') }}</td>
+              <td class="govuk-table__cell">Solid #F4A582, the colour of today's climate change layer, at 75% opacity</td>
+              <td class="govuk-table__cell">2.0:1 against white, as today. This is below the 3:1 minimum for graphics, so it needs the map behind it to stand out</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Climate change data unavailable</td>
+              <td class="govuk-table__cell wf-swatch-cell">{{ swatch('nodata') }}</td>
+              <td class="govuk-table__cell">Black dots with a black outline (unchanged)</td>
+              <td class="govuk-table__cell">21:1 against white</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="govuk-heading-m">Draw order and overlap</h3>
+        <ol class="govuk-list govuk-list--number">
+          <li>Flood zone 2 with climate change (bottom)</li>
+          <li>Flood zone 2 present day</li>
+          <li>Flood zone 3 with climate change</li>
+          <li>Flood zone 3 present day (top)</li>
+        </ol>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Zone 3 with climate change sits above present day zone 2, so land that moves from zone 2 to zone 3 shows in the zone 3 climate change colour. This is the most useful change to see. If present day zones were drawn on top of it, most of the zone 3 climate change area in the example would be hidden.</li>
+          <li>Present day flood zone 3 stays on top, so it is never covered.</li>
+          <li>Zone 2 with climate change is the bottom layer, so it shows as the extra area beyond today's flood zones, as the single climate change layer does today.</li>
+          <li>Layers are not outlined. The extents are too small for an outline to help, and it would add weight to the thin strips.</li>
+          <li>The "data unavailable" dotted area is drawn at the top and is shown whenever either climate change layer is on.</li>
+          <li>Check how the service composites layers when it is built. The wireframes show a layer on top hiding the one beneath, with climate change layers at 75% opacity.</li>
+        </ul>
+
+        <h3 class="govuk-heading-m">Colour is not the only cue</h3>
+        <p class="govuk-body">Solid colours make this harder, so the spec relies on several smaller cues together:</p>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Lightness. Zone 3 with climate change is clearly darker than zone 2 with climate change (2.8:1), and zone 2 with climate change is much lighter than both blues.</li>
+          <li>Position. Zone 3 with climate change sits beside present day zone 3 and zone 2 with climate change sits further out, so layout supports the colour.</li>
+          <li>Map query. Selecting a point opens the info panel, which names the layer in words (for example "Flood zone 3 with climate change"). This works for people who cannot tell the colours apart.</li>
+          <li>Every key item has a text label, and the key only lists layers that are switched on.</li>
+          <li>The menu lets users switch the two climate change layers on one at a time, so they can see each on its own.</li>
+        </ul>
+        <p class="govuk-body">
+          Risks to test: zone 3 with climate change (red) against present day zone 2 (mid-blue) has almost no difference in lightness (1.1:1) and relies on
+          the hue difference. Check this with a colour blindness simulator and with users, on the real map and not only the swatches.
+        </p>
+
+        <h3 class="govuk-heading-m">Not yet defined</h3>
+        <ul class="govuk-list govuk-list--bullet">
+          <li>Dark map style colours. Today's dark style uses green for present day and dark red for climate change, so zone 3 with climate change needs a dark variant that stays different from it.</li>
+          <li>Black and white basemap. Check the colours against it.</li>
+          <li>Opacity. Today's layer opacity slider would need to apply to all four extents.</li>
+          <li>Whether a pattern could be added at close zoom levels, where the extents are wider, as an extra cue.</li>
+        </ul>
+
+        <h2 class="govuk-heading-l">Key and help text</h2>
+        <p class="govuk-body">Key wording for each option is in the wireframes. It follows the menu, using the same labels and grouping.</p>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Key wording</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Today</th>
+              <th scope="col" class="govuk-table__header">Option A</th>
+              <th scope="col" class="govuk-table__header">Options B and C</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 2 (present day)</td>
+              <td class="govuk-table__cell">Flood zone 2: Present day</td>
+              <td class="govuk-table__cell">Present day: Flood zone 2</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 3 (present day)</td>
+              <td class="govuk-table__cell">Flood zone 3: Present day</td>
+              <td class="govuk-table__cell">Present day: Flood zone 3</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell" rowspan="2">Climate change (2070 to 2125)</td>
+              <td class="govuk-table__cell">Flood zone 2: With climate change (2070 to 2125)</td>
+              <td class="govuk-table__cell">Climate change (2070 to 2125): Flood zone 2</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Flood zone 3: With climate change (2070 to 2125)</td>
+              <td class="govuk-table__cell">Climate change (2070 to 2125): Flood zone 3</td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">Climate change data unavailable</td>
+              <td class="govuk-table__cell">Climate change data unavailable</td>
+              <td class="govuk-table__cell">Climate change data unavailable</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 class="govuk-heading-m">Draft help text for the info panel</h3>
+        <p class="govuk-body">
+          Replaces "How to use flood zones plus climate change", which today describes a "combined extent of flood zones 2 and 3". This is draft
+          wording that needs content design review and data team confirmation.
+        </p>
+        <div class="govuk-inset-text">
+          <p class="govuk-body govuk-!-font-weight-bold">How to use flood zone 2 with climate change</p>
+          <p class="govuk-body">
+            This shows how the extent of flood zone 2 could increase with climate change over the next century, ignoring the benefits of any existing flood defences.
+          </p>
+          <p class="govuk-body govuk-!-font-weight-bold">How to use flood zone 3 with climate change</p>
+          <p class="govuk-body">
+            This shows how the extent of flood zone 3 could increase with climate change over the next century, ignoring the benefits of any existing flood defences.
+          </p>
+        </div>
+        <p class="govuk-body">
+          The "Climate change allowances" and "Climate change data unavailable" text stays the same, as long as the data team confirm both extents use the same allowances.
+          The "About this map" page and the summary pages also refer to climate change and need checking once an option is chosen.
+        </p>
+
+        <h2 class="govuk-heading-l">Open questions for the data and dev teams</h2>
+        <ol class="govuk-list govuk-list--number">
+          <li>Is a split estimated from the present day zones good enough to show stakeholders, or should the data team supply a proper zone 3 climate change extent first?</li>
+          <li>Does separate flood zone 2 and flood zone 3 climate change data exist? Today the vector tile service (<code>Flood_Zones_2_and_3_Rivers_and_Sea_CCP1</code>) has one "Flood Zones plus climate change" layer.</li>
+          <li>If not, what would it take to produce and publish them, and when could they be available?</li>
+          <li>Do both extents use the same allowances (river peak flow central 2080s, sea level upper end to 2125)? Which probability does each use?</li>
+          <li>Is the zone 3 climate change extent always inside the zone 2 climate change extent? Do the polygons overlap, or are they clipped so that zone 2 excludes zone 3?</li>
+          <li>Could a climate change extent ever be smaller than its present day extent, for example where defences are ignored?</li>
+          <li>Does "data unavailable" apply to both zones in the same places?</li>
+          <li>What does the map query ("Get info") return for each layer? Today it returns one value for climate change, so the info panel, results pages and any reports would need new values.</li>
+          <li>What is the impact on tile size, load time and the layer opacity slider of two climate change layers instead of one?</li>
+          <li>Can the map plugin style two climate change layers in all three map styles? Today's layers take a solid fill and stroke colour from the style settings, so solid colours should work without new code.</li>
+          <li>Does the downloadable Product 1 map need to follow the new styling?</li>
+        </ol>
+
+        <h2 class="govuk-heading-l">Stakeholder feedback</h2>
+        <p class="govuk-body"><strong>Preferred option:</strong> not yet recorded.</p>
+        <table class="govuk-table">
+          <caption class="govuk-table__caption govuk-table__caption--m">Feedback log</caption>
+          <thead class="govuk-table__head">
+            <tr class="govuk-table__row">
+              <th scope="col" class="govuk-table__header">Date</th>
+              <th scope="col" class="govuk-table__header">Stakeholder</th>
+              <th scope="col" class="govuk-table__header">Preferred option</th>
+              <th scope="col" class="govuk-table__header">Feedback</th>
+            </tr>
+          </thead>
+          <tbody class="govuk-table__body">
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td>
+            </tr>
+            <tr class="govuk-table__row">
+              <td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td>
+            </tr>
+          </tbody>
+        </table>
+
+      </div>
+    </div>
+
+  </main>
+</div>
+{% endblock %}

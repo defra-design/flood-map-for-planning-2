@@ -1,0 +1,63 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Option A: nested toggles under each zone - design spec" %}
+{% set option = 'a' %}
+
+{% block content %}
+{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/styles.html" %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Separate climate change layers</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Option A</li>
+      </ol>
+    </div>
+
+    <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Proof of concept - estimated data</strong>
+    <h1 class="govuk-heading-xl">Option A: nested toggles under each zone</h1>
+    <p class="govuk-body-l">
+      Each flood zone has its own checkbox. Underneath it, an indented "Include climate change" checkbox adds that zone's climate change extent.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-b">Option B</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-c">Option C</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Overview, styling and open questions</a>
+    </p>
+
+    <h2 class="govuk-heading-l">How it works</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The "Climate change" radios (Present day or 2070 to 2125) are replaced by checkboxes under "Flood zones", so one zone can show climate change while the other does not.</li>
+      <li>Climate change checkboxes are greyed out and switched off when their parent zone is unchecked.</li>
+      <li>The key is grouped by zone: each zone lists its present day and climate change extent together.</li>
+    </ul>
+
+    {% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/embed.html" %}
+
+    <h2 class="govuk-heading-l">What works well</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Makes the link between a zone and its climate change extent obvious. The question "what does zone 3 look like with climate change?" is answered in one place.</li>
+      <li>Fewer top level choices. Four layers become two zones, each with an extra option.</li>
+      <li>The key mirrors the menu, so users can match the two.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Risks and things to test</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Removes the "Climate change" radios that users know today. Users who expect to switch the whole map to "2070 to 2125" now need two clicks.</li>
+      <li>Hiding a zone also hides its climate change extent. Users might want to see climate change without the present day layer, which this option does not allow.</li>
+      <li>Nested checkboxes are harder to use on mobile. Check touch target size (at least 44 by 44 pixels, so more than the GOV.UK small checkbox).</li>
+      <li>Biggest change to the map code: the menu structure and the key both change.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Accessibility notes</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Group the checkboxes in a fieldset with the legend "Flood zones". Label the nested checkboxes in full for screen reader users, for example "Flood zone 2: include climate change (2070 to 2125)".</li>
+      <li>When a parent is unchecked, disable the nested checkbox and keep its state, so it comes back on when the parent is re-checked.</li>
+      <li>Colour is not the only cue. The two climate change colours differ in lightness, every key item has a text label, and the info panel names the layer in words (see the <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/#styling">styling rules</a>).</li>
+    </ul>
+
+  </main>
+</div>
+{% endblock %}

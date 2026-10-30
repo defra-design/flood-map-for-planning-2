@@ -1,0 +1,29 @@
+{# Wireframes are shown in iframes so the live map component's stylesheet (map.css, which bundles its own copy of
+   GOV.UK Frontend) doesn't restyle the rest of the page. #}
+{% set base = "/design-spec/fz-climate-change-layers-v3-10-0-0/frames/" %}
+<h2 class="govuk-heading-l" id="desktop">Desktop</h2>
+<p class="govuk-body">Menu and key open, as the service opens today. Change the layers to see the map and key respond. Open any wireframe on its own with the link underneath.</p>
+<div class="wf-set">
+  <div class="wf wf--desktop">
+    <div class="wf__bar">Desktop - layers menu and key open</div>
+    <iframe class="wf__frame" src="{{ base }}{{ option }}-desktop" title="Desktop wireframe with the layers menu and key open"></iframe>
+  </div>
+</div>
+<p class="govuk-body-s"><a class="govuk-link" href="{{ base }}{{ option }}-desktop">Open the desktop wireframe on its own</a></p>
+
+<h2 class="govuk-heading-l" id="mobile">Mobile</h2>
+<p class="govuk-body">On mobile the menu opens as a drawer from the Layers button, and the key opens as a panel at the bottom.</p>
+<div class="wf-set">
+  <div class="wf wf--mobile">
+    <div class="wf__bar">Mobile - layers menu open</div>
+    <iframe class="wf__frame" src="{{ base }}{{ option }}-mobile-menu" title="Mobile wireframe with the layers menu open"></iframe>
+  </div>
+  <div class="wf wf--mobile">
+    <div class="wf__bar">Mobile - key open</div>
+    <iframe class="wf__frame" src="{{ base }}{{ option }}-mobile-key" title="Mobile wireframe with the key open"></iframe>
+  </div>
+</div>
+<p class="govuk-body-s">
+  <a class="govuk-link" href="{{ base }}{{ option }}-mobile-menu">Open the mobile menu wireframe on its own</a> |
+  <a class="govuk-link" href="{{ base }}{{ option }}-mobile-key">Open the mobile key wireframe on its own</a>
+</p>

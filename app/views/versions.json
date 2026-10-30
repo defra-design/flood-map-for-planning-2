@@ -1,6 +1,21 @@
 {
   "versions": [
     {
+      "number": "3.10.0.0",
+      "type": "in-development",
+      "date": "Design proof of concept - stakeholder review TBC",
+      "tags": ["climate-change", "map-menu", "map-key", "map-styling"],
+      "pages": [
+        { "name": "Separate flood zone 2 and 3 climate change layers - overview", "url": "/design-spec/fz-climate-change-layers-v3-10-0-0/" },
+        { "name": "Option A: nested toggles under each zone", "url": "/design-spec/fz-climate-change-layers-v3-10-0-0/option-a" },
+        { "name": "Option B: climate change group under timeframe", "url": "/design-spec/fz-climate-change-layers-v3-10-0-0/option-b" },
+        { "name": "Option C: present day and climate change groups", "url": "/design-spec/fz-climate-change-layers-v3-10-0-0/option-c" }
+      ],
+      "prototypeUrl": null,
+      "hasPrototype": false,
+      "designHistoryUrl": null
+    },
+    {
       "number": "3.9.0.0",
       "type": "in-development",
       "date": "TBC",

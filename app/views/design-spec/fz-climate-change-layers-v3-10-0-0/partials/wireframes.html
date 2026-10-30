@@ -1,0 +1,172 @@
+{# Menu, key and button markup copied from the live map component (classes from https://defra.github.io/fmp-map/map.css)
+   so the wireframes look like the current service. fid keeps element ids unique per frame. #}
+
+{% macro icon(name) %}
+<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true" focusable="false" class="im-c-icon{% if name == 'chevron' %} im-c-icon--narrow{% endif %}">
+  {% if name == 'search' %}<path d="m21 21-4.34-4.34"></path><circle cx="11" cy="11" r="8"></circle>
+  {% elif name == 'layers' %}<path d="M12.83 2.18a2 2 0 0 0-1.66 0L2.6 6.08a1 1 0 0 0 0 1.83l8.58 3.91a2 2 0 0 0 1.66 0l8.58-3.9a1 1 0 0 0 0-1.83z"></path><path d="M2 12a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 12"></path><path d="M2 17a1 1 0 0 0 .58.91l8.6 3.91a2 2 0 0 0 1.65 0l8.58-3.9A1 1 0 0 0 22 17"></path>
+  {% elif name == 'key' %}<path d="M3 5h.01"></path><path d="M3 12h.01"></path><path d="M3 19h.01"></path><path d="M8 5h13"></path><path d="M8 12h13"></path><path d="M8 19h13"></path>
+  {% elif name == 'chevron' %}<path d="m6 9 6 6 6-6"></path>
+  {% elif name == 'help' %}<circle cx="12" cy="12" r="10"></circle><path d="M9.09 9a3 3 0 0 1 5.83 1c0 2-3 3-3 3"></path><path d="M12 17h.01"></path>
+  {% elif name == 'styles' %}<path d="M14.106 5.553a2 2 0 0 0 1.788 0l3.659-1.83A1 1 0 0 1 21 4.619v12.764a1 1 0 0 1-.553.894l-4.553 2.277a2 2 0 0 1-1.788 0l-4.212-2.106a2 2 0 0 0-1.788 0l-3.659 1.83A1 1 0 0 1 3 19.381V6.618a1 1 0 0 1 .553-.894l4.553-2.277a2 2 0 0 1 1.788 0z"></path><path d="M15 5.764v15"></path><path d="M9 3.236v15"></path>
+  {% elif name == 'plus' %}<path d="M5 12h14"></path><path d="M12 5v14"></path>
+  {% elif name == 'minus' %}<path d="M5 12h14"></path>
+  {% elif name == 'close' %}<path d="M18 6 6 18"></path><path d="m6 6 12 12"></path>
+  {% endif %}
+</svg>
+{% endmacro %}
+
+{# ---------- Key ---------- #}
+{% macro symbol(layer) %}
+<svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 20 20" aria-hidden="true" focusable="false" class="im-c-map-key-symbol">
+  {% if layer == 'fz2' %}<rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="#1d70b8" stroke="#1d70b8" stroke-width="2" stroke-linejoin="round"></rect>
+  {% elif layer == 'fz3' %}<rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="#003078" stroke="#003078" stroke-width="2" stroke-linejoin="round"></rect>
+  {% elif layer == 'fz2cc' %}<rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="#F4A582" stroke="#F4A582" stroke-width="2" stroke-linejoin="round"></rect>
+  {% elif layer == 'fz3cc' %}<rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="#C82B12" stroke="#C82B12" stroke-width="2" stroke-linejoin="round"></rect>
+  {% elif layer == 'nodata' %}<rect x="1" y="1" width="18" height="18" rx="2" ry="2" fill="url(#pat-nodata)" stroke="#000000" stroke-width="2" stroke-linejoin="round"></rect>
+  {% endif %}
+</svg>
+{% endmacro %}
+
+{% macro keyItem(layer, label) %}
+<div class="im-c-map-key-list__item" data-show="{{ layer }}"><dt class="im-c-map-key-list__item-symbol">{{ symbol(layer) }}</dt><dd class="im-c-map-key-list__item-label">{{ label }}</dd></div>
+{% endmacro %}
+
+{% macro keyGroup(heading, showAny) %}
+<section class="im-c-map-key__group"{% if showAny %} data-show-any="{{ showAny }}"{% endif %}>
+  {% if heading %}<h3 class="im-c-map-key__group-heading">{{ heading }}</h3>{% endif %}
+  <dl class="im-c-map-key-list">{{ caller() }}</dl>
+</section>
+{% endmacro %}
+
+{# Key contents for each option. Option A groups by zone. Options B and C group by timeframe. #}
+{% macro keyContents(option) %}
+<div class="im-c-map-key im-c-map-key--has-groups">
+  {% if option == 'a' %}
+    {% call keyGroup('Flood zone 2', 'fz2 fz2cc') %}
+      {{ keyItem('fz2', 'Present day') }}
+      {{ keyItem('fz2cc', 'With climate change (2070 to 2125)') }}
+    {% endcall %}
+    {% call keyGroup('Flood zone 3', 'fz3 fz3cc') %}
+      {{ keyItem('fz3', 'Present day') }}
+      {{ keyItem('fz3cc', 'With climate change (2070 to 2125)') }}
+    {% endcall %}
+    {% call keyGroup('', 'nodata') %}
+      {{ keyItem('nodata', 'Climate change data unavailable') }}
+    {% endcall %}
+  {% elif option == 'b' %}
+    {% call keyGroup('Present day', 'fz2 fz3') %}
+      {{ keyItem('fz2', 'Flood zone 2') }}
+      {{ keyItem('fz3', 'Flood zone 3') }}
+    {% endcall %}
+    {% call keyGroup('Climate change (2070 to 2125)', 'fz2cc fz3cc') %}
+      {{ keyItem('fz2cc', 'Flood zone 2 with climate change') }}
+      {{ keyItem('fz3cc', 'Flood zone 3 with climate change') }}
+      {{ keyItem('nodata', 'Climate change data unavailable') }}
+    {% endcall %}
+  {% else %}
+    {% call keyGroup('Present day', 'fz2 fz3') %}
+      {{ keyItem('fz2', 'Flood zone 2') }}
+      {{ keyItem('fz3', 'Flood zone 3') }}
+    {% endcall %}
+    {% call keyGroup('Climate change (2070 to 2125)', 'fz2cc fz3cc') %}
+      {{ keyItem('fz2cc', 'Flood zone 2') }}
+      {{ keyItem('fz3cc', 'Flood zone 3') }}
+      {{ keyItem('nodata', 'Climate change data unavailable') }}
+    {% endcall %}
+  {% endif %}
+  <p class="govuk-body-s wf__empty" data-key-empty>No layers selected</p>
+</div>
+{% endmacro %}
+
+{# ---------- Menu ---------- #}
+{% macro radio(fid, name, value, label, checked, static) %}
+<div class="im-c-menu__item govuk-radios govuk-radios--small">
+  <div class="govuk-radios__item"><input id="{{ fid }}-{{ name }}-{{ value }}" type="radio" name="{{ fid }}-{{ name }}" class="govuk-radios__input" value="{{ value }}"{% if static %} data-static{% else %} data-timeframe{% endif %}{% if checked %} checked{% endif %}>
+  <label for="{{ fid }}-{{ name }}-{{ value }}" class="im-c-menu__item-label govuk-label govuk-radios__label">{{ label }}</label></div>
+</div>
+{% endmacro %}
+
+{% macro checkbox(fid, layer, label, requires, nested) %}
+<div class="im-c-menu__item govuk-checkboxes govuk-checkboxes--small im-c-menu__item--checked{% if nested %} wf__nested{% endif %}">
+  <div class="govuk-checkboxes__item"><input id="{{ fid }}-{{ layer }}" type="checkbox" class="govuk-checkboxes__input" data-layer="{{ layer }}"{% if requires %} data-requires="{{ requires }}"{% endif %} checked>
+  <label for="{{ fid }}-{{ layer }}" class="im-c-menu__item-label govuk-label govuk-checkboxes__label">{{ label }}</label></div>
+</div>
+{% endmacro %}
+
+{% macro staticCheckbox(fid, id, label) %}
+<div class="im-c-menu__item govuk-checkboxes govuk-checkboxes--small im-c-menu__item--checked">
+  <div class="govuk-checkboxes__item"><input id="{{ fid }}-{{ id }}" type="checkbox" class="govuk-checkboxes__input" data-static>
+  <label for="{{ fid }}-{{ id }}" class="im-c-menu__item-label govuk-label govuk-checkboxes__label">{{ label }}</label></div>
+</div>
+{% endmacro %}
+
+{% macro group(title, extra) %}
+<div class="govuk-form-group im-c-menu-group"{% if extra %} {{ extra | safe }}{% endif %}>
+  <fieldset class="im-c-menu-group__fieldset">
+    <legend class="im-c-menu-group__legend"><h3> {{ title }} </h3></legend>
+    {{ caller() }}
+  </fieldset>
+</div>
+{% endmacro %}
+
+{% macro opacity() %}
+<div class="im-c-slider opacity-viewer-sliders fm-c-details govuk-body-s">
+  <h3 class="im-e-heading-s im-c-slider__heading">Layer opacity</h3>
+  <div role="slider" tabindex="-1" aria-valuemin="0" aria-valuenow="75" aria-valuemax="100" aria-label="Layer opacity" class="opacity-slider"><svg width="250" height="50" aria-hidden="true"><text x="171" y="20" class="value">75</text><rect x="15" y="26" rx="3.5" width="225" height="14" class="rail"></rect><rect x="15" y="26" rx="3.5" width="161.5" height="14" class="fill"></rect><rect x="173" y="26" rx="3.5" width="14" height="14" class="thumb"></rect></svg></div>
+</div>
+{% endmacro %}
+
+{# Menu contents for each option. Datasets, Map features and Layer opacity are the same as today. Only the climate change controls change. #}
+{% macro menuContents(option, fid) %}
+<div class="im-c-menu im-c-menu--has-groups">
+  {% call group('Datasets') %}
+    {{ radio(fid, 'dataset', 'floodzones', 'Flood zones', true, true) }}
+    {{ radio(fid, 'dataset', 'surfacewater', 'Surface water', false, true) }}
+    {{ radio(fid, 'dataset', 'none', 'None', false, true) }}
+  {% endcall %}
+
+  {% if option == 'a' %}
+    {% call group('Flood zones') %}
+      {{ checkbox(fid, 'fz2', 'Flood zone 2') }}
+      {{ checkbox(fid, 'fz2cc', 'Include climate change (2070 to 2125)', 'fz2', true) }}
+      {{ checkbox(fid, 'fz3', 'Flood zone 3') }}
+      {{ checkbox(fid, 'fz3cc', 'Include climate change (2070 to 2125)', 'fz3', true) }}
+    {% endcall %}
+  {% elif option == 'b' %}
+    {% call group('Climate change') %}
+      {{ radio(fid, 'timeframe', 'pd', 'Present day', false) }}
+      {{ radio(fid, 'timeframe', 'cc', '2070 to 2125', true) }}
+    {% endcall %}
+    {% call group('Climate change extents', 'data-reveal-cc') %}
+      {{ checkbox(fid, 'fz2cc', 'Flood zone 2 with climate change') }}
+      {{ checkbox(fid, 'fz3cc', 'Flood zone 3 with climate change') }}
+    {% endcall %}
+  {% else %}
+    {% call group('Present day') %}
+      {{ checkbox(fid, 'fz2', 'Flood zone 2') }}
+      {{ checkbox(fid, 'fz3', 'Flood zone 3') }}
+    {% endcall %}
+    {% call group('Climate change (2070 to 2125)') %}
+      {{ checkbox(fid, 'fz2cc', 'Flood zone 2') }}
+      {{ checkbox(fid, 'fz3cc', 'Flood zone 3') }}
+    {% endcall %}
+  {% endif %}
+
+  {% call group('Map features') %}
+    {{ staticCheckbox(fid, 'waterstorage', 'Water storage') }}
+    {{ staticCheckbox(fid, 'flooddefence', 'Flood defence') }}
+    {{ staticCheckbox(fid, 'mainrivers', 'Main rivers') }}
+  {% endcall %}
+</div>
+{{ opacity() }}
+{% endmacro %}
+
+{# ---------- Buttons ---------- #}
+{% macro labelButton(name, iconName, label, primary) %}
+<div class="im-c-button-wrapper im-c-button-wrapper--{{ name }} im-c-button-wrapper--wide"><button type="button" class="im-c-map-button im-c-map-button--{{ name }}{% if primary %} im-c-map-button--primary{% endif %} im-c-map-button--with-label" style="display: flex;" tabindex="-1">{{ icon(iconName) }}<span>{{ label }}</span></button></div>
+{% endmacro %}
+
+{% macro iconButton(name, iconName, label) %}
+<div class="im-c-button-wrapper im-c-button-wrapper--{{ name }}"><div class="im-c-tooltip-wrapper"><button type="button" class="im-c-map-button im-c-map-button--{{ name }}" aria-label="{{ label }}" tabindex="-1">{{ icon(iconName) }}</button></div></div>
+{% endmacro %}

@@ -1,0 +1,64 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Option B: climate change group under timeframe - design spec" %}
+{% set option = 'b' %}
+
+{% block content %}
+{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/styles.html" %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Separate climate change layers</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Option B</li>
+      </ol>
+    </div>
+
+    <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Proof of concept - estimated data</strong>
+    <h1 class="govuk-heading-xl">Option B: climate change group under timeframe</h1>
+    <p class="govuk-body-l">
+      Keeps today's "Climate change" radios (Present day or 2070 to 2125). Choosing "2070 to 2125" reveals a "Climate change extents" group with a checkbox for each of flood zone 2 and flood zone 3.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-a">Option A</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-c">Option C</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Overview, styling and open questions</a>
+    </p>
+
+    <h2 class="govuk-heading-l">How it works</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>The "Climate change" radios stay as they are today. "Present day" shows flood zones 2 and 3. "2070 to 2125" keeps both present day zones on the map and adds the climate change extents.</li>
+      <li>Both climate change checkboxes are ticked by default, so the map looks like today's single climate change extent plus the split. Users untick one to isolate a zone.</li>
+      <li>Try the Present day radio: the climate change group is hidden and its layers are removed from the map and key.</li>
+      <li>The key groups present day and climate change items, as the key does today.</li>
+    </ul>
+
+    {% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/embed.html" %}
+
+    <h2 class="govuk-heading-l">What works well</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Smallest change from today. Existing users find the same "Climate change" radios, and the new choice only appears when they ask for climate change.</li>
+      <li>Present day context is always on when climate change is selected, which makes it easier to see where the extent grows.</li>
+      <li>Keeps the menu short on mobile when "Present day" is selected.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Risks and things to test</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Users cannot hide the present day zones while looking at climate change. Test whether anyone wants to.</li>
+      <li>The revealed group moves content down the menu on mobile. Check the menu does not need scrolling to reach it.</li>
+      <li>Climate change has two levels of choice (radio, then checkboxes). Check users understand that both boxes ticked is the same as today's extent.</li>
+      <li>Wording: "Climate change extents" may be too technical.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Accessibility notes</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Revealing the group follows the GOV.UK conditional reveal pattern. Set <code>aria-expanded</code> and <code>aria-controls</code> on the radio and keep the revealed content directly after it in the DOM.</li>
+      <li>Announce changes to the key and map layers with an <code>aria-live="polite"</code> status message. For example, "Flood zone 2 with climate change added to the map".</li>
+      <li>Colour is not the only cue. The two climate change colours differ in lightness, every key item has a text label, and the info panel names the layer in words (see the <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/#styling">styling rules</a>).</li>
+    </ul>
+
+  </main>
+</div>
+{% endblock %}

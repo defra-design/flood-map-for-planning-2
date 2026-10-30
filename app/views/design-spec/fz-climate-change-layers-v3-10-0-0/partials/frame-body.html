@@ -1,0 +1,164 @@
+{% from "design-spec/fz-climate-change-layers-v3-10-0-0/partials/wireframes.html" import menuContents, keyContents, labelButton, iconButton, icon %}
+
+{# One screen of the live map component: same class names and structure as the service, with our map underneath.
+   device is 'desktop' or 'mobile'. openPanel is 'both' (desktop), 'menu' or 'key' (mobile). #}
+<div data-wf-root data-option="{{ option }}"
+  {%- if option == 'a' %} data-requires="fz2cc:fz2 fz3cc:fz3"{% endif %}
+  {%- if option == 'b' %} data-always-on="fz2 fz3" data-cc-only="fz2cc fz3cc" data-timeframe="cc"{% endif %}>
+  {% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/defs.html" %}
+
+  <div class="wf-app wf-app--{{ device }}">
+    <div class="wf-app__map">{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/map.html" %}</div>
+    <div class="im-o-app im-o-app--{{ device }} {% if device == 'desktop' %}im-o-app--mouse{% else %}im-o-app--touch{% endif %} im-o-app--inline im-o-app--light-app" style="--map-overlay-halo-color: #ffffff; --map-overlay-selected-color: #0b0c0c; --map-overlay-active-color: #ffdd00; --map-overlay-foreground-color: #0b0c0c; --top-col-width: 186px; --banner-preferred-width: 280px; --banner-left: 15px; --banner-right: 15px; --banner-top: 0px; --attributions-left: 100px; --bottom-right-clearance: 19px; --left-offset-top: 65px; --left-offset-bottom: 49px; --left-top-max-height: 600px; --right-offset-top: 15px; --right-offset-bottom: 39px; --right-top-max-height: 600px; --hint-bottom: 49px; --left-top-panel-max-height: 600px; --left-bottom-panel-max-height: 358px; --right-top-panel-max-height: 564px; --right-bottom-panel-max-height: 410px; background-color: transparent;">
+      <div class="im-o-app__overlay">
+        {% if device == 'desktop' %}
+        <div class="im-o-app__side">
+          <div class="im-c-panel im-c-panel--side" data-slot="side" style="width: 280px;">
+            <h2 class="im-c-panel__heading im-e-heading-m">Layers</h2>
+            <div class="im-c-panel__body">{{ menuContents(option, 'wf') }}</div>
+          </div>
+        </div>
+        {% endif %}
+        <div class="im-o-app__main">
+          <div class="im-o-app__header"></div>
+          <div class="im-o-app__top">
+            <div class="im-o-app__top-col">
+              {% if device == 'mobile' %}{{ iconButton('search', 'search', 'Search') }}{% else %}{{ labelButton('search', 'search', 'Search') }}{% endif %}
+              {% if device == 'mobile' %}{{ labelButton('datasets-layers', 'layers', 'Layers') }}{% endif %}
+              {{ labelButton('map-key', 'key', 'Key') }}
+            </div>
+            {% if device == 'desktop' %}<div class="im-o-app__top-col">{{ labelButton('geometry-actions', 'chevron', 'Add location boundary', true) }}</div>{% endif %}
+            <div class="im-o-app__top-col"></div>
+          </div>
+          <div class="im-o-app__banner"></div>
+          <div class="im-o-app__left">
+            <div class="im-o-app__left-top">
+              {% if device == 'desktop' %}
+              <div class="im-c-panel im-c-panel--left-top" data-slot="left-top" style="width: 360px;" role="region" aria-label="Key">
+                <h2 class="im-c-panel__heading im-e-heading-m">Key</h2>
+                <button type="button" aria-label="Close Key" class="im-c-panel__close" tabindex="-1">{{ icon('close') }}</button>
+                <div class="im-c-panel__body">{{ keyContents(option) }}</div>
+              </div>
+              {% endif %}
+            </div>
+            <div class="im-o-app__left-bottom"></div>
+          </div>
+          <div class="im-o-app__middle"></div>
+          <div class="im-o-app__right">
+            <div class="im-o-app__right-top">
+              {{ iconButton('help', 'help', 'Help') }}
+              {{ iconButton('map-styles', 'styles', 'Styles') }}
+              {{ iconButton('zoom-in', 'plus', 'Zoom in') }}
+              {{ iconButton('zoom-out', 'minus', 'Zoom out') }}
+            </div>
+            <div class="im-o-app__right-bottom"></div>
+          </div>
+          <div class="im-o-app__bottom"></div>
+          {% if device == 'mobile' and openPanel == 'key' %}
+          <div class="im-o-app__drawer">
+            <div class="im-c-panel im-c-panel--drawer" data-slot="drawer" role="region" aria-label="Key">
+              <h2 class="im-c-panel__heading im-e-heading-m">Key</h2>
+              <button type="button" aria-label="Close Key" class="im-c-panel__close" tabindex="-1">{{ icon('close') }}</button>
+              <div class="im-c-panel__body">{{ keyContents(option) }}</div>
+            </div>
+          </div>
+          {% endif %}
+          {% if device == 'mobile' and openPanel == 'menu' %}
+          <div class="im-o-app__modal">
+            <div class="im-c-panel im-c-panel--drawer" data-slot="drawer" role="region" aria-label="Layers">
+              <h2 class="im-c-panel__heading im-e-heading-m">Layers</h2>
+              <button type="button" aria-label="Close Layers" class="im-c-panel__close" tabindex="-1">{{ icon('close') }}</button>
+              <div class="im-c-panel__body">{{ menuContents(option, 'wf') }}</div>
+            </div>
+            <div class="im-o-app__modal-backdrop im-o-app__modal-backdrop--visible"></div>
+          </div>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+  // The menu, map and key are separate pages (iframes). They share their state through sessionStorage,
+  // so changing a layer in one wireframe updates the others on the same tab.
+  (function () {
+    var root = document.querySelector('[data-wf-root]')
+    var option = root.getAttribute('data-option')
+    var KEY = 'fz-climate-wireframe-' + option
+    var split = function (name) { return (root.getAttribute(name) || '').split(' ').filter(Boolean) }
+    var alwaysOn = split('data-always-on')
+    var ccOnly = split('data-cc-only')
+    var requires = {}
+    split('data-requires').forEach(function (pair) { var p = pair.split(':'); requires[p[0]] = p[1] })
+    var LAYERS = ['fz2', 'fz3', 'fz2cc', 'fz3cc']
+    var inputs = Array.prototype.slice.call(root.querySelectorAll('input[data-layer]'))
+    var radios = Array.prototype.slice.call(root.querySelectorAll('input[data-timeframe]'))
+    var state = { layers: {}, tf: root.getAttribute('data-timeframe') }
+    LAYERS.forEach(function (l) { state.layers[l] = true })
+
+    function load () {
+      try {
+        var saved = JSON.parse(sessionStorage.getItem(KEY))
+        if (saved) state = saved
+      } catch (e) { /* storage unavailable: keep defaults */ }
+    }
+    function save () {
+      try { sessionStorage.setItem(KEY, JSON.stringify(state)) } catch (e) { /* ignore */ }
+    }
+
+    function render () {
+      var on = {}
+      LAYERS.forEach(function (l) {
+        var v = state.layers[l] !== false
+        if (alwaysOn.indexOf(l) > -1) v = true
+        if (requires[l] && !state.layers[requires[l]]) v = false
+        if (ccOnly.indexOf(l) > -1 && state.tf !== 'cc') v = false
+        on[l] = v
+      })
+      on.nodata = !!(on.fz2cc || on.fz3cc)
+
+      inputs.forEach(function (c) {
+        var l = c.getAttribute('data-layer')
+        c.checked = state.layers[l] !== false
+        c.disabled = !!(requires[l] && !state.layers[requires[l]])
+      })
+      radios.forEach(function (r) { r.checked = r.value === state.tf })
+      Array.prototype.forEach.call(root.querySelectorAll('[data-reveal-cc]'), function (el) {
+        el.style.display = state.tf === 'cc' ? '' : 'none'
+      })
+      Array.prototype.forEach.call(root.querySelectorAll('[data-show]'), function (el) {
+        el.style.display = on[el.getAttribute('data-show')] ? '' : 'none'
+      })
+      Array.prototype.forEach.call(root.querySelectorAll('[data-show-any]'), function (el) {
+        var any = el.getAttribute('data-show-any').split(' ').some(function (l) { return on[l] })
+        el.style.display = any ? '' : 'none'
+      })
+      var anyOn = Object.keys(on).some(function (l) { return on[l] })
+      Array.prototype.forEach.call(root.querySelectorAll('[data-key-empty]'), function (el) {
+        el.style.display = anyOn ? 'none' : ''
+      })
+    }
+
+    // Datasets and Map features are shown for context only. This proof of concept covers flood zones.
+    root.addEventListener('click', function (e) {
+      if (e.target.hasAttribute && e.target.hasAttribute('data-static')) e.preventDefault()
+    })
+    root.addEventListener('change', function (e) {
+      var t = e.target
+      if (t.hasAttribute('data-layer')) state.layers[t.getAttribute('data-layer')] = t.checked
+      else if (t.hasAttribute('data-timeframe')) state.tf = t.value
+      else return
+      save()
+      render()
+    })
+    window.addEventListener('storage', function (e) {
+      if (e.key !== KEY) return
+      load()
+      render()
+    })
+
+    load()
+    render()
+  })()
+</script>

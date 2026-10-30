@@ -48,6 +48,7 @@ router.use('/v3-7-0-2', require('./routes_v3-7-0-2'))
 router.use('/v3-7-0-3', require('./routes_v3-7-0-3'))
 router.use('/v3-8-0-0', require('./routes_v3-8-0-0'))
 router.use('/v3-9-0-0', require('./routes_v3-9-0-0'))
+router.use('/v3-10-0-0', require('./routes_v3-10-0-0'))
 
 // set up route variable results page option
 router.get('/results-a', function (req, res) {

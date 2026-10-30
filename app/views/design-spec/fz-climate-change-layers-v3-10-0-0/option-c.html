@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+{% set pageName = "Option C: present day and climate change groups - design spec" %}
+{% set option = 'c' %}
+
+{% block content %}
+{% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/styles.html" %}
+<div class="govuk-width-container">
+  <main class="govuk-main-wrapper">
+
+    <div class="govuk-breadcrumbs">
+      <ol class="govuk-breadcrumbs__list">
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/">Prototype home</a></li>
+        <li class="govuk-breadcrumbs__list-item"><a class="govuk-breadcrumbs__link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Separate climate change layers</a></li>
+        <li class="govuk-breadcrumbs__list-item" aria-current="page">Option C</li>
+      </ol>
+    </div>
+
+    <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Proof of concept - estimated data</strong>
+    <h1 class="govuk-heading-xl">Option C: present day and climate change groups</h1>
+    <p class="govuk-body-l">
+      Replaces the "Climate change" choice (Present day or 2070 to 2125) with two groups of checkboxes, "Present day" and "Climate change (2070 to 2125)". Each group has flood zone 2 and flood zone 3.
+    </p>
+
+    <p class="govuk-body">
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-a">Option A</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-b">Option B</a> |
+      <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/">Overview, styling and open questions</a>
+    </p>
+
+    <h2 class="govuk-heading-l">How it works</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Four independent checkboxes, so any combination of present day and climate change extents can be shown.</li>
+      <li>No hidden or disabled states. What is ticked is what is on the map.</li>
+      <li>The key uses the same two groups as the menu and only lists the layers that are switched on.</li>
+    </ul>
+
+    {% include "design-spec/fz-climate-change-layers-v3-10-0-0/partials/embed.html" %}
+
+    <h2 class="govuk-heading-l">What works well</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Simplest mental model and the most flexible. Users can compare, for example, present day zone 3 with zone 2 climate change.</li>
+      <li>Simplest to build: four layers, four checkboxes, no dependencies between them.</li>
+      <li>Menu and key use the same grouping and wording.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Risks and things to test</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>"Flood zone 2" appears twice in the menu, so the group legends carry the meaning. Check users do not tick the wrong one.</li>
+      <li>Most flexible means most chance of cluttered maps with all four on. The overlap styling matters most here.</li>
+      <li>The longest menu of the three options, which matters on mobile.</li>
+      <li>Today, choosing "2070 to 2125" changes the whole map in one step. Users who want that now tick two boxes.</li>
+    </ul>
+
+    <h2 class="govuk-heading-l">Accessibility notes</h2>
+    <ul class="govuk-list govuk-list--bullet">
+      <li>Each group is a fieldset with its own legend. The legend is read out with each checkbox, so screen reader users hear "Climate change (2070 to 2125), Flood zone 2".</li>
+      <li>Colour is not the only cue. The two climate change colours differ in lightness, every key item has a text label, and the info panel names the layer in words (see the <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/#styling">styling rules</a>).</li>
+    </ul>
+
+  </main>
+</div>
+{% endblock %}

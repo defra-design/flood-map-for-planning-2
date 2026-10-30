@@ -1,0 +1,16 @@
+{# Map area for the wireframes: the real basemap and flood zones from a screenshot of the service, with the climate
+   change extent split into estimated zone 2 and zone 3 layers (see scripts/build-fz-climate-estimate.py).
+   Layers are drawn bottom to top: FZ2 + CC, FZ3 + CC, FZ2, FZ3. Climate change layers are solid colours at the
+   service's default 75% opacity. Present day layers use the colours as they appear on screen at 75%. #}
+{% set imgBase = "/design-spec/fz-climate-change-layers-v3-10-0-0/images" %}
+<svg class="wf__svg" viewBox="0 0 620 720" preserveAspectRatio="xMidYMid slice" role="img" aria-label="Map showing flood zones and estimated climate change extents">
+  <image href="{{ imgBase }}/map-base.jpg" width="620" height="720" preserveAspectRatio="xMidYMid slice"/>
+
+  <g data-show="fz2cc" opacity="0.75"><rect width="620" height="720" fill="#F4A582" mask="url(#m-fz2cc)"/></g>
+  <g data-show="fz2"><rect width="620" height="720" fill="#5483b2" mask="url(#m-fz2)"/></g>
+  <g data-show="fz3cc" opacity="0.75"><rect width="620" height="720" fill="#C82B12" mask="url(#m-fz3cc)"/></g>
+  <g data-show="fz3"><rect width="620" height="720" fill="#3e5382" mask="url(#m-fz3)"/></g>
+
+  {# Basemap linework back on top of the flood layers, as in the service. Multiply keeps white (no change) and darkens lines. #}
+  <image href="{{ imgBase }}/map-base.jpg" width="620" height="720" preserveAspectRatio="xMidYMid slice" style="mix-blend-mode: multiply"/>
+</svg>
