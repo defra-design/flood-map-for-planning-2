@@ -45,8 +45,16 @@
         <ul class="govuk-list govuk-list--bullet">
           <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-a">Option A: nested toggles under each zone</a></li>
           <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-b">Option B: climate change group under timeframe</a></li>
-          <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-c">Option C: present day and climate change groups</a></li>
+          <li><a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/option-c">Option C: present day and climate change groups</a> (not an option, kept for review)</li>
         </ul>
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            The SME does not want climate change shown without present day. Option C allows this, so it is not an option to take forward. It stays here so it can be reviewed.
+          </strong>
+        </div>
 
         <table class="govuk-table wf-compare">
           <caption class="govuk-table__caption govuk-table__caption--m">Comparison</caption>
@@ -55,7 +63,7 @@
               <th scope="col" class="govuk-table__header"></th>
               <th scope="col" class="govuk-table__header">A: nested toggles</th>
               <th scope="col" class="govuk-table__header">B: under timeframe</th>
-              <th scope="col" class="govuk-table__header">C: two groups</th>
+              <th scope="col" class="govuk-table__header">C: two groups (not an option)</th>
             </tr>
           </thead>
           <tbody class="govuk-table__body">
@@ -69,7 +77,7 @@
               <th scope="row" class="govuk-table__header">Layer combinations</th>
               <td class="govuk-table__cell">Climate change only if its zone is on</td>
               <td class="govuk-table__cell">Present day always on with climate change</td>
-              <td class="govuk-table__cell">Any combination</td>
+              <td class="govuk-table__cell">Any combination, including climate change without present day (SME does not want this)</td>
             </tr>
             <tr class="govuk-table__row">
               <th scope="row" class="govuk-table__header">Menu length</th>
@@ -91,6 +99,28 @@
             </tr>
           </tbody>
         </table>
+
+        <h2 class="govuk-heading-l" id="present-day-data">Present day data and flood zone overlap</h2>
+        <p class="govuk-body">
+          The present day flood zone 2 and flood zone 3 data only work with each other. Flood zone 2 is the larger area and flood zone 3 is cut out of it, so they don't overlap, and
+          flood zone 2 shown on its own has a hole where flood zone 3 sits. This matters for every option, because present day is always shown with climate change,
+          and for any option that lets a user switch a zone on its own.
+        </p>
+        <p class="govuk-body">There are two ways to deal with it:</p>
+        <ol class="govuk-list govuk-list--number">
+          <li>
+            <strong>Update the data.</strong> Supply flood zone 2 as a full extent that includes flood zone 3, for both present day and climate change.
+            This is the cleanest fix, and each zone then works on its own. It needs both the present day and the climate change datasets to change, and the vector tile layers built from them.
+          </li>
+          <li>
+            <strong>Fill with a map style.</strong> When flood zone 2 is switched on, add a fill for flood zone 3 underneath so there is no hole.
+            This looks right and needs no data change. But the filled area is not flood zone 2 data, so anything that comes from the data could be missing there,
+            such as flood type (source of flooding), the "Get info" result, and the data in results pages and reports. Check this with the data and dev teams before relying on it.
+          </li>
+        </ol>
+        <p class="govuk-body">
+          The wireframes here are screenshots with estimated climate change data, so they don't show this problem. It would need testing with the real data.
+        </p>
 
         <h2 class="govuk-heading-l" id="how-the-map-is-made">How the map is made</h2>
         <p class="govuk-body">
@@ -413,6 +443,9 @@
           <li>What is the impact on tile size, load time and the layer opacity slider of two climate change layers instead of one?</li>
           <li>Can the map plugin style two climate change layers in all three map styles? Today's layers take a solid fill and stroke colour from the style settings, so solid colours should work without new code.</li>
           <li>Does the downloadable Product 1 map need to follow the new styling?</li>
+          <li>Present day flood zone 3 is cut out of flood zone 2. Is the same true of the climate change data, once separate zone 2 and zone 3 climate change data exist? See <a class="govuk-link" href="#present-day-data">present day data and flood zone overlap</a>.</li>
+          <li>Can the present day and climate change data be updated so each zone is a full extent that works on its own? What would it take and when?</li>
+          <li>If not, can a flood zone 3 fill under flood zone 2 be done in the map style, and which attributes (flood type, "Get info" values) would be missing in the filled area?</li>
         </ol>
 
         <h2 class="govuk-heading-l">Stakeholder feedback</h2>
@@ -429,7 +462,7 @@
           </thead>
           <tbody class="govuk-table__body">
             <tr class="govuk-table__row">
-              <td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td>
+              <td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell">SME</td><td class="govuk-table__cell">Not C</td><td class="govuk-table__cell">Does not want climate change shown without present day, so Option C is not an option. Kept for review.</td>
             </tr>
             <tr class="govuk-table__row">
               <td class="govuk-table__cell">&nbsp;</td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td><td class="govuk-table__cell"></td>

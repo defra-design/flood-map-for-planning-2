@@ -16,7 +16,20 @@
     </div>
 
     <strong class="govuk-tag govuk-tag--blue govuk-!-margin-bottom-4">Proof of concept - estimated data</strong>
+    <strong class="govuk-tag govuk-tag--red govuk-!-margin-bottom-4">Not an option - kept for review</strong>
     <h1 class="govuk-heading-xl">Option C: present day and climate change groups</h1>
+
+    <div class="govuk-warning-text">
+      <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+      <strong class="govuk-warning-text__text">
+        <span class="govuk-visually-hidden">Warning</span>
+        The SME does not want climate change shown without present day, so this is not an option to take forward. It is kept here so it can still be reviewed.
+      </strong>
+    </div>
+    <p class="govuk-body">
+      Option C is the only design that lets a user switch on a climate change layer with no present day layer. Options A and B always keep present day on the map with climate change.
+      See <a class="govuk-link" href="/design-spec/fz-climate-change-layers-v3-10-0-0/#present-day-data">present day data and flood zone overlap</a> for the data change this decision leads to.
+    </p>
     <p class="govuk-body-l">
       Replaces the "Climate change" choice (Present day or 2070 to 2125) with two groups of checkboxes, "Present day" and "Climate change (2070 to 2125)". Each group has flood zone 2 and flood zone 3.
     </p>
@@ -38,13 +51,14 @@
 
     <h2 class="govuk-heading-l">What works well</h2>
     <ul class="govuk-list govuk-list--bullet">
-      <li>Simplest mental model and the most flexible. Users can compare, for example, present day zone 3 with zone 2 climate change.</li>
+      <li>Simplest mental model and the most flexible. Users can compare, for example, present day zone 3 with zone 2 climate change. This flexibility includes climate change on its own, which the SME does not want.</li>
       <li>Simplest to build: four layers, four checkboxes, no dependencies between them.</li>
       <li>Menu and key use the same grouping and wording.</li>
     </ul>
 
     <h2 class="govuk-heading-l">Risks and things to test</h2>
     <ul class="govuk-list govuk-list--bullet">
+      <li>Climate change can be shown without present day. The SME does not want this, which is why this is not an option.</li>
       <li>"Flood zone 2" appears twice in the menu, so the group legends carry the meaning. Check users do not tick the wrong one.</li>
       <li>Most flexible means most chance of cluttered maps with all four on. The overlap styling matters most here.</li>
       <li>The longest menu of the three options, which matters on mobile.</li>
