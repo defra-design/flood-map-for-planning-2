@@ -1,0 +1,39 @@
+{% extends "layouts/main.html" %}
+
+{% set imgPath = "/public/images/user-research-product-1-4" %}
+{% set version = "v2" if data['version'] == "v2" else "v1" %}
+{% set other = "v1" if version == "v2" else "v2" %}
+
+{% block pageTitle %}Product 1 version {{ version | replace("v", "") }} – {{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-l">Product 1: version {{ version | replace("v", "") }}</h1>
+
+<div class="govuk-button-group">
+  {{ govukButton({
+    text: "Version 1",
+    href: "/user-research-product-1-4/product-1?version=v1",
+    classes: "" if version == "v1" else "govuk-button--secondary",
+    attributes: { "aria-current": "page" } if version == "v1" else {}
+  }) }}
+  {{ govukButton({
+    text: "Version 2",
+    href: "/user-research-product-1-4/product-1?version=v2",
+    classes: "" if version == "v2" else "govuk-button--secondary",
+    attributes: { "aria-current": "page" } if version == "v2" else {}
+  }) }}
+  <a class="govuk-link" href="/user-research-product-1-4/product-1-compare">Show side by side</a>
+</div>
+
+<img class="ur-image ur-image--product-1" src="{{ imgPath }}/product-1-{{ version }}.png" alt="Product 1 version {{ version | replace('v', '') }}: flood zones, flood zones with climate change, surface water present day and surface water with climate change maps">
+
+<p class="govuk-body govuk-!-margin-top-4">
+  <a class="govuk-link" href="{{ imgPath }}/product-1-{{ version }}.png">Open image on its own</a>
+</p>
+
+{{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+{% endblock %}

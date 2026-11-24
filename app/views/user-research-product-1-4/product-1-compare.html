@@ -1,0 +1,33 @@
+{% extends "layouts/main.html" %}
+
+{% set imgPath = "/public/images/user-research-product-1-4" %}
+
+{% block pageTitle %}Product 1 side by side – {{ serviceName }}{% endblock %}
+
+{# Wider than the standard 960px container so both images are as large as possible on an iPad #}
+{% block main %}
+<div class="ur-wide-container">
+  {{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+  <main class="govuk-main-wrapper govuk-!-padding-top-2" id="main-content">
+    <h1 class="govuk-heading-l">Product 1: version 1 and version 2</h1>
+
+    <div class="ur-compare">
+      <figure class="ur-compare__item">
+        <h2 class="govuk-heading-m">Version 1</h2>
+        <a href="/user-research-product-1-4/product-1?version=v1">
+          <img class="ur-image" src="{{ imgPath }}/product-1-v1.png" alt="Product 1 version 1">
+        </a>
+      </figure>
+      <figure class="ur-compare__item">
+        <h2 class="govuk-heading-m">Version 2</h2>
+        <a href="/user-research-product-1-4/product-1?version=v2">
+          <img class="ur-image" src="{{ imgPath }}/product-1-v2.png" alt="Product 1 version 2">
+        </a>
+      </figure>
+    </div>
+
+    <p class="govuk-body govuk-!-margin-top-4">Select an image to view it on its own page.</p>
+    {{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+  </main>
+</div>
+{% endblock %}

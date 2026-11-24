@@ -8966,6 +8966,37 @@ p + .govuk-heading-s,
   border-bottom: 3px solid #ffffff;
 }
 
+.ur-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #b1b4b6;
+}
+
+.ur-wide-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.ur-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+@media (min-width: 641px) {
+  .ur-compare {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+.ur-compare__item {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+}
+
 .flood-map-target .govuk-body-s {
   margin-bottom: 0;
 }

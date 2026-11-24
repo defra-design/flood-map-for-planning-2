@@ -1,0 +1,35 @@
+// User research: Product 1 and Product 4 image pages
+// Self-contained (loaded with @use, so GOV.UK Sass variables/mixins are not in scope)
+
+.ur-image {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  border: 1px solid #b1b4b6; // GOV.UK border colour
+}
+
+.ur-wide-container {
+  max-width: 1600px;
+  margin: 0 auto;
+  padding: 0 15px;
+}
+
+.ur-compare {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+// Side by side from GOV.UK tablet breakpoint (641px) upwards – covers iPad portrait and landscape
+@media (min-width: 641px) {
+  .ur-compare {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+}
+
+.ur-compare__item {
+  flex: 1 1 0;
+  min-width: 0;
+  margin: 0;
+}

@@ -1,0 +1,27 @@
+{% extends "layouts/main.html" %}
+
+{% set imgPath = "/public/images/user-research-product-1-4" %}
+
+{% block pageTitle %}User research: Product 1 and Product 4 – {{ serviceName }}{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+    <span class="govuk-caption-l">User research</span>
+    <h1 class="govuk-heading-xl">Product 1 and Product 4 outputs</h1>
+    <p class="govuk-body">Choose an output to show to the participant. Each page has a back link to return here.</p>
+
+    <h2 class="govuk-heading-m">Product 1: flood zones and surface water</h2>
+    <ul class="govuk-list">
+      <li><a class="govuk-link govuk-link--no-visited-state" href="/user-research-product-1-4/product-1?version=v1">Product 1 – version 1</a></li>
+      <li><a class="govuk-link govuk-link--no-visited-state" href="/user-research-product-1-4/product-1?version=v2">Product 1 – version 2</a></li>
+      <li><a class="govuk-link govuk-link--no-visited-state" href="/user-research-product-1-4/product-1-compare">Product 1 – version 1 and version 2 side by side</a></li>
+    </ul>
+
+    <h2 class="govuk-heading-m">Product 4: modelled data</h2>
+    <ul class="govuk-list">
+      <li><a class="govuk-link govuk-link--no-visited-state" href="/user-research-product-1-4/product-4">Product 4 – defences removed modelled fluvial extent and height</a></li>
+    </ul>
+  </div>
+</div>
+{% endblock %}

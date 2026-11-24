@@ -1,0 +1,22 @@
+{% extends "layouts/main.html" %}
+
+{% set imgPath = "/public/images/user-research-product-1-4" %}
+
+{% block pageTitle %}Product 4 – {{ serviceName }}{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+{% endblock %}
+
+{% block content %}
+<h1 class="govuk-heading-l">Product 4: defences removed modelled fluvial extent and height</h1>
+
+<img class="ur-image" src="{{ imgPath }}/product-4.png" alt="Product 4 map showing defences removed modelled fluvial extent and height for River Rother 2011, with sample point data tables for 30 points">
+
+<p class="govuk-body govuk-!-margin-top-4">
+  <a class="govuk-link" href="{{ imgPath }}/product-4.png">Open image on its own</a>
+</p>
+
+{{ govukBackLink({ text: "Back to all outputs", href: "/user-research-product-1-4" }) }}
+{% endblock %}
+
