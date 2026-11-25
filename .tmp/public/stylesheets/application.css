@@ -8997,6 +8997,10 @@ p + .govuk-heading-s,
   margin: 0;
 }
 
+.ur-image--full {
+  width: 100%;
+}
+
 .flood-map-target .govuk-body-s {
   margin-bottom: 0;
 }
